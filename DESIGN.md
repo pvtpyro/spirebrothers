@@ -19,11 +19,13 @@ Great with numbers, frugal, loves puzzles, likes to teach. Road trip Idaho to NJ
 - **Exact**: bonus if you end the card with exactly 0 energy.
 - **Hoard**: scales with unspent gold. Starter relic Old Wallet: Block per 20 gold at combat start.
 - Share cards that *teach* (upgrade allies' cards). Delegate: ally's next attack doubles, David sits out.
+- **Thorns**: a big part of his kit, because it fits his personality. Attacking David costs you; nothing is free. Vanilla `ThornsPower` should cover the basics.
 - Games: Payday 2, Terraria, Satisfactory, ARK. Idaho to Jersey and Back (rare power).
 
 ## Joshua, The Musician (next)
 Piano, guitar, vocals. Living in Japan, moving back to the US soon.
 - **Verse / Chorus**: Song cards build Verses; Chorus cards spend them for effects on ALL players.
 - Starter relic Well-Worn Guitar: start each combat with 1 Verse.
+- **Healing**: a big part of his kit, because it fits his personality. The team's support. Chorus heals on ALL players fit naturally (as Pastor already does).
 - Games: PlateUp!, Terraria, Rocket League, Stardew Valley. Omiyage, What a Save!, Karaoke Night.
 - Tribute cards: **Pastor** (all players heal and gain Block, Exhaust) and **Coming Home**.
