@@ -20,7 +20,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 
 - 4 Strike, 4 Defend
 - **Collecting Dust** (Basic Attack, 1): Deal 6 damage. **Hoard:** +1 per 50 Gold.
-- **Do the Math** (Basic Skill, 1): Gain 5 Block. **Exact:** draw 2 cards.
+- **Do the Math** (Basic Skill, 1): Gain 5 Block. **Exact:** next turn, draw 2 extra cards.
 - **Starter relic: Old Wallet.** (He never saw a reason to replace it.) At the start of each combat, gain 1 Block per 20 Gold (max 15).
 
 Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡️ Monkey Island (Insult / Comeback).
@@ -30,9 +30,9 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
 | 1 | 🎯 Carry the One | 1 Skill | Gain 7 Block. **Exact:** gain 4 more. | Numbers |
-| 2 | 🎯 Spreadsheet | 1 Skill | Draw 2 cards. **Exact:** draw 1 more. | Numbers |
+| 2 | 🎯 Spreadsheet | 1 Skill | Draw 2 cards. **Exact:** next turn, draw 1 extra card. | Numbers |
 | 3 | 🎯 Exact Change | 1 Attack | Deal 7 damage. **Exact:** deal 7 more. | Numbers |
-| 4 | 🎯 Just Browsing | 0 Skill | Scry 3. **Exact:** draw 1 card. | Looks at everything, buys nothing |
+| 4 | 🎯 Just Browsing | 0 Skill | Scry 3. **Exact:** next turn, draw 1 extra card. | Looks at everything, buys nothing |
 | 5 | 🎯 Sudoku | 1 Skill | Draw 1 card. **Exact:** gain 1 Energy. | Puzzles |
 | 6 | 🗡️🎯 Statistically Insignificant | 1 Attack | Deal 6 damage. Apply 2 Insulted. **Exact:** apply 2 more. | Insult (numbers) |
 | 7 | 🎯 Tranq Dart | 1 Skill | Apply 2 Weak. **Exact:** also apply 1 Vulnerable. | ARK |
@@ -70,7 +70,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | 29 | 🎯 Calculated Risk | 1 Attack | Deal 10 damage. **Exact:** gain 1 Energy. | Numbers |
 | 30 | 🎯 **A Glove Fry** | 1 Skill | Draw 2 cards. **Exact:** you cracked it! Exhaust this and add **Valley Forge** to your hand. *(Valley Forge, token, 0 cost: gain 10 Block and 1 Strength. Exhaust.)* | National Treasure: an inside joke between David and Daniel, the scrambled guess at "Valley Forge" |
 | 31 | 🎯 Bookkeeping | 1 Power | Whenever you trigger **Exact**, gain 3 Block. | Numbers |
-| 32 | 🎯 Q.E.D. | 1 Power | Whenever you trigger **Exact**, draw 1 card. | Numbers |
+| 32 | 🎯 Q.E.D. | 1 Power | Whenever you trigger **Exact**, draw 1 extra card next turn. | Numbers |
 | 33 | 🎯 Simplify | 0 Skill | Exhaust a card in your hand. Gain 1 Energy. *(sets up Exact)* | Numbers |
 
 ### Hoard and gold

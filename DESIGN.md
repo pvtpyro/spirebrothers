@@ -34,7 +34,7 @@ Software engineer who can fix cars, hard-wired his whole house for internet (eve
 
 ## David, The Min-Maxer (built 2026-10-04)
 Great with numbers, loves puzzles, loves hiking and camping. Always in the middle of an existential crisis, and whoever has to listen pays the price. Never spends money, not to save it, but because nothing interests him enough to buy, so it piles up. Road trip Idaho to NJ and back.
-- **Exact**: bonus if you end the card with exactly 0 energy.
+- **Exact**: bonus if you end the card with exactly 0 energy. Card-draw bonuses happen next turn (you have no energy to play them now).
 - **Hoard**: scales with unspent gold. Starter relic Old Wallet: Block per 20 gold at combat start.
 - **Rant** (replaced teaching): Rant cards snowball the more of them you play in a turn, and wear down the listener (the enemy loses Strength, takes damage, or gets Weak). Delegate: ally's next attack doubles.
 - **Bleed** (replaced Thorns): a debuff that hits hard at the end of the enemy's turn, then halves. Messing with David costs you.

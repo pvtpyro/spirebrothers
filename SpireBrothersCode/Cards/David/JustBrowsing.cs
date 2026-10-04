@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Looks at everything, buys nothing. Scry 3. Exact: draw 1 card.</summary>
+/// <summary>Looks at everything, buys nothing. Scry 3. Exact: next turn, draw 1 extra card.</summary>
 public class JustBrowsing() : DavidCard(0, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Exact];
@@ -27,7 +27,7 @@ public class JustBrowsing() : DavidCard(0, CardType.Skill, CardRarity.Common, Ta
     {
         int exact = await Exact.Check(ctx, this);
         await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);
-        if (exact > 0) await CardPileCmd.Draw(ctx, exact * DynamicVars.Cards.BaseValue, Owner);
+        await DrawNextTurn(ctx, exact * DynamicVars.Cards.BaseValue);
     }
 
     protected override void OnUpgrade() => DynamicVars["Scry"].UpgradeValueBy(2);

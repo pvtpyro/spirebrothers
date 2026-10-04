@@ -92,6 +92,7 @@ public abstract class DanielCard(int cost, CardType type, CardRarity rarity, Tar
     protected override void AddExtraArgsToDescription(LocString description)
     {
         base.AddExtraArgsToDescription(description);
+        Growth.AddCalcArgs(this, description);
         if (DiligentTarget != null)
         {
             description.Add("DiligentGrown", _diligentBonus > 0);

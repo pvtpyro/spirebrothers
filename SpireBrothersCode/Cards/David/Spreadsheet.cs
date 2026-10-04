@@ -16,7 +16,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Draw 2 cards. Exact: draw 1 more.</summary>
+/// <summary>Draw 2 cards. Exact: next turn, draw 1 extra card.</summary>
 public class Spreadsheet() : DavidCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Exact];
@@ -25,7 +25,8 @@ public class Spreadsheet() : DavidCard(1, CardType.Skill, CardRarity.Common, Tar
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         int exact = await Exact.Check(ctx, this);
-        await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue + exact * DynamicVars["ExactCards"].BaseValue, Owner);
+        await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, Owner);
+        await DrawNextTurn(ctx, exact * DynamicVars["ExactCards"].BaseValue);
     }
 
     protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(1);

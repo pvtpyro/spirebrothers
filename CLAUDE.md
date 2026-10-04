@@ -83,14 +83,15 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   effect through `MonkeySpeak.Translation` (a `<ID>.translation` loc key the analyzer does not check).
 - Use game names and short catchphrases as card names only. No copied art.
 - **Growing numbers (user preference, applies to every brother):** when a card's number grows above its
-  printed value (Diligent, Hoard, Rant scaling, turn count, etc.), show the current number in green plus the
-  starting number: "Deal **9** damage (from 6)". Never just the bare calculated number.
-  - Calculated-var cards: the card base class adds `{CalcGrown}`/`{CalcStart}` (see
-    `DavidCard.AddExtraArgsToDescription`); text is
-    `{CalcGrown:cond:[green]{CalculatedDamage:diff()}[/green] damage (from {CalcStart})|{CalculatedDamage:diff()} damage}`
-    (or `CalculatedBlock` + `[gold]Block[/gold]`).
-  - Diligent cards use `{DiligentGrown}`/`{DiligentStart}` from `DanielCard`.
-  - Joshua's and Tim's base classes need the same helper when they're built.
+  printed value (Diligent, Hoard, Rant scaling, turn count, etc.), show the printed number dimmed
+  (`[color=#ffffff8c]`, white at ~55% opacity) and the current number in green right after it, with no
+  extra words: "Deal 6 9 damage". `[s]` strikethrough does NOT render in card text (tested).
+  - Calculated-var cards: `Mechanics/Growth.AddCalcArgs` (called from each brother's card base class in
+    `AddExtraArgsToDescription`) adds `{CalcGrown}`/`{CalcStart}`. Text:
+    `{CalcGrown:cond:[color=#ffffff8c]{CalcStart}[/color] [green]{CalculatedDamage:diff()}[/green]|{CalculatedDamage:diff()}} damage`
+    (or `CalculatedBlock` followed by `[gold]Block[/gold]`).
+  - Diligent cards use `{DiligentGrown}`/`{DiligentStart}` from `DanielCard`, same dimmed-then-green shape.
+  - Joshua's and Tim's base classes must call `Growth.AddCalcArgs` too when they're built.
 
 ## Current status
 

@@ -45,22 +45,12 @@ public abstract class DavidCard(int cost, CardType type, CardRarity rarity, Targ
         }
     }
 
-    // Cards whose number grows (Hoard, Rant, Summit Push) show "9 (from 6)" with the current number in green,
-    // the same way Daniel's Diligent cards do. Text uses {CalcGrown:cond:...|...} and {CalcStart}.
+    // Cards whose number grows (Hoard, Rant, Summit Push) show the printed number struck through and the
+    // current number in green. See Mechanics/Growth.cs.
     protected override void AddExtraArgsToDescription(LocString description)
     {
         base.AddExtraArgsToDescription(description);
-        foreach (var key in new[] { "CalculatedDamage", "CalculatedBlock" })
-        {
-            if (!DynamicVars.TryGetValue(key, out var v) || v is not CalculatedVar calc) continue;
-            decimal start = DynamicVars["CalculationBase"].BaseValue;
-            decimal now = start;
-            try { now = calc.Calculate(null); }
-            catch (Exception e) { MainFile.Logger.Error($"Growth preview failed on {GetType().Name}: {e}"); }
-            description.Add("CalcGrown", now > start);
-            description.Add("CalcStart", start);
-            return;
-        }
+        Growth.AddCalcArgs(this, description);
     }
 
     /// <summary>Hoard: +1 per <paramref name="perGold"/> Gold the owner is holding.</summary>
@@ -73,6 +63,12 @@ public abstract class DavidCard(int cost, CardType type, CardRarity rarity, Targ
     protected async Task RantAt(PlayerChoiceContext ctx, Creature target, decimal amount)
     {
         if (amount > 0) await PowerCmd.Apply<RantedAtPower>(ctx, target, amount, Owner.Creature, this);
+    }
+
+    /// <summary>Exact draw bonuses happen next turn, since Exact means you're out of energy right now.</summary>
+    protected async Task DrawNextTurn(PlayerChoiceContext ctx, decimal amount)
+    {
+        if (amount > 0) await PowerCmd.Apply<DrawCardsNextTurnPower>(ctx, Owner.Creature, amount, Owner.Creature, this);
     }
 
     /// <summary>Lose up to <paramref name="amount"/> Gold (never below 0). Returns how much was actually lost.</summary>
