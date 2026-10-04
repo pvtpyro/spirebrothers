@@ -40,6 +40,7 @@ public class TurnTracker() : CustomSingletonModel(HookType.Combat)
     {
         var state = player.PlayerCombatState;
         if (state == null) return Task.CompletedTask;
+        MainFile.Logger.Info($"[TurnTracker] Turn start for {player.Character?.Id}");
 
         var seq = Seq(state);
         MixedLastTurn.Set(state, seq.Contains(BrotherKeywords.Logic) && seq.Contains(BrotherKeywords.Hands));

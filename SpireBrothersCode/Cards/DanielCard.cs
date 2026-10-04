@@ -26,12 +26,43 @@ public abstract class DanielCard(int cost, CardType type, CardRarity rarity, Tar
     /// <summary>Stratagem cards list their input combo here; they can only be played once it's entered.</summary>
     protected virtual IReadOnlyList<CardKeyword>? StratagemCombo => null;
 
-    protected override bool ShouldGlowGoldInternal =>
-        (HasWiredBonus && Wired.IsActive(this)) ||
-        (StratagemCombo != null && TurnTracker.MatchesCombo(Owner, StratagemCombo));
+    // The game asks these constantly while cards are on screen, so they must never throw.
+    protected override bool ShouldGlowGoldInternal
+    {
+        get
+        {
+            if (base.ShouldGlowGoldInternal) return true;
+            try
+            {
+                if (!IsInCombat || Owner?.PlayerCombatState == null) return false;
+                if (HasWiredBonus && Wired.IsActive(this)) return true;
+                if (StratagemCombo != null && TurnTracker.MatchesCombo(Owner, StratagemCombo)) return true;
+            }
+            catch (Exception e)
+            {
+                MainFile.Logger.Error($"Glow check failed on {GetType().Name}: {e}");
+            }
+            return false;
+        }
+    }
 
-    protected override bool IsPlayable =>
-        StratagemCombo == null || TurnTracker.MatchesCombo(Owner, StratagemCombo);
+    protected override bool IsPlayable
+    {
+        get
+        {
+            if (!base.IsPlayable) return false;
+            if (StratagemCombo == null) return true;
+            try
+            {
+                return IsInCombat && TurnTracker.MatchesCombo(Owner, StratagemCombo);
+            }
+            catch (Exception e)
+            {
+                MainFile.Logger.Error($"Playable check failed on {GetType().Name}: {e}");
+                return false;
+            }
+        }
+    }
 
     /// <summary>Share: the chosen player, or yourself if playing solo / no target was picked.</summary>
     protected Creature ShareTarget(CardPlay play) =>

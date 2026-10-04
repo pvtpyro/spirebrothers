@@ -12,8 +12,8 @@ public static class Wired
     public static bool IsActive(CardModel card)
     {
         var owner = card.Owner;
-        if (owner == null) return false;
-        if (owner.Creature.HasPower<NerdsWrongPower>()) return true;
+        if (owner?.Creature == null) return false;
+        if (owner.Creature.Powers.Any(p => p is NerdsWrongPower)) return true;
 
         bool logic = card.Keywords.Contains(BrotherKeywords.Logic);
         bool hands = card.Keywords.Contains(BrotherKeywords.Hands);

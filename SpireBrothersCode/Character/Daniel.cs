@@ -18,6 +18,9 @@ public class Daniel : PlaceholderCharacterModel
     public override CharacterGender Gender => CharacterGender.Masculine;
     public override int StartingHp => 75;
 
+    // The Defect has no screen-wipe sound, so borrow the Ironclad's.
+    public override string CharacterTransitionSfx => "event:/sfx/ui/wipe_ironclad";
+
     public override IEnumerable<CardModel> StartingDeck => [
         ModelDb.Card<StrikeDaniel>(), ModelDb.Card<StrikeDaniel>(), ModelDb.Card<StrikeDaniel>(), ModelDb.Card<StrikeDaniel>(),
         ModelDb.Card<DefendDaniel>(), ModelDb.Card<DefendDaniel>(), ModelDb.Card<DefendDaniel>(), ModelDb.Card<DefendDaniel>(),
