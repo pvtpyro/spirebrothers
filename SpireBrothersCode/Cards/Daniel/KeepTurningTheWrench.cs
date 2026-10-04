@@ -21,11 +21,12 @@ public class KeepTurningTheWrench() : DanielCard(1, CardType.Attack, CardRarity.
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Hands, BrotherKeywords.Diligent];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move), new DynamicVar("Diligent", 3)];
+    protected override DynamicVar DiligentTarget => DynamicVars.Damage;
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CommonActions.CardAttack(this, play, vfx: "vfx/vfx_attack_blunt").Execute(ctx);
-        DynamicVars.Damage.BaseValue += DynamicVars["Diligent"].BaseValue;
+        GrowDiligent();
     }
 
     protected override void OnUpgrade() => DynamicVars["Diligent"].UpgradeValueBy(2);

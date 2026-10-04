@@ -21,12 +21,13 @@ public class DebugUntilItWorks() : DanielCard(1, CardType.Skill, CardRarity.Comm
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Logic, BrotherKeywords.Diligent];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(5, ValueProp.Move), new ScryVar(2), new DynamicVar("Diligent", 2)];
+    protected override DynamicVar DiligentTarget => DynamicVars.Block;
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CommonActions.CardBlock(this, play);
         await ScryCmd.Execute(ctx, Owner, DynamicVars["Scry"].IntValue);
-        DynamicVars.Block.BaseValue += DynamicVars["Diligent"].BaseValue;
+        GrowDiligent();
     }
 
     protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(3);

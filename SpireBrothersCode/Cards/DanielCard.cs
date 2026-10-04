@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using SpireBrothers.SpireBrothersCode.Character;
 using SpireBrothers.SpireBrothersCode.Extensions;
 using SpireBrothers.SpireBrothersCode.Mechanics;
@@ -65,10 +66,31 @@ public abstract class DanielCard(int cost, CardType type, CardRarity rarity, Tar
         }
     }
 
+    /// <summary>Diligent cards name the value that grows each play (e.g. DynamicVars.Damage).</summary>
+    protected virtual DynamicVar? DiligentTarget => null;
+
+    // Total added by Diligent this combat. Combat cards are fresh copies, so this starts at 0 each fight.
+    private decimal _diligentBonus;
+
+    /// <summary>Call at the end of OnPlay: grows the Diligent value by the card's "Diligent" amount.</summary>
+    protected void GrowDiligent()
+    {
+        if (DiligentTarget == null) return;
+        var amount = DynamicVars["Diligent"].BaseValue;
+        DiligentTarget.BaseValue += amount;
+        _diligentBonus += amount;
+    }
+
+    // Diligent text uses {DiligentGrown} and {DiligentStart} so it can show "12 (from 6)" with 12 in green.
     // Stratagem text uses {Input}: the combo, with steps already entered this turn shown in green.
     protected override void AddExtraArgsToDescription(LocString description)
     {
         base.AddExtraArgsToDescription(description);
+        if (DiligentTarget != null)
+        {
+            description.Add("DiligentGrown", _diligentBonus > 0);
+            description.Add("DiligentStart", DiligentTarget.BaseValue - _diligentBonus);
+        }
         if (StratagemCombo == null) return;
 
         int done = 0;
