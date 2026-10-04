@@ -42,5 +42,20 @@
   "SPIREBROTHERS-JOSHUA.possessiveAdjective": "his",
   "SPIREBROTHERS-JOSHUA.pronounObject": "him",
   "SPIREBROTHERS-JOSHUA.pronounPossessive": "his",
-  "SPIREBROTHERS-JOSHUA.pronounSubject": "he"
+  "SPIREBROTHERS-JOSHUA.pronounSubject": "he",
+
+  "SPIREBROTHERS-TIM.title": "Tim",
+  "SPIREBROTHERS-TIM.titleObject": "Tim",
+  "SPIREBROTHERS-TIM.description": "The oldest brother. A draftsman who scripts his way through AutoCAD.\nMarried, with eight kids along for the climb.",
+  "SPIREBROTHERS-TIM.aromaPrinciple": "[sine][color=d9734f]Measure twice, climb once.[/color][/sine]",
+  "SPIREBROTHERS-TIM.banter.alive.endTurnPing": "Everybody buckled in?",
+  "SPIREBROTHERS-TIM.banter.dead.endTurnPing": "...",
+  "SPIREBROTHERS-TIM.cardsModifierTitle": "Tim Cards",
+  "SPIREBROTHERS-TIM.cardsModifierDescription": "Tim cards will now appear in rewards and shops.",
+  "SPIREBROTHERS-TIM.eventDeathPrevention": "Can't quit now. The kids are watching.",
+  "SPIREBROTHERS-TIM.goldMonologue": "[sine]Times eight...[/sine]",
+  "SPIREBROTHERS-TIM.possessiveAdjective": "his",
+  "SPIREBROTHERS-TIM.pronounObject": "him",
+  "SPIREBROTHERS-TIM.pronounPossessive": "his",
+  "SPIREBROTHERS-TIM.pronounSubject": "he"
 }

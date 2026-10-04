@@ -4,7 +4,7 @@ Timothy, the oldest brother. Married with 8 kids. A draftsman at a civil enginee
 writes Lua add-ons for AutoCAD. Loves, in order: Rocket League, Age of Empires, Splinter Cell, airsoft,
 and Legos. Old nickname "Tidbit" (he doesn't love it, so it appears exactly once).
 
-Nothing here is built yet. Cut, rename, or rewrite anything, especially to add inside jokes.
+**Built 2026-10-04, untested in game.** Numbers below match the code. Each Age Up card advances one Age (Imperial Age jumps straight to Imperial). Cut, rename, or rewrite anything, especially to add inside jokes.
 Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 
 ## His mechanics
@@ -36,7 +36,7 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeba
 | 4 | 👶 Step on a Lego | 1 Attack | Deal 8 damage. Apply 1 Vulnerable. | Legos + kids |
 | 5 | 📜 Hotkey | 0 Skill | Draw 1 card. **Script.** | AutoCAD |
 | 6 | 📜 Polyline | 1 Attack | Deal 5 damage. **Script.** | AutoCAD |
-| 7 | 📜 Batch Process | 1 Skill | Gain 4 Block. **Script.** | Lua |
+| 7 | 📜 Batch Process | 1 Skill | Gain 5 Block. **Script.** | Lua |
 | 8 | 🏰 Villager | 1 Skill | Gain 3 Block. Next turn, gain 1 Energy. | Age of Empires |
 | 9 | 🏰 Scout Rush | 1 Attack | Deal 7 damage. **Feudal Age or later:** draw 1 card. | Age of Empires |
 | 10 | 🏰 Palisade Wall | 1 Skill | Gain 7 Block. **Castle Age or later:** gain 3 more. | Age of Empires |
@@ -57,7 +57,7 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeba
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
 | 21 | 👶 Bedtime Story | 1 Skill | Gain 1 Kid. Draw 1 card. | Family |
-| 22 | 👶 Family Game Night | 1 Skill | ALL players gain 1 Block per Kid. | Family / co-op |
+| 22 | 👶 Family Game Night | 1 Skill | ALL players gain 2 Block per Kid. | Family / co-op |
 | 23 | 👶 Honey-Do List | 1 Skill | Your Kids act right now (deal their end-of-turn damage). | Married life |
 | 24 | 👶 Minivan Ram | 2 Attack | Deal 10 damage, +2 per Kid. | Family |
 | 25 | 👶 Big Family | 1 Power | At the end of your turn, also gain 1 Block per Kid. | Family |
@@ -111,7 +111,7 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeba
 |---|---|---|---|---|
 | 57 | 👶 **The Whole Crew** | 2 Skill | Gain Kids until you have 8. Exhaust. | All eight of them |
 | 58 | 👶 Proud Dad | 2 Power | Your Kids deal 2 damage each instead of 1. | Family |
-| 59 | 👶 Family Reunion | 2 Skill | ALL players gain 2 Block per Kid. Exhaust. | Family / co-op |
+| 59 | 👶 Family Reunion | 2 Skill | ALL players gain 3 Block per Kid. Exhaust. | Family / co-op |
 | 60 | 👶 Lego Masterpiece | 3 Attack | Deal 4 damage per Kid to ALL enemies. Exhaust. | Legos (built with the kids) |
 | 61 | 📜 Automation Suite | 3 Power | The first card you play each turn has **Script.** | Lua add-ons |
 | 62 | 📜 while true do | 1 Skill | Gain 3 Block. Draw 1 card. Its **Script** repeats every turn for the rest of combat. Exhaust. | Lua (the infinite loop) |

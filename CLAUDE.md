@@ -9,7 +9,7 @@ so the characters should feel personal, warm, and fun. Co-op support matters a l
 - **Daniel, The Nerd Who Nerds Wrong**: built and playable, now being playtested and expanded.
 - **David, The Min-Maxer**: built (2026-10-04), untested in game. Uses the Silent's visuals.
 - **Joshua, The Musician**: built (2026-10-04), untested in game. Uses the Regent's visuals.
-- **Tim (Timothy), The Draftsman**: the oldest brother. Designed, not built. Old nickname "Tidbit": he doesn't like it, so use it only once (it's one card).
+- **Tim (Timothy), The Draftsman**: the oldest brother. Built (2026-10-04), untested in game. Uses the Ironclad's visuals. Old nickname "Tidbit": he doesn't like it, so use it only once (it's one card).
 
 Full designs are in `DESIGN.md`, with full card plans in `DANIEL_CARDS.md`, `DAVID_CARDS.md`, `JOSHUA_CARDS.md`, and `TIM_CARDS.md`. Build Daniel fully working before starting the others.
 
@@ -60,6 +60,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   Encore/Bridge/Choir, `IChorusListener`, `AddRandomSongs`), `Mechanics/JoshuaTracker.cs` (Song cards add Verses after
   play), `Mechanics/Archipelago.cs` (Check: rolls an item on the run RNG, thought bubble over the receiver; lines are
   `SPIREBROTHERS-ARCHIPELAGO.*` in powers.json). `VersePower` is type None. Starter relic `Relics/WellWornGuitar.cs`.
+- Tim: `Character/Tim.cs` + `TimPools.cs` (Ironclad visuals), `Cards/TimCard.cs` (`AgeBonusAt` / `KidsThreshold` / `ExtraGlow`  glow, `KidCount` multiplier, `AllPlayers`), `Cards/Tim/` (76 files), `Mechanics/Kids.cs` (max 8, `Act()` hits random  enemies at end of turn via `KidsPower`), `Mechanics/Ages.cs` (0 Dark .. 3 Imperial, stored in `TimTracker.AgeField`, shown  by `AgePower`), `Mechanics/TimTracker.cs` (cards played this turn; queues Script cards in `ScriptPower`, which auto-plays a  `CreateDupe()` of each at the start of the next turn, like vanilla History Course; dupes never re-queue, Powers never get  Script). Snap to Grid / Automation Suite / Xref add Script; Script uses `AutoKeywordPosition.After` so it shows when added.  Wololo / Mass Conversion use vanilla `FlexPotionPower` for Strength this turn. Starter relic `Relics/FamilyMinivan.cs`.
 - `SpireBrothersCode/Powers/`, `SpireBrothersCode/Relics/`, `SpireBrothersCode/Potions/`
 - `SpireBrothersCode/BrotherKeywords.cs`: custom `CardKeyword`s. Logic/Hands/Stratagem auto-insert
   before the card text. Wired/Share/Diligent/Comeback use `AutoKeywordPosition.None` and are
@@ -97,7 +98,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
     `{CalcGrown:cond:[color=#ffffff8c]{CalcStart}[/color] [green]{CalculatedDamage:diff()}[/green]|{CalculatedDamage:diff()}} damage`
     (or `CalculatedBlock` followed by `[gold]Block[/gold]`).
   - Diligent cards use `{DiligentGrown}`/`{DiligentStart}` from `DanielCard`, same dimmed-then-green shape.
-  - Tim's base class must call `Growth.AddCalcArgs` too when it's built (Joshua's already does).
+  - Every brother's card base class calls `Growth.AddCalcArgs`; any new base class must too.
 
 ## Current status
 
@@ -147,7 +148,7 @@ Next steps:
   the analyzer does NOT check for it.
 - When generating many card files from the shell, keep each heredoc batch to ~5 cards; very long
   commands get truncated and fail with "unexpected EOF".
-- Then build Tim.
+- All four brothers are built. Next: playtest David, Joshua, and Tim.
 
 ## Tooling notes
 

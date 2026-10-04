@@ -11,5 +11,10 @@
   "THE_ARCHITECT.talk.SPIREBROTHERS-JOSHUA.0-0r.char": "It's so quiet up here. Mind if I play something?",
   "THE_ARCHITECT.talk.SPIREBROTHERS-JOSHUA.0-0r.next": "Continue",
   "THE_ARCHITECT.talk.SPIREBROTHERS-JOSHUA.0-1r.ancient": "No one has made music in my Spire before. Play, then. I will listen.",
-  "THE_ARCHITECT.talk.SPIREBROTHERS-JOSHUA.0-attack": "Both"
+  "THE_ARCHITECT.talk.SPIREBROTHERS-JOSHUA.0-attack": "Both",
+
+  "THE_ARCHITECT.talk.SPIREBROTHERS-TIM.0-0r.char": "Your load paths are a mess. Who drafted this place?",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-TIM.0-0r.next": "Continue",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-TIM.0-1r.ancient": "No one has ever asked to see my plans. Come, then. I will show you the redlines.",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-TIM.0-attack": "Both"
 }

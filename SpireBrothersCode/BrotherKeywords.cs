@@ -27,4 +27,9 @@ public static class BrotherKeywords
     [CustomEnum, KeywordProperties(AutoKeywordPosition.Before)] public static CardKeyword Song;
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Chorus;
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Check;
+
+    // Tim. Script shows at the end of the card (so Xref / Snap to Grid can add it); Kids and Age are written by hand.
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.After)] public static CardKeyword Script;
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Kids;
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Age;
 }

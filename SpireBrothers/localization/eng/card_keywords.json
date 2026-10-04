@@ -27,5 +27,12 @@
   "SPIREBROTHERS-CHORUS.title": "Chorus",
   "SPIREBROTHERS-CHORUS.description": "Spends ALL your [gold]Verses[/gold] for an effect that grows with each one spent.",
   "SPIREBROTHERS-CHECK.title": "Check",
-  "SPIREBROTHERS-CHECK.description": "Find a random item for a random player: [gold]Filler[/gold] (4 [gold]Block[/gold]), [gold]Useful[/gold] (draw 1 next turn), [gold]Progression[/gold] (1 energy next turn), or a [gold]Trap[/gold] (an enemy gets 1 [gold]Weak[/gold] and 1 [gold]Vulnerable[/gold])."
+  "SPIREBROTHERS-CHECK.description": "Find a random item for a random player: [gold]Filler[/gold] (4 [gold]Block[/gold]), [gold]Useful[/gold] (draw 1 next turn), [gold]Progression[/gold] (1 energy next turn), or a [gold]Trap[/gold] (an enemy gets 1 [gold]Weak[/gold] and 1 [gold]Vulnerable[/gold]).",
+
+  "SPIREBROTHERS-SCRIPT.title": "Script",
+  "SPIREBROTHERS-SCRIPT.description": "At the start of your next turn, this card's effect happens again for free. Write it once, let it run.",
+  "SPIREBROTHERS-KIDS.title": "Kids",
+  "SPIREBROTHERS-KIDS.description": "Tim has up to 8. At the end of your turn, each Kid deals 1 damage to a random enemy.",
+  "SPIREBROTHERS-AGE.title": "Age",
+  "SPIREBROTHERS-AGE.description": "Every combat starts in the Dark Age. [gold]Age Up[/gold] advances it: Feudal, then Castle, then Imperial."
 }
