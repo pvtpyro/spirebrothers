@@ -6,7 +6,7 @@ A Slay the Spire 2 character mod. It adds playable characters based on three rea
 friends of the user and play StS2 together, mostly in multiplayer co-op. The mod is a gift for them,
 so the characters should feel personal, warm, and fun. Co-op support matters a lot.
 
-- **Daniel, The Nerd Who Nerds Wrong**: built (v0.1.0), currently being debugged in game.
+- **Daniel, The Nerd Who Nerds Wrong**: built and playable, now being playtested and expanded.
 - **David, The Min-Maxer**: designed, not built.
 - **Joshua, The Musician**: designed, not built.
 
@@ -38,7 +38,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   visuals) and `DanielPools.cs` (card/relic/potion pools)
 - `SpireBrothersCode/Cards/DanielCard.cs`: base card class with art paths plus helpers for
   Wired glow, Stratagem playability, and `ShareTarget()`
-- `SpireBrothersCode/Cards/Daniel/`: one file per card (24 cards)
+- `SpireBrothersCode/Cards/Daniel/`: one file per card (25 cards)
 - `SpireBrothersCode/Mechanics/TurnTracker.cs`: a `CustomSingletonModel` that records the ordered
   Logic/Hands keywords played each turn (per `PlayerCombatState` via `SpireField`), whether last turn
   mixed both, whether Wired fired this turn, and the Gear count
@@ -72,30 +72,50 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
 
 ## Current status
 
-v0.1.0 builds and loads. Daniel appears on character select.
+Daniel is playable: combat works and cards can be played.
 
-**Open bug: the game freezes at the start of the first combat.** `godot.log` shows no exception.
-The last lines are big-card-image lookups for Defend, Strike, then Percussive Maintenance, while
-the opening hand is being drawn (3 of 5 cards drawn).
+The first-combat freeze is **fixed**. `TurnTracker.Seq()` called itself instead of
+`Sequence.Get(state)`, causing a stack overflow at turn start (uncatchable in .NET, so nothing was
+logged). The glow/playable overrides and mod conflicts were not the cause.
 
-Leading theories:
-1. The overrides of `ShouldGlowGoldInternal` / `IsPlayable` in `DanielCard`. Percussive Maintenance
-   is the first card in hand with a Wired glow check.
-2. A conflict with another mod that patches cards or descriptions (Downfall, RitsuLib, More Enchantments).
+Changes since v0.1.0 (2026-10-03):
+- **Defend is now a Logic card** (Strike is Hands), so Wired, the starter relic, and Stratagem inputs
+  work from the starting deck.
+- **Snappy Comeback** added to the starting deck (permanent).
+- **Stratagems all cost 0** (entering the input is the cost). Inputs: Resupply = Hands, Logic
+  (Block 15 -> 10); Reinforce = Logic, Hands; Orbital Barrage = Logic, Hands, Logic (the big finisher).
+  The old 3-input + 1-2 cost versions were unplayable on 3 energy.
+- New, from Daniel's love of grapefruit:
+  - **Grapefruit** (Common relic): your potions are 50% stronger (rounded up). Implemented by scaling
+    every positive `DynamicVar` on the potion in `BeforePotionUsed`. Safe because the potion is
+    already removed from the belt by then. Only affects the owner's potions.
+  - **Want Some?** (Common skill, Hands, Share, Exhaust, cost 1): a player heals 3 (6 if it's you) and
+    gains 1 energy next turn. Exhaust was added so the heal can't be repeated every turn.
+- **TEMP, remove before release:** `WantSome` in the starting deck and `Grapefruit` in the starting
+  relics, for playtesting. Both lines in `Daniel.cs` are marked `// TEMP`.
 
-Fix 1 has been sent but not yet confirmed as applied or tested. It makes those overrides call
-`base` first, return early outside combat, wrap in try/catch with logging, checks NerdsWrong via
-`Powers.Any`, adds a turn-start log line in `TurnTracker`, and overrides `CharacterTransitionSfx`
-to `event:/sfx/ui/wipe_ironclad` because `wipe_defect` doesn't exist.
+Decided: no greyed-out "Wired:" text. Vanilla doesn't dim conditional text; the gold glow is enough.
 
 Next steps:
-- Confirm Fix 1 is in the project and rebuilt.
-- Test with only BaseLib + Spire Brothers enabled to rule out mod conflicts.
-- If it still hangs, add more `MainFile.Logger.Info` breadcrumbs, or temporarily remove the glow and
-  playable overrides to bisect.
+- Playtest checklist: Wired glow, the starter relic draw, Stratagem gating and the new inputs,
+  Snappy Comeback damage preview, Diligent scaling, Grapefruit potion boost, Want Some? (solo and
+  co-op), card text formatting.
+- The card pool is far too small: 19 non-starter cards (9 common / 7 uncommon / 3 rare) vs ~75 for a
+  vanilla character. Needs roughly 50 more, weighted toward uncommon and rare. The user wants to
+  design these with input from the brothers' inside jokes.
+- Then build David and Joshua.
 
-After Daniel is stable: playtest checklist (Wired, the starter relic draw, Stratagem gating,
-Snappy Comeback damage preview, Diligent scaling, card text formatting), then build David and Joshua.
+## Tooling notes
+
+- `dotnet` is not on PATH in Claude's shells. Use `"C:\Program Files\dotnet\dotnet.exe"`. Python is
+  not installed.
+- `dotnet publish` prints a lot of Godot error traces and `MSB3073 ... exited with code -1` from the
+  .pck export. That's noise: the .pck still gets written. Check the C# build with
+  `dotnet build -c Release --no-restore` (looks for "0 Error(s)") and the dll timestamp in the mods folder.
+- To read game code: the game ships `data_sts2_windows_x86_64/sts2.xml` (partial API docs). For full
+  source, decompile `sts2.dll` with `ilspycmd` 9.1.0.7988 (newer versions fail to install) into the
+  scratchpad, setting `DOTNET_ROLL_FORWARD=Major` because it targets .NET 8 and only the 9 SDK is installed.
+- Vanilla card text is in `SlayTheSpire2.pck` and can be grepped as plain text.
 
 ## Not built yet for Daniel
 
