@@ -27,5 +27,20 @@
   "SPIREBROTHERS-DAVID.possessiveAdjective": "his",
   "SPIREBROTHERS-DAVID.pronounObject": "him",
   "SPIREBROTHERS-DAVID.pronounPossessive": "his",
-  "SPIREBROTHERS-DAVID.pronounSubject": "he"
+  "SPIREBROTHERS-DAVID.pronounSubject": "he",
+
+  "SPIREBROTHERS-JOSHUA.title": "Joshua",
+  "SPIREBROTHERS-JOSHUA.titleObject": "Joshua",
+  "SPIREBROTHERS-JOSHUA.description": "Piano, guitar, and vocals. Living in Japan, coming home soon.\nHe keeps the whole team going.",
+  "SPIREBROTHERS-JOSHUA.aromaPrinciple": "[sine][color=e0a84f]Everybody sing along![/color][/sine]",
+  "SPIREBROTHERS-JOSHUA.banter.alive.endTurnPing": "Take it from the top!",
+  "SPIREBROTHERS-JOSHUA.banter.dead.endTurnPing": "...",
+  "SPIREBROTHERS-JOSHUA.cardsModifierTitle": "Joshua Cards",
+  "SPIREBROTHERS-JOSHUA.cardsModifierDescription": "Joshua cards will now appear in rewards and shops.",
+  "SPIREBROTHERS-JOSHUA.eventDeathPrevention": "Not yet. There's one more verse.",
+  "SPIREBROTHERS-JOSHUA.goldMonologue": "[sine]Maybe some new strings...[/sine]",
+  "SPIREBROTHERS-JOSHUA.possessiveAdjective": "his",
+  "SPIREBROTHERS-JOSHUA.pronounObject": "him",
+  "SPIREBROTHERS-JOSHUA.pronounPossessive": "his",
+  "SPIREBROTHERS-JOSHUA.pronounSubject": "he"
 }

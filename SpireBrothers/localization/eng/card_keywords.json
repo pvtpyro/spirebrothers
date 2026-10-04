@@ -20,5 +20,12 @@
   "SPIREBROTHERS-RANT.title": "Rant",
   "SPIREBROTHERS-RANT.description": "Gets stronger for each Rant card you already played this turn. Whoever has to listen pays the price.",
   "SPIREBROTHERS-DELEGATE.title": "Delegate",
-  "SPIREBROTHERS-DELEGATE.description": "A player's next Attack deals double damage."
+  "SPIREBROTHERS-DELEGATE.description": "A player's next Attack deals double damage.",
+
+  "SPIREBROTHERS-SONG.title": "Song",
+  "SPIREBROTHERS-SONG.description": "After you play this, gain 1 [gold]Verse[/gold].",
+  "SPIREBROTHERS-CHORUS.title": "Chorus",
+  "SPIREBROTHERS-CHORUS.description": "Spends ALL your [gold]Verses[/gold] for an effect that grows with each one spent.",
+  "SPIREBROTHERS-CHECK.title": "Check",
+  "SPIREBROTHERS-CHECK.description": "Find a random item for a random player: [gold]Filler[/gold] (4 [gold]Block[/gold]), [gold]Useful[/gold] (draw 1 next turn), [gold]Progression[/gold] (1 energy next turn), or a [gold]Trap[/gold] (an enemy gets 1 [gold]Weak[/gold] and 1 [gold]Vulnerable[/gold])."
 }

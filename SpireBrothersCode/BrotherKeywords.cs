@@ -22,4 +22,9 @@ public static class BrotherKeywords
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Hoard;
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Rant;
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Delegate;
+
+    // Joshua. Song shows at the top of the card; Chorus and Check are written into the card text by hand.
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.Before)] public static CardKeyword Song;
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Chorus;
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Check;
 }

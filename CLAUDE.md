@@ -8,7 +8,7 @@ so the characters should feel personal, warm, and fun. Co-op support matters a l
 
 - **Daniel, The Nerd Who Nerds Wrong**: built and playable, now being playtested and expanded.
 - **David, The Min-Maxer**: built (2026-10-04), untested in game. Uses the Silent's visuals.
-- **Joshua, The Musician**: designed, not built.
+- **Joshua, The Musician**: built (2026-10-04), untested in game. Uses the Regent's visuals.
 - **Tim (Timothy), The Draftsman**: the oldest brother. Designed, not built. Old nickname "Tidbit": he doesn't like it, so use it only once (it's one card).
 
 Full designs are in `DESIGN.md`, with full card plans in `DANIEL_CARDS.md`, `DAVID_CARDS.md`, `JOSHUA_CARDS.md`, and `TIM_CARDS.md`. Build Daniel fully working before starting the others.
@@ -54,6 +54,12 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   `Relics/OldWallet.cs`; `DavidRelic` base lives in `BrothersRelic.cs`.
 - Monkey Island relics/potions are `[Pool]`ed to Daniel and added to other brothers' pools in
   `MainFile.ShareMonkeyIslandItems()` via vanilla `ModHelper.AddModelToPool`. Add each new brother there.
+- Joshua: `Character/Joshua.cs` + `JoshuaPools.cs` (Regent visuals), `Cards/JoshuaCard.cs` (Verse-threshold glow, `Chorus()`,
+  `ChorusAttack()` + `ChorusVerses` multiplier so damage uses the Verses just spent, `AllPlayers`, `ShareTarget()`),
+  `Cards/Joshua/` (76 files: 4 Basic, 72 reward cards), `Mechanics/Verses.cs` (count, gain, `SpendForChorus` with
+  Encore/Bridge/Choir, `IChorusListener`, `AddRandomSongs`), `Mechanics/JoshuaTracker.cs` (Song cards add Verses after
+  play), `Mechanics/Archipelago.cs` (Check: rolls an item on the run RNG, thought bubble over the receiver; lines are
+  `SPIREBROTHERS-ARCHIPELAGO.*` in powers.json). `VersePower` is type None. Starter relic `Relics/WellWornGuitar.cs`.
 - `SpireBrothersCode/Powers/`, `SpireBrothersCode/Relics/`, `SpireBrothersCode/Potions/`
 - `SpireBrothersCode/BrotherKeywords.cs`: custom `CardKeyword`s. Logic/Hands/Stratagem auto-insert
   before the card text. Wired/Share/Diligent/Comeback use `AutoKeywordPosition.None` and are
@@ -91,7 +97,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
     `{CalcGrown:cond:[color=#ffffff8c]{CalcStart}[/color] [green]{CalculatedDamage:diff()}[/green]|{CalculatedDamage:diff()}} damage`
     (or `CalculatedBlock` followed by `[gold]Block[/gold]`).
   - Diligent cards use `{DiligentGrown}`/`{DiligentStart}` from `DanielCard`, same dimmed-then-green shape.
-  - Joshua's and Tim's base classes must call `Growth.AddCalcArgs` too when they're built.
+  - Tim's base class must call `Growth.AddCalcArgs` too when it's built (Joshua's already does).
 
 ## Current status
 
@@ -141,7 +147,7 @@ Next steps:
   the analyzer does NOT check for it.
 - When generating many card files from the shell, keep each heredoc batch to ~5 cards; very long
   commands get truncated and fail with "unexpected EOF".
-- Then build David and Joshua.
+- Then build Tim.
 
 ## Tooling notes
 

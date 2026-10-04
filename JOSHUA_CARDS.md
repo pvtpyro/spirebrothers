@@ -3,7 +3,7 @@
 Piano, guitar, vocals. Living in Japan, moving back to the US soon. The team's support.
 Games: PlateUp!, Terraria, Rocket League, Stardew Valley, and especially Archipelago (the multiworld randomizer, archipelago.gg).
 
-Nothing here is built yet. Cut, rename, or rewrite anything, especially to add inside jokes.
+**Built 2026-10-04, untested in game.** Numbers below match the code. Cut, rename, or rewrite anything, especially to add inside jokes.
 Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 
 ## His mechanics
@@ -30,7 +30,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 
 - 4 Strike, 4 Defend
 - **Hum a Tune** (Basic Skill, 1, Song): Gain 5 Block.
-- **Sing Along** (Basic Skill, 1, Chorus): ALL players gain 2 Block per Verse spent.
+- **Sing Along** (Basic Skill, 1, Chorus): ALL players gain 3 Block per Verse spent.
 - **Starter relic: Well-Worn Guitar.** Start each combat with 1 Verse.
 
 Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Archipelago), 🗡️ Monkey Island (Insult / Comeback).
@@ -40,20 +40,20 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
 | 1 | 🎵 Power Chord | 1 Attack | Deal 7 damage. | Guitar |
-| 2 | 🎵 Scales Practice | 1 Skill | Gain 5 Block. | Piano |
-| 3 | 🗡️🎵 You Call That Singing? | 1 Skill | Apply 2 Insulted. | Insult (vocals) |
+| 2 | 🎵 Scales Practice | 1 Skill | Gain 6 Block. | Piano |
+| 3 | 🗡️🎵 You Call That Singing? | 0 Skill | Apply 2 Insulted. | Insult (vocals) |
 | 4 | 🎵 Drum Fill | 1 Attack | Deal 2 damage 4 times. | Music |
 | 5 | 🎵 Guitar Strum | 1 Attack | Deal 5 damage to ALL enemies. | Guitar |
 | 6 | 🎵 Vocal Warmup | 0 Skill | Gain 1 extra Verse (2 total). Exhaust. | Vocals |
 | 7 | 🎵 Order Up! | 1 Skill | Gain 4 Block. Draw 1 card. | PlateUp! |
 | 8 | 🎵 Boost Pad | 0 Skill | Next turn, gain 1 Energy. | Rocket League |
-| 9 | 🎵🤝 Harmonize | 1 Skill | Share: a player gains 5 Block. | Music / co-op |
+| 9 | 🎵🤝 Harmonize | 1 Skill | Share: a player gains 6 Block. | Music / co-op |
 | 10 | 🎤 Big Finish | 1 Attack | **Chorus:** deal 4 damage to ALL enemies per Verse. | Music |
 | 11 | 💚 Konbini Run | 0 Skill | Heal 2. Draw 1 card. Exhaust. | Japan |
 | 12 | 💚 Onsen | 1 Skill | Heal 5. Exhaust. | Japan |
 | 13 | 💚 Watering Can | 1 Skill | Gain 2 Regen. | Stardew Valley |
 | 14 | 💚 Plant Parsnips | 1 Skill | Next turn, gain 1 Energy and heal 2. | Stardew Valley |
-| 15 | 💚 Cherry Blossom Picnic | 1 Skill | ALL players heal 2. Exhaust. | Japan |
+| 15 | 💚 Cherry Blossom Picnic | 1 Skill | ALL players heal 3. Exhaust. | Japan |
 | 16 | 💚🤝 Omiyage | 1 Skill | Share: a player gains 6 Block and heals 2. | Japanese gift-giving |
 | 17 | 🤝 What a Save! | 1 Skill | Share: a player gains 8 Block. | Rocket League |
 | 18 | 📦 Location Check | 1 Skill | Gain 4 Block. **Check.** | Archipelago |
@@ -68,7 +68,7 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 21 | 🎤💚 Standing Ovation | 2 Skill | **Chorus:** ALL players heal 1 per Verse. Exhaust. | Music |
 | 22 | 🎤 Sing Your Heart Out | 2 Attack | **Chorus:** deal 6 damage per Verse. | Vocals |
 | 23 | 🎤 Karaoke Night | 1 Skill | **Chorus:** ALL players draw 1 card next turn per 2 Verses. | Karaoke |
-| 24 | 🎤 Matsuri | 2 Skill | **Chorus:** ALL players gain 3 Block per Verse. | Japanese festival |
+| 24 | 🎤 Matsuri | 2 Skill | **Chorus:** ALL players gain 4 Block per Verse. | Japanese festival |
 | 25 | Bridge | 1 Skill | Gain 2 Verses. Your next Chorus doesn't spend Verses. | Songwriting |
 | 26 | Key Change | 1 Skill | Double your Verses. Exhaust. | Songwriting |
 | 27 | Crescendo | 1 Attack | Deal 4 damage, +3 per Verse you have (doesn't spend them). | Music |
@@ -78,8 +78,8 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 31 | 📦 Scouting | 1 Skill | Scry 3. Your next **Check** finds a Progression item. | Archipelago (scouting reveals items early) |
 | 32 | 🗡️🎵 Mic Drop | 1 Attack | **Comeback.** Deal 5 damage, +3 for each Insulted on the target, then remove it. | Comeback (music) |
 | 33 | 🎵 Acoustic Set | 1 Skill | Gain 9 Block. | Guitar |
-| 34 | 🎵 Tuning | 1 Skill | Upgrade a card in your hand for this combat. | Guitar |
-| 35 | 🎵🤝 Duet | 1 Skill | Share: you and a player each gain 5 Block. | Music / co-op |
+| 34 | 🎵 Tuning | 0 Skill | Gain 3 Block. Upgrade a card in your hand for this combat. | Guitar |
+| 35 | 🎵🤝 Duet | 1 Skill | Share: you and a player each gain 5 Block (10 if you pick yourself). | Music / co-op |
 | 36 | Rest Note | 1 Skill | Gain 7 Block. Next turn, gain 1 Verse. | Music |
 | 37 | Improvise | 0 Skill | Add a random Song card to your hand. It costs 0 this turn. | Music |
 | 38 | Guitar Feedback | 1 Attack | Deal 7 damage to ALL enemies. If you have 3+ Verses, apply 1 Weak to ALL enemies. | Guitar |
@@ -92,7 +92,7 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 41 | 💚🤝 Comfort Food | 1 Skill | Share: a player heals 3 and gains 5 Block. Exhaust. | PlateUp! |
 | 42 | 💚 Green Tea | 1 Skill | Heal 3. Remove 1 stack of a random debuff. Exhaust. | Japan |
 | 43 | 💚🤝 Care Package | 1 Skill | Share: a player gains 2 Regen and 4 Block. | Moving |
-| 44 | 🤝 Community Center | 2 Power | At the start of your turn, ALL players gain 2 Block. | Stardew Valley |
+| 44 | 🤝 Community Center | 2 Power | At the start of your turn, ALL players gain 3 Block. | Stardew Valley |
 
 ### Japan, moving home, and games
 | # | Name | Cost / Type | Effect | Theme |

@@ -6,5 +6,10 @@
   "THE_ARCHITECT.talk.SPIREBROTHERS-DAVID.0-0r.char": "So you built all of this. Did you ever stop to ask why?",
   "THE_ARCHITECT.talk.SPIREBROTHERS-DAVID.0-0r.next": "Continue",
   "THE_ARCHITECT.talk.SPIREBROTHERS-DAVID.0-1r.ancient": "Every climber asks me how. You are the first to ask me why.",
-  "THE_ARCHITECT.talk.SPIREBROTHERS-DAVID.0-attack": "Both"
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DAVID.0-attack": "Both",
+
+  "THE_ARCHITECT.talk.SPIREBROTHERS-JOSHUA.0-0r.char": "It's so quiet up here. Mind if I play something?",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-JOSHUA.0-0r.next": "Continue",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-JOSHUA.0-1r.ancient": "No one has made music in my Spire before. Play, then. I will listen.",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-JOSHUA.0-attack": "Both"
 }

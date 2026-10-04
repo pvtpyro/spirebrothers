@@ -41,5 +41,11 @@ public partial class MainFile : Node
         ModHelper.AddModelToPool<DavidPotionPool, OokOokEek>();
         ModHelper.AddModelToPool<DavidPotionPool, Grog>();
         ModHelper.AddModelToPool<DavidPotionPool, MonkeyBusiness>();
+        ModHelper.AddModelToPool<JoshuaRelicPool, MonkeyPhrasebook>();
+        ModHelper.AddModelToPool<JoshuaRelicPool, StoneMonkeyHead>();
+        ModHelper.AddModelToPool<JoshuaRelicPool, MonkeyWrench>();
+        ModHelper.AddModelToPool<JoshuaPotionPool, OokOokEek>();
+        ModHelper.AddModelToPool<JoshuaPotionPool, Grog>();
+        ModHelper.AddModelToPool<JoshuaPotionPool, MonkeyBusiness>();
     }
 }
