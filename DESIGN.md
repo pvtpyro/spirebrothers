@@ -27,6 +27,7 @@ Great with numbers, loves puzzles, loves hiking and camping. Always in the middl
 Piano, guitar, vocals. Living in Japan, moving back to the US soon.
 - **Verse / Chorus**: Song cards build Verses; Chorus cards spend them for effects on ALL players.
 - Starter relic Well-Worn Guitar: start each combat with 1 Verse.
+- **Check** (Archipelago, which he loves): find random items and send them to random players. Traps go to enemies.
 - **Healing**: a big part of his kit, because it fits his personality. The team's support. Chorus heals on ALL players fit naturally (as Pastor already does).
 - Games: PlateUp!, Terraria, Rocket League, Stardew Valley. Omiyage, What a Save!, Karaoke Night.
 - Tribute cards: **Pastor** (all players heal and gain Block, Exhaust) and **Coming Home**.
