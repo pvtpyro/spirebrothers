@@ -11,7 +11,7 @@ Numbers are first-pass balance, based on vanilla (Strike 6, Defend 5, roughly 8 
 | # | Name | Cost / Type | Tag | Effect | Theme |
 |---|---|---|---|---|---|
 | 1 | 🛡 Duct Tape | 1 Skill | H, Wired | Gain 7 Block. **Wired:** gain 4 more. | Fixes anything |
-| 2 | 🛡 Firewall | 1 Skill | L | Gain 6 Block. Next turn, gain 4 Block. | Software |
+| 2 | Energy Drink | 0 Skill | H | Gain 4 Vigor (your next attack deals 4 extra damage). *(replaced Firewall)* | Gamer fuel |
 | 3 | 🛡 Seaglide | 1 Skill | H | Gain 5 Block. Draw 1 card. | Subnautica |
 | 4 | Hotfix | 0 Attack | L, Wired | Deal 4 damage. **Wired:** draw 1 card. | Software |
 | 5 | Jumper Cables | 1 Attack | H, Wired | Deal 7 damage. **Wired:** gain 1 Energy. | Cars |
@@ -26,11 +26,11 @@ Numbers are first-pass balance, based on vanilla (Strike 6, Defend 5, roughly 8 
 ### Block and defense
 | # | Name | Cost / Type | Tag | Effect | Theme |
 |---|---|---|---|---|---|
-| 11 | 🛡 Habitat Builder | 2 Skill | H, Wired | Gain 14 Block. **Wired:** gain 6 more. | Subnautica |
+| 11 | Pep Talk | 1 Skill | L, Share | A player gains 1 Strength. Exhaust. *(replaced Habitat Builder)* | Co-op |
 | 12 | 🛡 Flak Armor | 1 Power | H | Gain 2 Dexterity. | Darktide |
 | 13 | 🛡 Blue Screen | 1 Skill | L | Gain 6 Block. Apply 1 Weak to ALL enemies. | Software |
 | 14 | 🛡 Breaker Box | 1 Skill | H, Wired | Gain 7 Block. **Wired:** gain 1 Artifact. | Electrician |
-| 15 | 🛡 Incremental Backup | 1 Skill | L, Diligent | Gain 6 Block. **Diligent:** +3 Block this combat. | Software |
+| 15 | Firmware Update | 1 Power | L | Gain 2 Strength. *(replaced Incremental Backup)* | Software |
 | 16 | 🛡 Cover Me! | 1 Skill | H, Share | A player gains 6 Block, and so do you. (If it's you, 12.) | Co-op |
 | 17 | 🛡 Crafting Table | 1 Skill | H | Gain 5 Block. Upgrade a card in your hand for this combat. | Minecraft *(planned)* |
 | 18 | 🛡 Ground Wire | 1 Power | H | Whenever you play a **Hands** card, gain 2 Block. *(mirror of Wire Up the House)* | Electrician |
@@ -59,7 +59,7 @@ Numbers are first-pass balance, based on vanilla (Strike 6, Defend 5, roughly 8 
 | 33 | Blueprint | 1 Skill | L | Add 3 Gears to your hand. Exhaust. | Factorio |
 | 34 | Assembly Line | 1 Power | H | Whenever you play a Gear, deal 3 damage to a random enemy. | Factorio |
 | 35 | Did You Even Read the Docs? | 0 Skill | L | Apply 2 Insulted. *(an insult card)* | Monkey Island x code |
-| 36 | Turn It Off and On Again | 1 Skill | L, Share | A player removes all their debuffs and draws 2 cards next turn. | IT support |
+| 36 | Turn It Off and On Again | 1 Skill | L, Share | A player removes 1 stack of a random debuff and draws 2 cards next turn. | IT support |
 | 37 | Lag Spike | 1 Skill | L | Apply 2 Weak to ALL enemies. Exhaust. | Online games |
 | 38 | Oil Change | 1 Skill | H | Discard your hand, then draw that many cards +1. | Cars |
 | 39 | Recursion | 1 Skill | L | Draw 2 cards. Shuffle a copy of this card into your draw pile. Exhaust. | Software |
@@ -84,7 +84,7 @@ Numbers are first-pass balance, based on vanilla (Strike 6, Defend 5, roughly 8 
 
 ## Totals after this batch
 
-- **Block:** Common 6, Uncommon 11 (8 direct Block), Rare 2. That's up from 3 / 1 / 0, and a bit above vanilla, on purpose.
+- **Block:** Common 5, Uncommon 9 (6 direct Block), Rare 2. Three plain Block cards were later swapped for buffs (Energy Drink, Firmware Update, Pep Talk).
 - **Stratagems:** 6 total, using every 2-step input (LH, HL, LL, HH) plus two 3-step ones (LHL, HLH).
 - **Monkey Island:** 4 insult cards (Insult Swordfighting, Look Behind You, Spaghetti Code, Did You Even Read the Docs?),
   3 Comebacks (Snappy Comeback, Well, Actually..., I'm Rubber, You're Glue), and The Ultimate Insult to stack it up.

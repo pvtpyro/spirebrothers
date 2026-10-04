@@ -17,19 +17,17 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Daniel;
 
-/// <summary>Gain 6 Block. Diligent: +3 Block for the rest of combat each time you play it.</summary>
-public class IncrementalBackup() : DanielCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+/// <summary>Co-op. Share: a player gains 1 Strength. Exhaust.</summary>
+public class PepTalk() : DanielCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
 {
-    public override bool GainsBlock => true;
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Logic, BrotherKeywords.Diligent];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(6, ValueProp.Move), new DynamicVar("Diligent", 3)];
-    protected override DynamicVar DiligentTarget => DynamicVars.Block;
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Logic, BrotherKeywords.Share, CardKeyword.Exhaust];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<StrengthPower>(1)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<StrengthPower>()];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        await CommonActions.CardBlock(this, play);
-        GrowDiligent();
+        await PowerCmd.Apply<StrengthPower>(ctx, ShareTarget(play), DynamicVars.Strength.BaseValue, Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(3);
+    protected override void OnUpgrade() => DynamicVars.Strength.UpgradeValueBy(1);
 }
