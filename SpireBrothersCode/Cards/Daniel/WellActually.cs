@@ -27,12 +27,12 @@ public class WellActually() : DanielCard(1, CardType.Attack, CardRarity.Uncommon
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         if (CombatState == null) return;
+        decimal perInsult = DynamicVars["PerInsult"].BaseValue + Comeback.PerInsultBonus(Owner);
         foreach (var enemy in CombatState.HittableEnemies.ToList())
         {
-            var insult = enemy.GetPower<InsultedPower>();
-            decimal damage = DynamicVars.Damage.BaseValue + DynamicVars["PerInsult"].BaseValue * (insult?.Amount ?? 0);
+            decimal damage = DynamicVars.Damage.BaseValue + perInsult * Comeback.Stacks(enemy);
             await DamageCmd.Attack(damage).FromCard(this).Targeting(enemy).WithHitFx("vfx/vfx_attack_slash").Execute(ctx);
-            if (insult != null && enemy.IsAlive) await PowerCmd.Remove(insult);
+            await Comeback.ClearInsulted(Owner, enemy);
         }
     }
 

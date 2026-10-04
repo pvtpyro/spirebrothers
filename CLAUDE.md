@@ -69,6 +69,9 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
 - **Monkey Island** (all four brothers loved it growing up): `InsultedPower` debuff plus Comeback
   cards that deal bonus damage per stack, then clear it. Use original insults only, never quote
   the game's lines.
+  Every Comeback card must use `Mechanics/Comeback.cs` (`Stacks`, `PerInsultBonus`, `ClearInsulted`) so the
+  Monkey Wrench relic and Monkey Business potion work for all brothers. Monkey-speak items show their real
+  effect through `MonkeySpeak.Translation` (a `<ID>.translation` loc key the analyzer does not check).
 - Use game names and short catchphrases as card names only. No copied art.
 
 ## Current status
@@ -135,5 +138,5 @@ Next steps:
 
 ## Not built yet for Daniel
 
-Grog potion, and the "Brothers in Arms" bonus for when brothers share a co-op run.
+The "Brothers in Arms" bonus for when brothers share a co-op run. (Monkey Island relics and potions, including Grog, are built.)
 Card art for everything (all cards, relics, and powers use placeholders).

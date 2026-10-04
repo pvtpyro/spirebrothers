@@ -1,0 +1,14 @@
+{
+  "SPIREBROTHERS-TRANSLATION.title": "Translation",
+
+  "SPIREBROTHERS-OOK_OOK_EEK.title": "Ook Ook Eek",
+  "SPIREBROTHERS-OOK_OOK_EEK.description": "Ook ook eek! Eek!",
+  "SPIREBROTHERS-OOK_OOK_EEK.translation": "Apply {InsultedPower:diff()} [gold]Insulted[/gold] to ALL enemies.",
+
+  "SPIREBROTHERS-GROG.title": "Grog",
+  "SPIREBROTHERS-GROG.description": "Deal {Damage:diff()} damage to ALL enemies.\nApply {InsultedPower:diff()} [gold]Insulted[/gold] to ALL enemies.",
+
+  "SPIREBROTHERS-MONKEY_BUSINESS.title": "Monkey Business",
+  "SPIREBROTHERS-MONKEY_BUSINESS.description": "Eek? Ook ook. EEK!",
+  "SPIREBROTHERS-MONKEY_BUSINESS.translation": "This turn, [gold]Comeback[/gold] cards don't remove [gold]Insulted[/gold]."
+}

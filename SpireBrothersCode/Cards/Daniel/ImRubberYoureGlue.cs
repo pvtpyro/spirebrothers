@@ -27,11 +27,10 @@ public class ImRubberYoureGlue() : DanielCard(1, CardType.Skill, CardRarity.Unco
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        var insult = play.Target?.GetPower<InsultedPower>();
-        decimal stacks = insult?.Amount ?? 0;
-        decimal block = DynamicVars.Block.BaseValue + DynamicVars["PerInsult"].BaseValue * stacks;
+        decimal perInsult = DynamicVars["PerInsult"].BaseValue + Comeback.PerInsultBonus(Owner);
+        decimal block = DynamicVars.Block.BaseValue + perInsult * Comeback.Stacks(play.Target);
         await CreatureCmd.GainBlock(Owner.Creature, block, DynamicVars.Block.Props, play);
-        if (insult != null) await PowerCmd.Remove(insult);
+        await Comeback.ClearInsulted(Owner, play.Target);
     }
 
     protected override void OnUpgrade()

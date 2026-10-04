@@ -27,14 +27,18 @@ public class SnappyComeback() : DanielCard(1, CardType.Attack, CardRarity.Common
     ];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<InsultedPower>()];
 
-    private static decimal InsultStacks(CardModel card, Creature? target) =>
-        target?.GetPowerAmount<InsultedPower>() ?? 0;
+    // Damage is base + ExtraDamage * this. Scaling the stack count folds Monkey Wrench's per-stack bonus in.
+    private static decimal InsultStacks(CardModel card, Creature? target)
+    {
+        var stacks = Comeback.Stacks(target);
+        var extra = card.DynamicVars.ExtraDamage.BaseValue;
+        return extra <= 0 ? stacks : stacks * (extra + Comeback.PerInsultBonus(card.Owner)) / extra;
+    }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CommonActions.CardAttack(this, play, vfx: "vfx/vfx_attack_slash").Execute(ctx);
-        var insult = play.Target?.GetPower<InsultedPower>();
-        if (insult != null) await PowerCmd.Remove(insult);
+        await Comeback.ClearInsulted(Owner, play.Target);
     }
 
     protected override void OnUpgrade()

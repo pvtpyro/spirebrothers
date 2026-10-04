@@ -6,6 +6,22 @@
   One brother insults, another lands the comeback. Original insults only.
   Every brother has several insult cards but only about 2 Comebacks (Daniel, the Monkey Island hub, has 3),
   so in co-op anyone can set up a Comeback for whoever holds one.
+- **Monkey-speak items** (built for Daniel 2026-10-04; add to each brother's pool as they're built, not vanilla's shared pool,
+  since other characters can't use Insulted). The description is pure monkey-speak; a hover tip titled
+  "Translation" gives the real effect. Original sounds only, no lines from the games.
+
+  | Item | Type | Description (as shown) | Translation (hover) |
+  |---|---|---|---|
+  | Ook Ook Eek | Common potion | "Ook ook eek! Eek!" | Apply 3 Insulted to ALL enemies. |
+  | Grog | Uncommon potion | (pirate drink, normal text) | Deal 12 damage to ALL enemies and apply 2 Insulted to ALL enemies. *(the planned Grog potion)* |
+  | Monkey Business | Rare potion | "Eek? Ook ook. EEK!" | This turn, Comebacks don't remove Insulted. |
+  | Monkey Phrasebook | Common relic | "Eek ook! Ook ook eek." | At the start of each combat, apply 1 Insulted to ALL enemies. |
+  | Stone Monkey Head | Uncommon relic | "OOK." | The first time each enemy is Insulted in a combat, it also loses 1 Strength. |
+  | Monkey Wrench | Rare relic | "Eek eek. Ook!" | Comeback cards deal 2 extra damage for each Insulted. *(also a nod to Daniel the mechanic)* |
+
+  Build note: the translation is an extra hover tip (`new HoverTip(title, text)`, like Train of Thought's
+  "This Turn" box). Comebacks read a shared helper so Monkey Business and Monkey Wrench apply to every
+  brother's Comebacks.
 - Idea: **Brothers in Arms**, starter relics get a bonus when another brother is in the run. (Not built yet.)
 
 ## Daniel, The Nerd Who Nerds Wrong (built in v0.1.0)

@@ -13,5 +13,18 @@
   "SPIREBROTHERS-NEVER_PAID_A_MECHANIC.flavor": "Why pay someone when you can do it yourself?",
   "SPIREBROTHERS-GRAPEFRUIT.title": "Grapefruit",
   "SPIREBROTHERS-GRAPEFRUIT.description": "Your potions are [blue]50%[/blue] stronger.",
-  "SPIREBROTHERS-GRAPEFRUIT.flavor": "Read the label. He did not read the label."
+  "SPIREBROTHERS-GRAPEFRUIT.flavor": "Read the label. He did not read the label.",
+  "SPIREBROTHERS-TRANSLATION.title": "Translation",
+  "SPIREBROTHERS-MONKEY_PHRASEBOOK.title": "Monkey Phrasebook",
+  "SPIREBROTHERS-MONKEY_PHRASEBOOK.description": "Eek ook! Ook ook eek.",
+  "SPIREBROTHERS-MONKEY_PHRASEBOOK.translation": "At the start of each combat, apply [blue]1[/blue] [gold]Insulted[/gold] to ALL enemies.",
+  "SPIREBROTHERS-MONKEY_PHRASEBOOK.flavor": "Every page is the same three words. The pronunciation is what matters.",
+  "SPIREBROTHERS-STONE_MONKEY_HEAD.title": "Stone Monkey Head",
+  "SPIREBROTHERS-STONE_MONKEY_HEAD.description": "OOK.",
+  "SPIREBROTHERS-STONE_MONKEY_HEAD.translation": "The first time each enemy is [gold]Insulted[/gold] in a combat, it also loses [blue]1[/blue] [gold]Strength[/gold].",
+  "SPIREBROTHERS-STONE_MONKEY_HEAD.flavor": "It doesn't say much, but it means every word.",
+  "SPIREBROTHERS-MONKEY_WRENCH.title": "Monkey Wrench",
+  "SPIREBROTHERS-MONKEY_WRENCH.description": "Eek eek. Ook!",
+  "SPIREBROTHERS-MONKEY_WRENCH.translation": "[gold]Comeback[/gold] cards get [blue]2[/blue] extra for each [gold]Insulted[/gold] on the target.",
+  "SPIREBROTHERS-MONKEY_WRENCH.flavor": "Daniel insists this is the correct tool for the job."
 }
