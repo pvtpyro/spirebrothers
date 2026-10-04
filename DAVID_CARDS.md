@@ -1,6 +1,6 @@
 # David, The Min-Maxer: card plan (draft for review)
 
-Great with numbers, loves puzzles. Would love to teach, but isn't a teacher, so he explains things to whoever's around. Never spends money, not to save it, but because nothing interests him enough to buy. So it just piles up. Loves hiking and camping. Road trip Idaho to NJ and back.
+Great with numbers, loves puzzles. Always in the middle of an existential crisis, and whoever has to listen to him pays the price. Never spends money, not to save it, but because nothing interests him enough to buy. So it just piles up. Loves hiking and camping. Road trip Idaho to NJ and back.
 Games: Payday 2, Terraria, Satisfactory, ARK. Outdoors: hiking, camping.
 
 Nothing here is built yet. Cut, rename, or rewrite anything, especially to add inside jokes.
@@ -11,9 +11,9 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 | Keyword | Rule |
 |---|---|
 | **Exact** | Bonus if you have **exactly 0 energy** after paying for this card. X-cost cards always count as Exact. |
-| **Hoard** | Gets stronger with the gold you're holding, usually **+1 per 25 Gold**. Spending gold makes Hoard weaker, and David rarely sees a reason to spend. |
-| **Thorns** | Vanilla Thorns: attackers take damage back. Messing with David costs you. |
-| **Teach** (Share) | **Upgrade a random card in a player's hand** for the rest of combat. Random, so co-op stays in sync. |
+| **Hoard** | Gets stronger with the gold you're holding, always **+1 per 50 Gold**. Spending gold makes Hoard weaker, and David rarely sees a reason to spend. |
+| **Bleed** | Debuff on enemies. At the end of its turn, it loses HP equal to its Bleed (ignores Block), then Bleed is **halved** (rounded down). Front-loaded, unlike Poison's slow burn: X Bleed deals about 2× X in total (4 → 7, 6 → 10, 8 → 15). |
+| **Rant** | David vents about the meaning of it all. A Rant card gets **stronger for each Rant card you already played this turn**, so his rants snowball. Rants wear down the listener: mostly the enemy loses Strength (hits softer), takes damage, or gets Weak. |
 | **Delegate** (Share) | A player's next Attack deals **double damage**. |
 
 ## Starting deck (10 cards) and relic
@@ -23,7 +23,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 - **Do the Math** (Basic Skill, 1): Gain 5 Block. **Exact:** draw 2 cards.
 - **Starter relic: Old Wallet.** (He never saw a reason to replace it.) At the start of each combat, gain 1 Block per 20 Gold (max 15).
 
-Legend: 🎯 Exact, 💰 Hoard, 🌵 Thorns, 🍎 Teach, 🤝 Delegate/Share.
+Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share.
 
 ## Common (20)
 
@@ -37,29 +37,29 @@ Legend: 🎯 Exact, 💰 Hoard, 🌵 Thorns, 🍎 Teach, 🤝 Delegate/Share.
 | 6 | 🎯 Pickaxe Swing | 1 Attack | Deal 9 damage. **Exact:** apply 1 Vulnerable. | Terraria |
 | 7 | 🎯 Tranq Dart | 1 Skill | Apply 2 Weak. **Exact:** also apply 1 Vulnerable. | ARK |
 | 8 | 💰 Direct Deposit | 1 Attack | Deal 8 damage. **Hoard:** +1 per 50 Gold. | Money just shows up |
-| 9 | 💰 Interest Payment | 1 Skill | Gain 4 Block. **Hoard:** +1 Block per 25 Gold. | Numbers |
-| 10 | 🌵 You Break It, You Buy It | 1 Skill | Gain 2 Thorns. | Thorns |
-| 11 | 🌵 Toll Road | 1 Skill | Gain 5 Block. Gain 1 Thorns. | Road trip |
-| 12 | 🍎 Let Me Show You | 1 Skill | Gain 5 Block. **Teach** a player. | Wants to teach |
-| 13 | 🍎 Teachable Moment | 0 Skill | **Teach** a player. Draw 1 card. | Wants to teach |
+| 9 | 💰 Interest Payment | 1 Skill | Gain 4 Block. **Hoard:** +1 Block per 50 Gold. | Numbers |
+| 10 | 🩸 You Break It, You Buy It | 1 Attack | Deal 4 damage. Apply 4 Bleed. | Messing with David costs you |
+| 11 | 🩸 Toll Road | 1 Skill | Gain 5 Block. Apply 3 Bleed. | Road trip |
+| 12 | 😩 Why Are We Even Here? | 1 Attack | Deal 6 damage. **Rant:** +3 damage for each Rant played earlier this turn. | Existential crisis |
+| 13 | 😩 Deep Sigh | 0 Skill | The enemy loses 2 Strength this turn. **Rant:** +1 for each Rant played earlier this turn. *(the cheap opener for a rant chain)* | Existential crisis |
 | 14 | Drill | 2 Attack | Deal 4 damage 4 times. | Payday 2 |
 | 15 | Campfire | 1 Skill | Gain 5 Block. Upgrade a random card in your hand for this combat. | Camping (and a nod to Slay the Spire's rest sites) |
 | 16 | Order of Operations | 1 Attack | Deal 4 damage to ALL enemies twice. | Numbers |
 | 17 | Gas Station Snacks | 0 Skill | Lose 10 Gold. Gain 1 Energy and draw 1 card. Exhaust. | Road trip |
 | 18 | Power Slug | 1 Skill | Gain 3 Block. Next turn, gain 1 Energy. | Satisfactory |
 | 19 | Pitch the Tent | 1 Skill | Gain 6 Block. Retain. | Camping |
-| 20 | Are We There Yet? | 1 Attack | Deal 5 damage. If you've played 3+ cards this turn, deal 5 more. | Road trip |
+| 20 | 😩 Are We There Yet? | 1 Attack | Deal 5 damage. **Rant:** +3 damage for each Rant played earlier this turn. | Road trip whining |
 
 ## Uncommon (36)
 
-### Thorns
+### Bleed
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
-| 21 | 🌵 No Refunds | 1 Power | Gain 3 Thorns. | Thorns |
-| 22 | 🌵 Return Policy | 1 Skill | Gain 10 Block. This turn, whenever you're attacked, deal 4 damage back. | Thorns |
-| 23 | 🌵 Cactus Armor | 1 Skill | Gain 6 Block. Double your Thorns. Exhaust. | Terraria |
-| 24 | 🌵 Plant Species X | 2 Power | At the end of your turn, deal damage equal to your Thorns to a random enemy. | ARK |
-| 25 | 🌵 Fine Print | 1 Skill | Gain 2 Thorns. Apply 1 Weak to ALL enemies. | Numbers |
+| 21 | 🩸 No Refunds | 1 Power | Whenever you deal attack damage to an enemy, apply 1 Bleed to it. *(great with multi-hit cards like Drill)* | Messing with David costs you |
+| 22 | 🩸 Return Policy | 1 Skill | Gain 8 Block. This turn, whenever you're attacked, apply 3 Bleed to the attacker. | Messing with David costs you |
+| 23 | 🩸 Cactus Needles | 1 Skill | Double an enemy's Bleed. Exhaust. (Upgrade: no longer Exhausts.) | Terraria |
+| 24 | 🩸 Plant Species X | 2 Power | At the end of your turn, apply 3 Bleed to a random enemy. | ARK |
+| 25 | 🩸 Fine Print | 1 Skill | Apply 3 Bleed and 1 Weak to ALL enemies. | Numbers |
 
 ### Exact
 | # | Name | Cost / Type | Effect | Theme |
@@ -79,18 +79,18 @@ Legend: 🎯 Exact, 💰 Hoard, 🌵 Thorns, 🍎 Teach, 🤝 Delegate/Share.
 | 34 | 💰 Piggy Bank | 1 Skill | Gain 15 Gold. Exhaust. | Terraria |
 | 35 | 💰 Compound Interest | 2 Power | At the start of your turn, gain 1 Block per 20 Gold. | Numbers |
 | 36 | 💰 Untouched Savings | 1 Skill | Gain 1 Block per 10 Gold (max 25). | Indifferent to money |
-| 37 | 💰 Money Bags | 2 Attack | Deal 12 damage. **Hoard:** +1 per 25 Gold. | Payday 2 |
+| 37 | 💰 Money Bags | 2 Attack | Deal 12 damage. **Hoard:** +1 per 50 Gold. | Payday 2 |
 | 38 | 💰 Pocket Change | 0 Attack | Deal 3 damage. **Hoard:** +1 per 50 Gold. | Indifferent to money |
 | 39 | Loot Bag | 1 Attack | Deal 9 damage. If this kills an enemy, gain 15 Gold. | Payday 2 |
 | 40 | Gas Money | 1 Skill | Lose 15 Gold. ALL players gain 1 Energy next turn. | Road trip / co-op |
 
-### Teaching (he wants to) and co-op
+### Ranting and co-op
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
-| 41 | 🍎 Let Me Explain | 1 Skill | **Teach** a player twice. | Wants to teach |
-| 42 | 🍎 Unused Lesson Plan | 1 Power | Whenever a card is upgraded during combat, gain 2 Block. *(He has lesson plans. Nobody to use them on.)* | Wants to teach |
+| 41 | 😩 Unprompted Monologue | 1 Skill | The enemy loses 3 Strength this turn. **Rant:** also apply 1 Weak for each Rant played earlier this turn. | Existential crisis |
+| 42 | 😩 3 A.M. Thoughts | 1 Power | Whenever you play a Rant card, deal 2 damage to ALL enemies. | Existential crisis |
 | 43 | 🤝 Delegate | 1 Skill | **Delegate:** a player's next Attack deals double damage. Exhaust. | Leadership |
-| 44 | 🤝 Group Project | 1 Skill | ALL players gain 4 Block and draw 1 card next turn. | Teaching / co-op |
+| 44 | 🤝 Group Project | 1 Skill | ALL players gain 4 Block and draw 1 card next turn. | Co-op |
 | 45 | 🤝 Carpool | 1 Skill | A player gains 1 Energy next turn, and so do you. | Road trip |
 
 ### Everything else
@@ -105,7 +105,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🌵 Thorns, 🍎 Teach, 🤝 Delegate/Share.
 | 52 | Scenic Route | 1 Skill | Scry 4. Gain 4 Block. | Road trip |
 | 53 | Cruise Control | 2 Power | Retain your hand at the end of each turn. | Road trip |
 | 54 | Balance Sheet | 1 Attack | Deal damage equal to your Block. | Numbers |
-| 55 | Audit | 1 Skill | Apply 3 Vulnerable. | Numbers |
+| 55 | 😩 Does Anything Even Matter? | 1 Skill | Apply 2 Vulnerable. **Rant:** +1 for each Rant played earlier this turn. | Existential crisis |
 | 56 | Pack Light | 1 Skill | Draw 3 cards, then discard 1. | Hiking |
 
 ## Rare (16)
@@ -120,23 +120,23 @@ Legend: 🎯 Exact, 💰 Hoard, 🌵 Thorns, 🍎 Teach, 🤝 Delegate/Share.
 | 62 | 💰 Nest Egg | 2 Attack | Deal 1 damage per 10 Gold you have. Exhaust. | Indifferent to money |
 | 63 | 💰 Overflowing Coffers | 0 Skill | Gain 1 Block per 10 Gold. Exhaust. | Indifferent to money |
 | 64 | 💰 Black Friday | 1 Skill | Lose ALL your Gold. Gain 1 Strength per 50 Gold lost. | The one day he finally buys something |
-| 65 | 🌵 Iron Maiden | 2 Power | At the end of your turn, ALL enemies take damage equal to your Thorns. | Thorns payoff |
-| 66 | 🌵 Spike Trap Room | 2 Skill | Gain 5 Thorns. Exhaust. | Terraria |
-| 67 | 🍎 Would've Been Teacher of the Year | 2 Power | Share: at the start of their turn, a player upgrades a random card in their hand. | Wants to teach |
-| 68 | 🍎 Hand-Me-Downs | 1 Skill | Share: a player upgrades ALL cards in their hand for this combat. Exhaust. | Big brother energy |
-| 69 | 🍎 Pop Quiz | 2 Attack | Deal 8 damage for each upgraded card in your hand. | Wants to teach |
+| 65 | 🩸 Deep Cuts | 2 Power | Bleed on enemies no longer halves. It goes down by 1 instead. *(turns Bleed into a long burn)* | Bleed payoff |
+| 66 | 🩸 Spike Trap Room | 2 Skill | Apply 8 Bleed to ALL enemies. Exhaust. | Terraria |
+| 67 | 😩 The Void Stares Back | 3 Power | Whenever you play a Rant card, ALL enemies lose 1 Strength permanently. | Existential crisis |
+| 68 | 😩 What's the Point of It All? | 2 Skill | ALL enemies lose 2 Strength permanently. **Rant:** +1 for each Rant played earlier this turn. Exhaust. | Existential crisis |
+| 69 | 😩 Existential Crisis | 2 Attack | Deal 4 damage for each Rant card you've played this combat. | His whole deal |
 | 70 | Heist Planner | 1 Skill | Choose 3 cards from your draw pile and put them into your hand. Exhaust. | Payday 2 |
 | 71 | Broken-In Boots | 2 Power | Gain 2 Buffer (prevents the next 2 times you'd lose HP). | Hiking (and he never replaces anything) |
 | 72 | Dino Army | 3 Power | At the start of your turn, deal 6 damage to ALL enemies. | ARK |
 
 ## Build notes (for Claude)
 
-- New powers needed: roughly 14 (Thorns-at-end-of-turn, Exact counters, Compound Interest, Would've Been Teacher of the Year, etc.).
+- New powers needed: roughly 14 (BleedPower, No Refunds, Return Policy, Plant Species X, Deep Cuts, Exact counters, Compound Interest, The Void Stares Back, 3 A.M. Thoughts, etc.).
 - **X-cost cards** (Balanced Budget, Zero-Sum Game, All In): check how vanilla does X cost before building.
 - **Exact** check: the owner's energy is 0 after the cost is paid, inside OnPlay. Min-Max doubles it.
-- **Return Policy** can use vanilla `FlameBarrierPower`. **Broken-In Boots** uses vanilla `BufferPower`. **Cruise Control** uses `RetainHandPower`. **Delegate** uses `DoubleDamagePower`.
-- **Teach** must pick randomly with the run's RNG, not open a selection screen, to stay multiplayer safe.
-- **Unused Lesson Plan** needs a hook for "after a card is upgraded"; confirm it exists.
+- **Broken-In Boots** uses vanilla `BufferPower`. **Cruise Control** uses `RetainHandPower`. **Delegate** uses `DoubleDamagePower`.
+- **Bleed**: a custom `BleedPower` debuff (like `InsultedPower`). At the end of the owner's turn, deal unblockable HP loss equal to Amount, then set Amount to Amount / 2 (with Deep Cuts: Amount - 1). Remove at 0. Vanilla `PoisonPower` is the closest reference for timing and HP-loss props.
+- **Rant**: count Rant cards played this turn and this combat per player, like Daniel's `TurnTracker`. Temporary Strength loss: check how vanilla does "loses X Strength this turn" (Piercing Wail style) before building.
 - **A Glove Fry** creates a **Valley Forge** token (CardRarity.Token, like Daniel's Gear) and shows it as a
   hover tip (`HoverTipFactory.FromCardWithCardHoverTips<ValleyForge>()`). The card is in the play pile during
   OnPlay, so "Exhaust this" should use `CardCmd.Exhaust` after the effect, or the keyword-free way vanilla

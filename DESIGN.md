@@ -15,11 +15,11 @@ Software engineer who can fix cars, hard-wired his whole house for internet (eve
 - Full card list (72 in the reward pool) is in DANIEL_CARDS.md.
 
 ## David, The Min-Maxer (next)
-Great with numbers, loves puzzles, loves hiking and camping. Would love to teach, but isn't a teacher. Never spends money, not to save it, but because nothing interests him enough to buy, so it piles up. Road trip Idaho to NJ and back.
+Great with numbers, loves puzzles, loves hiking and camping. Always in the middle of an existential crisis, and whoever has to listen pays the price. Never spends money, not to save it, but because nothing interests him enough to buy, so it piles up. Road trip Idaho to NJ and back.
 - **Exact**: bonus if you end the card with exactly 0 energy.
 - **Hoard**: scales with unspent gold. Starter relic Old Wallet: Block per 20 gold at combat start.
-- Share cards that *teach* (upgrade allies' cards). Delegate: ally's next attack doubles, David sits out.
-- **Thorns**: a big part of his kit, because it fits his personality. Attacking David costs you; nothing is free. Vanilla `ThornsPower` should cover the basics.
+- **Rant** (replaced teaching): Rant cards snowball the more of them you play in a turn, and wear down the listener (the enemy loses Strength, takes damage, or gets Weak). Delegate: ally's next attack doubles.
+- **Bleed** (replaced Thorns): a debuff that hits hard at the end of the enemy's turn, then halves. Messing with David costs you.
 - Games: Payday 2, Terraria, Satisfactory, ARK. Idaho to Jersey and Back (rare power).
 - Full card plan (draft): DAVID_CARDS.md.
 
