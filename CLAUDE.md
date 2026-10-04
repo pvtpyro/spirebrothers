@@ -38,7 +38,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   visuals) and `DanielPools.cs` (card/relic/potion pools)
 - `SpireBrothersCode/Cards/DanielCard.cs`: base card class with art paths plus helpers for
   Wired glow, Stratagem playability, and `ShareTarget()`
-- `SpireBrothersCode/Cards/Daniel/`: one file per card (25 cards)
+- `SpireBrothersCode/Cards/Daniel/`: one file per card (77 card files: 4 Basic, 1 Gear token, 72 reward-pool cards; see DANIEL_CARDS.md)
 - `SpireBrothersCode/Mechanics/TurnTracker.cs`: a `CustomSingletonModel` that records the ordered
   Logic/Hands keywords played each turn (per `PlayerCombatState` via `SpireField`), whether last turn
   mixed both, whether Wired fired this turn, and the Gear count
@@ -104,9 +104,20 @@ Next steps:
 - Playtest checklist: Wired glow, the starter relic draw, Stratagem gating and the new inputs,
   Snappy Comeback damage preview, Diligent scaling, Grapefruit potion boost, Want Some? (solo and
   co-op), card text formatting.
-- The card pool is far too small: 19 non-starter cards (9 common / 7 uncommon / 3 rare) vs ~75 for a
-  vanilla character. Needs roughly 50 more, weighted toward uncommon and rare. The user wants to
-  design these with input from the brothers' inside jokes.
+- **52-card expansion built (2026-10-03), untested in game.** Reward pool is now 72 (20 common /
+  36 uncommon / 16 rare); the list is in `DANIEL_CARDS.md`. New powers: GroundWire, AssemblyLine,
+  PrawnSuit, IonBattery, ForDemocracy, TenThousandHours (read in `DanielCard.GrowDiligent`),
+  ImNotDoneYet (Lizard Tail's `ShouldDieLate`/`AfterPreventingDeath` hooks). Shared helpers in
+  `DanielCard`: `AddGears(n)`, `GrowDiligent()` + `DiligentTarget`.
+  Riskiest to playtest: I'm Not Done Yet, And Another Thing! (vanilla `DuplicationPower`),
+  Appease the Machine Spirit (`CardCmd.TransformTo<Gear>`), Ctrl+Z / Ctrl+C, Ctrl+V / Refactor
+  (card selection screens), Recursion, Squad Up! in co-op.
+- Card text gotcha: the `energyIcons()` formatter only accepts `EnergyVar`/`CalculatedVar`/numbers.
+  A `PowerVar` throws at runtime, so cards that grant energy via a power also carry an `EnergyVar`
+  for the text. Cards using `SelectionScreenPrompt` need a `.selectionScreenPrompt` loc key, and
+  the analyzer does NOT check for it.
+- When generating many card files from the shell, keep each heredoc batch to ~5 cards; very long
+  commands get truncated and fail with "unexpected EOF".
 - Then build David and Joshua.
 
 ## Tooling notes
@@ -123,6 +134,5 @@ Next steps:
 
 ## Not built yet for Daniel
 
-Crafting Table, Appease the Machine Spirit (transform statuses), Unfinished Business,
-I'm Not Done Yet (death prevention), Grog potion, and the "Brothers in Arms" bonus for when
-brothers share a co-op run.
+Grog potion, and the "Brothers in Arms" bonus for when brothers share a co-op run.
+Card art for everything (all cards, relics, and powers use placeholders).

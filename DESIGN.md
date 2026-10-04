@@ -7,12 +7,12 @@
 - Idea: **Brothers in Arms**, starter relics get a bonus when another brother is in the run. (Not built yet.)
 
 ## Daniel, The Nerd Who Nerds Wrong (built in v0.1.0)
-Software engineer who can fix cars and wire houses. "And you know what?" Never gives up.
+Software engineer who can fix cars, hard-wired his whole house for internet (every room has ethernet), and does electrical work too. "And you know what?" Never gives up.
 - Logic / Hands tags, **Wired** bonus when you mix them.
 - **Stratagems** (Helldivers 2): play Logic/Hands in a set order to unlock.
 - **Diligent**: grows every time it's played this combat.
 - Games: Subnautica, Helldivers 2, Factorio, Darktide, Minecraft.
-- Not built yet: Crafting Table, Appease the Machine Spirit, Unfinished Business, I'm Not Done Yet.
+- Full card list (72 in the reward pool) is in DANIEL_CARDS.md.
 
 ## David, The Min-Maxer (next)
 Great with numbers, frugal, loves puzzles, likes to teach. Road trip Idaho to NJ and back.

@@ -1,14 +1,17 @@
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using SpireBrothers.SpireBrothersCode.Cards.Daniel;
 using SpireBrothers.SpireBrothersCode.Character;
 using SpireBrothers.SpireBrothersCode.Extensions;
 using SpireBrothers.SpireBrothersCode.Mechanics;
+using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards;
 
@@ -77,6 +80,9 @@ public abstract class DanielCard(int cost, CardType type, CardRarity rarity, Tar
     {
         if (DiligentTarget == null) return;
         var amount = DynamicVars["Diligent"].BaseValue;
+        // Ten Thousand Hours: each stack adds another full helping of growth.
+        var practice = Owner?.Creature?.GetPower<TenThousandHoursPower>();
+        if (practice != null) amount *= 1 + practice.Amount;
         DiligentTarget.BaseValue += amount;
         _diligentBonus += amount;
     }
@@ -109,6 +115,17 @@ public abstract class DanielCard(int cost, CardType type, CardRarity rarity, Tar
             return $"[{color}]{TurnTracker.KeywordName(kw)}[/{color}]";
         });
         description.Add("Input", string.Join(", ", steps));
+    }
+
+    /// <summary>Factorio: add Gears to this card owner's hand.</summary>
+    protected async Task AddGears(int count)
+    {
+        if (CombatState == null) return;
+        for (int i = 0; i < count; i++)
+        {
+            var gear = CombatState.CreateCard<Gear>(Owner);
+            await CardPileCmd.AddGeneratedCardToCombat(gear, PileType.Hand, Owner);
+        }
     }
 
     /// <summary>Share: the chosen player, or yourself if playing solo / no target was picked.</summary>
