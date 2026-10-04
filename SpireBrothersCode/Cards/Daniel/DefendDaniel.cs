@@ -19,6 +19,7 @@ namespace SpireBrothers.SpireBrothersCode.Cards.Daniel;
 public class DefendDaniel() : DanielCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Logic];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(5, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

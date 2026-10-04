@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Daniel;
 
-/// <summary>Helldivers 2. Requires Logic, Hands, Logic this turn. Deal 8 damage to ALL enemies 3 times.</summary>
-public class StratagemOrbitalBarrage() : DanielCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
+/// <summary>Helldivers 2. Costs 0. Requires Logic, Hands, Logic this turn. Deal 8 damage to ALL enemies 3 times.</summary>
+public class StratagemOrbitalBarrage() : DanielCard(0, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
 {
     protected override IReadOnlyList<CardKeyword> StratagemCombo => [BrotherKeywords.Logic, BrotherKeywords.Hands, BrotherKeywords.Logic];
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Stratagem];

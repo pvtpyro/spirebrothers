@@ -16,10 +16,10 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Daniel;
 
-/// <summary>Helldivers 2. Requires Hands, Logic, Hands this turn. Share: a player heals 8 HP. Exhaust.</summary>
-public class StratagemReinforce() : DanielCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
+/// <summary>Helldivers 2. Costs 0. Requires Logic, Hands this turn. Share: a player heals 8 HP. Exhaust.</summary>
+public class StratagemReinforce() : DanielCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
 {
-    protected override IReadOnlyList<CardKeyword> StratagemCombo => [BrotherKeywords.Hands, BrotherKeywords.Logic, BrotherKeywords.Hands];
+    protected override IReadOnlyList<CardKeyword> StratagemCombo => [BrotherKeywords.Logic, BrotherKeywords.Hands];
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Stratagem, BrotherKeywords.Share, CardKeyword.Exhaust];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(8)];
 

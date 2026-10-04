@@ -16,12 +16,12 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Daniel;
 
-/// <summary>Helldivers 2. Requires Hands, Hands, Logic this turn. Gain 15 Block and 1 energy.</summary>
-public class StratagemResupply() : DanielCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+/// <summary>Helldivers 2. Costs 0. Requires Hands, Logic this turn. Gain 10 Block and 1 energy.</summary>
+public class StratagemResupply() : DanielCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
-    protected override IReadOnlyList<CardKeyword> StratagemCombo => [BrotherKeywords.Hands, BrotherKeywords.Hands, BrotherKeywords.Logic];
+    protected override IReadOnlyList<CardKeyword> StratagemCombo => [BrotherKeywords.Hands, BrotherKeywords.Logic];
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Stratagem];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(15, ValueProp.Move), new EnergyVar(1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(10, ValueProp.Move), new EnergyVar(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {

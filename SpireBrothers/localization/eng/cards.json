@@ -38,13 +38,15 @@
   "SPIREBROTHERS-STRATAGEM_ORBITAL_BARRAGE.title": "Stratagem: Orbital Barrage",
   "SPIREBROTHERS-STRATAGEM_ORBITAL_BARRAGE.description": "Input: [gold]Logic, Hands, Logic[/gold].\nDeal {Damage:diff()} damage to ALL enemies {Repeat:diff()} times.",
   "SPIREBROTHERS-STRATAGEM_RESUPPLY.title": "Stratagem: Resupply",
-  "SPIREBROTHERS-STRATAGEM_RESUPPLY.description": "Input: [gold]Hands, Hands, Logic[/gold].\nGain {Block:diff()} [gold]Block[/gold] and {Energy:energyIcons()}.",
+  "SPIREBROTHERS-STRATAGEM_RESUPPLY.description": "Input: [gold]Hands, Logic[/gold].\nGain {Block:diff()} [gold]Block[/gold] and {Energy:energyIcons()}.",
   "SPIREBROTHERS-STRATAGEM_REINFORCE.title": "Stratagem: Reinforce",
-  "SPIREBROTHERS-STRATAGEM_REINFORCE.description": "Input: [gold]Hands, Logic, Hands[/gold].\n[gold]Share:[/gold] A player heals {Heal:diff()} HP.",
+  "SPIREBROTHERS-STRATAGEM_REINFORCE.description": "Input: [gold]Logic, Hands[/gold].\n[gold]Share:[/gold] A player heals {Heal:diff()} HP.",
   "SPIREBROTHERS-PAIR_PROGRAMMING.title": "Pair Programming",
   "SPIREBROTHERS-PAIR_PROGRAMMING.description": "[gold]Share:[/gold] A player draws {PairProgrammingPower:diff()} extra {PairProgrammingPower:plural:card|cards} at the start of each turn.",
   "SPIREBROTHERS-STACK_OVERFLOW.title": "Stack Overflow",
   "SPIREBROTHERS-STACK_OVERFLOW.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} more for each [gold]Logic[/gold] card played this turn.",
   "SPIREBROTHERS-NERDS_WRONG.title": "Nerds Wrong",
-  "SPIREBROTHERS-NERDS_WRONG.description": "[gold]Wired[/gold] effects are always active."
+  "SPIREBROTHERS-NERDS_WRONG.description": "[gold]Wired[/gold] effects are always active.",
+  "SPIREBROTHERS-WANT_SOME.title": "Want Some?",
+  "SPIREBROTHERS-WANT_SOME.description": "[gold]Share:[/gold] A player heals {Heal:diff()} HP and gains {Energy:energyIcons()} next turn.\nIf it's you, heal {SelfHeal:diff()} instead."
 }

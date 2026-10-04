@@ -25,10 +25,13 @@ public class Daniel : PlaceholderCharacterModel
         ModelDb.Card<StrikeDaniel>(), ModelDb.Card<StrikeDaniel>(), ModelDb.Card<StrikeDaniel>(), ModelDb.Card<StrikeDaniel>(),
         ModelDb.Card<DefendDaniel>(), ModelDb.Card<DefendDaniel>(), ModelDb.Card<DefendDaniel>(), ModelDb.Card<DefendDaniel>(),
         ModelDb.Card<RubberDuckDebugging>(),
-        ModelDb.Card<PercussiveMaintenance>()
+        ModelDb.Card<PercussiveMaintenance>(),
+        ModelDb.Card<SnappyComeback>(),
+        ModelDb.Card<WantSome>() // TEMP: for playtesting, remove before release
     ];
 
-    public override IReadOnlyList<RelicModel> StartingRelics => [ModelDb.Relic<AndYouKnowWhat>()];
+    // TEMP: Grapefruit is here for playtesting, remove before release.
+    public override IReadOnlyList<RelicModel> StartingRelics => [ModelDb.Relic<AndYouKnowWhat>(), ModelDb.Relic<Grapefruit>()];
 
     public override CardPoolModel CardPool => ModelDb.CardPool<DanielCardPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<DanielRelicPool>();

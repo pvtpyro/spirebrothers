@@ -10,5 +10,8 @@
   "SPIREBROTHERS-RUBBER_CHICKEN_WITH_A_PULLEY.flavor": "Nobody knows why it works. It just does.",
   "SPIREBROTHERS-NEVER_PAID_A_MECHANIC.title": "Never Paid a Mechanic",
   "SPIREBROTHERS-NEVER_PAID_A_MECHANIC.description": "At the end of each combat, heal [blue]5[/blue] HP.",
-  "SPIREBROTHERS-NEVER_PAID_A_MECHANIC.flavor": "Why pay someone when you can do it yourself?"
+  "SPIREBROTHERS-NEVER_PAID_A_MECHANIC.flavor": "Why pay someone when you can do it yourself?",
+  "SPIREBROTHERS-GRAPEFRUIT.title": "Grapefruit",
+  "SPIREBROTHERS-GRAPEFRUIT.description": "Your potions are [blue]50%[/blue] stronger.",
+  "SPIREBROTHERS-GRAPEFRUIT.flavor": "Read the label. He did not read the label."
 }

@@ -20,7 +20,7 @@ public class TurnTracker() : CustomSingletonModel(HookType.Combat)
 
     private static List<CardKeyword> Seq(PlayerCombatState state)
     {
-        var seq = Seq(state);
+        var seq = Sequence.Get(state);
         if (seq == null) { seq = new List<CardKeyword>(); Sequence.Set(state, seq); }
         return seq;
     }
