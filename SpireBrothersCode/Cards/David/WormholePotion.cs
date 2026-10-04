@@ -17,18 +17,17 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Road trip / co-op. Lose 15 Gold. ALL players gain 1 energy next turn.</summary>
-public class GasMoney() : DavidCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+/// <summary>Terraria (teleport to a teammate) (Share). A player gains 1 energy next turn, and so do you (2 if you pick yourself).</summary>
+public class WormholePotion() : DavidCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Share];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Gold", 15), new EnergyVar(1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        await LoseGold(DynamicVars["Gold"].IntValue);
-        if (CombatState == null) return;
-        foreach (var player in CombatState.Players.Where(p => p.Creature.IsAlive).ToList())
-            await PowerCmd.Apply<EnergyNextTurnPower>(ctx, player.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this);
+        var target = ShareTarget(play);
+        await PowerCmd.Apply<EnergyNextTurnPower>(ctx, target, DynamicVars.Energy.BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<EnergyNextTurnPower>(ctx, Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);

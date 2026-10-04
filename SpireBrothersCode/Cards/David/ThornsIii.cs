@@ -17,13 +17,22 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Road trip. Retain your hand at the end of each turn.</summary>
-public class CruiseControl() : DavidCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+/// <summary>Minecraft (the Thorns armor enchantment). Gain 5 Block. Apply 3 Bleed.</summary>
+public class ThornsIii() : DavidCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
 {
+    public override bool GainsBlock => true;
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(5, ValueProp.Move), new PowerVar<BleedPower>(3)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<BleedPower>()];
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        await PowerCmd.Apply<CruiseControlPower>(ctx, Owner.Creature, 1, Owner.Creature, this);
+        await CommonActions.CardBlock(this, play);
+        if (play.Target != null) await CommonActions.Apply<BleedPower>(ctx, play.Target, this);
     }
 
-    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Block.UpgradeValueBy(2);
+        DynamicVars["BleedPower"].UpgradeValueBy(1);
+    }
 }

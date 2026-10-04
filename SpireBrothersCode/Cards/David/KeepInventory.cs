@@ -17,17 +17,12 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Road trip (Share). A player gains 1 energy next turn, and so do you (2 if you pick yourself).</summary>
-public class Carpool() : DavidCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
+/// <summary>Minecraft (the keepInventory gamerule). Retain your hand at the end of each turn.</summary>
+public class KeepInventory() : DavidCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Share];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1)];
-
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        var target = ShareTarget(play);
-        await PowerCmd.Apply<EnergyNextTurnPower>(ctx, target, DynamicVars.Energy.BaseValue, Owner.Creature, this);
-        await PowerCmd.Apply<EnergyNextTurnPower>(ctx, Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<KeepInventoryPower>(ctx, Owner.Creature, 1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);

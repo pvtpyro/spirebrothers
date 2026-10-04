@@ -17,22 +17,18 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Road trip. Gain 5 Block. Apply 3 Bleed.</summary>
-public class TollRoad() : DavidCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+/// <summary>Minecraft (one of the rare times he spends). Lose 10 Gold. Gain 1 energy and draw 1 card. Exhaust.</summary>
+public class VillagerTrading() : DavidCard(0, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
-    public override bool GainsBlock => true;
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(5, ValueProp.Move), new PowerVar<BleedPower>(3)];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<BleedPower>()];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Gold", 10), new EnergyVar(1), new CardsVar(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        await CommonActions.CardBlock(this, play);
-        if (play.Target != null) await CommonActions.Apply<BleedPower>(ctx, play.Target, this);
+        await LoseGold(DynamicVars["Gold"].IntValue);
+        await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
+        await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, Owner);
     }
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(2);
-        DynamicVars["BleedPower"].UpgradeValueBy(1);
-    }
+    protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(1);
 }

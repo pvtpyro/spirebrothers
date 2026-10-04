@@ -17,8 +17,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Road trip whining. Deal 5 damage. Rant: +3 damage for each Rant played earlier this turn.</summary>
-public class AreWeThereYet() : DavidCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+/// <summary>Minecraft (the End Poem, all about the meaning of existence). Deal 5 damage. Rant: +3 damage for each Rant played earlier this turn.</summary>
+public class TheEndPoem() : DavidCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Rant];
     protected override IEnumerable<DynamicVar> CanonicalVars => [

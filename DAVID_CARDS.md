@@ -1,9 +1,9 @@
 # David, The Min-Maxer: card plan (built 2026-10-04)
 
-Great with numbers, loves puzzles. Always in the middle of an existential crisis, and whoever has to listen to him pays the price. Never spends money, not to save it, but because nothing interests him enough to buy. So it just piles up. Loves hiking and camping. Road trip Idaho to NJ and back.
-Games: Payday 2, Terraria, Satisfactory, ARK. Outdoors: hiking, camping.
+Great with numbers, loves puzzles. Always in the middle of an existential crisis, and whoever has to listen to him pays the price. Never spends money, not to save it, but because nothing interests him enough to buy. So it just piles up. Loves hiking and camping. Took one road trip, Idaho to NJ and back (one card nods to it).
+Games (what he does all day): Minecraft, Payday 2, Terraria, Satisfactory, ARK. Outdoors: hiking, camping.
 
-All of this is built (2026-10-04), untested in game. Small changes while building: Carpool gives 2 energy if you pick yourself; Black Friday Exhausts; most cards upgrade by +2 to +4 or cost 1 less.
+All of this is built (2026-10-04), untested in game. Small changes while building: Wormhole Potion (was Carpool) gives 2 energy if you pick yourself; Black Friday Exhausts; most cards upgrade by +2 to +4 or cost 1 less.
 Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 
 ## His mechanics
@@ -39,16 +39,16 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | 8 | 💰 Direct Deposit | 1 Attack | Deal 8 damage. **Hoard:** +1 per 50 Gold. | Money just shows up |
 | 9 | 💰 Interest Payment | 1 Skill | Gain 4 Block. **Hoard:** +1 Block per 50 Gold. | Numbers |
 | 10 | 🩸 You Break It, You Buy It | 1 Attack | Deal 4 damage. Apply 4 Bleed. | Messing with David costs you |
-| 11 | 🩸 Toll Road | 1 Skill | Gain 5 Block. Apply 3 Bleed. | Road trip |
+| 11 | 🩸 Thorns III | 1 Skill | Gain 5 Block. Apply 3 Bleed. | Minecraft (the armor enchantment) |
 | 12 | 😩 Why Are We Even Here? | 1 Attack | Deal 6 damage. **Rant:** +3 damage for each Rant played earlier this turn. | Existential crisis |
 | 13 | 😩 Deep Sigh | 0 Skill | The enemy loses 2 Strength this turn. **Rant:** +1 for each Rant played earlier this turn. *(the cheap opener for a rant chain)* | Existential crisis |
 | 14 | Drill | 2 Attack | Deal 4 damage 4 times. | Payday 2 |
 | 15 | Campfire | 1 Skill | Gain 5 Block. Upgrade a random card in your hand for this combat. | Camping (and a nod to Slay the Spire's rest sites) |
 | 16 | Order of Operations | 1 Attack | Deal 4 damage to ALL enemies twice. | Numbers |
-| 17 | Gas Station Snacks | 0 Skill | Lose 10 Gold. Gain 1 Energy and draw 1 card. Exhaust. | Road trip |
+| 17 | Villager Trading | 0 Skill | Lose 10 Gold. Gain 1 Energy and draw 1 card. Exhaust. | Minecraft (a rare time he spends) |
 | 18 | Power Slug | 1 Skill | Gain 3 Block. Next turn, gain 1 Energy. | Satisfactory |
 | 19 | Pitch the Tent | 1 Skill | Gain 6 Block. Retain. | Camping |
-| 20 | 😩 Are We There Yet? | 1 Attack | Deal 5 damage. **Rant:** +3 damage for each Rant played earlier this turn. | Road trip whining |
+| 20 | 😩 The End Poem | 1 Attack | Deal 5 damage. **Rant:** +3 damage for each Rant played earlier this turn. | Minecraft (its ending is about the meaning of existence) |
 
 ## Uncommon (36)
 
@@ -82,7 +82,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | 37 | 💰 Money Bags | 2 Attack | Deal 12 damage. **Hoard:** +1 per 50 Gold. | Payday 2 |
 | 38 | 🗡️💰 Not Worth the Gold | 0 Skill | Apply 2 Insulted. **Hoard:** +1 Insulted per 50 Gold. | Insult (indifferent to money) |
 | 39 | Loot Bag | 1 Attack | Deal 9 damage. If this kills an enemy, gain 15 Gold. | Payday 2 |
-| 40 | Gas Money | 1 Skill | Lose 15 Gold. ALL players gain 1 Energy next turn. | Road trip / co-op |
+| 40 | Beacon | 1 Skill | Lose 15 Gold. ALL players gain 1 Energy next turn. | Minecraft (gold blocks, buffs everyone) / co-op |
 
 ### Ranting and co-op
 | # | Name | Cost / Type | Effect | Theme |
@@ -91,7 +91,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | 42 | 😩 3 A.M. Thoughts | 1 Power | Whenever you play a Rant card, deal 2 damage to ALL enemies. | Existential crisis |
 | 43 | 🤝 Delegate | 1 Skill | **Delegate:** a player's next Attack deals double damage. Exhaust. | Leadership |
 | 44 | 🤝 Group Project | 1 Skill | ALL players gain 4 Block and draw 1 card next turn. | Co-op |
-| 45 | 🤝 Carpool | 1 Skill | A player gains 1 Energy next turn, and so do you. | Road trip |
+| 45 | 🤝 Wormhole Potion | 1 Skill | A player gains 1 Energy next turn, and so do you. | Terraria (teleport to a teammate) |
 
 ### Everything else
 | # | Name | Cost / Type | Effect | Theme |
@@ -103,7 +103,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | 50 | Bola | 1 Skill | Apply 2 Weak and 2 Vulnerable. Exhaust. | ARK |
 | 51 | Thatch Hut | 2 Skill | Gain 15 Block. **Exact:** gain 2 Plating. | ARK |
 | 52 | 🗡️😩 In the Grand Scheme, You Don't Matter | 1 Skill | Apply 2 Insulted. **Rant:** +1 for each Rant played earlier this turn. | Insult (existential crisis) |
-| 53 | Cruise Control | 2 Power | Retain your hand at the end of each turn. | Road trip |
+| 53 | Keep Inventory | 2 Power | Retain your hand at the end of each turn. | Minecraft (the gamerule) |
 | 54 | Balance Sheet | 1 Attack | Deal damage equal to your Block. | Numbers |
 | 55 | 😩 Does Anything Even Matter? | 1 Skill | Apply 2 Vulnerable. **Rant:** +1 for each Rant played earlier this turn. | Existential crisis |
 | 56 | Pack Light | 1 Skill | Draw 3 cards, then discard 1. | Hiking |
@@ -134,7 +134,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 - New powers needed: roughly 14 (BleedPower, No Refunds, Return Policy, Plant Species X, Deep Cuts, Exact counters, Compound Interest, The Void Stares Back, 3 A.M. Thoughts, etc.).
 - **X-cost cards** (Balanced Budget, Zero-Sum Game, All In): check how vanilla does X cost before building.
 - **Exact** check: the owner's energy is 0 after the cost is paid, inside OnPlay. Min-Max doubles it.
-- **Broken-In Boots** uses vanilla `BufferPower`. **Cruise Control** uses `RetainHandPower`. **Delegate** uses `DoubleDamagePower`.
+- **Broken-In Boots** uses vanilla `BufferPower`. **Keep Inventory** uses a custom `KeepInventoryPower`. **Delegate** uses `DoubleDamagePower`.
 - **Bleed**: a custom `BleedPower` debuff (like `InsultedPower`). At the end of the owner's turn, deal unblockable HP loss equal to Amount, then set Amount to Amount / 2 (with Deep Cuts: Amount - 1). Remove at 0. Vanilla `PoisonPower` is the closest reference for timing and HP-loss props.
 - **Rant**: count Rant cards played this turn and this combat per player, like Daniel's `TurnTracker`. Temporary Strength loss: check how vanilla does "loses X Strength this turn" (Piercing Wail style) before building.
 - **A Glove Fry** creates a **Valley Forge** token (CardRarity.Token, like Daniel's Gear) and shows it as a
