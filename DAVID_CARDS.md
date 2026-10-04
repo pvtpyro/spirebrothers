@@ -23,7 +23,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 - **Do the Math** (Basic Skill, 1): Gain 5 Block. **Exact:** draw 2 cards.
 - **Starter relic: Old Wallet.** (He never saw a reason to replace it.) At the start of each combat, gain 1 Block per 20 Gold (max 15).
 
-Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share.
+Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡️ Monkey Island (Insult / Comeback).
 
 ## Common (20)
 
@@ -34,7 +34,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share.
 | 3 | 🎯 Exact Change | 1 Attack | Deal 7 damage. **Exact:** deal 7 more. | Numbers |
 | 4 | 🎯 Just Browsing | 0 Skill | Scry 3. **Exact:** draw 1 card. | Looks at everything, buys nothing |
 | 5 | 🎯 Sudoku | 1 Skill | Draw 1 card. **Exact:** gain 1 Energy. | Puzzles |
-| 6 | 🎯 Pickaxe Swing | 1 Attack | Deal 9 damage. **Exact:** apply 1 Vulnerable. | Terraria |
+| 6 | 🗡️🎯 Statistically Insignificant | 1 Attack | Deal 6 damage. Apply 2 Insulted. **Exact:** apply 2 more. | Insult (numbers) |
 | 7 | 🎯 Tranq Dart | 1 Skill | Apply 2 Weak. **Exact:** also apply 1 Vulnerable. | ARK |
 | 8 | 💰 Direct Deposit | 1 Attack | Deal 8 damage. **Hoard:** +1 per 50 Gold. | Money just shows up |
 | 9 | 💰 Interest Payment | 1 Skill | Gain 4 Block. **Hoard:** +1 Block per 50 Gold. | Numbers |
@@ -80,7 +80,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share.
 | 35 | 💰 Compound Interest | 2 Power | At the start of your turn, gain 1 Block per 20 Gold. | Numbers |
 | 36 | 💰 Untouched Savings | 1 Skill | Gain 1 Block per 10 Gold (max 25). | Indifferent to money |
 | 37 | 💰 Money Bags | 2 Attack | Deal 12 damage. **Hoard:** +1 per 50 Gold. | Payday 2 |
-| 38 | 💰 Pocket Change | 0 Attack | Deal 3 damage. **Hoard:** +1 per 50 Gold. | Indifferent to money |
+| 38 | 🗡️💰 Not Worth the Gold | 0 Skill | Apply 2 Insulted. **Hoard:** +1 Insulted per 50 Gold. | Insult (indifferent to money) |
 | 39 | Loot Bag | 1 Attack | Deal 9 damage. If this kills an enemy, gain 15 Gold. | Payday 2 |
 | 40 | Gas Money | 1 Skill | Lose 15 Gold. ALL players gain 1 Energy next turn. | Road trip / co-op |
 
@@ -96,13 +96,13 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share.
 ### Everything else
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
-| 46 | Splitter | 1 Attack | Deal 5 damage to ALL enemies. **Exact:** do it twice. | Satisfactory |
+| 46 | 🗡️ Run the Numbers | 1 Attack | **Comeback.** Deal 5 damage, +3 for each Insulted on the target, then remove it. | Comeback (numbers) |
 | 47 | Jetpack | 1 Skill | Gain 6 Block. Next turn, draw 2 cards. | Satisfactory |
 | 48 | Nobelisk | 1 Attack | Deal 10 damage to ALL enemies. Exhaust. | Satisfactory |
 | 49 | Summit Push | 1 Attack | Deal 5 damage, +3 for each turn so far this combat. | Hiking |
 | 50 | Bola | 1 Skill | Apply 2 Weak and 2 Vulnerable. Exhaust. | ARK |
 | 51 | Thatch Hut | 2 Skill | Gain 15 Block. **Exact:** gain 2 Plating. | ARK |
-| 52 | Scenic Route | 1 Skill | Scry 4. Gain 4 Block. | Road trip |
+| 52 | 🗡️😩 In the Grand Scheme, You Don't Matter | 1 Skill | Apply 2 Insulted. **Rant:** +1 for each Rant played earlier this turn. | Insult (existential crisis) |
 | 53 | Cruise Control | 2 Power | Retain your hand at the end of each turn. | Road trip |
 | 54 | Balance Sheet | 1 Attack | Deal damage equal to your Block. | Numbers |
 | 55 | 😩 Does Anything Even Matter? | 1 Skill | Apply 2 Vulnerable. **Rant:** +1 for each Rant played earlier this turn. | Existential crisis |
@@ -118,7 +118,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share.
 | 60 | 🎯 All In | X Attack | Deal 10 damage to ALL enemies X times. *(always Exact)* | Payday 2 |
 | 61 | 🎯 Return on Investment | 2 Power | Whenever you trigger **Exact**, gain 3 Gold. | Numbers |
 | 62 | 💰 Nest Egg | 2 Attack | Deal 1 damage per 10 Gold you have. Exhaust. | Indifferent to money |
-| 63 | 💰 Overflowing Coffers | 0 Skill | Gain 1 Block per 10 Gold. Exhaust. | Indifferent to money |
+| 63 | 🗡️ Checkmate | 2 Attack | **Comeback.** Deal 10 damage, +5 for each Insulted on the target, then remove it. | Comeback (puzzles) |
 | 64 | 💰 Black Friday | 1 Skill | Lose ALL your Gold. Gain 1 Strength per 50 Gold lost. | The one day he finally buys something |
 | 65 | 🩸 Deep Cuts | 2 Power | Bleed on enemies no longer halves. It goes down by 1 instead. *(turns Bleed into a long burn)* | Bleed payoff |
 | 66 | 🩸 Spike Trap Room | 2 Skill | Apply 8 Bleed to ALL enemies. Exhaust. | Terraria |

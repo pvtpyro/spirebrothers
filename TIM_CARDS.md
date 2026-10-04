@@ -24,7 +24,7 @@ Shared mechanics he also uses: **Insulted** (Monkey Island, from Daniel) through
 - **Lua Script** (Basic Skill, 1): Gain 4 Block. **Script.**
 - **Starter relic: Family Minivan.** Start each combat with 2 Kids.
 
-Legend: 👶 Kids, 📜 Script, 🏰 Age.
+Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeback; Dad Joke in his starting deck is an insult too).
 
 ## Common (20)
 
@@ -96,11 +96,11 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age.
 | 46 | Musty Flick | 1 Attack | Deal 9 damage. If it's the last card in your hand, deal 9 more. | Rocket League |
 | 47 | Bump | 0 Attack | Deal 3 damage. Apply 1 Weak. | Rocket League |
 | 48 | Overtime | 2 Skill | Next turn, gain 2 Energy and draw 2 cards. Exhaust. | Rocket League |
-| 49 | Pinch Shot | 1 Attack | Deal 6 damage twice. | Rocket League |
-| 50 | Sticky Cam | 1 Skill | Apply 2 Weak and 2 Vulnerable. Exhaust. | Splinter Cell |
+| 49 | 🗡️ Hi Hungry, I'm Dad | 1 Attack | **Comeback.** Deal 5 damage, +3 for each Insulted on the target, then remove it. | Comeback (dad joke) |
+| 50 | 🗡️ Not Mad, Just Disappointed | 1 Skill | Apply 2 Insulted and 1 Weak. | Insult (dad of eight) |
 | 51 | Lights Out | 1 Skill | Gain 4 Block. Apply 2 Weak to ALL enemies. | Splinter Cell |
 | 52 | Split Jump | 1 Skill | Gain 6 Block. Next turn, gain 6 Block. | Splinter Cell |
-| 53 | Silenced Pistol | 0 Attack | Deal 5 damage. | Splinter Cell |
+| 53 | 🗡️ Back in My Day | 0 Skill | Apply 1 Insulted to ALL enemies. | Insult (oldest brother) |
 | 54 | Ghillie Suit | 1 Power | Gain 3 Plating. | Airsoft |
 | 55 | Speedsoft | 0 Skill | Draw 2 cards, then discard 1. | Airsoft |
 | 56 | Instruction Manual | 1 Skill | Choose a card from your draw pile and put it into your hand. | Legos |
@@ -121,7 +121,7 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age.
 | 66 | 🏰 Castle | 2 Power | At the start of your turn, gain 5 Block. At the end of your turn, deal 3 damage to ALL enemies. | Age of Empires |
 | 67 | 🏰 Mass Conversion | 2 Skill | ALL enemies lose 3 Strength. You gain that much Strength this turn. Exhaust. | Age of Empires (monk army) |
 | 68 | Grand Champion | 2 Power | Your Attacks deal 3 extra damage. | Rocket League (his #1) |
-| 69 | Redirect | 1 Attack | Deal 15 damage. Retain. | Rocket League |
+| 69 | 🗡️ The Last Word | 2 Attack | **Comeback.** Deal 8 damage to ALL enemies, +4 for each Insulted on each, then remove their Insulted. | Comeback (dad always gets the last word) |
 | 70 | Mark and Execute | 1 Attack | Can only be played if you've played 3+ cards this turn. Deal 12 damage to ALL enemies. | Splinter Cell |
 | 71 | Ghost Run | 2 Skill | Gain 1 Intangible (take only 1 damage per hit until your next turn). Exhaust. | Splinter Cell |
 | 72 | Full Auto | X Attack | Deal 3 damage to a random enemy 3X times. | Airsoft |

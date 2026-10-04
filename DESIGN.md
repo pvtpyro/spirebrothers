@@ -4,6 +4,8 @@
 - **Share** (co-op): choose a player; in solo it targets you. Teammate draw/energy arrives next turn to keep multiplayer in sync.
 - **Monkey Island**: Insult cards apply *Insulted*; Comeback cards deal bonus damage per stack, then clear it.
   One brother insults, another lands the comeback. Original insults only.
+  Every brother has several insult cards but only about 2 Comebacks (Daniel, the Monkey Island hub, has 3),
+  so in co-op anyone can set up a Comeback for whoever holds one.
 - Idea: **Brothers in Arms**, starter relics get a bonus when another brother is in the run. (Not built yet.)
 
 ## Daniel, The Nerd Who Nerds Wrong (built in v0.1.0)

@@ -33,7 +33,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 - **Sing Along** (Basic Skill, 1, Chorus): ALL players gain 2 Block per Verse spent.
 - **Starter relic: Well-Worn Guitar.** Start each combat with 1 Verse.
 
-Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Archipelago).
+Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Archipelago), 🗡️ Monkey Island (Insult / Comeback).
 
 ## Common (20)
 
@@ -41,7 +41,7 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 |---|---|---|---|---|
 | 1 | 🎵 Power Chord | 1 Attack | Deal 7 damage. | Guitar |
 | 2 | 🎵 Scales Practice | 1 Skill | Gain 5 Block. | Piano |
-| 3 | 🎵 Lullaby | 1 Skill | Apply 1 Weak. Gain 3 Block. | Vocals |
+| 3 | 🗡️🎵 You Call That Singing? | 1 Skill | Apply 2 Insulted. | Insult (vocals) |
 | 4 | 🎵 Drum Fill | 1 Attack | Deal 2 damage 4 times. | Music |
 | 5 | 🎵 Guitar Strum | 1 Attack | Deal 5 damage to ALL enemies. | Guitar |
 | 6 | 🎵 Vocal Warmup | 0 Skill | Gain 1 extra Verse (2 total). Exhaust. | Vocals |
@@ -76,7 +76,7 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 29 | Backup Vocals | 1 Power | Whenever you play a Song card, gain 2 Block. | Vocals |
 | 30 | Harmony | 2 Power | Whenever you play a Chorus, ALL players heal 2. | Music |
 | 31 | 📦 Scouting | 1 Skill | Scry 3. Your next **Check** finds a Progression item. | Archipelago (scouting reveals items early) |
-| 32 | 🎵 Piano Recital | 2 Attack | Deal 5 damage 3 times. | Piano |
+| 32 | 🗡️🎵 Mic Drop | 1 Attack | **Comeback.** Deal 5 damage, +3 for each Insulted on the target, then remove it. | Comeback (music) |
 | 33 | 🎵 Acoustic Set | 1 Skill | Gain 9 Block. | Guitar |
 | 34 | 🎵 Tuning | 1 Skill | Upgrade a card in your hand for this combat. | Guitar |
 | 35 | 🎵🤝 Duet | 1 Skill | Share: you and a player each gain 5 Block. | Music / co-op |
@@ -104,7 +104,7 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 49 | Kickoff | 1 Attack | Innate. Deal 8 damage. Draw 1 card. | Rocket League |
 | 50 | Demo | 2 Attack | Deal 14 damage. Apply 2 Vulnerable. | Rocket League |
 | 51 | Calculated. | 1 Skill | Scry 3. Draw 1 card. Gain 1 Verse. | Rocket League |
-| 52 | Ceiling Shot | 1 Attack | Deal 10 damage. Retain. | Rocket League |
+| 52 | 🗡️ Nice Shot! | 1 Attack | Deal 6 damage. Apply 2 Insulted. *(said the sarcastic way)* | Insult (Rocket League quick chat) |
 | 53 | Junimos | 1 Power | Whenever you play a Chorus, add a random Song card to your hand. | Stardew Valley |
 | 54 | Fishing | 1 Skill | Draw 1 card. If it's a Song, gain 1 Verse and draw another. | Stardew Valley |
 | 55 | Dish Pit | 1 Skill | Exhaust a card in your hand. Gain 6 Block. | PlateUp! |
@@ -126,7 +126,7 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 66 | Choir | 2 Power | Your Chorus cards count as if you had 2 more Verses. | Vocals |
 | 67 | Virtuoso | 3 Power | Whenever you play a Song card, deal 4 damage to ALL enemies. | Piano / guitar |
 | 68 | Mixtape | 1 Skill | Add 3 random Song cards to your hand. They cost 0 this turn. Exhaust. | Music |
-| 69 | Stardrop | 2 Skill | Gain 1 Strength and 1 Dexterity. Heal 5. Exhaust. | Stardew Valley |
+| 69 | 🗡️🎤 Diss Track | 2 Attack | **Chorus + Comeback.** Deal 3 damage to ALL enemies per Verse, +3 for each Insulted on each enemy, then remove their Insulted. | Comeback (music) |
 | 70 | Jam Session | 2 Skill | ALL players gain 2 Energy next turn. Exhaust. | Music / co-op |
 | 71 | 📦 Release! | 2 Skill | **Check** 5 times. Exhaust. | Archipelago: releasing sends out all your remaining items at once |
 | 72 | Zero-Second Goal | 1 Attack | Can only be played if it's the last card in your hand. Deal 30 damage. | Rocket League |

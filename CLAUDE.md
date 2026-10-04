@@ -66,7 +66,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   teammates go through vanilla `DrawCardsNextTurnPower` / `EnergyNextTurnPower` to stay
   multiplayer-safe.
 - Random choices must use the run's RNG (`Owner.RunState.Rng.CombatTargets`) or co-op will desync.
-- **Monkey Island** (all three brothers loved it growing up): `InsultedPower` debuff plus Comeback
+- **Monkey Island** (all four brothers loved it growing up): `InsultedPower` debuff plus Comeback
   cards that deal bonus damage per stack, then clear it. Use original insults only, never quote
   the game's lines.
 - Use game names and short catchphrases as card names only. No copied art.
