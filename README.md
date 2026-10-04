@@ -59,3 +59,9 @@ Anything missing falls back to the template placeholder art.
 - `SpireBrothersCode/Powers/`, `SpireBrothersCode/Relics/`
 - `SpireBrothers/localization/eng/` all card/relic/power text
 - `DESIGN.md` the design notes for all three brothers
+
+
+## give yourself all cards for testing
+
+- type backtick to open command
+- type `unlock all`
