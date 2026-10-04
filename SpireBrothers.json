@@ -1,0 +1,17 @@
+{
+  "id": "SpireBrothers",
+  "name": "Spire Brothers",
+  "author": "Spire Brothers",
+  "description": "Play as Daniel, David, and Joshua. Co-op friendly characters with a little Monkey Island on the side.",
+  "version": "v0.1.0",
+  "min_game_version": "0.107.0",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": [
+    {
+      "id": "BaseLib",
+      "min_version": "3.4.7"
+    }
+  ],
+  "affects_gameplay": true
+}

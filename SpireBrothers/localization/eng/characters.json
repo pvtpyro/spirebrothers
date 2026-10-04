@@ -1,0 +1,16 @@
+{
+  "SPIREBROTHERS-DANIEL.title": "Daniel",
+  "SPIREBROTHERS-DANIEL.titleObject": "Daniel",
+  "SPIREBROTHERS-DANIEL.description": "A software engineer who can also fix your car and wire your house.\nHe nerds wrong, and it works.",
+  "SPIREBROTHERS-DANIEL.aromaPrinciple": "[sine][color=4fb3d9]And you know what? I can fix that.[/color][/sine]",
+  "SPIREBROTHERS-DANIEL.banter.alive.endTurnPing": "And you know what? I'm ready.",
+  "SPIREBROTHERS-DANIEL.banter.dead.endTurnPing": "...",
+  "SPIREBROTHERS-DANIEL.cardsModifierTitle": "Daniel Cards",
+  "SPIREBROTHERS-DANIEL.cardsModifierDescription": "Daniel cards will now appear in rewards and shops.",
+  "SPIREBROTHERS-DANIEL.eventDeathPrevention": "Not done yet. Never done yet.",
+  "SPIREBROTHERS-DANIEL.goldMonologue": "[sine]I could just fix the old one...[/sine]",
+  "SPIREBROTHERS-DANIEL.possessiveAdjective": "his",
+  "SPIREBROTHERS-DANIEL.pronounObject": "him",
+  "SPIREBROTHERS-DANIEL.pronounPossessive": "his",
+  "SPIREBROTHERS-DANIEL.pronounSubject": "he"
+}

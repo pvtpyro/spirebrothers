@@ -1,0 +1,17 @@
+{
+  "SPIREBROTHERS-INSULTED_POWER.title": "Insulted",
+  "SPIREBROTHERS-INSULTED_POWER.description": "Comeback cards deal extra damage to this creature.",
+  "SPIREBROTHERS-INSULTED_POWER.smartDescription": "Comeback cards deal extra damage for each of the [blue]{Amount}[/blue] stacks, then remove it.",
+  "SPIREBROTHERS-NERDS_WRONG_POWER.title": "Nerds Wrong",
+  "SPIREBROTHERS-NERDS_WRONG_POWER.description": "Wired effects are always active.",
+  "SPIREBROTHERS-NERDS_WRONG_POWER.smartDescription": "Wired effects are always active.",
+  "SPIREBROTHERS-WIRE_UP_THE_HOUSE_POWER.title": "Wire Up the House",
+  "SPIREBROTHERS-WIRE_UP_THE_HOUSE_POWER.description": "Whenever you play a Logic card, deal damage to a random enemy.",
+  "SPIREBROTHERS-WIRE_UP_THE_HOUSE_POWER.smartDescription": "Whenever you play a [gold]Logic[/gold] card, deal [blue]{Amount}[/blue] damage to a random enemy.",
+  "SPIREBROTHERS-FACTORY_MUST_GROW_POWER.title": "The Factory Must Grow",
+  "SPIREBROTHERS-FACTORY_MUST_GROW_POWER.description": "At the start of your turn, add Gears to your hand.",
+  "SPIREBROTHERS-FACTORY_MUST_GROW_POWER.smartDescription": "At the start of your turn, add [blue]{Amount}[/blue] [gold]Gear[/gold] to your [gold]Hand[/gold].",
+  "SPIREBROTHERS-PAIR_PROGRAMMING_POWER.title": "Pair Programming",
+  "SPIREBROTHERS-PAIR_PROGRAMMING_POWER.description": "Draw extra cards at the start of your turn.",
+  "SPIREBROTHERS-PAIR_PROGRAMMING_POWER.smartDescription": "At the start of your turn, draw [blue]{Amount}[/blue] extra card(s)."
+}

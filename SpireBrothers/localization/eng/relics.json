@@ -1,0 +1,14 @@
+{
+  "SPIREBROTHERS-AND_YOU_KNOW_WHAT.title": "And You Know What?",
+  "SPIREBROTHERS-AND_YOU_KNOW_WHAT.description": "At the start of your turn, if you played both a [gold]Logic[/gold] and a [gold]Hands[/gold] card last turn, draw 1 card.",
+  "SPIREBROTHERS-AND_YOU_KNOW_WHAT.flavor": "He always has one more thing to tell you.",
+  "SPIREBROTHERS-TRUSTY_MULTIMETER.title": "Trusty Multimeter",
+  "SPIREBROTHERS-TRUSTY_MULTIMETER.description": "The first time each turn a [gold]Wired[/gold] effect triggers, gain [blue]3[/blue] [gold]Block[/gold].",
+  "SPIREBROTHERS-TRUSTY_MULTIMETER.flavor": "Measure twice, fix once.",
+  "SPIREBROTHERS-RUBBER_CHICKEN_WITH_A_PULLEY.title": "Rubber Chicken with a Pulley",
+  "SPIREBROTHERS-RUBBER_CHICKEN_WITH_A_PULLEY.description": "At the start of each combat, add a [gold]Snappy Comeback[/gold] to your [gold]Hand[/gold].",
+  "SPIREBROTHERS-RUBBER_CHICKEN_WITH_A_PULLEY.flavor": "Nobody knows why it works. It just does.",
+  "SPIREBROTHERS-NEVER_PAID_A_MECHANIC.title": "Never Paid a Mechanic",
+  "SPIREBROTHERS-NEVER_PAID_A_MECHANIC.description": "At the end of each combat, heal [blue]5[/blue] HP.",
+  "SPIREBROTHERS-NEVER_PAID_A_MECHANIC.flavor": "Why pay someone when you can do it yourself?"
+}

@@ -1,0 +1,16 @@
+{
+  "SPIREBROTHERS-LOGIC.title": "Logic",
+  "SPIREBROTHERS-LOGIC.description": "Daniel's software-engineer side.",
+  "SPIREBROTHERS-HANDS.title": "Hands",
+  "SPIREBROTHERS-HANDS.description": "Daniel's fix-anything side.",
+  "SPIREBROTHERS-STRATAGEM.title": "Stratagem",
+  "SPIREBROTHERS-STRATAGEM.description": "Can only be played after you enter its input this turn by playing [gold]Logic[/gold] and [gold]Hands[/gold] cards in that order.",
+  "SPIREBROTHERS-WIRED.title": "Wired",
+  "SPIREBROTHERS-WIRED.description": "Active if you've already played a card of the other type ([gold]Logic[/gold] or [gold]Hands[/gold]) this turn.",
+  "SPIREBROTHERS-SHARE.title": "Share",
+  "SPIREBROTHERS-SHARE.description": "Choose a player. In solo play, it targets you.",
+  "SPIREBROTHERS-DILIGENT.title": "Diligent",
+  "SPIREBROTHERS-DILIGENT.description": "This card gets stronger each time you play it this combat.",
+  "SPIREBROTHERS-COMEBACK.title": "Comeback",
+  "SPIREBROTHERS-COMEBACK.description": "Deals bonus damage to [gold]Insulted[/gold] enemies, then removes [gold]Insulted[/gold]."
+}
