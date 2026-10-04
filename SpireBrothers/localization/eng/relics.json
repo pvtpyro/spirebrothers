@@ -26,5 +26,8 @@
   "SPIREBROTHERS-MONKEY_WRENCH.title": "Monkey Wrench",
   "SPIREBROTHERS-MONKEY_WRENCH.description": "Eek eek. Ook!",
   "SPIREBROTHERS-MONKEY_WRENCH.translation": "[gold]Comeback[/gold] cards get [blue]2[/blue] extra for each [gold]Insulted[/gold] on the target.",
-  "SPIREBROTHERS-MONKEY_WRENCH.flavor": "Daniel insists this is the correct tool for the job."
+  "SPIREBROTHERS-MONKEY_WRENCH.flavor": "Daniel insists this is the correct tool for the job.",
+  "SPIREBROTHERS-OLD_WALLET.title": "Old Wallet",
+  "SPIREBROTHERS-OLD_WALLET.description": "At the start of each combat, gain [blue]1[/blue] [gold]Block[/gold] per [blue]20[/blue] [gold]Gold[/gold] (max [blue]15[/blue]).",
+  "SPIREBROTHERS-OLD_WALLET.flavor": "He never saw a reason to replace it. Or to open it."
 }

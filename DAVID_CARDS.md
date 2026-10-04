@@ -1,9 +1,9 @@
-# David, The Min-Maxer: card plan (draft for review)
+# David, The Min-Maxer: card plan (built 2026-10-04)
 
 Great with numbers, loves puzzles. Always in the middle of an existential crisis, and whoever has to listen to him pays the price. Never spends money, not to save it, but because nothing interests him enough to buy. So it just piles up. Loves hiking and camping. Road trip Idaho to NJ and back.
 Games: Payday 2, Terraria, Satisfactory, ARK. Outdoors: hiking, camping.
 
-Nothing here is built yet. Cut, rename, or rewrite anything, especially to add inside jokes.
+All of this is built (2026-10-04), untested in game. Small changes while building: Carpool gives 2 energy if you pick yourself; Black Friday Exhausts; most cards upgrade by +2 to +4 or cost 1 less.
 Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 
 ## His mechanics

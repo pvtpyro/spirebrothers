@@ -2,5 +2,9 @@
   "THE_ARCHITECT.talk.SPIREBROTHERS-DANIEL.0-0r.char": "And you know what? I think I can fix you.",
   "THE_ARCHITECT.talk.SPIREBROTHERS-DANIEL.0-0r.next": "Continue",
   "THE_ARCHITECT.talk.SPIREBROTHERS-DANIEL.0-1r.ancient": "Many have tried to take me apart. None have put me back together.",
-  "THE_ARCHITECT.talk.SPIREBROTHERS-DANIEL.0-attack": "Both"
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DANIEL.0-attack": "Both",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DAVID.0-0r.char": "So you built all of this. Did you ever stop to ask why?",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DAVID.0-0r.next": "Continue",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DAVID.0-1r.ancient": "Every climber asks me how. You are the first to ask me why.",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DAVID.0-attack": "Both"
 }

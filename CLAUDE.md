@@ -7,7 +7,7 @@ friends of the user and play StS2 together, mostly in multiplayer co-op. The mod
 so the characters should feel personal, warm, and fun. Co-op support matters a lot.
 
 - **Daniel, The Nerd Who Nerds Wrong**: built and playable, now being playtested and expanded.
-- **David, The Min-Maxer**: designed, not built.
+- **David, The Min-Maxer**: built (2026-10-04), untested in game. Uses the Silent's visuals.
 - **Joshua, The Musician**: designed, not built.
 - **Tim (Timothy), The Draftsman**: the oldest brother. Designed, not built. Old nickname "Tidbit": he doesn't like it, so use it only once (it's one card).
 
@@ -45,7 +45,16 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   mixed both, whether Wired fired this turn, and the Gear count
 - `SpireBrothersCode/Mechanics/Wired.cs`: `IsActive(card)` and `Check(card)` (also triggers the
   Trusty Multimeter relic)
-- `SpireBrothersCode/Powers/`, `SpireBrothersCode/Relics/`
+- David: `Character/David.cs` + `DavidPools.cs` (Silent visuals), `Cards/DavidCard.cs` (glow for Exact/Rant,
+  `Hoard()`, `Rants`, `RantAt()`, `LoseGold()`, `ShareTarget()`), `Cards/David/` (77 files: 4 Basic,
+  Valley Forge token, 72 reward cards), `Mechanics/DavidTracker.cs` (Rant counts per turn/combat),
+  `Mechanics/Exact.cs` (`Check()` returns 0/1/2 triggers, Min-Max doubles, runs `IExactListener` powers),
+  `Powers/BleedPower.cs` (end of owner's turn, then halves; Deep Cuts makes it -1), `Powers/RantedAtPower.cs`
+  ("loses X Strength this turn", done as a damage modifier so Artifact can't backfire). Starter relic
+  `Relics/OldWallet.cs`; `DavidRelic` base lives in `BrothersRelic.cs`.
+- Monkey Island relics/potions are `[Pool]`ed to Daniel and added to other brothers' pools in
+  `MainFile.ShareMonkeyIslandItems()` via vanilla `ModHelper.AddModelToPool`. Add each new brother there.
+- `SpireBrothersCode/Powers/`, `SpireBrothersCode/Relics/`, `SpireBrothersCode/Potions/`
 - `SpireBrothersCode/BrotherKeywords.cs`: custom `CardKeyword`s. Logic/Hands/Stratagem auto-insert
   before the card text. Wired/Share/Diligent/Comeback use `AutoKeywordPosition.None` and are
   written into the card text by hand.
@@ -73,6 +82,15 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   Monkey Wrench relic and Monkey Business potion work for all brothers. Monkey-speak items show their real
   effect through `MonkeySpeak.Translation` (a `<ID>.translation` loc key the analyzer does not check).
 - Use game names and short catchphrases as card names only. No copied art.
+- **Growing numbers (user preference, applies to every brother):** when a card's number grows above its
+  printed value (Diligent, Hoard, Rant scaling, turn count, etc.), show the current number in green plus the
+  starting number: "Deal **9** damage (from 6)". Never just the bare calculated number.
+  - Calculated-var cards: the card base class adds `{CalcGrown}`/`{CalcStart}` (see
+    `DavidCard.AddExtraArgsToDescription`); text is
+    `{CalcGrown:cond:[green]{CalculatedDamage:diff()}[/green] damage (from {CalcStart})|{CalculatedDamage:diff()} damage}`
+    (or `CalculatedBlock` + `[gold]Block[/gold]`).
+  - Diligent cards use `{DiligentGrown}`/`{DiligentStart}` from `DanielCard`.
+  - Joshua's and Tim's base classes need the same helper when they're built.
 
 ## Current status
 

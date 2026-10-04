@@ -61,7 +61,11 @@ Anything missing falls back to the template placeholder art.
 - `DESIGN.md` the design notes for all three brothers
 
 
-## give yourself all cards for testing
+## testing commands
 
+#### General
 - type backtick to open command
 - type `unlock all`
+
+#### David
+`card SPIREBROTHERS-A_GLOVE_FRY`, `card SPIREBROTHERS-ALL_IN`, `card SPIREBROTHERS-YOU_BREAK_IT_YOU_BUY_IT`, `card SPIREBROTHERS-DEEP_SIGH`. Type card `SPIREBROTHERS-` and press Tab to browse everything. `gold 200`

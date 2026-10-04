@@ -12,5 +12,13 @@
   "SPIREBROTHERS-DILIGENT.title": "Diligent",
   "SPIREBROTHERS-DILIGENT.description": "This card gets stronger each time you play it this combat.",
   "SPIREBROTHERS-COMEBACK.title": "Comeback",
-  "SPIREBROTHERS-COMEBACK.description": "Deals bonus damage to [gold]Insulted[/gold] enemies, then removes [gold]Insulted[/gold]."
+  "SPIREBROTHERS-COMEBACK.description": "Deals bonus damage to [gold]Insulted[/gold] enemies, then removes [gold]Insulted[/gold].",
+  "SPIREBROTHERS-EXACT.title": "Exact",
+  "SPIREBROTHERS-EXACT.description": "A bonus if you have exactly 0 energy left after paying for this card. X-cost cards always count.",
+  "SPIREBROTHERS-HOARD.title": "Hoard",
+  "SPIREBROTHERS-HOARD.description": "Gets stronger the more [gold]Gold[/gold] you're holding.",
+  "SPIREBROTHERS-RANT.title": "Rant",
+  "SPIREBROTHERS-RANT.description": "Gets stronger for each Rant card you already played this turn. Whoever has to listen pays the price.",
+  "SPIREBROTHERS-DELEGATE.title": "Delegate",
+  "SPIREBROTHERS-DELEGATE.description": "A player's next Attack deals double damage."
 }

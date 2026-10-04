@@ -12,5 +12,20 @@
   "SPIREBROTHERS-DANIEL.possessiveAdjective": "his",
   "SPIREBROTHERS-DANIEL.pronounObject": "him",
   "SPIREBROTHERS-DANIEL.pronounPossessive": "his",
-  "SPIREBROTHERS-DANIEL.pronounSubject": "he"
+  "SPIREBROTHERS-DANIEL.pronounSubject": "he",
+
+  "SPIREBROTHERS-DAVID.title": "David",
+  "SPIREBROTHERS-DAVID.titleObject": "David",
+  "SPIREBROTHERS-DAVID.description": "Great with numbers, loves a good puzzle, and always mid existential crisis.\nHis gold just piles up. Nothing's worth buying.",
+  "SPIREBROTHERS-DAVID.aromaPrinciple": "[sine][color=6abf69]Does any of this even matter? Let me run the numbers.[/color][/sine]",
+  "SPIREBROTHERS-DAVID.banter.alive.endTurnPing": "Hang on, let me do the math.",
+  "SPIREBROTHERS-DAVID.banter.dead.endTurnPing": "...",
+  "SPIREBROTHERS-DAVID.cardsModifierTitle": "David Cards",
+  "SPIREBROTHERS-DAVID.cardsModifierDescription": "David cards will now appear in rewards and shops.",
+  "SPIREBROTHERS-DAVID.eventDeathPrevention": "What's the point... fine. One more try.",
+  "SPIREBROTHERS-DAVID.goldMonologue": "[sine]Nothing here I really want...[/sine]",
+  "SPIREBROTHERS-DAVID.possessiveAdjective": "his",
+  "SPIREBROTHERS-DAVID.pronounObject": "him",
+  "SPIREBROTHERS-DAVID.pronounPossessive": "his",
+  "SPIREBROTHERS-DAVID.pronounSubject": "he"
 }

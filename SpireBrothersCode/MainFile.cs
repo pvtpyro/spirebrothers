@@ -2,6 +2,9 @@ using System.Reflection;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
+using SpireBrothers.SpireBrothersCode.Character;
+using SpireBrothers.SpireBrothersCode.Potions;
+using SpireBrothers.SpireBrothersCode.Relics;
 
 namespace SpireBrothers.SpireBrothersCode;
 
@@ -24,5 +27,19 @@ public partial class MainFile : Node
         Harmony harmony = new(ModId);
 
         harmony.PatchAll(assembly);
+
+        ShareMonkeyIslandItems();
+    }
+
+    // The Monkey Island relics and potions live in Daniel's pools (their [Pool] attribute); every other
+    // brother gets them too. Add each new brother's pools here as he is built.
+    private static void ShareMonkeyIslandItems()
+    {
+        ModHelper.AddModelToPool<DavidRelicPool, MonkeyPhrasebook>();
+        ModHelper.AddModelToPool<DavidRelicPool, StoneMonkeyHead>();
+        ModHelper.AddModelToPool<DavidRelicPool, MonkeyWrench>();
+        ModHelper.AddModelToPool<DavidPotionPool, OokOokEek>();
+        ModHelper.AddModelToPool<DavidPotionPool, Grog>();
+        ModHelper.AddModelToPool<DavidPotionPool, MonkeyBusiness>();
     }
 }

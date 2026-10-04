@@ -16,4 +16,10 @@ public static class BrotherKeywords
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Share;
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Diligent;
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Comeback;
+
+    // David. Also written into card text by hand.
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Exact;
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Hoard;
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Rant;
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Delegate;
 }

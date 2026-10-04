@@ -32,7 +32,7 @@ Software engineer who can fix cars, hard-wired his whole house for internet (eve
 - Games: Subnautica, Helldivers 2, Factorio, Darktide, Minecraft.
 - Full card list (72 in the reward pool) is in DANIEL_CARDS.md.
 
-## David, The Min-Maxer (next)
+## David, The Min-Maxer (built 2026-10-04)
 Great with numbers, loves puzzles, loves hiking and camping. Always in the middle of an existential crisis, and whoever has to listen pays the price. Never spends money, not to save it, but because nothing interests him enough to buy, so it piles up. Road trip Idaho to NJ and back.
 - **Exact**: bonus if you end the card with exactly 0 energy.
 - **Hoard**: scales with unspent gold. Starter relic Old Wallet: Block per 20 gold at combat start.
