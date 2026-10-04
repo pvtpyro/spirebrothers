@@ -2,15 +2,16 @@
 
 ## What this is
 
-A Slay the Spire 2 character mod. It adds playable characters based on three real brothers who are
+A Slay the Spire 2 character mod. It adds playable characters based on four real brothers who are
 friends of the user and play StS2 together, mostly in multiplayer co-op. The mod is a gift for them,
 so the characters should feel personal, warm, and fun. Co-op support matters a lot.
 
 - **Daniel, The Nerd Who Nerds Wrong**: built and playable, now being playtested and expanded.
 - **David, The Min-Maxer**: designed, not built.
 - **Joshua, The Musician**: designed, not built.
+- **Tim (Timothy), The Draftsman**: the oldest brother. Designed, not built. Old nickname "Tidbit": he doesn't like it, so use it only once (it's one card).
 
-Full designs for all three are in `DESIGN.md`. Build Daniel fully working before starting the others.
+Full designs are in `DESIGN.md`, with full card plans in `DANIEL_CARDS.md`, `DAVID_CARDS.md`, `JOSHUA_CARDS.md`, and `TIM_CARDS.md`. Build Daniel fully working before starting the others.
 
 ## The user
 

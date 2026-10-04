@@ -32,3 +32,13 @@ Piano, guitar, vocals. Living in Japan, moving back to the US soon.
 - Games: PlateUp!, Terraria, Rocket League, Stardew Valley. Omiyage, What a Save!, Karaoke Night.
 - Tribute cards: **Pastor** (all players heal and gain Block, Exhaust) and **Coming Home**.
 - Full card plan (draft): JOSHUA_CARDS.md.
+
+## Tim (Timothy), The Draftsman (oldest brother)
+Married with 8 kids. Draftsman at a civil engineering firm; writes Lua add-ons for AutoCAD.
+Loves, in order: Rocket League, Age of Empires, Splinter Cell, airsoft, Legos.
+Old nickname "Tidbit": he doesn't like it, so it appears on exactly one card.
+- **Kids** (max 8): each Kid deals 1 damage to a random enemy at the end of your turn.
+- **Script** (Lua automation): the card's effect happens again at the start of your next turn.
+- **Age** (Age of Empires): Dark → Feudal → Castle → Imperial; some cards get stronger at later Ages.
+- Starter relic Family Minivan: start each combat with 2 Kids. Dad Jokes apply Insulted for Daniel's Comebacks.
+- Full card plan (draft): TIM_CARDS.md.
