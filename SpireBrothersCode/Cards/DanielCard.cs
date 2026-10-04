@@ -4,6 +4,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 using SpireBrothers.SpireBrothersCode.Character;
 using SpireBrothers.SpireBrothersCode.Extensions;
 using SpireBrothers.SpireBrothersCode.Mechanics;
@@ -62,6 +63,30 @@ public abstract class DanielCard(int cost, CardType type, CardRarity rarity, Tar
                 return false;
             }
         }
+    }
+
+    // Stratagem text uses {Input}: the combo, with steps already entered this turn shown in green.
+    protected override void AddExtraArgsToDescription(LocString description)
+    {
+        base.AddExtraArgsToDescription(description);
+        if (StratagemCombo == null) return;
+
+        int done = 0;
+        try
+        {
+            if (IsInCombat && Owner?.PlayerCombatState != null) done = TurnTracker.ComboProgress(Owner, StratagemCombo);
+        }
+        catch (Exception e)
+        {
+            MainFile.Logger.Error($"Stratagem progress failed on {GetType().Name}: {e}");
+        }
+
+        var steps = StratagemCombo.Select((kw, i) =>
+        {
+            var color = i < done ? "green" : "gold";
+            return $"[{color}]{TurnTracker.KeywordName(kw)}[/{color}]";
+        });
+        description.Add("Input", string.Join(", ", steps));
     }
 
     /// <summary>Share: the chosen player, or yourself if playing solo / no target was picked.</summary>

@@ -13,5 +13,10 @@
   "SPIREBROTHERS-FACTORY_MUST_GROW_POWER.smartDescription": "At the start of your turn, add [blue]{Amount}[/blue] [gold]Gear[/gold] to your [gold]Hand[/gold].",
   "SPIREBROTHERS-PAIR_PROGRAMMING_POWER.title": "Pair Programming",
   "SPIREBROTHERS-PAIR_PROGRAMMING_POWER.description": "Draw extra cards at the start of your turn.",
-  "SPIREBROTHERS-PAIR_PROGRAMMING_POWER.smartDescription": "At the start of your turn, draw [blue]{Amount}[/blue] extra card(s)."
+  "SPIREBROTHERS-PAIR_PROGRAMMING_POWER.smartDescription": "At the start of your turn, draw [blue]{Amount}[/blue] extra card(s).",
+  "SPIREBROTHERS-TRAIN_OF_THOUGHT_POWER.title": "Train of Thought",
+  "SPIREBROTHERS-TRAIN_OF_THOUGHT_POWER.description": "Counts the [gold]Logic[/gold] and [gold]Hands[/gold] cards you've played this turn, in order.",
+  "SPIREBROTHERS-TRAIN_OF_THOUGHT_POWER.smartDescription": "Counts the [gold]Logic[/gold] and [gold]Hands[/gold] cards you've played this turn, in order.",
+  "SPIREBROTHERS-TRAIN_OF_THOUGHT_POWER.thisTurn": "This Turn",
+  "SPIREBROTHERS-TRAIN_OF_THOUGHT_POWER.nothingYet": "Nothing yet."
 }

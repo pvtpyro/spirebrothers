@@ -91,6 +91,10 @@ Changes since v0.1.0 (2026-10-03):
     already removed from the belt by then. Only affects the owner's potions.
   - **Want Some?** (Common skill, Hands, Share, Exhaust, cost 1): a player heals 3 (6 if it's you) and
     gains 1 energy next turn. Exhaust was added so the heal can't be repeated every turn.
+- **Train of Thought** tracker: `TrainOfThoughtPower` (type None, so buff-stripping can't remove it)
+  is applied to Daniel on his first turn each combat by `TurnTracker`. Its number is the count of
+  Logic/Hands cards played this turn; an extra hover tip lists them in order. Stratagem card text
+  uses `{Input}`, built in `DanielCard.AddExtraArgsToDescription`, with entered steps in green.
 - **TEMP, remove before release:** `WantSome` in the starting deck and `Grapefruit` in the starting
   relics, for playtesting. Both lines in `Daniel.cs` are marked `// TEMP`.
 
