@@ -48,6 +48,7 @@ Drop PNGs named after each card/relic/power ID (lowercase snake case) into:
   e.g. `rubber_duck_debugging.png`
 - Relics: `SpireBrothers/images/relics/<id>.png`, `<id>_outline.png`, and `big/<id>.png`
 - Powers: `SpireBrothers/images/powers/<id>.png` and `big/<id>.png`
+- TIM: His Age shows above his head as a number: 1 Dark, 2 Feudal, 3 Castle, 4 Imperial. For your graphics later, save files as SpireBrothers/images/ages/age0.png
 
 Anything missing falls back to the template placeholder art.
 

@@ -3,6 +3,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SpireBrothers.SpireBrothersCode.Cards.Tim;
@@ -59,17 +60,27 @@ public class TimTracker() : CustomSingletonModel(HookType.Combat)
         owner.Creature.GetPower<ScriptPower>()?.Queue(card);
     }
 
-    public override async Task AfterPlayerTurnStartEarly(PlayerChoiceContext choiceContext, Player player)
+    // Kids act at the end of their parent's turn (unless Date Night sent them to Grandma's).
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    {
+        foreach (var creature in participants.Where(c => c.IsPlayer && c.IsAlive).ToList())
+        {
+            if (creature.Player == null || Kids.Count(creature.Player) == 0) continue;
+            if (creature.GetPower<DateNightPower>() != null) continue;
+            await Kids.Act(choiceContext, creature.Player);
+            // Wife Aggro ("Yes, Dear"): they act a second time.
+            if (creature.GetPower<YesDearPower>() != null) await Kids.Act(choiceContext, creature.Player);
+        }
+    }
+
+    public override Task AfterPlayerTurnStartEarly(PlayerChoiceContext choiceContext, Player player)
     {
         var state = player.PlayerCombatState;
-        if (state == null) return;
+        if (state == null) return Task.CompletedTask;
         CardsThisTurnField.Set(state, 0);
 
-        // Tim gets the Age tracker icon on his first turn of each combat.
-        if (player.Character is SpireBrothers.SpireBrothersCode.Character.Tim
-            && player.Creature.GetPower<AgePower>() == null)
-        {
-            await PowerCmd.Apply<AgePower>(choiceContext, player.Creature, 1, player.Creature, null, silent: true);
-        }
+        // Tim's Age shows above his head (redrawn each turn in case the creature node was rebuilt).
+        if (player.Character is SpireBrothers.SpireBrothersCode.Character.Tim) AgeDisplay.Update(player);
+        return Task.CompletedTask;
     }
 }

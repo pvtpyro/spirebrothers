@@ -64,6 +64,14 @@ Numbers are first-pass balance, based on vanilla (Strike 6, Defend 5, roughly 8 
 | 38 | Oil Change | 1 Skill | H | Discard your hand, then draw that many cards +1. | Cars |
 | 39 | Recursion | 1 Skill | L | Draw 2 cards. Shuffle a copy of this card into your draw pile. Exhaust. | Software |
 
+## Wife Aggro (shared joke with Tim)
+
+Both brothers have an uncommon called **Wife Aggro**; same title, different card.
+
+| Name | Cost / Type | Effect | Theme |
+|---|---|---|---|
+| Wife Aggro | 1 Skill, Hands | *Walkies!* Next turn, gain 2 energy and the dog bites a random enemy for 8 (12 upgraded). | Taking the dog out |
+
 ## Rare (+13, 3 → 16)
 
 | # | Name | Cost / Type | Tag | Effect | Theme |

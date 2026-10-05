@@ -126,6 +126,14 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeba
 | 71 | Ghost Run | 2 Skill | Gain 1 Intangible (take only 1 damage per hit until your next turn). Exhaust. | Splinter Cell |
 | 72 | Full Auto | X Attack | Deal 3 damage to a random enemy 3X times. | Airsoft |
 
+## Wife Aggro (shared joke with Daniel)
+
+Both brothers have an uncommon called **Wife Aggro**; same title, different card.
+
+| Name | Cost / Type | Effect | Theme |
+|---|---|---|---|
+| 👶 Wife Aggro | 1 Skill (upgrade: 0) | *"Yes, dear."* Your Kids act twice at the end of this turn. Next turn, draw 1 fewer card. | Married life |
+
 ## Co-op links with his brothers
 
 - **Dad Joke** applies Insulted, which Daniel's Comebacks cash in.

@@ -17,6 +17,7 @@ public class Tim : PlaceholderCharacterModel
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Masculine;
     public override int StartingHp => 76;
+
     public override string CharacterTransitionSfx => "event:/sfx/ui/wipe_ironclad";
 
     public override IEnumerable<CardModel> StartingDeck => [

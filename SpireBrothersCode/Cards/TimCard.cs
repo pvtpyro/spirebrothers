@@ -3,6 +3,8 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using SpireBrothers.SpireBrothersCode.Character;
@@ -64,4 +66,22 @@ public abstract class TimCard(int cost, CardType type, CardRarity rarity, Target
     /// <summary>Living player creatures in this combat (just you in solo).</summary>
     protected List<Creature> AllPlayers =>
         CombatState?.Players.Where(p => p.Creature.IsAlive).Select(p => p.Creature).ToList() ?? [Owner.Creature];
+
+    /// <summary>
+    /// Redraws the cards in the player's hand. The game only redraws card text on its own events, so call this
+    /// after Tim-only changes (Age Up, gaining Kids) that change numbers on cards already in hand.
+    /// </summary>
+    public static void RefreshHand(Player player)
+    {
+        try
+        {
+            if (player.PlayerCombatState == null) return;
+            foreach (var card in PileType.Hand.GetPile(player).Cards.ToList())
+                NCard.FindOnTable(card)?.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
+        }
+        catch (Exception e)
+        {
+            MainFile.Logger.Error($"Hand refresh failed: {e}");
+        }
+    }
 }

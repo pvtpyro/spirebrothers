@@ -39,7 +39,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   visuals) and `DanielPools.cs` (card/relic/potion pools)
 - `SpireBrothersCode/Cards/DanielCard.cs`: base card class with art paths plus helpers for
   Wired glow, Stratagem playability, and `ShareTarget()`
-- `SpireBrothersCode/Cards/Daniel/`: one file per card (77 card files: 4 Basic, 1 Gear token, 72 reward-pool cards; see DANIEL_CARDS.md)
+- `SpireBrothersCode/Cards/Daniel/`: one file per card (78 card files: 4 Basic, 1 Gear token, 73 reward-pool cards incl. Wife Aggro; see DANIEL_CARDS.md)
 - `SpireBrothersCode/Mechanics/TurnTracker.cs`: a `CustomSingletonModel` that records the ordered
   Logic/Hands keywords played each turn (per `PlayerCombatState` via `SpireField`), whether last turn
   mixed both, whether Wired fired this turn, and the Gear count
@@ -57,10 +57,10 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
 - Joshua: `Character/Joshua.cs` + `JoshuaPools.cs` (Regent visuals), `Cards/JoshuaCard.cs` (Verse-threshold glow, `Chorus()`,
   `ChorusAttack()` + `ChorusVerses` multiplier so damage uses the Verses just spent, `AllPlayers`, `ShareTarget()`),
   `Cards/Joshua/` (76 files: 4 Basic, 72 reward cards), `Mechanics/Verses.cs` (count, gain, `SpendForChorus` with
-  Encore/Bridge/Choir, `IChorusListener`, `AddRandomSongs`), `Mechanics/JoshuaTracker.cs` (Song cards add Verses after
+  Encore/Bridge/Choir, `IChorusListener`, `AddRandomSongs`), `Orbs/VerseOrb.cs` (each Verse is an orb above him like the Defect's, max 10; labels hidden by a Harmony patch; Chorus removes them quietly, no evoke), `Mechanics/JoshuaTracker.cs` (Song cards add Verses after
   play), `Mechanics/Archipelago.cs` (Check: rolls an item on the run RNG, thought bubble over the receiver; lines are
-  `SPIREBROTHERS-ARCHIPELAGO.*` in powers.json). `VersePower` is type None. Starter relic `Relics/WellWornGuitar.cs`.
-- Tim: `Character/Tim.cs` + `TimPools.cs` (Ironclad visuals), `Cards/TimCard.cs` (`AgeBonusAt` / `KidsThreshold` / `ExtraGlow`  glow, `KidCount` multiplier, `AllPlayers`), `Cards/Tim/` (76 files), `Mechanics/Kids.cs` (max 8, `Act()` hits random  enemies at end of turn via `KidsPower`), `Mechanics/Ages.cs` (0 Dark .. 3 Imperial, stored in `TimTracker.AgeField`, shown  by `AgePower`), `Mechanics/TimTracker.cs` (cards played this turn; queues Script cards in `ScriptPower`, which auto-plays a  `CreateDupe()` of each at the start of the next turn, like vanilla History Course; dupes never re-queue, Powers never get  Script). Snap to Grid / Automation Suite / Xref add Script; Script uses `AutoKeywordPosition.After` so it shows when added.  Wololo / Mass Conversion use vanilla `FlexPotionPower` for Strength this turn. Starter relic `Relics/FamilyMinivan.cs`.
+  `SPIREBROTHERS-ARCHIPELAGO.*` in powers.json). Starter relic `Relics/WellWornGuitar.cs`.
+- Tim: `Character/Tim.cs` + `TimPools.cs` (Ironclad visuals), `Cards/TimCard.cs` (`AgeBonusAt` / `KidsThreshold` / `ExtraGlow`  glow, `KidCount` multiplier, `AllPlayers`), `Cards/Tim/` (77 files, incl. Wife Aggro, which shares its title with Daniel's), `Mechanics/Kids.cs` + `Monsters/Kid.cs` (Kids are pets standing at his feet like Osty, untargetable like vanilla Byrdpip: 9999 HP, no health bar; placeholder art drawn pixel by pixel in `KidArt`; `TimTracker.BeforeSideTurnEnd` makes them hit), `Mechanics/Ages.cs` (0 Dark .. 3 Imperial, stored in `TimTracker.AgeField`) + `Mechanics/AgeDisplay.cs` (number above his head; drop `images/ages/age0.png`..`age3.png` in to use art instead). `TimCard.RefreshHand()` redraws hand text after Age/Kids changes. `Growth` has a TEMP `[Growth]` log line for playtesting, `Mechanics/TimTracker.cs` (cards played this turn; queues Script cards in `ScriptPower`, which auto-plays a  `CreateDupe()` of each at the start of the next turn, like vanilla History Course; dupes never re-queue, Powers never get  Script). Snap to Grid / Automation Suite / Xref add Script; Script uses `AutoKeywordPosition.After` so it shows when added.  Wololo / Mass Conversion use vanilla `FlexPotionPower` for Strength this turn. Starter relic `Relics/FamilyMinivan.cs`.
 - `SpireBrothersCode/Powers/`, `SpireBrothersCode/Relics/`, `SpireBrothersCode/Potions/`
 - `SpireBrothersCode/BrotherKeywords.cs`: custom `CardKeyword`s. Logic/Hands/Stratagem auto-insert
   before the card text. Wired/Share/Diligent/Comeback use `AutoKeywordPosition.None` and are

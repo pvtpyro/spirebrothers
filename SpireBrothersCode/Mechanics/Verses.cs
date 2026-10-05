@@ -4,7 +4,10 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Entities.Orbs;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using SpireBrothers.SpireBrothersCode.Character;
+using SpireBrothers.SpireBrothersCode.Orbs;
 using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Mechanics;
@@ -21,8 +24,12 @@ public interface IChorusListener
 /// </summary>
 public static class Verses
 {
-    /// <summary>Verses the player is holding right now.</summary>
-    public static int Count(Player? player) => player?.Creature?.GetPowerAmount<VersePower>() ?? 0;
+    /// <summary>The most Verses you can hold: one per orb slot, and the game allows 10.</summary>
+    public const int Max = OrbQueue.maxCapacity;
+
+    /// <summary>Verses the player is holding right now (VerseOrbs floating above them).</summary>
+    public static int Count(Player? player) =>
+        player?.PlayerCombatState?.OrbQueue.Orbs.Count(o => o is VerseOrb) ?? 0;
 
     /// <summary>How many Verses a Chorus would count if played now (Choir adds to it).</summary>
     public static int ForChorus(Player? player) =>
@@ -31,10 +38,37 @@ public static class Verses
     /// <summary>Verses a Song gives: 1, plus 1 per Perfect Pitch.</summary>
     public static int PerSong(Player? player) => 1 + (player?.Creature?.GetPowerAmount<PerfectPitchPower>() ?? 0);
 
+    /// <summary>Adds Verse orbs (up to 10), opening a new orb slot for each so they never push other orbs out.</summary>
     public static async Task Gain(PlayerChoiceContext ctx, Player player, decimal amount, CardModel? source)
     {
-        if (amount <= 0 || !player.Creature.IsAlive) return;
-        await PowerCmd.Apply<VersePower>(ctx, player.Creature, amount, player.Creature, source);
+        var state = player.PlayerCombatState;
+        if (amount <= 0 || state == null || !player.Creature.IsAlive) return;
+        for (int i = 0; i < (int)amount && Count(player) < Max; i++)
+        {
+            if (state.OrbQueue.Orbs.Count >= state.OrbQueue.Capacity)
+            {
+                if (state.OrbQueue.Capacity >= OrbQueue.maxCapacity) return;
+                await OrbCmd.AddSlots(player, 1);
+            }
+            await OrbCmd.Channel(ctx, ModelDb.Orb<VerseOrb>().ToMutable(), player);
+        }
+    }
+
+    /// <summary>Removes all Verse orbs without evoking them, and closes the slots they used.</summary>
+    private static void SpendAll(Player player)
+    {
+        var state = player.PlayerCombatState;
+        if (state == null) return;
+        var verses = state.OrbQueue.Orbs.OfType<VerseOrb>().ToList();
+        var orbManager = NCombatRoom.Instance?.GetCreatureNode(player.Creature)?.OrbManager;
+        foreach (var verse in verses)
+        {
+            if (!state.OrbQueue.Remove(verse)) continue;
+            orbManager?.EvokeOrbAnim(verse);
+            verse.RemoveInternal();
+        }
+        int emptySlots = state.OrbQueue.Capacity - state.OrbQueue.Orbs.Count;
+        if (emptySlots > 0) OrbCmd.RemoveSlots(player, Math.Min(emptySlots, verses.Count));
     }
 
     /// <summary>
@@ -58,11 +92,7 @@ public static class Verses
                 await bridge.Use();
             }
         }
-        if (!keep)
-        {
-            var held = owner.Creature.GetPower<VersePower>();
-            if (held != null) await PowerCmd.Remove(held);
-        }
+        if (!keep) SpendAll(owner);
 
         foreach (var listener in owner.Creature.Powers.OfType<IChorusListener>().ToList())
             await listener.OnChorus(ctx, owner, verses);

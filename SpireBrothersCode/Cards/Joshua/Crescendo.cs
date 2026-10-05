@@ -13,6 +13,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using SpireBrothers.SpireBrothersCode.Mechanics;
 using SpireBrothers.SpireBrothersCode.Powers;
+using SpireBrothers.SpireBrothersCode.Orbs;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
@@ -24,7 +25,7 @@ public class Crescendo() : JoshuaCard(1, CardType.Attack, CardRarity.Uncommon, T
         new ExtraDamageVar(3),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(HeldVerses)
     ];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<VersePower>()];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromOrb<VerseOrb>()];
 
     private static decimal HeldVerses(CardModel card, Creature? _) => Verses.Count(card.Owner);
 

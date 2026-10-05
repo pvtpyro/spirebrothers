@@ -624,5 +624,10 @@
   "SPIREBROTHERS-GHOST_RUN.title": "Ghost Run",
   "SPIREBROTHERS-GHOST_RUN.description": "Gain {IntangiblePower:diff()} [gold]Intangible[/gold].",
   "SPIREBROTHERS-FULL_AUTO.title": "Full Auto",
-  "SPIREBROTHERS-FULL_AUTO.description": "Deal {Damage:diff()} damage to a random enemy 3X times."
+  "SPIREBROTHERS-FULL_AUTO.description": "Deal {Damage:diff()} damage to a random enemy 3X times.",
+
+  "SPIREBROTHERS-WIFE_AGGRO_TIM.title": "Wife Aggro",
+  "SPIREBROTHERS-WIFE_AGGRO_TIM.description": "\"Yes, dear.\"\nYour [gold]Kids[/gold] act twice at the end of this turn.\nNext turn, draw {Cards:diff()} fewer card.",
+  "SPIREBROTHERS-WIFE_AGGRO_DANIEL.title": "Wife Aggro",
+  "SPIREBROTHERS-WIFE_AGGRO_DANIEL.description": "Walkies!\nNext turn, gain {Energy:energyIcons()} and the dog bites a random enemy for {WalkiesPower:diff()} damage."
 }

@@ -1,6 +1,6 @@
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Localization;
-using SpireBrothers.SpireBrothersCode.Powers;
+using SpireBrothers.SpireBrothersCode.Cards;
 
 namespace SpireBrothers.SpireBrothersCode.Mechanics;
 
@@ -26,11 +26,7 @@ public static class Ages
         int now = TimTracker.AgeField.Get(state);
         int next = Math.Min(Imperial, Math.Max(now, to ?? now + 1));
         TimTracker.AgeField.Set(state, next);
-        var tracker = player.Creature.GetPower<AgePower>();
-        tracker?.Refresh();
+        AgeDisplay.Update(player);
+        TimCard.RefreshHand(player);
     }
-
-    /// <summary>"Dark Age", "Feudal Age", ... from powers.json.</summary>
-    public static string Name(int age) =>
-        new LocString("powers", "SPIREBROTHERS-AGE_POWER.age" + Math.Clamp(age, Dark, Imperial)).GetFormattedText();
 }

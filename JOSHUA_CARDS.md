@@ -10,7 +10,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 
 | Keyword | Rule |
 |---|---|
-| **Song** | Playing this card gives you **1 Verse** (a stacking counter shown on Joshua). |
+| **Song** | Playing this card gives you **1 Verse**, shown as a note orb floating above Joshua (max 10). |
 | **Chorus** | **Spends all your Verses** for an effect on **ALL players**, scaled by Verses spent. Build up with Songs, then pay it off with a Chorus. |
 | **Healing** | His big support role. In-combat healing is rare in vanilla, so most heals here are small, **Exhaust**, or spread across the team. |
 | **Share** | Same as Daniel's: pick a player (yourself in solo). |

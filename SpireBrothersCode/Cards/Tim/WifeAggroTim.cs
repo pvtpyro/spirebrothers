@@ -1,4 +1,5 @@
 using BaseLib.Cards.Variables;
+using BaseLib.Commands;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -13,19 +14,22 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using SpireBrothers.SpireBrothersCode.Mechanics;
 using SpireBrothers.SpireBrothersCode.Powers;
-using SpireBrothers.SpireBrothersCode.Orbs;
 
-namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
+namespace SpireBrothers.SpireBrothersCode.Cards.Tim;
 
-/// <summary>Vocals. Your Song cards give 2 Verses instead of 1.</summary>
-public class PerfectPitch() : JoshuaCard(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+/// <summary>
+/// Wife Aggro ("Yes, Dear"). Shares its name with Daniel's card. Your Kids act twice at the end of this turn.
+/// Next turn, draw 1 fewer card.
+/// </summary>
+public class WifeAggroTim() : TimCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<PerfectPitchPower>(1)];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromOrb<VerseOrb>()];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Kids];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        await CommonActions.ApplySelf<PerfectPitchPower>(ctx, this);
+        await PowerCmd.Apply<YesDearPower>(ctx, Owner.Creature, 1, Owner.Creature, this);
+        await PowerCmd.Apply<DrawLessNextTurnPower>(ctx, Owner.Creature, DynamicVars.Cards.BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);

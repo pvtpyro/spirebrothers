@@ -23,7 +23,7 @@
   "SPIREBROTHERS-DELEGATE.description": "A player's next Attack deals double damage.",
 
   "SPIREBROTHERS-SONG.title": "Song",
-  "SPIREBROTHERS-SONG.description": "After you play this, gain 1 [gold]Verse[/gold].",
+  "SPIREBROTHERS-SONG.description": "After you play this, gain 1 [gold]Verse[/gold] (max 10).",
   "SPIREBROTHERS-CHORUS.title": "Chorus",
   "SPIREBROTHERS-CHORUS.description": "Spends ALL your [gold]Verses[/gold] for an effect that grows with each one spent.",
   "SPIREBROTHERS-CHECK.title": "Check",
