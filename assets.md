@@ -16,7 +16,7 @@ and ask Claude to hook it up so you can see it in a fight before deciding on a s
 
 | Asset | Size (px) | Where it shows | Notes |
 |---|---|---|---|
-| **Combat body** | about 350 × 450, feet at the bottom | In every fight | A single still image is fine. Moving (Spine) animation is optional and much more work. |
+| **Combat body** | about 350 × 450, feet at the bottom | In every fight | A single still image, or animation frames (see below). |
 | **Character select portrait** | 132 × 195, plus a locked version | Character select buttons | The locked one is usually a darkened silhouette. |
 | **Character icon** | 128 × 128 | Top-left during a run, run history | |
 | **Map marker** | 128 × 128 | His token on the map | |
@@ -66,6 +66,26 @@ SpireBrothers/images/characters/
 | `map_marker.png` | 128 × 128 | His token on the map |
 
 Example: Tim's combat body goes at `SpireBrothers/images/characters/tim/body.png`.
+
+### Animated bodies (`frames/`)
+
+All four brothers currently use generated pixel-art frames in `images/characters/<name>/frames/`. When a `frames/`
+folder exists it wins over `body.png`. Daniel's painted body is kept, unused, as `daniel/daniel-old.png` (rename it back
+to `body.png` and delete `frames/` to use it again).
+
+Frames are named `<animation>_<number>.png`, numbered from 0, all the same size with the feet on the bottom edge:
+
+| Animation | Frames now | Speed | When the game plays it |
+|---|---|---|---|
+| `idle` | 8 | 6 per second, loops | All the time (required) |
+| `attack` | 6 | 14 per second | Playing an Attack |
+| `cast` | 6 | 10 per second | Playing a Skill or Power |
+| `hit` | 4 | 12 per second | Taking damage |
+| `dead` | 5 | 8 per second | Dying (stays on the last frame) |
+
+Any number of frames works; add or remove files and rebuild. The current frames are 64 × 80 pixels, shown at 5×
+with no smoothing, so you can repaint any frame in a pixel editor (Aseprite, Piskel, Photoshop with nearest-neighbor)
+at the same size. Speeds live in `Anims` in `SpireBrothersCode/Character/BrotherCharacter.cs`.
 
 Untouched originals (before background removal or trimming) are kept in `art_originals/`. That folder has a
 `.gdignore` file, so the game never packs it.
