@@ -19,7 +19,7 @@ namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
 /// <summary>
 /// National Treasure: an inside joke between David and Daniel (the scrambled guess at "Valley Forge").
-/// Draw 2 cards. Exact: you cracked it! Exhaust this and add Valley Forge to your hand.
+/// Draw 2 cards. Exact: draw them next turn instead (you are out of energy), and you cracked it! Exhaust this and add Valley Forge to your hand.
 /// </summary>
 public class AGloveFry() : DavidCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
@@ -30,7 +30,9 @@ public class AGloveFry() : DavidCard(1, CardType.Skill, CardRarity.Uncommon, Tar
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         int exact = await Exact.Check(ctx, this);
-        await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, Owner);
+        // Exact means you are out of energy, so the draw waits until next turn when you can use it.
+        if (exact == 0) await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, Owner);
+        else await DrawNextTurn(ctx, DynamicVars.Cards.BaseValue);
         if (exact == 0 || CombatState == null) return;
 
         ExhaustOnNextPlay = true;

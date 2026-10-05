@@ -82,6 +82,9 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   teammates go through vanilla `DrawCardsNextTurnPower` / `EnergyNextTurnPower` to stay
   multiplayer-safe.
 - Random choices must use the run's RNG (`Owner.RunState.Rng.CombatTargets`) or co-op will desync.
+- **Exact cards never draw this turn when Exact triggers** (user feedback): Exact means 0 energy left, so drawn
+  cards are useless. Any draw on an Exact card, base draw included, moves to next turn via `DrawNextTurn` when
+  Exact fires (see A Glove Fry, Spreadsheet, Do the Math). Energy gains (Sudoku) and 0-cost tokens are fine now.
 - **Monkey Island** (all four brothers loved it growing up): `InsultedPower` debuff plus Comeback
   cards that deal bonus damage per stack, then clear it. Use original insults only, never quote
   the game's lines.
