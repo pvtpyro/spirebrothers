@@ -14,6 +14,9 @@ namespace SpireBrothers.SpireBrothersCode.Orbs;
 /// </summary>
 public class VerseOrb : CustomOrbModel
 {
+    // Small icon used for the orb's flash effect and tooltip. Placeholder gold note; replace the file to restyle it.
+    public override string CustomIconPath => $"{MainFile.ResPath}/images/orbs/verse_orb.png";
+
     public override Color DarkenedColor => new("7a6a3a");
     public override decimal PassiveVal => 0;
     public override decimal EvokeVal => 0;

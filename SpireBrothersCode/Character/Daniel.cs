@@ -8,11 +8,12 @@ using SpireBrothers.SpireBrothersCode.Relics;
 namespace SpireBrothers.SpireBrothersCode.Character;
 
 /// <summary>Daniel, the Nerd Who Nerds Wrong. Uses the Defect's visuals until custom art exists.</summary>
-public class Daniel : PlaceholderCharacterModel
+public class Daniel : BrotherCharacter
 {
     public const string CharacterId = "Daniel";
     public static readonly Color Color = new("4fb3d9");
 
+    protected override string ArtFolder => "daniel";
     public override string PlaceholderID => "defect";
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Masculine;

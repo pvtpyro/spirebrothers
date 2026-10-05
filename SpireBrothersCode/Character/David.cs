@@ -8,11 +8,12 @@ using SpireBrothers.SpireBrothersCode.Relics;
 namespace SpireBrothers.SpireBrothersCode.Character;
 
 /// <summary>David, the Min-Maxer. Uses the Silent's visuals until custom art exists.</summary>
-public class David : PlaceholderCharacterModel
+public class David : BrotherCharacter
 {
     public const string CharacterId = "David";
     public static readonly Color Color = new("6abf69");
 
+    protected override string ArtFolder => "david";
     public override string PlaceholderID => "silent";
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Masculine;

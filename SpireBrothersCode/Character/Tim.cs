@@ -8,11 +8,12 @@ using SpireBrothers.SpireBrothersCode.Relics;
 namespace SpireBrothers.SpireBrothersCode.Character;
 
 /// <summary>Tim (Timothy), the Draftsman. The oldest brother. Uses the Ironclad's visuals until custom art exists.</summary>
-public class Tim : PlaceholderCharacterModel
+public class Tim : BrotherCharacter
 {
     public const string CharacterId = "Tim";
     public static readonly Color Color = new("d9734f");
 
+    protected override string ArtFolder => "tim";
     public override string PlaceholderID => "ironclad";
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Masculine;

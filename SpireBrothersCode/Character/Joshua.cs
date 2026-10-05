@@ -8,11 +8,12 @@ using SpireBrothers.SpireBrothersCode.Relics;
 namespace SpireBrothers.SpireBrothersCode.Character;
 
 /// <summary>Joshua, the Musician. Uses the Regent's visuals until custom art exists.</summary>
-public class Joshua : PlaceholderCharacterModel
+public class Joshua : BrotherCharacter
 {
     public const string CharacterId = "Joshua";
     public static readonly Color Color = new("e0a84f");
 
+    protected override string ArtFolder => "joshua";
     public override string PlaceholderID => "regent";
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Masculine;
