@@ -122,6 +122,8 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
 
     // BaseLib lays the image out at 1 pixel = 1 unit with the feet at the origin; scaling every child about the
     // origin keeps the feet planted and moves the hitbox, intent and talk markers along with the picture.
+    private const float IntentGap = 70f;
+
     private void ScaleToHeight(NCreatureVisuals visuals, float height)
     {
         if (height <= 0) return;
@@ -133,6 +135,12 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
                 case Sprite2D sprite:
                     sprite.Position *= s;
                     sprite.Scale *= s;
+                    break;
+                // BaseLib puts IntentPos a fixed 70 units above the head, and the game hangs the orbs (Joshua's
+                // Verses) off it. Keep that gap fixed instead of scaling it, or small pixel-art frames scaled 5x
+                // push the orbs off the top of the screen.
+                case Marker2D intent when intent.Name.ToString() == "IntentPos":
+                    intent.Position = (intent.Position + new Vector2(0, IntentGap)) * s - new Vector2(0, IntentGap);
                     break;
                 case Node2D node:
                     node.Position *= s;
