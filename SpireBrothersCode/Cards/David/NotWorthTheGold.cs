@@ -18,7 +18,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
 /// <summary>Monkey Island insult. Apply 2 Insulted. Hoard: +1 Insulted per 50 Gold.</summary>
-public class NotWorthTheGold() : DavidCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class NotWorthTheGold() : DavidCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy), IInsultCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Hoard];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<InsultedPower>(2)];

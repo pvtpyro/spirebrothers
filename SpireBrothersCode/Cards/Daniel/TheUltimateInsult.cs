@@ -18,7 +18,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Daniel;
 
 /// <summary>Monkey Island. Deal 10 damage. Double the target's Insulted.</summary>
-public class TheUltimateInsult() : DanielCard(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public class TheUltimateInsult() : DanielCard(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy), IInsultCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Logic];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(10, ValueProp.Move)];

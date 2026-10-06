@@ -37,5 +37,17 @@
 
   "SPIREBROTHERS-FAMILY_MINIVAN.title": "Family Minivan",
   "SPIREBROTHERS-FAMILY_MINIVAN.description": "Start each combat with [blue]2[/blue] [gold]Kids[/gold].",
-  "SPIREBROTHERS-FAMILY_MINIVAN.flavor": "Seats eight. Plus Dad. Mostly."
+  "SPIREBROTHERS-FAMILY_MINIVAN.flavor": "Seats eight. Plus Dad. Mostly.",
+  "SPIREBROTHERS-WELL_TECHNICALLY.title": "Well, Technically...",
+  "SPIREBROTHERS-WELL_TECHNICALLY.description": "At the start of your turn, if you played both a [gold]Logic[/gold] and a [gold]Hands[/gold] card last turn, draw [blue]2[/blue] cards.",
+  "SPIREBROTHERS-WELL_TECHNICALLY.flavor": "He was right. He'd like you to know he was right.",
+  "SPIREBROTHERS-OVERSTUFFED_WALLET.title": "Overstuffed Wallet",
+  "SPIREBROTHERS-OVERSTUFFED_WALLET.description": "At the start of each combat, gain [blue]1[/blue] [gold]Block[/gold] per [blue]10[/blue] [gold]Gold[/gold] (max [blue]30[/blue]).",
+  "SPIREBROTHERS-OVERSTUFFED_WALLET.flavor": "Same wallet. It just won't close anymore.",
+  "SPIREBROTHERS-SIGNATURE_GUITAR.title": "Signature Guitar",
+  "SPIREBROTHERS-SIGNATURE_GUITAR.description": "Start each combat with [blue]4[/blue] [gold]Verses[/gold].",
+  "SPIREBROTHERS-SIGNATURE_GUITAR.flavor": "Same old guitar, freshly restrung, with his name on the case.",
+  "SPIREBROTHERS-FIFTEEN_PASSENGER_VAN.title": "Fifteen-Passenger Van",
+  "SPIREBROTHERS-FIFTEEN_PASSENGER_VAN.description": "Start each combat with [blue]4[/blue] [gold]Kids[/gold].",
+  "SPIREBROTHERS-FIFTEEN_PASSENGER_VAN.flavor": "Finally, everyone gets a window seat."
 }

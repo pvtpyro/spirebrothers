@@ -18,10 +18,11 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 
 ## Starting deck (10 cards) and relic
 
-- 4 Strike, 4 Defend
+- 3 Strike, 4 Defend
 - **Collecting Dust** (Basic Attack, 1): Deal 6 damage. **Hoard:** +1 per 50 Gold.
 - **Do the Math** (Basic Skill, 1): Gain 5 Block. **Exact:** next turn, draw 2 extra cards.
-- **Starter relic: Old Wallet.** (He never saw a reason to replace it.) At the start of each combat, gain 1 Block per 20 Gold (max 15).
+- **Here We Go Again** (Basic Attack, 1, Rant; replaced a Strike 2026-10-05): Deal 6 damage. The enemy loses 1 Strength this turn. **Rant:** +2 damage for each Rant played earlier this turn. *(Upgraded: 8 damage, loses 2 Strength.)*
+- **Starter relic: Old Wallet.** (He never saw a reason to replace it.) At the start of each combat, gain 1 Block per 20 Gold (max 15). **Touch of Orobas upgrade: Overstuffed Wallet**, 1 Block per 10 Gold (max 30).
 
 Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡️ Monkey Island (Insult / Comeback).
 
@@ -33,7 +34,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | 2 | 🎯 Spreadsheet | 1 Skill | Draw 2 cards. **Exact:** draw them next turn instead, plus 1 extra. | Numbers |
 | 3 | 🎯 Exact Change | 1 Attack | Deal 7 damage. **Exact:** deal 7 more. | Numbers |
 | 4 | 🎯 Just Browsing | 0 Skill | Scry 3. **Exact:** next turn, draw 1 extra card. | Looks at everything, buys nothing |
-| 5 | 🎯 Sudoku | 1 Skill | Draw 1 card. **Exact:** gain 1 Energy. | Puzzles |
+| 5 | 🎯 Sudoku | 1 Skill | Draw 2 cards. **Exact:** gain 1 Energy. | Puzzles |
 | 6 | 🗡️🎯 Statistically Insignificant | 1 Attack | Deal 6 damage. Apply 2 Insulted. **Exact:** apply 2 more. | Insult (numbers) |
 | 7 | 🎯 Tranq Dart | 1 Skill | Apply 2 Weak. **Exact:** also apply 1 Vulnerable. | ARK |
 | 8 | 💰 Direct Deposit | 1 Attack | Deal 8 damage. **Hoard:** +1 per 50 Gold. | Money just shows up |

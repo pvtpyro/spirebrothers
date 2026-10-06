@@ -90,10 +90,23 @@ Both brothers have an uncommon called **Wife Aggro**; same title, different card
 | 51 | Squad Up! | 2 Skill | Share | ALL players gain 1 Energy and draw 2 cards next turn. Exhaust. | Helldivers 2 / co-op |
 | 52 | Bug Bounty | 1 Attack | L | Deal 10 damage. If this kills an enemy, gain 20 gold. | Software |
 
+## More Stratagems (added 2026-10-05)
+
+Playtest feedback: plenty of good Block, not enough good attacks. All cost 0, like the other Stratagems. Two are
+Common, so Stratagems now show up in early card rewards.
+
+| Name | Rarity, Type | Input | Effect | Upgrade |
+|---|---|---|---|---|
+| Stratagem: Orbital Precision Strike | Common Attack | Logic, Hands | Deal 12 damage. | 16 damage |
+| Stratagem: Eagle Cluster Bomb | Common Attack | Hands, Logic | Deal 3 damage to a random enemy 4 times. | 6 times |
+| Stratagem: Eagle 500kg Bomb | Uncommon Attack | Logic, Logic, Hands | Deal 20 damage, and 6 to ALL other enemies. | 25 and 9 |
+| Stratagem: Machine Gun Sentry | Uncommon Power | Hands, Hands, Logic | At the end of your turn, deal 3 damage to a random enemy 3 times. | 4 times |
+| Stratagem: Orbital Laser | Rare Attack | Hands, Logic, Logic | Deal 5 damage to a random enemy 6 times. | 8 times |
+
 ## Totals after this batch
 
 - **Block:** Common 5, Uncommon 9 (6 direct Block), Rare 2. Three plain Block cards were later swapped for buffs (Energy Drink, Firmware Update, Pep Talk).
-- **Stratagems:** 6 total, using every 2-step input (LH, HL, LL, HH) plus two 3-step ones (LHL, HLH).
+- **Stratagems:** 11 total (5 attack ones added 2026-10-05, see above), using every 2-step input (LH, HL, LL, HH) plus 3-step ones (LHL, HLH, LLH, HHL, HLL).
 - **Monkey Island:** 4 insult cards (Insult Swordfighting, Look Behind You, Spaghetti Code, Did You Even Read the Docs?),
   3 Comebacks (Snappy Comeback, Well, Actually..., I'm Rubber, You're Glue), and The Ultimate Insult to stack it up.
 - **Gears (Factorio):** Conveyor Belt, Blueprint, Assembly Line, Launch the Rocket, Appease the Machine Spirit.

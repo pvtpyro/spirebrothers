@@ -18,7 +18,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Tim;
 
 /// <summary>Monkey Island insult (dad of eight). Apply 2 Insulted and 1 Weak.</summary>
-public class NotMadJustDisappointed() : TimCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class NotMadJustDisappointed() : TimCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy), IInsultCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<InsultedPower>(2), new PowerVar<WeakPower>(1)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<InsultedPower>(), HoverTipFactory.FromPower<WeakPower>()];

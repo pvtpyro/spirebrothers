@@ -17,17 +17,17 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Daniel;
 
-/// <summary>Monkey Island (insult). Apply 2 Insulted.</summary>
-public class DidYouEvenReadTheDocs() : DanielCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy), IInsultCard
+/// <summary>Helldivers 2. Costs 0. Requires Hands, Logic this turn. Deal 3 damage to a random enemy 4 times.</summary>
+public class StratagemEagleClusterBomb() : DanielCard(0, CardType.Attack, CardRarity.Common, TargetType.RandomEnemy)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Logic];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<InsultedPower>(2)];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<InsultedPower>()];
+    protected override IReadOnlyList<CardKeyword> StratagemCombo => [BrotherKeywords.Hands, BrotherKeywords.Logic];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Stratagem];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(3, ValueProp.Move), new RepeatVar(4)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        if (play.Target != null) await CommonActions.Apply<InsultedPower>(ctx, play.Target, this);
+        await CommonActions.CardAttack(this, play, DynamicVars.Repeat.IntValue, vfx: "vfx/vfx_attack_blunt").Execute(ctx);
     }
 
-    protected override void OnUpgrade() => DynamicVars["InsultedPower"].UpgradeValueBy(1);
+    protected override void OnUpgrade() => DynamicVars.Repeat.UpgradeValueBy(2);
 }

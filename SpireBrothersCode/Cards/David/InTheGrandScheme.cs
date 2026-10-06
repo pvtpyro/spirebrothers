@@ -18,7 +18,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
 /// <summary>Monkey Island insult + Rant. "In the Grand Scheme, You Don't Matter." Apply 2 Insulted. Rant: +1 for each Rant played earlier this turn.</summary>
-public class InTheGrandScheme() : DavidCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class InTheGrandScheme() : DavidCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy), IInsultCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Rant];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<InsultedPower>(2)];

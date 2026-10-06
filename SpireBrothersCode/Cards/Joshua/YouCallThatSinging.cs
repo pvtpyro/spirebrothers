@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
 /// <summary>Monkey Island insult (vocals). Song. Apply 2 Insulted and 1 Weak.</summary>
-public class YouCallThatSinging() : JoshuaCard(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+public class YouCallThatSinging() : JoshuaCard(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy), IInsultCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Song];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<InsultedPower>(2), new PowerVar<WeakPower>(1)];

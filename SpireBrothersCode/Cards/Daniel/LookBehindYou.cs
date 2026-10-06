@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Daniel;
 
 /// <summary>Monkey Island. Apply 2 Weak and 2 Insulted.</summary>
-public class LookBehindYou() : DanielCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class LookBehindYou() : DanielCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy), IInsultCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Logic];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<WeakPower>(2), new PowerVar<InsultedPower>(2)];

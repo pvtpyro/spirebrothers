@@ -18,7 +18,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Daniel;
 
 /// <summary>Monkey Island (insult). Deal 6 damage. Apply 2 Insulted.</summary>
-public class SpaghettiCode() : DanielCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class SpaghettiCode() : DanielCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy), IInsultCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Logic];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move), new PowerVar<InsultedPower>(2)];

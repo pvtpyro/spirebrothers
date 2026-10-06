@@ -2,20 +2,19 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace SpireBrothers.SpireBrothersCode.Relics;
 
-/// <summary>David's starter (he never saw a reason to replace it). At the start of each combat, gain 1 Block per 20 Gold (max 15).</summary>
-public class OldWallet : DavidRelic
+/// <summary>
+/// David's upgraded starter (from Touch of Orobas, replacing Old Wallet): at the start of each combat, gain 1 Block per
+/// 10 Gold (max 30).
+/// </summary>
+public class OverstuffedWallet : DavidRelic
 {
-    public const int GoldPerBlock = 20;
-    public const int MaxBlock = 15;
+    public const int GoldPerBlock = 10;
+    public const int MaxBlock = 30;
     public override RelicRarity Rarity => RelicRarity.Starter;
-
-    // Touch of Orobas (the Ancient that upgrades starter relics) turns this into Overstuffed Wallet.
-    public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<OverstuffedWallet>().ToMutable();
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {

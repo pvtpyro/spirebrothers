@@ -18,7 +18,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
 /// <summary>Monkey Island insult. Deal 6 damage. Apply 2 Insulted. Exact: apply 2 more.</summary>
-public class StatisticallyInsignificant() : DavidCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public class StatisticallyInsignificant() : DavidCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy), IInsultCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Exact];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move), new PowerVar<InsultedPower>(2), new DynamicVar("ExactInsults", 2)];

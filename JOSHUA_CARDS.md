@@ -31,7 +31,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 - 4 Strike, 4 Defend
 - **Hum a Tune** (Basic Skill, 1, Song): Gain 5 Block.
 - **Sing Along** (Basic Skill, 1, Chorus): ALL players gain 3 Block per Verse spent.
-- **Starter relic: Well-Worn Guitar.** Start each combat with 2 Verses.
+- **Starter relic: Well-Worn Guitar.** Start each combat with 2 Verses. **Touch of Orobas upgrade: Signature Guitar**, start each combat with 4 Verses.
 
 Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Archipelago), 🗡️ Monkey Island (Insult / Comeback).
 

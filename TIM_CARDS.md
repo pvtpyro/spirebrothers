@@ -23,7 +23,7 @@ Shared mechanics he also uses: **Insulted** (Monkey Island, from Daniel) through
 - **Dad Joke** (Basic Attack, 1): Deal 5 damage. Apply 1 Insulted and 1 Weak. *(Daniel's Comebacks love this in co-op.)*
 - **Lua Script** (Basic Skill, 1): Gain 4 Block. **Script.**
 - **Age Up** (Basic Skill, 3): Pay 50 / 100 / 150 Gold (upgraded: 40 / 80 / 120; the energy cost never drops, so it stays hard to play). Age Up for the rest of the run. Exhaust. Can't be played without the gold. Leaves his deck once he reaches Imperial.
-- **Starter relic: Family Minivan.** Start each combat with 2 Kids.
+- **Starter relic: Family Minivan.** Start each combat with 2 Kids. **Touch of Orobas upgrade: Fifteen-Passenger Van**, start each combat with 4 Kids.
 
 Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeback; Dad Joke in his starting deck is an insult too).
 

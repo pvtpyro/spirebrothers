@@ -18,7 +18,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Tim;
 
 /// <summary>Monkey Island insult (the oldest brother). Apply 1 Insulted to ALL enemies.</summary>
-public class BackInMyDay() : TimCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
+public class BackInMyDay() : TimCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies), IInsultCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<InsultedPower>(1)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<InsultedPower>()];

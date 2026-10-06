@@ -21,10 +21,11 @@ public class David : BrotherCharacter
     public override string CharacterTransitionSfx => "event:/sfx/ui/wipe_silent";
 
     public override IEnumerable<CardModel> StartingDeck => [
-        ModelDb.Card<StrikeDavid>(), ModelDb.Card<StrikeDavid>(), ModelDb.Card<StrikeDavid>(), ModelDb.Card<StrikeDavid>(),
+        ModelDb.Card<StrikeDavid>(), ModelDb.Card<StrikeDavid>(), ModelDb.Card<StrikeDavid>(),
         ModelDb.Card<DefendDavid>(), ModelDb.Card<DefendDavid>(), ModelDb.Card<DefendDavid>(), ModelDb.Card<DefendDavid>(),
         ModelDb.Card<CollectingDust>(),
-        ModelDb.Card<DoTheMath>()
+        ModelDb.Card<DoTheMath>(),
+        ModelDb.Card<HereWeGoAgain>()
     ];
 
     public override IReadOnlyList<RelicModel> StartingRelics => [ModelDb.Relic<OldWallet>()];
