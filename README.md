@@ -1,17 +1,16 @@
 # Spire Brothers
 
-A Slay the Spire 2 character mod. Version 0.1.0 adds **Daniel, the Nerd Who Nerds Wrong**.
-David (The Min-Maxer) and Joshua (The Musician) are coming next.
+A Slay the Spire 2 character mod with four playable brothers, built for co-op:
 
-## What's in v0.1.0
+- **Daniel, the Nerd Who Nerds Wrong**: Logic and Hands cards, Wired, Stratagems, Diligent, the Factory.
+- **David, the Min-Maxer**: Exact, Hoard, Rants, and Bleed.
+- **Joshua, the Musician**: Songs build Verses, Choruses spend them; healing, Share, and Archipelago Checks.
+- **Tim, the Draftsman**: Kids, Script, and Age of Empires Ages that last the whole run.
 
-- Daniel: 75 HP, uses the Defect's model as a placeholder.
-- 24 cards: starter deck, Logic/Hands/Wired, Stratagems, Share (co-op), Diligent, the Factory, and Monkey Island Insult/Comeback cards.
-- 4 relics: And You Know What? (starter), Trusty Multimeter, Rubber Chicken with a Pulley, Never Paid a Mechanic.
-- 5 powers: Insulted, Wire Up the House, The Factory Must Grow, Pair Programming, Nerds Wrong.
+Plus shared Monkey Island Insult/Comeback cards, relics, and potions. Every card is listed in `DANIEL_CARDS.md`,
+`DAVID_CARDS.md`, `JOSHUA_CARDS.md`, and `TIM_CARDS.md`. Card and relic art is still placeholder.
 
-The code compiles against BaseLib 3.4.7 and the game's reference assemblies, but it has **not been run in-game yet**.
-Expect some first-launch fixes.
+Daniel has been played; David, Joshua, and Tim are new and still being playtested, so expect some fixes.
 
 ## One-time setup (Windows)
 
@@ -56,12 +55,12 @@ Anything missing falls back to the template placeholder art.
 
 ## Where things live
 
-- `SpireBrothersCode/Character/` Daniel and his card/relic/potion pools
-- `SpireBrothersCode/Cards/Daniel/` one file per card
-- `SpireBrothersCode/Mechanics/` turn tracking, Wired, Stratagem combos
+- `SpireBrothersCode/Character/` each brother and his card/relic/potion pools
+- `SpireBrothersCode/Cards/<Brother>/` one file per card
+- `SpireBrothersCode/Mechanics/` each brother's mechanics (Wired, Exact, Verses, Kids, Ages, ...)
 - `SpireBrothersCode/Powers/`, `SpireBrothersCode/Relics/`
 - `SpireBrothers/localization/eng/` all card/relic/power text
-- `DESIGN.md` the design notes for all three brothers
+- `DESIGN.md` the design notes for all four brothers
 
 
 ## testing commands

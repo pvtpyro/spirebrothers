@@ -1,7 +1,0 @@
-- Tim: His kids are pretty far apart. they can all be next to each other.
-- Tim: Aging up should go one by one, no skipping. He should start with an age up card and it should be costly to play: 3 energy + a gold cost that increases with his age. he can no longer blacksmith cards at rest, but when he ages up, all his cards, current (and future cards), improve a little (just like blacksmith upgrades from each age in AOE). Scaling of the gold cost could mirror the same scaling as card removals (different amounts but linear increase). By the time he's fully advanced, he will have earned slightly more of a boost than what other players upgrades would have got them (reward for staying true while not able to buy as much from traders as other players)
-- Tim: hovering over his age doesn't show information anymore
-- in multiplayer mode our map icons default to the chars we're based off of instead of the ones you created
-- doesn't seem to be enough weak/vulnerable cards for at least joshua and tim
-- Joshua seems underpowered. 
-- need dead graphics
