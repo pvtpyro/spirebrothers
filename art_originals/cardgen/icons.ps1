@@ -90,3 +90,17 @@ $CustomIcons['InsultSwordfighting'] = {
     (Part (GlyphPath '#@%!' 710 205 210 90 $bold) (C '#2a2a36'))
   )
 }
+
+function PRect($x, $y, $w, $h) { $p = [System.Drawing.Drawing2D.GraphicsPath]::new(); $p.AddRectangle([System.Drawing.RectangleF]::new($x, $y, $w, $h)); $p }
+# Blocky pixel-art shape from rows of text (any non-space is a filled cell), for Minecraft items.
+function PPixels([string[]]$rows, $x0, $y0, $cell) {
+  $p = [System.Drawing.Drawing2D.GraphicsPath]::new(); $p.FillMode = 'Winding'
+  for ($r = 0; $r -lt $rows.Count; $r++) { for ($c = 0; $c -lt $rows[$r].Length; $c++) {
+    if ($rows[$r][$c] -ne ' ') { $p.AddRectangle([System.Drawing.RectangleF]::new($x0 + $c * $cell, $y0 + $r * $cell, $cell, $cell)) } } }
+  $p
+}
+$Glass = C '#9fd8ec'; $Red = C '#e0483c'; $Yellow = C '#f2c530'; $Dark = C '#2a2a36'; $Diamond = C '#5fe0e0'
+$Wood = C '#b0804a'; $Orange = C '#ff9a3a'; $Fur = C '#f2d2a8'; $Brown = C '#9a6038'
+
+# One file per brother (or game) of icons.
+foreach ($f in Get-ChildItem $PSScriptRoot -Filter 'icons_*.ps1') { . $f.FullName }
