@@ -17,6 +17,8 @@ function PLine([float[]]$xy) {
 function PArc($cx, $cy, $r, $start, $sweep) { $p = [System.Drawing.Drawing2D.GraphicsPath]::new(); $p.AddArc($cx - $r, $cy - $r, $r * 2, $r * 2, $start, $sweep); $p }
 function Rot($path, $deg, $cx, $cy) { $m = [System.Drawing.Drawing2D.Matrix]::new(); $m.RotateAt($deg, (Pt $cx $cy)); $path.Transform($m); $path }
 function Part($p, $fill = $null) { @{ P = $p; Fill = $fill } }
+# Filled with no outline or shadow, e.g. text on a sign.
+function Plain($p, $fill) { @{ Plain = $p; Fill = $fill } }
 function Detail($p, $w = 14) { @{ Line = $p; W = $w } }
 
 # Draws the parts: one soft shadow under everything, then each part outlined and filled, then detail lines.
@@ -30,6 +32,7 @@ function DrawParts($g, $parts, $stroke) {
       $g.DrawPath($pen, $pt.P)
       $g.FillPath([System.Drawing.SolidBrush]::new($(if ($pt.Fill) { $pt.Fill } else { C '#ffffff' })), $pt.P)
     }
+    elseif ($pt.Plain) { $g.FillPath([System.Drawing.SolidBrush]::new($pt.Fill), $pt.Plain) }
     elseif ($pt.Line) {
       $lp = [System.Drawing.Pen]::new($stroke, $pt.W); $lp.LineJoin = 'Round'; $lp.StartCap = 'Round'; $lp.EndCap = 'Round'
       $g.DrawPath($lp, $pt.Line)
