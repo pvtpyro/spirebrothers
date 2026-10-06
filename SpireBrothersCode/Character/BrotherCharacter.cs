@@ -96,6 +96,34 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
         return frames;
     }
 
+    /// <summary>
+    /// A looping idle animation of this brother, feet at the origin, <paramref name="height"/> units tall, for screens
+    /// outside combat (the shop and rest sites; see StandIns). Null if he has no frames/ yet.
+    /// </summary>
+    public AnimatedSprite2D? CreateIdleSprite(float height)
+    {
+        try
+        {
+            if (LoadFrames(out var first) is not { } frames || first == null) return null;
+            float h = first.GetSize().Y;
+            var sprite = new AnimatedSprite2D
+            {
+                SpriteFrames = frames,
+                Autoplay = "idle",
+                Offset = new Vector2(0, -h / 2),
+                Scale = Vector2.One * (height / h),
+                TextureFilter = CanvasItem.TextureFilterEnum.Nearest
+            };
+            sprite.Play("idle");
+            return sprite;
+        }
+        catch (Exception e)
+        {
+            MainFile.Logger.Error($"Couldn't build {ArtFolder}'s idle sprite: {e}");
+            return null;
+        }
+    }
+
     private NCreatureVisuals AnimatedBody(SpriteFrames frames, Texture2D first)
     {
         // Let BaseLib lay out the hitbox and markers from the first frame, then hide that still picture and play

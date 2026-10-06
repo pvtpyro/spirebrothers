@@ -157,6 +157,11 @@
   "SPIREBROTHERS-ARCHIPELAGO.useful": "Useful item! Draw 1 next turn",
   "SPIREBROTHERS-ARCHIPELAGO.progression": "Progression item! +1 energy next turn",
   "SPIREBROTHERS-ARCHIPELAGO.trap": "It's a trap! Weak and Vulnerable",
+  "SPIREBROTHERS-ARCHIPELAGO.sent": "Sent {Item} to {Name}!",
+  "SPIREBROTHERS-ARCHIPELAGO.short.filler": "Filler (+4 Block)",
+  "SPIREBROTHERS-ARCHIPELAGO.short.useful": "Useful (draw 1 next turn)",
+  "SPIREBROTHERS-ARCHIPELAGO.short.progression": "Progression (+1 energy next turn)",
+  "SPIREBROTHERS-ARCHIPELAGO.short.trap": "a Trap",
 
   "SPIREBROTHERS-SCRIPT_POWER.title": "Scripts Queued",
   "SPIREBROTHERS-SCRIPT_POWER.description": "At the start of your next turn, these Script effects happen again.",

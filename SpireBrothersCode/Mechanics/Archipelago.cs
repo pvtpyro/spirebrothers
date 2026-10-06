@@ -51,7 +51,7 @@ public static class Archipelago
             if (enemies.Count > 0)
             {
                 var enemy = rng.NextItem(enemies)!;
-                Announce(item, enemy);
+                Announce(item, enemy, owner);
                 await PowerCmd.Apply<WeakPower>(ctx, enemy, 1, owner.Creature, source);
                 await PowerCmd.Apply<VulnerablePower>(ctx, enemy, 1, owner.Creature, source);
                 return;
@@ -62,7 +62,7 @@ public static class Archipelago
         var players = combat.Players.Where(p => p.Creature.IsAlive).Select(p => p.Creature).ToList();
         if (players.Count == 0) return;
         Creature receiver = rng.NextItem(players)!;
-        Announce(item, receiver);
+        Announce(item, receiver, owner);
         switch (item)
         {
             case Item.Filler:
@@ -78,12 +78,19 @@ public static class Archipelago
     }
 
     // A thought bubble over whoever got the item, so everyone can see what was found.
-    private static void Announce(Item item, Creature receiver)
+    // The receiver (or the trapped enemy) says what they got. When it went to someone else, Joshua also says who
+    // he sent it to, so he can tell what his Checks did. Display only, so it never affects co-op sync.
+    private static void Announce(Item item, Creature receiver, Player sender)
     {
         try
         {
             var key = "SPIREBROTHERS-ARCHIPELAGO." + item.ToString().ToLowerInvariant();
             ThinkCmd.Play(new LocString("powers", key), receiver, 1.5);
+            if (receiver == sender.Creature) return;
+            var sent = new LocString("powers", "SPIREBROTHERS-ARCHIPELAGO.sent");
+            sent.Add("Item", new LocString("powers", "SPIREBROTHERS-ARCHIPELAGO.short." + item.ToString().ToLowerInvariant()));
+            sent.Add("Name", receiver.Name);
+            ThinkCmd.Play(sent, sender.Creature, 1.5);
         }
         catch (Exception e)
         {
