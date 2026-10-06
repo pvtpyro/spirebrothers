@@ -66,6 +66,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
 - Insult cards implement `Mechanics.IInsultCard`; `Mechanics/InsultBanter.cs` shows a speech bubble from
   `SPIREBROTHERS-INSULT_LINES.0..39` (powers.json; bump `InsultBanter.Count` when adding lines), shuffled per run.
 - `Powers/BleedHealthBar.cs` patches `NHealthBar.RefreshForeground` to draw Bleed's upcoming damage in crimson, like Poison.
+- Card portraits are drawn by `art_originals/cardgen/gen.ps1 -CardsOnly` from `glyphs.txt` (ClassName Emoji).
 - Combat bodies: `Character/BrotherCharacter.cs` plays `images/characters/<name>/frames/<anim>_<n>.png` (idle/attack/cast/hit/dead,
   pixel art at 64x80, nearest filter) on an `AnimatedSprite2D`, which BaseLib drives from the game's animation cues;
   falls back to `body.png`, then the vanilla placeholder. The frames come from `art_originals/pixelgen/` (see its README;

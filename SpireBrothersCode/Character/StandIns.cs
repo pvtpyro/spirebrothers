@@ -24,6 +24,12 @@ public static class StandIns
     /// <summary>Rest-site height when the scene has no usable hitbox to measure.</summary>
     private const float RestSiteHeight = 300f;
 
+    /// <summary>
+    /// Where he sits at the campfire, as a fraction of his height from the vanilla character's spot: forward onto the
+    /// scene's log and a little lower. Tweak these if he floats or sinks.
+    /// </summary>
+    private static readonly Vector2 RestSeat = new(0.3f, 0.06f);
+
     private static readonly AccessTools.FieldRef<NMerchantRoom, List<Player>> Players =
         AccessTools.FieldRefAccess<NMerchantRoom, List<Player>>("_players");
 
@@ -40,7 +46,7 @@ public static class StandIns
             var players = Players(__instance);
             var visuals = PlayerVisuals(__instance);
             for (int i = 0; i < Math.Min(players.Count, visuals.Count); i++)
-                if (players[i].Character is BrotherCharacter brother) StandIn(visuals[i], brother, ShopHeight, "idle");
+                if (players[i].Character is BrotherCharacter brother) StandIn(visuals[i], brother, ShopHeight, "idle", Vector2.Zero);
         }
         catch (Exception e)
         {
@@ -56,7 +62,8 @@ public static class StandIns
         {
             if (__instance.Player?.Character is not BrotherCharacter brother) return;
             float hitbox = __instance.Hitbox?.Size.Y ?? 0;
-            StandIn(__instance, brother, hitbox > 100 ? hitbox * 0.9f : RestSiteHeight, "rest");
+            float height = hitbox > 100 ? hitbox * 0.9f : RestSiteHeight;
+            StandIn(__instance, brother, height, "rest", RestSeat * height);
         }
         catch (Exception e)
         {
@@ -74,15 +81,16 @@ public static class StandIns
         sprite.Position = new Vector2(-sprite.Position.X, sprite.Position.Y);
     }
 
-    private static void StandIn(Node host, BrotherCharacter brother, float height, string anim)
+    private static void StandIn(Node host, BrotherCharacter brother, float height, string anim, Vector2 offset)
     {
         var spines = host.GetChildren().OfType<Node2D>().Where(n => n.GetClass() == "SpineSprite").ToList();
         if (spines.Count == 0 || host.GetNodeOrNull(NodeName) != null) return;
         if (brother.CreateIdleSprite(height, anim) is not { } sprite) return;
 
         sprite.Name = NodeName;
-        sprite.Position = spines[0].Position;
-        if (spines[0].Scale.X < 0) sprite.Scale = new Vector2(-sprite.Scale.X, sprite.Scale.Y);
+        bool mirrored = spines[0].Scale.X < 0;
+        sprite.Position = spines[0].Position + new Vector2(mirrored ? -offset.X : offset.X, offset.Y);
+        if (mirrored) sprite.Scale = new Vector2(-sprite.Scale.X, sprite.Scale.Y);
         foreach (var spine in spines) spine.Visible = false;
         host.AddChild(sprite);
         MainFile.Logger.Info($"Stand-in for {brother.Id.Entry} in {host.GetType().Name}: at {sprite.Position}, {height} tall");

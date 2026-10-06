@@ -86,7 +86,7 @@ public abstract class Brother
     {
         var c = new Canvas(64, 80) { K = (Portrait ? 1f : Scale), Origin = new V(Rig.Cx, 80) };
         var r = new Rig(p);
-        if (p.Sitting) DrawLog(c);
+        // (sitting poses have no log of their own: rest sites already have logs to sit on)
         DrawBehind(c, r, p);
         DrawArm(c, r.SB, r.ElbowB, r.HandB, back: true);
         DrawLeg(c, r.HipB, r.KneeB, r.FootB, back: true);
