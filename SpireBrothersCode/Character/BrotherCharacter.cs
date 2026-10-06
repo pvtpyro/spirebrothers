@@ -116,6 +116,20 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
         {
             if (anim.Animation != "dead") anim.Play("idle");
         };
+
+        // The dead frames only slump, so he also tips over backwards onto the ground, and gets back up on revive.
+        // Moving the pivot from the middle of the picture to his feet (without moving the picture) makes him fall
+        // over where he stands.
+        float half = first.GetSize().Y / 2;
+        anim.Position += new Vector2(0, half);
+        anim.Offset = new Vector2(0, -half);
+        anim.AnimationChanged += () =>
+        {
+            float lying = anim.Animation == "dead" ? -Mathf.Pi / 2 : 0f;
+            if (Mathf.IsEqualApprox(anim.Rotation, lying)) return;
+            anim.CreateTween().TweenProperty(anim, "rotation", lying, anim.Animation == "dead" ? 0.45 : 0.3)
+                .SetTrans(Tween.TransitionType.Quad).SetEase(anim.Animation == "dead" ? Tween.EaseType.In : Tween.EaseType.Out);
+        };
         ScaleToHeight(visuals, first.GetSize().Y);
         return visuals;
     }
@@ -159,4 +173,47 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
 
     // Map token: map_marker.png (128 x 128).
     public override string? CustomMapMarkerPath => ArtIfPresent("map_marker.png") ?? base.CustomMapMarkerPath;
+
+    // Character icon: icon.png (128 x 128), falling back to the map marker. Co-op shows it on the map vote markers and
+    // the player list, with icon_outline.png (the same shape in flat white, a few pixels bigger) behind it.
+    private string? IconArt => ArtIfPresent("icon.png") ?? ArtIfPresent("map_marker.png");
+    public override string? CustomIconTexturePath => IconArt ?? base.CustomIconTexturePath;
+    public override string? CustomIconOutlineTexturePath => ArtIfPresent("icon_outline.png") ?? base.CustomIconOutlineTexturePath;
+
+    // Top-left icon during a run. Reuses the borrowed character's icon scene so the layout matches, with our pictures
+    // swapped in for its character_icon textures.
+    public override Control? CustomIcon
+    {
+        get
+        {
+            if (IconArt == null) return base.CustomIcon;
+            try
+            {
+                var icon = GD.Load<PackedScene>(CustomIconPath).Instantiate<Control>();
+                var art = GD.Load<Texture2D>(IconArt);
+                var outline = CustomIconOutlineTexturePath is { } o ? GD.Load<Texture2D>(o) : null;
+                SwapIconTextures(icon, art, outline);
+                return icon;
+            }
+            catch (Exception e)
+            {
+                MainFile.Logger.Error($"Couldn't build {ArtFolder}'s icon: {e}");
+                return base.CustomIcon;
+            }
+        }
+    }
+
+    private static void SwapIconTextures(Node node, Texture2D art, Texture2D? outline)
+    {
+        switch (node)
+        {
+            case TextureRect rect when rect.Texture?.ResourcePath.Contains("character_icon_") == true:
+                rect.Texture = rect.Texture.ResourcePath.Contains("_outline") ? outline ?? rect.Texture : art;
+                break;
+            case Sprite2D sprite when sprite.Texture?.ResourcePath.Contains("character_icon_") == true:
+                sprite.Texture = sprite.Texture.ResourcePath.Contains("_outline") ? outline ?? sprite.Texture : art;
+                break;
+        }
+        foreach (var child in node.GetChildren()) SwapIconTextures(child, art, outline);
+    }
 }

@@ -4,7 +4,7 @@ Timothy, the oldest brother. Married with 8 kids. A draftsman at a civil enginee
 writes Lua add-ons for AutoCAD. Loves, in order: Rocket League, Age of Empires, Splinter Cell, airsoft,
 and Legos. Old nickname "Tidbit" (he doesn't love it, so it appears exactly once).
 
-**Built 2026-10-04, untested in game.** Numbers below match the code. Each Age Up card advances one Age (Imperial Age jumps straight to Imperial). Cut, rename, or rewrite anything, especially to add inside jokes.
+**Built 2026-10-04, untested in game.** Numbers below match the code. **Ages reworked 2026-10-05:** his Age lasts the whole run, the starting Age Up card is the only way to advance, and he can't Smith at rest sites. Cut, rename, or rewrite anything, especially to add inside jokes.
 Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 
 ## His mechanics
@@ -13,15 +13,16 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 |---|---|
 | **Kids** | A counter on Tim, **max 8** (of course). At the end of your turn, **each Kid deals 1 damage to a random enemy.** Cards add Kids, and payoffs scale with how many you have. Shown on his tracker, like Daniel's Train of Thought. |
 | **Script** | Lua automation. **At the start of your next turn, this card's effect happens again** for free (it is not played again). Write it once, let it run. |
-| **Age** | Age of Empires. Every combat starts in the **Dark Age**. **Age Up** cards advance it: Feudal → Castle → Imperial. Some cards get bonuses at later Ages. |
+| **Age** | Age of Empires. **Lasts the whole run**, starting in the **Dark Age**. His starting **Age Up** card advances it one step at a time: Feudal → Castle → Imperial, costing 3 energy plus **50 / 100 / 150 Gold**. Each Age gives **all his cards +1 damage per hit and +1 Block** (like AoE blacksmith upgrades; +3 at Imperial). In exchange he **can't Smith at rest sites**. Some cards get extra bonuses at later Ages. Hovering the number above his head explains it. |
 
 Shared mechanics he also uses: **Insulted** (Monkey Island, from Daniel) through Dad Jokes, and **Share**.
 
-## Starting deck (10 cards) and relic
+## Starting deck (11 cards) and relic
 
 - 4 Strike, 4 Defend
-- **Dad Joke** (Basic Attack, 1): Deal 5 damage. Apply 1 Insulted. *(Daniel's Comebacks love this in co-op.)*
+- **Dad Joke** (Basic Attack, 1): Deal 5 damage. Apply 1 Insulted and 1 Weak. *(Daniel's Comebacks love this in co-op.)*
 - **Lua Script** (Basic Skill, 1): Gain 4 Block. **Script.**
+- **Age Up** (Basic Skill, 3): Pay 50 / 100 / 150 Gold (upgraded: 40 / 80 / 120; the energy cost never drops, so it stays hard to play). Age Up for the rest of the run. Exhaust. Can't be played without the gold. Leaves his deck once he reaches Imperial.
 - **Starter relic: Family Minivan.** Start each combat with 2 Kids.
 
 Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeback; Dad Joke in his starting deck is an insult too).
@@ -32,7 +33,7 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeba
 |---|---|---|---|---|
 | 1 | 👶 Family Photo | 1 Skill | Gain 5 Block. Gain 1 Kid. | Family |
 | 2 | 👶 Chores | 1 Skill | Gain 2 Block for each Kid. | Family |
-| 3 | 👶 Carpool Line | 1 Attack | Deal 6 damage. If you have 4+ Kids, deal 4 more. | Family |
+| 3 | 👶 Carpool Line | 1 Attack | Deal 6 damage. If you have 4+ Kids, deal 4 more. Gain 1 Kid. | Family |
 | 4 | 👶 Step on a Lego | 1 Attack | Deal 8 damage. Apply 1 Vulnerable. | Legos + kids |
 | 5 | 📜 Hotkey | 0 Skill | Draw 1 card. **Script.** | AutoCAD |
 | 6 | 📜 Polyline | 1 Attack | Deal 5 damage. **Script.** | AutoCAD |
@@ -40,13 +41,13 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeba
 | 8 | 🏰 Villager | 1 Skill | Gain 3 Block. Next turn, gain 1 Energy. | Age of Empires |
 | 9 | 🏰 Scout Rush | 1 Attack | Deal 7 damage. **Feudal Age or later:** draw 1 card. | Age of Empires |
 | 10 | 🏰 Palisade Wall | 1 Skill | Gain 7 Block. **Castle Age or later:** gain 3 more. | Age of Empires |
-| 11 | 🏰 Feudal Age | 1 Skill | **Age Up.** Gain 4 Block. | Age of Empires |
+| 11 | 🏰 Feudal Age | 1 Skill | Gain 5 Block. **Feudal Age or later:** draw 1 card. | Age of Empires |
 | 12 | Air Dribble | 1 Attack | Deal 3 damage 3 times. | Rocket League |
 | 13 | Fifty-Fifty | 1 Attack | Deal 8 damage. 50% chance: deal 8 more. | Rocket League |
 | 14 | Rotate Back | 1 Skill | Gain 8 Block. | Rocket League |
 | 15 | Night Vision | 1 Skill | Scry 4. Draw 1 card. | Splinter Cell |
 | 16 | Takedown | 1 Attack | Deal 8 damage. If the enemy isn't attacking this turn, deal 6 more. | Splinter Cell |
-| 17 | BB Spray | 1 Attack | Deal 2 damage to a random enemy 5 times. | Airsoft |
+| 17 | BB Spray | 1 Attack | Deal 2 damage to a random enemy 5 times. Apply 1 Vulnerable to a random enemy. | Airsoft |
 | 18 | Call Your Hits | 1 Skill | Gain 6 Block. Apply 1 Weak. | Airsoft (honor system) |
 | 19 | **Tidbit** | 0 Skill | Draw 1 card. Gain 2 Block. *(just a little bit)* | His old nickname, used once |
 | 20 | Morning Coffee | 0 Skill | Gain 1 Energy. Exhaust. | Dad of eight |
@@ -63,7 +64,7 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeba
 | 25 | 👶 Big Family | 1 Power | At the end of your turn, also gain 1 Block per Kid. | Family |
 | 26 | 👶 Lego Minefield | 1 Skill | ALL enemies lose HP equal to your Kids. | Legos + kids |
 | 27 | 👶 Diaper Duty | 1 Skill | Exhaust a Status or Curse in your hand. Gain 1 Kid. | Dad of eight |
-| 28 | 👶 Date Night | 1 Skill | Gain 12 Block. Your Kids don't act this turn (they're at Grandma's). | Married life |
+| 28 | 👶 Date Night | 1 Skill | Gain 12 Block. Your Kids don't act this turn (they're at Grandma's). Gain 1 Kid *(nine months later...)*. | Married life |
 
 ### Script (AutoCAD and Lua)
 | # | Name | Cost / Type | Effect | Theme |
@@ -81,7 +82,7 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeba
 ### Age of Empires
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
-| 38 | 🏰 Castle Age | 1 Skill | **Age Up.** Draw 2 cards. | Age of Empires |
+| 38 | 🏰 Castle Age | 1 Skill | Draw 2 cards. **Castle Age or later:** gain 1 energy. | Age of Empires |
 | 39 | 🏰 Trebuchet | 2 Attack | Deal 14 damage. **Castle Age or later:** hits ALL enemies. | Age of Empires |
 | 40 | 🏰 Wololo | 1 Skill | An enemy loses 2 Strength. You gain 2 Strength this turn. *(conversion!)* | Age of Empires |
 | 41 | 🏰 Town Center | 2 Power | At the start of your turn, gain 4 Block. | Age of Empires |
@@ -116,7 +117,7 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeba
 | 61 | 📜 Automation Suite | 3 Power | The first card you play each turn has **Script.** | Lua add-ons |
 | 62 | 📜 while true do | 1 Skill | Gain 3 Block. Draw 1 card. Its **Script** repeats every turn for the rest of combat. Exhaust. | Lua (the infinite loop) |
 | 63 | 📜 Markup Pass | 1 Skill | Upgrade ALL cards in your hand for this combat. Exhaust. | Drafting (redlines) |
-| 64 | 🏰 Imperial Age | 2 Power | **Age Up** to Imperial. Gain 1 Strength and 1 Dexterity. | Age of Empires |
+| 64 | 🏰 Imperial Age | 2 Power | Gain 1 Strength and 1 Dexterity. **Imperial Age:** gain 2 of each instead. | Age of Empires |
 | 65 | 🏰 Wonder | 3 Power | At the start of your 5th turn after playing this, deal 60 damage to ALL enemies. | Age of Empires (wonder victory) |
 | 66 | 🏰 Castle | 2 Power | At the start of your turn, gain 5 Block. At the end of your turn, deal 3 damage to ALL enemies. | Age of Empires |
 | 67 | 🏰 Mass Conversion | 2 Skill | ALL enemies lose 3 Strength. You gain that much Strength this turn. Exhaust. | Age of Empires (monk army) |

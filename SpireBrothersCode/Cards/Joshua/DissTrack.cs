@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
 /// <summary>
-/// Monkey Island (music). Chorus + Comeback: deal 3 damage to ALL enemies per Verse, +3 for each Insulted
+/// Monkey Island (music). Chorus + Comeback: deal 4 damage to ALL enemies per Verse, +4 for each Insulted
 /// on each enemy, then remove their Insulted.
 /// </summary>
 public class DissTrack() : JoshuaCard(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
@@ -25,7 +25,7 @@ public class DissTrack() : JoshuaCard(2, CardType.Attack, CardRarity.Rare, Targe
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Chorus, BrotherKeywords.Comeback];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(0),
-        new ExtraDamageVar(3),
+        new ExtraDamageVar(4),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(VersesAndInsults)
     ];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<InsultedPower>()];

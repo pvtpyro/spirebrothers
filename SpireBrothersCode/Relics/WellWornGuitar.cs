@@ -5,10 +5,10 @@ using SpireBrothers.SpireBrothersCode.Mechanics;
 
 namespace SpireBrothers.SpireBrothersCode.Relics;
 
-/// <summary>Joshua's starter. Start each combat with 1 Verse.</summary>
+/// <summary>Joshua's starter. Start each combat with 2 Verses.</summary>
 public class WellWornGuitar : JoshuaRelic
 {
-    public const int StartingVerses = 1;
+    public const int StartingVerses = 2;
     public override RelicRarity Rarity => RelicRarity.Starter;
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)

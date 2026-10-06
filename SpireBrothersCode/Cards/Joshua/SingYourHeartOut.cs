@@ -16,13 +16,13 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Vocals. Chorus: deal 6 damage per Verse.</summary>
+/// <summary>Vocals. Chorus: deal 8 damage per Verse.</summary>
 public class SingYourHeartOut() : JoshuaCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Chorus];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(0),
-        new ExtraDamageVar(6),
+        new ExtraDamageVar(8),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(ChorusVerses)
     ];
 

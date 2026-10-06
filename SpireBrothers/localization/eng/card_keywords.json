@@ -34,5 +34,5 @@
   "SPIREBROTHERS-KIDS.title": "Kids",
   "SPIREBROTHERS-KIDS.description": "Tim has up to 8. At the end of your turn, each Kid deals 1 damage to a random enemy.",
   "SPIREBROTHERS-AGE.title": "Age",
-  "SPIREBROTHERS-AGE.description": "Every combat starts in the Dark Age. [gold]Age Up[/gold] advances it: Feudal, then Castle, then Imperial."
+  "SPIREBROTHERS-AGE.description": "Tim's Age lasts the whole run. Each Age gives all his cards +1 damage and +1 [gold]Block[/gold]. [gold]Age Up[/gold] advances it: Dark, Feudal, Castle, then Imperial."
 }

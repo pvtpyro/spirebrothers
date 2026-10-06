@@ -16,16 +16,18 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Monkey Island insult (vocals). Song. Apply 2 Insulted.</summary>
+/// <summary>Monkey Island insult (vocals). Song. Apply 2 Insulted and 1 Weak.</summary>
 public class YouCallThatSinging() : JoshuaCard(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Song];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<InsultedPower>(2)];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<InsultedPower>()];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<InsultedPower>(2), new PowerVar<WeakPower>(1)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<InsultedPower>(), HoverTipFactory.FromPower<WeakPower>()];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        if (play.Target != null) await CommonActions.Apply<InsultedPower>(ctx, play.Target, this);
+        if (play.Target == null) return;
+        await CommonActions.Apply<InsultedPower>(ctx, play.Target, this);
+        await CommonActions.Apply<WeakPower>(ctx, play.Target, this);
     }
 
     protected override void OnUpgrade() => DynamicVars["InsultedPower"].UpgradeValueBy(1);

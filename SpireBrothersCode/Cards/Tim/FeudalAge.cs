@@ -16,18 +16,19 @@ using SpireBrothers.SpireBrothersCode.Mechanics;
 using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Tim;
-
-/// <summary>Age of Empires. Age Up. Gain 4 Block.</summary>
+/// <summary>Age of Empires. Gain 5 Block. Feudal Age or later: draw 1 card.</summary>
 public class FeudalAge() : TimCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
+    protected override int? AgeBonusAt => Ages.Feudal;
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Age];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(4, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(5, ValueProp.Move), new CardsVar(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        Ages.AgeUp(Owner);
+        bool bonus = AgeBonusActive;
         await CommonActions.CardBlock(this, play);
+        if (bonus) await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, Owner);
     }
 
     protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(3);

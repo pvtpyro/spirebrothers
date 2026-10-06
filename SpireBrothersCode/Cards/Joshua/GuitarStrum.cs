@@ -16,15 +16,19 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Guitar. Song. Deal 5 damage to ALL enemies.</summary>
+/// <summary>Guitar. Song. Deal 4 damage to ALL enemies. Apply 1 Vulnerable to ALL enemies.</summary>
 public class GuitarStrum() : JoshuaCard(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Song];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(4, ValueProp.Move), new PowerVar<VulnerablePower>(1)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<VulnerablePower>()];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CommonActions.CardAttack(this, play, vfx: "vfx/vfx_attack_slash").Execute(ctx);
+        var enemies = CombatState?.HittableEnemies.Where(e => e.IsAlive).ToList();
+        if (enemies is { Count: > 0 })
+            await PowerCmd.Apply<VulnerablePower>(ctx, enemies, DynamicVars["VulnerablePower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(3);

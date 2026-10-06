@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Tim;
 
-/// <summary>Family (school pickup). Deal 6 damage. If you have 4+ Kids, deal 4 more.</summary>
+/// <summary>Family (school pickup). Deal 6 damage. If you have 4+ Kids, deal 4 more. Gain 1 Kid (one more for the ride home).</summary>
 public class CarpoolLine() : TimCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
     protected override int KidsThreshold => 4;
@@ -25,7 +25,8 @@ public class CarpoolLine() : TimCard(1, CardType.Attack, CardRarity.Common, Targ
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(6),
         new ExtraDamageVar(4),
-        new CalculatedDamageVar(ValueProp.Move).WithMultiplier(EnoughKids)
+        new CalculatedDamageVar(ValueProp.Move).WithMultiplier(EnoughKids),
+        new DynamicVar("KidGain", 1)
     ];
 
     private static decimal EnoughKids(CardModel card, Creature? _) => Kids.Count(card.Owner) >= 4 ? 1 : 0;
@@ -33,6 +34,7 @@ public class CarpoolLine() : TimCard(1, CardType.Attack, CardRarity.Common, Targ
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CommonActions.CardAttack(this, play, vfx: "vfx/vfx_attack_blunt").Execute(ctx);
+        await Kids.Gain(ctx, Owner, DynamicVars["KidGain"].IntValue, this);
     }
 
     protected override void OnUpgrade()

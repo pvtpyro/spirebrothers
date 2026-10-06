@@ -25,7 +25,8 @@ public class Tim : BrotherCharacter
         ModelDb.Card<StrikeTim>(), ModelDb.Card<StrikeTim>(), ModelDb.Card<StrikeTim>(), ModelDb.Card<StrikeTim>(),
         ModelDb.Card<DefendTim>(), ModelDb.Card<DefendTim>(), ModelDb.Card<DefendTim>(), ModelDb.Card<DefendTim>(),
         ModelDb.Card<DadJoke>(),
-        ModelDb.Card<LuaScript>()
+        ModelDb.Card<LuaScript>(),
+        ModelDb.Card<AgeUp>()
     ];
 
     public override IReadOnlyList<RelicModel> StartingRelics => [ModelDb.Relic<FamilyMinivan>()];

@@ -18,7 +18,7 @@ and ask Claude to hook it up so you can see it in a fight before deciding on a s
 |---|---|---|---|
 | **Combat body** | about 350 × 450, feet at the bottom | In every fight | A single still image, or animation frames (see below). |
 | **Character select portrait** | 132 × 195, plus a locked version | Character select buttons | The locked one is usually a darkened silhouette. |
-| **Character icon** | 128 × 128 | Top-left during a run, run history | |
+| **Character icon** | 128 × 128, plus an outline | Top-left during a run, and co-op map votes and player list | Until it exists, the map marker is used. The outline is the same shape in flat white, a few pixels bigger (generated from the map markers for now). |
 | **Map marker** | 128 × 128 | His token on the map | |
 | **Energy orb** | 74 × 74, plus 24 × 24 | The energy counter, and energy icons in card text | Right now all four brothers share one. |
 | **Card art** | 1000 × 760, plus a 250 × 190 copy | The picture area of each card | The game adds the frame, so paint only the picture. Paint big and shrink it down. |
@@ -64,6 +64,8 @@ SpireBrothers/images/characters/
 | `select.png` | 132 × 195 | Character select button |
 | `select_locked.png` | 132 × 195 | Same button while locked (usually a dark silhouette) |
 | `map_marker.png` | 128 × 128 | His token on the map |
+| `icon.png` | 128 × 128 | Character icon (top-left in a run, co-op map votes and player list). Optional: the map marker is used until it exists. |
+| `icon_outline.png` | 128 × 128 | Flat white silhouette of the icon, a few pixels bigger. Shows behind it on co-op map votes. |
 
 Example: Tim's combat body goes at `SpireBrothers/images/characters/tim/body.png`.
 
@@ -81,7 +83,7 @@ Frames are named `<animation>_<number>.png`, numbered from 0, all the same size 
 | `attack` | 6 | 14 per second | Playing an Attack |
 | `cast` | 6 | 10 per second | Playing a Skill or Power |
 | `hit` | 4 | 12 per second | Taking damage |
-| `dead` | 5 | 8 per second | Dying (stays on the last frame) |
+| `dead` | 5 | 8 per second | Dying (stays on the last frame). The code also tips the whole body over backwards onto the ground, so draw these standing up. |
 
 Any number of frames works; add or remove files and rebuild. The current frames are 64 × 80 pixels, shown at 5×
 with no smoothing, so you can repaint any frame in a pixel editor (Aseprite, Piskel, Photoshop with nearest-neighbor)

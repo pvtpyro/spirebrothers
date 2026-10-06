@@ -17,14 +17,19 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Tim;
 
-/// <summary>Airsoft. Deal 2 damage to a random enemy 5 times.</summary>
+/// <summary>Airsoft. Deal 2 damage to a random enemy 5 times. Apply 1 Vulnerable to a random enemy.</summary>
 public class BbSpray() : TimCard(1, CardType.Attack, CardRarity.Common, TargetType.RandomEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(2, ValueProp.Move), new RepeatVar(5)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(2, ValueProp.Move), new RepeatVar(5), new PowerVar<VulnerablePower>(1)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<VulnerablePower>()];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CommonActions.CardAttack(this, play, DynamicVars.Repeat.IntValue, vfx: "vfx/vfx_attack_slash").Execute(ctx);
+        var enemies = CombatState?.HittableEnemies.Where(e => e.IsAlive).ToList();
+        if (enemies is not { Count: > 0 }) return;
+        var target = Owner.RunState.Rng.CombatTargets.NextItem(enemies)!;
+        await CommonActions.Apply<VulnerablePower>(ctx, target, this);
     }
 
     protected override void OnUpgrade() => DynamicVars.Repeat.UpgradeValueBy(2);

@@ -6,19 +6,21 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 using SpireBrothers.SpireBrothersCode.Cards.Tim;
 using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Mechanics;
 
 /// <summary>
-/// Tim's per-combat state: his Age, cards played this turn (Mark and Execute, Automation Suite), and Script.
+/// Tim's per-combat state: cards played this turn (Mark and Execute, Automation Suite), Script, and his Age bonus
+/// (+1 damage and Block per Age on every card he owns; the Age itself lasts the run, see Ages).
 /// When a card with Script is played (or Snap to Grid / Automation Suite gives it Script), it's queued in
 /// ScriptPower, which auto-plays a temporary duplicate of it at the start of the next turn.
 /// </summary>
 public class TimTracker() : CustomSingletonModel(HookType.Combat)
 {
-    public static readonly SpireField<PlayerCombatState, int> AgeField = new(() => Ages.Dark);
     public static readonly SpireField<PlayerCombatState, int> CardsThisTurnField = new(() => 0);
 
     public static int CardsThisTurn(Player? player)
@@ -58,6 +60,20 @@ public class TimTracker() : CustomSingletonModel(HookType.Combat)
         if (!script || card.Type == CardType.Power) return;
         await PowerCmd.Apply<ScriptPower>(choiceContext, owner.Creature, 1, owner.Creature, null, silent: true);
         owner.Creature.GetPower<ScriptPower>()?.Queue(card);
+    }
+
+    // Age bonus, like AoE blacksmith upgrades: each Age adds 1 to every hit and every Block gain from his cards.
+    // Works like Strength / Dexterity, so the numbers on his cards turn green in combat.
+    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
+    {
+        if (cardSource?.Owner == null || cardSource.Owner.Creature != dealer || !props.IsPoweredAttack()) return 0m;
+        return Ages.Bonus(cardSource.Owner);
+    }
+
+    public override decimal ModifyBlockAdditive(Creature target, decimal block, ValueProp props, CardModel? cardSource, CardPlay? cardPlay)
+    {
+        if (cardSource?.Owner == null || !props.IsPoweredCardOrMonsterMoveBlock()) return 0m;
+        return Ages.Bonus(cardSource.Owner);
     }
 
     // Kids act at the end of their parent's turn (unless Date Night sent them to Grandma's).

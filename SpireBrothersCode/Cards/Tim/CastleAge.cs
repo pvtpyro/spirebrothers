@@ -16,17 +16,18 @@ using SpireBrothers.SpireBrothersCode.Mechanics;
 using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Tim;
-
-/// <summary>Age of Empires. Age Up. Draw 2 cards.</summary>
+/// <summary>Age of Empires. Draw 2 cards. Castle Age or later: gain 1 energy.</summary>
 public class CastleAge() : TimCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
+    protected override int? AgeBonusAt => Ages.Castle;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Age];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(2)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(2), new EnergyVar(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        Ages.AgeUp(Owner);
+        bool bonus = AgeBonusActive;
         await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, Owner);
+        if (bonus) await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
     }
 
     protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(1);

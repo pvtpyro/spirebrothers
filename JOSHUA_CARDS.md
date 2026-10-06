@@ -31,7 +31,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 - 4 Strike, 4 Defend
 - **Hum a Tune** (Basic Skill, 1, Song): Gain 5 Block.
 - **Sing Along** (Basic Skill, 1, Chorus): ALL players gain 3 Block per Verse spent.
-- **Starter relic: Well-Worn Guitar.** Start each combat with 1 Verse.
+- **Starter relic: Well-Worn Guitar.** Start each combat with 2 Verses.
 
 Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Archipelago), 🗡️ Monkey Island (Insult / Comeback).
 
@@ -41,14 +41,14 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 |---|---|---|---|---|
 | 1 | 🎵 Power Chord | 1 Attack | Deal 7 damage. | Guitar |
 | 2 | 🎵 Scales Practice | 1 Skill | Gain 6 Block. | Piano |
-| 3 | 🗡️🎵 You Call That Singing? | 0 Skill | Apply 2 Insulted. | Insult (vocals) |
+| 3 | 🗡️🎵 You Call That Singing? | 0 Skill | Apply 2 Insulted and 1 Weak. | Insult (vocals) |
 | 4 | 🎵 Drum Fill | 1 Attack | Deal 2 damage 4 times. | Music |
-| 5 | 🎵 Guitar Strum | 1 Attack | Deal 5 damage to ALL enemies. | Guitar |
+| 5 | 🎵 Guitar Strum | 1 Attack | Deal 4 damage to ALL enemies. Apply 1 Vulnerable to ALL enemies. | Guitar |
 | 6 | 🎵 Vocal Warmup | 0 Skill | Gain 1 extra Verse (2 total). Exhaust. | Vocals |
 | 7 | 🎵 Order Up! | 1 Skill | Gain 4 Block. Draw 1 card. | PlateUp! |
 | 8 | 🎵 Boost Pad | 0 Skill | Next turn, gain 1 Energy. | Rocket League |
 | 9 | 🎵🤝 Harmonize | 1 Skill | Share: a player gains 6 Block. | Music / co-op |
-| 10 | 🎤 Big Finish | 1 Attack | **Chorus:** deal 4 damage to ALL enemies per Verse. | Music |
+| 10 | 🎤 Big Finish | 1 Attack | **Chorus:** deal 5 damage to ALL enemies per Verse. | Music |
 | 11 | 💚 Konbini Run | 0 Skill | Heal 2. Draw 1 card. Exhaust. | Japan |
 | 12 | 💚 Onsen | 1 Skill | Heal 5. Exhaust. | Japan |
 | 13 | 💚 Watering Can | 1 Skill | Gain 2 Regen. | Stardew Valley |
@@ -66,7 +66,7 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
 | 21 | 🎤💚 Standing Ovation | 2 Skill | **Chorus:** ALL players heal 1 per Verse. Exhaust. | Music |
-| 22 | 🎤 Sing Your Heart Out | 2 Attack | **Chorus:** deal 6 damage per Verse. | Vocals |
+| 22 | 🎤 Sing Your Heart Out | 2 Attack | **Chorus:** deal 8 damage per Verse. | Vocals |
 | 23 | 🎤 Karaoke Night | 1 Skill | **Chorus:** ALL players draw 1 card next turn per 2 Verses. | Karaoke |
 | 24 | 🎤 Matsuri | 2 Skill | **Chorus:** ALL players gain 4 Block per Verse. | Japanese festival |
 | 25 | Bridge | 1 Skill | Gain 2 Verses. Your next Chorus doesn't spend Verses. | Songwriting |
@@ -120,13 +120,13 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 60 | 📦 DeathLink | 2 Power | Whenever an enemy dies, ALL other enemies lose HP equal to 25% of its Max HP. | Archipelago: DeathLink ties players' deaths together; here it ties the enemies' |
 | 61 | 💚 Hymn | 1 Skill | ALL players gain 3 Regen. Exhaust. | Music / faith |
 | 62 | 💚 Harvest Festival | 2 Skill | ALL players heal 4 and gain 1 Strength. Exhaust. | Stardew Valley |
-| 63 | 🎤 Rock Opera | 3 Attack | **Chorus:** deal 6 damage to ALL enemies per Verse. | Music |
+| 63 | 🎤 Rock Opera | 3 Attack | **Chorus:** deal 8 damage to ALL enemies per Verse. | Music |
 | 64 | Perfect Pitch | 2 Power | Your Song cards give 2 Verses instead of 1. | Vocals |
 | 65 | Encore | 2 Power | The first Chorus you play each turn doesn't spend Verses. | Music |
 | 66 | Choir | 2 Power | Your Chorus cards count as if you had 2 more Verses. | Vocals |
 | 67 | Virtuoso | 3 Power | Whenever you play a Song card, deal 4 damage to ALL enemies. | Piano / guitar |
 | 68 | Mixtape | 1 Skill | Add 3 random Song cards to your hand. They cost 0 this turn. Exhaust. | Music |
-| 69 | 🗡️🎤 Diss Track | 2 Attack | **Chorus + Comeback.** Deal 3 damage to ALL enemies per Verse, +3 for each Insulted on each enemy, then remove their Insulted. | Comeback (music) |
+| 69 | 🗡️🎤 Diss Track | 2 Attack | **Chorus + Comeback.** Deal 4 damage to ALL enemies per Verse, +4 for each Insulted on each enemy, then remove their Insulted. | Comeback (music) |
 | 70 | Jam Session | 2 Skill | ALL players gain 2 Energy next turn. Exhaust. | Music / co-op |
 | 71 | 📦 Release! | 2 Skill | **Check** 5 times. Exhaust. | Archipelago: releasing sends out all your remaining items at once |
 | 72 | Zero-Second Goal | 1 Attack | Can only be played if it's the last card in your hand. Deal 30 damage. | Rocket League |
