@@ -17,6 +17,8 @@ from simple shapes on a shared skeleton (`Rig.cs`), and each animation is a list
   `Program.cs` out of the way and rename this file to `Program.cs`. It reads the original buttons in
   `art_originals/select_icons_old/` to keep the name text and writes to `out/select/`; copy `select.png` and
   `select_locked.png` from there into each brother's image folder.
+- `ModImage.cs.txt`: the mod image (`SpireBrothers/mod_image.png`, 420 x 420), the four brothers in a 2 x 2 grid on
+  their select-button colors, no names. Swap it in as `Program.cs` the same way; it writes `out/mod_image.png`.
 
 ## Running it
 
