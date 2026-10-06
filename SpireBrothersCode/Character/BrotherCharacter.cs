@@ -60,7 +60,8 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
     // the AnimatedSprite2D it finds in the body. Only idle is required; a missing cue just keeps the current one.
     private static readonly (string Name, float Fps, bool Loop)[] Anims =
     [
-        ("idle", 6, true), ("attack", 14, false), ("cast", 10, false), ("hit", 12, false), ("dead", 8, false)
+        ("idle", 6, true), ("attack", 14, false), ("cast", 10, false), ("hit", 12, false), ("dead", 8, false),
+        ("rest", 5, true)   // sitting by the campfire; only rest sites play it (see StandIns)
     ];
 
     private SpriteFrames? LoadFrames(out Texture2D? first)
@@ -97,24 +98,26 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
     }
 
     /// <summary>
-    /// A looping idle animation of this brother, feet at the origin, <paramref name="height"/> units tall, for screens
-    /// outside combat (the shop and rest sites; see StandIns). Null if he has no frames/ yet.
+    /// A looping animation of this brother, feet at the origin, <paramref name="height"/> units tall, for screens
+    /// outside combat (see StandIns): <paramref name="anim"/> if he has it (e.g. "rest" at the campfire), otherwise idle.
+    /// Null if he has no frames/ yet.
     /// </summary>
-    public AnimatedSprite2D? CreateIdleSprite(float height)
+    public AnimatedSprite2D? CreateIdleSprite(float height, string anim = "idle")
     {
         try
         {
             if (LoadFrames(out var first) is not { } frames || first == null) return null;
+            if (!frames.HasAnimation(anim)) anim = "idle";
             float h = first.GetSize().Y;
             var sprite = new AnimatedSprite2D
             {
                 SpriteFrames = frames,
-                Autoplay = "idle",
+                Autoplay = anim,
                 Offset = new Vector2(0, -h / 2),
                 Scale = Vector2.One * (height / h),
                 TextureFilter = CanvasItem.TextureFilterEnum.Nearest
             };
-            sprite.Play("idle");
+            sprite.Play(anim);
             return sprite;
         }
         catch (Exception e)

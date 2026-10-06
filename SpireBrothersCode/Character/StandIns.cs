@@ -10,7 +10,8 @@ namespace SpireBrothers.SpireBrothersCode.Character;
 /// <summary>
 /// The shop and rest sites only take a Spine scene per character, so the brothers borrow their vanilla character's
 /// (PlaceholderCharacterModel). These patches keep that scene, so everything it does (thought bubbles, selection,
-/// flipping) still works, but hide its Spine body and stand the brother's own idle animation in its place.
+/// flipping) still works, but hide its Spine body and put the brother's own animation in its place: idle in the shop,
+/// sitting on a log ("rest": Daniel tinkers, David flips a coin, Joshua strums, Tim toasts a marshmallow) at rest sites.
 /// </summary>
 [HarmonyPatch]
 public static class StandIns
@@ -39,7 +40,7 @@ public static class StandIns
             var players = Players(__instance);
             var visuals = PlayerVisuals(__instance);
             for (int i = 0; i < Math.Min(players.Count, visuals.Count); i++)
-                if (players[i].Character is BrotherCharacter brother) StandIn(visuals[i], brother, ShopHeight);
+                if (players[i].Character is BrotherCharacter brother) StandIn(visuals[i], brother, ShopHeight, "idle");
         }
         catch (Exception e)
         {
@@ -55,7 +56,7 @@ public static class StandIns
         {
             if (__instance.Player?.Character is not BrotherCharacter brother) return;
             float hitbox = __instance.Hitbox?.Size.Y ?? 0;
-            StandIn(__instance, brother, hitbox > 100 ? hitbox * 0.9f : RestSiteHeight);
+            StandIn(__instance, brother, hitbox > 100 ? hitbox * 0.9f : RestSiteHeight, "rest");
         }
         catch (Exception e)
         {
@@ -73,11 +74,11 @@ public static class StandIns
         sprite.Position = new Vector2(-sprite.Position.X, sprite.Position.Y);
     }
 
-    private static void StandIn(Node host, BrotherCharacter brother, float height)
+    private static void StandIn(Node host, BrotherCharacter brother, float height, string anim)
     {
         var spines = host.GetChildren().OfType<Node2D>().Where(n => n.GetClass() == "SpineSprite").ToList();
         if (spines.Count == 0 || host.GetNodeOrNull(NodeName) != null) return;
-        if (brother.CreateIdleSprite(height) is not { } sprite) return;
+        if (brother.CreateIdleSprite(height, anim) is not { } sprite) return;
 
         sprite.Name = NodeName;
         sprite.Position = spines[0].Position;

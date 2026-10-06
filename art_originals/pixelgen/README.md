@@ -8,14 +8,16 @@ from simple shapes on a shared skeleton (`Rig.cs`), and each animation is a list
 - `Brothers.cs`: each brother's clothes, props, and animation poses (David's sunglasses are in `DavidArt.DrawHeadExtras`).
 - `Canvas.cs`: the drawing and PNG code.
 - `Program.cs`: renders every frame into `out/<name>/frames/`, plus preview sheets (`out/preview_<name>.png`,
-  `out/lineup.png`, `out/heads.png`).
+  `out/lineup.png`, `out/heads.png`, and `out/campfire.png` / `out/campfire_frames.png` for the rest-site loop).
+- Animations: `idle`, `attack`, `cast`, `hit`, `dead` (combat) and `rest` (sitting on a log at rest sites: Daniel
+  tinkers with his multimeter, David flips a coin, Joshua strums, Tim toasts a marshmallow until it catches fire).
 - `SelectButtons.cs.txt`: renders the character select buttons from the first idle frame. To use it, rename
   `Program.cs` out of the way and rename this file to `Program.cs`. It reads the current `select.png` files to keep
   the name text.
 
 ## Running it
 
-From this folder:
+Double-click `Render frames.bat` (it opens the `out` folder when it's done), or from this folder:
 
 ```
 "C:\Program Files\dotnet\dotnet.exe" run -c Release -- out
@@ -26,3 +28,6 @@ Check the previews in `out/`, then copy `out/<name>/frames/*.png` into
 
 The main mod project ignores this folder (`<Compile Remove="art_originals/**" />` in `SpireBrothers.csproj`), and
 Godot ignores it because of the `.gdignore` in `art_originals/`.
+
+A copy also lives on the Desktop in `pixelgen`. Edit either one, but copy changes back into
+`art_originals/pixelgen/` in the project so they are saved with it.

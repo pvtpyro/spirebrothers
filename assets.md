@@ -84,6 +84,7 @@ Frames are named `<animation>_<number>.png`, numbered from 0, all the same size 
 | `cast` | 6 | 10 per second | Playing a Skill or Power |
 | `hit` | 4 | 12 per second | Taking damage |
 | `dead` | 5 | 8 per second | Dying (stays on the last frame). The code also tips the whole body over backwards onto the ground, so draw these standing up. |
+| `rest` | 8 | 5 per second, loops | Sitting on a log at rest sites (not in combat). Each brother has his own pastime. |
 
 Any number of frames works; add or remove files and rebuild. The current frames are 64 × 80 pixels, shown at 5×
 with no smoothing, so you can repaint any frame in a pixel editor (Aseprite, Piskel, Photoshop with nearest-neighbor)

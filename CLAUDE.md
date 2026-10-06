@@ -69,7 +69,8 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
 - Combat bodies: `Character/BrotherCharacter.cs` plays `images/characters/<name>/frames/<anim>_<n>.png` (idle/attack/cast/hit/dead,
   pixel art at 64x80, nearest filter) on an `AnimatedSprite2D`, which BaseLib drives from the game's animation cues;
   falls back to `body.png`, then the vanilla placeholder. The frames come from `art_originals/pixelgen/` (see its README;
-  bodies are three-quarters turned right, David wears sunglasses). Re-run it to change the art, then copy the frames in.
+  bodies are three-quarters turned right, David wears sunglasses; a `rest` loop for rest sites, played by `StandIns`).
+  Re-run it to change the art, then copy the frames in. A copy is on her Desktop (`pixelgen`).
   The sprite's pivot is moved to the feet and it tweens to -90° on `dead` (back up on `revive`), because the dead frames only slump.
   It also sets the character icon (`icon.png`, falling back to `map_marker.png`, plus `icon_outline.png`): co-op map votes and the
   player list use it, and the top-left icon reuses the placeholder's icon scene with our textures swapped in.

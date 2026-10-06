@@ -10,6 +10,7 @@ public abstract class AnimatedBrother : Brother
         ["cast"] = (Cast(), 10, false),
         ["hit"] = (Hit(), 12, false),
         ["dead"] = (Dead(), 8, false),
+        ["rest"] = (Rest(), 5, true),
     };
 
     protected virtual Pose Base() => new();
@@ -26,6 +27,29 @@ public abstract class AnimatedBrother : Brother
             p.Face = i == 5 ? Face.Blink : Face.Normal;
             p.Glow = i % 4 < 2;
             p.Fx = i;
+            list.Add(p);
+        }
+        return list;
+    }
+
+    /// <summary>Sitting on a log at the campfire, hands on his knees, breathing. Brothers add their own pastime.</summary>
+    protected virtual Pose Sit()
+    {
+        var p = Base();
+        p.Sitting = true; p.Crouch = 11; p.Lean = 1;
+        p.FootF = new V(11, 0); p.FootB = new V(12, -1);
+        p.FrontHand = new V(8, 10); p.BackHand = new V(5, 11);
+        p.FrontElbowPref = new V(0, 1); p.BackElbowPref = new V(0, 1);
+        return p;
+    }
+
+    protected virtual List<Pose> Rest()
+    {
+        float[] bob = [0, 0, 1, 1, 1, 0, 0, 0];
+        var list = new List<Pose>();
+        for (int i = 0; i < 8; i++)
+        {
+            var p = Sit(); p.Bob = bob[i]; p.Fx = i; p.Face = i == 6 ? Face.Blink : Face.Happy; p.Glow = i % 4 < 2;
             list.Add(p);
         }
         return list;
@@ -140,8 +164,20 @@ public class DanielArt : AnimatedBrother
         if (p.Fx == 1) Swoosh(c, r.SF, 18, -70, 20, Col.Hex("dff6ff"));
     }
 
+    // the multimeter he fiddles with at the campfire: screen flickers, now and then a spark
+    private static void Tinker(Canvas c, Rig r, Pose p)
+    {
+        var at = r.HandF + new V(-1, -3);
+        c.Draw(q => S.Box(q, at.X - 2, at.Y - 3, at.X + 3, at.Y + 3), Col.Hex("e0b020"));
+        c.Flat(q => S.Box(q, at.X - 1, at.Y - 2, at.X + 2, at.Y), p.Fx % 3 == 0 ? Cyan : Col.Hex("70e070"));
+        c.Plot(at + new V(0, 1.5f), Col.Hex("203020"));
+        if (p.Fx is 2 or 6) Sparkle(c, at + new V(5, -5), 1, Cyan);
+        if (p.Fx == 3) Sparkle(c, at + new V(6, -7), 2, Cyan);
+    }
+
     protected override void DrawFront(Canvas c, Rig r, Pose p)
     {
+        if (p.Prop == "tinker") { Tinker(c, r, p); DrawHand(c, r.HandF, false); return; }
         if (p.Prop != "spark") return;
         var at = r.HandF + new V(3, -3);
         float rad = p.Fx switch { 1 => 1.5f, 2 => 2.5f, 3 => 3.5f, 4 => 2f, _ => 0 };
@@ -160,6 +196,13 @@ public class DanielArt : AnimatedBrother
         V[] dirs = [new(1, -1), new(1, 0), new(1, -1), new(0, -1), new(1, -1)];
         var pt = from;
         for (int i = 0; i < 9; i++) { pt += dirs[(i + seed) % dirs.Length]; c.Plot(pt + new V(2, 0), i % 2 == 0 ? Col.Hex("ffffff") : Cyan); }
+    }
+
+    protected override List<Pose> Rest()
+    {
+        var list = base.Rest();
+        foreach (var p in list) { p.Prop = "tinker"; p.FrontHand = new V(10, 7); p.BackHand = new V(5, 8); }
+        return list;
     }
 
     protected override List<Pose> Attack() => Swing("wrench");
@@ -259,6 +302,19 @@ public class DavidArt : AnimatedBrother
         if (p.Fx == 0) return;
         c.Draw(q => S.Ellipse(q, at, width[p.Fx], 2.2f), Gold, hi: Col.Hex("fff0a0"));
         if (p.Fx == 3) { Sparkle(c, at + new V(4, -3), 2, Gold); Sparkle(c, at + new V(-4, 1), 1, Gold); }
+    }
+
+    protected override List<Pose> Rest()
+    {
+        // flips a coin, catches it, admires it
+        int[] fx = [0, 1, 2, 3, 4, 5, 0, 0];
+        var list = base.Rest();
+        for (int i = 0; i < list.Count; i++)
+        {
+            var p = list[i]; p.Prop = "coin"; p.Fx = fx[i]; p.FrontHand = new V(11, 4); p.FrontElbowPref = new V(0, 1);
+            p.HeadTilt = fx[i] is 2 or 3 ? -0.5f : 0;
+        }
+        return list;
     }
 
     protected override List<Pose> Attack()
@@ -388,6 +444,19 @@ public class JoshuaArt : AnimatedBrother
         return list;
     }
 
+    protected override List<Pose> Rest()
+    {
+        var list = base.Rest();
+        for (int i = 0; i < list.Count; i++)
+        {
+            var p = list[i]; var g = Base();
+            p.Prop = "guitar"; p.FrontHand = g.FrontHand + new V(0, i % 2 == 0 ? -1.5f : 0); p.BackHand = g.BackHand;
+            p.FrontElbowPref = g.FrontElbowPref; p.BackElbowPref = g.BackElbowPref;
+            p.T = 0.1f + (i % 8) * 0.17f;
+        }
+        return list;
+    }
+
     protected override List<Pose> Attack()
     {
         // grab the neck with both hands and smash
@@ -474,8 +543,27 @@ public class TimArt : AnimatedBrother
         c.Plot(h + new V(-1.5f, -2), Col.Hex("3a3030"));
     }
 
+    private static void Marshmallow(Canvas c, Rig r, Pose p)
+    {
+        var d = V.Dir(p.PropAngle); var h = r.HandF;
+        var tip = h + d * 21;
+        c.Draw(q => S.Capsule(q, h - d * 1.5f, tip, 0.55f), Col.Hex("8a6a44"), noShade: true);
+        var puff = tip + d * 1.5f;
+        Col mallow = p.Fx switch { 0 => Col.Hex("fbf6ec"), 1 => Col.Hex("f6e2b8"), 2 or 3 => Col.Hex("e8b868"), 4 or 5 => Col.Hex("c07030"), _ => Col.Hex("3a2a24") };
+        c.Draw(q => S.Ellipse(q, puff, 2.6f, 2.2f), mallow, hi: mallow.Light);
+        if (p.Fx is 4 or 5)
+        {
+            float flick = p.Fx == 4 ? 0 : 1;
+            c.Flat(q => S.Taper(q, puff + new V(0, -1), puff + new V(flick, -6.5f), 2.4f, 0.3f), Col.Hex("ff8a20"));
+            c.Flat(q => S.Taper(q, puff + new V(0, -1), puff + new V(flick * 0.5f, -4.5f), 1.3f, 0.2f), Col.Hex("ffe060"));
+        }
+        if (p.Fx is 6 or 7)
+            for (int i = 0; i < 3; i++) c.Plot(puff + new V(i * 0.8f - 0.5f + (p.Fx - 6), -3.5f - i * 1.6f), Col.Hex("b8b8c0"));
+    }
+
     protected override void DrawWeapon(Canvas c, Rig r, Pose p)
     {
+        if (p.Prop == "marshmallow") { Marshmallow(c, r, p); return; }
         if (p.Prop != "tsquare") return;
         var d = V.Dir(p.PropAngle); var n = d.Perp; var h = r.HandF;
         c.Draw(q => S.Capsule(q, h - d * 1, h + d * 17, 1.3f), WoodC, hi: Col.Hex("f4dca0"));
@@ -509,6 +597,18 @@ public class TimArt : AnimatedBrother
         DrawHand(c, r.HandF, false);
         DrawHand(c, r.HandB, false);
         if (p.Fx is 3 or 4) { Sparkle(c, left + new V(width + 5, -3), 2, Col.Hex("ffffff")); Sparkle(c, left + new V(-3, -2), 1, Col.Hex("a0d0ff")); }
+    }
+
+    protected override List<Pose> Rest()
+    {
+        // toasting a marshmallow... it catches fire, he blows it out, starts a fresh one
+        var list = base.Rest();
+        foreach (var p in list)
+        {
+            p.Prop = "marshmallow"; p.FrontHand = new V(11, 5); p.FrontElbowPref = new V(0, 1); p.PropAngle = -18 + (p.Fx % 2) * 2;
+            if (p.Fx is 4 or 5) p.Face = Face.Hurt;
+        }
+        return list;
     }
 
     protected override List<Pose> Attack() => Swing("tsquare");

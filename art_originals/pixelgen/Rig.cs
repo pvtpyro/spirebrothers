@@ -14,6 +14,7 @@ public class Pose
     public bool Glow;       // Daniel's gadget pulse
     public float Tint;      // red hit flash amount
     public bool BackOnFront;  // both hands on one grip (guitar swing)
+    public bool Sitting;      // on a log at the campfire (rest sites)
     public Pose Clone() => (Pose)MemberwiseClone();
 }
 
@@ -85,6 +86,7 @@ public abstract class Brother
     {
         var c = new Canvas(64, 80) { K = (Portrait ? 1f : Scale), Origin = new V(Rig.Cx, 80) };
         var r = new Rig(p);
+        if (p.Sitting) DrawLog(c);
         DrawBehind(c, r, p);
         DrawArm(c, r.SB, r.ElbowB, r.HandB, back: true);
         DrawLeg(c, r.HipB, r.KneeB, r.FootB, back: true);
@@ -98,6 +100,16 @@ public abstract class Brother
         DrawFront(c, r, p);
         if (p.Tint > 0) TintAll(c, Col.Hex("ff4040"), p.Tint);
         return c;
+    }
+
+    /// <summary>The log he sits on at the campfire, under his hips.</summary>
+    protected static void DrawLog(Canvas c)
+    {
+        var bark = Col.Hex("6b4a2b"); var cut = Col.Hex("c99a62");
+        c.Draw(q => S.Capsule(q, new V(Rig.Cx - 13, 72), new V(Rig.Cx + 6, 72), 6f), bark, hi: bark.Light);
+        for (float x = Rig.Cx - 10; x < Rig.Cx + 6; x += 4) c.Plot(x, 70 + (x % 8 == 0 ? 1 : 3), bark.Shade);
+        c.Draw(q => S.Ellipse(q, new V(Rig.Cx - 15, 72), 3.2f, 5.6f), cut);
+        c.Flat(q => MathF.Abs(S.Ellipse(q, new V(Rig.Cx - 15, 72), 1.6f, 3f)) - 0.4f, cut.Shade);
     }
 
     // ---- body parts ----
