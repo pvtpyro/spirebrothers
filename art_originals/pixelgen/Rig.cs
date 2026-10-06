@@ -168,8 +168,8 @@ public abstract class Brother
             c.Draw(q => S.I(S.Circle(q, h + new V(-2.5f, 0), 11.2f) + Wobble(q, h, 0.9f), S.U(q.X - (h.X + 1), q.Y - (h.Y - 2))), HairC);
         // head
         c.Draw(q => S.U(S.Circle(q, h, Rig.HeadR), S.Ellipse(q, h + new V(4, 5), 6.5f, 4.5f)), Skin, hi: Skin.Light);
-        // nose: just a small dark half outline on the face, open toward the cheek
-        c.Plot(h.X + 7.6f, h.Y + 2.6f, Canvas.Outline); c.Plot(h.X + 7.6f, h.Y + 3.6f, Canvas.Outline); c.Plot(h.X + 6.6f, h.Y + 3.6f, Canvas.Outline);
+        // nose: one dark pixel between and just below the eyes, with a soft shadow above it (smaller than an eye)
+        c.Plot(h.X + 4.6f, h.Y + 2.6f, Skin.Shade); c.Plot(h.X + 4.6f, h.Y + 3.6f, Canvas.Outline);
         // beard: lower face plus chin, sideburn up to the ear
         c.Draw(q => S.I(S.U(S.Circle(q, h, Rig.HeadR + 0.6f), S.Ellipse(q, h + new V(4.5f, 7.5f), 6.5f, BeardLen)) + Wobble(q, h, 0.6f),
             S.U(-(q.Y - (h.Y + 5f)) + MathF.Max(0, q.X - (h.X + 2)) * 0.15f, S.I(-(q.Y - (h.Y + 0.5f)), q.X - (h.X - 0.5f)))), BeardC, hi: BeardC.Light, line: BeardC.Mul(0.6f));
@@ -228,10 +228,10 @@ public abstract class Brother
             switch (f)
             {
                 case Face.Blink:
-                    c.Plot(x, y + 1, Eye); c.Plot(x + 1, y + 1, Eye.Lerp(Skin, 0.5f));
+                    c.Plot(x - 0.5f, y + 1, Eye); c.Plot(x + 0.5f, y + 1, Eye);
                     break;
                 case Face.Hurt:
-                    c.Plot(x - 0.5f, y - 1, Eye); c.Plot(x + 0.5f, y, Eye); c.Plot(x - 0.5f, y + 1, Eye);
+                    c.Plot(x - 0.5f, y - 1, Eye); c.Plot(x + 0.5f, y, Eye); c.Plot(x + 1.5f, y, Eye); c.Plot(x - 0.5f, y + 1, Eye);
                     break;
                 case Face.Dead:
                     c.Plot(x - 1, y - 1, Eye); c.Plot(x + 1, y - 1, Eye); c.Plot(x, y, Eye); c.Plot(x - 1, y + 1, Eye); c.Plot(x + 1, y + 1, Eye);
@@ -240,7 +240,9 @@ public abstract class Brother
                     c.Plot(x - 0.5f, y + 1, Eye); c.Plot(x + 0.5f, y, Eye); c.Plot(x + 1.5f, y + 1, Eye);
                     break;
                 default:
-                    c.Plot(x, y, Eye); c.Plot(x, y + 1, Eye);
+                    // 2 x 3 eyes with a little white glint on the side he's facing
+                    for (int ey = -1; ey <= 1; ey++) { c.Plot(x - 0.5f, y + ey, Eye); c.Plot(x + 0.5f, y + ey, Eye); }
+                    c.Plot(x + 0.5f, y - 1, Col.Hex("ffffff"));
                     if (f == Face.Fierce) { c.Plot(x - 1, y - 2, BeardC.Shade); c.Plot(x, y - 2, BeardC.Shade); c.Plot(x + 1, y - 1.5f, BeardC.Shade); }
                     break;
             }
