@@ -1,4 +1,0 @@
-- in the shop it doesn't show our models, it shows the ones we're based off of
-- let's change daniel's map icon to a pizza slice
-- Tim: chores card showed up with the wrong number I think. he had 3 kids and the buff on the card that increases block. I forget what that buff is called. Can you verify its right?
-- maybe tell Joshua what the other user received when you used Check

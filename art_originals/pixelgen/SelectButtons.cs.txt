@@ -1,0 +1,72 @@
+// Character select buttons: rebuild the ring background, keep the name text, put the pixel face in the middle.
+var P = "D:/projects/csharp/SpireBrothers/SpireBrothers/images/characters/";
+var outDir = "out/select";
+AnimatedBrother[] brothers = [new DanielArt(), new DavidArt(), new JoshuaArt(), new TimArt()];
+const int Cx = 66, Cy = 80;
+
+foreach (var b in brothers)
+{
+    b.Portrait = true;
+    var pose = b.Anims()["idle"].poses[0];
+    var frame = b.Render(pose);
+    var sheet = new List<Canvas>();
+    foreach (var (file, locked) in new[] { ("select.png", false), ("select_locked.png", true) })
+    {
+        var orig = PngRead.Load(P + $"{b.Name}/{file}");
+        var bg = Background(orig);
+        var card = new Canvas(orig.W, orig.H);
+        for (int y = 0; y < orig.H; y++) for (int x = 0; x < orig.W; x++) card.Set(x, y, bg[x, y]);
+
+        // portrait: crop x 8..51, y 2..51 of the frame, 3x, with a soft drop shadow
+        const int S = 3, X0 = 8, Y0 = 2, CW = 44, CH = 50, OY = 12;
+        Col? Port(int x, int y) => frame.Get(X0 + x / S, Y0 + y / S);
+        for (int y = 0; y < CH * S; y++) for (int x = 0; x < CW * S; x++)
+            if (Port(x, y) != null) Blend(card, x + 4, y + OY + 4, new Col(0, 0, 0), 0.35f);
+        for (int y = 0; y < CH * S; y++) for (int x = 0; x < CW * S; x++)
+            if (Port(x, y) is { } c) card.Set(x, y + OY, locked ? Dim(c) : c);
+
+        // name text: anything in the bottom strip that doesn't match the rebuilt background
+        for (int y = 150; y < orig.H; y++) for (int x = 0; x < orig.W; x++)
+        {
+            var o = orig.Get(x, y)!.Value; var e = bg[x, y];
+            if (Math.Max(Math.Abs(o.R - e.R), Math.Max(Math.Abs(o.G - e.G), Math.Abs(o.B - e.B))) > 24) card.Set(x, y, o);
+        }
+        card.SavePng(Path.Combine(outDir, b.Name, file));
+        sheet.Add(card);
+    }
+    var both = new Canvas(132 * 2 + 4, 195);
+    for (int i = 0; i < 2; i++) for (int y = 0; y < 195; y++) for (int x = 0; x < 132; x++) both.Set(i * 136 + x, y, sheet[i].Get(x, y) ?? new Col(0, 0, 0));
+    both.SavePng(Path.Combine(outDir, $"preview_{b.Name}.png"), 2);
+    Console.WriteLine(b.Name);
+}
+
+static Col Dim(Col c) { var l = (byte)((0.3f * c.R + 0.59f * c.G + 0.11f * c.B) * 0.32f); return new Col(l, l, l); }
+
+static void Blend(Canvas c, int x, int y, Col col, float a) { if (c.Get(x, y) is { } o) c.Set(x, y, o.Lerp(col, a)); }
+
+// Linear vertical gradient (sampled off-ring at the left edge) plus rings every 22px around the icon center,
+// which add a constant tint (sampled on the ring just above the icon).
+static Col[,] Background(Canvas orig)
+{
+    var top = orig.Get(0, 0)!.Value; var low = orig.Get(0, 150)!.Value;
+    float[] Grad(int y) => [top.R + (low.R - top.R) * y / 150f, top.G + (low.G - top.G) * y / 150f, top.B + (low.B - top.B) * y / 150f];
+    var ringPix = orig.Get(Cx, 17)!.Value; var g17 = Grad(17);
+    float[] delta = [ringPix.R - g17[0], ringPix.G - g17[1], ringPix.B - g17[2]];
+    var bg = new Col[orig.W, orig.H];
+    for (int y = 0; y < orig.H; y++) for (int x = 0; x < orig.W; x++)
+    {
+        float r = MathF.Sqrt((x + 0.5f - Cx) * (x + 0.5f - Cx) + (y + 0.5f - Cy) * (y + 0.5f - Cy));
+        float m = r % 22f;
+        float cover = Math.Clamp(Math.Min(m - 16.5f, 22f - m + 0.5f), 0, 1);
+        var g = Grad(y);
+        bg[x, y] = new Col((byte)Math.Clamp(g[0] + delta[0] * cover, 0, 255), (byte)Math.Clamp(g[1] + delta[1] * cover, 0, 255), (byte)Math.Clamp(g[2] + delta[2] * cover, 0, 255));
+    }
+    return bg;
+}
+var all = new Canvas(132 * 4 + 12, 195);
+for (int i = 0; i < brothers.Length; i++)
+{
+    var c = PngRead.Load(Path.Combine(outDir, brothers[i].Name, "select.png"));
+    for (int y = 0; y < 195; y++) for (int x = 0; x < 132; x++) all.Set(i * 136 + x, y, c.Get(x, y) ?? new Col(0, 0, 0));
+}
+all.SavePng(Path.Combine(outDir, "all.png"), 2);
