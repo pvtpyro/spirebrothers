@@ -74,6 +74,8 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   The sprite's pivot is moved to the feet and it tweens to -90° on `dead` (back up on `revive`), because the dead frames only slump.
   It also sets the character icon (`icon.png`, falling back to `map_marker.png`, plus `icon_outline.png`): co-op map votes and the
   player list use it, and the top-left icon reuses the placeholder's icon scene with our textures swapped in.
+  Character select background: `CustomCharacterSelectBg` points at `SpireBrothers/scenes/char_select/<name>_bg.tscn`
+  (hand-written scene: full-screen TextureRect, nearest filter, keep-aspect-covered) showing `<name>/select_bg.png`.
   Shop and rest sites only take a Spine scene, so `Character/StandIns.cs` keeps the placeholder's scene, hides its
   SpineSprite, and adds `BrotherCharacter.CreateIdleSprite()` in its place (sizes are constants there; untested in game).
 - `SpireBrothersCode/Powers/`, `SpireBrothersCode/Relics/`, `SpireBrothersCode/Potions/`

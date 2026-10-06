@@ -7,6 +7,8 @@ from simple shapes on a shared skeleton (`Rig.cs`), and each animation is a list
   three-quarters turned to the right, like the vanilla characters.
 - `Brothers.cs`: each brother's clothes, props, and animation poses (David's sunglasses are in `DavidArt.DrawHeadExtras`).
 - `Canvas.cs`: the drawing and PNG code.
+- `Backgrounds.cs`: the character select backgrounds (480 x 270, one scene per brother inspired by his favorite
+  games, with him standing on the right). Saved as `out/<name>/select_bg.png`, previews in `out/select_bg_<name>_preview.png`.
 - `Program.cs`: renders every frame into `out/<name>/frames/`, plus preview sheets (`out/preview_<name>.png`,
   `out/lineup.png`, `out/heads.png`, and `out/campfire.png` / `out/campfire_frames.png` for the rest-site loop).
 - Animations: `idle`, `attack`, `cast`, `hit`, `dead` (combat) and `rest` (sitting on a log at rest sites: Daniel
@@ -24,7 +26,8 @@ Double-click `Render frames.bat` (it opens the `out` folder when it's done), or 
 ```
 
 Check the previews in `out/`, then copy `out/<name>/frames/*.png` into
-`SpireBrothers/images/characters/<name>/frames/` and rebuild the mod.
+`SpireBrothers/images/characters/<name>/frames/` (and `out/<name>/select_bg.png` into
+`SpireBrothers/images/characters/<name>/`) and rebuild the mod.
 
 The main mod project ignores this folder (`<Compile Remove="art_originals/**" />` in `SpireBrothers.csproj`), and
 Godot ignores it because of the `.gdignore` in `art_originals/`.

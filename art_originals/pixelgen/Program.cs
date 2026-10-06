@@ -21,6 +21,7 @@ foreach (var b in brothers)
     sheet.SavePng(Path.Combine(outDir, $"preview_{b.Name}.png"), 3);
     Console.WriteLine($"{b.Name}: " + string.Join(", ", anims.Select(a => $"{a.Key} x{a.Value.poses.Count}")));
 }
+Backgrounds.RenderAll(brothers, outDir);
 // big side-by-side of everyone's first idle frame, at game scale
 var lineup = new Canvas(64 * 4 + 6, 80);
 for (int i = 0; i < brothers.Length; i++)

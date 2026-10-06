@@ -166,11 +166,10 @@ public abstract class Brother
         // back hair mass (behind the head)
         if (Hair == HairStyle.Shaggy)
             c.Draw(q => S.I(S.Circle(q, h + new V(-2.5f, 0), 11.2f) + Wobble(q, h, 0.9f), S.U(q.X - (h.X + 1), q.Y - (h.Y - 2))), HairC);
-        // nose
-        c.Draw(q => S.Capsule(q, h + new V(9.5f, 1f), h + new V(11.8f, 3.5f), 1.4f), Skin);
         // head
         c.Draw(q => S.U(S.Circle(q, h, Rig.HeadR), S.Ellipse(q, h + new V(4, 5), 6.5f, 4.5f)), Skin, hi: Skin.Light);
-        c.Draw(q => S.Capsule(q, h + new V(9.5f, 1f), h + new V(11.8f, 3.5f), 1.4f), Skin, outline: false);
+        // nose: just a small dark half outline on the face, open toward the cheek
+        c.Plot(h.X + 7.6f, h.Y + 2.6f, Canvas.Outline); c.Plot(h.X + 7.6f, h.Y + 3.6f, Canvas.Outline); c.Plot(h.X + 6.6f, h.Y + 3.6f, Canvas.Outline);
         // beard: lower face plus chin, sideburn up to the ear
         c.Draw(q => S.I(S.U(S.Circle(q, h, Rig.HeadR + 0.6f), S.Ellipse(q, h + new V(4.5f, 7.5f), 6.5f, BeardLen)) + Wobble(q, h, 0.6f),
             S.U(-(q.Y - (h.Y + 5f)) + MathF.Max(0, q.X - (h.X + 2)) * 0.15f, S.I(-(q.Y - (h.Y + 0.5f)), q.X - (h.X - 0.5f)))), BeardC, hi: BeardC.Light, line: BeardC.Mul(0.6f));

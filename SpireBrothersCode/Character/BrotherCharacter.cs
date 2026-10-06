@@ -202,6 +202,17 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
     public override string? CustomCharacterSelectIconPath => ArtIfPresent("select.png") ?? base.CustomCharacterSelectIconPath;
     public override string? CustomCharacterSelectLockedIconPath => ArtIfPresent("select_locked.png") ?? base.CustomCharacterSelectLockedIconPath;
 
+    // Character select background: scenes/char_select/<name>_bg.tscn, a full-screen TextureRect showing
+    // images/characters/<name>/select_bg.png (480 x 270 pixel art, scaled up crisp; drawn by art_originals/pixelgen).
+    public override string? CustomCharacterSelectBg
+    {
+        get
+        {
+            var scene = $"{MainFile.ResPath}/scenes/char_select/{ArtFolder}_bg.tscn";
+            return ResourceLoader.Exists(scene) ? scene : base.CustomCharacterSelectBg;
+        }
+    }
+
     // Map token: map_marker.png (128 x 128).
     public override string? CustomMapMarkerPath => ArtIfPresent("map_marker.png") ?? base.CustomMapMarkerPath;
 

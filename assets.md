@@ -1,3 +1,4 @@
+| `select_bg.png` | 480 × 270 (scaled up crisp) | Character select background. Shown through `SpireBrothers/scenes/char_select/<name>_bg.tscn`; any 16:9 image works (it fills the screen, cropping if needed). |
 # Spire Brothers: art assets
 
 Everything is a PNG with a transparent background, saved under `SpireBrothers/images/`. Anything without art yet
