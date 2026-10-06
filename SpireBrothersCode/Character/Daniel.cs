@@ -27,12 +27,10 @@ public class Daniel : BrotherCharacter
         ModelDb.Card<DefendDaniel>(), ModelDb.Card<DefendDaniel>(), ModelDb.Card<DefendDaniel>(), ModelDb.Card<DefendDaniel>(),
         ModelDb.Card<RubberDuckDebugging>(),
         ModelDb.Card<PercussiveMaintenance>(),
-        ModelDb.Card<SnappyComeback>(),
-        ModelDb.Card<WantSome>() // TEMP: for playtesting, remove before release
+        ModelDb.Card<SnappyComeback>()
     ];
 
-    // TEMP: Grapefruit is here for playtesting, remove before release.
-    public override IReadOnlyList<RelicModel> StartingRelics => [ModelDb.Relic<AndYouKnowWhat>(), ModelDb.Relic<Grapefruit>()];
+    public override IReadOnlyList<RelicModel> StartingRelics => [ModelDb.Relic<AndYouKnowWhat>()];
 
     public override CardPoolModel CardPool => ModelDb.CardPool<DanielCardPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<DanielRelicPool>();
