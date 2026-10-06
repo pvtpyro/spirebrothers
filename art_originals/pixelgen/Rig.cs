@@ -169,7 +169,7 @@ public abstract class Brother
         // head
         c.Draw(q => S.U(S.Circle(q, h, Rig.HeadR), S.Ellipse(q, h + new V(4, 5), 6.5f, 4.5f)), Skin, hi: Skin.Light);
         // nose: one dark pixel between and just below the eyes, with a soft shadow above it (smaller than an eye)
-        c.Plot(h.X + 4.6f, h.Y + 2.6f, Skin.Shade); c.Plot(h.X + 4.6f, h.Y + 3.6f, Canvas.Outline);
+        c.Plot(h.X + 5.6f, h.Y + 2.6f, Skin.Shade); c.Plot(h.X + 5.6f, h.Y + 3.6f, Canvas.Outline);
         // beard: lower face plus chin, sideburn up to the ear
         c.Draw(q => S.I(S.U(S.Circle(q, h, Rig.HeadR + 0.6f), S.Ellipse(q, h + new V(4.5f, 7.5f), 6.5f, BeardLen)) + Wobble(q, h, 0.6f),
             S.U(-(q.Y - (h.Y + 5f)) + MathF.Max(0, q.X - (h.X + 2)) * 0.15f, S.I(-(q.Y - (h.Y + 0.5f)), q.X - (h.X - 0.5f)))), BeardC, hi: BeardC.Light, line: BeardC.Mul(0.6f));

@@ -1,5 +1,6 @@
 // Character select buttons: rebuild the ring background, keep the name text, put the pixel face in the middle.
-var P = "D:/projects/csharp/SpireBrothers/SpireBrothers/images/characters/";
+// Reads the original buttons (ring background + name text) from art_originals/select_icons_old, never the installed ones.
+var P = "D:/projects/csharp/SpireBrothers/art_originals/select_icons_old/";
 var outDir = "out/select";
 AnimatedBrother[] brothers = [new DanielArt(), new DavidArt(), new JoshuaArt(), new TimArt()];
 const int Cx = 66, Cy = 80;

@@ -14,8 +14,9 @@ from simple shapes on a shared skeleton (`Rig.cs`), and each animation is a list
 - Animations: `idle`, `attack`, `cast`, `hit`, `dead` (combat) and `rest` (sitting on a log at rest sites: Daniel
   tinkers with his multimeter, David flips a coin, Joshua strums, Tim toasts a marshmallow until it catches fire).
 - `SelectButtons.cs.txt`: renders the character select buttons from the first idle frame. To use it, rename
-  `Program.cs` out of the way and rename this file to `Program.cs`. It reads the current `select.png` files to keep
-  the name text.
+  `Program.cs` out of the way and rename this file to `Program.cs`. It reads the original buttons in
+  `art_originals/select_icons_old/` to keep the name text and writes to `out/select/`; copy `select.png` and
+  `select_locked.png` from there into each brother's image folder.
 
 ## Running it
 
