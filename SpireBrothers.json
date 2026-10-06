@@ -1,7 +1,7 @@
 {
   "id": "SpireBrothers",
   "name": "Spire Brothers",
-  "author": "Spire Brothers",
+  "author": "pvtpyro",
   "description": "Play as 4 brothers in a roguelike deckbuilder. Each brother has unique abilities and cards, but they work together as a team.",
   "version": "v0.1.0",
   "min_game_version": "0.107.0",
