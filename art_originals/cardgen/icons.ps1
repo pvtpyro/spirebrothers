@@ -62,25 +62,6 @@ $CustomIcons['PrawnSuit'] = {
   )
 }
 
-# Rocket League's air dribble: the ball balanced on top of a car, both in the air.
-$CustomIcons['AirDribble'] = {
-  @(
-    (Detail (PLine @(270, 600, 330, 560)) 12), (Detail (PLine @(240, 545, 310, 515)) 12),  # motion lines
-    (Part (PPoly @(330, 560, 360, 480, 470, 455, 600, 470, 690, 520, 700, 575, 620, 600, 340, 600))),  # car body
-    (Part (PPoly @(420, 470, 470, 425, 560, 425, 600, 470)) (C '#9fd8ec')),               # windshield
-    (Part (PEll 405 600 42 42)), (Part (PEll 625 600 42 42)),                              # wheels
-    (Detail (PEll 405 600 14 14) 10), (Detail (PEll 625 600 14 14) 10),
-    (Part (PPoly @(330, 545, 270, 520, 285, 560, 255, 585, 330, 585)) (C '#ffb84a')),     # boost flame
-    (Part (PEll 520 270 120 120)),                                                        # ball
-    (Part (PPoly @(520, 238, 547, 258, 537, 290, 503, 290, 493, 258)) (C '#2a2a36')),     # ball patches
-    (Part (PPoly @(430, 230, 446, 220, 458, 246, 440, 262, 424, 254)) (C '#2a2a36')),
-    (Part (PPoly @(610, 230, 594, 220, 582, 246, 600, 262, 616, 254)) (C '#2a2a36')),
-    (Part (PPoly @(496, 352, 520, 344, 544, 352, 536, 376, 504, 376)) (C '#2a2a36')),
-    (Detail (PLine @(520, 238, 520, 175)) 10), (Detail (PLine @(493, 258, 446, 220)) 10), (Detail (PLine @(547, 258, 594, 220)) 10),
-    (Detail (PLine @(503, 290, 470, 330)) 10), (Detail (PLine @(537, 290, 570, 330)) 10)
-  )
-}
-
 # Monkey Island's insult swordfighting: crossed cutlasses with an angry speech bubble.
 $CustomIcons['InsultSwordfighting'] = {
   $blade1 = Rot (PPoly @(480, 150, 520, 150, 520, 560, 500, 600, 480, 560)) -38 500 380
