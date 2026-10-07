@@ -15,6 +15,9 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
     /// <summary>Folder name under images/characters/, e.g. "tim".</summary>
     protected abstract string ArtFolder { get; }
 
+    /// <summary>Frames per second for his campfire loop ("rest"); a brother with a slower story there can lower it.</summary>
+    protected virtual float RestFps => 5;
+
     private string ArtPath(string file) => $"{MainFile.ResPath}/images/characters/{ArtFolder}/{file}";
 
     private string? ArtIfPresent(string file)
@@ -77,7 +80,7 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
                 if (!frames.HasAnimation(name))
                 {
                     frames.AddAnimation(name);
-                    frames.SetAnimationSpeed(name, fps);
+                    frames.SetAnimationSpeed(name, name == "rest" ? RestFps : fps);
                     frames.SetAnimationLoop(name, loop);
                 }
                 frames.AddFrame(name, tex);

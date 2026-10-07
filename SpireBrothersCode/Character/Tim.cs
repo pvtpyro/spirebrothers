@@ -14,6 +14,8 @@ public class Tim : BrotherCharacter
     public static readonly Color Color = new("d9734f");
 
     protected override string ArtFolder => "tim";
+    // His marshmallow catching fire and getting blown out reads too fast at the usual 5 fps: about 4 seconds a loop.
+    protected override float RestFps => 2;
     public override string PlaceholderID => "ironclad";
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Masculine;
