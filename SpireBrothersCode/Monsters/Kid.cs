@@ -1,5 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils.NodeFactories;
+using HarmonyLib;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
@@ -35,7 +36,10 @@ public class Kid : CustomMonsterModel
         int number = KidNumber();
         var visuals = NodeFactory<NCreatureVisuals>.CreateFromResource(KidArt.Placeholder(number));
         if (visuals.GetChildren().OfType<Sprite2D>().FirstOrDefault() is { } sprite)
+        {
+            sprite.SetMeta(KidMotion.NumberMeta, number);
             sprite.TreeEntered += () => KidMotion.Bounce(sprite, number);
+        }
         return visuals;
     }
 
@@ -49,9 +53,68 @@ public class Kid : CustomMonsterModel
     }
 }
 
-/// <summary>The Kids' little animations: an idle bounce and a hop toward the enemies when they hit. Display only.</summary>
+/// <summary>
+/// The Kids' little animations: an idle bounce, a hop toward the enemies when they hit, and when Tim goes down they
+/// turn sad and scatter off to the left (and run back, smiling, if he's revived). Display only: the Kids still exist,
+/// they just stop acting while he's dead.
+/// </summary>
 public static class KidMotion
 {
+    public const string NumberMeta = "kid_number";
+
+    /// <summary>Tim died: each Kid frowns, turns around and runs off in its own direction, fading out.</summary>
+    // Moves the Kid's picture inside its own visuals node, never the node itself: on a game over the game moves every
+    // creature's visuals into the defeat screen's layer, and positions measured in the old layer sent them flying.
+    public static void Scatter(Creature owner)
+    {
+        int n = 0;
+        foreach (var (_, sprite) in KidNodes(owner))
+        {
+            int number = sprite.HasMeta(NumberMeta) ? sprite.GetMeta(NumberMeta).AsInt32() : 1;
+            sprite.Texture = KidArt.Placeholder(number, sad: true);
+            if (!sprite.HasMeta(HomeX)) sprite.SetMeta(HomeX, sprite.Position.X);
+            float homeX = sprite.GetMeta(HomeX).AsSingle();
+            // Scatter along the ground: every other Kid runs left or right, each a different distance. They keep
+            // bouncing as they go.
+            float dir = n % 2 == 0 ? -1f : 1f;
+            sprite.FlipH = dir < 0;
+            double delay = 0.15 + n * 0.07, run = 1.0 + (n % 3) * 0.15;
+            var tween = sprite.CreateTween();
+            tween.TweenInterval(delay);
+            tween.TweenProperty(sprite, "position:x", homeX + dir * (320 + (n % 3) * 60), run)
+                .SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.In);
+            tween.Parallel().TweenProperty(sprite, "modulate:a", 0f, run).SetDelay(run * 0.5);
+            n++;
+        }
+    }
+
+    /// <summary>Tim got back up: the Kids come running back to their spots, smiling again.</summary>
+    public static void Return(Creature owner)
+    {
+        foreach (var (_, sprite) in KidNodes(owner))
+        {
+            int number = sprite.HasMeta(NumberMeta) ? sprite.GetMeta(NumberMeta).AsInt32() : 1;
+            sprite.Texture = KidArt.Placeholder(number);
+            sprite.FlipH = false;
+            if (!sprite.HasMeta(HomeX)) continue;
+            var tween = sprite.CreateTween();
+            tween.TweenProperty(sprite, "modulate:a", 1f, 0.3);
+            tween.Parallel().TweenProperty(sprite, "position:x", sprite.GetMeta(HomeX).AsSingle(), 0.6)
+                .SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
+        }
+    }
+
+    private const string HomeX = "kid_home_x";
+
+    private static IEnumerable<(NCreatureVisuals, Sprite2D)> KidNodes(Creature owner)
+    {
+        var room = NCombatRoom.Instance;
+        if (room == null || owner.Player?.PlayerCombatState is not { } state) yield break;
+        foreach (var kid in state.Pets.Where(p => p.Monster is Kid).ToList())
+            if (room.GetCreatureNode(kid)?.Visuals is { } visuals && visuals.GetChildren().OfType<Sprite2D>().FirstOrDefault() is { } sprite)
+                yield return (visuals, sprite);
+    }
+
     /// <summary>How high the idle bounce goes and how far the attack hop goes, in game units.</summary>
     private const float BounceHeight = 3f, HopForward = 22f, HopUp = 10f;
 
@@ -110,12 +173,13 @@ public static class KidArt
         new("d94f8a"), new("2f5fa8"), new("ffb3d1"), new("7cc0f0")
     ];
 
-    private static readonly Dictionary<int, Texture2D> Cache = new();
+    private static readonly Dictionary<(int, bool), Texture2D> Cache = new();
 
-    public static Texture2D Placeholder(int number)
+    /// <summary>Kid number 1..8; <paramref name="sad"/> gives the frowning, teary face for when Tim goes down.</summary>
+    public static Texture2D Placeholder(int number, bool sad = false)
     {
         int i = (number - 1) % IsGirl.Length;
-        if (Cache.TryGetValue(i, out var cached)) return cached;
+        if (Cache.TryGetValue((i, sad), out var cached)) return cached;
 
         var img = Image.CreateEmpty(W, H, false, Image.Format.Rgba8);
         img.Fill(new Color(0, 0, 0, 0));
@@ -163,13 +227,25 @@ public static class KidArt
         var cheeks = new Color("f49a9a");                      // rosy cheeks
         Rect(img, 18, 25, 3, 2, cheeks);
         Rect(img, 35, 25, 3, 2, cheeks);
-        var mouth = new Color("8a3b2a");                       // a big smile, corners up
-        Rect(img, 22, 26, 2, 2, mouth);
-        Rect(img, 32, 26, 2, 2, mouth);
-        Rect(img, 24, 28, 8, 2, mouth);
+        var mouth = new Color("8a3b2a");
+        if (sad)
+        {
+            // a frown, corners down, and a tear
+            Rect(img, 24, 27, 8, 2, mouth);
+            Rect(img, 22, 29, 2, 2, mouth);
+            Rect(img, 32, 29, 2, 2, mouth);
+            Rect(img, 23, 23, 2, 4, new Color("7cc8f0"));
+        }
+        else
+        {
+            // a big smile, corners up
+            Rect(img, 22, 26, 2, 2, mouth);
+            Rect(img, 32, 26, 2, 2, mouth);
+            Rect(img, 24, 28, 8, 2, mouth);
+        }
 
         var tex = ImageTexture.CreateFromImage(img);
-        Cache[i] = tex;
+        Cache[(i, sad)] = tex;
         return tex;
     }
 
@@ -186,5 +262,38 @@ public static class KidArt
             for (int py = cy - r; py <= cy + r; py++)
                 if ((px - cx) * (px - cx) + (py - cy) * (py - cy) <= r * r && px >= 0 && py >= 0 && px < W && py < H)
                     img.SetPixel(px, py, c);
+    }
+}
+
+/// <summary>Sends the Kids running when their dad's death animation starts, and back when he's revived.</summary>
+[HarmonyPatch]
+public static class KidScatterPatch
+{
+    [HarmonyPatch(typeof(NCreature), nameof(NCreature.StartDeathAnim))]
+    [HarmonyPostfix]
+    private static void AfterDeathAnim(NCreature __instance)
+    {
+        try
+        {
+            if (__instance.Entity is { IsPlayer: true } owner) KidMotion.Scatter(owner);
+        }
+        catch (Exception e)
+        {
+            MainFile.Logger.Error($"Kid scatter failed: {e}");
+        }
+    }
+
+    [HarmonyPatch(typeof(NCreature), nameof(NCreature.StartReviveAnim))]
+    [HarmonyPostfix]
+    private static void AfterReviveAnim(NCreature __instance)
+    {
+        try
+        {
+            if (__instance.Entity is { IsPlayer: true } owner) KidMotion.Return(owner);
+        }
+        catch (Exception e)
+        {
+            MainFile.Logger.Error($"Kid return failed: {e}");
+        }
     }
 }
