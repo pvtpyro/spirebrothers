@@ -1,10 +1,11 @@
-param([switch]$Preview, [switch]$CardsOnly, [string]$Only = "")
+param([switch]$Preview, [switch]$CardsOnly, [string]$Only = "", [ValidateSet('', 'relics', 'powers')][string]$Section = "")
 Add-Type -AssemblyName System.Drawing
 $ErrorActionPreference = 'Stop'
 $here = $PSScriptRoot
 # -CardsOnly: only the card portraits. Use it! The other sections (relics, powers, potions, character select,
 # map markers, Ages) would overwrite art that was replaced later (pixel select buttons, pizza / sunglasses markers).
 # -Only <ClassName>: render just that card. -Preview: write into .preview instead of the mod.
+# -Section relics|powers: only that section (no cards); add -Only <file_name> (relics) or <ClassName> (powers) for one.
 $proj = 'D:\projects\csharp\SpireBrothers'
 $img = Join-Path $proj 'SpireBrothers\images'
 $loc = Join-Path $proj 'SpireBrothers\localization\eng'
@@ -157,7 +158,7 @@ function CardArt($brother, $type, $glyph, $name, $badge = '') {
 
 $cardIds = IdMap 'cards.json'; $cardGlyphs = Glyphs 'glyphs.txt'
 $cardCount = 0
-foreach ($brother in 'Daniel', 'David', 'Joshua', 'Tim') {
+foreach ($brother in $(if ($Section) { @() } else { 'Daniel', 'David', 'Joshua', 'Tim' })) {
   foreach ($f in Get-ChildItem (Join-Path $proj "SpireBrothersCode\Cards\$brother") -Filter *.cs) {
     $cls = $f.BaseName
     if ($Preview -and $cardCount -ge 12) { break }
@@ -172,13 +173,15 @@ foreach ($brother in 'Daniel', 'David', 'Joshua', 'Tim') {
   }
 }
 "cards: $cardCount"
-if ($CardsOnly -or $Only) { return }
+if ($CardsOnly -or ($Only -and -not $Section)) { return }
 
 # ---------- Relics ----------
 $relicGlyphs = @{ and_you_know_what = '💬'; trusty_multimeter = '📟'; rubber_chicken_with_a_pulley = '🐔'; never_paid_a_mechanic = '🚗'
-  grapefruit = '🍊'; monkey_phrasebook = '📕'; stone_monkey_head = '🗿'; monkey_wrench = '🔧'; old_wallet = '👛'; well_worn_guitar = '🎸'; family_minivan = '🚐' }
+  grapefruit = '🍊'; monkey_phrasebook = '📕'; stone_monkey_head = '🗿'; monkey_wrench = '🔧'; old_wallet = '👛'; well_worn_guitar = '🎸'; family_minivan = '🚐'
+  well_technically = '☝'; overstuffed_wallet = '💰'; signature_guitar = '🎸'; fifteen_passenger_van = '🚌' }
 $relicColors = @{ grapefruit = '#ff8a5c'; well_worn_guitar = '#d9a25b'; old_wallet = '#9b6a3c'; family_minivan = '#6fa8dc'; stone_monkey_head = '#9aa3a8'
-  rubber_chicken_with_a_pulley = '#ffe066'; monkey_phrasebook = '#e06666'; trusty_multimeter = '#f6b26b'; monkey_wrench = '#c0c7cc'; never_paid_a_mechanic = '#e06666'; and_you_know_what = '#8ecae6' }
+  rubber_chicken_with_a_pulley = '#ffe066'; monkey_phrasebook = '#e06666'; trusty_multimeter = '#f6b26b'; monkey_wrench = '#c0c7cc'; never_paid_a_mechanic = '#e06666'; and_you_know_what = '#8ecae6'
+  well_technically = '#ffd966'; overstuffed_wallet = '#6aa84f'; signature_guitar = '#b36bff'; fifteen_passenger_van = '#4a86c8' }
 # Solid silhouette of a line-art glyph: everything not reachable from the border.
 function Silhouette($path, $size, $strokeW, $color) {
   $c = Canvas $size $size
@@ -203,6 +206,7 @@ function Silhouette($path, $size, $strokeW, $color) {
   $c[0]
 }
 foreach ($k in $relicGlyphs.Keys) {
+  if ($Section -eq 'powers' -or ($Only -and $k -ne $Only)) { continue }
   $size = 256; $pad = $size * 0.12; $sw = $size * 0.06
   $path = GlyphPath $relicGlyphs[$k] ($size / 2) ($size / 2) ($size - $pad * 2) ($size - $pad * 2)
   $c = Canvas $size $size; $g = $c[1]
@@ -218,15 +222,16 @@ foreach ($k in $relicGlyphs.Keys) {
   $c[0].Dispose(); $sil.Dispose(); $shadow.Dispose()
 }
 "relics: $($relicGlyphs.Count)"
+if ($Section -eq 'relics') { return }
 
 # ---------- Powers ----------
 $powerIds = IdMap 'powers.json'; $powerGlyphs = Glyphs 'power_glyphs.txt'; $pc = 0
 foreach ($f in Get-ChildItem (Join-Path $proj 'SpireBrothersCode\Powers') -Filter '*Power.cs') {
-  $cls = $f.BaseName; if ($cls -eq 'BrothersPower') { continue }
+  $cls = $f.BaseName; if ($cls -eq 'BrothersPower' -or ($Only -and $cls -ne $Only)) { continue }
   $short = $cls.Substring(0, $cls.Length - 5)
   $id = $powerIds[$cls.ToLowerInvariant()]; if (-not $id) { Write-Warning "no power id for $cls"; continue }
   $gl = $powerGlyphs[$short]; if (-not $gl) { Write-Warning "no glyph for power $short"; continue }
-  $fill = if ($gl.Debuff) { C '#ff6b5e' } else { Hsv ((Seed $short) % 1000 / 1000.0) 0.45 1.0 }
+  $fill = if ($gl.Badge -like '#*') { C $gl.Badge } elseif ($gl.Debuff) { C '#ff6b5e' } else { Hsv ((Seed $short) % 1000 / 1000.0) 0.45 1.0 }
   $size = 256; $pad = $size * 0.08; $sw = $size * 0.07
   $path = GlyphPath $gl.G ($size / 2) ($size / 2) ($size - $pad * 2) ($size - $pad * 2)
   $c = Canvas $size $size; $g = $c[1]
@@ -239,6 +244,7 @@ foreach ($f in Get-ChildItem (Join-Path $proj 'SpireBrothersCode\Powers') -Filte
   $pc++
 }
 "powers: $pc"
+if ($Section) { return }
 
 # ---------- Potions ----------
 $potions = @{ grog = @('#7ddc3a', '☠'); ook_ook_eek = @('#ffd43b', '🍌'); monkey_business = @('#a0522d', '🐒') }

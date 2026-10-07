@@ -32,6 +32,9 @@ public partial class MainFile : Node
         System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(Mechanics.Ages).TypeHandle);
 
         ShareMonkeyIslandItems();
+
+        // Writes "[Hitch] N ms" to godot.log on slow frames, for tracking down lag spikes.
+        Mechanics.HitchLogger.Start();
     }
 
     // The Monkey Island relics and potions live in Daniel's pools (their [Pool] attribute); every other

@@ -27,6 +27,15 @@ From this folder, in PowerShell:
 .\gen.ps1 -Preview -Only Chores       # one card into .\preview\ instead, to look before replacing
 ```
 
+For a single relic or power, add `-Section`:
+
+```
+.\gen.ps1 -Section relics -Only signature_guitar      # one relic (its file name), from the list near the top of the relic section
+.\gen.ps1 -Section powers -Only MachineGunSentryPower # one power (its class name), glyph from power_glyphs.txt
+```
+
+A power line in `power_glyphs.txt` can end with a color like `#7fa8d8` to pick its color, or `debuff` for the red.
+
 Always use `-CardsOnly` or `-Only`. Without them the script also redraws relics, powers, potions, the character
 select buttons, map markers and the Age badges, and some of those have been replaced since (pixel-art select
 buttons, the pizza and sunglasses map markers).

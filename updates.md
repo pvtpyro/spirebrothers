@@ -1,0 +1,8 @@
+- can we play a small sound or laugh when the char tells an insult so we know to look and read?
+- Tim: Markup Pass no longer makes sense for tim if he can't upgrade cards the normal way
+- lets designate some colors to when we draw on the map too
+- I expect that when Tim goes up in age, all his card titles turn green and have a + next to them. then when he ages again a ++. and for the numbers to turn green when they have changed
+- sometimes the game asks me to upgrade random cards, and it does. how should this be handled.
+- lets update tim's kids to be half boys and half girls, so pink and blue shirts, and load them in order of his actual kids... so boy, girl, boy, girl, girl, boy, girl, boy, and give them little smiles please. they look so sad. maybe give them different shades of blue and pinks?
+- would it be hard to do, or even to run, if the kids were slightly animated and we could tell when they attacked?
+- we still don't have death animations

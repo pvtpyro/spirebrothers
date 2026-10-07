@@ -191,3 +191,18 @@ $CustomIcons['LegoMasterpiece'] = {
   (LegoBrick 290 540 6 $LegoBlue) + (LegoBrick 290 430 2 $LegoYellow) + (LegoBrick 570 430 2 $LegoYellow) +
   @((Part (PRect 430 430 140 110) $Glass)) + (LegoBrick 290 320 6 $LegoRed) + @((Part (PPoly @(290, 300, 500, 170, 710, 300)) $LegoRed))
 }
+
+# ---- Age of Empires
+
+# Age Up: a stone tower with a big gold arrow climbing past it to the next Age.
+$CustomIcons['AgeUp'] = {
+  $merlons = foreach ($x in 300, 380, 460) { (Part (PRect $x 220 50 60) $Stone) }
+  @($merlons) + @(
+    (Part (PRect 290 270 230 360) $Stone),                                                # tower
+    (Detail (PLine @(290, 370, 520, 370)) 8), (Detail (PLine @(290, 470, 520, 470)) 8), (Detail (PLine @(290, 560, 520, 560)) 8),
+    (Detail (PLine @(400, 270, 400, 370)) 8), (Detail (PLine @(350, 370, 350, 470)) 8), (Detail (PLine @(460, 370, 460, 470)) 8),
+    (Detail (PLine @(400, 470, 400, 560)) 8), (Detail (PLine @(350, 560, 350, 630)) 8), (Detail (PLine @(460, 560, 460, 630)) 8),
+    (Part (PRound 370 520 70 110 34) $Dark),                                             # door
+    (Part (PPoly @(620, 600, 620, 330, 560, 330, 690, 160, 820, 330, 760, 330, 760, 600)) $Yellow)   # up arrow
+  )
+}
