@@ -1,4 +1,6 @@
 using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Audio;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -25,6 +27,9 @@ public class InsultBanter() : CustomSingletonModel(HookType.Combat)
     /// <summary>How long an insult bubble stays up: at least SecondsMin, or SecondsPerChar per character for long lines.</summary>
     private const double SecondsMin = 4.0, SecondsPerChar = 0.11;
 
+    /// <summary>Played with each insult bubble: the Merchant's laugh from the base game.</summary>
+    private const string InsultSfx = FmodSfx.fakeMerchantLaugh;
+
     private sealed class Counter { public int Next; }
     private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<IRunState, Counter> Dealt = new();
 
@@ -42,6 +47,8 @@ public class InsultBanter() : CustomSingletonModel(HookType.Combat)
             double seconds = Math.Max(SecondsMin, text.Length * SecondsPerChar);
             var bubble = NSpeechBubbleVfx.Create(text, speaker, seconds, VfxColor.White);
             if (bubble != null) speaker.GetVfxContainer()?.AddChildSafely(bubble);
+            // A laugh so everyone knows to look up and read it.
+            SfxCmd.Play(InsultSfx);
         }
         catch (Exception e)
         {

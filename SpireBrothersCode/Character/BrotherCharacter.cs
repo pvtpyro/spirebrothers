@@ -89,13 +89,17 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
         }
         if (!frames.HasAnimation("idle")) return null;
 
+        // The files are dead_N.png, but BaseLib's death cue only looks for an animation named "Dead", "Die" or "die"
+        // (case-sensitive), so a lowercase "dead" never played. Register it as "die".
+        if (frames.HasAnimation("dead")) frames.RenameAnimation("dead", "die");
+
         // Revive (e.g. a Lizard Tail save) plays the death in reverse, so he gets back up.
-        if (frames.HasAnimation("dead"))
+        if (frames.HasAnimation("die"))
         {
             frames.AddAnimation("revive");
             frames.SetAnimationSpeed("revive", 10);
             frames.SetAnimationLoop("revive", false);
-            for (int i = frames.GetFrameCount("dead") - 1; i >= 0; i--) frames.AddFrame("revive", frames.GetFrameTexture("dead", i));
+            for (int i = frames.GetFrameCount("die") - 1; i >= 0; i--) frames.AddFrame("revive", frames.GetFrameTexture("die", i));
         }
         return frames;
     }
@@ -145,13 +149,13 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
             TextureFilter = CanvasItem.TextureFilterEnum.Nearest
         };
         still.AddChild(anim);
-        // One-shot cues (attack, cast, hit, revive) fall back to idle; dead stays on its last frame.
+        // One-shot cues (attack, cast, hit, revive) fall back to idle; die stays on its last frame.
         anim.AnimationFinished += () =>
         {
-            if (anim.Animation != "dead") anim.Play("idle");
+            if (anim.Animation != "die") anim.Play("idle");
         };
 
-        // The dead frames only slump, so he also tips over backwards onto the ground, and gets back up on revive.
+        // The die frames only slump, so he also tips over backwards onto the ground, and gets back up on revive.
         // Moving the pivot from the middle of the picture to his feet (without moving the picture) makes him fall
         // over where he stands.
         float half = first.GetSize().Y / 2;
@@ -159,10 +163,10 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
         anim.Offset = new Vector2(0, -half);
         anim.AnimationChanged += () =>
         {
-            float lying = anim.Animation == "dead" ? -Mathf.Pi / 2 : 0f;
+            float lying = anim.Animation == "die" ? -Mathf.Pi / 2 : 0f;
             if (Mathf.IsEqualApprox(anim.Rotation, lying)) return;
-            anim.CreateTween().TweenProperty(anim, "rotation", lying, anim.Animation == "dead" ? 0.45 : 0.3)
-                .SetTrans(Tween.TransitionType.Quad).SetEase(anim.Animation == "dead" ? Tween.EaseType.In : Tween.EaseType.Out);
+            anim.CreateTween().TweenProperty(anim, "rotation", lying, anim.Animation == "die" ? 0.45 : 0.3)
+                .SetTrans(Tween.TransitionType.Quad).SetEase(anim.Animation == "die" ? Tween.EaseType.In : Tween.EaseType.Out);
         };
         ScaleToHeight(visuals, first.GetSize().Y);
         return visuals;

@@ -16,6 +16,10 @@ public class David : BrotherCharacter
     protected override string ArtFolder => "david";
     public override string PlaceholderID => "silent";
     public override Color NameColor => Color;
+    // Co-op: his pen color when drawing on the map, and the arrow teammates see when he targets something.
+    public override Color MapDrawingColor => new("2E7D32");
+    public override Color RemoteTargetingLineColor => new("6CCB6AFF");
+    public override Color RemoteTargetingLineOutline => new("0F4A12FF");
     public override CharacterGender Gender => CharacterGender.Masculine;
     public override int StartingHp => 72;
     public override string CharacterTransitionSfx => "event:/sfx/ui/wipe_silent";

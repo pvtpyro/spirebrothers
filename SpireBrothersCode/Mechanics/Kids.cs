@@ -39,11 +39,13 @@ public static class Kids
         if (combat == null || kids <= 0 || !player.Creature.IsAlive) return;
         int damage = DamagePerKid(player);
         var rng = player.RunState.Rng.CombatTargets;
+        var kidCreatures = player.PlayerCombatState!.Pets.Where(p => p.Monster is Kid && p.IsAlive).ToList();
         for (int i = 0; i < kids; i++)
         {
             var enemies = combat.HittableEnemies.Where(e => e.IsAlive).ToList();
             if (enemies.Count == 0) return;
             var target = rng.NextItem(enemies)!;
+            if (i < kidCreatures.Count) KidMotion.Hop(kidCreatures[i]);
             VfxCmd.PlayOnCreature(target, "vfx/vfx_attack_blunt");
             await CreatureCmd.Damage(ctx, target, damage, ValueProp.Unpowered, player.Creature);
         }

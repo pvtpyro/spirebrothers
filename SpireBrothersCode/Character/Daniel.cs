@@ -16,6 +16,10 @@ public class Daniel : BrotherCharacter
     protected override string ArtFolder => "daniel";
     public override string PlaceholderID => "defect";
     public override Color NameColor => Color;
+    // Co-op: his pen color when drawing on the map, and the arrow teammates see when he targets something.
+    public override Color MapDrawingColor => new("1C6E99");
+    public override Color RemoteTargetingLineColor => new("6EC3EBFF");
+    public override Color RemoteTargetingLineOutline => new("0F3C57FF");
     public override CharacterGender Gender => CharacterGender.Masculine;
     public override int StartingHp => 75;
 

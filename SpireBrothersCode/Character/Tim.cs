@@ -18,6 +18,10 @@ public class Tim : BrotherCharacter
     protected override float RestFps => 2;
     public override string PlaceholderID => "ironclad";
     public override Color NameColor => Color;
+    // Co-op: his pen color when drawing on the map, and the arrow teammates see when he targets something.
+    public override Color MapDrawingColor => new("B8451F");
+    public override Color RemoteTargetingLineColor => new("F08A5AFF");
+    public override Color RemoteTargetingLineOutline => new("6A2208FF");
     public override CharacterGender Gender => CharacterGender.Masculine;
     public override int StartingHp => 76;
 

@@ -16,6 +16,10 @@ public class Joshua : BrotherCharacter
     protected override string ArtFolder => "joshua";
     public override string PlaceholderID => "regent";
     public override Color NameColor => Color;
+    // Co-op: his pen color when drawing on the map, and the arrow teammates see when he targets something.
+    public override Color MapDrawingColor => new("7B3FB8");
+    public override Color RemoteTargetingLineColor => new("B98AF0FF");
+    public override Color RemoteTargetingLineOutline => new("43206BFF");
     public override CharacterGender Gender => CharacterGender.Masculine;
     public override int StartingHp => 70;
 
