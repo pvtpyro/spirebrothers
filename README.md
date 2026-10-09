@@ -46,7 +46,9 @@ Uploads use Mega Crit's uploader (https://github.com/megacrit/sts2-mod-uploader)
 
 - `content/` the files players download: `SpireBrothers.dll`, `SpireBrothers.pck`, `SpireBrothers.json`
   (no `.pdb`; it's a debugging file players don't need)
-- `workshop.json` the Steam page: title, description, visibility, change note, and BaseLib (`3737335127`) as a dependency
+- `workshop.json` the Steam page: title, description, visibility, change note, and BaseLib as a dependency, written
+  as a number with no quotes: `"dependencies": [3737335127]` (quotes make the uploader fail with "Exception thrown
+  while parsing the workshop config!")
 - `image.png` the Workshop thumbnail, under 1 MB (currently the same picture as `SpireBrothers/mod_image.png`)
 - `mod_id.txt` created by the first upload; it links the folder to the Workshop page. **Never delete it.**
 
