@@ -9,7 +9,7 @@ using SpireBrothers.SpireBrothersCode.Mechanics;
 
 namespace SpireBrothers.SpireBrothersCode.Powers;
 
-/// <summary>Encore. The first Chorus you play each turn (one per stack) doesn't spend Verses.</summary>
+/// <summary>Encore. The first Chorus you play each turn (one per stack) spends only half your Verses (rounded down).</summary>
 public class EncorePower : BrothersPower
 {
     public override PowerType Type => PowerType.Buff;
@@ -17,7 +17,7 @@ public class EncorePower : BrothersPower
 
     private int _usedThisTurn;
 
-    /// <summary>Called by Verses.SpendForChorus. True if this Chorus keeps its Verses.</summary>
+    /// <summary>Called by Verses.SpendForChorus. True if this Chorus spends only half its Verses.</summary>
     public bool TryUse()
     {
         if (_usedThisTurn >= Amount) return false;

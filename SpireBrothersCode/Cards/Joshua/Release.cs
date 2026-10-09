@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
 /// <summary>Archipelago (releasing sends out all your remaining items at once). Check 5 times. Exhaust.</summary>
-public class Release() : JoshuaCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class Release() : JoshuaCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Check, CardKeyword.Exhaust];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Checks", 5)];

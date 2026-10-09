@@ -20,7 +20,7 @@ public interface IChorusListener
 
 /// <summary>
 /// Joshua's Verse / Chorus rules. Song cards add Verses (JoshuaTracker), Chorus cards spend them all.
-/// Choir adds to what a Chorus counts, Encore and Bridge let a Chorus keep its Verses.
+/// Choir adds to what a Chorus counts, Encore lets a Chorus keep half its Verses, and Bridge keeps them all.
 /// </summary>
 public static class Verses
 {
@@ -54,12 +54,12 @@ public static class Verses
         }
     }
 
-    /// <summary>Removes all Verse orbs without evoking them, and closes the slots they used.</summary>
-    private static void SpendAll(Player player)
+    /// <summary>Removes the newest <paramref name="count"/> Verse orbs without evoking them, and closes the slots they used.</summary>
+    private static void Spend(Player player, int count)
     {
         var state = player.PlayerCombatState;
-        if (state == null) return;
-        var verses = state.OrbQueue.Orbs.OfType<VerseOrb>().ToList();
+        if (state == null || count <= 0) return;
+        var verses = state.OrbQueue.Orbs.OfType<VerseOrb>().TakeLast(count).ToList();
         var orbManager = NCombatRoom.Instance?.GetCreatureNode(player.Creature)?.OrbManager;
         foreach (var verse in verses)
         {
@@ -73,7 +73,7 @@ public static class Verses
 
     /// <summary>
     /// Call at the start of a Chorus card's OnPlay. Returns the Verses it counts, then spends them
-    /// (unless Encore or Bridge saves them) and runs the owner's Chorus listeners.
+    /// (Encore saves half, Bridge saves all) and runs the owner's Chorus listeners.
     /// </summary>
     public static async Task<int> SpendForChorus(PlayerChoiceContext ctx, CardModel card)
     {
@@ -81,18 +81,22 @@ public static class Verses
         if (owner?.Creature == null) return 0;
         int verses = ForChorus(owner);
 
-        // Encore first (it comes back every turn), then Bridge (one use each).
-        bool keep = owner.Creature.GetPower<EncorePower>()?.TryUse() ?? false;
-        if (!keep)
+        // Encore first (it comes back every turn, and spends half, rounded down), then Bridge (one use each, spends none).
+        int spend = Count(owner);
+        if (owner.Creature.GetPower<EncorePower>()?.TryUse() ?? false)
+        {
+            spend /= 2;
+        }
+        else
         {
             var bridge = owner.Creature.GetPower<BridgePower>();
             if (bridge != null)
             {
-                keep = true;
+                spend = 0;
                 await bridge.Use();
             }
         }
-        if (!keep) SpendAll(owner);
+        Spend(owner, spend);
 
         foreach (var listener in owner.Creature.Powers.OfType<IChorusListener>().ToList())
             await listener.OnChorus(ctx, owner, verses);

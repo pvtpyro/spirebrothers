@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
 /// <summary>Archipelago. At the start of your turn, Check.</summary>
-public class Multiworld() : JoshuaCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public class Multiworld() : JoshuaCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Check];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<MultiworldPower>(1)];

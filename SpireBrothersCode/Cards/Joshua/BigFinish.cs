@@ -16,13 +16,13 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Music. Chorus: deal 5 damage to ALL enemies per Verse.</summary>
+/// <summary>Music. Chorus: deal 3 damage to ALL enemies per Verse.</summary>
 public class BigFinish() : JoshuaCard(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Chorus];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(0),
-        new ExtraDamageVar(5),
+        new ExtraDamageVar(3),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(ChorusVerses)
     ];
 

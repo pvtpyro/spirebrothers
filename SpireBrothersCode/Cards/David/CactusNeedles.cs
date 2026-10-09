@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Terraria. Double an enemy's Bleed. Exhaust. Upgrade: no longer Exhausts.</summary>
+/// <summary>Terraria. Double an enemy's Bleed. Exhaust. Upgrade: costs 0.</summary>
 public class CactusNeedles() : DavidCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
@@ -29,5 +29,5 @@ public class CactusNeedles() : DavidCard(1, CardType.Skill, CardRarity.Uncommon,
         if (play.Target != null && bleed > 0) await CommonActions.Apply<BleedPower>(ctx, play.Target, this, bleed);
     }
 
-    protected override void OnUpgrade() => RemoveKeyword(CardKeyword.Exhaust);
+    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
 }

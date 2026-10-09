@@ -12,14 +12,14 @@ namespace SpireBrothers.SpireBrothersCode.Mechanics;
 
 /// <summary>
 /// Joshua's Check (Archipelago): find a random item and send it to a random player (yourself in solo).
-/// Filler 40% (4 Block), Useful 30% (draw 1 next turn), Progression 15% (1 energy next turn),
+/// Filler 40% (6 Block), Useful 30% (draw 1 next turn), Progression 15% (1 energy next turn),
 /// Trap 15% (goes to a random enemy instead: 1 Weak, 1 Vulnerable). Rolls use the run RNG so co-op stays in sync.
 /// </summary>
 public static class Archipelago
 {
     public enum Item { Filler, Useful, Progression, Trap }
 
-    public const int FillerBlock = 4;
+    public const int FillerBlock = 6;
 
     public static async Task Check(PlayerChoiceContext ctx, Player owner, CardModel? source, int times = 1)
     {

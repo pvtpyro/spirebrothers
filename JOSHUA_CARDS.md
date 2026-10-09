@@ -21,7 +21,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 
 | Item | Chance | Effect on the player who gets it |
 |---|---|---|
-| Filler | 40% | Gain 4 Block |
+| Filler | 40% | Gain 6 Block |
 | Useful | 30% | Draw 1 card next turn |
 | Progression | 15% | Gain 1 Energy next turn |
 | Trap | 15% | Goes to a random **enemy** instead: 1 Weak and 1 Vulnerable. *(In real Archipelago traps hurt whoever gets them; here they keep Joshua a support.)* |
@@ -31,7 +31,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 - 4 Strike, 4 Defend
 - **Hum a Tune** (Basic Skill, 1, Song): Gain 5 Block.
 - **Sing Along** (Basic Skill, 1, Chorus): ALL players gain 3 Block per Verse spent.
-- **Starter relic: Well-Worn Guitar.** Start each combat with 2 Verses. **Touch of Orobas upgrade: Signature Guitar**, start each combat with 4 Verses.
+- **Starter relic: Well-Worn Guitar.** Start each combat with 3 Verses. **Touch of Orobas upgrade: Signature Guitar**, start each combat with 5 Verses.
 
 Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Archipelago), 🗡️ Monkey Island (Insult / Comeback).
 
@@ -48,7 +48,7 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 7 | 🎵 Order Up! | 1 Skill | Gain 4 Block. Draw 1 card. | PlateUp! |
 | 8 | 🎵 Boost Pad | 0 Skill | Next turn, gain 1 Energy. | Rocket League |
 | 9 | 🎵🤝 Harmonize | 1 Skill | Share: a player gains 6 Block. | Music / co-op |
-| 10 | 🎤 Big Finish | 1 Attack | **Chorus:** deal 5 damage to ALL enemies per Verse. | Music |
+| 10 | 🎤 Big Finish | 1 Attack | **Chorus:** deal 3 damage to ALL enemies per Verse. | Music |
 | 11 | 💚 Konbini Run | 0 Skill | Heal 2. Draw 1 card. Exhaust. | Japan |
 | 12 | 💚 Onsen | 1 Skill | Heal 5. Exhaust. | Japan |
 | 13 | 💚 Watering Can | 1 Skill | Gain 2 Regen. | Stardew Valley |
@@ -92,7 +92,7 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 41 | 💚🤝 Comfort Food | 1 Skill | Share: a player heals 3 and gains 5 Block. Exhaust. | PlateUp! |
 | 42 | 💚 Green Tea | 1 Skill | Heal 3. Remove 1 stack of a random debuff. Exhaust. | Japan |
 | 43 | 💚🤝 Care Package | 1 Skill | Share: a player gains 2 Regen and 4 Block. | Moving |
-| 44 | 🤝 Community Center | 2 Power | At the start of your turn, ALL players gain 3 Block. | Stardew Valley |
+| 44 | 🤝 Community Center | 2 Power | At the start of your turn, ALL players gain 2 Block. | Stardew Valley |
 
 ### Japan, moving home, and games
 | # | Name | Cost / Type | Effect | Theme |
@@ -104,11 +104,11 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 49 | Kickoff | 1 Attack | Innate. Deal 8 damage. Draw 1 card. | Rocket League |
 | 50 | Demo | 2 Attack | Deal 14 damage. Apply 2 Vulnerable. | Rocket League |
 | 51 | Calculated. | 1 Skill | Scry 3. Draw 1 card. Gain 1 Verse. | Rocket League |
-| 52 | 🗡️ Nice Shot! | 1 Attack | Deal 6 damage. Apply 2 Insulted. *(said the sarcastic way)* | Insult (Rocket League quick chat) |
+| 52 | 🗡️🎵 Nice Shot! | 1 Attack | Deal 6 damage. Apply 2 Insulted. *(said the sarcastic way)* | Insult (Rocket League quick chat) |
 | 53 | Junimos | 1 Power | Whenever you play a Chorus, add a random Song card to your hand. | Stardew Valley |
 | 54 | Fishing | 1 Skill | Draw 1 card. If it's a Song, gain 1 Verse and draw another. | Stardew Valley |
 | 55 | Dish Pit | 1 Skill | Exhaust a card in your hand. Gain 6 Block. | PlateUp! |
-| 56 | 📦 Multiworld | 2 Power | At the start of your turn, **Check.** | Archipelago |
+| 56 | 📦 Multiworld | 1 Power | At the start of your turn, **Check.** | Archipelago |
 
 ## Rare (16)
 
@@ -122,19 +122,19 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 62 | 💚 Harvest Festival | 2 Skill | ALL players heal 4 and gain 1 Strength. Exhaust. | Stardew Valley |
 | 63 | 🎤 Rock Opera | 3 Attack | **Chorus:** deal 8 damage to ALL enemies per Verse. | Music |
 | 64 | Perfect Pitch | 2 Power | Your Song cards give 2 Verses instead of 1. | Vocals |
-| 65 | Encore | 2 Power | The first Chorus you play each turn doesn't spend Verses. | Music |
+| 65 | Encore | 2 Power | The first Chorus you play each turn spends only half your Verses (rounded down). | Music |
 | 66 | Choir | 2 Power | Your Chorus cards count as if you had 2 more Verses. | Vocals |
 | 67 | Virtuoso | 3 Power | Whenever you play a Song card, deal 4 damage to ALL enemies. | Piano / guitar |
 | 68 | Mixtape | 1 Skill | Add 3 random Song cards to your hand. They cost 0 this turn. Exhaust. | Music |
 | 69 | 🗡️🎤 Diss Track | 2 Attack | **Chorus + Comeback.** Deal 4 damage to ALL enemies per Verse, +4 for each Insulted on each enemy, then remove their Insulted. | Comeback (music) |
 | 70 | Jam Session | 2 Skill | ALL players gain 2 Energy next turn. Exhaust. | Music / co-op |
-| 71 | 📦 Release! | 2 Skill | **Check** 5 times. Exhaust. | Archipelago: releasing sends out all your remaining items at once |
+| 71 | 📦 Release! | 1 Skill | **Check** 5 times. Exhaust. | Archipelago: releasing sends out all your remaining items at once |
 | 72 | Zero-Second Goal | 1 Attack | Can only be played if it's the last card in your hand. Deal 30 damage. | Rocket League |
 
 ## Build notes (for Claude)
 
 - New core: a `VersePower` counter on Joshua, a `Song` keyword that adds 1 Verse after the card is played,
-  and a `Chorus` helper that reads and spends all Verses (respecting Bridge, Encore, and Choir).
+  and a `Chorus` helper that reads and spends all Verses (respecting Bridge, Encore (spends half), and Choir).
   Show Verses the way Daniel's Train of Thought works.
 - "Add a random Song card" (Improvise, Junimos, Mixtape): BaseLib `CommonActions.GenerateCards` with a
   filter for the Song keyword.
@@ -143,3 +143,13 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 - **Zero-Second Goal**: a playability check like Stratagems (hand count is 1).
 - **Check**: roll the item with the run RNG (`Owner.RunState.Rng`) and pick the receiving player the same way, so co-op stays in sync. Items go through vanilla `BlockNextTurn`-style powers or direct Block, `DrawCardsNextTurnPower`, and `EnergyNextTurnPower`, the same as Daniel's Share cards. Scouting stores a "next Check is Progression" flag in a small power. BK Mode uses a playability check like Stratagems.
 - Healing in co-op targets other players' creatures, the same as Want Some? and Stratagem: Reinforce.
+
+## Balance pass (2026-10-08)
+
+Goal: no brother or card underpowered; only effects that scale without limit were toned down.
+
+- **Encore:** the first Chorus each turn spends half your Verses (rounded down) instead of none, so Verses no longer stay at 10 forever.
+- **Big Finish:** 5 -> 3 damage per Verse (4 upgraded), below Rock Opera.
+- **Well-Worn Guitar:** 2 -> 3 starting Verses (Signature Guitar 4 -> 5), so his first Choruses aren't empty in solo.
+- **Check:** Filler items give 6 Block instead of 4. **Release!** costs 1 (was 2). **Multiworld** costs 1 (was 2; 0 upgraded).
+- **Nice Shot!:** now a Song (it was the same card as Daniel's Common Spaghetti Code).

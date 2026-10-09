@@ -16,7 +16,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Japanese festival. Chorus: ALL players gain 3 Block per Verse.</summary>
+/// <summary>Japanese festival. Chorus: ALL players gain 4 Block per Verse.</summary>
 public class Matsuri() : JoshuaCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Chorus];

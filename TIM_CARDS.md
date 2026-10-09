@@ -98,7 +98,7 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeba
 | 47 | Bump | 0 Attack | Deal 3 damage. Apply 1 Weak. | Rocket League |
 | 48 | Overtime | 2 Skill | Next turn, gain 2 Energy and draw 2 cards. Exhaust. | Rocket League |
 | 49 | 🗡️ Hi Hungry, I'm Dad | 1 Attack | **Comeback.** Deal 5 damage, +3 for each Insulted on the target, then remove it. | Comeback (dad joke) |
-| 50 | 🗡️ Not Mad, Just Disappointed | 1 Skill | Apply 2 Insulted and 1 Weak. | Insult (dad of eight) |
+| 50 | 🗡️ Not Mad, Just Disappointed | 0 Skill | Apply 2 Insulted and 1 Weak. | Insult (dad of eight) |
 | 51 | Lights Out | 1 Skill | Gain 4 Block. Apply 2 Weak to ALL enemies. | Splinter Cell |
 | 52 | Split Jump | 1 Skill | Gain 6 Block. Next turn, gain 6 Block. | Splinter Cell |
 | 53 | 🗡️ Back in My Day | 0 Skill | Apply 1 Insulted to ALL enemies. | Insult (oldest brother) |
@@ -113,11 +113,11 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeba
 | 57 | 👶 **The Whole Crew** | 2 Skill | Gain Kids until you have 8. Exhaust. | All eight of them |
 | 58 | 👶 Proud Dad | 2 Power | Your Kids deal 2 damage each instead of 1. | Family |
 | 59 | 👶 Family Reunion | 2 Skill | ALL players gain 3 Block per Kid. Exhaust. | Family / co-op |
-| 60 | 👶 Lego Masterpiece | 3 Attack | Deal 4 damage per Kid to ALL enemies. Exhaust. | Legos (built with the kids) |
+| 60 | 👶 Lego Masterpiece | 2 Attack | Deal 4 damage per Kid to ALL enemies. Exhaust. | Legos (built with the kids) |
 | 61 | 📜 Automation Suite | 3 Power | The first card you play each turn has **Script.** | Lua add-ons |
 | 62 | 📜 while true do | 1 Skill | Gain 3 Block. Draw 1 card. Its **Script** repeats every turn for the rest of combat. Exhaust. | Lua (the infinite loop) |
 | 63 | 📜 Markup Pass | 1 Skill | Upgrade ALL cards in your hand for this combat. Exhaust. | Drafting (redlines) |
-| 64 | 🏰 Imperial Age | 2 Power | Gain 1 Strength and 1 Dexterity. **Imperial Age:** gain 2 of each instead. | Age of Empires |
+| 64 | 🏰 Imperial Age | 1 Power | Gain 1 Strength and 1 Dexterity. **Imperial Age:** gain 2 of each instead. | Age of Empires |
 | 65 | 🏰 Wonder | 3 Power | At the start of your 5th turn after playing this, deal 60 damage to ALL enemies. | Age of Empires (wonder victory) |
 | 66 | 🏰 Castle | 2 Power | At the start of your turn, gain 5 Block. At the end of your turn, deal 3 damage to ALL enemies. | Age of Empires |
 | 67 | 🏰 Mass Conversion | 2 Skill | ALL enemies lose 3 Strength. You gain that much Strength this turn. Exhaust. | Age of Empires (monk army) |
@@ -156,3 +156,11 @@ Both brothers have an uncommon called **Wife Aggro**; same title, different card
   hand-count checks like Stratagems and Zero-Second Goal.
 - **Full Auto** is X-cost, the same as David's X cards.
 - **Wonder** needs a countdown power (vanilla `CountdownPower` may already do this).
+
+## Balance pass (2026-10-08)
+
+Goal: no brother or card underpowered (strong cards are fine).
+
+- **Lego Masterpiece:** costs 2 (was 3).
+- **Imperial Age:** costs 1 (was 2; 0 upgraded).
+- **Not Mad, Just Disappointed:** costs 0 (was 1; Joshua's Common You Call That Singing? did the same for 0).

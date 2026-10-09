@@ -58,7 +58,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 |---|---|---|---|---|
 | 21 | 🩸 No Refunds | 1 Power | Whenever you deal attack damage to an enemy, apply 1 Bleed to it. *(great with multi-hit cards like Drill)* | Messing with David costs you |
 | 22 | 🩸 Return Policy | 1 Skill | Gain 8 Block. This turn, whenever you're attacked, apply 3 Bleed to the attacker. | Messing with David costs you |
-| 23 | 🩸 Cactus Needles | 1 Skill | Double an enemy's Bleed. Exhaust. (Upgrade: no longer Exhausts.) | Terraria |
+| 23 | 🩸 Cactus Needles | 1 Skill | Double an enemy's Bleed. Exhaust. (Upgrade: costs 0.) | Terraria |
 | 24 | 🩸 Plant Species X | 2 Power | At the end of your turn, apply 3 Bleed to a random enemy. | ARK |
 | 25 | 🩸 Fine Print | 1 Skill | Apply 3 Bleed and 1 Weak to ALL enemies. | Numbers |
 
@@ -78,7 +78,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
 | 34 | 💰 Piggy Bank | 1 Skill | Gain 15 Gold. Exhaust. | Terraria |
-| 35 | 💰 Compound Interest | 2 Power | At the start of your turn, gain 1 Block per 20 Gold. | Numbers |
+| 35 | 💰 Compound Interest | 2 Power | At the start of your turn, gain 1 Block per 20 Gold (max 10). | Numbers |
 | 36 | 💰 Untouched Savings | 1 Skill | Gain 1 Block per 10 Gold (max 25). | Indifferent to money |
 | 37 | 💰 Money Bags | 2 Attack | Deal 12 damage. **Hoard:** +1 per 50 Gold. | Payday 2 |
 | 38 | 🗡️💰 Not Worth the Gold | 0 Skill | Apply 2 Insulted. **Hoard:** +1 Insulted per 50 Gold. | Insult (indifferent to money) |
@@ -142,3 +142,10 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
   hover tip (`HoverTipFactory.FromCardWithCardHoverTips<ValleyForge>()`). The card is in the play pile during
   OnPlay, so "Exhaust this" should use `CardCmd.Exhaust` after the effect, or the keyword-free way vanilla
   handles self-exhaust conditionally. Check before building.
+
+## Balance pass (2026-10-08)
+
+Goal: no brother or card underpowered; only effects that scale without limit were toned down.
+
+- **Compound Interest:** capped at 10 Block per turn (1 per 20 Gold up to 200 Gold).
+- **Cactus Needles:** the upgrade costs 0 instead of losing Exhaust (repeat doubling with Deep Cuts had no ceiling).

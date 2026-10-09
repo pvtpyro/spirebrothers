@@ -18,7 +18,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Tim;
 
 /// <summary>Legos (built with the kids). Deal 4 damage per Kid to ALL enemies. Exhaust.</summary>
-public class LegoMasterpiece() : TimCard(3, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+public class LegoMasterpiece() : TimCard(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Kids, CardKeyword.Exhaust];
     protected override IEnumerable<DynamicVar> CanonicalVars => [

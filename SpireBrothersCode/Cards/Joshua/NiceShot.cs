@@ -16,9 +16,10 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Monkey Island insult (Rocket League quick chat, said the sarcastic way). Deal 6 damage. Apply 2 Insulted.</summary>
+/// <summary>Monkey Island insult (Rocket League quick chat, said the sarcastic way). Song. Deal 6 damage. Apply 2 Insulted.</summary>
 public class NiceShot() : JoshuaCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy), IInsultCard
 {
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Song];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move), new PowerVar<InsultedPower>(2)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<InsultedPower>()];
 

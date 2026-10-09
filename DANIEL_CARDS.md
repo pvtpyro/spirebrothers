@@ -76,7 +76,7 @@ Both brothers have an uncommon called **Wife Aggro**; same title, different card
 
 | # | Name | Cost / Type | Tag | Effect | Theme |
 |---|---|---|---|---|---|
-| 40 | 🛡 Prawn Suit | 2 Power | H | At the start of your turn, gain 5 Block. | Subnautica |
+| 40 | 🛡 Prawn Suit | 2 Power | H | At the start of your turn, gain 7 Block. | Subnautica |
 | 41 | 🛡 Diamond Armor | 2 Power | H | Gain 1 Dexterity and 4 Plating. | Minecraft |
 | 42 | I'm Not Done Yet | 2 Power | — | The first time you would die this combat, heal to 25% HP instead. | Never gives up *(planned)* |
 | 43 | Stratagem: Orbital Railcannon | 0 Attack | Stratagem | Input: **Hands, Logic, Hands.** Deal 30 damage. | Helldivers 2 |
@@ -112,3 +112,11 @@ Common, so Stratagems now show up in early card rewards.
 - **Gears (Factorio):** Conveyor Belt, Blueprint, Assembly Line, Launch the Rocket, Appease the Machine Spirit.
 - **Co-op Share:** Cover Me!, Turn It Off and On Again, and Squad Up! added.
 - **Planned cards from DESIGN.md now included:** Crafting Table, Appease the Machine Spirit, Unfinished Business, I'm Not Done Yet.
+
+## Balance pass (2026-10-08)
+
+Goal: no brother or card underpowered (strong cards are fine).
+
+- **Prawn Suit:** 5 -> 7 Block per turn (it was weaker than other brothers' Uncommon Block powers).
+- **Stack Overflow:** +4 -> +6 per Logic card (it was nearly the same as the Uncommon Ohm's Law).
+- **Insult Swordfighting:** also applies 1 Weak (it was Spaghetti Code with 1 less damage).

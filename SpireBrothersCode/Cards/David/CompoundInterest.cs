@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>At the start of your turn, gain 1 Block per 20 Gold.</summary>
+/// <summary>At the start of your turn, gain 1 Block per 20 Gold (max 10).</summary>
 public class CompoundInterest() : DavidCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Hoard];

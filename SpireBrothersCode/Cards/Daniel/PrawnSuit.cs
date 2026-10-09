@@ -17,11 +17,11 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Daniel;
 
-/// <summary>Subnautica. At the start of your turn, gain 5 Block. Upgrade: costs 1.</summary>
+/// <summary>Subnautica. At the start of your turn, gain 7 Block. Upgrade: costs 1.</summary>
 public class PrawnSuit() : DanielCard(2, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Hands];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<PrawnSuitPower>(5)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<PrawnSuitPower>(7)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {

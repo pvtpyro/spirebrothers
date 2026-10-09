@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Tim;
 /// <summary>Age of Empires. Gain 1 Strength and 1 Dexterity. Imperial Age: gain 2 of each instead.</summary>
-public class ImperialAge() : TimCard(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+public class ImperialAge() : TimCard(1, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     protected override int? AgeBonusAt => Ages.Imperial;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Age];

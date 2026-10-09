@@ -16,7 +16,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Music. The first Chorus you play each turn doesn't spend Verses.</summary>
+/// <summary>Music. The first Chorus you play each turn spends only half your Verses (rounded down).</summary>
 public class Encore() : JoshuaCard(2, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<EncorePower>(1)];

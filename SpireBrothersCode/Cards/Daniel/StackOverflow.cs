@@ -16,13 +16,13 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Daniel;
 
-/// <summary>Deal 4 damage, plus 4 for each Logic card already played this turn.</summary>
+/// <summary>Deal 4 damage, plus 6 for each Logic card already played this turn.</summary>
 public class StackOverflow() : DanielCard(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Logic];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(4),
-        new ExtraDamageVar(4),
+        new ExtraDamageVar(6),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(LogicPlayed)
     ];
 
