@@ -77,6 +77,9 @@ public static class Archipelago
         }
     }
 
+    // How long a bubble stays up: at least 4 seconds, longer for long lines (the game default was 1.5s, too quick to read).
+    private static double Seconds(LocString line) => Math.Max(4.0, line.GetFormattedText().Length * 0.11);
+
     // A thought bubble over whoever got the item, so everyone can see what was found.
     // The receiver (or the trapped enemy) says what they got. When it went to someone else, Joshua also says who
     // he sent it to, so he can tell what his Checks did. Display only, so it never affects co-op sync.
@@ -85,12 +88,13 @@ public static class Archipelago
         try
         {
             var key = "SPIREBROTHERS-ARCHIPELAGO." + item.ToString().ToLowerInvariant();
-            ThinkCmd.Play(new LocString("powers", key), receiver, 1.5);
+            var found = new LocString("powers", key);
+            ThinkCmd.Play(found, receiver, Seconds(found));
             if (receiver == sender.Creature) return;
             var sent = new LocString("powers", "SPIREBROTHERS-ARCHIPELAGO.sent");
             sent.Add("Item", new LocString("powers", "SPIREBROTHERS-ARCHIPELAGO.short." + item.ToString().ToLowerInvariant()));
             sent.Add("Name", receiver.Name);
-            ThinkCmd.Play(sent, sender.Creature, 1.5);
+            ThinkCmd.Play(sent, sender.Creature, Seconds(sent));
         }
         catch (Exception e)
         {
