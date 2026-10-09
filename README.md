@@ -39,6 +39,49 @@ For quick code-only changes, `dotnet build` copies just the .dll.
 
 Everyone in a multiplayer lobby should have the same version of Spire Brothers and BaseLib installed.
 
+## Publishing to the Steam Workshop
+
+Uploads use Mega Crit's uploader (https://github.com/megacrit/sts2-mod-uploader), kept in
+`D:\projects\csharp\Spire-ModUploader`. The workspace for this mod is its `SpireBrothers` folder:
+
+- `content/` the files players download: `SpireBrothers.dll`, `SpireBrothers.pck`, `SpireBrothers.json`
+  (no `.pdb`; it's a debugging file players don't need)
+- `workshop.json` the Steam page: title, description, visibility, change note, and BaseLib (`3737335127`) as a dependency
+- `image.png` the Workshop thumbnail, under 1 MB (currently the same picture as `SpireBrothers/mod_image.png`)
+- `mod_id.txt` created by the first upload; it links the folder to the Workshop page. **Never delete it.**
+
+`SpireBrothers.json` and `workshop.json` are different files. The first is for the game (mod ID, version, BaseLib
+requirement) and goes in `content/`. The second is for the Steam page and is never downloaded by players.
+
+### First upload
+
+1. Build: `dotnet publish -c Release`
+2. Copy `SpireBrothers.dll`, `.pck`, and `.json` from `Slay the Spire 2/mods/SpireBrothers/` into `content/`.
+3. Check `workshop.json` and `image.png`. Keep `"visibility": "private"` for the first upload so you can look over the page.
+4. Open a terminal in `Spire-ModUploader` and run:
+   ```
+   ModUploader.exe upload -w SpireBrothers
+   ```
+5. Check the page on Steam, then change `visibility` to `friends_only` or `public` (in `workshop.json` and upload again,
+   or on the Steam page itself).
+
+### Updating
+
+1. Bump `"version"` in this project's `SpireBrothers.json` (e.g. `v0.1.0` to `v0.2.0`) so players can tell which
+   build they have. The build copies it to the mods folder.
+2. Build: `dotnet publish -c Release`
+3. Copy the new `.dll`, `.pck`, and `.json` from the mods folder into `content/`, replacing the old ones.
+4. Write what changed in `changeNote` in `workshop.json`. It shows in the page's Change Notes tab.
+5. Run the same command:
+   ```
+   ModUploader.exe upload -w SpireBrothers
+   ```
+   It reads `mod_id.txt` and updates the existing page instead of making a new one.
+
+If an upload fails, look at `mod-uploader.log` in the `Spire-ModUploader` folder.
+Subscribers get updates automatically through Steam, but in co-op both players still need the same version, so
+have everyone restart the game after an update.
+
 ## Adding art
 
 Drop PNGs named after each card/relic/power ID (lowercase snake case) into:
