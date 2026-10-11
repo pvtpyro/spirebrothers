@@ -31,7 +31,9 @@ public static class Hands
     /// <summary>Model space is 42 x 120 (K = 2 doubles it onto the 84 x 240 grid, keeping 1-pixel outlines).</summary>
     public static Canvas Render(Brother b, string move)
     {
-        var c = new Canvas(GW, GH) { K = 2, Origin = new V(0, 0) };
+        // The game puts the cursor at about (179, 11) of the 422 x 1200 image (scene hand_image.tscn: the TextureRect sits at
+        // (-163, -10), 383 x 1072, keep-aspect-centered), so the drawing is nudged until the pointing fingertip lands there.
+        var c = new Canvas(GW, GH) { K = 2, Origin = new V(0, 0), Offset = new V(3, -20) };
         bool rolled = b.Forearm != null;          // Tim rolls his sleeves up
         bool ring = b.Name is "daniel" or "tim";  // the married brothers
         var skin = b.Skin;
@@ -63,7 +65,7 @@ public static class Hands
 
     // Finger roots along the knuckles (index nearest the thumb, on the left) and how long each finger is when straight.
     static readonly V[] Root = [new(16.6f, 28), new(20.2f, 27), new(23.6f, 27.5f), new(26.8f, 29)];
-    static readonly float[] Len = [15f, 17f, 15.5f, 11.5f];
+    static readonly float[] Len = [15f, 14.2f, 13.8f, 10.5f];  // middle kept short enough to fit under the top edge
 
     static void DrawHand(Canvas c, string move, Col skin, bool ring)
     {
@@ -124,7 +126,7 @@ public static class Hands
     static void FadeBottom(Canvas c)
     {
         int[,] bayer = { { 0, 8, 2, 10 }, { 12, 4, 14, 6 }, { 3, 11, 1, 9 }, { 15, 7, 13, 5 } };
-        const int Start = 196, End = 236;
+        const int Start = 176, End = 216;  // shifted up with the drawing (see Offset)
         for (int y = Start; y < GH; y++)
         {
             float t = Math.Clamp((y - Start) / (float)(End - Start), 0, 1);
