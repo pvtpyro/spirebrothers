@@ -17,6 +17,10 @@ from simple shapes on a shared skeleton (`Rig.cs`), and each animation is a list
   `Program.cs` out of the way and rename this file to `Program.cs`. It reads the original buttons in
   `art_originals/select_icons_old/` to keep the name text and writes to `out/select/`; copy `select.png` and
   `select_locked.png` from there into each brother's image folder.
+- `Hands.cs`: the co-op treasure room hands (`point`, `rock`, `paper`, `scissors`), 422 x 1200 like vanilla, drawn on an
+  84 x 240 grid and scaled 5x. Each brother wears his own sleeve; Daniel and Tim have wedding rings. Saved as
+  `out/<name>/hands/<move>.png` (preview `out/hands_preview.png`); copy them into
+  `SpireBrothers/images/characters/<name>/hands/`.
 - `ModImage.cs.txt`: the mod image (`SpireBrothers/mod_image.png`, 420 x 420), the four brothers in a 2 x 2 grid on
   their select-button colors, no names. Swap it in as `Program.cs` the same way; it writes `out/mod_image.png`.
 

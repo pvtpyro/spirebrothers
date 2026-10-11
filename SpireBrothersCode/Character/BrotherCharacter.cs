@@ -229,6 +229,13 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
     public override string? CustomIconTexturePath => IconArt ?? base.CustomIconTexturePath;
     public override string? CustomIconOutlineTexturePath => ArtIfPresent("icon_outline.png") ?? base.CustomIconOutlineTexturePath;
 
+    // Co-op treasure room hands (pointing while picking, then rock / paper / scissors): hands/<move>.png, 422 x 1200
+    // like vanilla, drawn by pixelgen. Without them the game borrows the placeholder character's arms.
+    public override string? CustomArmPointingTexturePath => ArtIfPresent("hands/point.png") ?? base.CustomArmPointingTexturePath;
+    public override string? CustomArmRockTexturePath => ArtIfPresent("hands/rock.png") ?? base.CustomArmRockTexturePath;
+    public override string? CustomArmPaperTexturePath => ArtIfPresent("hands/paper.png") ?? base.CustomArmPaperTexturePath;
+    public override string? CustomArmScissorsTexturePath => ArtIfPresent("hands/scissors.png") ?? base.CustomArmScissorsTexturePath;
+
     // Top-left icon during a run. Reuses the borrowed character's icon scene so the layout matches, with our pictures
     // swapped in for its character_icon textures.
     public override Control? CustomIcon

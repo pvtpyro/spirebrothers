@@ -22,6 +22,7 @@ foreach (var b in brothers)
     Console.WriteLine($"{b.Name}: " + string.Join(", ", anims.Select(a => $"{a.Key} x{a.Value.poses.Count}")));
 }
 Backgrounds.RenderAll(brothers, outDir);
+Hands.RenderAll(brothers, outDir);
 // big side-by-side of everyone's first idle frame, at game scale
 var lineup = new Canvas(64 * 4 + 6, 80);
 for (int i = 0; i < brothers.Length; i++)
