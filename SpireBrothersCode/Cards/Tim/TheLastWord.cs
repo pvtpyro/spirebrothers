@@ -40,9 +40,15 @@ public class TheLastWord() : TimCard(2, CardType.Attack, CardRarity.Rare, Target
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        await CommonActions.CardAttack(this, play, vfx: "vfx/vfx_heavy_blunt").Execute(ctx);
+        // One hit per enemy, so each one's own Insulted counts. (A normal ALL-enemies hit is worked out once with no
+        // target, which skipped the Insulted bonus.)
         if (CombatState == null) return;
-        foreach (var enemy in CombatState.HittableEnemies.ToList()) await Comeback.ClearInsulted(Owner, enemy);
+        foreach (var enemy in CombatState.HittableEnemies.ToList())
+        {
+            if (!enemy.IsAlive) continue;
+            await DamageCmd.Attack(DynamicVars.CalculatedDamage.Calculate(enemy)).FromCard(this).Targeting(enemy).WithHitFx("vfx/vfx_heavy_blunt").Execute(ctx);
+            await Comeback.ClearInsulted(Owner, enemy);
+        }
     }
 
     protected override void OnUpgrade()

@@ -50,7 +50,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   Valley Forge token, 72 reward cards), `Mechanics/DavidTracker.cs` (Rant counts per turn/combat),
   `Mechanics/Exact.cs` (`Check()` returns 0/1/2 triggers, Min-Max doubles, runs `IExactListener` powers),
   `Powers/BleedPower.cs` (end of owner's turn, then halves; Deep Cuts makes it -1), `Powers/RantedAtPower.cs`
-  ("loses X Strength this turn", done as a damage modifier so Artifact can't backfire). Starter relic
+  (X less damage per hit, then 25% less, until the end of the enemy's turn; a damage modifier so Artifact can't backfire). Starter relic
   `Relics/OldWallet.cs`; `DavidRelic` base lives in `BrothersRelic.cs`.
 - Monkey Island relics/potions are `[Pool]`ed to Daniel and added to other brothers' pools in
   `MainFile.ShareMonkeyIslandItems()` via vanilla `ModHelper.AddModelToPool`. Add each new brother there.

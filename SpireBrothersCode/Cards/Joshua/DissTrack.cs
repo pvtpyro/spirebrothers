@@ -41,9 +41,8 @@ public class DissTrack() : JoshuaCard(2, CardType.Attack, CardRarity.Rare, Targe
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        await ChorusAttack(ctx, play, "vfx/vfx_heavy_blunt");
-        if (CombatState == null) return;
-        foreach (var enemy in CombatState.HittableEnemies.ToList()) await Comeback.ClearInsulted(Owner, enemy);
+        // One hit per enemy, so each one's own Insulted counts (see ChorusAttackEach).
+        await ChorusAttackEach(ctx, "vfx/vfx_heavy_blunt", enemy => Comeback.ClearInsulted(Owner, enemy));
     }
 
     protected override void OnUpgrade() => DynamicVars.ExtraDamage.UpgradeValueBy(1);

@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Existential crisis. The enemy loses 2 Strength this turn. Rant: +1 for each Rant played earlier this turn.</summary>
+/// <summary>Existential crisis. Apply 2 Ranted At. Rant: +1 for each Rant played earlier this turn.</summary>
 public class DeepSigh() : DavidCard(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Rant];

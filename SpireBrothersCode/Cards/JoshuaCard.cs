@@ -86,6 +86,28 @@ public abstract class JoshuaCard(int cost, CardType type, CardRarity rarity, Tar
         }
     }
 
+    /// <summary>
+    /// A Chorus attack on ALL enemies whose damage depends on each enemy (Diss Track's Insulted). One hit per enemy, since
+    /// the game works out a normal ALL-enemies hit once with no target, which would skip per-enemy bonuses.
+    /// </summary>
+    protected async Task ChorusAttackEach(PlayerChoiceContext ctx, string vfx, Func<Creature, Task>? afterHit = null)
+    {
+        try
+        {
+            _spentVerses = await Chorus(ctx);
+            foreach (var enemy in CombatState?.HittableEnemies.ToList() ?? [])
+            {
+                if (!enemy.IsAlive) continue;
+                await DamageCmd.Attack(DynamicVars.CalculatedDamage.Calculate(enemy)).FromCard(this).Targeting(enemy).WithHitFx(vfx).Execute(ctx);
+                if (afterHit != null) await afterHit(enemy);
+            }
+        }
+        finally
+        {
+            _spentVerses = null;
+        }
+    }
+
     /// <summary>Living player creatures in this combat (just you in solo).</summary>
     protected List<Creature> AllPlayers =>
         CombatState?.Players.Where(p => p.Creature.IsAlive).Select(p => p.Creature).ToList() ?? [Owner.Creature];

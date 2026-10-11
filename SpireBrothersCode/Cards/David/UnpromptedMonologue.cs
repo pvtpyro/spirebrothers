@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>The enemy loses 3 Strength this turn. Rant: also apply 1 Weak for each Rant played earlier this turn.</summary>
+/// <summary>Apply 3 Ranted At. Rant: also apply 1 Weak for each Rant played earlier this turn.</summary>
 public class UnpromptedMonologue() : DavidCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Rant];

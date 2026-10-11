@@ -9,11 +9,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace SpireBrothers.SpireBrothersCode.Powers;
 
 /// <summary>
-/// David's Rants: "the enemy loses X Strength this turn". Its attacks deal Amount less damage per hit
-/// until the end of its turn. Done as a damage modifier rather than Strength so Artifact can't make it backfire.
+/// David's Rants. Until the end of its turn, its attacks deal Amount less damage per hit, then 25% less (like Weak;
+/// the game applies additive modifiers before multiplicative ones). Done as a damage modifier rather than Strength
+/// so Artifact can't make it backfire.
 /// </summary>
 public class RantedAtPower : BrothersPower
 {
+    public const decimal Multiplier = 0.75m;
+
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
@@ -21,6 +24,12 @@ public class RantedAtPower : BrothersPower
     {
         if (dealer != Owner || !props.IsPoweredAttack()) return 0m;
         return -Amount;
+    }
+
+    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
+    {
+        if (dealer != Owner || !props.IsPoweredAttack()) return 1m;
+        return Multiplier;
     }
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)

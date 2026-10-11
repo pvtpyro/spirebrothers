@@ -21,7 +21,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 - 3 Strike, 4 Defend
 - **Collecting Dust** (Basic Attack, 1): Deal 6 damage. **Hoard:** +1 per 50 Gold.
 - **Do the Math** (Basic Skill, 1): Gain 5 Block. **Exact:** next turn, draw 2 extra cards.
-- **Here We Go Again** (Basic Attack, 1, Rant; replaced a Strike 2026-10-05): Deal 6 damage. The enemy loses 1 Strength this turn. **Rant:** +2 damage for each Rant played earlier this turn. *(Upgraded: 8 damage, loses 2 Strength.)*
+- **Here We Go Again** (Basic Attack, 1, Rant; replaced a Strike 2026-10-05): Deal 6 damage. Apply 1 Ranted At. **Rant:** +2 damage for each Rant played earlier this turn. *(Upgraded: 8 damage, loses 2 Strength.)*
 - **Starter relic: Old Wallet.** (He never saw a reason to replace it.) At the start of each combat, gain 1 Block per 20 Gold (max 15). **Touch of Orobas upgrade: Overstuffed Wallet**, 1 Block per 10 Gold (max 30).
 
 Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡️ Monkey Island (Insult / Comeback).
@@ -42,7 +42,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | 10 | 🩸 You Break It, You Buy It | 1 Attack | Deal 4 damage. Apply 4 Bleed. | Messing with David costs you |
 | 11 | 🩸 Thorns III | 1 Skill | Gain 5 Block. Apply 3 Bleed. | Minecraft (the armor enchantment) |
 | 12 | 😩 Why Are We Even Here? | 1 Attack | Deal 6 damage. **Rant:** +3 damage for each Rant played earlier this turn. | Existential crisis |
-| 13 | 😩 Deep Sigh | 0 Skill | The enemy loses 2 Strength this turn. **Rant:** +1 for each Rant played earlier this turn. *(the cheap opener for a rant chain)* | Existential crisis |
+| 13 | 😩 Deep Sigh | 0 Skill | Apply 2 Ranted At. **Rant:** +1 for each Rant played earlier this turn. *(the cheap opener for a rant chain)* | Existential crisis |
 | 14 | Drill | 2 Attack | Deal 4 damage 4 times. | Payday 2 |
 | 15 | Campfire | 1 Skill | Gain 5 Block. Upgrade a random card in your hand for this combat. | Camping (and a nod to Slay the Spire's rest sites) |
 | 16 | Order of Operations | 1 Attack | Deal 4 damage to ALL enemies twice. | Numbers |
@@ -88,7 +88,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 ### Ranting and co-op
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
-| 41 | 😩 Unprompted Monologue | 1 Skill | The enemy loses 3 Strength this turn. **Rant:** also apply 1 Weak for each Rant played earlier this turn. | Existential crisis |
+| 41 | 😩 Unprompted Monologue | 1 Skill | Apply 3 Ranted At. **Rant:** also apply 1 Weak for each Rant played earlier this turn. | Existential crisis |
 | 42 | 😩 3 A.M. Thoughts | 1 Power | Whenever you play a Rant card, deal 2 damage to ALL enemies. | Existential crisis |
 | 43 | 🤝 Delegate | 1 Skill | **Delegate:** a player's next Attack deals double damage. Exhaust. | Leadership |
 | 44 | 🤝 Group Project | 1 Skill | ALL players gain 4 Block and draw 1 card next turn. | Co-op |
@@ -149,3 +149,4 @@ Goal: no brother or card underpowered; only effects that scale without limit wer
 
 - **Compound Interest:** capped at 10 Block per turn (1 per 20 Gold up to 200 Gold).
 - **Cactus Needles:** the upgrade costs 0 instead of losing Exhaust (repeat doubling with Deep Cuts had no ceiling).
+- **Ranted At** (Here We Go Again, Deep Sigh, Unprompted Monologue): now also makes the enemy deal 25% less damage this turn, like Weak, on top of 1 less per stack (12 damage with 1 stack: 11 -> 8). Cards now say "Apply X Ranted At".

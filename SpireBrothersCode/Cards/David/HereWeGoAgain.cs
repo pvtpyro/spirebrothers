@@ -18,8 +18,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
 /// <summary>
-/// Starter. Existential crisis (he's about to start one of his rants). Deal 6 damage. The enemy loses 1 Strength this
-/// turn. Rant: +2 damage for each Rant played earlier this turn. Gives David a Rant card from the start.
+/// Starter. Existential crisis (he's about to start one of his rants). Deal 6 damage. Apply 1 Ranted At
+/// (see RantedAtPower). Rant: +2 damage for each Rant played earlier this turn. Gives David a Rant card from the start.
 /// </summary>
 public class HereWeGoAgain() : DavidCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
 {
