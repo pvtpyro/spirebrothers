@@ -120,7 +120,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | 61 | 🎯 Return on Investment | 2 Power | Whenever you trigger **Exact**, gain 3 Gold. | Numbers |
 | 62 | 💰 Nest Egg | 2 Attack | Deal 1 damage per 10 Gold you have. Exhaust. | Indifferent to money |
 | 63 | 🗡️ Checkmate | 2 Attack | **Comeback.** Deal 10 damage, +5 for each Insulted on the target, then remove it. | Comeback (puzzles) |
-| 64 | 💰 Black Friday | 1 Skill | Lose ALL your Gold. Gain 1 Strength per 50 Gold lost. | The one day he finally buys something |
+| 64 | Black Friday | 1 Skill | Lose 40 Gold. Gain 3 Strength (4 upgraded). Exhaust. Needs the 40 Gold to play. *(a doorbuster deal)* | The one day he finally buys something |
 | 65 | 🩸 Deep Cuts | 2 Power | Bleed on enemies no longer halves. It goes down by 1 instead. *(turns Bleed into a long burn)* | Bleed payoff |
 | 66 | 🩸 Spike Trap Room | 2 Skill | Apply 8 Bleed to ALL enemies. Exhaust. | Terraria |
 | 67 | 😩 The Void Stares Back | 3 Power | Whenever you play a Rant card, ALL enemies lose 1 Strength permanently. | Existential crisis |
@@ -150,3 +150,4 @@ Goal: no brother or card underpowered; only effects that scale without limit wer
 - **Compound Interest:** capped at 10 Block per turn (1 per 20 Gold up to 200 Gold).
 - **Cactus Needles:** the upgrade costs 0 instead of losing Exhaust (repeat doubling with Deep Cuts had no ceiling).
 - **Ranted At** (Here We Go Again, Deep Sigh, Unprompted Monologue): now also makes the enemy deal 25% less damage this turn, like Weak, on top of 1 less per stack (12 damage with 1 stack: 11 -> 8). Cards now say "Apply X Ranted At".
+- **Black Friday:** reworked into a doorbuster deal: lose 40 Gold, gain 3 Strength (4 upgraded), Exhaust. It used to cost ALL your gold (1 Strength per 50), which was only worth it on a final boss.

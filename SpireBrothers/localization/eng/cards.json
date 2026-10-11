@@ -311,7 +311,7 @@
   "SPIREBROTHERS-CHECKMATE.title": "Checkmate",
   "SPIREBROTHERS-CHECKMATE.description": "[gold]Comeback.[/gold] Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} more for each [gold]Insulted[/gold] on the target, then removes it.",
   "SPIREBROTHERS-BLACK_FRIDAY.title": "Black Friday",
-  "SPIREBROTHERS-BLACK_FRIDAY.description": "Lose ALL your [gold]Gold[/gold].\nGain 1 [gold]Strength[/gold] per {GoldPer:diff()} [gold]Gold[/gold] lost.",
+  "SPIREBROTHERS-BLACK_FRIDAY.description": "Lose {Gold:diff()} [gold]Gold[/gold].\nGain {StrengthPower:diff()} [gold]Strength[/gold].",
   "SPIREBROTHERS-DEEP_CUTS.title": "Deep Cuts",
   "SPIREBROTHERS-DEEP_CUTS.description": "[gold]Bleed[/gold] on enemies no longer halves. It goes down by 1 instead.",
   "SPIREBROTHERS-SPIKE_TRAP_ROOM.title": "Spike Trap Room",
