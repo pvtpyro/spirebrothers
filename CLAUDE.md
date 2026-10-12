@@ -122,6 +122,9 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
     (or `CalculatedBlock` followed by `[gold]Block[/gold]`).
   - Diligent cards use `{DiligentGrown}`/`{DiligentStart}` from `DanielCard`, same dimmed-then-green shape.
   - Every brother's card base class calls `Growth.AddCalcArgs`; any new base class must too.
+  - **Tim is the exception:** `Mechanics/TimDiffText.cs` patches `DynamicVar.ToHighlightedString` so every `:diff()`
+    on a `TimCard` shows dimmed printed + green (red if lower) whenever the value differs (Age bonus, Kids, Strength).
+    His loc text uses plain `{Damage:diff()}` / `{CalculatedDamage:diff()}`; do NOT add `CalcGrown` wrappers (it would double).
 
 ## Current status
 
