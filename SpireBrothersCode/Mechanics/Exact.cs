@@ -13,7 +13,7 @@ public interface IExactListener
 }
 
 /// <summary>
-/// Exact: a bonus if the player has exactly 0 energy after paying for the card. X-cost cards always count.
+/// Exact: a bonus if the player has exactly 0 energy after paying for the card.
 /// </summary>
 public static class Exact
 {

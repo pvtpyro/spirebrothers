@@ -10,7 +10,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 
 | Keyword | Rule |
 |---|---|
-| **Exact** | Bonus if you have **exactly 0 energy** after paying for this card. X-cost cards always count as Exact. |
+| **Exact** | Bonus if you have **exactly 0 energy** after paying for this card. |
 | **Hoard** | Gets stronger with the gold you're holding, always **+1 per 50 Gold**. Spending gold makes Hoard weaker, and David rarely sees a reason to spend. |
 | **Bleed** | Debuff on enemies. At the end of its turn, it loses HP equal to its Bleed (ignores Block), then Bleed is **halved** (rounded down). Front-loaded, unlike Poison's slow burn: X Bleed deals about 2× X in total (4 → 7, 6 → 10, 8 → 15). |
 | **Rant** | David vents about the meaning of it all. A Rant card gets **stronger for each Rant card you already played this turn**, so his rants snowball. Rants wear down the listener: mostly the enemy loses Strength (hits softer), takes damage, or gets Weak. |
@@ -65,8 +65,8 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 ### Exact
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
-| 26 | 🎯 Balanced Budget | X Skill | Gain 6 Block X times. *(always Exact)* | Numbers |
-| 27 | 🎯 Zero-Sum Game | X Attack | Deal 7 damage X times. *(always Exact)* | Numbers |
+| 26 | Balanced Budget | X Skill | Gain 6 Block X times. If X is 3 or more, 1 more time. | Numbers |
+| 27 | Zero-Sum Game | X Attack | Deal 7 damage X times. If X is 3 or more, 1 more time. | Numbers |
 | 28 | 🎯 Perfect Score | 2 Attack | Deal 16 damage. **Exact:** deal 8 more. | Puzzles |
 | 29 | 🎯 Calculated Risk | 1 Attack | Deal 10 damage. **Exact:** gain 1 Energy. | Numbers |
 | 30 | 🎯 **A Glove Fry** | 1 Skill | Draw 2 cards. **Exact:** draw them next turn instead; you cracked it! Exhaust this and add **Valley Forge** to your hand. *(Valley Forge, token, 0 cost: gain 10 Block and 1 Strength. Exhaust.)* | National Treasure: an inside joke between David and Daniel, the scrambled guess at "Valley Forge" |
@@ -116,7 +116,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | 57 | **Idaho to Jersey and Back** | 3 Power | At the start of your turn, gain 1 Energy and 2 Block for each turn so far this combat. *(the miles add up)* | The road trip |
 | 58 | 🎯 Min-Max | 2 Power | Your **Exact** effects trigger twice. | His title! |
 | 59 | 🎯 Perfect Efficiency | 3 Power | Whenever you end your turn with exactly 0 Energy, gain 1 Energy and draw 1 extra card next turn. | Satisfactory |
-| 60 | 🎯 All In | X Attack | Deal 10 damage to ALL enemies X times. *(always Exact)* | Payday 2 |
+| 60 | All In | X Attack | Deal 10 damage to ALL enemies X times. If X is 3 or more, 1 more time. | Payday 2 |
 | 61 | 🎯 Return on Investment | 2 Power | Whenever you trigger **Exact**, gain 3 Gold. | Numbers |
 | 62 | 💰 Nest Egg | 2 Attack | Deal 1 damage per 10 Gold you have. Exhaust. | Indifferent to money |
 | 63 | 🗡️ Checkmate | 2 Attack | **Comeback.** Deal 10 damage, +5 for each Insulted on the target, then remove it. | Comeback (puzzles) |

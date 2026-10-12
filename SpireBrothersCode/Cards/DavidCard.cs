@@ -25,7 +25,7 @@ public abstract class DavidCard(int cost, CardType type, CardRarity rarity, Targ
     public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
     public override string BetaPortraitPath => $"beta/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
 
-    // Glow gold when an Exact card would trigger if played now, or a Rant card already has Rants to build on.
+    // Glow gold when an Exact card would trigger if played now, an X card has 3+ energy, or a Rant card already has Rants to build on.
     protected override bool ShouldGlowGoldInternal
     {
         get
@@ -35,6 +35,8 @@ public abstract class DavidCard(int cost, CardType type, CardRarity rarity, Targ
             {
                 if (!IsInCombat || Owner?.PlayerCombatState == null) return false;
                 if (Keywords.Contains(BrotherKeywords.Exact) && Exact.WouldTrigger(this)) return true;
+                // X cards get one extra hit or Block at X >= 3.
+                if (EnergyCost.CostsX && Owner.PlayerCombatState.Energy >= 3) return true;
                 if (Keywords.Contains(BrotherKeywords.Rant) && DavidTracker.RantsThisTurn(Owner) > 0) return true;
             }
             catch (Exception e)

@@ -17,18 +17,17 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>X cost. Gain 6 Block X times. Always counts as Exact.</summary>
+/// <summary>X cost. Gain 6 Block X times. If X is 3 or more, 1 more time.</summary>
 public class BalancedBudget() : DavidCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override bool HasEnergyCostX => true;
     public override bool GainsBlock => true;
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Exact];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(6, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         int x = ResolveEnergyXValue();
-        await Exact.Check(ctx, this);
+        if (x >= 3) x++;
         for (int i = 0; i < x; i++) await CommonActions.CardBlock(this, play);
     }
 
