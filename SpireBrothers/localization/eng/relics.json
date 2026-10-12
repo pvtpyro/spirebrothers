@@ -49,5 +49,9 @@
   "SPIREBROTHERS-SIGNATURE_GUITAR.flavor": "Same old guitar, freshly restrung, with his name on the case.",
   "SPIREBROTHERS-FIFTEEN_PASSENGER_VAN.title": "Fifteen-Passenger Van",
   "SPIREBROTHERS-FIFTEEN_PASSENGER_VAN.description": "Start each combat with [blue]4[/blue] [gold]Kids[/gold].",
-  "SPIREBROTHERS-FIFTEEN_PASSENGER_VAN.flavor": "Finally, everyone gets a window seat."
+  "SPIREBROTHERS-FIFTEEN_PASSENGER_VAN.flavor": "Finally, everyone gets a window seat.",
+  "SEA_GLASS.SPIREBROTHERS-DANIEL.title": "Circuit Glass",
+  "SEA_GLASS.SPIREBROTHERS-DAVID.title": "Ledger Glass",
+  "SEA_GLASS.SPIREBROTHERS-JOSHUA.title": "Stained Glass",
+  "SEA_GLASS.SPIREBROTHERS-TIM.title": "Blueprint Glass"
 }
