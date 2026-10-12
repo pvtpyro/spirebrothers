@@ -25,6 +25,11 @@ public class ScriptPower : BrothersPower
 
     private readonly List<CardModel> _queued = new();
 
+    // Duplicates made by Script replays, so Ringing Ears can ignore them (see RingingScriptFix).
+    private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<CardModel, object> Replays = new();
+
+    public static bool IsReplay(CardModel card) => Replays.TryGetValue(card, out _);
+
     public void Queue(CardModel card) => _queued.Add(card);
 
     public override async Task AfterAutoPrePlayPhaseEntered(PlayerChoiceContext choiceContext, Player player)
@@ -38,7 +43,9 @@ public class ScriptPower : BrothersPower
             if (!Owner.IsAlive || CombatState == null || !CombatState.HittableEnemies.Any()) return;
             try
             {
-                await CardCmd.AutoPlay(choiceContext, card.CreateDupe(), null);
+                var dupe = card.CreateDupe();
+                Replays.AddOrUpdate(dupe, true);
+                await CardCmd.AutoPlay(choiceContext, dupe, null);
             }
             catch (Exception e)
             {
