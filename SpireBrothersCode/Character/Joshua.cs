@@ -29,7 +29,7 @@ public class Joshua : BrotherCharacter
     public override IEnumerable<CardModel> StartingDeck => [
         ModelDb.Card<StrikeJoshua>(), ModelDb.Card<StrikeJoshua>(), ModelDb.Card<StrikeJoshua>(), ModelDb.Card<StrikeJoshua>(),
         ModelDb.Card<DefendJoshua>(), ModelDb.Card<DefendJoshua>(), ModelDb.Card<DefendJoshua>(), ModelDb.Card<DefendJoshua>(),
-        ModelDb.Card<HumATune>(),
+        ModelDb.Card<LendAnEar>(),
         ModelDb.Card<SingAlong>()
     ];
 

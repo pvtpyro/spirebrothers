@@ -16,7 +16,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Starter. Song. Gain 5 Block.</summary>
+/// <summary>No longer in the starting deck (Lend an Ear replaced it); kept so saved runs that have it still load.</summary>
 public class HumATune() : JoshuaCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {
     public override bool GainsBlock => true;

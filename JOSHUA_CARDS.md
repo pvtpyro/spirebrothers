@@ -29,9 +29,9 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 ## Starting deck (10 cards) and relic
 
 - 4 Strike, 4 Defend
-- **Hum a Tune** (Basic Skill, 1, Song): Gain 5 Block.
+- **Lend an Ear** (Basic Skill, 1, Share): A player gains 7 Block (10 upgraded). Replaced Hum a Tune (Song, 5 Block) on 2026-10-16, when the guitar took over giving Verses.
 - **Sing Along** (Basic Skill, 1, Chorus): ALL players gain 3 Block per Verse spent.
-- **Starter relic: Well-Worn Guitar.** Start each combat with 3 Verses. **Touch of Orobas upgrade: Signature Guitar**, start each combat with 5 Verses.
+- **Starter relic: Well-Worn Guitar.** At the start of your turn, gain 1 Verse. **Touch of Orobas upgrade: Signature Guitar**, gain 2 Verses at the start of your turn.
 
 Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Archipelago), 🗡️ Monkey Island (Insult / Comeback).
 

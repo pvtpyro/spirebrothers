@@ -336,6 +336,8 @@
   "SPIREBROTHERS-DEFEND_JOSHUA.description": "Gain {Block:diff()} [gold]Block[/gold].",
   "SPIREBROTHERS-HUM_A_TUNE.title": "Hum a Tune",
   "SPIREBROTHERS-HUM_A_TUNE.description": "Gain {Block:diff()} [gold]Block[/gold].",
+  "SPIREBROTHERS-LEND_AN_EAR.title": "Lend an Ear",
+  "SPIREBROTHERS-LEND_AN_EAR.description": "[gold]Share:[/gold] A player gains {Block:diff()} [gold]Block[/gold].",
   "SPIREBROTHERS-SING_ALONG.title": "Sing Along",
   "SPIREBROTHERS-SING_ALONG.description": "[gold]Chorus:[/gold] ALL players gain {BlockPerVerse:diff()} [gold]Block[/gold] per Verse.{InCombat:\n({Verses} {Verses:plural:Verse|Verses})|}",
   "SPIREBROTHERS-POWER_CHORD.title": "Power Chord",

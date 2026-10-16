@@ -6,10 +6,10 @@ using SpireBrothers.SpireBrothersCode.Mechanics;
 
 namespace SpireBrothers.SpireBrothersCode.Relics;
 
-/// <summary>Joshua's starter. Start each combat with 3 Verses.</summary>
+/// <summary>Joshua's starter. At the start of each turn, gain 1 Verse.</summary>
 public class WellWornGuitar : JoshuaRelic
 {
-    public const int StartingVerses = 3;
+    public const int VersesPerTurn = 1;
     public override RelicRarity Rarity => RelicRarity.Starter;
 
     // Touch of Orobas (the Ancient that upgrades starter relics) turns this into Signature Guitar.
@@ -18,9 +18,8 @@ public class WellWornGuitar : JoshuaRelic
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner) return;
-        var combat = player.Creature.CombatState;
-        if (combat == null || combat.RoundNumber != 1) return;
+        if (player.Creature.CombatState == null) return;
         Flash();
-        await Verses.Gain(choiceContext, player, StartingVerses, null);
+        await Verses.Gain(choiceContext, player, VersesPerTurn, null);
     }
 }
