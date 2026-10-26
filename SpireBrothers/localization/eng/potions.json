@@ -10,5 +10,33 @@
 
   "SPIREBROTHERS-MONKEY_BUSINESS.title": "Monkey Business",
   "SPIREBROTHERS-MONKEY_BUSINESS.description": "Eek? Ook ook. EEK!",
-  "SPIREBROTHERS-MONKEY_BUSINESS.translation": "This turn, [gold]Comeback[/gold] cards don't remove [gold]Insulted[/gold]."
+  "SPIREBROTHERS-MONKEY_BUSINESS.translation": "This turn, [gold]Comeback[/gold] cards don't remove [gold]Insulted[/gold].",
+
+  "SPIREBROTHERS-GRAPEFRUIT_JUICE.title": "Grapefruit Juice",
+  "SPIREBROTHERS-GRAPEFRUIT_JUICE.description": "Heal {Heal:diff()} HP.\nGain {Energy:energyIcons()}.",
+  "SPIREBROTHERS-SPARE_BATTERY.title": "Spare Battery",
+  "SPIREBROTHERS-SPARE_BATTERY.description": "This turn, every [gold]Wired[/gold] effect triggers.",
+  "SPIREBROTHERS-STIM.title": "Stim",
+  "SPIREBROTHERS-STIM.description": "Heal {HealPercent:diff()}% of your Max HP.\nGain {Energy:energyIcons()}.",
+
+  "SPIREBROTHERS-GAS_STATION_COFFEE.title": "Gas Station Coffee",
+  "SPIREBROTHERS-GAS_STATION_COFFEE.description": "This turn, [gold]Exact[/gold] also triggers with [blue]1[/blue] energy left.",
+  "SPIREBROTHERS-TRAIL_MIX.title": "Trail Mix",
+  "SPIREBROTHERS-TRAIL_MIX.description": "Heal {Heal:diff()} HP.\nALL players gain {Block:diff()} [gold]Block[/gold].",
+  "SPIREBROTHERS-PIGGY_BANK.title": "Piggy Bank",
+  "SPIREBROTHERS-PIGGY_BANK.description": "Gain {Gold:diff()} [gold]Gold[/gold].",
+
+  "SPIREBROTHERS-RAMUNE.title": "Ramune",
+  "SPIREBROTHERS-RAMUNE.description": "Gain {Verses:diff()} [gold]Verses[/gold].",
+  "SPIREBROTHERS-HONEY_LEMON_TEA.title": "Honey Lemon Tea",
+  "SPIREBROTHERS-HONEY_LEMON_TEA.description": "ALL players heal {Heal:diff()} HP.",
+  "SPIREBROTHERS-MATCHA.title": "Matcha",
+  "SPIREBROTHERS-MATCHA.description": "Gain [gold]Verses[/gold] until you have {Verses:diff()}.",
+
+  "SPIREBROTHERS-JUICE_BOX.title": "Juice Box",
+  "SPIREBROTHERS-JUICE_BOX.description": "Gain {Kids:diff()} [gold]Kids[/gold].",
+  "SPIREBROTHERS-SUGAR_RUSH.title": "Sugar Rush",
+  "SPIREBROTHERS-SUGAR_RUSH.description": "Gain {Kids:diff()} [gold]Kid[/gold].\nEvery [gold]Kid[/gold] hits a random enemy {Times:diff()} times.",
+  "SPIREBROTHERS-HOTFIX.title": "Hotfix",
+  "SPIREBROTHERS-HOTFIX.description": "Your next {Cards:diff()} cards this turn have [gold]Script[/gold]."
 }

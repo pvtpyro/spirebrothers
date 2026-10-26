@@ -1,11 +1,11 @@
-param([switch]$Preview, [switch]$CardsOnly, [string]$Only = "", [ValidateSet('', 'relics', 'powers', 'events')][string]$Section = "")
+param([switch]$Preview, [switch]$CardsOnly, [string]$Only = "", [ValidateSet('', 'relics', 'powers', 'events', 'potions')][string]$Section = "")
 Add-Type -AssemblyName System.Drawing
 $ErrorActionPreference = 'Stop'
 $here = $PSScriptRoot
 # -CardsOnly: only the card portraits. Use it! The other sections (relics, powers, potions, character select,
 # map markers, Ages) would overwrite art that was replaced later (pixel select buttons, pizza / sunglasses markers).
 # -Only <ClassName>: render just that card. -Preview: write into .preview instead of the mod.
-# -Section relics|powers|events: only that section (no cards); add -Only <file_name> (relics, events) or <ClassName> (powers) for one.
+# -Section relics|powers|events|potions: only that section (no cards); add -Only <file_name> (relics, events, potions) or <ClassName> (powers) for one.
 $proj = 'D:\projects\csharp\SpireBrothers'
 $img = Join-Path $proj 'SpireBrothers\images'
 $loc = Join-Path $proj 'SpireBrothers\localization\eng'
@@ -205,6 +205,41 @@ if ($Section -eq 'events') {
   return
 }
 
+# ---------- Potions ----------
+# A round flask filled with the potion's color and an emoji on the liquid. Drawn in the full run (after powers),
+# or alone with -Section potions [-Only <file_name>], which skips the relics and powers.
+$potions = @{ grog = @('#7ddc3a', '☠'); ook_ook_eek = @('#ffd43b', '🍌'); monkey_business = @('#a0522d', '🐒')
+  gas_station_coffee = @('#6f4e37', '☕'); trail_mix = @('#c68e3f', '🥜'); piggy_bank = @('#f4a6c0', '🐷')
+  ramune = @('#7fd3f7', '🫧'); honey_lemon_tea = @('#f6c945', '🍋'); matcha = @('#7bb661', '🍵')
+  juice_box = @('#ff9f43', '🧃'); sugar_rush = @('#ff6fb5', '🍬'); hotfix = @('#6d9eeb', '🩹')
+  grapefruit_juice = @('#ff7f6e', '🍊'); spare_battery = @('#f1c232', '🔋'); stim = @('#e06666', '💉') }
+function DrawPotions {
+  $pc = 0
+  foreach ($k in $potions.Keys) {
+    if ($Only -and $k -ne $Only) { continue }
+    $S = 256
+    $bottle = [System.Drawing.Drawing2D.GraphicsPath]::new()
+    $bottle.AddEllipse(48, 88, 160, 150); $bottle.AddRectangle([System.Drawing.RectangleF]::new(100, 36, 56, 70))
+    $region = [System.Drawing.Region]::new($bottle)
+    $c = Canvas $S $S; $g = $c[1]
+    $g.DrawPath([System.Drawing.Pen]::new((C '#1b1b1b'), 16), $bottle)
+    $g.FillPath([System.Drawing.SolidBrush]::new((C '#dff3ff' 200)), $bottle)
+    $g.SetClip($region, [System.Drawing.Drawing2D.CombineMode]::Replace); $g.FillRectangle([System.Drawing.SolidBrush]::new((C $potions[$k][0])), 0, 128, $S, $S); $g.ResetClip()
+    $g.FillRectangle([System.Drawing.SolidBrush]::new((C '#8b5a2b')), 94, 22, 68, 26)
+    $g.FillEllipse([System.Drawing.SolidBrush]::new((C '#ffffff' 140)), 72, 110, 26, 46)
+    $icon = GlyphPath $potions[$k][1] 128 182 70 60
+    DrawIcon $g $icon (C '#ffffff') (C '#1b1b1b') 8
+    Save $c[0] (Join-Path $out "potions\$k.png"); $g.Dispose(); $c[0].Dispose()
+    $c = Canvas $S $S
+    $c[1].DrawPath([System.Drawing.Pen]::new((C '#ffffff'), 16), $bottle); $c[1].FillPath([System.Drawing.Brushes]::White, $bottle)
+    $c[1].FillRectangle([System.Drawing.Brushes]::White, 94, 22, 68, 26)
+    Save $c[0] (Join-Path $out "potions\outline\$k.png"); $c[1].Dispose(); $c[0].Dispose()
+    $pc++
+  }
+  "potions: $pc"
+}
+if ($Section -eq 'potions') { DrawPotions; return }
+
 # ---------- Relics ----------
 $relicGlyphs = @{ and_you_know_what = '💬'; trusty_multimeter = '📟'; rubber_chicken_with_a_pulley = '🐔'; never_paid_a_mechanic = '🚗'
   grapefruit = '🍊'; monkey_phrasebook = '📕'; stone_monkey_head = '🗿'; monkey_wrench = '🔧'; old_wallet = '👛'; well_worn_guitar = '🎸'; family_minivan = '🚐'
@@ -286,28 +321,8 @@ foreach ($f in Get-ChildItem (Join-Path $proj 'SpireBrothersCode\Powers') -Filte
 "powers: $pc"
 if ($Section) { return }
 
-# ---------- Potions ----------
-$potions = @{ grog = @('#7ddc3a', '☠'); ook_ook_eek = @('#ffd43b', '🍌'); monkey_business = @('#a0522d', '🐒') }
-foreach ($k in $potions.Keys) {
-  $S = 256
-  $bottle = [System.Drawing.Drawing2D.GraphicsPath]::new()
-  $bottle.AddEllipse(48, 88, 160, 150); $bottle.AddRectangle([System.Drawing.RectangleF]::new(100, 36, 56, 70))
-  $region = [System.Drawing.Region]::new($bottle)
-  $c = Canvas $S $S; $g = $c[1]
-  $g.DrawPath([System.Drawing.Pen]::new((C '#1b1b1b'), 16), $bottle)
-  $g.FillPath([System.Drawing.SolidBrush]::new((C '#dff3ff' 200)), $bottle)
-  $g.SetClip($region, [System.Drawing.Drawing2D.CombineMode]::Replace); $g.FillRectangle([System.Drawing.SolidBrush]::new((C $potions[$k][0])), 0, 128, $S, $S); $g.ResetClip()
-  $g.FillRectangle([System.Drawing.SolidBrush]::new((C '#8b5a2b')), 94, 22, 68, 26)
-  $g.FillEllipse([System.Drawing.SolidBrush]::new((C '#ffffff' 140)), 72, 110, 26, 46)
-  $icon = GlyphPath $potions[$k][1] 128 182 70 60
-  DrawIcon $g $icon (C '#ffffff') (C '#1b1b1b') 8
-  Save $c[0] (Join-Path $out "potions\$k.png"); $g.Dispose(); $c[0].Dispose()
-  $c = Canvas $S $S
-  $c[1].DrawPath([System.Drawing.Pen]::new((C '#ffffff'), 16), $bottle); $c[1].FillPath([System.Drawing.Brushes]::White, $bottle)
-  $c[1].FillRectangle([System.Drawing.Brushes]::White, 94, 22, 68, 26)
-  Save $c[0] (Join-Path $out "potions\outline\$k.png"); $c[1].Dispose(); $c[0].Dispose()
-}
-"potions: $($potions.Count)"
+# ---------- Potions ---------- (drawn by DrawPotions, defined above the relics)
+DrawPotions
 
 # ---------- Character select, locked, map marker ----------
 foreach ($b in $brotherColor.Keys) {

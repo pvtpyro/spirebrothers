@@ -22,8 +22,14 @@ public static class Exact
     {
         var state = card.Owner?.PlayerCombatState;
         if (state == null) return false;
-        return card.EnergyCost.CostsX || state.Energy == card.EnergyCost.GetWithModifiers(CostModifiers.All);
+        if (card.EnergyCost.CostsX) return true;
+        int left = state.Energy - card.EnergyCost.GetWithModifiers(CostModifiers.All);
+        return left == 0 || (left == 1 && HasCoffee(card.Owner));
     }
+
+    /// <summary>Gas Station Coffee: this turn, ending a card with 1 energy left also counts as Exact.</summary>
+    private static bool HasCoffee(MegaCrit.Sts2.Core.Entities.Players.Player? owner) =>
+        owner?.Creature?.GetPower<GasStationCoffeePower>() != null;
 
     /// <summary>
     /// Call at the start of OnPlay. Returns how many times Exact triggers: 0, 1, or 2 with Min-Max.
@@ -34,7 +40,7 @@ public static class Exact
         var owner = card.Owner;
         var state = owner?.PlayerCombatState;
         if (owner == null || state == null) return 0;
-        if (!card.EnergyCost.CostsX && state.Energy != 0) return 0;
+        if (!card.EnergyCost.CostsX && state.Energy != 0 && !(state.Energy == 1 && HasCoffee(owner))) return 0;
 
         int times = owner.Creature.GetPower<MinMaxPower>() != null ? 2 : 1;
         var listeners = owner.Creature.Powers.OfType<IExactListener>()

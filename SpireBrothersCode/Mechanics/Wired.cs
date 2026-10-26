@@ -13,7 +13,7 @@ public static class Wired
     {
         var owner = card.Owner;
         if (owner?.Creature == null) return false;
-        if (owner.Creature.Powers.Any(p => p is NerdsWrongPower)) return true;
+        if (owner.Creature.Powers.Any(p => p is NerdsWrongPower or SpareBatteryPower)) return true;
 
         bool logic = card.Keywords.Contains(BrotherKeywords.Logic);
         bool hands = card.Keywords.Contains(BrotherKeywords.Hands);

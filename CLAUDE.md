@@ -234,5 +234,8 @@ Card art for everything (all cards, relics, and powers use placeholders).
   `<ID>.pages.<PAGE>.description`. Text lives in a new `events.json` (the analyzer doesn't check event keys). `IsShared => true`
   means co-op votes and the winner runs for everyone (Road Trip, Family Hike). Art: `cardgen/gen.ps1 -Section events [-Only <id>]`.
   The family details behind them are in DESIGN.md ("The family").
+- **Potions**: `Potions/BrotherPotion.cs` holds the David/Joshua/Tim potion bases (pooled like `DanielPotion`); 3 each (list in
+  TODO.md #4). Gas Station Coffee applies `GasStationCoffeePower`, which `Exact.WouldTrigger`/`Check` read (1 energy left counts).
+  Hotfix reuses `SnapToGridPower`. Daniel's own 3 extend `DanielPotion`; Spare Battery's `SpareBatteryPower` makes `Wired.IsActive` true this turn. Potion art: the `$potions` table in gen.ps1, `-Section potions [-Only <file_name>]`.
 - Also new: `Cards/Shared/FoodComa.cs` (curse, `CurseCardPool`; cardgen draws `Cards\Shared` too), David's `SundayWalk` +
   `SundayWalkPower`, `Relics/DadsTackleBox.cs` (shared relic, registered for every brother in `MainFile`).

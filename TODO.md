@@ -54,11 +54,15 @@ Uncommon cards that only show up in rewards and shops when a specific brother is
 ## Content gaps
 
 ### 4. Potions for David, Joshua, and Tim
-Only Daniel has potions of his own right now (plus the shared Monkey Island ones).
-- [ ] Joshua: Ramune (gain 3 Verses), more TBD
-- [ ] David: Gas Station Coffee (Exact counts this turn even at 1 energy), more TBD
-- [ ] Tim: Juice Box (+2 Kids), more TBD
-- [ ] Add each to its brother's pool, plus art lines
+Built 2026-10-26 (common / uncommon / rare each, in `SpireBrothersCode/Potions/`):
+- [x] David: Gas Station Coffee (this turn, Exact also triggers at 1 energy), Trail Mix (heal 10, ALL players 6 Block),
+      Piggy Bank (gain 100 Gold, any time)
+- [x] Joshua: Ramune (gain 3 Verses), Honey Lemon Tea (ALL players heal 8), Matcha (fill Verses to 10)
+- [x] Tim: Juice Box (gain 2 Kids), Sugar Rush (gain 1 Kid, every Kid hits twice), Hotfix (next 3 cards this turn have Script)
+- [x] Art (`cardgen/gen.ps1 -Section potions [-Only <file_name>]`)
+- [ ] Test in game
+- [x] Daniel: Grapefruit Juice (heal 8, gain 1 energy), Spare Battery (this turn, every Wired effect triggers),
+      Stim (heal 30% Max HP, gain 2 energy; Helldivers 2)
 
 ### 5. Custom ? room events
 Built 2026-10-26 (`SpireBrothersCode/Events/`, text in `events.json`). Only appear with a brother in the party.
@@ -66,7 +70,7 @@ Built 2026-10-26 (`SpireBrothersCode/Events/`, text in `events.json`). Only appe
       Family Hike (shared vote), Calling Mom (Vent for an Hour locked for Daniel)
 - [x] Extras from the family details: Food Coma curse (Thanksgiving pie), Sunday Walk (David power card),
       Dad's Tackle Box (shared relic), banter lines (David calling Mom, Dad's bigger fish)
-- [ ] Brandi: reword Thanksgiving if wanted (events.json, `SPIREBROTHERS-THANKSGIVING_WITH_MOM_AND_DAD.*`)
+- [x] Brandi: reword Thanksgiving if wanted (events.json, `SPIREBROTHERS-THANKSGIVING_WITH_MOM_AND_DAD.*`)
 - [ ] Real event art (placeholders are 1720x806; vanilla is 3440x1613, same shape)
 - [ ] Test: each event shows, options work, shared votes in co-op, the two-page road trip
 - [ ] Maybe later: "The Group Chat" (co-op vote), "Road Trip Detour" (David's Idaho-to-NJ trip)
