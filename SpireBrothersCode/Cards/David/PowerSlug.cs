@@ -1,5 +1,4 @@
 using BaseLib.Cards.Variables;
-using BaseLib.Commands;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,16 +16,18 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Satisfactory. Gain 3 Block. Next turn, gain 1 energy.</summary>
-public class PowerSlug() : DavidCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+/// <summary>Satisfactory (Share). A player gains 3 Block. Next turn, they gain 1 energy.</summary>
+public class PowerSlug() : DavidCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyPlayer)
 {
     public override bool GainsBlock => true;
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Share];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(3, ValueProp.Move), new EnergyVar(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        await CommonActions.CardBlock(this, play);
-        await PowerCmd.Apply<EnergyNextTurnPower>(ctx, Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this);
+        var target = ShareTarget(play);
+        await CreatureCmd.GainBlock(target, DynamicVars.Block, play);
+        await PowerCmd.Apply<EnergyNextTurnPower>(ctx, target, DynamicVars.Energy.BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(4);

@@ -1,5 +1,4 @@
 using BaseLib.Cards.Variables;
-using BaseLib.Commands;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,15 +16,16 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Hiking (and he never replaces anything). Gain 2 Buffer.</summary>
-public class BrokenInBoots() : DavidCard(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+/// <summary>Hiking (and he never replaces anything). Share: a player gains 2 Buffer.</summary>
+public class BrokenInBoots() : DavidCard(2, CardType.Power, CardRarity.Rare, TargetType.AnyPlayer)
 {
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Share];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<BufferPower>(2)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<BufferPower>()];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        await CommonActions.ApplySelf<BufferPower>(ctx, this);
+        await PowerCmd.Apply<BufferPower>(ctx, ShareTarget(play), DynamicVars["BufferPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade() => DynamicVars["BufferPower"].UpgradeValueBy(1);

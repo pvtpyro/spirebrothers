@@ -1,5 +1,4 @@
 using BaseLib.Cards.Variables;
-using BaseLib.Commands;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,15 +16,16 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Camping. Gain 6 Block. Retain.</summary>
-public class PitchTheTent() : DavidCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+/// <summary>Camping (Share). A player gains 6 Block. Retain.</summary>
+public class PitchTheTent() : DavidCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyPlayer)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
+    public override bool GainsBlock => true;
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Share, CardKeyword.Retain];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(6, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        await CommonActions.CardBlock(this, play);
+        await CreatureCmd.GainBlock(ShareTarget(play), DynamicVars.Block, play);
     }
 
     protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(3);

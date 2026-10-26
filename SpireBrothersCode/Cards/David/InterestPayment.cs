@@ -1,5 +1,4 @@
 using BaseLib.Cards.Variables;
-using BaseLib.Commands;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,11 +16,11 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Gain 4 Block. Hoard: +1 Block per 50 Gold.</summary>
-public class InterestPayment() : DavidCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+/// <summary>Share. A player gains 4 Block. Hoard: +1 Block per 50 Gold.</summary>
+public class InterestPayment() : DavidCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyPlayer)
 {
     public override bool GainsBlock => true;
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Hoard];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Hoard, BrotherKeywords.Share];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(4),
         new CalculationExtraVar(1),
@@ -32,7 +31,8 @@ public class InterestPayment() : DavidCard(1, CardType.Skill, CardRarity.Common,
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        await CommonActions.CardBlock(this, play);
+        decimal block = ((CalculatedVar)DynamicVars["CalculatedBlock"]).Calculate(null);
+        await CreatureCmd.GainBlock(ShareTarget(play), block, ValueProp.Move, play);
     }
 
     protected override void OnUpgrade() => DynamicVars.CalculationBase.UpgradeValueBy(3);

@@ -51,7 +51,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   `Mechanics/Exact.cs` (`Check()` returns 0/1/2 triggers, Min-Max doubles, runs `IExactListener` powers),
   `Powers/BleedPower.cs` (start of owner's turn like Poison, then halves; Deep Cuts makes it -1), `Powers/RantedAtPower.cs`
   (X less damage per hit, then 25% less, until the end of the enemy's turn; a damage modifier so Artifact can't backfire). Starter relic
-  `Relics/OldWallet.cs`; `DavidRelic` base lives in `BrothersRelic.cs`.
+  `Relics/OldWallet.cs` (Block for ALL players). Support cards (Share) target a teammate via `ShareTarget()`; `BaseCampPower` / `RainyDayFundPower` protect the team. `DavidRelic` base lives in `BrothersRelic.cs`.
 - Monkey Island relics/potions are `[Pool]`ed to Daniel and added to other brothers' pools in
   `MainFile.ShareMonkeyIslandItems()` via vanilla `ModHelper.AddModelToPool`. Add each new brother there.
 - Joshua: `Character/Joshua.cs` + `JoshuaPools.cs` (Regent visuals), `Cards/JoshuaCard.cs` (Verse-threshold glow, `Chorus()`,

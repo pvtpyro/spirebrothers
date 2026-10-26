@@ -1,5 +1,4 @@
 using BaseLib.Cards.Variables;
-using BaseLib.Commands;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,16 +16,18 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Satisfactory. Gain 6 Block. Next turn, draw 2 cards.</summary>
-public class Jetpack() : DavidCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+/// <summary>Satisfactory (Share). A player gains 6 Block. Next turn, they draw 2 cards.</summary>
+public class Jetpack() : DavidCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
 {
     public override bool GainsBlock => true;
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Share];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(6, ValueProp.Move), new CardsVar(2)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        await CommonActions.CardBlock(this, play);
-        await PowerCmd.Apply<DrawCardsNextTurnPower>(ctx, Owner.Creature, DynamicVars.Cards.BaseValue, Owner.Creature, this);
+        var target = ShareTarget(play);
+        await CreatureCmd.GainBlock(target, DynamicVars.Block, play);
+        await PowerCmd.Apply<DrawCardsNextTurnPower>(ctx, target, DynamicVars.Cards.BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(3);

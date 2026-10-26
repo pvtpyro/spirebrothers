@@ -6,6 +6,8 @@ Games (what he does all day): Minecraft, Payday 2, Terraria, Satisfactory, ARK. 
 All of this is built (2026-10-04), untested in game. Small changes while building: Wormhole Potion (was Carpool) gives 2 energy if you pick yourself; Black Friday Exhausts; most cards upgrade by +2 to +4 or cost 1 less.
 Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 
+**Support rework (2026-10-25):** David loves playing support, so his Hoard, Exact, and Rant now point outward too. Old Wallet and Do the Math help the team, 8 cards became Share, and 10 generic cards were swapped for support cards (marked "replaced ..."). 🤝 marks every card that can help a teammate.
+
 ## His mechanics
 
 | Keyword | Rule |
@@ -20,9 +22,9 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 
 - 3 Strike, 4 Defend
 - **Collecting Dust** (Basic Attack, 1): Deal 6 damage. **Hoard:** +1 per 50 Gold.
-- **Do the Math** (Basic Skill, 1): Gain 5 Block. **Exact:** next turn, draw 2 extra cards.
+- **Do the Math** (Basic Skill, 1, Share): A player gains 5 Block. **Exact:** next turn, they draw 2 extra cards.
 - **Here We Go Again** (Basic Attack, 1, Rant; replaced a Strike 2026-10-05): Deal 6 damage. Apply 1 Ranted At. **Rant:** +2 damage for each Rant played earlier this turn. *(Upgraded: 8 damage, loses 2 Strength.)*
-- **Starter relic: Old Wallet.** (He never saw a reason to replace it.) At the start of each combat, gain 1 Block per 20 Gold (max 15). **Touch of Orobas upgrade: Overstuffed Wallet**, 1 Block per 10 Gold (max 30).
+- **Starter relic: Old Wallet.** (He never saw a reason to replace it.) At the start of each combat, **ALL players** gain 1 Block per 25 Gold you have (max 12). **Touch of Orobas upgrade: Overstuffed Wallet**, 1 Block per 15 Gold (max 20).
 
 Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡️ Monkey Island (Insult / Comeback).
 
@@ -30,26 +32,26 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
-| 1 | 🎯 Carry the One | 1 Skill | Gain 7 Block. **Exact:** gain 4 more. | Numbers |
+| 1 | 🎯🤝 Carry the One | 1 Skill | Share: a player gains 7 Block. **Exact:** they gain 4 more. | Numbers |
 | 2 | 🎯 Spreadsheet | 1 Skill | Draw 2 cards. **Exact:** draw them next turn instead, plus 1 extra. | Numbers |
 | 3 | 🎯 Exact Change | 1 Attack | Deal 7 damage. **Exact:** deal 7 more. | Numbers |
-| 4 | 🎯 Just Browsing | 0 Skill | Scry 3. **Exact:** next turn, draw 1 extra card. | Looks at everything, buys nothing |
+| 4 | 🤝 Belay | 1 Skill | Share: a player gains 6 Block. If they're below half HP, 6 more. *(replaced Just Browsing)* | Climbing / hiking |
 | 5 | 🎯 Sudoku | 1 Skill | Draw 2 cards. **Exact:** gain 1 Energy. | Puzzles |
 | 6 | 🗡️🎯 Statistically Insignificant | 1 Attack | Deal 6 damage. Apply 2 Insulted. **Exact:** apply 2 more. | Insult (numbers) |
 | 7 | 🎯 Tranq Dart | 1 Skill | Apply 2 Weak. **Exact:** also apply 1 Vulnerable. | ARK |
 | 8 | 💰 Direct Deposit | 1 Attack | Deal 8 damage. **Hoard:** +1 per 50 Gold. | Money just shows up |
-| 9 | 💰 Interest Payment | 1 Skill | Gain 4 Block. **Hoard:** +1 Block per 50 Gold. | Numbers |
+| 9 | 💰🤝 Interest Payment | 1 Skill | Share: a player gains 4 Block. **Hoard:** +1 Block per 50 Gold. | Numbers |
 | 10 | 🩸 You Break It, You Buy It | 1 Attack | Deal 4 damage. Apply 4 Bleed. | Messing with David costs you |
 | 11 | 🩸 Thorns III | 1 Skill | Gain 5 Block. Apply 3 Bleed. | Minecraft (the armor enchantment) |
 | 12 | 😩 Why Are We Even Here? | 1 Attack | Deal 6 damage. **Rant:** +3 damage for each Rant played earlier this turn. | Existential crisis |
 | 13 | 😩 Deep Sigh | 0 Skill | Apply 2 Ranted At. **Rant:** +1 for each Rant played earlier this turn. *(the cheap opener for a rant chain)* | Existential crisis |
-| 14 | Drill | 2 Attack | Deal 4 damage 4 times. | Payday 2 |
+| 14 | 💰🤝 Split the Bill | 1 Skill | Share: a player gains 6 Block. **Hoard:** +1 per 50 Gold. If it's a teammate, give them 15 of your Gold. *(replaced Drill)* | He finally spends money, on his brothers |
 | 15 | Campfire | 1 Skill | Gain 5 Block. Upgrade a random card in your hand for this combat. | Camping (and a nod to Slay the Spire's rest sites) |
-| 16 | Order of Operations | 1 Attack | Deal 4 damage to ALL enemies twice. | Numbers |
+| 16 | 😩🤝 Unsolicited Advice | 1 Skill | Share: a player gains 2 Strength this turn. **Rant:** +1 per Rant played earlier this turn. *(replaced Order of Operations)* | Existential crisis as a pep talk |
 | 17 | Villager Trading | 0 Skill | Lose 10 Gold. Gain 1 Energy and draw 1 card. Exhaust. | Minecraft (a rare time he spends) |
-| 18 | Power Slug | 1 Skill | Gain 3 Block. Next turn, gain 1 Energy. | Satisfactory |
-| 19 | Pitch the Tent | 1 Skill | Gain 6 Block. Retain. | Camping |
-| 20 | 😩 The End Poem | 1 Attack | Deal 5 damage. **Rant:** +3 damage for each Rant played earlier this turn. | Minecraft (its ending is about the meaning of existence) |
+| 18 | 🤝 Power Slug | 1 Skill | Share: a player gains 3 Block. Next turn, they gain 1 Energy. | Satisfactory |
+| 19 | 🤝 Pitch the Tent | 1 Skill | Share: a player gains 6 Block. Retain. | Camping |
+| 20 | 😩 Talk Them Down | 1 Skill | Apply 2 Ranted At to ALL enemies. **Rant:** +1 per Rant played earlier this turn. *(replaced The End Poem)* | Existential crisis |
 
 ## Uncommon (36)
 
@@ -72,17 +74,17 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | 30 | 🎯 **A Glove Fry** | 1 Skill | Draw 2 cards. **Exact:** draw them next turn instead; you cracked it! Exhaust this and add **Valley Forge** to your hand. *(Valley Forge, token, 0 cost: gain 10 Block and 1 Strength. Exhaust.)* | National Treasure: an inside joke between David and Daniel, the scrambled guess at "Valley Forge" |
 | 31 | 🎯 Bookkeeping | 1 Power | Whenever you trigger **Exact**, gain 3 Block. | Numbers |
 | 32 | 🎯 Q.E.D. | 1 Power | Whenever you trigger **Exact**, draw 1 extra card next turn. | Numbers |
-| 33 | 🎯 Simplify | 0 Skill | Exhaust a card in your hand. Gain 1 Energy. *(sets up Exact)* | Numbers |
+| 33 | 🎯🤝 Shared Chest | 1 Skill | Share: next turn, a player draws 2 extra cards. **Exact:** they also gain 1 Energy next turn. *(replaced Simplify)* | Minecraft |
 
 ### Hoard and gold
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
 | 34 | 💰 Piggy Bank | 1 Skill | Gain 15 Gold. Exhaust. | Terraria |
 | 35 | 💰 Compound Interest | 2 Power | At the start of your turn, gain 1 Block per 20 Gold (max 10). | Numbers |
-| 36 | 💰 Untouched Savings | 1 Skill | Gain 1 Block per 10 Gold (max 25). | Indifferent to money |
+| 36 | 💰🤝 Untouched Savings | 1 Skill | Share: a player gains 1 Block per 10 Gold you have (max 25). | Indifferent to money |
 | 37 | 💰 Money Bags | 2 Attack | Deal 12 damage. **Hoard:** +1 per 50 Gold. | Payday 2 |
 | 38 | 🗡️💰 Not Worth the Gold | 0 Skill | Apply 2 Insulted. **Hoard:** +1 Insulted per 50 Gold. | Insult (indifferent to money) |
-| 39 | Loot Bag | 1 Attack | Deal 9 damage. If this kills an enemy, gain 15 Gold. | Payday 2 |
+| 39 | 🤝 Getaway Driver | 1 Skill | Share: a player gains 8 Block. Next turn, they gain 1 Energy. *(replaced Loot Bag)* | Payday 2 |
 | 40 | Beacon | 1 Skill | Lose 15 Gold. ALL players gain 1 Energy next turn. | Minecraft (gold blocks, buffs everyone) / co-op |
 
 ### Ranting and co-op
@@ -98,16 +100,16 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
 | 46 | 🗡️ Run the Numbers | 1 Attack | **Comeback.** Deal 5 damage, +3 for each Insulted on the target, then remove it. | Comeback (numbers) |
-| 47 | Jetpack | 1 Skill | Gain 6 Block. Next turn, draw 2 cards. | Satisfactory |
-| 48 | Nobelisk | 1 Attack | Deal 10 damage to ALL enemies. Exhaust. | Satisfactory |
+| 47 | 🤝 Jetpack | 1 Skill | Share: a player gains 6 Block. Next turn, they draw 2 cards. | Satisfactory |
+| 48 | 🤝 The Nurse | 1 Skill | Needs 20 Gold. Lose 20 Gold: a player heals 6 HP. Exhaust. *(replaced Nobelisk)* | Terraria (you pay the Nurse to heal) |
 | 49 | Summit Push | 1 Attack | Deal 5 damage, +3 for each turn so far this combat. | Hiking |
 | 50 | Bola | 1 Skill | Apply 2 Weak and 2 Vulnerable. Exhaust. | ARK |
-| 51 | Thatch Hut | 2 Skill | Gain 15 Block. **Exact:** gain 2 Plating. | ARK |
+| 51 | 🎯🤝 Thatch Hut | 2 Skill | Share: a player gains 15 Block. **Exact:** they gain 2 Plating. | ARK |
 | 52 | 🗡️😩 In the Grand Scheme, You Don't Matter | 1 Skill | Apply 2 Insulted. **Rant:** +1 for each Rant played earlier this turn. | Insult (existential crisis) |
 | 53 | Keep Inventory | 2 Power | Retain your hand at the end of each turn. | Minecraft (the gamerule) |
-| 54 | Balance Sheet | 1 Attack | Deal damage equal to your Block. | Numbers |
+| 54 | 🎯🤝 Crunch the Numbers | 1 Skill | Gain 5 Block. **Exact:** ALL players draw 1 extra card next turn. *(replaced Balance Sheet)* | Numbers |
 | 55 | 😩 Does Anything Even Matter? | 1 Skill | Apply 2 Vulnerable. **Rant:** +1 for each Rant played earlier this turn. | Existential crisis |
-| 56 | Pack Light | 1 Skill | Draw 3 cards, then discard 1. | Hiking |
+| 56 | 🤝 Base Camp | 2 Power | At the start of your turn, ALL players gain 2 Block. *(replaced Pack Light)* | Camping / hiking |
 
 ## Rare (16)
 
@@ -126,8 +128,8 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | 67 | 😩 The Void Stares Back | 3 Power | Whenever you play a Rant card, ALL enemies lose 1 Strength permanently. | Existential crisis |
 | 68 | 😩 What's the Point of It All? | 2 Skill | ALL enemies lose 2 Strength permanently. **Rant:** +1 for each Rant played earlier this turn. Exhaust. | Existential crisis |
 | 69 | 😩 Existential Crisis | 2 Attack | Deal 4 damage for each Rant card you've played this combat. | His whole deal |
-| 70 | Heist Planner | 1 Skill | Choose 3 cards from your draw pile and put them into your hand. Exhaust. | Payday 2 |
-| 71 | Broken-In Boots | 2 Power | Gain 2 Buffer (prevents the next 2 times you'd lose HP). | Hiking (and he never replaces anything) |
+| 70 | 💰🤝 Rainy Day Fund | 2 Power | At the start of your turn, the player with the lowest HP gains 1 Block per 25 Gold you have (max 10). *(replaced Heist Planner)* | Hoard for the team |
+| 71 | 🤝 Broken-In Boots | 2 Power | Share: a player gains 2 Buffer (prevents the next 2 times they'd lose HP). | Hiking (and he never replaces anything) |
 | 72 | Dino Army | 3 Power | At the start of your turn, deal 6 damage to ALL enemies. | ARK |
 
 ## Build notes (for Claude)

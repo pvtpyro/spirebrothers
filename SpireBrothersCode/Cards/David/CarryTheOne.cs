@@ -16,17 +16,20 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Gain 7 Block. Exact: gain 4 more.</summary>
-public class CarryTheOne() : DavidCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+/// <summary>Share. A player gains 7 Block. Exact: they gain 4 more.</summary>
+public class CarryTheOne() : DavidCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyPlayer)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Exact];
+    public override bool GainsBlock => true;
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Exact, BrotherKeywords.Share];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(7, ValueProp.Move), new DynamicVar("ExactBlock", 4)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         int exact = await Exact.Check(ctx, this);
-        await CommonActions.CardBlock(this, play);
-        for (int i = 0; i < exact; i++) await CommonActions.CardBlock(this, DynamicVars["ExactBlock"], play);
+        var target = ShareTarget(play);
+        await CreatureCmd.GainBlock(target, DynamicVars.Block, play);
+        for (int i = 0; i < exact; i++)
+            await CreatureCmd.GainBlock(target, DynamicVars["ExactBlock"].BaseValue, ValueProp.Move, play);
     }
 
     protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(3);

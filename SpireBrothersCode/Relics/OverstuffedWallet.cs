@@ -7,13 +7,13 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace SpireBrothers.SpireBrothersCode.Relics;
 
 /// <summary>
-/// David's upgraded starter (from Touch of Orobas, replacing Old Wallet): at the start of each combat, gain 1 Block per
-/// 10 Gold (max 30).
+/// David's upgraded starter (from Touch of Orobas, replacing Old Wallet): at the start of each combat, ALL players gain 1 Block per
+/// 15 Gold (max 20).
 /// </summary>
 public class OverstuffedWallet : DavidRelic
 {
-    public const int GoldPerBlock = 10;
-    public const int MaxBlock = 30;
+    public const int GoldPerBlock = 15;
+    public const int MaxBlock = 20;
     public override RelicRarity Rarity => RelicRarity.Starter;
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
@@ -24,6 +24,8 @@ public class OverstuffedWallet : DavidRelic
         int block = Math.Min(MaxBlock, player.Gold / GoldPerBlock);
         if (block <= 0) return;
         Flash();
-        await CreatureCmd.GainBlock(player.Creature, block, ValueProp.Unpowered, null);
+        // His savings protect the whole team.
+        foreach (var p in combat.Players.Where(p => p.Creature.IsAlive).ToList())
+            await CreatureCmd.GainBlock(p.Creature, block, ValueProp.Unpowered, null);
     }
 }
