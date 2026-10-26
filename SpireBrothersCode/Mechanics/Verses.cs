@@ -103,6 +103,7 @@ public static class Verses
         foreach (var listener in owner.Creature.Powers.OfType<IChorusListener>()
                      .Concat(owner.Relics.OfType<IChorusListener>()).ToList())
             await listener.OnChorus(ctx, owner, verses);
+        await FamilyBonds.AfterChorus(ctx, owner);
         return verses;
     }
 

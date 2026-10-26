@@ -42,9 +42,15 @@ public static class Ages
     /// </summary>
     public static int GoldCost(int age, bool upgraded = false) => (upgraded ? 40 : 50) * (age + 1);
 
-    /// <summary>The next Age's cost for this player, using the upgraded price if their deck has an upgraded Age Up.</summary>
+    /// <summary>
+    /// The next Age's cost for this player, using the upgraded price if their deck has an upgraded Age Up, minus
+    /// Family Loan's discount when David is in the party.
+    /// </summary>
     public static int GoldCost(Player player) =>
-        GoldCost(Get(player), player.Deck.Cards.Any(c => c is Cards.Tim.AgeUp && c.IsUpgraded));
+        GoldCost(player, Get(player), player.Deck.Cards.Any(c => c is Cards.Tim.AgeUp && c.IsUpgraded));
+
+    public static int GoldCost(Player player, int age, bool upgraded) =>
+        Math.Max(0, GoldCost(age, upgraded) - FamilyBonds.AgeUpDiscount(player));
 
     /// <summary>Advances one Age, never past Imperial.</summary>
     public static void AgeUp(Player player)

@@ -22,7 +22,18 @@
   Build note: the translation is an extra hover tip (`new HoverTip(title, text)`, like Train of Thought's
   "This Turn" box). Comebacks read a shared helper so Monkey Business and Monkey Wrench apply to every
   brother's Comebacks.
-- Idea: **Brothers in Arms**, starter relics get a bonus when another brother is in the run. (Not built yet; a relic of that name exists, see below.)
+- **Family Bonds** (built 2026-10-26, untested): brothers in the same party unlock bonuses. Every brother gets a
+  Family Bonds icon on turn 1 (number = active bonds, hover lists them). They stack.
+  | Who | Bond | Effect |
+  |---|---|---|
+  | Daniel + David | Heated Debate | David's Rants give the enemy 1 Insulted |
+  | Daniel + Joshua | Wired for Sound | Daniel's first Wired each turn: Joshua gains 1 Verse |
+  | Daniel + Tim | Code Review | Tim's first Script effect each turn: Daniel gets a Gear in hand |
+  | David + Joshua | Royalties | Joshua's Chorus: David gains 5 Gold |
+  | David + Tim | Family Loan | Age Up costs 25 less Gold; David gains 10 Gold after each win |
+  | Joshua + Tim | Kids' Choir | Joshua's Chorus: all of Tim's Kids hit a random enemy |
+  | Any 3 | Group Chat | Turn 1: ALL players gain 1 Energy |
+  | All 4 | Nobody Gets Left Behind | Each brother's first death each combat: heal 10 instead |
 - **Relics added 2026-10-25** (untested in game). Shared ones are `[Pool]`ed to Daniel and added to the others in `MainFile.ShareMonkeyIslandItems()`.
   - Shared: Blown Cartridge (C, draw 2 on turn 2), Party Headset (C, first Share each turn: you + target gain 3 Block; not in Tim's pool, he has no Share cards),
     Shared Steam Library (U, random card from another brother's pool, free this turn), Brothers in Arms (R, ALL players +1 Str/Dex per Spire Brother in the party).

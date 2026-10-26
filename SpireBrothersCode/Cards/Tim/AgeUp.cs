@@ -32,7 +32,7 @@ public class AgeUp() : TimCard(3, CardType.Skill, CardRarity.Basic, TargetType.S
 
     // The compendium shows the canonical (ownerless) card, and reading Owner on it throws, so check IsMutable first.
     private int Age => !IsMutable || Owner == null ? Ages.Dark : Ages.Get(Owner);
-    private int Cost => Ages.GoldCost(Age, IsUpgraded);
+    private int Cost => !IsMutable || Owner == null ? Ages.GoldCost(Age, IsUpgraded) : Ages.GoldCost(Owner, Age, IsUpgraded);
 
     protected override bool IsPlayable
     {

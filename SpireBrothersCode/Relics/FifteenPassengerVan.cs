@@ -3,7 +3,9 @@ using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using SpireBrothers.SpireBrothersCode.Mechanics;
+using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Relics;
 
@@ -13,6 +15,7 @@ public class FifteenPassengerVan : TimRelic
     public const int StartingKids = 4;
     public const int PocketMoney = 15;
     public override RelicRarity Rarity => RelicRarity.Starter;
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<FamilyBondsPower>()];
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {

@@ -189,7 +189,6 @@ Next steps:
 
 ## Not built yet for Daniel
 
-The "Brothers in Arms" bonus for when brothers share a co-op run. (Monkey Island relics and potions, including Grog, are built.)
 Card art for everything (all cards, relics, and powers use placeholders).
 
 ## Added 2026-10-06
@@ -207,3 +206,12 @@ Card art for everything (all cards, relics, and powers use placeholders).
 - 21 new relics (list in DESIGN.md, Shared section), untested in game. Hooks they rely on: `IExactListener` and `IChorusListener`
   now also run on the owner's relics (Graphing Calculator, Gold Record); Soapbox is counted in `DavidTracker`, Capo in `Verses.ForChorus`,
   Spoiler Log in `Archipelago.Check`, Startup Script in `TimTracker`, Patch Panel in `TurnTracker`.
+
+## Added 2026-10-26
+
+- **Family Bonds** (table in DESIGN.md): `Mechanics/FamilyBonds.cs` (a combat singleton; `Active(players)` lists the bonds,
+  `Bond` enum) applies `Powers/FamilyBondsPower.cs` to each brother on turn 1. The power shows the count and one hover tip per
+  bond (`SPIREBROTHERS-FAMILY_BONDS_POWER.<BOND>.title/description`), and handles the 4-brother death save and Family
+  Loan's gold. Other hook points: `Verses.SpendForChorus` -> `FamilyBonds.AfterChorus`, `ScriptPower.AfterScriptRan` ->
+  `FamilyBonds.AfterScriptRan`, `Ages.GoldCost(player, ...)` subtracts `AgeUpDiscount`. Starter relics show the power as a hover tip.
+  Ideas backlog: `TODO.md`.
