@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
 /// <summary>Stardew Valley (Stardew's fall festival). ALL players heal 4 and gain 1 Strength. Exhaust.</summary>
-public class HarvestFestival() : JoshuaCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class HarvestFestival() : JoshuaCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self), IGroupHealCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(4), new PowerVar<StrengthPower>(1)];

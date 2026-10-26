@@ -13,6 +13,7 @@ public class DavidTracker() : CustomSingletonModel(HookType.Combat)
 {
     public static readonly SpireField<PlayerCombatState, int> RantsThisTurnField = new(() => 0);
     public static readonly SpireField<PlayerCombatState, int> RantsThisCombatField = new(() => 0);
+    private const int RantSoundAt = 3;
 
     public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -25,6 +26,8 @@ public class DavidTracker() : CustomSingletonModel(HookType.Combat)
         RantsThisTurnField.Set(state, rants + (soapbox != null ? Soapbox.FirstRantCounts : 1));
         RantsThisCombatField.Set(state, RantsThisCombatField.Get(state) + 1);
         if (RantsThisTurnField.Get(state) >= Banter.RantsMoment) Banter.Moment(cardPlay.Card.Owner!, "RANTS");
+        // The sigh when a rant really gets going: once per turn, as the count reaches 3.
+        if (rants < RantSoundAt && RantsThisTurnField.Get(state) >= RantSoundAt) Sounds.Play(Sounds.DavidRant);
         return Task.CompletedTask;
     }
 

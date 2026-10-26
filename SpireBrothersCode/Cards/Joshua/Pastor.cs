@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
 /// <summary>Tribute. ALL players heal 6 and gain 10 Block. Exhaust.</summary>
-public class Pastor() : JoshuaCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class Pastor() : JoshuaCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self), IGroupHealCard
 {
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];

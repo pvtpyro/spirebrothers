@@ -82,6 +82,7 @@ public static class Verses
         var owner = card.Owner;
         if (owner?.Creature == null) return 0;
         int verses = ForChorus(owner);
+        Sounds.Play(Sounds.JoshuaChorus);
 
         // Encore first (it comes back every turn, and spends half, rounded down), then Bridge (one use each, spends none).
         int spend = Count(owner);

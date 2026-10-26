@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
 /// <summary>Music. Chorus: ALL players heal 1 per Verse. Exhaust.</summary>
-public class StandingOvation() : JoshuaCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class StandingOvation() : JoshuaCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IGroupHealCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Chorus, CardKeyword.Exhaust];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("HealPerVerse", 1)];

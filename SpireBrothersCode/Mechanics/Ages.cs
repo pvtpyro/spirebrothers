@@ -60,6 +60,7 @@ public static class Ages
         AgeDisplay.Update(player);
         TimCard.RefreshHand(player);
         Banter.Moment(player, Get(player) >= Imperial ? "IMPERIAL" : "AGE_UP");
+        Sounds.Play(Sounds.TimAgeUp);
     }
 
     /// <summary>"Dark Age", "Feudal Age", ...</summary>

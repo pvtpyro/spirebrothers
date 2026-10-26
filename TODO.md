@@ -76,11 +76,16 @@ Built 2026-10-26 (`SpireBrothersCode/Events/`, text in `events.json`). Only appe
 - [ ] Maybe later: "The Group Chat" (co-op vote), "Road Trip Detour" (David's Idaho-to-NJ trip)
 
 ### 6. Sound effects
-- [ ] Joshua: guitar strum on Chorus
-- [ ] David: register "cha-ching" on gold cards
-- [ ] Tim: kids giggling when they hit
-- [ ] Daniel: TBD
-- [ ] Source or record sounds (original or properly licensed)
+The code is done (2026-10-26, `Mechanics/Sounds.cs`): every cue plays a file from `SpireBrothers/audio/` if it's there,
+otherwise a built-in game sound or nothing. File names and recording tips: `SpireBrothers/audio/README.md`.
+- [x] Wire up all the cues (Wired zap, Orbital Barrage, David's gold and rants, Chorus, group heals, Kids, Age Up)
+- [ ] Brandi: get recordings (could take months; nothing else needs changing when they arrive)
+  - [ ] `joshua_chorus`: Joshua strumming his guitar
+  - [ ] `tim_kids`: Tim's kids giggling
+  - [ ] `david_gold`: "cha-ching" (David saying it?)  /  `david_rant`: an exasperated sigh
+  - [ ] `daniel_wired`: a zap  /  `daniel_barrage`: something big
+  - [ ] `joshua_heal`, `tim_age_up`
+- [ ] Test the fallback sounds in game (lightning zap, coins, heal)
 
 ## Stretch ideas
 

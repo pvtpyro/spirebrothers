@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
 /// <summary>Terraria. ALL players heal 4. Exhaust.</summary>
-public class HeartCrystal() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class HeartCrystal() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IGroupHealCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(4)];

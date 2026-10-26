@@ -19,6 +19,7 @@ public class HoneyLemonTea : JoshuaPotion
     {
         var combat = Owner.Creature.CombatState;
         if (combat == null) return;
+        Mechanics.Sounds.Play(Mechanics.Sounds.JoshuaHeal);
         foreach (var player in combat.Players.Where(p => p.Creature.IsAlive).ToList())
             await CreatureCmd.Heal(player.Creature, DynamicVars.Heal.BaseValue);
     }

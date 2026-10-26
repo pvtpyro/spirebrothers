@@ -237,5 +237,10 @@ Card art for everything (all cards, relics, and powers use placeholders).
 - **Potions**: `Potions/BrotherPotion.cs` holds the David/Joshua/Tim potion bases (pooled like `DanielPotion`); 3 each (list in
   TODO.md #4). Gas Station Coffee applies `GasStationCoffeePower`, which `Exact.WouldTrigger`/`Check` read (1 energy left counts).
   Hotfix reuses `SnapToGridPower`. Daniel's own 3 extend `DanielPotion`; Spare Battery's `SpareBatteryPower` makes `Wired.IsActive` true this turn. Potion art: the `$potions` table in gen.ps1, `-Section potions [-Only <file_name>]`.
+- **Sounds** (`Mechanics/Sounds.cs`, a Run-hook singleton since `AfterGoldGained` only reaches run listeners): `Sounds.Play(cue)`
+  plays `SpireBrothers/audio/<cue>.ogg|.wav` via BaseLib `ModSound` if it exists, else an FMOD fallback (`SfxCmd.Play`) or
+  nothing; 0.4s per-cue throttle. Cues are called from Wired.Check, DavidTracker, Verses.SpendForChorus, Kids.Act, Ages.AgeUp,
+  Honey Lemon Tea, and the singleton itself (Orbital Barrage, `IGroupHealCard` cards, David's in-combat gold). Built-in FMOD
+  event names can be pulled from sts2.dll's UTF-16 strings (`event:/sfx/...`). File list for the user: `SpireBrothers/audio/README.md`.
 - Also new: `Cards/Shared/FoodComa.cs` (curse, `CurseCardPool`; cardgen draws `Cards\Shared` too), David's `SundayWalk` +
   `SundayWalkPower`, `Relics/DadsTackleBox.cs` (shared relic, registered for every brother in `MainFile`).

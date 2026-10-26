@@ -31,6 +31,7 @@ public static class Wired
         if (state != null && !TurnTracker.WiredFiredThisTurn.Get(state))
         {
             TurnTracker.WiredFiredThisTurn.Set(state, true);
+            Sounds.Play(Sounds.DanielWired);
             var multimeter = card.Owner.GetRelic<TrustyMultimeter>();
             if (multimeter != null)
             {

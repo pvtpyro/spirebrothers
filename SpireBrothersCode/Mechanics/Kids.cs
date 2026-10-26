@@ -40,6 +40,7 @@ public static class Kids
         int kids = Count(player);
         if (combat == null || kids <= 0 || !player.Creature.IsAlive) return;
         int damage = DamagePerKid(player);
+        Sounds.Play(Sounds.TimKids);
         var rng = player.RunState.Rng.CombatTargets;
         var kidCreatures = player.PlayerCombatState!.Pets.Where(p => p.Monster is Kid && p.IsAlive).ToList();
         for (int i = 0; i < kids; i++)
