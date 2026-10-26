@@ -48,8 +48,8 @@
   "SPIREBROTHERS-MONKEY_BUSINESS_POWER.smartDescription": "This turn, [gold]Comeback[/gold] cards don't remove [gold]Insulted[/gold].",
 
   "SPIREBROTHERS-BLEED_POWER.title": "Bleed",
-  "SPIREBROTHERS-BLEED_POWER.description": "At the end of its turn, loses HP equal to its Bleed, then Bleed is halved.",
-  "SPIREBROTHERS-BLEED_POWER.smartDescription": "At the end of its turn, loses [blue]{Amount}[/blue] HP (ignores [gold]Block[/gold]), then [gold]Bleed[/gold] is halved.",
+  "SPIREBROTHERS-BLEED_POWER.description": "At the start of its turn, loses HP equal to its Bleed, then Bleed is halved.",
+  "SPIREBROTHERS-BLEED_POWER.smartDescription": "At the start of its turn, loses [blue]{Amount}[/blue] HP (ignores [gold]Block[/gold]), then [gold]Bleed[/gold] is halved.",
   "SPIREBROTHERS-RANTED_AT_POWER.title": "Ranted At",
   "SPIREBROTHERS-RANTED_AT_POWER.description": "Until the end of its turn, its attacks deal less damage per hit, then 25% less.",
   "SPIREBROTHERS-RANTED_AT_POWER.smartDescription": "Until the end of its turn, its attacks deal [blue]{Amount}[/blue] less damage per hit, then [blue]25%[/blue] less.",

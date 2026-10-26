@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace SpireBrothers.SpireBrothersCode.Powers;
 
 /// <summary>
-/// David. At the end of its turn, the creature loses HP equal to Bleed (ignores Block), then Bleed halves.
+/// David. At the start of its turn (like Poison), the creature loses HP equal to Bleed (ignores Block), then Bleed halves.
 /// With Deep Cuts on any player, Bleed goes down by 1 instead.
 /// </summary>
 public class BleedPower : BrothersPower
@@ -16,7 +16,8 @@ public class BleedPower : BrothersPower
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    // Like Poison: at the start of the creature's turn, so it can die before it acts.
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (!participants.Contains(Owner) || Amount <= 0) return;
         Flash();

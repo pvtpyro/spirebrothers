@@ -12,7 +12,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 |---|---|
 | **Exact** | Bonus if you have **exactly 0 energy** after paying for this card. |
 | **Hoard** | Gets stronger with the gold you're holding, always **+1 per 50 Gold**. Spending gold makes Hoard weaker, and David rarely sees a reason to spend. |
-| **Bleed** | Debuff on enemies. At the end of its turn, it loses HP equal to its Bleed (ignores Block), then Bleed is **halved** (rounded down). Front-loaded, unlike Poison's slow burn: X Bleed deals about 2× X in total (4 → 7, 6 → 10, 8 → 15). |
+| **Bleed** | Debuff on enemies. At the start of its turn (like Poison, before it acts), it loses HP equal to its Bleed (ignores Block), then Bleed is **halved** (rounded down). Front-loaded, unlike Poison's slow burn: X Bleed deals about 2× X in total (4 → 7, 6 → 10, 8 → 15). |
 | **Rant** | David vents about the meaning of it all. A Rant card gets **stronger for each Rant card you already played this turn**, so his rants snowball. Rants wear down the listener: mostly the enemy loses Strength (hits softer), takes damage, or gets Weak. |
 | **Delegate** (Share) | A player's next Attack deals **double damage**. |
 
@@ -136,7 +136,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 - **X-cost cards** (Balanced Budget, Zero-Sum Game, All In): check how vanilla does X cost before building.
 - **Exact** check: the owner's energy is 0 after the cost is paid, inside OnPlay. Min-Max doubles it.
 - **Broken-In Boots** uses vanilla `BufferPower`. **Keep Inventory** uses a custom `KeepInventoryPower`. **Delegate** uses `DoubleDamagePower`.
-- **Bleed**: a custom `BleedPower` debuff (like `InsultedPower`). At the end of the owner's turn, deal unblockable HP loss equal to Amount, then set Amount to Amount / 2 (with Deep Cuts: Amount - 1). Remove at 0. Vanilla `PoisonPower` is the closest reference for timing and HP-loss props.
+- **Bleed**: a custom `BleedPower` debuff (like `InsultedPower`). At the start of the owner's turn (`BeforeSideTurnStart`, like Poison), deal unblockable HP loss equal to Amount, then set Amount to Amount / 2 (with Deep Cuts: Amount - 1). Remove at 0. Vanilla `PoisonPower` is the closest reference for timing and HP-loss props.
 - **Rant**: count Rant cards played this turn and this combat per player, like Daniel's `TurnTracker`. Temporary Strength loss: check how vanilla does "loses X Strength this turn" (Piercing Wail style) before building.
 - **A Glove Fry** creates a **Valley Forge** token (CardRarity.Token, like Daniel's Gear) and shows it as a
   hover tip (`HoverTipFactory.FromCardWithCardHoverTips<ValleyForge>()`). The card is in the play pile during

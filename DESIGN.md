@@ -37,7 +37,7 @@ Great with numbers, loves puzzles, loves hiking and camping. Always in the middl
 - **Exact**: bonus if you end the card with exactly 0 energy. Card-draw bonuses happen next turn (you have no energy to play them now).
 - **Hoard**: scales with unspent gold. Starter relic Old Wallet: Block per 20 gold at combat start.
 - **Rant** (replaced teaching): Rant cards snowball the more of them you play in a turn, and wear down the listener (the enemy loses Strength, takes damage, or gets Weak). Delegate: ally's next attack doubles.
-- **Bleed** (replaced Thorns): a debuff that hits hard at the end of the enemy's turn, then halves. Messing with David costs you.
+- **Bleed** (replaced Thorns): a debuff that hits hard at the start of the enemy's turn (before it acts, like Poison), then halves. Messing with David costs you.
 - Games (what he does all day): Minecraft, Payday 2, Terraria, Satisfactory, ARK. The road trip gets one card: Idaho to Jersey and Back (rare power).
 - Full card plan (draft): DAVID_CARDS.md.
 

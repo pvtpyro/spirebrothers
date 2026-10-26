@@ -6,9 +6,9 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 namespace SpireBrothers.SpireBrothersCode.Powers;
 
 /// <summary>
-/// Shows Bleed on the health bar the way the game shows Poison: the HP that Bleed will take at the end of the
+/// Shows Bleed on the health bar the way the game shows Poison: the HP that Bleed will take at the start of the
 /// enemy's turn is drawn in its own color (dark crimson) at the end of the bar, or the whole bar if it's lethal.
-/// It sits just left of any Poison segment, since both hit at the end of the turn. Display only.
+/// It sits just left of any Poison segment, since both hit at the start of the turn. Display only.
 /// </summary>
 [HarmonyPatch]
 public static class BleedHealthBar
