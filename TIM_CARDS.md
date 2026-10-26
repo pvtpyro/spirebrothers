@@ -42,7 +42,7 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeba
 | 7 | 📜 Batch Process | 1 Skill | Gain 5 Block. **Script.** | Lua |
 | 8 | 🏰 Villager | 1 Skill | Gain 3 Block. Next turn, gain 1 Energy. | Age of Empires |
 | 9 | 🏰 Scout Rush | 1 Attack | Deal 7 damage. **Feudal Age or later:** draw 1 card. | Age of Empires |
-| 10 | 🏰 Palisade Wall | 1 Skill | Gain 7 Block. **Castle Age or later:** gain 3 more. | Age of Empires |
+| 10 | 🏰 Palisade Wall | 1 Skill | Gain 7 Block, +3 for each Age after Dark. The name follows the tech tree: Palisade Wall (Dark), Stone Wall (Feudal), Fortified Wall (Castle and Imperial). *(David: nobody builds a wooden wall in Castle Age.)* | Age of Empires |
 | 11 | 🏰 Feudal Age | 1 Skill | Gain 5 Block. **Feudal Age or later:** draw 1 card. | Age of Empires |
 | 12 | Air Dribble | 1 Attack | Deal 3 damage 3 times. | Rocket League |
 | 13 | Fifty-Fifty | 1 Attack | Deal 8 damage. 50% chance: deal 8 more. | Rocket League |
