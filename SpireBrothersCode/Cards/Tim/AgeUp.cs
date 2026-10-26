@@ -30,7 +30,8 @@ public class AgeUp() : TimCard(3, CardType.Skill, CardRarity.Basic, TargetType.S
     // shows the lower price in green like any other upgraded number.
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("AgeCost", Ages.GoldCost(Ages.Dark))];
 
-    private int Age => Owner == null ? Ages.Dark : Ages.Get(Owner);
+    // The compendium shows the canonical (ownerless) card, and reading Owner on it throws, so check IsMutable first.
+    private int Age => !IsMutable || Owner == null ? Ages.Dark : Ages.Get(Owner);
     private int Cost => Ages.GoldCost(Age, IsUpgraded);
 
     protected override bool IsPlayable
@@ -40,7 +41,7 @@ public class AgeUp() : TimCard(3, CardType.Skill, CardRarity.Basic, TargetType.S
             if (!base.IsPlayable) return false;
             try
             {
-                if (Owner == null) return true;
+                if (!IsMutable || Owner == null) return true;
                 return Age < Ages.Imperial && Owner.Gold >= Cost && !Ages.AgedUpThisAct(Owner);
             }
             catch (Exception e)
@@ -54,7 +55,7 @@ public class AgeUp() : TimCard(3, CardType.Skill, CardRarity.Basic, TargetType.S
     protected override void AddExtraArgsToDescription(LocString description)
     {
         base.AddExtraArgsToDescription(description);
-        DynamicVars["AgeCost"].BaseValue = Cost;
+        if (IsMutable) DynamicVars["AgeCost"].BaseValue = Cost;
         description.Add("NextAge", Ages.Name(Math.Min(Age + 1, Ages.Imperial)));
         description.Add("Maxed", Age >= Ages.Imperial);
     }

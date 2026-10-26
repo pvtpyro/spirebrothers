@@ -29,7 +29,7 @@ public class TheNurse() : DavidCard(1, CardType.Skill, CardRarity.Uncommon, Targ
             if (!base.IsPlayable) return false;
             try
             {
-                return Owner == null || Owner.Gold >= DynamicVars["Gold"].IntValue;
+                return !IsMutable || Owner == null || Owner.Gold >= DynamicVars["Gold"].IntValue;
             }
             catch (Exception e)
             {

@@ -34,7 +34,7 @@ public class BlackFriday() : DavidCard(1, CardType.Skill, CardRarity.Rare, Targe
             if (!base.IsPlayable) return false;
             try
             {
-                return Owner == null || Owner.Gold >= DynamicVars["Gold"].IntValue;
+                return !IsMutable || Owner == null || Owner.Gold >= DynamicVars["Gold"].IntValue;
             }
             catch (Exception e)
             {

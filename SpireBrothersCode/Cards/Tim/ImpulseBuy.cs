@@ -30,7 +30,7 @@ public class ImpulseBuy() : TimCard(0, CardType.Skill, CardRarity.Common, Target
             if (!base.IsPlayable) return false;
             try
             {
-                return Owner == null || Owner.Gold >= DynamicVars["Gold"].IntValue;
+                return !IsMutable || Owner == null || Owner.Gold >= DynamicVars["Gold"].IntValue;
             }
             catch (Exception e)
             {
