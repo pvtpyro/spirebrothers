@@ -107,6 +107,8 @@ SharedChest 🧰
 GetawayDriver 🚗
 CrunchTheNumbers 🔢
 TheNurse 🩹
+ThreeDozenCookies 🍪
+Cookie 🍪
 RainyDayFund ☂️
 DoesAnythingEvenMatter 🌌
 ExactChange 🪙

@@ -110,6 +110,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | 54 | 🎯🤝 Crunch the Numbers | 1 Skill | Gain 5 Block. **Exact:** ALL players draw 1 extra card next turn. *(replaced Balance Sheet)* | Numbers |
 | 55 | 😩 Does Anything Even Matter? | 1 Skill | Apply 2 Vulnerable. **Rant:** +1 for each Rant played earlier this turn. | Existential crisis |
 | 56 | 🤝 Base Camp | 2 Power | At the start of your turn, ALL players gain 2 Block. *(replaced Pack Light)* | Camping / hiking |
+| 56b | 🍪🤝 Three Dozen Cookies | 1 Power | At the start of your turn, bake 6 **Cookies** into your hand until all 36 are done (6 turns). *(Cookie, token, 0 cost: Share, a player gains 2 Block. Exhaust.)* Upgrade: costs 0. | McDonald's: the customer who orders three dozen cookies when you can only bake a few at a time |
 
 ## Rare (16)
 
