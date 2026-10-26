@@ -114,7 +114,7 @@ public static class Verses
         if (count <= 0 || player.Creature.CombatState == null) return;
         var songs = ModelDb.CardPool<JoshuaCardPool>()
             .GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
-            .Where(c => c.CanonicalKeywords.Contains(BrotherKeywords.Song))
+            .Where(c => c.CanonicalKeywords.Contains(BrotherKeywords.Song) && DuoCards.Allowed(c, player))
             .ToList();
         var picked = CardFactory.GetDistinctForCombat(player, songs, count, player.RunState.Rng.CombatCardGeneration).ToList();
         foreach (var card in picked)

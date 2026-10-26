@@ -324,3 +324,15 @@ StratagemOrbitalLaser @StratagemOrbitalLaser
 StratagemOrbitalPrecisionStrike @StratagemOrbitalPrecisionStrike
 AgeUp @AgeUp
 HereWeGoAgain 🙄
+HoldThatThought ✋
+FixedYourAmp 🔊
+WireTheKidsRooms 🔌
+AgreeToDisagree 🗯️
+PatronOfTheArts 🎭
+Iou 📝
+HypeMan 📣
+MinorKey 🎹
+Babysitting 🍼
+LanParty 🖥️
+GiftCard 🎁
+CenteringPass ⚽

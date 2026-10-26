@@ -27,11 +27,29 @@ Short speech-bubble lines when brothers react to each other. Lines in BANTER.md,
 - [ ] Playtest: are the bubbles readable, and is the frequency right?
 
 ### 3. Duo cards
-Rare cards that only show up in rewards when a specific brother is also in the party.
-- [ ] Brainstorm one or two per pair. Starting ideas: "LAN Party" (Daniel + Tim, everyone draws 2),
-      "Split the Check" (David + Joshua)
-- [ ] Figure out how to filter reward pools by party makeup (co-op safe)
-- [ ] Build, add glyphs.txt lines, test
+Uncommon cards that only show up in rewards and shops when a specific brother is also in the party.
+12 cards, one per brother per partner. Code: `Mechanics/DuoCards.cs` (`IDuoCard`, the Duo keyword).
+
+| Owner | Card | With | Cost / type | Effect |
+|---|---|---|---|---|
+| Daniel | Hold That Thought | David | 1 Attack, Logic, Comeback | 8 damage, +3 per Insulted (doubled if David Ranted this turn) |
+| Daniel | Fixed Your Amp | Joshua | 1 Skill, Hands | Joshua gains 3 Verses. Wired: draw 2 |
+| Daniel | Wire the Kids' Rooms | Tim | 1 Skill, Logic, Exhaust | Tim gains 2 Kids. Wired: gain 8 Block |
+| David | Agree to Disagree | Daniel | 1 Attack, Rant | 6 damage, apply 2 Insulted |
+| David | Patron of the Arts | Joshua | 1 Skill, Exact | Lose 15 Gold; Joshua gains 3 Verses; ALL gain 6 Block. Exact: keep the Gold |
+| David | IOU | Tim | 0 Skill, Exact, Exhaust | Tim gains 30 Gold. Exact: you gain 30 too |
+| Joshua | Hype Man | Daniel | 1 Skill, Song, Share | A player gains 3 Strength this turn |
+| Joshua | Minor Key | David | 1 Skill, Chorus | 1 Bleed per Verse to ALL enemies |
+| Joshua | Babysitting | Tim | 1 Skill, Song | Tim gains 1 Kid; ALL gain 4 Block |
+| Tim | LAN Party | Daniel | 1 Skill, Script | ALL gain 5 Block and draw 1 next turn |
+| Tim | Gift Card | David | 0 Skill, Exhaust | Lose 20 Gold; David gains 40 |
+| Tim | Centering Pass | Joshua | 1 Attack, Script | 8 damage; Joshua gains 2 Verses |
+
+- [x] Brainstorm
+- [x] Filter rewards, shops, Shared Steam Library, and random Songs by party makeup
+- [x] Build, add glyphs.txt lines (2026-10-26)
+- [ ] Test in co-op: cards appear only with the partner, effects reach the partner
+- [ ] Maybe: a card for all four brothers together ("Family Photo" and "Reunion" are taken names)
 
 ## Content gaps
 
@@ -73,3 +91,5 @@ A surprise extra character as part of the gift.
 
 
 ### 10. Anchient Card Options
+
+### 11. Status, Curse and Quest cards maybe?

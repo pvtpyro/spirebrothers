@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using SpireBrothers.SpireBrothersCode.Character;
+using SpireBrothers.SpireBrothersCode.Mechanics;
 
 namespace SpireBrothers.SpireBrothersCode.Relics;
 
@@ -31,7 +32,7 @@ public class SharedSteamLibrary : DanielRelic
         var cards = pools
             .Where(p => p != player.Character.CardPool)
             .SelectMany(p => p.GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint))
-            .Where(c => c.Rarity is CardRarity.Common or CardRarity.Uncommon or CardRarity.Rare)
+            .Where(c => (c.Rarity is CardRarity.Common or CardRarity.Uncommon or CardRarity.Rare) && DuoCards.Allowed(c, player))
             .ToList();
         var card = CardFactory.GetDistinctForCombat(player, cards, 1, player.RunState.Rng.CombatCardGeneration).FirstOrDefault();
         if (card == null) return;

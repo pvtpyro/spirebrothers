@@ -32,4 +32,8 @@ public static class BrotherKeywords
     [CustomEnum, KeywordProperties(AutoKeywordPosition.After)] public static CardKeyword Script;
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Kids;
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Age;
+
+    // Duo cards (Mechanics/DuoCards): only appear when the brother they help is in the party. Written by hand
+    // ("Duo: David.") so the card names its partner.
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Duo;
 }

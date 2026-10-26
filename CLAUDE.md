@@ -221,3 +221,9 @@ Card art for everything (all cards, relics, and powers use placeholders).
   `BanterSavedPatch` on `Hook.AfterPreventingDeath` (`SAVED`), boss/elite wins, and once-per-combat `Banter.Moment` calls from
   DavidTracker (4 Rants), Verses (8+ Verse Chorus), Kids (reaching 8), Ages (Age Up / Imperial). Picks are seeded from the run
   plus a counter, never the run RNG. `Banter.Bubble` is the shared speech bubble (InsultBanter uses it too).
+- **Duo cards** (12, list in TODO.md #3): Uncommon cards in each brother's own pool that implement `Mechanics.IDuoCard`
+  (`Partner` = the other brother's character type) and carry the `Duo` keyword, written by hand as "[gold]Duo: David.[/gold]".
+  `DuoCards` (run singleton) filters them out of card rewards (`ModifyCardRewardCreationOptions`) and shops
+  (`ModifyMerchantCardPool`) unless the partner is in the party; Shared Steam Library and `Verses.AddRandomSongs` call
+  `DuoCards.Allowed` too. Any new random-card generator should as well. Effects reach the partner via `DuoCards.Partners(combat, Partner)`.
+  Card counts above don't include them (+3 per brother).
