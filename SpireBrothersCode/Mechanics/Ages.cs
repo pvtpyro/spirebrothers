@@ -59,6 +59,7 @@ public static class Ages
         AgedUpInAct.Set(player, player.RunState.CurrentActIndex);
         AgeDisplay.Update(player);
         TimCard.RefreshHand(player);
+        Banter.Moment(player, Get(player) >= Imperial ? "IMPERIAL" : "AGE_UP");
     }
 
     /// <summary>"Dark Age", "Feudal Age", ...</summary>

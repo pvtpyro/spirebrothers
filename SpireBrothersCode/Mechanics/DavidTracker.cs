@@ -24,6 +24,7 @@ public class DavidTracker() : CustomSingletonModel(HookType.Combat)
         soapbox?.Flash();
         RantsThisTurnField.Set(state, rants + (soapbox != null ? Soapbox.FirstRantCounts : 1));
         RantsThisCombatField.Set(state, RantsThisCombatField.Get(state) + 1);
+        if (RantsThisTurnField.Get(state) >= Banter.RantsMoment) Banter.Moment(cardPlay.Card.Owner!, "RANTS");
         return Task.CompletedTask;
     }
 

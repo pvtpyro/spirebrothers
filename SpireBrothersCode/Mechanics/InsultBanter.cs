@@ -1,11 +1,9 @@
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Audio;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Runs;
 
 namespace SpireBrothers.SpireBrothersCode.Mechanics;
@@ -24,9 +22,6 @@ public class InsultBanter() : CustomSingletonModel(HookType.Combat)
     /// <summary>How many SPIREBROTHERS-INSULT_LINES.N keys exist. Update this when adding lines.</summary>
     public const int Count = 40;
 
-    /// <summary>How long an insult bubble stays up: at least SecondsMin, or SecondsPerChar per character for long lines.</summary>
-    private const double SecondsMin = 4.0, SecondsPerChar = 0.11;
-
     /// <summary>Played with each insult bubble: the Merchant's laugh from the base game.</summary>
     private const string InsultSfx = FmodSfx.fakeMerchantLaugh;
 
@@ -42,11 +37,8 @@ public class InsultBanter() : CustomSingletonModel(HookType.Combat)
             var run = card.Owner.RunState;
             int dealt = Dealt.GetOrCreateValue(run).Next++;
             int line = LineAt(run.Rng.CombatTargets.Seed, dealt);
-            // TalkCmd's fixed durations (1.75s) are too quick to read, so make the bubble directly: 4s minimum, longer lines longer.
-            string text = new LocString("powers", $"SPIREBROTHERS-INSULT_LINES.{line}").GetFormattedText();
-            double seconds = Math.Max(SecondsMin, text.Length * SecondsPerChar);
-            var bubble = NSpeechBubbleVfx.Create(text, speaker, seconds, VfxColor.White);
-            if (bubble != null) speaker.GetVfxContainer()?.AddChildSafely(bubble);
+            // TalkCmd's fixed durations (1.75s) are too quick to read, so Banter makes the bubble directly: 4s minimum, longer lines longer.
+            Banter.Bubble(speaker, new LocString("powers", $"SPIREBROTHERS-INSULT_LINES.{line}").GetFormattedText());
             // A laugh so everyone knows to look up and read it.
             SfxCmd.Play(InsultSfx);
         }

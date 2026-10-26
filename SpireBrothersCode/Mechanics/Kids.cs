@@ -26,8 +26,10 @@ public static class Kids
     public static async Task Gain(PlayerChoiceContext ctx, Player player, int amount, CardModel? source)
     {
         if (player.PlayerCombatState == null || player.Creature.CombatState == null || !player.Creature.IsAlive) return;
+        bool wasFull = Count(player) >= Max;
         for (int i = 0; i < amount && Count(player) < Max; i++)
             await PlayerCmd.AddPet<Kid>(player);
+        if (!wasFull && Count(player) >= Max) Banter.Moment(player, "KIDS");
         TimCard.RefreshHand(player);
     }
 

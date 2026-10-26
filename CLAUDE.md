@@ -215,3 +215,9 @@ Card art for everything (all cards, relics, and powers use placeholders).
   Loan's gold. Other hook points: `Verses.SpendForChorus` -> `FamilyBonds.AfterChorus`, `ScriptPower.AfterScriptRan` ->
   `FamilyBonds.AfterScriptRan`, `Ages.GoldCost(player, ...)` subtracts `AgeUpDiscount`. Starter relics show the power as a hover tip.
   Ideas backlog: `TODO.md`.
+- **Banter** (lines planned in BANTER.md, live in powers.json as `SPIREBROTHERS-BANTER.<POOL>.N`; pool sizes are counted with
+  `LocString.Exists`, so adding a line needs no code change): `Mechanics/Banter.cs` (combat singleton). Combat start
+  (1 in 3 with 2+ brothers, `START.<SPEAKER>_<LISTENER>`; 1 in 4 alone, `SOLO.<NAME>`), `AfterDeath` (`FALL`, `FALL.<NAME>`),
+  `BanterSavedPatch` on `Hook.AfterPreventingDeath` (`SAVED`), boss/elite wins, and once-per-combat `Banter.Moment` calls from
+  DavidTracker (4 Rants), Verses (8+ Verse Chorus), Kids (reaching 8), Ages (Age Up / Imperial). Picks are seeded from the run
+  plus a counter, never the run RNG. `Banter.Bubble` is the shared speech bubble (InsultBanter uses it too).

@@ -20,11 +20,11 @@ active bonds); starter relics have a hover tip explaining it. Code: `Mechanics/F
 - [ ] Test in co-op: icon shows with 2+ brothers, each pair's effect fires, Group Chat energy, death save with 4
 
 ### 2. Brother banter
-Short speech-bubble lines when brothers react to each other. Reuse `Mechanics/InsultBanter.cs`.
-- [ ] Collect real catchphrases and in-jokes for each brother (from Brandi)
-- [ ] Pick trigger moments: combat start with 2+ brothers, a brother falls, David passes 300 gold,
-      Tim reaches Imperial, big Chorus, Stratagem lands, ...
-- [ ] Build the trigger hooks and loc keys
+Short speech-bubble lines when brothers react to each other. Lines in BANTER.md, code in `Mechanics/Banter.cs`.
+- [ ] Collect real catchphrases and in-jokes for each brother (from Brandi; add them whenever they come to mind)
+- [x] Pick trigger moments
+- [x] Build the trigger hooks and loc keys (2026-10-26)
+- [ ] Playtest: are the bubbles readable, and is the frequency right?
 
 ### 3. Duo cards
 Rare cards that only show up in rewards when a specific brother is also in the party.
@@ -70,3 +70,6 @@ A pirate enemy who insults *you*; Comeback cards counter him. Original insults o
 A surprise extra character as part of the gift.
 - [ ] Design concept, mechanic, and starter deck
 - [ ] Card list (like the other *_CARDS.md files)
+
+
+### 10. Anchient Card Options

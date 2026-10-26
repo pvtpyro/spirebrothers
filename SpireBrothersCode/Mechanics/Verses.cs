@@ -104,6 +104,7 @@ public static class Verses
                      .Concat(owner.Relics.OfType<IChorusListener>()).ToList())
             await listener.OnChorus(ctx, owner, verses);
         await FamilyBonds.AfterChorus(ctx, owner);
+        if (verses >= Banter.ChorusMoment) Banter.Moment(owner, "CHORUS");
         return verses;
     }
 
