@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using SpireBrothers.SpireBrothersCode.Relics;
 
 namespace SpireBrothers.SpireBrothersCode.Mechanics;
 
@@ -17,7 +18,11 @@ public class DavidTracker() : CustomSingletonModel(HookType.Combat)
     {
         var state = cardPlay.Card.Owner?.PlayerCombatState;
         if (state == null || !cardPlay.Card.Keywords.Contains(BrotherKeywords.Rant)) return Task.CompletedTask;
-        RantsThisTurnField.Set(state, RantsThisTurnField.Get(state) + 1);
+        int rants = RantsThisTurnField.Get(state);
+        // Soapbox: the first Rant each turn counts as 2.
+        var soapbox = rants == 0 ? cardPlay.Card.Owner?.GetRelic<Soapbox>() : null;
+        soapbox?.Flash();
+        RantsThisTurnField.Set(state, rants + (soapbox != null ? Soapbox.FirstRantCounts : 1));
         RantsThisCombatField.Set(state, RantsThisCombatField.Get(state) + 1);
         return Task.CompletedTask;
     }

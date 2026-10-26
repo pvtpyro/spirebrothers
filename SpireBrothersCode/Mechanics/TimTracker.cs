@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using SpireBrothers.SpireBrothersCode.Cards.Tim;
 using SpireBrothers.SpireBrothersCode.Powers;
+using SpireBrothers.SpireBrothersCode.Relics;
 
 namespace SpireBrothers.SpireBrothersCode.Mechanics;
 
@@ -55,6 +56,8 @@ public class TimTracker() : CustomSingletonModel(HookType.Combat)
             script = true;
             suite.Trigger();
         }
+        // Startup Script: the first 2 non-Power cards each combat.
+        if (!script && card.Type != CardType.Power && owner.GetRelic<StartupScript>()?.TryUse() == true) script = true;
 
         // Powers would re-apply themselves, so they never get Script.
         if (!script || card.Type == CardType.Power) return;

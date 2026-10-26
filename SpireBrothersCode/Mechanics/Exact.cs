@@ -6,7 +6,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Mechanics;
 
-/// <summary>Powers that react whenever their owner triggers Exact (Bookkeeping, Q.E.D., Return on Investment).</summary>
+/// <summary>Powers and relics that react whenever their owner triggers Exact (Bookkeeping, Q.E.D., Return on Investment, Graphing Calculator).</summary>
 public interface IExactListener
 {
     Task OnExact(PlayerChoiceContext choiceContext, Player player);
@@ -37,7 +37,8 @@ public static class Exact
         if (!card.EnergyCost.CostsX && state.Energy != 0) return 0;
 
         int times = owner.Creature.GetPower<MinMaxPower>() != null ? 2 : 1;
-        var listeners = owner.Creature.Powers.OfType<IExactListener>().ToList();
+        var listeners = owner.Creature.Powers.OfType<IExactListener>()
+            .Concat(owner.Relics.OfType<IExactListener>()).ToList();
         for (int i = 0; i < times; i++)
             foreach (var listener in listeners)
                 await listener.OnExact(choiceContext, owner);

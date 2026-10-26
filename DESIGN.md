@@ -22,7 +22,17 @@
   Build note: the translation is an extra hover tip (`new HoverTip(title, text)`, like Train of Thought's
   "This Turn" box). Comebacks read a shared helper so Monkey Business and Monkey Wrench apply to every
   brother's Comebacks.
-- Idea: **Brothers in Arms**, starter relics get a bonus when another brother is in the run. (Not built yet.)
+- Idea: **Brothers in Arms**, starter relics get a bonus when another brother is in the run. (Not built yet; a relic of that name exists, see below.)
+- **Relics added 2026-10-25** (untested in game). Shared ones are `[Pool]`ed to Daniel and added to the others in `MainFile.ShareMonkeyIslandItems()`.
+  - Shared: Blown Cartridge (C, draw 2 on turn 2), Party Headset (C, first Share each turn: you + target gain 3 Block; not in Tim's pool, he has no Share cards),
+    Shared Steam Library (U, random card from another brother's pool, free this turn), Brothers in Arms (R, ALL players +1 Str/Dex per Spire Brother in the party).
+  - David: Pocket Knife (C, +1 Bleed), Graphing Calculator (C, first Exact each turn: 4 Block), Savings Account (U, 5% Gold interest after combat, max 20),
+    Soapbox (U, first Rant each turn counts as 2), Payday Mask (R, 20 Gold per enemy death).
+  - Joshua: Lucky Pick (C, 2 Verses at combat start), Omamori (C, any player who heals in combat gains 3 Block), Capo (U, Chorus counts +1 Verse),
+    Spoiler Log (U, first Check each combat finds 2 items), Gold Record (R, Chorus: ALL players heal 2).
+  - Tim: Loose Lego Brick (C, 2 Thorns), Juice Boxes (C, +1 Kid), Garrisoned Relic (U, 12 Gold after combat), Full Boost (U, turn 1: +1 energy, draw 2),
+    Startup Script (R, first 2 non-Power cards each combat gain Script).
+  - Daniel: Patch Panel (U, first Logic/Hands card each turn also counts as the other), Super Destroyer (R, random Stratagem at combat start).
 
 ## Daniel, The Nerd Who Nerds Wrong (built in v0.1.0)
 Software engineer who can fix cars, hard-wired his whole house for internet (every room has ethernet), and does electrical work too. "And you know what?" Never gives up.

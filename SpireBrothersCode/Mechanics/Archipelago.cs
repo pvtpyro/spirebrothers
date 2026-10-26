@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using SpireBrothers.SpireBrothersCode.Powers;
+using SpireBrothers.SpireBrothersCode.Relics;
 
 namespace SpireBrothers.SpireBrothersCode.Mechanics;
 
@@ -23,6 +24,8 @@ public static class Archipelago
 
     public static async Task Check(PlayerChoiceContext ctx, Player owner, CardModel? source, int times = 1)
     {
+        // Spoiler Log: the first Check each combat finds one more item.
+        if (times > 0 && owner.Creature.CombatState != null && owner.GetRelic<SpoilerLog>()?.TryUse() == true) times++;
         for (int i = 0; i < times; i++) await CheckOnce(ctx, owner, source);
     }
 

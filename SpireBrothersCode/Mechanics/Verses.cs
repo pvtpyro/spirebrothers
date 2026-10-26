@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 using SpireBrothers.SpireBrothersCode.Character;
 using SpireBrothers.SpireBrothersCode.Orbs;
 using SpireBrothers.SpireBrothersCode.Powers;
+using SpireBrothers.SpireBrothersCode.Relics;
 
 namespace SpireBrothers.SpireBrothersCode.Mechanics;
 
@@ -31,9 +32,10 @@ public static class Verses
     public static int Count(Player? player) =>
         player?.PlayerCombatState?.OrbQueue.Orbs.Count(o => o is VerseOrb) ?? 0;
 
-    /// <summary>How many Verses a Chorus would count if played now (Choir adds to it).</summary>
+    /// <summary>How many Verses a Chorus would count if played now (Choir and Capo add to it).</summary>
     public static int ForChorus(Player? player) =>
-        Count(player) + (player?.Creature?.GetPowerAmount<ChoirPower>() ?? 0);
+        Count(player) + (player?.Creature?.GetPowerAmount<ChoirPower>() ?? 0)
+        + (player?.GetRelic<Capo>() != null ? Capo.ExtraVerses : 0);
 
     /// <summary>Verses a Song gives: 1, plus 1 per Perfect Pitch.</summary>
     public static int PerSong(Player? player) => 1 + (player?.Creature?.GetPowerAmount<PerfectPitchPower>() ?? 0);
@@ -98,7 +100,8 @@ public static class Verses
         }
         Spend(owner, spend);
 
-        foreach (var listener in owner.Creature.Powers.OfType<IChorusListener>().ToList())
+        foreach (var listener in owner.Creature.Powers.OfType<IChorusListener>()
+                     .Concat(owner.Relics.OfType<IChorusListener>()).ToList())
             await listener.OnChorus(ctx, owner, verses);
         return verses;
     }

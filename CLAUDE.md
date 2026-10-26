@@ -201,3 +201,9 @@ Card art for everything (all cards, relics, and powers use placeholders).
 - `Character/LobbyRowFix.cs`: re-sorts the co-op lobby player list after the game's character-change shake (rows overlapped on the host).
 - `Mechanics/HitchLogger.cs`: logs `[Hitch] N ms` to godot.log on frames over 150 ms, for tracking lag spikes. Remove before release if unwanted.
 - `cardgen/gen.ps1 -Section relics|powers -Only <name>` redraws one relic or power.
+
+## Added 2026-10-25
+
+- 21 new relics (list in DESIGN.md, Shared section), untested in game. Hooks they rely on: `IExactListener` and `IChorusListener`
+  now also run on the owner's relics (Graphing Calculator, Gold Record); Soapbox is counted in `DavidTracker`, Capo in `Verses.ForChorus`,
+  Spoiler Log in `Archipelago.Check`, Startup Script in `TimTracker`, Patch Panel in `TurnTracker`.

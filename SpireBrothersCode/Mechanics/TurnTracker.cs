@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using SpireBrothers.SpireBrothersCode.Powers;
+using SpireBrothers.SpireBrothersCode.Relics;
 
 namespace SpireBrothers.SpireBrothersCode.Mechanics;
 
@@ -34,8 +35,18 @@ public class TurnTracker() : CustomSingletonModel(HookType.Combat)
         if (state == null) return Task.CompletedTask;
 
         var seq = Seq(state);
-        if (cardPlay.Card.Keywords.Contains(BrotherKeywords.Logic)) seq.Add(BrotherKeywords.Logic);
-        if (cardPlay.Card.Keywords.Contains(BrotherKeywords.Hands)) seq.Add(BrotherKeywords.Hands);
+        bool first = seq.Count == 0;
+        bool logic = cardPlay.Card.Keywords.Contains(BrotherKeywords.Logic);
+        bool hands = cardPlay.Card.Keywords.Contains(BrotherKeywords.Hands);
+        if (logic) seq.Add(BrotherKeywords.Logic);
+        if (hands) seq.Add(BrotherKeywords.Hands);
+
+        // Patch Panel: the first Logic or Hands card each turn also counts as the other.
+        if (first && logic != hands && cardPlay.Card.Owner?.GetRelic<PatchPanel>() is { } panel)
+        {
+            panel.Flash();
+            seq.Add(logic ? BrotherKeywords.Hands : BrotherKeywords.Logic);
+        }
         RefreshTracker(cardPlay.Card.Owner);
         return Task.CompletedTask;
     }

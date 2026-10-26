@@ -59,5 +59,18 @@ public partial class MainFile : Node
         ModHelper.AddModelToPool<TimPotionPool, OokOokEek>();
         ModHelper.AddModelToPool<TimPotionPool, Grog>();
         ModHelper.AddModelToPool<TimPotionPool, MonkeyBusiness>();
+
+        // Shared brother relics, also [Pool]ed to Daniel. Party Headset skips Tim, who has no Share cards.
+        ModHelper.AddModelToPool<DavidRelicPool, BlownCartridge>();
+        ModHelper.AddModelToPool<DavidRelicPool, PartyHeadset>();
+        ModHelper.AddModelToPool<DavidRelicPool, SharedSteamLibrary>();
+        ModHelper.AddModelToPool<DavidRelicPool, BrothersInArms>();
+        ModHelper.AddModelToPool<JoshuaRelicPool, BlownCartridge>();
+        ModHelper.AddModelToPool<JoshuaRelicPool, PartyHeadset>();
+        ModHelper.AddModelToPool<JoshuaRelicPool, SharedSteamLibrary>();
+        ModHelper.AddModelToPool<JoshuaRelicPool, BrothersInArms>();
+        ModHelper.AddModelToPool<TimRelicPool, BlownCartridge>();
+        ModHelper.AddModelToPool<TimRelicPool, SharedSteamLibrary>();
+        ModHelper.AddModelToPool<TimRelicPool, BrothersInArms>();
     }
 }
