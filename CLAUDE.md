@@ -56,7 +56,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   `MainFile.ShareMonkeyIslandItems()` via vanilla `ModHelper.AddModelToPool`. Add each new brother there.
 - Joshua: `Character/Joshua.cs` + `JoshuaPools.cs` (Regent visuals), `Cards/JoshuaCard.cs` (Verse-threshold glow, `Chorus()`,
   `ChorusAttack()` + `ChorusVerses` multiplier so damage uses the Verses just spent, `AllPlayers`, `ShareTarget()`),
-  `Cards/Joshua/` (76 files: 4 Basic, 72 reward cards), `Mechanics/Verses.cs` (count, gain, `SpendForChorus` with
+  `Cards/Joshua/` (82 files: 5 Basic, 77 reward cards), `Mechanics/Verses.cs` (count, gain, `SpendForChorus` with
   Encore/Bridge/Choir, `IChorusListener`, `AddRandomSongs`), `Orbs/VerseOrb.cs` (each Verse is an orb above him like the Defect's, max 10; labels hidden by a Harmony patch; Chorus removes them quietly, no evoke), `Mechanics/JoshuaTracker.cs` (Song cards add Verses after
   play), `Mechanics/Archipelago.cs` (Check: rolls an item on the run RNG, thought bubble over the receiver; lines are
   `SPIREBROTHERS-ARCHIPELAGO.*` in powers.json). Starter relic `Relics/WellWornGuitar.cs`.

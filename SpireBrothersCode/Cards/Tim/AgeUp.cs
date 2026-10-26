@@ -19,7 +19,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Tim;
 /// <summary>
 /// Age of Empires. Tim's starting card and his only way to advance an Age: pay gold (50, 100, then 150; upgraded 40, 80, 120) to go up one
-/// Age for the rest of the run. Exhausts so it's one Age per combat; once he reaches Imperial it leaves his deck.
+/// Age for the rest of the run. Once per act: after he Ages Up, it stays out of his combats until the next act.
+/// Once he reaches Imperial it leaves his deck.
 /// </summary>
 public class AgeUp() : TimCard(3, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {
@@ -40,7 +41,7 @@ public class AgeUp() : TimCard(3, CardType.Skill, CardRarity.Basic, TargetType.S
             try
             {
                 if (Owner == null) return true;
-                return Age < Ages.Imperial && Owner.Gold >= Cost;
+                return Age < Ages.Imperial && Owner.Gold >= Cost && !Ages.AgedUpThisAct(Owner);
             }
             catch (Exception e)
             {
@@ -58,11 +59,17 @@ public class AgeUp() : TimCard(3, CardType.Skill, CardRarity.Basic, TargetType.S
         description.Add("Maxed", Age >= Ages.Imperial);
     }
 
+    // Once per act: after he Ages Up, the card sits out every combat until the next act starts.
+    public override async Task BeforeCombatStart()
+    {
+        if (Owner != null && Ages.AgedUpThisAct(Owner)) await CardPileCmd.RemoveFromCombat(this, skipVisuals: true);
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         int cost = Cost;
-        if (Age >= Ages.Imperial || Owner.Gold < cost) return;
-        await PlayerCmd.SetGold(Owner.Gold - cost, Owner);
+        if (Age >= Ages.Imperial || Owner.Gold < cost || Ages.AgedUpThisAct(Owner)) return;
+        await TimGold.Spend(ctx, Owner, cost);
         Ages.AgeUp(Owner);
         if (Ages.Get(Owner) >= Ages.Imperial && DeckVersion != null) await CardPileCmd.RemoveFromDeck(DeckVersion);
     }

@@ -6,6 +6,7 @@ Bleed 🩸 debuff
 Bookkeeping 📒
 Bridge 🌉
 Castle 🏰
+BurningAHole 💸
 Choir 🎶
 ComingHome 🏡
 CommunityCenter 🏛
@@ -34,7 +35,6 @@ Junimos ⭐
 KeepInventory 🎒
 LongHaulFlight ✈
 LuaAddOn 🌙
-Metronome ⏲
 MinMax 📉
 MonkeyBusiness 🐒
 Multiworld 🌐

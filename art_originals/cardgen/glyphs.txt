@@ -201,6 +201,11 @@ LocationCheck @LocationCheck
 LongHaulFlight ✈
 Matsuri 🏮
 Metronome ⏲
+CopperShortsword 🗡
+Glissando 🎹
+TaikoDrums 🪘
+GuitarSolo 🎸
+Zenith ⚔
 MicDrop 🎙
 Mixtape 📼
 Multiworld @Multiworld
@@ -273,6 +278,9 @@ LuaAddOn 🌙
 LuaScript 📜
 MarkAndExecute @MarkAndExecute
 MarkupPass 🖍
+ImpulseBuy 🛍️
+TopOfTheLine 💎
+BurningAHole 🔥
 MassConversion ⛪
 Monk @Monk
 MorningCoffee ☕

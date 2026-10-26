@@ -19,7 +19,7 @@ namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 /// <summary>Rocket League. Deal 9 damage. If you have 3+ Verses, draw 1 card.</summary>
 public class Aerial() : JoshuaCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
-    protected override int VerseThreshold => 3;
+    protected override int VerseThreshold => 5;
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(9, ValueProp.Move), new CardsVar(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

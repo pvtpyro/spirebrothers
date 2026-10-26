@@ -3,6 +3,8 @@
 Timothy, the oldest brother. Married with 8 kids. A draftsman at a civil engineering firm, where he
 writes Lua add-ons for AutoCAD. Loves, in order: Rocket League, Age of Empires, Splinter Cell, airsoft,
 and Legos. Old nickname "Tidbit" (he doesn't love it, so it appears exactly once).
+He loves to spend money: he has to have the best of everything, and gold burns a hole in his pocket.
+The opposite of David, who never spends. Paying gold to Age Up suits him.
 
 **Built 2026-10-04, untested in game.** Numbers below match the code. **Ages reworked 2026-10-05:** his Age lasts the whole run, the starting Age Up card is the only way to advance, and he can't Smith at rest sites. Cut, rename, or rewrite anything, especially to add inside jokes.
 Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
@@ -22,8 +24,8 @@ Shared mechanics he also uses: **Insulted** (Monkey Island, from Daniel) through
 - 4 Strike, 4 Defend
 - **Dad Joke** (Basic Attack, 1): Deal 5 damage. Apply 1 Insulted and 1 Weak. *(Daniel's Comebacks love this in co-op.)*
 - **Lua Script** (Basic Skill, 1): Gain 4 Block. **Script.**
-- **Age Up** (Basic Skill, 3): Pay 50 / 100 / 150 Gold (upgraded: 40 / 80 / 120; the energy cost never drops, so it stays hard to play). Age Up for the rest of the run. Exhaust. Can't be played without the gold. Leaves his deck once he reaches Imperial.
-- **Starter relic: Family Minivan.** Start each combat with 2 Kids. **Touch of Orobas upgrade: Fifteen-Passenger Van**, start each combat with 4 Kids.
+- **Age Up** (Basic Skill, 3): Pay 50 / 100 / 150 Gold (upgraded: 40 / 80 / 120; the energy cost never drops, so it stays hard to play). Age Up for the rest of the run. Exhaust. **Once per act** (2026-10-25): after he Ages Up, the card sits out his combats until the next act. Can't be played without the gold. Leaves his deck once he reaches Imperial.
+- **Starter relic: Family Minivan.** Start each combat with 2 Kids; after each combat you win, gain 10 Gold. **Touch of Orobas upgrade: Fifteen-Passenger Van**, 4 Kids and 15 Gold.
 
 Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeback; Dad Joke in his starting deck is an insult too).
 

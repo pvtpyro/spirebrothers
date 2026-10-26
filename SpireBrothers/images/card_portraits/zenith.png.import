@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buohor610p3qy"
-path="res://.godot/imported/metronome_power.png-0ecb542ac73ba5ad8aea9ef32669b760.ctex"
+uid="uid://d2rrshhak1urs"
+path="res://.godot/imported/zenith.png-326e52b0270821ba0cc59f56f82ca371.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpireBrothers/images/powers/metronome_power.png"
-dest_files=["res://.godot/imported/metronome_power.png-0ecb542ac73ba5ad8aea9ef32669b760.ctex"]
+source_file="res://SpireBrothers/images/card_portraits/zenith.png"
+dest_files=["res://.godot/imported/zenith.png-326e52b0270821ba0cc59f56f82ca371.ctex"]
 
 [params]
 

@@ -24,7 +24,14 @@ public static class Ages
     /// </summary>
     public static readonly SavedSpireField<Player, int> RunAge = new(() => Dark, "SpireBrothersAge");
 
+    /// <summary>The act (0-based) he last Aged Up in, or -1. Age Up works once per act. Saved the same way as RunAge.</summary>
+    public static readonly SavedSpireField<Player, int> AgedUpInAct = new(() => -1, "SpireBrothersAgeAct");
+
     public static int Get(Player? player) => player == null ? Dark : RunAge.Get(player);
+
+    /// <summary>True if he already Aged Up during the current act.</summary>
+    public static bool AgedUpThisAct(Player? player) =>
+        player != null && AgedUpInAct.Get(player) == player.RunState.CurrentActIndex;
 
     /// <summary>Damage / Block bonus on each of the player's cards right now.</summary>
     public static int Bonus(Player? player) => Get(player) * BonusPerAge;
@@ -43,6 +50,7 @@ public static class Ages
     public static void AgeUp(Player player)
     {
         RunAge.Set(player, Math.Min(Imperial, Get(player) + 1));
+        AgedUpInAct.Set(player, player.RunState.CurrentActIndex);
         AgeDisplay.Update(player);
         TimCard.RefreshHand(player);
     }

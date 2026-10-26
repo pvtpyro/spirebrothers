@@ -35,7 +35,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 
 Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Archipelago), 🗡️ Monkey Island (Insult / Comeback).
 
-## Common (20)
+## Common (22)
 
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
@@ -57,10 +57,12 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 16 | 💚🤝 Omiyage | 1 Skill | Share: a player gains 6 Block and heals 2. | Japanese gift-giving |
 | 17 | 🤝 What a Save! | 1 Skill | Share: a player gains 8 Block. | Rocket League |
 | 18 | 📦 Location Check | 1 Skill | Gain 4 Block. **Check.** | Archipelago |
-| 19 | Aerial | 1 Attack | Deal 9 damage. If you have 3+ Verses, draw 1 card. | Rocket League |
+| 19 | Aerial | 1 Attack | Deal 9 damage. If you have 5+ Verses, draw 1 card. | Rocket League |
 | 20 | Shinkansen | 2 Attack | Deal 18 damage. | Japan (bullet train) |
+| 20a | Copper Shortsword | 0 Attack | Deal 3 damage. Draw 1 card. | Terraria (the starting sword) |
+| 20b | 🎵 Glissando | 1 Attack | Deal 3 damage to ALL enemies 2 times. | Piano |
 
-## Uncommon (36)
+## Uncommon (38)
 
 ### Songs and Choruses
 | # | Name | Cost / Type | Effect | Theme |
@@ -72,7 +74,7 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 25 | Bridge | 1 Skill | Gain 2 Verses. Your next Chorus doesn't spend Verses. | Songwriting |
 | 26 | Key Change | 1 Skill | Double your Verses. Exhaust. | Songwriting |
 | 27 | Crescendo | 1 Attack | Deal 4 damage, +3 per Verse you have (doesn't spend them). | Music |
-| 28 | Metronome | 1 Power | At the start of your turn, gain 1 Verse. | Piano |
+| 28 | 🎵 Metronome | 1 Attack | Deal 3 damage 2 times. Hits 1 more time each time you play it this combat. *(was a Verse power until 2026-10-25)* | Piano |
 | 29 | Backup Vocals | 1 Power | Whenever you play a Song card, gain 2 Block. | Vocals |
 | 30 | Harmony | 2 Power | Whenever you play a Chorus, ALL players heal 2. | Music |
 | 31 | 📦 Scouting | 1 Skill | Scry 3. Your next **Check** finds a Progression item. | Archipelago (scouting reveals items early) |
@@ -82,7 +84,7 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 35 | 🎵🤝 Duet | 1 Skill | Share: you and a player each gain 5 Block (10 if you pick yourself). | Music / co-op |
 | 36 | Rest Note | 1 Skill | Gain 7 Block. Next turn, gain 1 Verse. | Music |
 | 37 | Improvise | 0 Skill | Add a random Song card to your hand. It costs 0 this turn. | Music |
-| 38 | Guitar Feedback | 1 Attack | Deal 7 damage to ALL enemies. If you have 3+ Verses, apply 1 Weak to ALL enemies. | Guitar |
+| 38 | Guitar Feedback | 1 Attack | Deal 7 damage to ALL enemies. If you have 5+ Verses, apply 1 Weak to ALL enemies. | Guitar |
 
 ### Healing and support
 | # | Name | Cost / Type | Effect | Theme |
@@ -109,8 +111,10 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 54 | Fishing | 1 Skill | Draw 1 card. If it's a Song, gain 1 Verse and draw another. | Stardew Valley |
 | 55 | Dish Pit | 1 Skill | Exhaust a card in your hand. Gain 6 Block. | PlateUp! |
 | 56 | 📦 Multiworld | 1 Power | At the start of your turn, **Check.** | Archipelago |
+| 56a | 🎵 Taiko Drums | 2 Attack | Deal 12 damage to ALL enemies. | Japan |
+| 56b | Guitar Solo | 1 Attack | Deal 8 damage. If you have 5+ Verses, deal it again. | Guitar |
 
-## Rare (16)
+## Rare (17)
 
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
@@ -130,6 +134,7 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 70 | Jam Session | 2 Skill | ALL players gain 2 Energy next turn. Exhaust. | Music / co-op |
 | 71 | 📦 Release! | 1 Skill | **Check** 5 times. Exhaust. | Archipelago: releasing sends out all your remaining items at once |
 | 72 | Zero-Second Goal | 1 Attack | Can only be played if it's the last card in your hand. Deal 30 damage. | Rocket League |
+| 72a | 🎤 Zenith | 1 Attack | **Chorus:** deal 4 damage to a random enemy 2 times per Verse. | Terraria (the ultimate sword) |
 
 ## Build notes (for Claude)
 
@@ -153,3 +158,9 @@ Goal: no brother or card underpowered; only effects that scale without limit wer
 - **Well-Worn Guitar:** 2 -> 3 starting Verses (Signature Guitar 4 -> 5), so his first Choruses aren't empty in solo.
 - **Check:** Filler items give 6 Block instead of 4. **Release!** costs 1 (was 2). **Multiworld** costs 1 (was 2; 0 upgraded).
 - **Nice Shot!:** now a Song (it was the same card as Daniel's Common Spaghetti Code).
+
+## Attack pass (2026-10-25)
+
+The guitar now gives Verses every turn, so he almost always has 3. Verse thresholds went from 3+ to 5+ (Aerial, Guitar Feedback).
+Metronome became an attack, and 5 new attacks were added (Copper Shortsword, Glissando, Taiko Drums, Guitar Solo, Zenith):
+22 attacks in the reward pool now, 77 reward cards in total (22 / 38 / 17).

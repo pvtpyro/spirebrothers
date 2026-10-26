@@ -19,7 +19,7 @@ namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 /// <summary>Guitar. Deal 7 damage to ALL enemies. If you have 3+ Verses, apply 1 Weak to ALL enemies.</summary>
 public class GuitarFeedback() : JoshuaCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
 {
-    protected override int VerseThreshold => 3;
+    protected override int VerseThreshold => 5;
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7, ValueProp.Move), new PowerVar<WeakPower>(1)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<WeakPower>()];
 

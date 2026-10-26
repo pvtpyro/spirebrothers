@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd84g7j1vd5gy"
-path="res://.godot/imported/metronome_power.png-261bfa85c46fe652810f6a2fb5125ebd.ctex"
+uid="uid://c7vaox3ul3csd"
+path="res://.godot/imported/glissando.png-e917db7201588e826dc3afff4a5f4eb7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpireBrothers/images/powers/big/metronome_power.png"
-dest_files=["res://.godot/imported/metronome_power.png-261bfa85c46fe652810f6a2fb5125ebd.ctex"]
+source_file="res://SpireBrothers/images/card_portraits/glissando.png"
+dest_files=["res://.godot/imported/glissando.png-e917db7201588e826dc3afff4a5f4eb7.ctex"]
 
 [params]
 
