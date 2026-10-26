@@ -63,6 +63,9 @@
   "SPIREBROTHERS-BROTHERS_IN_ARMS.title": "Brothers in Arms",
   "SPIREBROTHERS-BROTHERS_IN_ARMS.description": "At the start of each combat, ALL players gain [blue]1[/blue] [gold]Strength[/gold] and [blue]1[/blue] [gold]Dexterity[/gold] for each Spire Brother in the party.",
   "SPIREBROTHERS-BROTHERS_IN_ARMS.flavor": "Four brothers, one party, zero agreement on the route.",
+  "SPIREBROTHERS-DADS_TACKLE_BOX.title": "Dad's Tackle Box",
+  "SPIREBROTHERS-DADS_TACKLE_BOX.description": "Upon pickup and at the start of each Act, obtain a random potion.",
+  "SPIREBROTHERS-DADS_TACKLE_BOX.flavor": "Lures, line, three kinds of sunscreen, and something for whatever you've got.",
 
   "SPIREBROTHERS-POCKET_KNIFE.title": "Pocket Knife",
   "SPIREBROTHERS-POCKET_KNIFE.description": "Whenever you apply [gold]Bleed[/gold], apply [blue]1[/blue] more.",

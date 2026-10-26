@@ -72,5 +72,8 @@ public partial class MainFile : Node
         ModHelper.AddModelToPool<TimRelicPool, BlownCartridge>();
         ModHelper.AddModelToPool<TimRelicPool, SharedSteamLibrary>();
         ModHelper.AddModelToPool<TimRelicPool, BrothersInArms>();
+        ModHelper.AddModelToPool<DavidRelicPool, DadsTackleBox>();
+        ModHelper.AddModelToPool<JoshuaRelicPool, DadsTackleBox>();
+        ModHelper.AddModelToPool<TimRelicPool, DadsTackleBox>();
     }
 }

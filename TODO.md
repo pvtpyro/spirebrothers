@@ -61,9 +61,15 @@ Only Daniel has potions of his own right now (plus the shared Monkey Island ones
 - [ ] Add each to its brother's pool, plus art lines
 
 ### 5. Custom ? room events
-- [ ] Check BaseLib support for custom events (biggest unknown)
-- [ ] Event ideas: "Thanksgiving at Mom's" (pick a dish), "The Group Chat" (co-op vote),
-      "Road Trip Detour" (David's Idaho-to-NJ trip)
+Built 2026-10-26 (`SpireBrothersCode/Events/`, text in `events.json`). Only appear with a brother in the party.
+- [x] Road Trip to Grandma's (shared vote, 2 pages), Thanksgiving with Mom and Dad, A Day at the Lake,
+      Family Hike (shared vote), Calling Mom (Vent for an Hour locked for Daniel)
+- [x] Extras from the family details: Food Coma curse (Thanksgiving pie), Sunday Walk (David power card),
+      Dad's Tackle Box (shared relic), banter lines (David calling Mom, Dad's bigger fish)
+- [ ] Brandi: reword Thanksgiving if wanted (events.json, `SPIREBROTHERS-THANKSGIVING_WITH_MOM_AND_DAD.*`)
+- [ ] Real event art (placeholders are 1720x806; vanilla is 3440x1613, same shape)
+- [ ] Test: each event shows, options work, shared votes in co-op, the two-page road trip
+- [ ] Maybe later: "The Group Chat" (co-op vote), "Road Trip Detour" (David's Idaho-to-NJ trip)
 
 ### 6. Sound effects
 - [ ] Joshua: guitar strum on Chorus

@@ -1,11 +1,11 @@
-param([switch]$Preview, [switch]$CardsOnly, [string]$Only = "", [ValidateSet('', 'relics', 'powers')][string]$Section = "")
+param([switch]$Preview, [switch]$CardsOnly, [string]$Only = "", [ValidateSet('', 'relics', 'powers', 'events')][string]$Section = "")
 Add-Type -AssemblyName System.Drawing
 $ErrorActionPreference = 'Stop'
 $here = $PSScriptRoot
 # -CardsOnly: only the card portraits. Use it! The other sections (relics, powers, potions, character select,
 # map markers, Ages) would overwrite art that was replaced later (pixel select buttons, pizza / sunglasses markers).
 # -Only <ClassName>: render just that card. -Preview: write into .preview instead of the mod.
-# -Section relics|powers: only that section (no cards); add -Only <file_name> (relics) or <ClassName> (powers) for one.
+# -Section relics|powers|events: only that section (no cards); add -Only <file_name> (relics, events) or <ClassName> (powers) for one.
 $proj = 'D:\projects\csharp\SpireBrothers'
 $img = Join-Path $proj 'SpireBrothers\images'
 $loc = Join-Path $proj 'SpireBrothers\localization\eng'
@@ -66,8 +66,9 @@ function DrawIcon($g, $path, $fill, $stroke, $strokeW, $shadow = 0) {
 
 . (Join-Path $here 'icons.ps1')
 
-$brotherColor = @{ Daniel = C '#1f9fb4'; David = C '#3e9a4c'; Joshua = C '#7d4fc9'; Tim = C '#c8552f' }
-$brotherGlyph = @{ Daniel = '🤓'; David = '💰'; Joshua = '🎸'; Tim = '📐' }
+# Shared: cards in Cards\Shared (curses and other cards that belong to no brother).
+$brotherColor = @{ Daniel = C '#1f9fb4'; David = C '#3e9a4c'; Joshua = C '#7d4fc9'; Tim = C '#c8552f'; Shared = C '#6b6b6b' }
+$brotherGlyph = @{ Daniel = '🤓'; David = '💰'; Joshua = '🎸'; Tim = '📐'; Shared = '❔' }
 
 function IdMap($file) {
   $map = @{}
@@ -158,7 +159,7 @@ function CardArt($brother, $type, $glyph, $name, $badge = '') {
 
 $cardIds = IdMap 'cards.json'; $cardGlyphs = Glyphs 'glyphs.txt'
 $cardCount = 0
-foreach ($brother in $(if ($Section) { @() } else { 'Daniel', 'David', 'Joshua', 'Tim' })) {
+foreach ($brother in $(if ($Section) { @() } else { 'Daniel', 'David', 'Joshua', 'Tim', 'Shared' })) {
   foreach ($f in Get-ChildItem (Join-Path $proj "SpireBrothersCode\Cards\$brother") -Filter *.cs) {
     $cls = $f.BaseName
     if ($Preview -and $cardCount -ge 12) { break }
@@ -175,6 +176,35 @@ foreach ($brother in $(if ($Section) { @() } else { 'Daniel', 'David', 'Joshua',
 "cards: $cardCount"
 if ($CardsOnly -or ($Only -and -not $Section)) { return }
 
+# ---------- Events ----------
+# Wide like vanilla's event pictures (3440x1613), at half size. Only drawn with -Section events, so they never
+# overwrite real art by accident.
+$events = @{ road_trip_to_grandmas = @('🚐', '#e69138'); thanksgiving_with_mom_and_dad = @('🦃', '#b45f06')
+  day_at_the_lake = @('🎣', '#3d85c6'); family_hike = @('🥾', '#6aa84f'); calling_mom = @('📞', '#c27ba0') }
+if ($Section -eq 'events') {
+  $ec = 0
+  foreach ($k in $events.Keys) {
+    if ($Only -and $k -ne $Only) { continue }
+    $W = 1720; $H = 806; $base = C $events[$k][1]
+    $c = Canvas $W $H; $g = $c[1]
+    $g.FillRectangle([System.Drawing.Drawing2D.LinearGradientBrush]::new([System.Drawing.Point]::new(0, 0), [System.Drawing.Point]::new(0, $H),
+      (Mix $base (C '#ffffff') 0.3), (Mix $base (C '#000000') 0.55)), 0, 0, $W, $H)
+    $cx = $W / 2; $cy = $H / 2
+    for ($r = 140; $r -lt 1400; $r += 110) { $g.DrawEllipse([System.Drawing.Pen]::new((C '#ffffff' 26), 20), $cx - $r, $cy - $r, $r * 2, $r * 2) }
+    $glow = [System.Drawing.Drawing2D.GraphicsPath]::new(); $glow.AddEllipse($cx - 420, $cy - 420, 840, 840)
+    $pgb = [System.Drawing.Drawing2D.PathGradientBrush]::new($glow); $pgb.CenterColor = C '#ffffff' 110; $pgb.SurroundColors = @((C '#ffffff' 0))
+    $g.FillPath($pgb, $glow)
+    $path = GlyphPath $events[$k][0] $cx $cy 560 520
+    DrawIcon $g $path (C '#ffffff') (Mix $base (C '#000000') 0.75) 28 16
+    $v = [System.Drawing.Drawing2D.GraphicsPath]::new(); $v.AddEllipse(-400, -300, $W + 800, $H + 600)
+    $vb = [System.Drawing.Drawing2D.PathGradientBrush]::new($v); $vb.CenterColor = C '#000000' 0; $vb.SurroundColors = @((C '#000000' 150)); $vb.FocusScales = [System.Drawing.PointF]::new(0.6, 0.6)
+    $g.FillRectangle($vb, 0, 0, $W, $H)
+    $g.Dispose(); Save $c[0] (Join-Path $out "events\$k.png"); $c[0].Dispose(); $ec++
+  }
+  "events: $ec"
+  return
+}
+
 # ---------- Relics ----------
 $relicGlyphs = @{ and_you_know_what = '💬'; trusty_multimeter = '📟'; rubber_chicken_with_a_pulley = '🐔'; never_paid_a_mechanic = '🚗'
   grapefruit = '🍊'; monkey_phrasebook = '📕'; stone_monkey_head = '🗿'; monkey_wrench = '🔧'; old_wallet = '👛'; well_worn_guitar = '🎸'; family_minivan = '🚐'
@@ -183,7 +213,7 @@ $relicGlyphs = @{ and_you_know_what = '💬'; trusty_multimeter = '📟'; rubber
   pocket_knife = '🔪'; graphing_calculator = '🧮'; savings_account = '🏦'; soapbox = '📢'; payday_mask = '🎭'
   lucky_pick = '🍀'; omamori = '🧧'; capo = '🎼'; spoiler_log = '📜'; gold_record = '💿'
   loose_lego_brick = '🧱'; juice_boxes = '🧃'; garrisoned_relic = '⛪'; full_boost = '🚀'; startup_script = '💾'
-  patch_panel = '🔌'; super_destroyer = '🛸' }
+  patch_panel = '🔌'; super_destroyer = '🛸'; dads_tackle_box = '🎣' }
 $relicColors = @{ grapefruit = '#ff8a5c'; well_worn_guitar = '#d9a25b'; old_wallet = '#9b6a3c'; family_minivan = '#6fa8dc'; stone_monkey_head = '#9aa3a8'
   rubber_chicken_with_a_pulley = '#ffe066'; monkey_phrasebook = '#e06666'; trusty_multimeter = '#f6b26b'; monkey_wrench = '#c0c7cc'; never_paid_a_mechanic = '#e06666'; and_you_know_what = '#8ecae6'
   well_technically = '#ffd966'; overstuffed_wallet = '#6aa84f'; signature_guitar = '#b36bff'; fifteen_passenger_van = '#4a86c8'
@@ -191,7 +221,7 @@ $relicColors = @{ grapefruit = '#ff8a5c'; well_worn_guitar = '#d9a25b'; old_wall
   pocket_knife = '#cc4125'; graphing_calculator = '#7f8c8d'; savings_account = '#6aa84f'; soapbox = '#b4a7d6'; payday_mask = '#eeeeee'
   lucky_pick = '#93c47d'; omamori = '#e06666'; capo = '#d9a25b'; spoiler_log = '#c9b38a'; gold_record = '#f1c232'
   loose_lego_brick = '#e74c3c'; juice_boxes = '#f6b26b'; garrisoned_relic = '#d4af37'; full_boost = '#ff9900'; startup_script = '#6d9eeb'
-  patch_panel = '#4a86c8'; super_destroyer = '#a4b0be' }
+  patch_panel = '#4a86c8'; super_destroyer = '#a4b0be'; dads_tackle_box = '#3d85c6' }
 # Solid silhouette of a line-art glyph: everything not reachable from the border.
 function Silhouette($path, $size, $strokeW, $color) {
   $c = Canvas $size $size

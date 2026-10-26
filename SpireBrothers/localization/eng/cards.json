@@ -691,5 +691,10 @@
   "SPIREBROTHERS-GIFT_CARD.title": "Gift Card",
   "SPIREBROTHERS-GIFT_CARD.description": "[gold]Duo: David.[/gold]\nCan only be played with {Gold:diff()} [gold]Gold[/gold].\nLose {Gold:diff()} [gold]Gold[/gold]. David gains {Gift:diff()} [gold]Gold[/gold].",
   "SPIREBROTHERS-CENTERING_PASS.title": "Centering Pass",
-  "SPIREBROTHERS-CENTERING_PASS.description": "[gold]Duo: Joshua.[/gold]\nDeal {Damage:diff()} damage.\nJoshua gains {Verses:diff()} [gold]Verses[/gold]."
+  "SPIREBROTHERS-CENTERING_PASS.description": "[gold]Duo: Joshua.[/gold]\nDeal {Damage:diff()} damage.\nJoshua gains {Verses:diff()} [gold]Verses[/gold].",
+
+  "SPIREBROTHERS-SUNDAY_WALK.title": "Sunday Walk",
+  "SPIREBROTHERS-SUNDAY_WALK.description": "At the start of your turn, heal {Heal:diff()} HP.\nEvery 7th turn, also draw {Cards:diff()} cards.",
+  "SPIREBROTHERS-FOOD_COMA.title": "Food Coma",
+  "SPIREBROTHERS-FOOD_COMA.description": "At the end of your turn, if this is in your [gold]Hand[/gold], draw {Cards:diff()} fewer card next turn."
 }

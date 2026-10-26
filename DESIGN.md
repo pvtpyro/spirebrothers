@@ -1,5 +1,14 @@
 # Spire Brothers design notes
 
+## The family
+- Everyone but Daniel lives in Idaho (parents, David, Tim's family). Daniel and Brandi live farther south, and
+  Grandma lives south of them, so a family trip to Grandma's drives down past Daniel's.
+- Mom and Dad spend a lot of time on the lake: fishing and water sports.
+- Thanksgiving: Dad deep-fries the turkey; Mom does all the other cooking, and she's the one who always does the dishes.
+- Dad has a giant shop, and the boys end up out there helping with his projects. (He doesn't watch football.)
+- The family goes hiking a lot together.
+- Parents are fine to mention in cards, events, and banter.
+
 ## Shared
 - **Share** (co-op): choose a player; in solo it targets you. Teammate draw/energy arrives next turn to keep multiplayer in sync.
 - **Monkey Island**: Insult cards apply *Insulted*; Comeback cards deal bonus damage per stack, then clear it.
@@ -54,7 +63,7 @@ Software engineer who can fix cars, hard-wired his whole house for internet (eve
 - Full card list (72 in the reward pool) is in DANIEL_CARDS.md.
 
 ## David, The Min-Maxer (built 2026-10-04)
-Great with numbers, loves puzzles, loves hiking and camping. Always in the middle of an existential crisis, and whoever has to listen pays the price. Never spends money, not to save it, but because nothing interests him enough to buy, so it piles up. Took one road trip, Idaho to NJ and back.
+Great with numbers, loves puzzles, loves hiking and camping. Goes on a short walk or hike with Dad every Sunday, and calls Mom a lot to chat or vent. Always in the middle of an existential crisis, and whoever has to listen pays the price. Never spends money, not to save it, but because nothing interests him enough to buy, so it piles up. Took one road trip, Idaho to NJ and back.
 - **Exact**: bonus if you end the card with exactly 0 energy. Card-draw bonuses happen next turn (you have no energy to play them now).
 - **Hoard**: scales with unspent gold. Starter relic Old Wallet: Block per 20 gold at combat start.
 - **Rant** (replaced teaching): Rant cards snowball the more of them you play in a turn, and wear down the listener (the enemy loses Strength, takes damage, or gets Weak). Delegate: ally's next attack doubles.

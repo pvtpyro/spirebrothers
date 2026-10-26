@@ -227,3 +227,12 @@ Card art for everything (all cards, relics, and powers use placeholders).
   (`ModifyMerchantCardPool`) unless the partner is in the party; Shared Steam Library and `Verses.AddRandomSongs` call
   `DuoCards.Allowed` too. Any new random-card generator should as well. Effects reach the partner via `DuoCards.Partners(combat, Partner)`.
   Card counts above don't include them (+3 per brother).
+- **Events** (`SpireBrothersCode/Events/`, BaseLib `CustomEventModel`, no Acts = any act): `BrotherEvent` base (portrait
+  `images/events/<event_id>.png`, wide 3440x1613 like vanilla; `IsAllowed` needs a brother in the party; helpers for heal %,
+  HP loss, Max HP, Gold, random potion/relic, upgrades, removal, transform, add to deck). `Option(Method)` builds loc keys from
+  the method name: `<ID>.pages.<PAGE>.options.<METHOD_SLUG>.title/description`; results use `Finish("<PAGE>")` ->
+  `<ID>.pages.<PAGE>.description`. Text lives in a new `events.json` (the analyzer doesn't check event keys). `IsShared => true`
+  means co-op votes and the winner runs for everyone (Road Trip, Family Hike). Art: `cardgen/gen.ps1 -Section events [-Only <id>]`.
+  The family details behind them are in DESIGN.md ("The family").
+- Also new: `Cards/Shared/FoodComa.cs` (curse, `CurseCardPool`; cardgen draws `Cards\Shared` too), David's `SundayWalk` +
+  `SundayWalkPower`, `Relics/DadsTackleBox.cs` (shared relic, registered for every brother in `MainFile`).
