@@ -50,7 +50,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   Valley Forge token, 72 reward cards), `Mechanics/DavidTracker.cs` (Rant counts per turn/combat),
   `Mechanics/Exact.cs` (`Check()` returns 0/1/2 triggers, Min-Max doubles, runs `IExactListener` powers),
   `Powers/BleedPower.cs` (start of owner's turn like Poison, then halves; Deep Cuts makes it -1), `Powers/RantedAtPower.cs`
-  (X less damage per hit until the end of the enemy's turn; a damage modifier so Artifact can't backfire. The extra 25% cut was dropped 2026-10-26). Starter relic
+  (15% less damage per stack, max 40%, until the end of the enemy's turn; a damage modifier so Artifact can't backfire. Was flat X less per hit until 2026-10-27). Starter relic
   `Relics/OldWallet.cs` (Block for ALL players). Support cards (Share) target a teammate via `ShareTarget()`; `BaseCampPower` / `RainyDayFundPower` protect the team. `DavidRelic` base lives in `BrothersRelic.cs`.
 - Monkey Island relics/potions are `[Pool]`ed to Daniel and added to other brothers' pools in
   `MainFile.ShareMonkeyIslandItems()` via vanilla `ModHelper.AddModelToPool`. Add each new brother there.
@@ -278,3 +278,20 @@ Card art for everything (all cards, relics, and powers use placeholders).
   d20 on `Rng.CombatTargets`, speech bubble with the result; 1 = half, 20 = double via `JoshuaCard.RollAttack`/`RollMultiplier`),
   `AdvantagePower` / `LuckyPower` / `DungeonMasterPower`, relic `LuckyD20`. Zelda cards incl. the `MasterSword` token and Ballad of
   the Wind Fish (`Chorus(ctx, keepVerses: true)`). Joshua's reward pool is now 83 (23 / 40 / 20). Untested in game.
+
+## Added 2026-10-27
+
+- **Bible elites** (TODO.md #7b), one per brother: Goliath + Shield Bearer and the Lions' Den (Act 1), the Walls of Jericho and
+  Alexander the Coppersmith (Act 2). Each encounter extends `Monsters/BibleElite.cs` (`LinesKey`, `IsHero`, `MakeToken`, `IsMainFoe`,
+  `Speaker`; does the lines, seeded per round, never the run RNG). Its talking foe carries a `Powers/FoePower.cs` subclass
+  (ChampionOfGath / DenOfLions / SevenTrumpets / Coppersmith) that hands the hero his token card and runs the opening on turn 1.
+  `Banter` skips its combat-start line in these fights, calls `BibleElite.AfterDeath`, and skips its elite-win line if the hero lives.
+  Helpers are vanilla `MinionPower` and listed first in `GenerateMonsters` so they stand in front. `Alexander.Summon` adds a minion
+  mid-fight (no encounter scene, so it re-runs `NCombatRoom.PositionEnemies` by reflection and tweens the others over).
+  The Wall's fallen state is `WallOfJericho.IsFallen` (the countdown power is removed at 0). Tokens: `SmoothStone`, `ShutTheirMouths`,
+  `TrumpetBlast`, `SoundDoctrine`. Lines: monsters.json `SPIREBROTHERS-<LinesKey>.intro/heroIntro/heroReply/taunts/heroWin.N`.
+- `PixelBody.AnimatedBody` options: `maxIntentHeight` (tall bodies; Goliath) and `tipOver: false` (lions, the Wall).
+- Bubbles vs end screens: `Banter.Bubble` (every bubble in the mod goes through it) notes the time. `Banter.AfterCombatVictory` holds (`Cmd.Wait(..., ignoreCombatEnd: true)`) and `GameOverWaitPatch` (on `NRun.ShowGameOverScreen`) defers the game over screen until the
+  last bubble has been up 3.5 s (`Banter.TakeClosingWait`). Jericho uses `GetCameraScaling() => 0.85f` (three bodies were off-screen).
+- pixelgen: `Program.cs` renders every foe through `IFrameArt` (Rig ones wrapped in `RigFrames`); `Giants.cs`, `Foes.cs`, `Beasts.cs`.
+  The Desktop copy of pixelgen doesn't have these.

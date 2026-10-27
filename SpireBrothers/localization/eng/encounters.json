@@ -1,4 +1,12 @@
 {
   "SPIREBROTHERS-BLOCKBEARD_ELITE.title": "Captain Blockbeard",
-  "SPIREBROTHERS-BLOCKBEARD_ELITE.loss": "{character} was out-insulted by [gold]{encounter}[/gold]."
+  "SPIREBROTHERS-BLOCKBEARD_ELITE.loss": "{character} was out-insulted by [gold]{encounter}[/gold].",
+  "SPIREBROTHERS-GOLIATH_ELITE.title": "Goliath",
+  "SPIREBROTHERS-GOLIATH_ELITE.loss": "{character} should have brought a sling to [gold]{encounter}[/gold].",
+  "SPIREBROTHERS-LIONS_DEN_ELITE.title": "The Lions' Den",
+  "SPIREBROTHERS-LIONS_DEN_ELITE.loss": "{character} became dinner in [gold]{encounter}[/gold].",
+  "SPIREBROTHERS-JERICHO_ELITE.title": "The Walls of Jericho",
+  "SPIREBROTHERS-JERICHO_ELITE.loss": "{character} never got the walls of [gold]{encounter}[/gold] to fall.",
+  "SPIREBROTHERS-COPPERSMITH_ELITE.title": "Alexander the Coppersmith",
+  "SPIREBROTHERS-COPPERSMITH_ELITE.loss": "{character} was done much harm by [gold]{encounter}[/gold]."
 }

@@ -21,25 +21,32 @@ foreach (var b in brothers)
     sheet.SavePng(Path.Combine(outDir, $"preview_{b.Name}.png"), 3);
     Console.WriteLine($"{b.Name}: " + string.Join(", ", anims.Select(a => $"{a.Key} x{a.Value.poses.Count}")));
 }
-// Captain Blockbeard (the insult pirate elite): frames only, no select screen, hands, or campfire.
-var pirate = new PirateArt();
+// The elites and their helpers (Captain Blockbeard, and the Bible elites: Goliath, the Lions' Den, the Walls of
+// Jericho, Alexander the Coppersmith): frames only, no select screen, hands, or campfire. People are drawn on the Rig;
+// lions and the Wall draw their own frames (Beasts.cs).
+var foes = new List<IFrameArt>();
+foreach (AnimatedBrother foe in new AnimatedBrother[] { new PirateArt(), new GoliathArt(), new ShieldBearerArt(),
+    new JerichoGuardArt(), new JerichoArcherArt(), new AlexanderArt(), new CopperAutomatonArt() })
+    foes.Add(new RigFrames(foe));
+foes.AddRange([new LionArt(mane: true), new LionArt(mane: false), new WallArt()]);
+foreach (var foe in foes)
 {
-    var anims = pirate.Anims();
-    int maxF = anims.Values.Max(a => a.poses.Count);
-    var sheet = new Canvas(64 * maxF + (maxF - 1) * 2, anims.Count * 82 - 2);
+    var anims = foe.Frames();
+    int fw = anims.Values.First()[0].W, fh = anims.Values.First()[0].H;
+    int maxF = anims.Values.Max(a => a.Count);
+    var sheet = new Canvas(fw * maxF + (maxF - 1) * 2, anims.Count * (fh + 2) - 2);
     int row = 0;
-    foreach (var (name, (poses, _, _)) in anims)
+    foreach (var (name, frames) in anims)
     {
-        for (int i = 0; i < poses.Count; i++)
+        for (int i = 0; i < frames.Count; i++)
         {
-            var frame = pirate.Render(poses[i]);
-            frame.SavePng(Path.Combine(outDir, pirate.Name, "frames", $"{name}_{i}.png"));
-            for (int y = 0; y < 80; y++) for (int x = 0; x < 64; x++) sheet.Set(i * 66 + x, row * 82 + y, frame.Get(x, y) ?? bg);
+            frames[i].SavePng(Path.Combine(outDir, foe.Name, "frames", $"{name}_{i}.png"));
+            for (int y = 0; y < fh; y++) for (int x = 0; x < fw; x++) sheet.Set(i * (fw + 2) + x, row * (fh + 2) + y, frames[i].Get(x, y) ?? bg);
         }
         row++;
     }
-    sheet.SavePng(Path.Combine(outDir, $"preview_{pirate.Name}.png"), 3);
-    Console.WriteLine($"{pirate.Name}: " + string.Join(", ", anims.Select(a => $"{a.Key} x{a.Value.poses.Count}")));
+    sheet.SavePng(Path.Combine(outDir, $"preview_{foe.Name}.png"), 3);
+    Console.WriteLine($"{foe.Name}: " + string.Join(", ", anims.Select(a => $"{a.Key} x{a.Value.Count}")));
 }
 Backgrounds.RenderAll(brothers, outDir);
 Hands.RenderAll(brothers, outDir);
@@ -79,3 +86,11 @@ for (int b = 0; b < brothers.Length; b++)
     }
 }
 rest.SavePng(Path.Combine(outDir, "campfire_frames.png"), 3);
+
+/// <summary>A Rig-drawn character's frames, in the same shape as the hand-drawn ones.</summary>
+class RigFrames(AnimatedBrother art) : IFrameArt
+{
+    public string Name => art.Name;
+    public Dictionary<string, List<Canvas>> Frames() =>
+        art.Anims().ToDictionary(a => a.Key, a => a.Value.poses.Select(art.Render).ToList());
+}

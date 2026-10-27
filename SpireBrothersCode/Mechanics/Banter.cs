@@ -10,10 +10,13 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.Saves;
 using SpireBrothers.SpireBrothersCode.Cards.Daniel;
+using SpireBrothers.SpireBrothersCode.Monsters;
 using SpireBrothers.SpireBrothersCode.Relics;
 
 namespace SpireBrothers.SpireBrothersCode.Mechanics;
@@ -46,12 +49,17 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
 
     private static readonly Dictionary<string, int> PoolSizes = new();
 
-    /// <summary>Shows a speech bubble over a creature, long enough to read. Shared with the insult lines.</summary>
+    /// <summary>
+    /// Shows a speech bubble over a creature, long enough to read. Every bubble in the mod comes through here (insults,
+    /// the Bible elites, Blockbeard, dice rolls), so it also notes the time for the rewards and game over screens.
+    /// </summary>
     public static void Bubble(Creature speaker, string text)
     {
         double seconds = Math.Max(SecondsMin, text.Length * SecondsPerChar);
         var bubble = NSpeechBubbleVfx.Create(text, speaker, seconds, VfxColor.White);
-        if (bubble != null) speaker.GetVfxContainer()?.AddChildSafely(bubble);
+        if (bubble == null) return;
+        speaker.GetVfxContainer()?.AddChildSafely(bubble);
+        _lastBubbleAt = Godot.Time.GetTicksMsec();
     }
 
     /// <summary>Upper-case name used in loc keys: DANIEL, DAVID, JOSHUA, TIM.</summary>
@@ -104,6 +112,8 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
         var combat = player.Creature.CombatState;
         // Runs once per combat: on turn 1, for the first player in the list.
         if (combat == null || combat.RoundNumber != 1 || player != combat.Players.FirstOrDefault()) return Task.CompletedTask;
+        // The Bible elites do their own talking (BibleElite), with their namesake brother if he's here.
+        if (combat.Encounter is BibleElite) return Task.CompletedTask;
         var brothers = LivingBrothers(combat);
         if (brothers.Count == 0) return Task.CompletedTask;
         var run = player.RunState;
@@ -132,6 +142,11 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
 
     public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
     {
+        if (creature.IsMonster && creature.CombatState?.Encounter is BibleElite elite)
+        {
+            elite.AfterDeath(creature);
+            return Task.CompletedTask;
+        }
         var fallen = creature.Player;
         var combat = creature.CombatState;
         if (fallen == null || combat == null || !BrothersInArms.IsBrother(fallen)) return Task.CompletedTask;
@@ -171,18 +186,42 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
         return Task.CompletedTask;
     }
 
-    public override Task AfterCombatVictory(CombatRoom room)
+    // The rewards and game over screens cover the bubbles. So if a bubble went up in the last ClosingHold seconds (a win
+    // line, a fall, the insult that came with the killing blow...), they wait until it has been up that long: the rewards
+    // screen opens once every AfterCombatVictory hook is done, so this hook holds; the game over screen is held by
+    // GameOverWaitPatch. Each client only delays its own screen, so co-op stays in sync.
+    private const float ClosingHold = 3.5f;
+    private static ulong _lastBubbleAt;
+
+    /// <summary>Seconds left before the last bubble has been readable long enough (0 if none). Clears the mark.</summary>
+    internal static float TakeClosingWait()
+    {
+        if (_lastBubbleAt == 0) return 0;
+        float shown = (Godot.Time.GetTicksMsec() - _lastBubbleAt) / 1000f;
+        _lastBubbleAt = 0;
+        return Math.Max(0, ClosingHold - shown);
+    }
+
+    public override async Task AfterCombatVictory(CombatRoom room)
+    {
+        SayVictoryLine(room);
+        float wait = TakeClosingWait();
+        if (wait > 0) await MegaCrit.Sts2.Core.Commands.Cmd.Wait(wait, ignoreCombatEnd: true);
+    }
+
+    private static void SayVictoryLine(CombatRoom room)
     {
         var combat = room.CombatState;
-        if (combat == null || room.RoomType is not (RoomType.Boss or RoomType.Elite)) return Task.CompletedTask;
+        if (combat == null || room.RoomType is not (RoomType.Boss or RoomType.Elite)) return;
         var brothers = LivingBrothers(combat);
-        if (brothers.Count == 0) return Task.CompletedTask;
+        if (brothers.Count == 0) return;
+        // The namesake brother already had the last word.
+        if (combat.Encounter is BibleElite bible && bible.HeroHere(combat)) return;
         var run = brothers[0].RunState;
-        if (room.RoomType == RoomType.Elite && Roll(run, EliteChance) != 0) return Task.CompletedTask;
+        if (room.RoomType == RoomType.Elite && Roll(run, EliteChance) != 0) return;
         var speaker = brothers[Roll(run, brothers.Count)];
         string pool = room.RoomType == RoomType.Boss ? "BOSS" : "ELITE";
         Say(speaker.Creature, run, pool, $"{pool}.{Name(speaker)}");
-        return Task.CompletedTask;
     }
 
     /// <summary>Called by BanterSavedPatch when something stops a brother from dying.</summary>
@@ -203,4 +242,29 @@ public static class BanterSavedPatch
 {
     [HarmonyPostfix]
     private static void Postfix(Creature creature) => Banter.Saved(creature);
+}
+
+/// <summary>
+/// The game over screen opens in the same step as the last brother's death (or giving up), right over his fall line.
+/// If a bubble just went up, open it a moment later instead (Banter.TakeClosingWait).
+/// </summary>
+[HarmonyPatch(typeof(NRun), nameof(NRun.ShowGameOverScreen))]
+public static class GameOverWaitPatch
+{
+    private static bool _delayed;
+
+    [HarmonyPrefix]
+    private static bool Prefix(NRun __instance, SerializableRun serializableRun)
+    {
+        if (_delayed) return true;
+        float wait = Banter.TakeClosingWait();
+        if (wait <= 0 || Godot.Engine.GetMainLoop() is not Godot.SceneTree tree) return true;
+        tree.CreateTimer(wait).Timeout += () =>
+        {
+            _delayed = true;
+            try { __instance.ShowGameOverScreen(serializableRun); }
+            finally { _delayed = false; }
+        };
+        return false;
+    }
 }

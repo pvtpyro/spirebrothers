@@ -104,6 +104,31 @@ Built 2026-10-26. Monkey Island meets Minecraft: square beard, tricorn, eye patc
 - [ ] Brandi: add or reword insult pairs (events.json `SPIREBROTHERS-INSULT_DUEL.pairs.N`) and his fight lines
       (monsters.json `SPIREBROTHERS-BLOCKBEARD.insults/gloats/speechless.N`); any count works
 
+### 7b. Bible elites: one per brother, named for his namesake
+Built 2026-10-27. Act 1: Goliath (David), the Lions' Den (Daniel). Act 2: the Walls of Jericho (Joshua), Alexander the
+Coppersmith (Tim). Any party can meet them; if the namesake is there he starts with a token card, says the opening line
+(the foe answers ~2 s later), and has the last word. Without him the foe opens with its own taunt.
+`godmode` then `fight SPIREBROTHERS-GOLIATH_ELITE` / `LIONS_DEN_ELITE` / `JERICHO_ELITE` / `COPPERSMITH_ELITE`
+- [x] **Goliath** (1 Samuel 17): 120-124 HP, 6 Plating. Choose Your Champion (2 Weak to all, once), then Weaver's Beam (16),
+      Bronze Charge (7 x2), Forty Days (+3 Strength, taunts). **Shield Bearer** minion in front (26-28 HP): Raise Shield
+      (Goliath +10 Block) / Shield Bash 6. David: **Smooth Stone** (0, Retain, Exhaust): 5 damage, 25 to Goliath.
+- [x] **Lions' Den** (Daniel 6): Lion 54-56 HP + Lioness 46-48. Roar (all lions +2 Strength), Pounce 10, Maul 4 x2; the Lioness
+      is one step behind so they don't roar together. Daniel: **Shut Their Mouths** (0, Retain, Exhaust): an enemy skips its next move.
+- [x] **Walls of Jericho** (Joshua 6): Wall 150 HP (Fortify +16 Block / Falling Rubble 10) between a Jericho Guard (30-32 HP,
+      Spear Thrust 9 / Hold the Gate: Wall +8 Block) and a Jericho Archer (26-28 HP, Volley 4 x2 / Aimed Shot 11), both minions.
+      **Seven Trumpets** counts down from 7: 1 per round, 1 per Song or Chorus anyone plays. At 0 the walls fall: the Wall loses
+      its Block, gets 99 Vulnerable, and stops acting; the defenders lose half their HP; Joshua says his line then.
+      Joshua: **Trumpet Blast** (0, Song, Retain, Exhaust): 4 damage to ALL, counts down twice.
+- [x] **Alexander the Coppersmith** (2 Timothy 4:14): 150 HP. Hammer 17, Hot Rivets 5 x3, then Forge (adds a Copper Automaton
+      while fewer than 2 stand) or Much Harm (2 Weak + 2 Frail to all). Starts with one **Copper Automaton** (minion, 20-22 HP,
+      Clank 7 / Grind 3 x2). Tim: **Sound Doctrine** (0, Retain, Exhaust): 8 damage; takes an Automaton apart outright.
+- [x] Closing lines: the rewards screen waits until the last line has been up 3.5 s (`Banter.MarkClosingLine`).
+- [x] Pixel art: `Giants.cs` (Goliath, Shield Bearer), `Foes.cs` (Jericho Guard/Archer, Alexander, Automaton), `Beasts.cs`
+      (Lion, Lioness, Wall; drawn without the Rig, 72x48 for lions). Goliath is drawn 540 tall, intent capped at 500.
+- [ ] Test: placement (helpers in front), bubble timing, the rewards-screen hold, tokens in co-op, minions ending the fight,
+      Automatons sliding in when forged (no encounter scene, so `Alexander.Summon` re-runs the game's layout), the Wall
+      falling, lion sizes, sounds (all borrowed from vanilla)
+- [ ] Brandi: reword any lines (monsters.json `SPIREBROTHERS-<GOLIATH|LIONS_DEN|JERICHO|ALEXANDER>.intro/heroIntro/heroReply/taunts/heroWin.N`)
 ### 8. End-of-run stats
 Built 2026-10-26. A second column of score lines on the game over summary page, beside vanilla's floors/gold/elites,
 with each brother's icon. Every brother in the party is listed on every player's screen (3 lines each with 1-2 brothers,

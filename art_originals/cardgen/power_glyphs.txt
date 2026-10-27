@@ -64,6 +64,10 @@ SpareBattery 🔋
 InsultDuel 🗯️
 Gloating 😏
 AwaitingRetort ❓
+ChampionOfGath 🛡️
+DenOfLions 🦁
+SevenTrumpets 📯
+Coppersmith 🔨
 FamilyBonds 🤝
 VerseNextTurn 🎵
 Virtuoso 🎻

@@ -61,9 +61,12 @@ public static class PixelBody
 
     /// <summary>
     /// The combat body, <paramref name="bodyHeight"/> units tall. Frames are drawn facing right (like the brothers);
-    /// <paramref name="faceLeft"/> mirrors them for enemies.
+    /// <paramref name="faceLeft"/> mirrors them for enemies. <paramref name="maxIntentHeight"/> keeps a tall body's intent from
+    /// floating up behind the top bar: the intent sits no higher than that many units above his feet.
+    /// <paramref name="tipOver"/> false keeps the body upright on death (lions and walls lie down or crumble in their own frames).
     /// </summary>
-    public static NCreatureVisuals AnimatedBody(SpriteFrames frames, Texture2D first, float bodyHeight, bool faceLeft = false)
+    public static NCreatureVisuals AnimatedBody(SpriteFrames frames, Texture2D first, float bodyHeight, bool faceLeft = false,
+        float? maxIntentHeight = null, bool tipOver = true)
     {
         // Let BaseLib lay out the hitbox and markers from the first frame, then hide that still picture and play
         // the animation in its place. The frames are pixel art, so scale them up without blurring.
@@ -94,12 +97,14 @@ public static class PixelBody
         float lyingAngle = faceLeft ? Mathf.Pi / 2 : -Mathf.Pi / 2;
         anim.AnimationChanged += () =>
         {
-            float lying = anim.Animation == "die" ? lyingAngle : 0f;
+            float lying = tipOver && anim.Animation == "die" ? lyingAngle : 0f;
             if (Mathf.IsEqualApprox(anim.Rotation, lying)) return;
             anim.CreateTween().TweenProperty(anim, "rotation", lying, anim.Animation == "die" ? 0.45 : 0.3)
                 .SetTrans(Tween.TransitionType.Quad).SetEase(anim.Animation == "die" ? Tween.EaseType.In : Tween.EaseType.Out);
         };
         ScaleToHeight(visuals, first.GetSize().Y, bodyHeight);
+        if (maxIntentHeight is { } cap && visuals.GetNodeOrNull<Marker2D>("IntentPos") is { } intent)
+            intent.Position = intent.Position with { Y = Mathf.Max(intent.Position.Y, -cap) };
         return visuals;
     }
 

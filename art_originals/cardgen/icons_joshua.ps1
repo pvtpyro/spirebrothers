@@ -161,3 +161,38 @@ $CustomIcons['ThousandCranes'] = {
     (Detail (PLine @(500, 380, 500, 560)) 8)
   )
 }
+# ---- The Walls of Jericho
+
+# Trumpet Blast: a shofar (ram's horn), what the priests blew at Jericho (Joshua 6). Narrow mouthpiece at the lower
+# left, a curve down and up, flaring to the bell at the upper right, with ridges along it and sound lines.
+$CustomIcons['TrumpetBlast'] = {
+  $horn = C '#d9b98a'; $ridge = C '#8a6a44'
+  $pts = @(); $n = 24
+  for ($i = 0; $i -le $n; $i++) {
+    $t = $i / $n; $u = 1 - $t
+    $x = $u*$u*$u*170 + 3*$u*$u*$t*420 + 3*$u*$t*$t*690 + $t*$t*$t*780
+    $y = $u*$u*$u*470 + 3*$u*$u*$t*720 + 3*$u*$t*$t*640 + $t*$t*$t*250
+    $pts += ,@($x, $y, (12 + 95 * $t * $t))
+  }
+  $left = @(); $right = @()
+  for ($i = 0; $i -le $n; $i++) {
+    $a = $pts[[Math]::Max(0, $i - 1)]; $b = $pts[[Math]::Min($n, $i + 1)]
+    $dx = $b[0] - $a[0]; $dy = $b[1] - $a[1]; $len = [Math]::Sqrt($dx * $dx + $dy * $dy)
+    $nx = -$dy / $len; $ny = $dx / $len; $w = $pts[$i][2]
+    $left += @(($pts[$i][0] + $nx * $w), ($pts[$i][1] + $ny * $w))
+    $right = @(($pts[$i][0] - $nx * $w), ($pts[$i][1] - $ny * $w)) + $right
+  }
+  $parts = @((Part (PPoly ($left + $right)) $horn))
+  # ridges across the horn
+  foreach ($i in 4, 8, 11, 14, 17, 20) {
+    $l = $i * 2; $r = ($n - $i) * 2
+    $parts += Detail (PLine @($left[$l], $left[$l + 1], $right[$r], $right[$r + 1])) 9
+  }
+  # the bell opening, and sound lines coming out of it
+  $parts += Part (PEll 792 235 70 52) $ridge
+  foreach ($k in 0, 1, 2) {
+    $r0 = 120 + $k * 55
+    $parts += Detail (PLine @((780 + $r0 * 0.7), (235 - $r0 * 0.75), (780 + $r0 * 0.95), (235 - $r0 * 0.15))) 10
+  }
+  $parts
+}
