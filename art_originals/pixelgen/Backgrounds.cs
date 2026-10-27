@@ -17,6 +17,8 @@ public static class Backgrounds
                 case "david": David(c); break;
                 case "joshua": Joshua(c); break;
                 case "tim": Tim(c); break;
+                case "john": John(c); break;
+                case "huffman": Huffman(c); break;
             }
             StandBrother(c, b, 345, 246);
             Vignette(c);
@@ -406,5 +408,197 @@ public static class Backgrounds
         int w = studs * 7;
         c.Draw(q => S.Box(q, x, y, x + w, y + 8), col, hi: col.Light);
         for (int i = 0; i < studs; i++) c.Draw(q => S.Box(q, x + 1.5f + i * 7, y - 3, x + 5.5f + i * 7, y), col, hi: col.Light);
+    }
+
+    // The friends' scenes are darker than the brothers' (night, underground), so they read as a set of their own.
+
+    // ---------------------------------------------------------------- John: the Shroud at night, a Flame Altar, hive spires far off
+
+    static void John(Canvas c)
+    {
+        Sky(c, 200, C("07060e"), C("140c22"), C("2a1634"), C("3a1e3a"));
+        Stars(c, 21, 60, 90, C("b8a8d8"));
+        // a pale moon behind the haze
+        c.Flat(q => S.Circle(q, new V(110, 46), 15), C("8a7a98"));
+        c.Flat(q => S.Circle(q, new V(106, 43), 11), C("a898b4"));
+        // hive city spires on the horizon (Hive Scum's home), with a few lit windows and a smog glow
+        var hive = C("120c18");
+        var rng = new Random(12);
+        // the hive itself: a stepped mass of city, tier on tier, with rows of lit windows
+        c.Flat(q => S.Poly(q, new V(130, 178), new V(160, 150), new V(180, 150), new V(196, 128), new V(222, 128), new V(236, 108),
+            new V(290, 108), new V(304, 128), new V(330, 128), new V(344, 150), new V(372, 150), new V(400, 178)), hive);
+        foreach (var (y0, x0, x1) in new[] { (114, 240, 286), (134, 200, 326), (156, 164, 368) })
+            for (int x = x0; x < x1; x += 3) if (rng.Next(3) > 0) c.Set(x, y0 + rng.Next(0, 3) * 4, rng.Next(5) == 0 ? C("ff5a3a") : C("e0a040"));
+        // gothic spires rising out of it, with crossbars and antennas
+        foreach (var (sx, top, w) in new[] { (210, 74, 7), (244, 40, 9), (263, 22, 11), (284, 46, 8), (318, 80, 7) })
+        {
+            int baseY = sx is > 230 and < 296 ? 110 : 130;
+            c.Flat(q => S.Poly(q, new V(sx - w, baseY), new V(sx - w * 0.6f, top + 16), new V(sx, top), new V(sx + w * 0.6f, top + 16), new V(sx + w, baseY)), hive);
+            for (int y = top - 12; y < top; y++) c.Set(sx, y, hive);
+            c.Set(sx, top - 13, C("ff5a3a"));
+            for (int k = 1; k <= 2; k++) { int by = top + 16 + k * (baseY - top - 16) / 3; for (int x = sx - w - 2; x <= sx + w + 2; x++) c.Set(x, by, hive); }
+            for (int y = top + 20; y < baseY - 4; y += 7) if (rng.Next(3) > 0) c.Set(sx + rng.Next(-1, 2), y, C("e0a040"));
+        }
+        // smokestacks venting smog
+        foreach (var sx in new[] { 186, 340 })
+        {
+            c.Flat(q => S.Box(q, sx, 112, sx + 5, 150), hive);
+            for (int i = 0; i < 5; i++) c.Flat(q => S.Circle(q, new V(sx + 2 + i * 6, 104 - i * 8), 4 + i * 1.4f), C("2a1a2e").Lerp(C("3a1e3a"), i * 0.18f));
+        }
+        for (int y = 120; y < 178; y++) for (int x = 130; x < 400; x++) Blend(c, x, y, C("6a2a3a"), (y - 120) / 58f * 0.25f * (1 - MathF.Abs(x - 265) / 140f));
+        // the ruined valley
+        Ridge(c, 182, 9, 0.028f, 13, C("1a1220"), C("2a1e2e"));
+        // dead, twisted trees in the fog
+        foreach (var (tx, th) in new[] { (40, 70), (92, 52), (190, 60), (450, 66) }) DeadTree(c, tx, 204, th);
+        // ground
+        for (int y = 200; y < c.H; y++) for (int x = 0; x < c.W; x++) c.Set(x, y, (x * 7 + y * 13) % 11 == 0 ? C("2a2026") : C("1e171c"));
+        for (int i = 0; i < 40; i++) { int x = rng.Next(c.W), y = rng.Next(204, c.H); c.Set(x, y, C("3a3036")); c.Set(x + 1, y, C("2e262c")); }
+        // the Shroud: purple fog banks with glowing spores, pushed back around the altar's light
+        var altar = new V(262, 196);
+        for (int y = 130; y < c.H; y++) for (int x = 0; x < c.W; x++)
+        {
+            float wave = MathF.Sin(x * 0.03f + y * 0.11f) * 0.5f + MathF.Sin(x * 0.011f - y * 0.05f) * 0.5f;
+            // thickest in a bank along the horizon, thinner toward the camera
+            float bank = MathF.Exp(-MathF.Pow((y - 198) / 22f, 2));
+            float fog = Math.Clamp((y - 140) / 70f, 0, 1) * (0.32f + 0.14f * wave) + bank * (0.35f + 0.2f * wave);
+            float clear = Math.Clamp(1 - (new V(x, y) - altar).Len / 95f, 0, 1);
+            fog *= 1 - clear * clear * 1.6f;
+            if (fog > 0) Blend(c, x, y, (x + y) % 2 == 0 ? C("5a2a6a") : C("4a2258"), fog);
+        }
+        for (int i = 0; i < 70; i++)
+        {
+            var at = new V(rng.Next(c.W), rng.Next(140, 262));
+            if ((at - altar).Len < 70) continue;
+            c.Plot(at, rng.Next(3) == 0 ? C("7af0e0") : C("e070d0"));
+            if (rng.Next(4) == 0) { c.Plot(at + new V(1, 0), C("8a3a8a")); c.Plot(at + new V(0, 1), C("8a3a8a")); }
+        }
+        // the Flame Altar: a stone plinth with a big flame and a warm pool of light
+        for (int y = 150; y < c.H; y++) for (int x = 170; x < 360; x++)
+        {
+            float d = (new V(x, (y - altar.Y) * 1.8f + altar.Y) - altar).Len;
+            if (d < 90) Blend(c, x, y, C("ff9a40"), (1 - d / 90) * (1 - d / 90) * 0.35f);
+        }
+        c.Draw(q => S.Poly(q, altar + new V(-14, 8), altar + new V(-10, -14), altar + new V(10, -14), altar + new V(14, 8)), C("5a5260"), hi: C("7a7280"));
+        c.Draw(q => S.Box(q, altar.X - 16, altar.Y - 20, altar.X + 16, altar.Y - 14), C("6a6270"), hi: C("8a8290"));
+        for (int i = -1; i <= 1; i++) c.Flat(q => S.Box(q, altar.X + i * 7 - 1, altar.Y - 10, altar.X + i * 7 + 1, altar.Y + 4), C("3a3440"));
+        c.Flat(q => S.Taper(q, altar + new V(0, -20), altar + new V(1, -52), 11, 1), C("ff6a20"));
+        c.Flat(q => S.Taper(q, altar + new V(-7, -20), altar + new V(-10, -38), 5, 0.6f), C("ff6a20"));
+        c.Flat(q => S.Taper(q, altar + new V(7, -20), altar + new V(10, -36), 5, 0.6f), C("ff6a20"));
+        c.Flat(q => S.Taper(q, altar + new V(0, -20), altar + new V(0, -42), 6.5f, 0.8f), C("ffb040"));
+        c.Flat(q => S.Taper(q, altar + new V(0, -20), altar + new V(0, -30), 3.5f, 0.6f), C("fff0b0"));
+        for (int i = 0; i < 10; i++) c.Plot(altar + new V(rng.Next(-14, 14), -56 - rng.Next(0, 20)), i % 2 == 0 ? C("ffd060") : C("ff8030"));
+        // his crafting corner: an anvil with a glowing green stimm, and a loot chest (always grinding)
+        var iron = C("4a4e58");
+        c.Draw(q => S.U(S.Box(q, 410, 214, 444, 220), S.U(S.Box(q, 420, 220, 434, 232), S.Box(q, 414, 232, 440, 238))), iron, hi: C("7a808c"));
+        c.Draw(q => S.Taper(q, new V(410, 217), new V(400, 215), 3, 1), iron);
+        c.Draw(q => S.Capsule(q, new V(428, 212), new V(428, 202), 2), C("8a929c"), hi: C("d8dee8"));
+        c.Flat(q => S.Capsule(q, new V(428, 210.5f), new V(428, 204), 1), C("70ff80"));
+        c.Plot(428, 199, C("e8eef5"));
+        Sparkle(c, new V(434, 198));
+        var wood = C("6b4a2b");
+        c.Draw(q => S.Box(q, 282, 222, 312, 240), wood, hi: wood.Light);
+        c.Draw(q => S.U(S.Box(q, 282, 214, 312, 222), S.Ellipse(q, new V(297, 216), 15, 5)), wood.Shade, hi: wood);
+        c.Draw(q => S.Box(q, 282, 221, 312, 223), C("c8a040"));
+        c.Draw(q => S.Box(q, 294, 219, 300, 226), C("e0c060"));
+        for (int i = 0; i < 4; i++) c.Plot(288 + i * 6, 212 - i % 2, C("ffe070"));
+    }
+
+    static void DeadTree(Canvas c, int x, int ground, int h)
+    {
+        var bark = C("150f18");
+        c.Flat(q => S.Taper(q, new V(x, ground), new V(x + 3, ground - h), 3.5f, 1), bark);
+        c.Flat(q => S.Taper(q, new V(x + 1, ground - h * 0.55f), new V(x - 14, ground - h * 0.85f), 1.8f, 0.5f), bark);
+        c.Flat(q => S.Taper(q, new V(x + 2, ground - h * 0.7f), new V(x + 16, ground - h * 0.95f), 1.6f, 0.5f), bark);
+        c.Flat(q => S.Taper(q, new V(x - 9, ground - h * 0.77f), new V(x - 13, ground - h * 0.98f), 1f, 0.4f), bark);
+    }
+
+    // ---------------------------------------------------------------- Huffman: an underground server room, storage drives, a jetpack
+
+    static void Huffman(Canvas c)
+    {
+        // concrete wall with panel seams
+        Fill(c, (x, y) => y < 206 ? ((x % 60 == 0 || y % 46 == 0) ? C("1a1c22") : C("20232a")) : null);
+        // ceiling light strips, dim blue
+        for (int x = 0; x < c.W; x++) { c.Set(x, 0, C("101216")); c.Set(x, 1, C("101216")); }
+        foreach (var lx in new[] { 40, 200, 360 })
+            for (int x = lx; x < lx + 80; x++) { c.Set(x, 4, C("9ad8ff")); c.Set(x, 5, C("5aa0d0")); for (int y = 6; y < 60; y++) Blend(c, x + (y - 6) / 3 - 9, y, C("5aa0d0"), (60 - y) / 54f * 0.06f); }
+        // cable trays along the ceiling with glowing network cables
+        for (int x = 0; x < c.W; x++) { c.Set(x, 14, C("3a3e48")); c.Set(x, 19, C("2a2e36")); }
+        for (int x = 0; x < c.W; x++) { c.Set(x, 16, x % 24 < 12 ? C("8a50e0") : C("6a3ab0")); c.Set(x, 17, C("2ab0c0")); }
+        var rng = new Random(31);
+        // the big monitor: a star wrapped in a half-built Dyson sphere
+        c.Draw(q => S.Box(q, 196, 30, 300, 96), C("2a2e36"), hi: C("4a4e58"));
+        c.Flat(q => S.Box(q, 200, 34, 296, 92), C("060814"));
+        for (int i = 0; i < 30; i++) c.Set(rng.Next(201, 295), rng.Next(35, 91), C("8aa0d0"));
+        var star = new V(248, 63);
+        c.Flat(q => S.Circle(q, star, 14), C("ffb040"));
+        c.Flat(q => S.Circle(q, star, 10), C("ffe090"));
+        c.Flat(q => S.Circle(q, star, 5), C("ffffff"));
+        // the lattice: a few rings of the shell, the left half finished
+        var shell = C("5ad0ff");
+        for (float a = 0; a < 360; a += 1.2f)
+        {
+            var d = V.Dir(a);
+            bool built = d.X < 0.2f;
+            foreach (var ry in new[] { 6f, 12f, 18f })
+            {
+                var p = star + new V(d.X * 20, d.Y * ry);
+                if (built || (int)a % 18 < 6) c.Plot(p, shell);
+            }
+            if (built && (int)(a * 10) % 150 < 12) c.Plot(star + d * 20, C("ffffff"));
+        }
+        for (float y = -20; y <= 20; y++) { c.Plot(star.X, star.Y + y, shell.Mul(0.8f)); if (y < 0 || y % 4 == 0) c.Plot(star.X - MathF.Sqrt(400 - y * y) * 0.55f, star.Y + y, shell.Mul(0.8f)); }
+        c.Draw(q => S.Box(q, 244, 96, 252, 104), C("2a2e36"));
+        // server racks along the wall, lights blinking
+        foreach (var rx in new[] { 6, 64, 122, 312, 370 }) Rack(c, rx, 78, rng);
+        // the storage drive wall: rows of cells, each with a colored light
+        c.Draw(q => S.Box(q, 400, 40, 474, 140), C("2e3038"), hi: C("4a4e58"));
+        Col[] cell = [C("60e070"), C("5ad0ff"), C("e0a040"), C("b070f0")];
+        for (int row = 0; row < 6; row++) for (int col = 0; col < 3; col++)
+        {
+            int x = 406 + col * 22, y = 46 + row * 15;
+            c.Draw(q => S.Box(q, x, y, x + 18, y + 11), C("1a1c22"));
+            c.Flat(q => S.Box(q, x + 2, y + 2, x + 13, y + 9), C("3a3e48"));
+            var lit = cell[(row * 3 + col * 5) % cell.Length];
+            c.Set(x + 15, y + 4, lit); c.Set(x + 15, y + 5, lit); c.Set(x + 16, y + 4, lit.Light);
+        }
+        for (int y = 140; y < 206; y++) { c.Set(420, y, C("8a50e0")); c.Set(421, y, C("6a3ab0")); c.Set(452, y, C("2ab0c0")); }
+        // a jetpack hanging on a wall hook: twin tanks, red stripes, nozzles
+        c.Draw(q => S.Capsule(q, new V(430, 152), new V(430, 156), 1.5f), C("8a8e98"));
+        foreach (var tx in new[] { 422f, 438f })
+        {
+            c.Draw(q => S.Capsule(q, new V(tx, 164), new V(tx, 186), 6), C("b8bcc8"), hi: C("e8eef5"));
+            c.Flat(q => S.Box(q, tx - 5, 172, tx + 5, 175), C("c83a3a"));
+            c.Draw(q => S.Poly(q, new V(tx - 4, 190), new V(tx + 4, 190), new V(tx + 5.5f, 197), new V(tx - 5.5f, 197)), C("4a4e58"));
+        }
+        c.Draw(q => S.Box(q, 427, 160, 433, 188), C("4a4e58"));
+        c.Plot(430, 166, C("60e070"));
+        // raised data-center floor tiles, with the room's light reflected in them
+        for (int y = 206; y < c.H; y++) for (int x = 0; x < c.W; x++)
+        {
+            bool seam = x % 32 == 0 || (y - 206) % 16 == 0;
+            var tile = seam ? C("1a1c22") : C("2e323a");
+            if (!seam && (x / 32 + (y - 206) / 16) % 3 == 0 && (y - 206) % 16 < 4 && x % 32 > 20) tile = C("4a5260");
+            c.Set(x, y, tile);
+        }
+        for (int x = 0; x < c.W; x++) c.Set(x, 206, C("3a3e48"));
+        // cables snaking across the floor, and the dog's bowl (for the mastiff)
+        for (int x = 0; x < 300; x++) { int y = 236 + (int)(MathF.Sin(x * 0.05f) * 4); c.Set(x, y, C("2ab0c0")); c.Set(x, y + 1, C("1a7080")); }
+        c.Draw(q => S.U(S.Ellipse(q, new V(268, 232), 12, 3.5f), S.Box(q, 257, 226, 279, 232)), C("8a2a24"), hi: C("b04a3a"));
+        c.Flat(q => S.Ellipse(q, new V(268, 226), 10, 2.5f), C("4a1a18"));
+        c.Draw(q => S.U(S.Capsule(q, new V(262, 224), new V(274, 222), 1.2f), S.U(S.Circle(q, new V(261, 223), 1.8f), S.Circle(q, new V(275, 221), 1.8f))), C("efe6cc"));
+    }
+
+    static void Rack(Canvas c, int x, int top, Random rng)
+    {
+        const int w = 50;
+        c.Draw(q => S.Box(q, x, top, x + w, 206), C("15171c"), hi: C("2e323a"));
+        for (int y = top + 6; y < 200; y += 9)
+        {
+            c.Flat(q => S.Box(q, x + 4, y, x + w - 4, y + 7), C("23262e"));
+            for (int vx = x + 8; vx < x + 30; vx += 3) c.Set(vx, y + 3, C("15171c"));
+            Col[] leds = [C("60e070"), C("60e070"), C("5ad0ff"), C("e0a040"), C("2a2e36")];
+            for (int k = 0; k < 4; k++) c.Set(x + 34 + k * 3, y + 3, leds[rng.Next(leds.Length)]);
+        }
     }
 }

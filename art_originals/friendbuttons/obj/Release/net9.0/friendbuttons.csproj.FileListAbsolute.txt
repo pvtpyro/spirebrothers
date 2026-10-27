@@ -1,0 +1,15 @@
+D:\projects\csharp\SpireBrothers\art_originals\friendbuttons\bin\Release\net9.0\friendbuttons.exe
+D:\projects\csharp\SpireBrothers\art_originals\friendbuttons\bin\Release\net9.0\friendbuttons.deps.json
+D:\projects\csharp\SpireBrothers\art_originals\friendbuttons\bin\Release\net9.0\friendbuttons.runtimeconfig.json
+D:\projects\csharp\SpireBrothers\art_originals\friendbuttons\bin\Release\net9.0\friendbuttons.dll
+D:\projects\csharp\SpireBrothers\art_originals\friendbuttons\bin\Release\net9.0\friendbuttons.pdb
+D:\projects\csharp\SpireBrothers\art_originals\friendbuttons\obj\Release\net9.0\friendbuttons.GeneratedMSBuildEditorConfig.editorconfig
+D:\projects\csharp\SpireBrothers\art_originals\friendbuttons\obj\Release\net9.0\friendbuttons.AssemblyInfoInputs.cache
+D:\projects\csharp\SpireBrothers\art_originals\friendbuttons\obj\Release\net9.0\friendbuttons.AssemblyInfo.cs
+D:\projects\csharp\SpireBrothers\art_originals\friendbuttons\obj\Release\net9.0\friendbuttons.csproj.CoreCompileInputs.cache
+D:\projects\csharp\SpireBrothers\art_originals\friendbuttons\obj\Release\net9.0\friendbuttons.sourcelink.json
+D:\projects\csharp\SpireBrothers\art_originals\friendbuttons\obj\Release\net9.0\friendbuttons.dll
+D:\projects\csharp\SpireBrothers\art_originals\friendbuttons\obj\Release\net9.0\refint\friendbuttons.dll
+D:\projects\csharp\SpireBrothers\art_originals\friendbuttons\obj\Release\net9.0\friendbuttons.pdb
+D:\projects\csharp\SpireBrothers\art_originals\friendbuttons\obj\Release\net9.0\friendbuttons.genruntimeconfig.cache
+D:\projects\csharp\SpireBrothers\art_originals\friendbuttons\obj\Release\net9.0\ref\friendbuttons.dll

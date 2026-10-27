@@ -7,13 +7,29 @@ Naming: the friend Joshua goes by **Huffman** everywhere in the mod (cards, IDs,
 with Joshua the brother. IDs would be `SPIREBROTHERS-HUFFMAN_*` and `SPIREBROTHERS-JOHN_*`.
 
 ## Who they are
-- **Huffman is John's uncle.** John is his nephew.
+- **Huffman is John's uncle.** John is his nephew, but they're close in age: both over 30, nearly 40. Write them as peers
+  who grew up together, not as a grown-up and a kid.
+- **John's grandma recently passed away.** Leave her out of the mod entirely: no lines, jokes or cards about her.
 - **Huffman** worked with Daniel and Brandi. He was the IT guy: set up the servers for the company's websites and email,
   and handled purchases for the boss.
 - Daniel and Brandi first met **John** at a Bible study at their house. (The others probably don't remember it, they've been
   gaming together so long.)
 - **John and David are really good friends**: they chat and hang out online all the time, and when David comes to town he
   always goes to see John and Huffman.
+
+## Telling them apart from the brothers (decided 2026-10-27)
+- **Select buttons: the "plain" look.** Charcoal background with steel-grey rings (the brothers have colored rings) and the
+  name in silver block letters (theirs are gold). Mockups: `art_originals/friendbuttons/` (its `out/compare_plain.png`).
+  A "darktide" look (gunmetal frame, rivets, red purity seal) was tried and not picked.
+- Their select description says **"Honorary Brother"**, in a different color from the brothers' text.
+- They go after the four brothers in the character row.
+- Background scenes: dark, night or underground versions of their own games (John in Enshrouded's Shroud, Huffman in a
+  server room with AE2 drives and a jetpack). Drawn in pixelgen's `Backgrounds.cs` (`John`, `Huffman`); the friendbuttons
+  program renders them to `out/<name>/select_bg.png`. John: Shroud fog, a Flame Altar, a hive city on the horizon, an anvil
+  with a stimm, and a loot chest. Huffman: server racks, a storage drive wall, a jetpack, a Dyson sphere on the monitor, and a dog bowl.
+- Pixel bodies are in `art_originals/pixelgen/Friends.cs`, drawn from their photos. John has short wavy hair, a big full beard,
+  and a black tee. Huffman has short spiky dark hair, a goatee and mustache, a blue button-up, and an IT badge. Brandi says
+  Huffman is accurate.
 
 ## What we know
 
@@ -103,6 +119,29 @@ The one who plays the deepest systems and has the spreadsheet to prove it.
 
 ### Huffman, The Arbitrator *(title placeholder: "The Judge", "The Commander", "The IT Guy")*
 The law, and he brought his dog and a production line. Also the office IT guy: servers, email, purchase orders.
+- **Multi-Pass** (Brandi, 2026-10-27): he loves quoting the "Multipass" from *The Fifth Element* and acts like it gets him
+  out of everything. Use the name only (no other lines from the film). It's his "get out of jail free" card, so it should
+  get him out of things:
+  - **Starter relic: decided** (Brandi, 2026-10-27): *Multi-Pass*. The first time each combat something bad would happen to him (a debuff,
+    a hit that would break his Block, a Status card added to his deck), it doesn't. A little bubble: "Multi-Pass!"
+    Upgraded version (Touch of Orobas) works twice per combat, or covers a teammate too.
+  - **Card**: *Multi-Pass* (0 cost, Retain, Exhaust). Remove all your debuffs, and skip the enemy's next attack on you.
+  - **Run-level gag** (more work, maybe later): events get an extra option "Show your Multi-Pass" that skips the event's
+    cost. Or shops: one free item per run. Ties in with the IT guy's office badge too.
+  - **Banter: must have** (everyone really does roll their eyes at it). When the relic fires, Huffman says his line and,
+    if someone else is in the party, they answer with an eye-roll. New pools in the existing Banter system:
+    `MULTIPASS.HUFFMAN` (his brag) and `MULTIPASS.<NAME>` (the reply), once per combat so it never gets old.
+    Draft lines, all original (Brandi, reword freely):
+    - Huffman: "Multi-Pass!" / "Can't touch this. Multi-Pass." / "Says right here I'm exempt." / "Multi-Pass. Next."
+    - Daniel: "That's not a real thing." / "It's a laminated piece of cardboard."
+    - David: "That pass expired in 1997." / "I've run the numbers. It still shouldn't work."
+    - Joshua: "Every single time." / "Somebody take that thing away from him."
+    - Tim: "Kids, don't let Huffman teach you that." / "My kids have better excuses than that."
+    - John: "Uncle Huffman, please." / "You've been pulling that since we were kids." / "One of these days that thing
+      is going to fail you."
+    - Solo (no one to answer): Huffman to himself: "Multi-Pass. Nobody saw that."
+  - Build note: the rest of the mod's bubbles go through `Banter.Bubble`, and pool sizes are counted with
+    `LocString.Exists`, so adding lines later needs no code change.
 - **IT cards**: Reboot, Server Room, Spam Filter (blocks the enemy's debuffs), Purchase Order (the boss's credit card:
   a shop or gold card), Uptime. These fit his "runs itself" side well.
 - **The Mastiff** (signature): one dog companion that stands with him (Necrobinder's Osty is the vanilla model, and

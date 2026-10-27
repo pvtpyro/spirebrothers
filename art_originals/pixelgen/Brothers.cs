@@ -567,10 +567,10 @@ public class TimArt : AnimatedBrother
     {
         var h = r.Head;
         DrawGlasses(c, h, Col.Hex("3a3440"));
-        // over-ear headphones: the band over his crown (dipping out of sight on the far side), the cup on his ear
+        // over-ear headphones: the band rises from the cup and rides just above his crown (dipping behind his head on the far side)
         var phones = Col.Hex("2c2c34"); var pad = Col.Hex("484852");
-        c.Draw(q => S.I(S.I(MathF.Abs(S.Ellipse(q, h + new V(-0.5f, -0.5f), 6.5f, 9.4f)) - 0.7f, S.Circle(q, h, Rig.HeadR + 0.2f)),
-            S.I(q.Y - (h.Y - 0.5f), q.X > h.X + 3 ? q.Y - (h.Y - 7) : -1)), phones, hi: pad, outline: false);
+        c.Draw(q => S.I(MathF.Abs(S.Ellipse(q, h + new V(-0.3f, -0.8f), 6.9f, 10.5f)) - 0.45f,
+            S.I(q.Y - (h.Y - 0.5f), q.X > h.X + 1 ? -S.Circle(q, h, Rig.HeadR + 0.5f) : -1)), phones, hi: pad);
         c.Draw(q => S.RBox(q, h + new V(-6.8f, 2.5f), 2.6f, 3.8f, -8), phones, hi: pad);
         c.Flat(q => S.Ellipse(q, h + new V(-6.8f, 2.5f), 1.1f, 2f), Col.Hex("c8643c"));   // shirt-orange badge
     }
