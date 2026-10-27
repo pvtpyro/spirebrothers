@@ -320,3 +320,10 @@ Card art for everything (all cards, relics, and powers use placeholders).
   Overnight Shipping pays through `TimGold.Spend` so Burning a Hole reacts.
 - Tim's AutoCAD "Array" card is the class `ArrayCommand` (a class named `Array` would hide `System.Array`).
 - Joshua's retired cards already use the titles "Kickoff" and "Demo", so Tim's are Speed Flip and Demolition.
+
+## Added 2026-10-27 (Ancient cards)
+
+- Dusty Tome cards built, one per brother (`CardRarity.Ancient`, untested in game): Rubber Duck Mode, Spreadsheet of Destiny,
+  World Tour, All Hands on Deck. Archaic Tooth cards too: each starter (Percussive Maintenance, Here We Go Again, Sing Along,
+  Dad Joke) implements BaseLib's `ITranscendenceCard`. Details in ANCIENT_CARDS.md.
+- `gen.ps1` draws any card with `CardRarity.Ancient` as tall full-card art (598x842, big 1196x1684).

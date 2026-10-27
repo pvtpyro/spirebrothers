@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using BaseLib.Cards.Variables;
 using BaseLib.Commands;
 using BaseLib.Utils;
@@ -17,8 +18,11 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Daniel;
 
 /// <summary>Deal 8 damage. Wired: apply 1 Vulnerable.</summary>
-public class PercussiveMaintenance() : DanielCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+public class PercussiveMaintenance() : DanielCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), ITranscendenceCard
 {
+    // Archaic Tooth swaps it for this.
+    public CardModel GetTranscendenceTransformedCard() => ModelDb.Card<HaveYouTriedHittingItHarder>();
+
     protected override bool HasWiredBonus => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Hands, BrotherKeywords.Wired];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8, ValueProp.Move), new PowerVar<VulnerablePower>(1)];

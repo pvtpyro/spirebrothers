@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using BaseLib.Cards.Variables;
 using BaseLib.Commands;
 using BaseLib.Utils;
@@ -18,8 +19,11 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.Tim;
 
 /// <summary>Starter. Monkey Island insult (dad edition). Deal 5 damage. Apply 1 Insulted and 1 Weak (the groan).</summary>
-public class DadJoke() : TimCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), IInsultCard
+public class DadJoke() : TimCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), IInsultCard, ITranscendenceCard
 {
+    // Archaic Tooth swaps it for this.
+    public CardModel GetTranscendenceTransformedCard() => ModelDb.Card<DidYouHearTheOneAbout>();
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5, ValueProp.Move), new PowerVar<InsultedPower>(1), new PowerVar<WeakPower>(1)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<InsultedPower>(), HoverTipFactory.FromPower<WeakPower>()];
 

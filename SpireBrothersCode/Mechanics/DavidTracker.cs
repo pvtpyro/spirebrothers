@@ -21,11 +21,12 @@ public class DavidTracker() : CustomSingletonModel(HookType.Combat)
         var state = cardPlay.Card.Owner?.PlayerCombatState;
         if (state == null || !cardPlay.Card.Keywords.Contains(BrotherKeywords.Rant)) return Task.CompletedTask;
         int rants = RantsThisTurnField.Get(state);
-        // Soapbox: the first Rant each turn counts as 2.
+        // Don't Get Me Started counts as 2 Rants. Soapbox: the first Rant each turn counts as 1 more.
+        int counted = cardPlay.Card is Cards.David.DontGetMeStarted ? Cards.David.DontGetMeStarted.RantsCounted : 1;
         var soapbox = rants == 0 ? cardPlay.Card.Owner?.GetRelic<Soapbox>() : null;
         soapbox?.Flash();
-        RantsThisTurnField.Set(state, rants + (soapbox != null ? Soapbox.FirstRantCounts : 1));
-        RantsThisCombatField.Set(state, RantsThisCombatField.Get(state) + 1);
+        RantsThisTurnField.Set(state, rants + counted + (soapbox != null ? Soapbox.FirstRantCounts - 1 : 0));
+        RantsThisCombatField.Set(state, RantsThisCombatField.Get(state) + counted);
         RunStats.Add(RunStats.Rants, cardPlay.Card.Owner);
         if (RantsThisTurnField.Get(state) >= Banter.RantsMoment) Banter.Moment(cardPlay.Card.Owner!, "RANTS");
         // The sigh when a rant really gets going: once per turn, as the count reaches 3.

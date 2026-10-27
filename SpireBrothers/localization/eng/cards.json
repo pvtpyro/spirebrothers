@@ -850,5 +850,21 @@
   "SPIREBROTHERS-THIRD_ECHELON.title": "Third Echelon",
   "SPIREBROTHERS-THIRD_ECHELON.description": "At the start of your turn, apply {ThirdEchelonPower:diff()} [gold]Weak[/gold] to ALL enemies.",
   "SPIREBROTHERS-REPEAT_LAST_COMMAND.title": "Repeat Last Command",
-  "SPIREBROTHERS-REPEAT_LAST_COMMAND.description": "Your [gold]Script[/gold] effects happen {RepeatLastCommandPower:diff()} more {RepeatLastCommandPower:plural:time|times}."
+  "SPIREBROTHERS-REPEAT_LAST_COMMAND.description": "Your [gold]Script[/gold] effects happen {RepeatLastCommandPower:diff()} more {RepeatLastCommandPower:plural:time|times}.",
+  "SPIREBROTHERS-RUBBER_DUCK_MODE.title": "Rubber Duck Mode",
+  "SPIREBROTHERS-RUBBER_DUCK_MODE.description": "At the start of your turn, enter the first input of a random [gold]Stratagem[/gold] in your hand for free.\nNo Stratagem? Enter a random input.",
+  "SPIREBROTHERS-SPREADSHEET_OF_DESTINY.title": "Spreadsheet of Destiny",
+  "SPIREBROTHERS-SPREADSHEET_OF_DESTINY.description": "[gold]Exact[/gold] also triggers with 1 energy left, and triggers an extra time.\nYou can't gain extra energy.",
+  "SPIREBROTHERS-WORLD_TOUR.title": "World Tour",
+  "SPIREBROTHERS-WORLD_TOUR.description": "Whenever you play an Attack, gain a Verse.\nNew Verses start [gold]Held[/gold].",
+  "SPIREBROTHERS-ALL_HANDS_ON_DECK.title": "All Hands on Deck",
+  "SPIREBROTHERS-ALL_HANDS_ON_DECK.description": "At the start of your turn, gain a [gold]Kid[/gold].\nYour Kids deal 1 more damage per Age.",
+  "SPIREBROTHERS-HAVE_YOU_TRIED_HITTING_IT_HARDER.title": "Have You Tried Hitting It Harder?",
+  "SPIREBROTHERS-HAVE_YOU_TRIED_HITTING_IT_HARDER.description": "Deal {Damage:diff()} damage.\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].\n[gold]Wired:[/gold] Hit twice.",
+  "SPIREBROTHERS-DONT_GET_ME_STARTED.title": "Don't Get Me Started",
+  "SPIREBROTHERS-DONT_GET_ME_STARTED.description": "Deal {CalcGrown:cond:[color=#ffffff8c]{CalcStart}[/color] [green]{CalculatedDamage:diff()}[/green]|{CalculatedDamage:diff()}} damage.\nApply {RantStrength:diff()} [gold]Ranted At[/gold].\n[gold]Rant:[/gold] +{ExtraDamage:diff()} damage for each Rant played earlier this turn.\nCounts as 2 Rants.",
+  "SPIREBROTHERS-EVERYBODY_SING.title": "Everybody Sing!",
+  "SPIREBROTHERS-EVERYBODY_SING.description": "[gold]Chorus:[/gold] Gain {BlockPerVerse:diff()} [gold]Block[/gold] and deal {ExtraDamage:diff()} damage to ALL enemies per Verse.{InCombat:\n({CalculatedDamage:diff()} damage)|}",
+  "SPIREBROTHERS-DID_YOU_HEAR_THE_ONE_ABOUT.title": "Did You Hear the One About...",
+  "SPIREBROTHERS-DID_YOU_HEAR_THE_ONE_ABOUT.description": "Deal {Damage:diff()} damage to ALL enemies.\nApply {InsultedPower:diff()} [gold]Insulted[/gold] and {WeakPower:diff()} [gold]Weak[/gold] to ALL enemies."
 }

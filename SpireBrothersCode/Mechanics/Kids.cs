@@ -20,7 +20,9 @@ public static class Kids
     public static int Count(Player? player) =>
         player?.PlayerCombatState?.Pets.Count(p => p.Monster is Kid && p.IsAlive) ?? 0;
 
-    public static int DamagePerKid(Player? player) => 1 + (player?.Creature?.GetPowerAmount<ProudDadPower>() ?? 0);
+    /// <summary>1, plus Proud Dad, plus 1 per Age with All Hands on Deck.</summary>
+    public static int DamagePerKid(Player? player) => 1 + (player?.Creature?.GetPowerAmount<ProudDadPower>() ?? 0)
+        + (player?.Creature?.HasPower<AllHandsOnDeckPower>() == true ? Ages.Get(player) : 0);
 
     /// <summary>Adds Kids up to the max of 8.</summary>
     public static async Task Gain(PlayerChoiceContext ctx, Player player, int amount, CardModel? source)

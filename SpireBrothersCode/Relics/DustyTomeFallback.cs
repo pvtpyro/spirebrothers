@@ -7,9 +7,9 @@ using MegaCrit.Sts2.Core.Models.Relics;
 namespace SpireBrothers.SpireBrothersCode.Relics;
 
 /// <summary>
-/// Darv's Dusty Tome gives an upgraded Ancient card from your character's pool. The brothers have no Ancient cards,
-/// so vanilla picked from an empty list, crashed, and left that player's Darv event with no options (a soft lock).
-/// When the pool has no Ancient cards (and BaseLib's ITomeCard has none either), give a Rare from the pool instead.
+/// Darv's Dusty Tome gives an upgraded Ancient card from your character's pool. Before the brothers had Ancient cards,
+/// vanilla picked from an empty list, crashed, and left that player's Darv event with no options (a soft lock).
+/// Kept as a safety net: when a pool has no Ancient cards (and BaseLib's ITomeCard has none either), give a Rare instead.
 /// Uses the player's Rewards RNG like vanilla, so co-op stays in sync.
 /// </summary>
 [HarmonyPatch(typeof(DustyTome), nameof(DustyTome.SetupForPlayer))]

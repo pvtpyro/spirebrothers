@@ -552,5 +552,17 @@
   "SPIREBROTHERS-THIRD_ECHELON_POWER.smartDescription": "At the start of your turn, apply [blue]{Amount}[/blue] [gold]Weak[/gold] to ALL enemies.",
   "SPIREBROTHERS-REPEAT_LAST_COMMAND_POWER.title": "Repeat Last Command",
   "SPIREBROTHERS-REPEAT_LAST_COMMAND_POWER.description": "Your Script effects happen extra times.",
-  "SPIREBROTHERS-REPEAT_LAST_COMMAND_POWER.smartDescription": "Your [gold]Script[/gold] effects happen [blue]{Amount}[/blue] more {Amount:plural:time|times}."
+  "SPIREBROTHERS-REPEAT_LAST_COMMAND_POWER.smartDescription": "Your [gold]Script[/gold] effects happen [blue]{Amount}[/blue] more {Amount:plural:time|times}.",
+  "SPIREBROTHERS-RUBBER_DUCK_MODE_POWER.title": "Rubber Duck Mode",
+  "SPIREBROTHERS-RUBBER_DUCK_MODE_POWER.description": "Each turn, enter the first input of a Stratagem in your hand for free.",
+  "SPIREBROTHERS-RUBBER_DUCK_MODE_POWER.smartDescription": "At the start of your turn, enter the first input of a random [gold]Stratagem[/gold] in your hand for free (or a random input).",
+  "SPIREBROTHERS-SPREADSHEET_OF_DESTINY_POWER.title": "Spreadsheet of Destiny",
+  "SPIREBROTHERS-SPREADSHEET_OF_DESTINY_POWER.description": "Exact also triggers with 1 energy left, and triggers an extra time. Can't gain extra energy.",
+  "SPIREBROTHERS-SPREADSHEET_OF_DESTINY_POWER.smartDescription": "[gold]Exact[/gold] also triggers with [blue]1[/blue] energy left, and triggers an extra time. You can't gain extra energy.",
+  "SPIREBROTHERS-WORLD_TOUR_POWER.title": "World Tour",
+  "SPIREBROTHERS-WORLD_TOUR_POWER.description": "Attacks add a Verse. New Verses start Held.",
+  "SPIREBROTHERS-WORLD_TOUR_POWER.smartDescription": "Whenever you play an Attack, gain a Verse. New Verses start [gold]Held[/gold].",
+  "SPIREBROTHERS-ALL_HANDS_ON_DECK_POWER.title": "All Hands on Deck",
+  "SPIREBROTHERS-ALL_HANDS_ON_DECK_POWER.description": "Gain a Kid each turn. Kids deal more damage per Age.",
+  "SPIREBROTHERS-ALL_HANDS_ON_DECK_POWER.smartDescription": "At the start of your turn, gain a [gold]Kid[/gold]. Your Kids deal [blue]1[/blue] more damage per Age."
 }

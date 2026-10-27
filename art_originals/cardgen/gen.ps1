@@ -87,8 +87,11 @@ function Glyphs($file) {
 }
 
 # ---------- Cards ----------
-function CardArt($brother, $type, $glyph, $name, $badge = '') {
+# -Tall: Ancient cards use a full-card portrait (598x842 in the frame), and the text box covers the bottom half,
+# so the icon sits in the top third and there's no badge.
+function CardArt($brother, $type, $glyph, $name, $badge = '', [switch]$Tall) {
   $W = 1000; $H = 760
+  if ($Tall) { $W = 1196; $H = 1684; $badge = '' }
   $rnd = [System.Random]::new((Seed $name))
   $c = Canvas $W $H; $bmp = $c[0]; $g = $c[1]
   $base = $brotherColor[$brother]
@@ -96,7 +99,7 @@ function CardArt($brother, $type, $glyph, $name, $badge = '') {
   $top = Mix $base (C '#ffffff') 0.25; $bot = Mix $base (C '#000000') 0.55
   $g.FillRectangle([System.Drawing.Drawing2D.LinearGradientBrush]::new([System.Drawing.Point]::new(0, 0), [System.Drawing.Point]::new(0, $H), $top, $bot), 0, 0, $W, $H)
 
-  $cx = $W / 2; $cy = $H / 2 + 10
+  $cx = $W / 2; $cy = if ($Tall) { $H * 0.3 } else { $H / 2 + 10 }
   $light = C '#ffffff' 38
   switch ($type) {
     'Power' {   # sunburst
@@ -104,8 +107,8 @@ function CardArt($brother, $type, $glyph, $name, $badge = '') {
       for ($i = 0; $i -lt $n; $i++) {
         $a1 = ($i * 360 / $n + $rot) * [math]::PI / 180; $a2 = (($i + 0.5) * 360 / $n + $rot) * [math]::PI / 180
         $pts = [System.Drawing.PointF[]]@([System.Drawing.PointF]::new($cx, $cy),
-          [System.Drawing.PointF]::new($cx + 1200 * [math]::Cos($a1), $cy + 1200 * [math]::Sin($a1)),
-          [System.Drawing.PointF]::new($cx + 1200 * [math]::Cos($a2), $cy + 1200 * [math]::Sin($a2)))
+          [System.Drawing.PointF]::new($cx + 2400 * [math]::Cos($a1), $cy + 2400 * [math]::Sin($a1)),
+          [System.Drawing.PointF]::new($cx + 2400 * [math]::Cos($a2), $cy + 2400 * [math]::Sin($a2)))
         $g.FillPolygon([System.Drawing.SolidBrush]::new($light), $pts)
       }
     }
@@ -141,7 +144,7 @@ function CardArt($brother, $type, $glyph, $name, $badge = '') {
     DrawIcon $g $path (C '#ffffff') (Mix $base (C '#000000') 0.75) 26 14
   }
   # Vignette
-  $v = [System.Drawing.Drawing2D.GraphicsPath]::new(); $v.AddEllipse(-250, -220, $W + 500, $H + 440)
+  $v = [System.Drawing.Drawing2D.GraphicsPath]::new(); $v.AddEllipse(-$W / 4, -$H * 0.29, $W * 1.5, $H * 1.58)
   $vb = [System.Drawing.Drawing2D.PathGradientBrush]::new($v); $vb.CenterColor = C '#000000' 0; $vb.SurroundColors = @((C '#000000' 150)); $vb.FocusScales = [System.Drawing.PointF]::new(0.6, 0.6)
   $g.FillRectangle($vb, 0, 0, $W, $H)
   # Reference badge: the game or hobby this card nods to, in a white disc in the bottom-right corner
@@ -164,12 +167,15 @@ foreach ($brother in $(if ($Section) { @() } else { 'Daniel', 'David', 'Joshua',
     $cls = $f.BaseName
     if ($Preview -and $cardCount -ge 12) { break }
     $id = $cardIds[$cls.ToLowerInvariant()]; if (-not $id) { Write-Warning "no card id for $cls"; continue }
-    $type = [regex]::Match((Get-Content $f.FullName -Raw), 'CardType\.(\w+)').Groups[1].Value
+    $src = Get-Content $f.FullName -Raw
+    $type = [regex]::Match($src, 'CardType\.(\w+)').Groups[1].Value
+    $ancient = $src -match 'CardRarity\.Ancient'
     if ($Only -and $cls -ne $Only) { continue }
     $gl = $cardGlyphs[$cls]; $glyph = if ($gl) { $gl.G } else { Write-Warning "no glyph for $cls"; $brotherGlyph[$brother] }
-    $big = CardArt $brother $type $glyph $cls $(if ($gl) { $gl.Badge } else { '' })
+    $big = CardArt $brother $type $glyph $cls $(if ($gl) { $gl.Badge } else { '' }) -Tall:$ancient
     Save $big (Join-Path $out "card_portraits\big\$id.png")
-    $small = Resized $big 250 190; Save $small (Join-Path $out "card_portraits\$id.png")
+    $small = if ($ancient) { Resized $big 598 842 } else { Resized $big 250 190 }
+    Save $small (Join-Path $out "card_portraits\$id.png")
     $big.Dispose(); $small.Dispose(); $cardCount++
   }
 }

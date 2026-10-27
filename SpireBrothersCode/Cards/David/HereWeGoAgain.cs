@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using BaseLib.Cards.Variables;
 using BaseLib.Commands;
 using BaseLib.Utils;
@@ -21,8 +22,11 @@ namespace SpireBrothers.SpireBrothersCode.Cards.David;
 /// Starter. Existential crisis (he's about to start one of his rants). Deal 6 damage. Apply 1 Ranted At
 /// (see RantedAtPower). Rant: +2 damage for each Rant played earlier this turn. Gives David a Rant card from the start.
 /// </summary>
-public class HereWeGoAgain() : DavidCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+public class HereWeGoAgain() : DavidCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), ITranscendenceCard
 {
+    // Archaic Tooth swaps it for this.
+    public CardModel GetTranscendenceTransformedCard() => ModelDb.Card<DontGetMeStarted>();
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Rant];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(6),

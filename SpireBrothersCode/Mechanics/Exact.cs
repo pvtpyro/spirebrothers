@@ -27,13 +27,13 @@ public static class Exact
         return left == 0 || (left == 1 && HasCoffee(card.Owner));
     }
 
-    /// <summary>Gas Station Coffee: this turn, ending a card with 1 energy left also counts as Exact.</summary>
+    /// <summary>Gas Station Coffee (this turn) and Spreadsheet of Destiny: ending a card with 1 energy left also counts as Exact.</summary>
     private static bool HasCoffee(MegaCrit.Sts2.Core.Entities.Players.Player? owner) =>
-        owner?.Creature?.GetPower<GasStationCoffeePower>() != null;
+        owner?.Creature?.Powers.Any(p => p is GasStationCoffeePower or SpreadsheetOfDestinyPower) == true;
 
     /// <summary>
-    /// Call at the start of OnPlay. Returns how many times Exact triggers: 0, 1, or 2 with Min-Max.
-    /// Also runs the owner's Exact listeners once per trigger.
+    /// Call at the start of OnPlay. Returns how many times Exact triggers: 0, or 1 plus 1 each for Min-Max and
+    /// Spreadsheet of Destiny. Also runs the owner's Exact listeners once per trigger.
     /// </summary>
     public static async Task<int> Check(PlayerChoiceContext choiceContext, CardModel card)
     {
@@ -42,7 +42,8 @@ public static class Exact
         if (owner == null || state == null) return 0;
         if (!card.EnergyCost.CostsX && state.Energy != 0 && !(state.Energy == 1 && HasCoffee(owner))) return 0;
 
-        int times = owner.Creature.GetPower<MinMaxPower>() != null ? 2 : 1;
+        int times = 1 + (owner.Creature.GetPower<MinMaxPower>() != null ? 1 : 0)
+                      + (owner.Creature.GetPower<SpreadsheetOfDestinyPower>() != null ? 1 : 0);
         RunStats.Add(RunStats.Exacts, owner);
         var listeners = owner.Creature.Powers.OfType<IExactListener>()
             .Concat(owner.Relics.OfType<IExactListener>()).ToList();

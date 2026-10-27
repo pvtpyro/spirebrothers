@@ -31,6 +31,9 @@ public abstract class DanielCard(int cost, CardType type, CardRarity rarity, Tar
     /// <summary>Stratagem cards list their input combo here; they can only be played once it's entered.</summary>
     protected virtual IReadOnlyList<CardKeyword>? StratagemCombo => null;
 
+    /// <summary>This card's Stratagem input, or null. Read by Rubber Duck Mode.</summary>
+    public IReadOnlyList<CardKeyword>? StratagemInput => StratagemCombo;
+
     // The game asks these constantly while cards are on screen, so they must never throw.
     protected override bool ShouldGlowGoldInternal
     {

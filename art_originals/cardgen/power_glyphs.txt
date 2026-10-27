@@ -100,3 +100,7 @@ University 🎓
 BlastFurnace ⚒️
 ThirdEchelon 🥽
 RepeatLastCommand 🔁
+RubberDuckMode 🦆
+SpreadsheetOfDestiny 🔮
+WorldTour 🌍
+AllHandsOnDeck ⚓

@@ -70,6 +70,15 @@ public class TurnTracker() : CustomSingletonModel(HookType.Combat)
         RefreshTracker(player);
     }
 
+    /// <summary>Rubber Duck Mode: logs an input this turn without a card being played.</summary>
+    public static void EnterFreeInput(Player player, CardKeyword kw)
+    {
+        var state = player.PlayerCombatState;
+        if (state == null) return;
+        Seq(state).Add(kw);
+        RefreshTracker(player);
+    }
+
     private static void RefreshTracker(Player? player) =>
         player?.Creature?.GetPower<TrainOfThoughtPower>()?.Refresh();
 

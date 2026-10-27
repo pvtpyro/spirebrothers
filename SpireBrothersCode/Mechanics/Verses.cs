@@ -68,7 +68,9 @@ public static class Verses
                 if (state.OrbQueue.Capacity >= OrbQueue.maxCapacity) return;
                 await OrbCmd.AddSlots(player, 1);
             }
-            await OrbCmd.Channel(ctx, ModelDb.Orb<VerseOrb>().ToMutable(), player);
+            var verse = (VerseOrb)ModelDb.Orb<VerseOrb>().ToMutable();
+            if (player.Creature.HasPower<WorldTourPower>()) verse.MarkHeld();
+            await OrbCmd.Channel(ctx, verse, player);
             RunStats.Add(RunStats.VersesSung, player);
         }
     }

@@ -1,6 +1,6 @@
-# Ancient cards (draft, not built)
+# Ancient cards
 
-Vanilla gives every character two Ancient-rarity cards, and the brothers have none yet:
+Vanilla gives every character two Ancient-rarity cards:
 
 - **Dusty Tome card** (from Darv's Dusty Tome relic): a build-defining Power that bends a rule, usually with a catch.
   Vanilla: Corruption (Ironclad), Wraith Form (Silent), Biased Cognition (Defect), Forbidden Grimoire (Necrobinder),
@@ -8,63 +8,52 @@ Vanilla gives every character two Ancient-rarity cards, and the brothers have no
 - **Archaic Tooth card** (from Orobas's Archaic Tooth relic): the "ascended" version of one starter card, which the
   relic swaps in. Vanilla: Bash -> Break, Neutralize -> Suppress, Unleash -> Protector.
 
-Both are given upgraded. Ancient cards never show up in card rewards or random card generation, and they use the
-full-art Ancient frame, so their art covers the whole card, not just the portrait window.
+Dusty Tome's card comes upgraded; Archaic Tooth's is upgraded only if the starter card was. Ancient cards never show up in card rewards or random card generation, and they use the
+full-art Ancient frame, so their art covers the whole card, not just the portrait window (`gen.ps1` draws them tall,
+598x842 and 1196x1684, with the icon in the top third).
 
-Until these are built, `Relics/DustyTomeFallback.cs` makes Dusty Tome give the brothers a random upgraded Rare instead,
-and Archaic Tooth isn't offered to them at all.
+## Built: Dusty Tome cards (2026-10-27, untested in game)
 
-## Daniel
-
-| Card | Relic | Cost / Type | Text | Upgrade |
+| Brother | Card | Cost | Text | Code |
 |---|---|---|---|---|
-| **Full Stack** | Dusty Tome | 3 Power | Your cards count as both **Logic** and **Hands**. | Cost 2 |
-| **Have You Tried Hitting It Harder?** | Archaic Tooth (Percussive Maintenance) | 1 Attack | Deal 12 damage. Apply 2 Vulnerable. **Wired:** Hit twice. | 16 damage |
+| Daniel | **Rubber Duck Mode** | 2 (1) | At the start of your turn, enter the first input of a random Stratagem in your hand for free. No Stratagem? Enter a random input. | `RubberDuckModePower` (after the draw) -> `TurnTracker.EnterFreeInput` |
+| David | **Spreadsheet of Destiny** | 3 (2) | Exact also triggers with 1 energy left, and triggers an extra time. You can't gain extra energy. | `SpreadsheetOfDestinyPower`, read in `Exact`; `ModifyEnergyGain` -> 0 (the turn-start refill skips that hook) |
+| Joshua | **World Tour** | 3 (2) | Whenever you play an Attack, gain a Verse. New Verses start Held. | `WorldTourPower`; `Verses.Gain` marks new orbs Held |
+| Tim | **All Hands on Deck** | 2 (1) | At the start of your turn, gain a Kid. Your Kids deal 1 more damage per Age. | `AllHandsOnDeckPower`; `Kids.DamagePerKid` adds `Ages.Get` |
 
-- Full Stack: software engineer *and* the guy who fixes the car. Every card turns on Wired, and every Stratagem step
-  matches whatever you play, so Stratagems become free finishers. No catch; the cost is the catch. Watch the
-  Train of Thought tracker: a card counting as both should log as one step that matches either input.
-- Hitting It Harder: the mechanic's ascended fix-it card, the way Bash becomes Break.
+- Joshua's first pitch was "Verse cap 20", but Verses are orbs and the game hard-caps orb slots at 10, so it became
+  "new Verses start Held" (each counts double for a Chorus, triple with Magnum Opus).
+- Rubber Duck Mode's free input counts as the first entry of the turn, so Patch Panel (which only works on the first
+  Logic/Handy entry) won't fire alongside it. It also makes Wired easier: any card of the other kind is Wired right away.
+- Spreadsheet of Destiny stacks with Min-Max (3 triggers). It also blocks energy from teammates' Share cards and
+  energy-next-turn effects.
 
-## David
+With these in the pools, vanilla Dusty Tome picks them on its own and `DustyTomeFallback` steps aside.
 
-| Card | Relic | Cost / Type | Text | Upgrade |
-|---|---|---|---|---|
-| **The Meaning of Life** | Dusty Tome | 2 Power | Your **Rant** bonuses count every Rant this combat, not just this turn. At the start of your turn, lose 1 HP. | Cost 1 |
-| **Don't Get Me Started** | Archaic Tooth (Here We Go Again) | 1 Attack | Deal 10 damage. Apply 3 Ranted At. Counts as 2 Rants. **Rant:** +4 damage per Rant this turn. | 14 damage, +5 per Rant |
+### Unused Dusty Tome ideas (first draft)
 
-- The Meaning of Life: the existential crisis that never ends. Rants snowball across the whole fight instead of
-  resetting each turn (`DavidTracker.RantsThisCombat` already exists). The HP loss is the existential dread.
-- Don't Get Me Started: Here We Go Again, but he's really going now.
+- Daniel, **Full Stack** (3, Power): your cards count as both Logic and Handy.
+- David, **The Meaning of Life** (2, Power): Rant bonuses count every Rant this combat; lose 1 HP each turn.
+- Joshua, **Sold-Out Show** (3, Power): Choruses don't spend Verses; each Chorus card Exhausts.
+- Tim, **Automate Everything** (3, Power): every card you play has Script.
 
-## Joshua
+## Built: Archaic Tooth cards (2026-10-27, untested in game)
 
-| Card | Relic | Cost / Type | Text | Upgrade |
-|---|---|---|---|---|
-| **Sold-Out Show** | Dusty Tome | 3 Power | **Chorus** cards don't spend your Verses. Whenever you play a Chorus card, Exhaust it. | Cost 2 |
-| **Everybody Sing!** | Archaic Tooth (Sing Along) | 1 Skill | **Chorus:** ALL players gain 2 Block and heal 1 per Verse. | 3 Block per Verse |
+| Brother | Card | Replaces | Cost / Type | Text | Upgrade |
+|---|---|---|---|---|---|
+| Daniel | **Have You Tried Hitting It Harder?** | Percussive Maintenance | 1 Attack (Handy) | Deal 12 damage. Apply 2 Vulnerable. **Wired:** Hit twice. | 16 damage |
+| David | **Don't Get Me Started** | Here We Go Again | 1 Attack (Rant) | Deal 10 damage. Apply 3 Ranted At. **Rant:** +4 damage per Rant this turn. Counts as 2 Rants. | 14 damage, +5 per Rant |
+| Joshua | **Everybody Sing!** | Sing Along | 1 Attack (Chorus) | **Chorus:** Gain 3 Block and deal 3 damage to ALL enemies per Verse. | 4 / 4 per Verse |
+| Tim | **Did You Hear the One About...** | Dad Joke | 1 Attack (Insult) | Deal 8 damage to ALL enemies. Apply 2 Insulted and 1 Weak to ALL enemies. | 11 damage, 3 Insulted |
 
-- Sold-Out Show: his Corruption. Verses stay up (max 10), so every Chorus fires at full strength, but each one
-  is a one-time encore. Pairs naturally with Encore / Bridge / Choir, which already change how Verses get spent.
-- Everybody Sing!: Sing Along plus the healing that's core to his kit. Big in co-op, since it hits ALL players.
-
-## Tim
-
-| Card | Relic | Cost / Type | Text | Upgrade |
-|---|---|---|---|---|
-| **Automate Everything** | Dusty Tome | 3 Power | Every card you play has **Script**. | Cost 2 |
-| **Did You Hear the One About...** | Archaic Tooth (Dad Joke) | 1 Attack | Deal 8 damage to ALL enemies. Apply 2 Insulted and 1 Weak to ALL enemies. | 11 damage, 3 Insulted |
-
-- Automate Everything: the ultimate Lua add-on. Automation Suite (Rare) does this for the first card each turn;
-  this does it for all of them. Powers still never get Script, and the replays never re-queue (both already true
-  in `ScriptPower`), so it can't loop forever.
-- Did You Hear the One About...: the dad joke so bad it hits the whole room. Sets up Comebacks for everyone in co-op.
+- Everybody Sing! was drafted as an ALL-players heal; changed to Block + damage since Joshua doesn't like playing support.
+- Don't Get Me Started's double count is in `DavidTracker.AfterCardPlayed` (Soapbox still adds 1 on top for the first Rant).
 
 ## Build notes
 
 - **Dusty Tome**: give the card `CardRarity.Ancient` in the brother's pool. Vanilla Dusty Tome then finds it on its
-  own, and the fallback patch steps aside automatically. (BaseLib's `ITomeCard` works too, but isn't needed.)
-- **Archaic Tooth**: vanilla's starter -> ascended map is a private property (`ArchaicTooth.TranscendenceUpgrades`)
-  rebuilt on every read, so add our four pairs with a Harmony postfix on its getter. Dusty Tome already excludes
-  the ascended cards, so the two relics never hand out the same card.
+  own. (BaseLib's `ITomeCard` works too, but isn't needed.)
+- **Archaic Tooth**: the starter card implements BaseLib's `ITranscendenceCard` (`GetTranscendenceTransformedCard()` returns
+  the Ancient card); BaseLib patches it into vanilla's starter -> ascended map. Orobas only offers the Tooth if the starter
+  is still in the deck. Dusty Tome excludes the ascended cards, so the two relics never hand out the same card.
 - Each card needs a `glyphs.txt` line for the placeholder art, and its loc keys.

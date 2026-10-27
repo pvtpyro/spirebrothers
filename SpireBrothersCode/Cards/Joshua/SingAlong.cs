@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using BaseLib.Cards.Variables;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -18,8 +19,11 @@ using SpireBrothers.SpireBrothersCode.Orbs;
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
 /// <summary>Starter. Chorus: gain 2 Block per Verse. (Gave Block to ALL players until 2026-10-26.)</summary>
-public class SingAlong() : JoshuaCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+public class SingAlong() : JoshuaCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self), ITranscendenceCard
 {
+    // Archaic Tooth swaps it for this.
+    public CardModel GetTranscendenceTransformedCard() => ModelDb.Card<EverybodySing>();
+
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Chorus];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("BlockPerVerse", 2)];
