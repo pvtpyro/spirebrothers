@@ -35,6 +35,8 @@ public abstract class JoshuaCard(int cost, CardType type, CardRarity rarity, Tar
             try
             {
                 if (!IsInCombat || Owner?.PlayerCombatState == null) return false;
+                // Captain Blockbeard is waiting for an answer: light up the cards that can give him one.
+                if (Powers.InsultDuelPower.WantsRetort(this)) return true;
                 if (VerseThreshold > 0 && Verses.Count(Owner) >= VerseThreshold) return true;
             }
             catch (Exception e)

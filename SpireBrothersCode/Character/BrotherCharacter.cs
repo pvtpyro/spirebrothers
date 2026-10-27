@@ -58,51 +58,12 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
         }
     }
 
-    // Animated body: frames/<anim>_<n>.png, numbered from 0, all the same size, feet at the bottom edge. The game
-    // cues idle (loops), attack, cast (skills and powers), hit and dead; BaseLib plays the matching animation on
-    // the AnimatedSprite2D it finds in the body. Only idle is required; a missing cue just keeps the current one.
-    private static readonly (string Name, float Fps, bool Loop)[] Anims =
-    [
-        ("idle", 6, true), ("attack", 14, false), ("cast", 10, false), ("hit", 12, false), ("dead", 8, false),
-        ("rest", 5, true)   // sitting by the campfire; only rest sites play it (see StandIns)
-    ];
+    // Animated body: frames/<anim>_<n>.png, numbered from 0, all the same size, feet at the bottom edge (see PixelBody).
+    private SpriteFrames? LoadFrames(out Texture2D? first) => PixelBody.LoadFrames(ArtPath, RestFps, out first);
 
-    private SpriteFrames? LoadFrames(out Texture2D? first)
-    {
-        first = null;
-        var frames = new SpriteFrames();
-        frames.RemoveAnimation("default");
-        foreach (var (name, fps, loop) in Anims)
-        {
-            for (int i = 0; ResourceLoader.Exists(ArtPath($"frames/{name}_{i}.png")); i++)
-            {
-                var tex = GD.Load<Texture2D>(ArtPath($"frames/{name}_{i}.png"));
-                if (!frames.HasAnimation(name))
-                {
-                    frames.AddAnimation(name);
-                    frames.SetAnimationSpeed(name, name == "rest" ? RestFps : fps);
-                    frames.SetAnimationLoop(name, loop);
-                }
-                frames.AddFrame(name, tex);
-                first ??= tex;
-            }
-        }
-        if (!frames.HasAnimation("idle")) return null;
+    private NCreatureVisuals AnimatedBody(SpriteFrames frames, Texture2D first) => PixelBody.AnimatedBody(frames, first, BodyHeight);
 
-        // The files are dead_N.png, but BaseLib's death cue only looks for an animation named "Dead", "Die" or "die"
-        // (case-sensitive), so a lowercase "dead" never played. Register it as "die".
-        if (frames.HasAnimation("dead")) frames.RenameAnimation("dead", "die");
-
-        // Revive (e.g. a Lizard Tail save) plays the death in reverse, so he gets back up.
-        if (frames.HasAnimation("die"))
-        {
-            frames.AddAnimation("revive");
-            frames.SetAnimationSpeed("revive", 10);
-            frames.SetAnimationLoop("revive", false);
-            for (int i = frames.GetFrameCount("die") - 1; i >= 0; i--) frames.AddFrame("revive", frames.GetFrameTexture("die", i));
-        }
-        return frames;
-    }
+    private void ScaleToHeight(NCreatureVisuals visuals, float height) => PixelBody.ScaleToHeight(visuals, height, BodyHeight);
 
     /// <summary>
     /// A looping animation of this brother, feet at the origin, <paramref name="height"/> units tall, for screens
@@ -131,77 +92,6 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
         {
             MainFile.Logger.Error($"Couldn't build {ArtFolder}'s idle sprite: {e}");
             return null;
-        }
-    }
-
-    private NCreatureVisuals AnimatedBody(SpriteFrames frames, Texture2D first)
-    {
-        // Let BaseLib lay out the hitbox and markers from the first frame, then hide that still picture and play
-        // the animation in its place. The frames are pixel art, so scale them up without blurring.
-        var visuals = NodeFactory<NCreatureVisuals>.CreateFromResource(first);
-        var still = visuals.GetChildren().OfType<Sprite2D>().First();
-        still.SelfModulate = Colors.Transparent;
-        var anim = new AnimatedSprite2D
-        {
-            Name = "AnimatedBody",
-            SpriteFrames = frames,
-            Autoplay = "idle",
-            TextureFilter = CanvasItem.TextureFilterEnum.Nearest
-        };
-        still.AddChild(anim);
-        // One-shot cues (attack, cast, hit, revive) fall back to idle; die stays on its last frame.
-        anim.AnimationFinished += () =>
-        {
-            if (anim.Animation != "die") anim.Play("idle");
-        };
-
-        // The die frames only slump, so he also tips over backwards onto the ground, and gets back up on revive.
-        // Moving the pivot from the middle of the picture to his feet (without moving the picture) makes him fall
-        // over where he stands.
-        float half = first.GetSize().Y / 2;
-        anim.Position += new Vector2(0, half);
-        anim.Offset = new Vector2(0, -half);
-        anim.AnimationChanged += () =>
-        {
-            float lying = anim.Animation == "die" ? -Mathf.Pi / 2 : 0f;
-            if (Mathf.IsEqualApprox(anim.Rotation, lying)) return;
-            anim.CreateTween().TweenProperty(anim, "rotation", lying, anim.Animation == "die" ? 0.45 : 0.3)
-                .SetTrans(Tween.TransitionType.Quad).SetEase(anim.Animation == "die" ? Tween.EaseType.In : Tween.EaseType.Out);
-        };
-        ScaleToHeight(visuals, first.GetSize().Y);
-        return visuals;
-    }
-
-    // BaseLib lays the image out at 1 pixel = 1 unit with the feet at the origin; scaling every child about the
-    // origin keeps the feet planted and moves the hitbox, intent and talk markers along with the picture.
-    private const float IntentGap = 70f;
-
-    private void ScaleToHeight(NCreatureVisuals visuals, float height)
-    {
-        if (height <= 0) return;
-        float s = BodyHeight / height;
-        foreach (var child in visuals.GetChildren())
-        {
-            switch (child)
-            {
-                case Sprite2D sprite:
-                    sprite.Position *= s;
-                    sprite.Scale *= s;
-                    break;
-                // BaseLib puts IntentPos a fixed 70 units above the head, and the game hangs the orbs (Joshua's
-                // Verses) off it. Keep that gap fixed instead of scaling it, or small pixel-art frames scaled 5x
-                // push the orbs off the top of the screen.
-                case Marker2D intent when intent.Name.ToString() == "IntentPos":
-                    intent.Position = (intent.Position + new Vector2(0, IntentGap)) * s - new Vector2(0, IntentGap);
-                    break;
-                case Node2D node:
-                    node.Position *= s;
-                    break;
-                case Control control:
-                    control.Position *= s;
-                    control.Size *= s;
-                    break;
-            }
         }
     }
 

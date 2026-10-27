@@ -179,6 +179,9 @@ Next steps:
 
 - `dotnet` is not on PATH in Claude's shells. Use `"C:\Program Files\dotnet\dotnet.exe"`. Python is
   not installed.
+- **Redrawn art not showing up in game:** the .pck export can reuse Godot's stale import cache when a PNG is overwritten
+  (seen with Blockbeard's frames). Delete the `.ctex`/`.md5` pair in `.godot/imported/` that the image's `.png.import`
+  points to (the `path=` line), then publish again to force a re-import.
 - `dotnet publish` prints a lot of Godot error traces and `MSB3073 ... exited with code -1` from the
   .pck export. That's noise: the .pck still gets written. Check the C# build with
   `dotnet build -c Release --no-restore` (looks for "0 Error(s)") and the dll timestamp in the mods folder.
@@ -242,5 +245,12 @@ Card art for everything (all cards, relics, and powers use placeholders).
   nothing; 0.4s per-cue throttle. Cues are called from Wired.Check, DavidTracker, Verses.SpendForChorus, Kids.Act, Ages.AgeUp,
   Honey Lemon Tea, and the singleton itself (Orbital Barrage, `IGroupHealCard` cards, David's in-combat gold). Built-in FMOD
   event names can be pulled from sts2.dll's UTF-16 strings (`event:/sfx/...`). File list for the user: `SpireBrothers/audio/README.md`.
+- **Captain Blockbeard** (TODO.md #7): `Monsters/Blockbeard.cs` (CustomMonsterModel; MoveState loop; body from
+  `images/monsters/blockbeard/frames/` via `Character/PixelBody.cs`, mirrored with `faceLeft`), `Monsters/BlockbeardElite.cs`
+  (CustomEncounterModel, `IsValidForAct` Act 3; the event is Act 3 too), `Powers/InsultDuelPower.cs` (retort tracking; shows `AwaitingRetortPower` while waiting, taunts at the players' turn start,
+  and every brother's card base glows retort cards via `InsultDuelPower.WantsRetort`; Gloating = `GloatingPower`, +3 Strength applied at the players' next turn start, spent by his next attack; Speechless = `CreatureCmd.Stun`
+  with `NextMove.Id`), `Events/InsultDuel.cs` (dynamic answer options via `Option(func, LocString, LocString)`, Draw Swords uses
+  `EnterCombatWithoutExitingEvent`). Text: monsters.json, the new encounters.json, events.json. `PixelBody` now holds the
+  frame/animation code that used to live in BrotherCharacter. The Desktop copy of pixelgen doesn't have `Pirate.cs` yet.
 - Also new: `Cards/Shared/FoodComa.cs` (curse, `CurseCardPool`; cardgen draws `Cards\Shared` too), David's `SundayWalk` +
   `SundayWalkPower`, `Relics/DadsTackleBox.cs` (shared relic, registered for every brother in `MainFile`).

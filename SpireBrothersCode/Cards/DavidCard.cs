@@ -34,6 +34,8 @@ public abstract class DavidCard(int cost, CardType type, CardRarity rarity, Targ
             try
             {
                 if (!IsInCombat || Owner?.PlayerCombatState == null) return false;
+                // Captain Blockbeard is waiting for an answer: light up the cards that can give him one.
+                if (Powers.InsultDuelPower.WantsRetort(this)) return true;
                 if (Keywords.Contains(BrotherKeywords.Exact) && Exact.WouldTrigger(this)) return true;
                 // X cards get one extra hit or Block at X >= 3.
                 if (EnergyCost.CostsX && Owner.PlayerCombatState.Energy >= 3) return true;

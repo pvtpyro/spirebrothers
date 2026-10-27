@@ -89,10 +89,20 @@ otherwise a built-in game sound or nothing. File names and recording tips: `Spir
 
 ## Stretch ideas
 
-### 7. Monkey Island elite
-A pirate enemy who insults *you*; Comeback cards counter him. Original insults only.
-- [ ] Check BaseLib support for custom monsters/encounters
-- [ ] Design moveset and art
+### 7. Monkey Island elite: Captain Blockbeard
+Built 2026-10-26. Monkey Island meets Minecraft: square beard, tricorn, eye patch, blocky cyan cutlass, parrot.
+`godmode` `fight SPIREBROTHERS-BLOCKBEARD_ELITE` and `event SPIREBROTHERS-INSULT_DUEL`
+- [x] Elite (Act 3; about 250 HP, tuned with the vanilla Act 3 elites): `Monsters/Blockbeard.cs` + `BlockbeardElite.cs`. Insult duel (`Powers/InsultDuelPower.cs`): after
+      Cutting Remark, retort before your turn ends (a Comeback or Rant at him, or leave him Insulted) and he's Speechless
+      (skips his next move); otherwise he gloats (+3 Strength from the players' next turn until his next attack, `GloatingPower`). Moves loop: Cutting Remark, Swashbuckle (4 hits),
+      Look Behind You! (2 Weak + 2 Vulnerable to all), Cutting Remark, Swig of Grog (heal + Block), Swashbuckle.
+- [x] Insult Duel event (Act 3, shared vote): pick the comeback that answers each insult, best 2 of 3. Win: relic.
+      Lose: pay 125 Gold, or draw swords and fight him. 8 original insult/comeback pairs in events.json.
+- [x] Pixel art (`art_originals/pixelgen/Pirate.cs`; frames in `images/monsters/blockbeard/frames/`)
+- [ ] Test: speech bubbles, Speechless stun, gloat Strength, the event's dynamic answers, Draw Swords into combat
+- [ ] Maybe: a Powder Monkey crewmate at half HP; a guaranteed Grog drop
+- [ ] Brandi: add or reword insult pairs (events.json `SPIREBROTHERS-INSULT_DUEL.pairs.N`) and his fight lines
+      (monsters.json `SPIREBROTHERS-BLOCKBEARD.insults/gloats/speechless.N`); any count works
 
 ### 8. End-of-run stats
 "David hoarded 812 gold", "Tim's kids dealt 340 damage", "Joshua healed the team for 210".

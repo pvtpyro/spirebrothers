@@ -21,6 +21,26 @@ foreach (var b in brothers)
     sheet.SavePng(Path.Combine(outDir, $"preview_{b.Name}.png"), 3);
     Console.WriteLine($"{b.Name}: " + string.Join(", ", anims.Select(a => $"{a.Key} x{a.Value.poses.Count}")));
 }
+// Captain Blockbeard (the insult pirate elite): frames only, no select screen, hands, or campfire.
+var pirate = new PirateArt();
+{
+    var anims = pirate.Anims();
+    int maxF = anims.Values.Max(a => a.poses.Count);
+    var sheet = new Canvas(64 * maxF + (maxF - 1) * 2, anims.Count * 82 - 2);
+    int row = 0;
+    foreach (var (name, (poses, _, _)) in anims)
+    {
+        for (int i = 0; i < poses.Count; i++)
+        {
+            var frame = pirate.Render(poses[i]);
+            frame.SavePng(Path.Combine(outDir, pirate.Name, "frames", $"{name}_{i}.png"));
+            for (int y = 0; y < 80; y++) for (int x = 0; x < 64; x++) sheet.Set(i * 66 + x, row * 82 + y, frame.Get(x, y) ?? bg);
+        }
+        row++;
+    }
+    sheet.SavePng(Path.Combine(outDir, $"preview_{pirate.Name}.png"), 3);
+    Console.WriteLine($"{pirate.Name}: " + string.Join(", ", anims.Select(a => $"{a.Key} x{a.Value.poses.Count}")));
+}
 Backgrounds.RenderAll(brothers, outDir);
 Hands.RenderAll(brothers, outDir);
 // big side-by-side of everyone's first idle frame, at game scale

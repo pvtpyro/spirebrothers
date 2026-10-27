@@ -180,7 +180,8 @@ if ($CardsOnly -or ($Only -and -not $Section)) { return }
 # Wide like vanilla's event pictures (3440x1613), at half size. Only drawn with -Section events, so they never
 # overwrite real art by accident.
 $events = @{ road_trip_to_grandmas = @('🚐', '#e69138'); thanksgiving_with_mom_and_dad = @('🦃', '#b45f06')
-  day_at_the_lake = @('🎣', '#3d85c6'); family_hike = @('🥾', '#6aa84f'); calling_mom = @('📞', '#c27ba0') }
+  day_at_the_lake = @('🎣', '#3d85c6'); family_hike = @('🥾', '#6aa84f'); calling_mom = @('📞', '#c27ba0')
+  insult_duel = @('🦜', '#9e2b25') }
 if ($Section -eq 'events') {
   $ec = 0
   foreach ($k in $events.Keys) {

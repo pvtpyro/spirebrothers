@@ -1,3 +1,35 @@
 {
-  "SPIREBROTHERS-KID.name": "Kid"
+  "SPIREBROTHERS-KID.name": "Kid",
+
+  "SPIREBROTHERS-BLOCKBEARD.name": "Captain Blockbeard",
+  "SPIREBROTHERS-BLOCKBEARD.moves.CUTTING_REMARK.title": "Cutting Remark",
+  "SPIREBROTHERS-BLOCKBEARD.moves.CUTTING_REMARK_2.title": "Cutting Remark",
+  "SPIREBROTHERS-BLOCKBEARD.moves.SWASHBUCKLE.title": "Swashbuckle",
+  "SPIREBROTHERS-BLOCKBEARD.moves.SWASHBUCKLE_2.title": "Swashbuckle",
+  "SPIREBROTHERS-BLOCKBEARD.moves.LOOK_BEHIND_YOU.title": "Look Behind You!",
+  "SPIREBROTHERS-BLOCKBEARD.moves.SWIG_OF_GROG.title": "Swig of Grog",
+
+  "SPIREBROTHERS-BLOCKBEARD.insults.0": "My cutlass has seen more battles than you've had hot dinners!",
+  "SPIREBROTHERS-BLOCKBEARD.insults.1": "I've built better crews out of dirt blocks!",
+  "SPIREBROTHERS-BLOCKBEARD.insults.2": "You swing that thing like you're swatting flies!",
+  "SPIREBROTHERS-BLOCKBEARD.insults.3": "Nobody has ever beaten me in a duel!",
+  "SPIREBROTHERS-BLOCKBEARD.insults.4": "I'll have you swabbing my decks by sundown!",
+  "SPIREBROTHERS-BLOCKBEARD.insults.5": "Every port on the sea knows my name!",
+  "SPIREBROTHERS-BLOCKBEARD.insults.6": "My parrot is smarter than the lot of you!",
+  "SPIREBROTHERS-BLOCKBEARD.insults.7": "This beard is square for a reason, and the reason is excellence!",
+
+  "SPIREBROTHERS-BLOCKBEARD.waiting.0": "Well? I'm waiting!",
+  "SPIREBROTHERS-BLOCKBEARD.waiting.1": "Cat got your tongue?",
+  "SPIREBROTHERS-BLOCKBEARD.waiting.2": "Go on, then. Answer me!",
+  "SPIREBROTHERS-BLOCKBEARD.waiting.3": "Nothing? I'll wait.",
+
+  "SPIREBROTHERS-BLOCKBEARD.gloats.0": "Ha! Not a peep! Another win for Blockbeard!",
+  "SPIREBROTHERS-BLOCKBEARD.gloats.1": "Cat got your tongue? Or was it my parrot?",
+  "SPIREBROTHERS-BLOCKBEARD.gloats.2": "Silence! The sweetest sound on the seven seas.",
+  "SPIREBROTHERS-BLOCKBEARD.gloats.3": "I'll take that as a surrender.",
+
+  "SPIREBROTHERS-BLOCKBEARD.speechless.0": "I... well... I never!",
+  "SPIREBROTHERS-BLOCKBEARD.speechless.1": "That's... that's not fair!",
+  "SPIREBROTHERS-BLOCKBEARD.speechless.2": "Hmph! I was going to say that!",
+  "SPIREBROTHERS-BLOCKBEARD.speechless.3": "*sputters into his beard*"
 }

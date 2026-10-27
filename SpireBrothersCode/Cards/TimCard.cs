@@ -42,6 +42,8 @@ public abstract class TimCard(int cost, CardType type, CardRarity rarity, Target
             try
             {
                 if (!IsInCombat || Owner?.PlayerCombatState == null) return false;
+                // Captain Blockbeard is waiting for an answer: light up the cards that can give him one.
+                if (Powers.InsultDuelPower.WantsRetort(this)) return true;
                 if (AgeBonusActive) return true;
                 if (KidsThreshold > 0 && Kids.Count(Owner) >= KidsThreshold) return true;
                 if (ExtraGlow) return true;
