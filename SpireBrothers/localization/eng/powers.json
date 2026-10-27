@@ -40,6 +40,7 @@
   "SPIREBROTHERS-FAMILY_BONDS_POWER.title": "Family Bonds",
   "SPIREBROTHERS-FAMILY_BONDS_POWER.description": "When two or more Spire Brothers share a party, they help each other out. The number is how many bonds are active; hover the icon in combat to see them.",
   "SPIREBROTHERS-FAMILY_BONDS_POWER.smartDescription": "Spire Brothers in this party help each other out. [blue]{Amount}[/blue] {Amount:plural:bond is|bonds are} active.",
+  "SPIREBROTHERS-FAMILY_BONDS_POWER.active": "Active Bonds",
   "SPIREBROTHERS-FAMILY_BONDS_POWER.HEATED_DEBATE.title": "Heated Debate (Daniel + David)",
   "SPIREBROTHERS-FAMILY_BONDS_POWER.HEATED_DEBATE.description": "Whenever David plays a [gold]Rant[/gold], the enemy he Rants at gains [blue]1[/blue] [gold]Insulted[/gold]. Daniel has a Comeback ready.",
   "SPIREBROTHERS-FAMILY_BONDS_POWER.WIRED_FOR_SOUND.title": "Wired for Sound (Daniel + Joshua)",

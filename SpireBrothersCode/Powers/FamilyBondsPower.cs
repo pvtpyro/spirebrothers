@@ -28,10 +28,18 @@ public class FamilyBondsPower : BrothersPower
     /// <summary>FamilyBonds flashes the icon whenever a bond fires (Flash itself is protected).</summary>
     public void Pulse() => Flash();
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        Bonds.Select(b => (IHoverTip)new HoverTip(
-            new LocString("powers", FamilyBonds.Key(b, "title")),
-            new LocString("powers", FamilyBonds.Key(b, "description")).GetFormattedText()));
+    // One box listing the bond names, not one box per bond: with all four brothers that was 8 extra boxes, and
+    // hovering a brother with a few other powers crashed the game (2026-10-26). The full descriptions are in DESIGN.md.
+    protected override IEnumerable<IHoverTip> ExtraHoverTips
+    {
+        get
+        {
+            var bonds = Bonds;
+            if (bonds.Count == 0) return [];
+            var names = bonds.Select(b => $"[gold]{new LocString("powers", FamilyBonds.Key(b, "title")).GetFormattedText()}[/gold]");
+            return [new HoverTip(new LocString("powers", Id.Entry + ".active"), string.Join("\n", names))];
+        }
+    }
 
     // Nobody Gets Left Behind: with all four brothers, the first brother who would die each combat survives. Once for
     // the whole team, so it's tracked across every brother's icon.
