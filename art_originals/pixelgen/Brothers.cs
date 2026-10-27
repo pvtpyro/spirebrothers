@@ -167,30 +167,31 @@ public class DanielArt : AnimatedBrother
         if (p.Fx == 1) Swoosh(c, r.SF, 18, -70, 20, Col.Hex("dff6ff"));
     }
 
-    // the book he reads at the campfire (he reads everywhere he goes): held open in both hands, a page turns at Fx 4-5
+    // the book he reads at the campfire (he reads everywhere he goes), held open toward him, so we see the outside:
+    // the covers and spine, with the page edges along the top. A page turns at Fx 3-5, flipping up over the top edge.
     static readonly Col BookCover = Col.Hex("2c4a8a");
     static readonly Col PageC = Col.Hex("efe6cc");
+    static readonly Col Gilt = Col.Hex("e0b84a");
 
     private void Book(Canvas c, Rig r, Pose p)
     {
         // his hands hold the bottom corners; the spine runs up the middle
         var sp = (r.HandF + r.HandB) * 0.5f + new V(0, -4.5f);
-        c.Draw(q => S.Box(q, sp.X - 8.5f, sp.Y - 4.5f, sp.X + 8.5f, sp.Y + 4.5f), BookCover);
-        c.Draw(q => S.Box(q, sp.X - 7.5f, sp.Y - 4.5f, sp.X - 0.5f, sp.Y + 3.5f), PageC, outline: false);
-        c.Draw(q => S.Box(q, sp.X + 0.5f, sp.Y - 4.5f, sp.X + 7.5f, sp.Y + 3.5f), PageC, outline: false);
-        for (float y = sp.Y - 4; y < sp.Y + 4; y++) c.Plot(sp.X, y, PageC.Shade);
-        // lines of text (the right page empties while he turns it)
-        var ink = Col.Hex("8a8070");
-        for (int row = 0; row < 4; row++)
-        {
-            float y = sp.Y - 3 + row * 2;
-            for (float x = sp.X - 6.5f; x < sp.X - 1; x += 1) if ((int)(x + row * 2) % 4 != 0) c.Plot(x, y, ink);
-            if (p.Fx is not (4 or 5))
-                for (float x = sp.X + 1.5f; x < sp.X + 7; x += 1) if ((int)(x + row * 3) % 4 != 0) c.Plot(x, y, ink);
-        }
-        // the turning page: standing up off the spine, then falling over to the left
-        if (p.Fx == 4) c.Draw(q => S.Box(q, sp.X - 0.5f, sp.Y - 11.5f, sp.X + 1.5f, sp.Y - 3), PageC);
-        if (p.Fx == 5) c.Draw(q => S.Poly(q, sp + new V(0, -3), sp + new V(-6, -8.5f), sp + new V(-8, -6.5f), sp + new V(-1, -2)), PageC);
+        // the page block, peeking out above the covers
+        c.Draw(q => S.Box(q, sp.X - 7.5f, sp.Y - 6, sp.X + 7.5f, sp.Y - 3), PageC);
+        for (float x = sp.X - 6.5f; x < sp.X + 7; x += 2) c.Plot(x, sp.Y - 5, PageC.Shade);
+        // the turning page, rising from his side over the top edge and falling over to the left
+        if (p.Fx == 3) c.Draw(q => S.Poly(q, sp + new V(1, -5), sp + new V(5, -8.5f), sp + new V(7, -7.5f), sp + new V(3, -5)), PageC);
+        if (p.Fx == 4) c.Draw(q => S.Box(q, sp.X - 1, sp.Y - 11.5f, sp.X + 1, sp.Y - 5), PageC);
+        if (p.Fx == 5) c.Draw(q => S.Poly(q, sp + new V(-1, -5), sp + new V(-5, -8.5f), sp + new V(-7, -7.5f), sp + new V(-3, -5)), PageC);
+        // the two covers and the spine between them
+        c.Draw(q => S.Box(q, sp.X - 8.5f, sp.Y - 4, sp.X + 8.5f, sp.Y + 4.5f), BookCover, hi: BookCover.Light);
+        c.Flat(q => S.Box(q, sp.X - 1, sp.Y - 4, sp.X + 1, sp.Y + 4.5f), BookCover.Shade);
+        foreach (var dy in new[] { -2.5f, 3f }) { c.Plot(sp.X - 0.5f, sp.Y + dy, Gilt); c.Plot(sp.X + 0.5f, sp.Y + dy, Gilt); }
+        // a gold emblem on the front cover
+        var em = sp + new V(4.5f, 0.5f);
+        c.Plot(em, Gilt); c.Plot(em + new V(-1, 0), Gilt.Shade); c.Plot(em + new V(1, 0), Gilt.Shade);
+        c.Plot(em + new V(0, -1), Gilt.Shade); c.Plot(em + new V(0, 1), Gilt.Shade);
         DrawHand(c, r.HandB, false);
         DrawHand(c, r.HandF, false);
     }
