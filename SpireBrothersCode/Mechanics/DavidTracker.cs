@@ -25,6 +25,7 @@ public class DavidTracker() : CustomSingletonModel(HookType.Combat)
         soapbox?.Flash();
         RantsThisTurnField.Set(state, rants + (soapbox != null ? Soapbox.FirstRantCounts : 1));
         RantsThisCombatField.Set(state, RantsThisCombatField.Get(state) + 1);
+        RunStats.Add(RunStats.Rants, cardPlay.Card.Owner);
         if (RantsThisTurnField.Get(state) >= Banter.RantsMoment) Banter.Moment(cardPlay.Card.Owner!, "RANTS");
         // The sigh when a rant really gets going: once per turn, as the count reaches 3.
         if (rants < RantSoundAt && RantsThisTurnField.Get(state) >= RantSoundAt) Sounds.Play(Sounds.DavidRant);

@@ -30,6 +30,7 @@ public partial class MainFile : Node
 
         // Saved fields register with BaseLib when created, which has to happen before the game finishes loading mods.
         System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(Mechanics.Ages).TypeHandle);
+        System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(Mechanics.RunStats).TypeHandle);
 
         ShareMonkeyIslandItems();
 

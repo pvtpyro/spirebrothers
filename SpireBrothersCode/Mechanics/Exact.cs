@@ -43,6 +43,7 @@ public static class Exact
         if (!card.EnergyCost.CostsX && state.Energy != 0 && !(state.Energy == 1 && HasCoffee(owner))) return 0;
 
         int times = owner.Creature.GetPower<MinMaxPower>() != null ? 2 : 1;
+        RunStats.Add(RunStats.Exacts, owner);
         var listeners = owner.Creature.Powers.OfType<IExactListener>()
             .Concat(owner.Relics.OfType<IExactListener>()).ToList();
         for (int i = 0; i < times; i++)

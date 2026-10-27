@@ -105,9 +105,18 @@ Built 2026-10-26. Monkey Island meets Minecraft: square beard, tricorn, eye patc
       (monsters.json `SPIREBROTHERS-BLOCKBEARD.insults/gloats/speechless.N`); any count works
 
 ### 8. End-of-run stats
-"David hoarded 812 gold", "Tim's kids dealt 340 damage", "Joshua healed the team for 210".
-- [ ] Pick the stats per brother and where to show them (victory/defeat screen?)
-- [ ] Track them over the run (co-op safe)
+Built 2026-10-26. A second column of score lines on the game over summary page, beside vanilla's floors/gold/elites,
+with each brother's icon. Every brother in the party is listed on every player's screen (3 lines each with 1-2 brothers,
+2 each with 3-4). Lines at 0 are skipped. Code: `Mechanics/RunStats.cs` (counters), `Mechanics/RunStatsScreen.cs` (screen).
+Text: powers.json `SPIREBROTHERS-RUN_STATS.*`.
+- [x] Pick the stats, best first:
+  - Daniel: times Wired, Stratagems called in, Gears played
+  - David: most gold carried (from the run's own history), Rants, Exact triggers
+  - Joshua: HP healed by his cards and potions (only real healing, no overheal; "healed the team" in co-op), biggest Chorus, Verses sung
+  - Tim: damage his Kids dealt, Age reached, Script effects
+- [x] Track them over the run (saved with the run, counted the same way on every client)
+- [ ] Test: lines show and slide in after vanilla's, numbers look right, solo and co-op, a save/reload mid-run keeps them
+- [ ] Brandi: reword any line (powers.json), or pick different stats
 
 ### 9. A fifth character: Brandi
 A surprise extra character as part of the gift.

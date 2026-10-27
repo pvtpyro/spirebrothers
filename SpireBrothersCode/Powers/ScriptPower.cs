@@ -61,6 +61,7 @@ public class ScriptPower : BrothersPower
     {
         foreach (var addOn in player.Creature.Powers.OfType<LuaAddOnPower>().ToList())
             await addOn.Trigger(ctx);
+        RunStats.Add(RunStats.Scripts, player);
         await FamilyBonds.AfterScriptRan(player);
     }
 }

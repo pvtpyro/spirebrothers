@@ -50,7 +50,8 @@ public static class Kids
             var target = rng.NextItem(enemies)!;
             if (i < kidCreatures.Count) KidMotion.Hop(kidCreatures[i]);
             VfxCmd.PlayOnCreature(target, "vfx/vfx_attack_blunt");
-            await CreatureCmd.Damage(ctx, target, damage, ValueProp.Unpowered, player.Creature);
+            var hits = await CreatureCmd.Damage(ctx, target, damage, ValueProp.Unpowered, player.Creature);
+            RunStats.Add(RunStats.KidDamage, player, hits.Sum(h => h.TotalDamage));
         }
     }
 }

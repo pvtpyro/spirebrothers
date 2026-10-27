@@ -254,3 +254,10 @@ Card art for everything (all cards, relics, and powers use placeholders).
   frame/animation code that used to live in BrotherCharacter. The Desktop copy of pixelgen doesn't have `Pirate.cs` yet.
 - Also new: `Cards/Shared/FoodComa.cs` (curse, `CurseCardPool`; cardgen draws `Cards\Shared` too), David's `SundayWalk` +
   `SundayWalkPower`, `Relics/DadsTackleBox.cs` (shared relic, registered for every brother in `MainFile`).
+- **End-of-run stats** (TODO.md #8): `Mechanics/RunStats.cs` holds per-player `SavedSpireField<Player,int>` counters (touched in
+  `MainFile.Initialize` like Ages), bumped in Wired.Check, Exact.Check, DavidTracker, Verses (Gain / SpendForChorus), Kids.Act,
+  `ScriptPower.AfterScriptRan`, and `RunStatsTracker` (combat singleton: Stratagem and Gear plays, plus a stack of whose card or
+  potion is resolving so the `HealCredit` prefix on `CreatureCmd.Heal` credits real healing to that player). David's gold is
+  read from the run's MapPointHistory. `RunStats.Lines` builds the text (`SPIREBROTHERS-RUN_STATS.*` in powers.json).
+  `Mechanics/RunStatsScreen.cs` patches `NGameOverScreen._Ready` (moves `%ScoreLineContainer` into an HBox with our column of
+  vanilla `NScoreLine`s) and wraps `AnimateScoreLines` so ours slide in after. Untested in game.

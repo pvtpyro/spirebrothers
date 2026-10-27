@@ -26,6 +26,7 @@ public static class Wired
     public static async Task<bool> Check(CardModel card)
     {
         if (!IsActive(card)) return false;
+        RunStats.Add(RunStats.Wired, card.Owner);
 
         var state = card.Owner.PlayerCombatState;
         if (state != null && !TurnTracker.WiredFiredThisTurn.Get(state))

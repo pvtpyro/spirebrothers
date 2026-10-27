@@ -398,5 +398,20 @@
   "SPIREBROTHERS-BANTER.BOSS.DAVID.0": "That was statistically improbable.",
   "SPIREBROTHERS-BANTER.ELITE.0": "Easy.",
   "SPIREBROTHERS-BANTER.ELITE.1": "Too easy.",
-  "SPIREBROTHERS-BANTER.ELITE.2": "Let's never do that again."
+  "SPIREBROTHERS-BANTER.ELITE.2": "Let's never do that again.",
+  "SPIREBROTHERS-RUN_STATS.WIRED": "Daniel got Wired {Amount} {Amount:plural:time|times}",
+  "SPIREBROTHERS-RUN_STATS.STRATAGEMS": "Daniel called in {Amount} {Amount:plural:Stratagem|Stratagems}",
+  "SPIREBROTHERS-RUN_STATS.GEARS": "Daniel turned {Amount} {Amount:plural:Gear|Gears}",
+  "SPIREBROTHERS-RUN_STATS.GOLD": "David hoarded {Amount} gold",
+  "SPIREBROTHERS-RUN_STATS.RANTS": "David ranted {Amount} {Amount:plural:time|times}",
+  "SPIREBROTHERS-RUN_STATS.EXACT": "David was Exact {Amount} {Amount:plural:time|times}",
+  "SPIREBROTHERS-RUN_STATS.HEALED": "Joshua healed the team for {Amount}",
+  "SPIREBROTHERS-RUN_STATS.HEALED_SOLO": "Joshua healed {Amount} HP",
+  "SPIREBROTHERS-RUN_STATS.CHORUS": "Joshua's biggest Chorus: {Amount} {Amount:plural:Verse|Verses}",
+  "SPIREBROTHERS-RUN_STATS.VERSES": "Joshua sang {Amount} {Amount:plural:Verse|Verses}",
+  "SPIREBROTHERS-RUN_STATS.KIDS": "Tim's kids dealt {Amount} damage",
+  "SPIREBROTHERS-RUN_STATS.AGE1": "Tim reached the Feudal Age",
+  "SPIREBROTHERS-RUN_STATS.AGE2": "Tim reached the Castle Age",
+  "SPIREBROTHERS-RUN_STATS.AGE3": "Tim reached the Imperial Age",
+  "SPIREBROTHERS-RUN_STATS.SCRIPTS": "Tim ran {Amount} {Amount:plural:Script|Scripts}"
 }

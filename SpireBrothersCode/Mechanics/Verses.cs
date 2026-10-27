@@ -53,6 +53,7 @@ public static class Verses
                 await OrbCmd.AddSlots(player, 1);
             }
             await OrbCmd.Channel(ctx, ModelDb.Orb<VerseOrb>().ToMutable(), player);
+            RunStats.Add(RunStats.VersesSung, player);
         }
     }
 
@@ -82,6 +83,7 @@ public static class Verses
         var owner = card.Owner;
         if (owner?.Creature == null) return 0;
         int verses = ForChorus(owner);
+        RunStats.Max(RunStats.BiggestChorus, owner, verses);
         Sounds.Play(Sounds.JoshuaChorus);
 
         // Encore first (it comes back every turn, and spends half, rounded down), then Bridge (one use each, spends none).
