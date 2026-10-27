@@ -1,5 +1,6 @@
 using System.Reflection;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
@@ -24,6 +25,8 @@ public static class AgeCardLine
         try
         {
             if (!__instance.IsMutable || __instance.Owner is not { } owner) return;
+            // Burn and friends hurt Tim, and the Age bonus never touches them.
+            if (__instance.Type is CardType.Status or CardType.Curse) return;
             int age = Ages.Get(owner);
             if (age <= Ages.Dark) return;
 
