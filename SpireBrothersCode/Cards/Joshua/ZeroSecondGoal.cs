@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Rocket League. Can only be played if it's the last card in your hand. Deal 30 damage.</summary>
-public class ZeroSecondGoal() : JoshuaCard(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+/// <summary>Retired 2026-10-26 (Joshua doesn't play Rocket League); kept so saved runs that have it still load. Was: Rocket League. Can only be played if it's the last card in your hand. Deal 30 damage.</summary>
+public class ZeroSecondGoal() : JoshuaCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(30, ValueProp.Move)];
 

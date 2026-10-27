@@ -24,7 +24,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 - **Collecting Dust** (Basic Attack, 1): Deal 6 damage. **Hoard:** +1 per 50 Gold.
 - **Do the Math** (Basic Skill, 1, Share): A player gains 5 Block. **Exact:** next turn, they draw 2 extra cards.
 - **Here We Go Again** (Basic Attack, 1, Rant; replaced a Strike 2026-10-05): Deal 6 damage. Apply 1 Ranted At. **Rant:** +2 damage for each Rant played earlier this turn. *(Upgraded: 8 damage, loses 2 Strength.)*
-- **Starter relic: Old Wallet.** (He never saw a reason to replace it.) At the start of each combat, **ALL players** gain 1 Block per 25 Gold you have (max 12). **Touch of Orobas upgrade: Overstuffed Wallet**, 1 Block per 15 Gold (max 20).
+- **Starter relic: Old Wallet.** (He never saw a reason to replace it.) At the start of each combat, **ALL players** gain 1 Block per 40 Gold you have (max 8). **Touch of Orobas upgrade: Overstuffed Wallet**, 1 Block per 25 Gold (max 12).
 
 Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡️ Monkey Island (Insult / Comeback).
 
@@ -93,7 +93,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | 41 | 😩 Unprompted Monologue | 1 Skill | Apply 3 Ranted At. **Rant:** also apply 1 Weak for each Rant played earlier this turn. | Existential crisis |
 | 42 | 😩 3 A.M. Thoughts | 1 Power | Whenever you play a Rant card, deal 2 damage to ALL enemies. | Existential crisis |
 | 43 | 🤝 Delegate | 1 Skill | **Delegate:** a player's next Attack deals double damage. Exhaust. | Leadership |
-| 44 | 🤝 Group Project | 1 Skill | ALL players gain 4 Block and draw 1 card next turn. | Co-op |
+| 44 | 🤝 Group Project | 1 Skill | ALL players gain 3 Block and draw 1 card next turn. | Co-op |
 | 45 | 🤝 Wormhole Potion | 1 Skill | A player gains 1 Energy next turn, and so do you. | Terraria (teleport to a teammate) |
 
 ### Everything else
@@ -109,7 +109,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | 53 | Keep Inventory | 2 Power | Retain your hand at the end of each turn. | Minecraft (the gamerule) |
 | 54 | 🎯🤝 Crunch the Numbers | 1 Skill | Gain 5 Block. **Exact:** ALL players draw 1 extra card next turn. *(replaced Balance Sheet)* | Numbers |
 | 55 | 😩 Does Anything Even Matter? | 1 Skill | Apply 2 Vulnerable. **Rant:** +1 for each Rant played earlier this turn. | Existential crisis |
-| 56 | 🤝 Base Camp | 2 Power | At the start of your turn, ALL players gain 2 Block. *(replaced Pack Light)* | Camping / hiking |
+| 56 | 🤝 Base Camp | 2 Power | At the start of your turn, ALL players gain 1 Block. *(replaced Pack Light)* | Camping / hiking |
 | 56b | 🍪🤝 Three Dozen Cookies | 1 Power | At the start of your turn, bake 6 **Cookies** into your hand until all 36 are done (6 turns). *(Cookie, token, 0 cost: Share, a player gains 2 Block. Exhaust.)* Upgrade: costs 0. | McDonald's: the customer who orders three dozen cookies when you can only bake a few at a time |
 
 ## Rare (16)
@@ -152,5 +152,5 @@ Goal: no brother or card underpowered; only effects that scale without limit wer
 
 - **Compound Interest:** capped at 10 Block per turn (1 per 20 Gold up to 200 Gold).
 - **Cactus Needles:** the upgrade costs 0 instead of losing Exhaust (repeat doubling with Deep Cuts had no ceiling).
-- **Ranted At** (Here We Go Again, Deep Sigh, Unprompted Monologue): now also makes the enemy deal 25% less damage this turn, like Weak, on top of 1 less per stack (12 damage with 1 stack: 11 -> 8). Cards now say "Apply X Ranted At".
+- **Ranted At** (Here We Go Again, Deep Sigh, Unprompted Monologue): now also makes the enemy deal 25% less damage this turn, like Weak, on top of 1 less per stack (12 damage with 1 stack: 11 -> 8). Cards now say "Apply X Ranted At". **Changed 2026-10-26:** the 25% cut was removed (with Weak on top, enemies did almost nothing in 4-player); Ranted At is just X less per hit.
 - **Black Friday:** reworked into a doorbuster deal: lose 40 Gold, gain 3 Strength (4 upgraded), Exhaust. It used to cost ALL your gold (1 Strength per 50), which was only worth it on a final boss.

@@ -5,7 +5,9 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Extensions;
+using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Factories;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Rewards;
@@ -86,5 +88,12 @@ public abstract class BrotherEvent : CustomEventModel
     {
         var card = Owner!.RunState.CreateCard<T>(Owner);
         CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(card, PileType.Deck), 2f);
+    }
+
+    /// <summary>Shows a card's hover tip when hovering the option, like vanilla events that add a card.</summary>
+    protected static EventOption ShowingCard<T>(EventOption option) where T : CardModel
+    {
+        option.HoverTips = HoverTipFactory.FromCardWithCardHoverTips<T>();
+        return option;
     }
 }

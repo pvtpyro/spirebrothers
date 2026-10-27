@@ -50,13 +50,13 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   Valley Forge token, 72 reward cards), `Mechanics/DavidTracker.cs` (Rant counts per turn/combat),
   `Mechanics/Exact.cs` (`Check()` returns 0/1/2 triggers, Min-Max doubles, runs `IExactListener` powers),
   `Powers/BleedPower.cs` (start of owner's turn like Poison, then halves; Deep Cuts makes it -1), `Powers/RantedAtPower.cs`
-  (X less damage per hit, then 25% less, until the end of the enemy's turn; a damage modifier so Artifact can't backfire). Starter relic
+  (X less damage per hit until the end of the enemy's turn; a damage modifier so Artifact can't backfire. The extra 25% cut was dropped 2026-10-26). Starter relic
   `Relics/OldWallet.cs` (Block for ALL players). Support cards (Share) target a teammate via `ShareTarget()`; `BaseCampPower` / `RainyDayFundPower` protect the team. `DavidRelic` base lives in `BrothersRelic.cs`.
 - Monkey Island relics/potions are `[Pool]`ed to Daniel and added to other brothers' pools in
   `MainFile.ShareMonkeyIslandItems()` via vanilla `ModHelper.AddModelToPool`. Add each new brother there.
 - Joshua: `Character/Joshua.cs` + `JoshuaPools.cs` (Regent visuals), `Cards/JoshuaCard.cs` (Verse-threshold glow, `Chorus()`,
   `ChorusAttack()` + `ChorusVerses` multiplier so damage uses the Verses just spent, `AllPlayers`, `ShareTarget()`),
-  `Cards/Joshua/` (82 files: 5 Basic, 77 reward cards), `Mechanics/Verses.cs` (count, gain, `SpendForChorus` with
+  `Cards/Joshua/` (109 files: 5 in the starting deck / Basic, 24 retired (Basic rarity, kept for saved runs), 77 reward cards, 3 Duo), `Mechanics/Verses.cs` (count, gain, `SpendForChorus` with
   Encore/Bridge/Choir, `IChorusListener`, `AddRandomSongs`), `Orbs/VerseOrb.cs` (each Verse is an orb above him like the Defect's, max 10; labels hidden by a Harmony patch; Chorus removes them quietly, no evoke), `Mechanics/JoshuaTracker.cs` (Song cards add Verses after
   play), `Mechanics/Archipelago.cs` (Check: rolls an item on the run RNG, thought bubble over the receiver; lines are
   `SPIREBROTHERS-ARCHIPELAGO.*` in powers.json). Starter relic `Relics/WellWornGuitar.cs`.
@@ -265,3 +265,11 @@ Card art for everything (all cards, relics, and powers use placeholders).
   read from the run's MapPointHistory. `RunStats.Lines` builds the text (`SPIREBROTHERS-RUN_STATS.*` in powers.json).
   `Mechanics/RunStatsScreen.cs` patches `NGameOverScreen._Ready` (moves `%ScoreLineContainer` into an HBox with our column of
   vanilla `NScoreLine`s) and wraps `AnimateScoreLines` so ours slide in after. Untested in game.
+- **Joshua ballad pass** (he doesn't like playing support, doesn't play Rocket League, and is a ballad guy): new
+  **Heartstrings** debuff (`Powers/HeartstringsPower.cs`: any Song played makes the enemy lose HP equal to it, -1 per enemy
+  turn; `HauntingMelodyPower` stops the decay) and **Held Note** (`VerseOrb.Held` + glow; `JoshuaTracker.AfterPlayerTurnStartEarly`
+  holds every Verse before the guitar adds one; `Verses.ForChorus` counts Held ones twice, three times with `MagnumOpusPower`).
+  Choruses now help Joshua or hit enemies, not ALL players. Starter Lend an Ear -> Serenade. Cut cards are **retired, not deleted**:
+  set to `CardRarity.Basic` (the game never offers Basic cards in rewards, shops, transforms, or combat generation) so saved
+  runs still load; any new random-card picker of ours must filter to Common/Uncommon/Rare (`Verses.AddRandomSongs` does).
+  Full list in JOSHUA_CARDS.md. Untested in game.

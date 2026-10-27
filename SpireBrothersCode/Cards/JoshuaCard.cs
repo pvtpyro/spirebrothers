@@ -74,13 +74,15 @@ public abstract class JoshuaCard(int cost, CardType type, CardRarity rarity, Tar
     protected static decimal ChorusVerses(CardModel card, Creature? _) =>
         card is JoshuaCard { _spentVerses: int spent } ? spent : Verses.ForChorus(card.Owner);
 
-    /// <summary>A Chorus attack: spend Verses, then attack with CalculatedDamage scaled by them.</summary>
-    protected async Task ChorusAttack(PlayerChoiceContext ctx, CardPlay play, string vfx)
+    /// <summary>A Chorus attack: spend Verses, then attack with CalculatedDamage scaled by them. Returns the Verses counted.</summary>
+    protected async Task<int> ChorusAttack(PlayerChoiceContext ctx, CardPlay play, string vfx)
     {
         try
         {
-            _spentVerses = await Chorus(ctx);
+            int verses = await Chorus(ctx);
+            _spentVerses = verses;
             await CommonActions.CardAttack(this, play, vfx: vfx).Execute(ctx);
+            return verses;
         }
         finally
         {

@@ -9,11 +9,11 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Relics;
 
-/// <summary>David's starter (he never saw a reason to replace it). At the start of each combat, ALL players gain 1 Block per 25 Gold (max 12).</summary>
+/// <summary>David's starter (he never saw a reason to replace it). At the start of each combat, ALL players gain 1 Block per 40 Gold (max 8).</summary>
 public class OldWallet : DavidRelic
 {
-    public const int GoldPerBlock = 25;
-    public const int MaxBlock = 12;
+    public const int GoldPerBlock = 40;
+    public const int MaxBlock = 8;
     public override RelicRarity Rarity => RelicRarity.Starter;
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<FamilyBondsPower>()];
 

@@ -13,22 +13,22 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using SpireBrothers.SpireBrothersCode.Mechanics;
 using SpireBrothers.SpireBrothersCode.Powers;
+using SpireBrothers.SpireBrothersCode.Orbs;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Music. Chorus: ALL players heal 1 per Verse. Exhaust.</summary>
-public class StandingOvation() : JoshuaCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IGroupHealCard
+/// <summary>Music. Chorus: gain 1 energy per 4 Verses (3 upgraded). Exhaust. (Healed ALL players until 2026-10-26.)</summary>
+public class StandingOvation() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Chorus, CardKeyword.Exhaust];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("HealPerVerse", 1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1), new DynamicVar("VersesPerEnergy", 4)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         int verses = await Chorus(ctx);
-        var heal = DynamicVars["HealPerVerse"].BaseValue * verses;
-        if (heal <= 0) return;
-        foreach (var player in AllPlayers) await CreatureCmd.Heal(player, heal);
+        int energy = verses / DynamicVars["VersesPerEnergy"].IntValue;
+        if (energy > 0) await PlayerCmd.GainEnergy(energy, Owner);
     }
 
-    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
+    protected override void OnUpgrade() => DynamicVars["VersesPerEnergy"].UpgradeValueBy(-1);
 }

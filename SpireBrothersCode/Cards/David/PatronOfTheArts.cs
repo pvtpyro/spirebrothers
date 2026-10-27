@@ -20,7 +20,7 @@ public class PatronOfTheArts() : DavidCard(1, CardType.Skill, CardRarity.Uncommo
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Duo, BrotherKeywords.Exact];
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DynamicVar("Gold", 15), new DynamicVar("Verses", 3), new BlockVar(6, ValueProp.Move)];
+        [new DynamicVar("Gold", 15), new DynamicVar("Verses", 3), new BlockVar(4, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
@@ -32,5 +32,5 @@ public class PatronOfTheArts() : DavidCard(1, CardType.Skill, CardRarity.Uncommo
             await CreatureCmd.GainBlock(player.Creature, DynamicVars.Block, play);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(3);
+    protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(2);
 }

@@ -16,11 +16,11 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Camping / hiking. At the start of your turn, ALL players gain 2 Block.</summary>
+/// <summary>Camping / hiking. At the start of your turn, ALL players gain 1 Block.</summary>
 public class BaseCamp() : DavidCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Share];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<BaseCampPower>(2)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<BaseCampPower>(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {

@@ -17,12 +17,12 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Co-op. ALL players gain 4 Block and draw 1 card next turn.</summary>
+/// <summary>Co-op. ALL players gain 3 Block and draw 1 card next turn.</summary>
 public class GroupProject() : DavidCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Share];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(4, ValueProp.Move), new CardsVar(1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(3, ValueProp.Move), new CardsVar(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
@@ -34,5 +34,5 @@ public class GroupProject() : DavidCard(1, CardType.Skill, CardRarity.Uncommon, 
         }
     }
 
-    protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(3);
+    protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(2);
 }

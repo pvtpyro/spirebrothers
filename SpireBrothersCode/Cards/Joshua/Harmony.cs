@@ -16,15 +16,16 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Music. Whenever you play a Chorus, ALL players heal 2.</summary>
-public class Harmony() : JoshuaCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+/// <summary>Music. Whenever you play a Chorus, apply 2 Heartstrings to ALL enemies. (Healed ALL players until 2026-10-26.)</summary>
+public class Harmony() : JoshuaCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<HarmonyPower>(2)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<HeartstringsPower>()];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CommonActions.ApplySelf<HarmonyPower>(ctx, this);
     }
 
-    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
+    protected override void OnUpgrade() => DynamicVars["HarmonyPower"].UpgradeValueBy(1);
 }

@@ -18,8 +18,8 @@ using SpireBrothers.SpireBrothersCode.Orbs;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Rocket League (quick chat). Scry 3. Draw 1 card. Gain 1 Verse.</summary>
-public class Calculated() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+/// <summary>Retired 2026-10-26 (Joshua doesn't play Rocket League); kept so saved runs that have it still load. Was: Rocket League (quick chat). Scry 3. Draw 1 card. Gain 1 Verse.</summary>
+public class Calculated() : JoshuaCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new ScryVar(3), new CardsVar(1), new DynamicVar("VerseGain", 1)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromOrb<VerseOrb>()];

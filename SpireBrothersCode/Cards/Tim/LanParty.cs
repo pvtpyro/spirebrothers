@@ -12,7 +12,7 @@ using Brothers = SpireBrothers.SpireBrothersCode.Character;
 namespace SpireBrothers.SpireBrothersCode.Cards.Tim;
 
 /// <summary>
-/// Duo with Daniel: a LAN party that never ends (Script runs it again next turn). ALL players gain 5 Block and draw
+/// Duo with Daniel: a LAN party that never ends (Script runs it again next turn). ALL players gain 3 Block and draw
 /// 1 card next turn.
 /// </summary>
 public class LanParty() : TimCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IDuoCard
@@ -20,7 +20,7 @@ public class LanParty() : TimCard(1, CardType.Skill, CardRarity.Uncommon, Target
     public Type Partner => typeof(Brothers.Daniel);
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Duo, BrotherKeywords.Script];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(5, ValueProp.Move), new CardsVar(1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(3, ValueProp.Move), new CardsVar(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
@@ -31,5 +31,5 @@ public class LanParty() : TimCard(1, CardType.Skill, CardRarity.Uncommon, Target
         }
     }
 
-    protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(3);
+    protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(2);
 }

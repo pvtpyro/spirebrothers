@@ -42,7 +42,7 @@
   | David + Tim | Family Loan | Age Up costs 25 less Gold; David gains 10 Gold after each win |
   | Joshua + Tim | Kids' Choir | Joshua's Chorus: all of Tim's Kids hit a random enemy |
   | Any 3 | Group Chat | Turn 1: ALL players gain 1 Energy |
-  | All 4 | Nobody Gets Left Behind | Each brother's first death each combat: heal 10 instead |
+  | All 4 | Nobody Gets Left Behind | Once per combat, the first brother who would die heals 10 instead (whole team, changed 2026-10-26) |
 - **Relics added 2026-10-25** (untested in game). Shared ones are `[Pool]`ed to Daniel and added to the others in `MainFile.ShareMonkeyIslandItems()`.
   - Shared: Blown Cartridge (C, draw 2 on turn 2), Party Headset (C, first Share each turn: you + target gain 3 Block; not in Tim's pool, he has no Share cards),
     Shared Steam Library (U, random card from another brother's pool, free this turn), Brothers in Arms (R, ALL players +1 Str/Dex per Spire Brother in the party).
@@ -65,22 +65,25 @@ Software engineer who can fix cars, hard-wired his whole house for internet (eve
 ## David, The Min-Maxer (built 2026-10-04)
 Great with numbers, loves puzzles, loves hiking and camping. Goes on a short walk or hike with Dad every Sunday, and calls Mom a lot to chat or vent. Always in the middle of an existential crisis, and whoever has to listen pays the price. Never spends money, not to save it, but because nothing interests him enough to buy, so it piles up. Took one road trip, Idaho to NJ and back.
 - **Exact**: bonus if you end the card with exactly 0 energy. Card-draw bonuses happen next turn (you have no energy to play them now).
-- **Hoard**: scales with unspent gold. Starter relic Old Wallet: Block per 20 gold at combat start.
+- **Hoard**: scales with unspent gold. Starter relic Old Wallet: ALL players gain Block per 40 gold at combat start (max 8).
 - **Rant** (replaced teaching): Rant cards snowball the more of them you play in a turn, and wear down the listener (the enemy loses Strength, takes damage, or gets Weak). Delegate: ally's next attack doubles.
-- **Support** (2026-10-25, David loves playing support): his gold, math, and rants help the team. Old Wallet gives ALL players Block, about 22 cards can target a teammate (Share), and Talk Them Down / Ranted At soften enemy hits for everyone. He is the team's strategist and financier; Joshua is the healer.
+- **Support** (2026-10-25, David loves playing support): his gold, math, and rants help the team. Old Wallet gives ALL players Block, about 22 cards can target a teammate (Share), and Talk Them Down / Ranted At soften enemy hits for everyone. He is the team's strategist and financier (and, since 2026-10-26, the only brother built around support).
 - **Bleed** (replaced Thorns): a debuff that hits hard at the start of the enemy's turn (before it acts, like Poison), then halves. Messing with David costs you.
 - Games (what he does all day): Minecraft, Payday 2, Terraria, Satisfactory, ARK. The road trip gets one card: Idaho to Jersey and Back (rare power).
 - Full card plan (draft): DAVID_CARDS.md.
 
-## Joshua, The Musician (next)
-Piano, guitar, vocals. Lived in Japan for a while; now back home in the US.
-- **Verse / Chorus**: Song cards build Verses; Chorus cards spend them for effects on ALL players.
-- Starter relic Well-Worn Guitar: gain 1 Verse at the start of each turn (Signature Guitar: 2). Starter Basic card Lend an Ear (Share Block).
+## Joshua, The Musician
+Piano, guitar, vocals: a ballad guy, not a shredder. Lived in Japan for a while; now back home in the US.
+**He doesn't like playing support** (2026-10-26), so he's the frontman: his Choruses help him or hit enemies.
+- **Verse / Chorus**: Song cards build Verses; Chorus cards spend them all for an effect that scales.
+- **Held Note**: Verses kept into a new turn glow and count double for a Chorus. Patience pays off in one big finish.
+- **Heartstrings**: enemy debuff; whenever a Song is played, the enemy loses HP equal to it (down 1 per enemy turn).
+- Starter relic Well-Worn Guitar: gain 1 Verse at the start of each turn (Signature Guitar: 2). Starter Basic card Serenade (Song attack, applies Heartstrings).
 - **Check** (Archipelago, which he loves): find random items and send them to random players. Traps go to enemies.
-- **Healing**: a big part of his kit, because it fits his personality. The team's support. Chorus heals on ALL players fit naturally (as Pastor already does).
-- Games: PlateUp!, Terraria, Rocket League, Stardew Valley. Omiyage, What a Save!, Karaoke Night.
+- **Healing**: only 5 cards now (Konbini Run, Onsen, Pastor, Coming Home, Thousand Cranes). No Share cards.
+- Games: PlateUp!, Terraria, Stardew Valley, Archipelago. Not Rocket League (that's Tim's).
 - Tribute cards: **Pastor** (all players heal and gain Block, Exhaust) and **Coming Home**.
-- Full card plan (draft): JOSHUA_CARDS.md.
+- Full card plan: JOSHUA_CARDS.md.
 
 ## Tim (Timothy), The Draftsman (oldest brother)
 Married with 8 kids. Draftsman at a civil engineering firm; writes Lua add-ons for AutoCAD.

@@ -21,7 +21,8 @@ public interface IChorusListener
 
 /// <summary>
 /// Joshua's Verse / Chorus rules. Song cards add Verses (JoshuaTracker), Chorus cards spend them all.
-/// Choir adds to what a Chorus counts, Encore lets a Chorus keep half its Verses, and Bridge keeps them all.
+/// Held Note: Verses kept from last turn count double (triple with Magnum Opus). Choir adds to what a Chorus counts,
+/// Encore lets a Chorus keep half its Verses, and Bridge keeps them all.
 /// </summary>
 public static class Verses
 {
@@ -32,10 +33,25 @@ public static class Verses
     public static int Count(Player? player) =>
         player?.PlayerCombatState?.OrbQueue.Orbs.Count(o => o is VerseOrb) ?? 0;
 
-    /// <summary>How many Verses a Chorus would count if played now (Choir and Capo add to it).</summary>
+    /// <summary>Verses kept since last turn (Held Note).</summary>
+    public static int HeldCount(Player? player) =>
+        player?.PlayerCombatState?.OrbQueue.Orbs.Count(o => o is VerseOrb { Held: true }) ?? 0;
+
+    /// <summary>How many extra times each Held Verse counts: 1, or 2 with Magnum Opus.</summary>
+    public static int HeldBonus(Player? player) => player?.Creature?.HasPower<MagnumOpusPower>() == true ? 2 : 1;
+
+    /// <summary>How many Verses a Chorus would count if played now (Held Verses count extra; Choir and Capo add to it).</summary>
     public static int ForChorus(Player? player) =>
-        Count(player) + (player?.Creature?.GetPowerAmount<ChoirPower>() ?? 0)
+        Count(player) + HeldCount(player) * HeldBonus(player)
+        + (player?.Creature?.GetPowerAmount<ChoirPower>() ?? 0)
         + (player?.GetRelic<Capo>() != null ? Capo.ExtraVerses : 0);
+
+    /// <summary>Makes every Verse the player has Held (start of their turn, Fermata, Rehearsal).</summary>
+    public static void HoldAll(Player? player)
+    {
+        foreach (var verse in player?.PlayerCombatState?.OrbQueue.Orbs.OfType<VerseOrb>().ToList() ?? [])
+            verse.MarkHeld();
+    }
 
     /// <summary>Verses a Song gives: 1, plus 1 per Perfect Pitch.</summary>
     public static int PerSong(Player? player) => 1 + (player?.Creature?.GetPowerAmount<PerfectPitchPower>() ?? 0);
@@ -117,7 +133,8 @@ public static class Verses
         if (count <= 0 || player.Creature.CombatState == null) return;
         var songs = ModelDb.CardPool<JoshuaCardPool>()
             .GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
-            .Where(c => c.CanonicalKeywords.Contains(BrotherKeywords.Song) && DuoCards.Allowed(c, player))
+            .Where(c => c.Rarity is CardRarity.Common or CardRarity.Uncommon or CardRarity.Rare
+                        && c.CanonicalKeywords.Contains(BrotherKeywords.Song) && DuoCards.Allowed(c, player))
             .ToList();
         var picked = CardFactory.GetDistinctForCombat(player, songs, count, player.RunState.Rng.CombatCardGeneration).ToList();
         foreach (var card in picked)

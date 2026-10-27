@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Stardew Valley (the first crop). Next turn, gain 1 energy and heal 2.</summary>
-public class PlantParsnips() : JoshuaCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+/// <summary>Retired 2026-10-26 (Joshua isn't a support anymore); kept so saved runs that have it still load. Was: Stardew Valley (the first crop). Next turn, gain 1 energy and heal 2.</summary>
+public class PlantParsnips() : JoshuaCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1), new HealVar(2)];
 

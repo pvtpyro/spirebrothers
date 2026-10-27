@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Rocket League. Song. Next turn, gain 1 energy. Upgrade: Retain.</summary>
-public class BoostPad() : JoshuaCard(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+/// <summary>Retired 2026-10-26 (Joshua doesn't play Rocket League); kept so saved runs that have it still load. Was: Rocket League. Song. Next turn, gain 1 energy. Upgrade: Retain.</summary>
+public class BoostPad() : JoshuaCard(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Song];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1)];

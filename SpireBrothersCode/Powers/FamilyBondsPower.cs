@@ -33,13 +33,17 @@ public class FamilyBondsPower : BrothersPower
             new LocString("powers", FamilyBonds.Key(b, "title")),
             new LocString("powers", FamilyBonds.Key(b, "description")).GetFormattedText()));
 
-    // Nobody Gets Left Behind: with all four brothers, each one survives his first death each combat.
+    // Nobody Gets Left Behind: with all four brothers, the first brother who would die each combat survives. Once for
+    // the whole team, so it's tracked across every brother's icon.
+    private bool TeamSaved =>
+        CombatState?.Players.Any(p => p.Creature.GetPower<FamilyBondsPower>()?._savedThisCombat == true) == true;
+
     public override bool ShouldDieLate(Creature creature) =>
-        creature != Owner || _savedThisCombat || !Bonds.Contains(Bond.NobodyLeftBehind);
+        creature != Owner || TeamSaved || !Bonds.Contains(Bond.NobodyLeftBehind);
 
     public override async Task AfterPreventingDeath(Creature creature)
     {
-        if (creature != Owner || _savedThisCombat) return;
+        if (creature != Owner || TeamSaved) return;
         _savedThisCombat = true;
         Flash();
         await CreatureCmd.Heal(creature, FamilyBonds.NobodyLeftBehindHeal);

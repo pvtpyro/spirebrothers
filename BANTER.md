@@ -46,7 +46,7 @@ One brother says something to another. Lines are grouped by **speaker → listen
 **David → Joshua**
 - "Josh, if you write a song about this, I want royalties."
 - "I'll handle the numbers. You handle the feelings."
-- "We're support players. Somebody has to be the adult."
+- "I'll keep us alive. You go break their hearts."
 
 **David → Tim**
 - "Tim. Put the wallet down."
@@ -124,7 +124,7 @@ Specific reactions, when that brother is the one who falls (or reacts):
 - **David falls:** Tim: "Can I have his gold?"
 - **Tim falls:** Joshua: "Kids, don't look!"
 - **Daniel falls:** Daniel's last line: "The cat stepped on my keyboard again."
-- **Joshua falls:** David: "Who's going to heal us now? Who heals the healer?"
+- **Joshua falls:** David: "The music stopped. Somebody hum something."
 
 ## 4. A brother gets saved (Nobody Gets Left Behind, I'm Not Done Yet, Lizard Tail)
 

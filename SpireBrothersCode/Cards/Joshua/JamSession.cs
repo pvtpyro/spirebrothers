@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Music / co-op. ALL players gain 2 energy next turn. Exhaust.</summary>
-public class JamSession() : JoshuaCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+/// <summary>Retired 2026-10-26 (Joshua isn't a support anymore); kept so saved runs that have it still load. Was: Music / co-op. ALL players gain 2 energy next turn. Exhaust.</summary>
+public class JamSession() : JoshuaCard(2, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(2)];

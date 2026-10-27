@@ -11,13 +11,13 @@ using Brothers = SpireBrothers.SpireBrothersCode.Character;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Duo with Tim: Uncle Josh watches the kids. Song. Tim gains 1 Kid. ALL players gain 4 Block.</summary>
+/// <summary>Duo with Tim: Uncle Josh watches the kids. Song. Tim gains 1 Kid. ALL players gain 3 Block.</summary>
 public class Babysitting() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IDuoCard
 {
     public Type Partner => typeof(Brothers.Tim);
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Duo, BrotherKeywords.Song];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Kids", 1), new BlockVar(4, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Kids", 1), new BlockVar(3, ValueProp.Move)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(BrotherKeywords.Kids)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
@@ -28,5 +28,5 @@ public class Babysitting() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, 
             await CreatureCmd.GainBlock(player, DynamicVars.Block, play);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(2);
+    protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(1);
 }

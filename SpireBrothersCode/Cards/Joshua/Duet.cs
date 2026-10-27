@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Music / co-op. Song. Share: you and a player each gain 5 Block (10 if you pick yourself).</summary>
-public class Duet() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
+/// <summary>Retired 2026-10-26 (Joshua isn't a support anymore); kept so saved runs that have it still load. Was: Music / co-op. Song. Share: you and a player each gain 5 Block (10 if you pick yourself).</summary>
+public class Duet() : JoshuaCard(1, CardType.Skill, CardRarity.Basic, TargetType.AnyPlayer)
 {
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Song, BrotherKeywords.Share];

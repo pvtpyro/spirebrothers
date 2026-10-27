@@ -1,16 +1,12 @@
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.ValueProps;
 using SpireBrothers.SpireBrothersCode.Mechanics;
 
 namespace SpireBrothers.SpireBrothersCode.Powers;
 
-/// <summary>Harmony. Whenever you play a Chorus, ALL players heal Amount.</summary>
+/// <summary>Harmony. Whenever you play a Chorus, apply Amount Heartstrings to ALL enemies. (Healed ALL players until 2026-10-26.)</summary>
 public class HarmonyPower : BrothersPower, IChorusListener
 {
     public override PowerType Type => PowerType.Buff;
@@ -18,9 +14,9 @@ public class HarmonyPower : BrothersPower, IChorusListener
 
     public async Task OnChorus(PlayerChoiceContext choiceContext, Player player, int verses)
     {
-        if (CombatState == null) return;
+        var enemies = CombatState?.HittableEnemies.Where(e => e.IsAlive).ToList();
+        if (enemies == null || enemies.Count == 0) return;
         Flash();
-        foreach (var p in CombatState.Players.Where(p => p.Creature.IsAlive).ToList())
-            await CreatureCmd.Heal(p.Creature, Amount);
+        await PowerCmd.Apply<HeartstringsPower>(choiceContext, enemies, Amount, Owner, null);
     }
 }

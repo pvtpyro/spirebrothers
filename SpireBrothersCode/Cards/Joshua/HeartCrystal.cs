@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Terraria. ALL players heal 4. Exhaust.</summary>
-public class HeartCrystal() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self), IGroupHealCard
+/// <summary>Retired 2026-10-26 (Joshua isn't a support anymore); kept so saved runs that have it still load. Was: Terraria. ALL players heal 4. Exhaust.</summary>
+public class HeartCrystal() : JoshuaCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self), IGroupHealCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(4)];

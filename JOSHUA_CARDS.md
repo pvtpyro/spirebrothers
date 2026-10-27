@@ -1,21 +1,23 @@
-# Joshua, The Musician: card plan (draft for review)
+# Joshua, The Musician: card plan
 
-Piano, guitar, vocals. Lived in Japan for a while; now back home in the US. The team's support.
-Games: PlateUp!, Terraria, Rocket League, Stardew Valley, and especially Archipelago (the multiworld randomizer, archipelago.gg).
+Piano, guitar, vocals. A ballad guy, not a shredder. Lived in Japan for a while; now back home in the US.
+Games: PlateUp!, Terraria, Stardew Valley, and especially Archipelago (the multiworld randomizer, archipelago.gg).
+He does **not** like Rocket League much (that's Tim's game) and he **doesn't like playing support**.
 
-**Built 2026-10-04, untested in game.** Numbers below match the code. Cut, rename, or rewrite anything, especially to add inside jokes.
-Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
+**Ballad pass 2026-10-26, untested in game.** He's now the frontman: slow songs that wear enemies down (Heartstrings)
+and patience that pays off in one huge Chorus (Held Note). Healing is down to 5 cards; Share cards are gone.
+Numbers below match the code. Cut, rename, or rewrite anything, especially to add inside jokes.
 
 ## His mechanics
 
 | Keyword | Rule |
 |---|---|
 | **Song** | Playing this card gives you **1 Verse**, shown as a note orb floating above Joshua (max 10). |
-| **Chorus** | **Spends all your Verses** for an effect on **ALL players**, scaled by Verses spent. Build up with Songs, then pay it off with a Chorus. |
-| **Healing** | His big support role. In-combat healing is rare in vanilla, so most heals here are small, **Exhaust**, or spread across the team. |
-| **Share** | Same as Daniel's: pick a player (yourself in solo). |
-| **Tribute** | Two very personal Rares: **Pastor** and **Coming Home**. |
-| **Check** | Archipelago: find a random **item** and send it to a **random player** (yourself in solo). Joshua is always finding things for other people. See the item table below. |
+| **Chorus** | **Spends all your Verses** for an effect scaled by Verses spent. Choruses now help **Joshua himself** (or hit enemies), not ALL players. |
+| **Held Note** | Verses still there at the **start of your turn** become **Held** (they glow) and **count double** for a Chorus. Build quietly, then one big finish. |
+| **Heartstrings** | Enemy debuff: **whenever a Song is played, it loses HP** equal to its Heartstrings (ignores Block). Goes down by 1 at the end of its turn. |
+| **Check** | Archipelago: find a random **item** and send it to a **random player** (yourself in solo). See the item table below. |
+| **Tribute** | Two very personal Rares: **Pastor** and **Coming Home** (kept as his few team heals). |
 
 ### Check: item table
 
@@ -24,16 +26,16 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 | Filler | 40% | Gain 6 Block |
 | Useful | 30% | Draw 1 card next turn |
 | Progression | 15% | Gain 1 Energy next turn |
-| Trap | 15% | Goes to a random **enemy** instead: 1 Weak and 1 Vulnerable. *(In real Archipelago traps hurt whoever gets them; here they keep Joshua a support.)* |
+| Trap | 15% | Goes to a random **enemy** instead: 1 Weak and 1 Vulnerable. |
 
 ## Starting deck (10 cards) and relic
 
 - 4 Strike, 4 Defend
-- **Lend an Ear** (Basic Skill, 1, Share): A player gains 7 Block (10 upgraded). Replaced Hum a Tune (Song, 5 Block) on 2026-10-16, when the guitar took over giving Verses.
-- **Sing Along** (Basic Skill, 1, Chorus): ALL players gain 3 Block per Verse spent.
+- **Serenade** (Basic Attack, 1, Song): Deal 5 damage. Apply 2 Heartstrings (7 / 3 upgraded). Replaced Lend an Ear (Share Block) 2026-10-26.
+- **Sing Along** (Basic Skill, 1, Chorus): Gain 2 Block per Verse (3 upgraded). Was ALL players until 2026-10-26.
 - **Starter relic: Well-Worn Guitar.** At the start of your turn, gain 1 Verse. **Touch of Orobas upgrade: Signature Guitar**, gain 2 Verses at the start of your turn.
 
-Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Archipelago), 🗡️ Monkey Island (Insult / Comeback).
+Legend: 🎵 Song, 🎤 Chorus, 💘 Heartstrings, ⏸ Held Note, 💚 Healing, 📦 Check (Archipelago), 🗡️ Monkey Island (Insult / Comeback). **New** = added in the ballad pass.
 
 ## Common (22)
 
@@ -46,95 +48,91 @@ Legend: 🎵 Song, 🎤 Chorus, 💚 Healing, 🤝 Share / team, 📦 Check (Arc
 | 5 | 🎵 Guitar Strum | 1 Attack | Deal 4 damage to ALL enemies. Apply 1 Vulnerable to ALL enemies. | Guitar |
 | 6 | 🎵 Vocal Warmup | 0 Skill | Gain 1 extra Verse (2 total). Exhaust. | Vocals |
 | 7 | 🎵 Order Up! | 1 Skill | Gain 4 Block. Draw 1 card. | PlateUp! |
-| 8 | 🎵 Boost Pad | 0 Skill | Next turn, gain 1 Energy. | Rocket League |
-| 9 | 🎵🤝 Harmonize | 1 Skill | Share: a player gains 6 Block. | Music / co-op |
-| 10 | 🎤 Big Finish | 1 Attack | **Chorus:** deal 3 damage to ALL enemies per Verse. | Music |
-| 11 | 💚 Konbini Run | 0 Skill | Heal 2. Draw 1 card. Exhaust. | Japan |
-| 12 | 💚 Onsen | 1 Skill | Heal 5. Exhaust. | Japan |
-| 13 | 💚 Watering Can | 1 Skill | Gain 2 Regen. | Stardew Valley |
-| 14 | 💚 Plant Parsnips | 1 Skill | Next turn, gain 1 Energy and heal 2. | Stardew Valley |
-| 15 | 💚 Cherry Blossom Picnic | 1 Skill | ALL players heal 3. Exhaust. | Japan |
-| 16 | 💚🤝 Omiyage | 1 Skill | Share: a player gains 6 Block and heals 2. | Japanese gift-giving |
-| 17 | 🤝 What a Save! | 1 Skill | Share: a player gains 8 Block. | Rocket League |
-| 18 | 📦 Location Check | 1 Skill | Gain 4 Block. **Check.** | Archipelago |
-| 19 | Aerial | 1 Attack | Deal 9 damage. If you have 5+ Verses, draw 1 card. | Rocket League |
-| 20 | Shinkansen | 2 Attack | Deal 18 damage. | Japan (bullet train) |
-| 20a | Copper Shortsword | 0 Attack | Deal 3 damage. Draw 1 card. | Terraria (the starting sword) |
-| 20b | 🎵 Glissando | 1 Attack | Deal 3 damage to ALL enemies 2 times. | Piano |
+| 8 | 🎤 Big Finish | 1 Attack | **Chorus:** deal 3 damage to ALL enemies per Verse. | Music |
+| 9 | 💚 Konbini Run | 0 Skill | Heal 2. Draw 1 card. Exhaust. | Japan |
+| 10 | 💚 Onsen | 1 Skill | Heal 5. Exhaust. | Japan |
+| 11 | 📦 Location Check | 1 Skill | Gain 4 Block. **Check.** | Archipelago |
+| 12 | Shinkansen | 2 Attack | Deal 18 damage. | Japan (bullet train) |
+| 13 | Copper Shortsword | 0 Attack | Deal 3 damage. Draw 1 card. | Terraria |
+| 14 | 🎵 Glissando | 1 Attack | Deal 3 damage to ALL enemies 2 times. | Piano |
+| 15 | 🎵 Deep Breath (**new**) | 0 Skill | Next turn, gain 1 Energy. Upgrade: Retain. | Vocals (was Boost Pad) |
+| 16 | High Note (**new**) | 1 Attack | Deal 9 damage. If you have 5+ Verses, draw 1 card. | Vocals (was Aerial) |
+| 17 | 💘🎵 Tug at the Heartstrings (**new**) | 1 Skill | Apply 3 Heartstrings (5). | Ballads |
+| 18 | 🎵 Piano Intro (**new**) | 1 Skill | Innate. Gain 5 Block. Gain 1 extra Verse. | Piano |
+| 19 | Slow Dance (**new**) | 1 Skill | Retain. Gain 4 Block, +1 per Verse you have (doesn't spend them). | Ballads |
+| 20 | 💘🎵 Lullaby (**new**) | 1 Skill | Apply 1 Weak and 2 Heartstrings. | Ballads |
+| 21 | 💘 Torch Song (**new**) | 1 Attack | Deal 6 damage, +1 for each Heartstrings on the target (+2 upgraded). | Ballads (a sad love song) |
+| 22 | 💘🎵 Humming (**new**) | 0 Skill | Apply 1 Heartstrings to ALL enemies. | Ballads |
 
 ## Uncommon (38)
 
 ### Songs and Choruses
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
-| 21 | 🎤💚 Standing Ovation | 2 Skill | **Chorus:** ALL players heal 1 per Verse. Exhaust. | Music |
-| 22 | 🎤 Sing Your Heart Out | 2 Attack | **Chorus:** deal 8 damage per Verse. | Vocals |
-| 23 | 🎤 Karaoke Night | 1 Skill | **Chorus:** ALL players draw 1 card next turn per 2 Verses. | Karaoke |
-| 24 | 🎤 Matsuri | 2 Skill | **Chorus:** ALL players gain 4 Block per Verse. | Japanese festival |
-| 25 | Bridge | 1 Skill | Gain 2 Verses. Your next Chorus doesn't spend Verses. | Songwriting |
-| 26 | Key Change | 1 Skill | Double your Verses. Exhaust. | Songwriting |
-| 27 | Crescendo | 1 Attack | Deal 4 damage, +3 per Verse you have (doesn't spend them). | Music |
-| 28 | 🎵 Metronome | 1 Attack | Deal 3 damage 2 times. Hits 1 more time each time you play it this combat. *(was a Verse power until 2026-10-25)* | Piano |
-| 29 | Backup Vocals | 1 Power | Whenever you play a Song card, gain 2 Block. | Vocals |
-| 30 | Harmony | 2 Power | Whenever you play a Chorus, ALL players heal 2. | Music |
-| 31 | 📦 Scouting | 1 Skill | Scry 3. Your next **Check** finds a Progression item. | Archipelago (scouting reveals items early) |
-| 32 | 🗡️🎵 Mic Drop | 1 Attack | **Comeback.** Deal 5 damage, +3 for each Insulted on the target, then remove it. | Comeback (music) |
-| 33 | 🎵 Acoustic Set | 1 Skill | Gain 9 Block. | Guitar |
-| 34 | 🎵 Tuning | 0 Skill | Gain 3 Block. Upgrade a card in your hand for this combat. | Guitar |
-| 35 | 🎵🤝 Duet | 1 Skill | Share: you and a player each gain 5 Block (10 if you pick yourself). | Music / co-op |
-| 36 | Rest Note | 1 Skill | Gain 7 Block. Next turn, gain 1 Verse. | Music |
-| 37 | Improvise | 0 Skill | Add a random Song card to your hand. It costs 0 this turn. | Music |
-| 38 | Guitar Feedback | 1 Attack | Deal 7 damage to ALL enemies. If you have 5+ Verses, apply 1 Weak to ALL enemies. | Guitar |
-
-### Healing and support
-| # | Name | Cost / Type | Effect | Theme |
-|---|---|---|---|---|
-| 39 | 💚🤝 Nurse | 2 Skill | Share: a player heals 8. Exhaust. | Terraria |
-| 40 | 💚 Heart Crystal | 1 Skill | ALL players heal 4. Exhaust. | Terraria |
-| 41 | 💚🤝 Comfort Food | 1 Skill | Share: a player heals 3 and gains 5 Block. Exhaust. | PlateUp! |
-| 42 | 💚 Green Tea | 1 Skill | Heal 3. Remove 1 stack of a random debuff. Exhaust. | Japan |
-| 43 | 💚🤝 Care Package | 1 Skill | Share: a player gains 2 Regen and 4 Block. | Moving |
-| 44 | 🤝 Community Center | 2 Power | At the start of your turn, ALL players gain 2 Block. | Stardew Valley |
+| 23 | 🎤 Standing Ovation | 1 Skill | **Chorus:** gain 1 Energy per 4 Verses (per 3 upgraded). Exhaust. *(healed ALL players until 2026-10-26)* | Music |
+| 24 | 🎤 Sing Your Heart Out | 2 Attack | **Chorus:** deal 8 damage per Verse. | Vocals |
+| 25 | 🎤 Karaoke Night | 1 Skill | **Chorus:** draw 1 card per 2 Verses. *(was ALL players, next turn)* | Karaoke |
+| 26 | 🎤 Matsuri | 2 Attack | **Chorus:** deal 2 damage to ALL enemies and gain 2 Block per Verse. *(was ALL players' Block)* | Festival fireworks |
+| 27 | Bridge | 1 Skill | Gain 2 Verses. Your next Chorus doesn't spend Verses. | Songwriting |
+| 28 | Key Change | 1 Skill | Double your Verses. Exhaust. | Songwriting |
+| 29 | Crescendo | 1 Attack | Deal 4 damage, +3 per Verse you have (doesn't spend them). | Music |
+| 30 | 🎵 Metronome | 1 Attack | Deal 3 damage 2 times. Hits 1 more time each time you play it this combat. | Piano |
+| 31 | Backup Vocals | 1 Power | Whenever you play a Song card, gain 2 Block. | Vocals |
+| 32 | 💘 Harmony | 1 Power | Whenever you play a Chorus, apply 2 Heartstrings (3) to ALL enemies. *(healed ALL players until 2026-10-26)* | Music |
+| 33 | 📦 Scouting | 1 Skill | Scry 3. Your next **Check** finds a Progression item. | Archipelago |
+| 34 | 🗡️🎵 Mic Drop | 1 Attack | **Comeback.** Deal 5 damage, +3 for each Insulted on the target, then remove it. | Comeback (music) |
+| 35 | 🎵 Acoustic Set | 1 Skill | Gain 9 Block. | Guitar |
+| 36 | 🎵 Tuning | 0 Skill | Gain 3 Block. Upgrade a card in your hand for this combat. | Guitar |
+| 37 | Rest Note | 1 Skill | Gain 7 Block. Next turn, gain 1 Verse. | Music |
+| 38 | Improvise | 0 Skill | Add a random Song card to your hand. It costs 0 this turn. | Music |
+| 39 | Guitar Feedback | 1 Attack | Deal 7 damage to ALL enemies. If you have 5+ Verses, apply 1 Weak to ALL enemies. | Guitar |
+| 40 | Opening Number (**new**) | 1 Attack | Innate. Deal 8 damage. Draw 1 card. | Music (was Kickoff) |
+| 41 | Showstopper (**new**) | 2 Attack | Deal 14 damage. Apply 2 Vulnerable. | Music (was Demo) |
+| 42 | Sheet Music (**new**) | 1 Skill | Scry 3. Draw 1 card. Gain 1 Verse. | Piano (was Calculated.) |
+| 43 | 🗡️🎵 Bless Your Heart (**new**) | 1 Attack | Deal 6 damage. Apply 2 Insulted. *(said the sweet-but-not-really way)* | Insult (was Nice Shot!) |
+| 44 | 💘🎤 Lighters Up (**new**) | 1 Skill | **Chorus:** apply 1 Heartstrings to ALL enemies per Verse. Upgrade: costs 0. | Ballads |
+| 45 | 💘 Heartbreak (**new**) | 1 Skill | Double an enemy's Heartstrings. Exhaust. Upgrade: costs 0. | Ballads |
+| 46 | ⏸ Fermata (**new**) | 1 Skill | Gain 7 Block. Your Verses become Held. | Music |
+| 47 | Sustain Pedal (**new**) | 1 Power | At the end of your turn, gain 1 Block for each Verse you have. Upgrade: costs 0. | Piano |
+| 48 | 💘🎵 Tearjerker (**new**) | 2 Attack | Deal 8 damage to ALL enemies. Apply 2 Heartstrings to ALL enemies. | Ballads |
+| 49 | 🎵 Nocturne (**new**) | 1 Attack | Retain. Deal 7 damage. | Piano |
+| 50 | ⏸ Old Favorite (**new**) | 1 Attack | Deal 5 damage, +3 for each Held Verse (doesn't spend them). | Music |
 
 ### Japan, moving home, and games
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
-| 45 | Jet Lag | 1 Skill | Apply 2 Weak to ALL enemies. Exhaust. | Moving |
-| 46 | Packing Boxes | 1 Skill | Gain 8 Block. Retain. | Moving |
-| 47 | Long-Haul Flight | 2 Power | At the start of your turn, gain 4 Block. | Moving |
-| 48 | 📦 BK Mode | 0 Skill | Can only be played if you have no other playable cards. **Check** 3 times. | Archipelago: stuck waiting on everyone else's items, until they all show up at once |
-| 49 | Kickoff | 1 Attack | Innate. Deal 8 damage. Draw 1 card. | Rocket League |
-| 50 | Demo | 2 Attack | Deal 14 damage. Apply 2 Vulnerable. | Rocket League |
-| 51 | Calculated. | 1 Skill | Scry 3. Draw 1 card. Gain 1 Verse. | Rocket League |
-| 52 | 🗡️🎵 Nice Shot! | 1 Attack | Deal 6 damage. Apply 2 Insulted. *(said the sarcastic way)* | Insult (Rocket League quick chat) |
-| 53 | Junimos | 1 Power | Whenever you play a Chorus, add a random Song card to your hand. | Stardew Valley |
-| 54 | Fishing | 1 Skill | Draw 1 card. If it's a Song, gain 1 Verse and draw another. | Stardew Valley |
-| 55 | Dish Pit | 1 Skill | Exhaust a card in your hand. Gain 6 Block. | PlateUp! |
-| 56 | 📦 Multiworld | 1 Power | At the start of your turn, **Check.** | Archipelago |
-| 56a | 🎵 Taiko Drums | 2 Attack | Deal 12 damage to ALL enemies. | Japan |
-| 56b | Guitar Solo | 1 Attack | Deal 8 damage. If you have 5+ Verses, deal it again. | Guitar |
+| 51 | Jet Lag | 1 Skill | Apply 2 Weak to ALL enemies. Exhaust. | Moving |
+| 52 | Packing Boxes | 1 Skill | Gain 8 Block. Retain. | Moving |
+| 53 | Long-Haul Flight | 2 Power | At the start of your turn, gain 4 Block. | Moving |
+| 54 | 📦 BK Mode | 0 Skill | Can only be played if you have no other playable cards. **Check** 3 times. | Archipelago |
+| 55 | Junimos | 1 Power | Whenever you play a Chorus, add a random Song card to your hand. | Stardew Valley |
+| 56 | Fishing | 1 Skill | Draw 1 card. If it's a Song, gain 1 Verse and draw another. | Stardew Valley |
+| 57 | Dish Pit | 1 Skill | Exhaust a card in your hand. Gain 6 Block. | PlateUp! |
+| 58 | 📦 Multiworld | 1 Power | At the start of your turn, **Check.** | Archipelago |
+| 59 | 🎵 Taiko Drums | 2 Attack | Deal 12 damage to ALL enemies. | Japan |
+| 60 | Guitar Solo | 1 Attack | Deal 8 damage. If you have 5+ Verses, deal it again. | Guitar |
 
 ## Rare (17)
 
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
-| 57 | 💚 **Pastor** | 2 Skill | ALL players heal 6 and gain 10 Block. Exhaust. | Tribute |
-| 58 | 💚 **Coming Home** | 2 Power | At the start of your turn, ALL players heal 2. | Tribute: moving back to the US |
-| 59 | 💚 Thousand Cranes | 3 Power | The first time ANY player would die this combat, they heal 30% of their Max HP instead. | Japan (senbazuru, folded for recovery) |
-| 60 | 📦 DeathLink | 2 Power | Whenever an enemy dies, ALL other enemies lose HP equal to 25% of its Max HP. | Archipelago: DeathLink ties players' deaths together; here it ties the enemies' |
-| 61 | 💚 Hymn | 1 Skill | ALL players gain 3 Regen. Exhaust. | Music / faith |
-| 62 | 💚 Harvest Festival | 2 Skill | ALL players heal 4 and gain 1 Strength. Exhaust. | Stardew Valley |
-| 63 | 🎤 Rock Opera | 3 Attack | **Chorus:** deal 8 damage to ALL enemies per Verse. | Music |
-| 64 | Perfect Pitch | 2 Power | Your Song cards give 2 Verses instead of 1. | Vocals |
-| 65 | Encore | 2 Power | The first Chorus you play each turn spends only half your Verses (rounded down). | Music |
-| 66 | Choir | 2 Power | Your Chorus cards count as if you had 2 more Verses. | Vocals |
-| 67 | Virtuoso | 3 Power | Whenever you play a Song card, deal 4 damage to ALL enemies. | Piano / guitar |
-| 68 | Mixtape | 1 Skill | Add 3 random Song cards to your hand. They cost 0 this turn. Exhaust. | Music |
-| 69 | 🗡️🎤 Diss Track | 2 Attack | **Chorus + Comeback.** Deal 4 damage to ALL enemies per Verse, +4 for each Insulted on each enemy, then remove their Insulted. | Comeback (music) |
-| 70 | Jam Session | 2 Skill | ALL players gain 2 Energy next turn. Exhaust. | Music / co-op |
-| 71 | 📦 Release! | 1 Skill | **Check** 5 times. Exhaust. | Archipelago: releasing sends out all your remaining items at once |
-| 72 | Zero-Second Goal | 1 Attack | Can only be played if it's the last card in your hand. Deal 30 damage. | Rocket League |
-| 72a | 🎤 Zenith | 1 Attack | **Chorus:** deal 4 damage to a random enemy 2 times per Verse. | Terraria (the ultimate sword) |
+| 61 | 💚 **Pastor** | 2 Skill | ALL players heal 6 and gain 7 Block. Exhaust. | Tribute |
+| 62 | 💚 **Coming Home** | 2 Power | At the start of your turn, ALL players heal 2. | Tribute: moving back to the US |
+| 63 | 💚 Thousand Cranes | 3 Power | The first time ANY player would die this combat, they heal 30% of their Max HP instead. | Japan (senbazuru) |
+| 64 | 📦 DeathLink | 2 Power | Whenever an enemy dies, ALL other enemies lose HP equal to 25% of its Max HP. | Archipelago |
+| 65 | 🎤 Rock Opera | 3 Attack | **Chorus:** deal 8 damage to ALL enemies per Verse. | Music |
+| 66 | Perfect Pitch | 2 Power | Your Song cards give 2 Verses instead of 1. | Vocals |
+| 67 | Encore | 2 Power | The first Chorus you play each turn spends only half your Verses (rounded down). | Music |
+| 68 | Choir | 2 Power | Your Chorus cards count as if you had 2 more Verses. | Vocals |
+| 69 | Virtuoso | 3 Power | Whenever you play a Song card, deal 4 damage to ALL enemies. | Piano / guitar |
+| 70 | Mixtape | 1 Skill | Add 3 random Song cards to your hand. They cost 0 this turn. Exhaust. | Music |
+| 71 | 🗡️🎤 Diss Track | 2 Attack | **Chorus + Comeback.** Deal 4 damage to ALL enemies per Verse, +4 for each Insulted on each enemy, then remove their Insulted. | Comeback (music) |
+| 72 | 📦 Release! | 1 Skill | **Check** 5 times. Exhaust. | Archipelago |
+| 73 | 🎤 Zenith | 1 Attack | **Chorus:** deal 4 damage to a random enemy 2 times per Verse. | Terraria |
+| 74 | 🎤 Power Ballad (**new**) | 2 Attack | **Chorus:** deal 11 damage per Verse to one enemy (14 upgraded). | Ballads |
+| 75 | Final Note (**new**) | 1 Attack | Can only be played if it's the last card in your hand. Deal 30 damage. | Music (was Zero-Second Goal) |
+| 76 | 💘 Haunting Melody (**new**) | 2 Power | Heartstrings on enemies no longer goes down. Upgrade: costs 1. | Ballads |
+| 77 | ⏸ Magnum Opus (**new**) | 3 Power | Held Verses count 3 times for a Chorus instead of 2. Upgrade: costs 2. | Music (his life's work) |
 
 ## Build notes (for Claude)
 
@@ -164,3 +162,17 @@ Goal: no brother or card underpowered; only effects that scale without limit wer
 The guitar now gives Verses every turn, so he almost always has 3. Verse thresholds went from 3+ to 5+ (Aerial, Guitar Feedback).
 Metronome became an attack, and 5 new attacks were added (Copper Shortsword, Glissando, Taiko Drums, Guitar Solo, Zenith):
 22 attacks in the reward pool now, 77 reward cards in total (22 / 38 / 17).
+
+## Ballad pass (2026-10-26)
+
+Josh doesn't like playing support, doesn't really play Rocket League, and is a ballad guy, not a shredder.
+
+- **New mechanics:** Heartstrings (`Powers/HeartstringsPower.cs`, triggers in its own `AfterCardPlayed` on any Song)
+  and Held Note (`VerseOrb.Held`, set for all Verses in `JoshuaTracker.AfterPlayerTurnStartEarly` so the guitar's Verse
+  arrives fresh; `Verses.ForChorus` adds `HeldCount * HeldBonus`; Encore spends the newest Verses first, so Held ones stay).
+- **Retired** (set to `CardRarity.Basic` so they never show up in rewards, shops, transforms, or random generation, but
+  saved runs that have them still load, like Hum a Tune): Lend an Ear, Boost Pad, Harmonize, Watering Can, Plant Parsnips,
+  Cherry Blossom Picnic, Omiyage, What a Save!, Aerial, Nurse, Heart Crystal, Comfort Food, Green Tea, Care Package,
+  Community Center, Duet, Kickoff, Demo, Calculated., Nice Shot!, Hymn, Harvest Festival, Jam Session, Zero-Second Goal.
+- **Reworked in place:** Sing Along, Matsuri, Karaoke Night, Standing Ovation, Harmony (now self / offense).
+- The Duo cards (Hype Man, Babysitting, Minor Key) still help the partner; that's their point.

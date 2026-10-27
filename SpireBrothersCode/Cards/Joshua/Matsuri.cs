@@ -13,22 +13,32 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using SpireBrothers.SpireBrothersCode.Mechanics;
 using SpireBrothers.SpireBrothersCode.Powers;
+using SpireBrothers.SpireBrothersCode.Orbs;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Japanese festival. Chorus: ALL players gain 4 Block per Verse.</summary>
-public class Matsuri() : JoshuaCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+/// <summary>Japanese festival fireworks. Chorus: deal 2 damage to ALL enemies and gain 2 Block per Verse. (Was ALL players' Block until 2026-10-26.)</summary>
+public class Matsuri() : JoshuaCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
 {
+    public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Chorus];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("BlockPerVerse", 4)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new CalculationBaseVar(0),
+        new ExtraDamageVar(2),
+        new CalculatedDamageVar(ValueProp.Move).WithMultiplier(ChorusVerses),
+        new DynamicVar("BlockPerVerse", 2)
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        int verses = await Chorus(ctx);
+        int verses = await ChorusAttack(ctx, play, "vfx/vfx_attack_blunt");
         var block = DynamicVars["BlockPerVerse"].BaseValue * verses;
-        if (block <= 0) return;
-        foreach (var player in AllPlayers) await CreatureCmd.GainBlock(player, block, ValueProp.Move, play);
+        if (block > 0) await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, play);
     }
 
-    protected override void OnUpgrade() => DynamicVars["BlockPerVerse"].UpgradeValueBy(1);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.ExtraDamage.UpgradeValueBy(1);
+        DynamicVars["BlockPerVerse"].UpgradeValueBy(1);
+    }
 }

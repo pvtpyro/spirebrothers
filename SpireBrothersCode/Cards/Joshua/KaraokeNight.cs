@@ -13,10 +13,11 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using SpireBrothers.SpireBrothersCode.Mechanics;
 using SpireBrothers.SpireBrothersCode.Powers;
+using SpireBrothers.SpireBrothersCode.Orbs;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Karaoke. Chorus: ALL players draw 1 card next turn per 2 Verses.</summary>
+/// <summary>Karaoke. Chorus: draw 1 card per 2 Verses. (Was ALL players, next turn, until 2026-10-26.)</summary>
 public class KaraokeNight() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Chorus];
@@ -26,7 +27,7 @@ public class KaraokeNight() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon,
     {
         int verses = await Chorus(ctx);
         int cards = verses / DynamicVars["VersesPerCard"].IntValue;
-        foreach (var player in AllPlayers) await DrawNextTurn(ctx, player, cards);
+        if (cards > 0) await CardPileCmd.Draw(ctx, cards, Owner);
     }
 
     protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);

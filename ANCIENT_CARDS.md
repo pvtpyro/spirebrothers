@@ -42,7 +42,7 @@ and Archaic Tooth isn't offered to them at all.
 | Card | Relic | Cost / Type | Text | Upgrade |
 |---|---|---|---|---|
 | **Sold-Out Show** | Dusty Tome | 3 Power | **Chorus** cards don't spend your Verses. Whenever you play a Chorus card, Exhaust it. | Cost 2 |
-| **Everybody Sing!** | Archaic Tooth (Sing Along) | 1 Skill | **Chorus:** ALL players gain 3 Block and heal 1 per Verse. | 4 Block per Verse |
+| **Everybody Sing!** | Archaic Tooth (Sing Along) | 1 Skill | **Chorus:** ALL players gain 2 Block and heal 1 per Verse. | 3 Block per Verse |
 
 - Sold-Out Show: his Corruption. Verses stay up (max 10), so every Chorus fires at full strength, but each one
   is a one-time encore. Pairs naturally with Encore / Bridge / Choir, which already change how Verses get spent.

@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Rocket League. Deal 9 damage. If you have 3+ Verses, draw 1 card.</summary>
-public class Aerial() : JoshuaCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+/// <summary>Retired 2026-10-26 (Joshua doesn't play Rocket League); kept so saved runs that have it still load. Was: Rocket League. Deal 9 damage. If you have 3+ Verses, draw 1 card.</summary>
+public class Aerial() : JoshuaCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
 {
     protected override int VerseThreshold => 5;
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(9, ValueProp.Move), new CardsVar(1)];

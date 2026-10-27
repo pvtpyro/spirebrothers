@@ -36,12 +36,12 @@ Uncommon cards that only show up in rewards and shops when a specific brother is
 | Daniel | Fixed Your Amp | Joshua | 1 Skill, Hands | Joshua gains 3 Verses. Wired: draw 2 |
 | Daniel | Wire the Kids' Rooms | Tim | 1 Skill, Logic, Exhaust | Tim gains 2 Kids. Wired: gain 8 Block |
 | David | Agree to Disagree | Daniel | 1 Attack, Rant | 6 damage, apply 2 Insulted |
-| David | Patron of the Arts | Joshua | 1 Skill, Exact | Lose 15 Gold; Joshua gains 3 Verses; ALL gain 6 Block. Exact: keep the Gold |
+| David | Patron of the Arts | Joshua | 1 Skill, Exact | Lose 15 Gold; Joshua gains 3 Verses; ALL gain 4 Block. Exact: keep the Gold |
 | David | IOU | Tim | 0 Skill, Exact, Exhaust | Tim gains 30 Gold. Exact: you gain 30 too |
 | Joshua | Hype Man | Daniel | 1 Skill, Song, Share | A player gains 3 Strength this turn |
 | Joshua | Minor Key | David | 1 Skill, Chorus | 1 Bleed per Verse to ALL enemies |
-| Joshua | Babysitting | Tim | 1 Skill, Song | Tim gains 1 Kid; ALL gain 4 Block |
-| Tim | LAN Party | Daniel | 1 Skill, Script | ALL gain 5 Block and draw 1 next turn |
+| Joshua | Babysitting | Tim | 1 Skill, Song | Tim gains 1 Kid; ALL gain 3 Block |
+| Tim | LAN Party | Daniel | 1 Skill, Script | ALL gain 3 Block and draw 1 next turn |
 | Tim | Gift Card | David | 0 Skill, Exhaust | Lose 20 Gold; David gains 40 |
 | Tim | Centering Pass | Joshua | 1 Attack, Script | 8 damage; Joshua gains 2 Verses |
 
@@ -55,7 +55,7 @@ Uncommon cards that only show up in rewards and shops when a specific brother is
 
 ### 4. Potions for David, Joshua, and Tim
 Built 2026-10-26 (common / uncommon / rare each, in `SpireBrothersCode/Potions/`):
-- [x] David: Gas Station Coffee (this turn, Exact also triggers at 1 energy), Trail Mix (heal 10, ALL players 6 Block),
+- [x] David: Gas Station Coffee (this turn, Exact also triggers at 1 energy), Trail Mix (heal 10, ALL players 4 Block),
       Piggy Bank (gain 100 Gold, any time)
 - [x] Joshua: Ramune (gain 3 Verses), Honey Lemon Tea (ALL players heal 8), Matcha (fill Verses to 10)
 - [x] Tim: Juice Box (gain 2 Kids), Sugar Rush (gain 1 Kid, every Kid hits twice), Hotfix (next 3 cards this turn have Script)

@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Japan. Heal 3. Remove 1 stack of a random debuff. Exhaust.</summary>
-public class GreenTea() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+/// <summary>Retired 2026-10-26 (Joshua isn't a support anymore); kept so saved runs that have it still load. Was: Japan. Heal 3. Remove 1 stack of a random debuff. Exhaust.</summary>
+public class GreenTea() : JoshuaCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(3)];

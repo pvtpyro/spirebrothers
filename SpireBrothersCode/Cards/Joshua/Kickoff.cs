@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Rocket League. Innate. Deal 8 damage. Draw 1 card.</summary>
-public class Kickoff() : JoshuaCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+/// <summary>Retired 2026-10-26 (Joshua doesn't play Rocket League); kept so saved runs that have it still load. Was: Rocket League. Innate. Deal 8 damage. Draw 1 card.</summary>
+public class Kickoff() : JoshuaCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Innate];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8, ValueProp.Move), new CardsVar(1)];

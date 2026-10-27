@@ -10,6 +10,7 @@ namespace SpireBrothers.SpireBrothersCode.Orbs;
 /// <summary>
 /// One of Joshua's Verses, floating above him in an orb slot like the Defect's orbs (max 10, the orb slot limit).
 /// It does nothing on its own: Song cards add them, Chorus cards spend them (removed quietly, never evoked).
+/// Verses still there at the start of Joshua's next turn become Held (Held Note) and count double for a Chorus.
 /// See Mechanics/Verses.cs.
 /// </summary>
 public class VerseOrb : CustomOrbModel
@@ -30,11 +31,24 @@ public class VerseOrb : CustomOrbModel
     public override Task<IEnumerable<Creature>> Evoke(PlayerChoiceContext playerChoiceContext) =>
         Task.FromResult<IEnumerable<Creature>>([]);
 
+    /// <summary>Held Note: this Verse was kept from last turn, so a Chorus counts it twice. Shown as a glow behind the note.</summary>
+    public bool Held { get; private set; }
+
+    private Node2D? _halo;
+
+    public void MarkHeld()
+    {
+        Held = true;
+        if (_halo != null && GodotObject.IsInstanceValid(_halo)) _halo.Visible = true;
+    }
+
     // Placeholder look until there's art: a gold eighth note.
     public override Node2D CreateCustomSprite()
     {
         var gold = new Color("f5d27a");
         var root = new Node2D { Name = "VerseSprite" };
+        _halo = new Polygon2D { Polygon = Ellipse(new Vector2(0, -2), 24, 24), Color = new Color(1f, 0.93f, 0.7f, 0.35f), Visible = Held };
+        root.AddChild(_halo);
         root.AddChild(new Polygon2D { Polygon = Ellipse(new Vector2(-6, 12), 10, 7), Color = gold });       // note head
         root.AddChild(new Line2D { Points = [new Vector2(3, 11), new Vector2(3, -18)], Width = 4, DefaultColor = gold }); // stem
         root.AddChild(new Line2D { Points = [new Vector2(3, -18), new Vector2(13, -9), new Vector2(11, 0)], Width = 4, DefaultColor = gold }); // flag

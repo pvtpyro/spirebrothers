@@ -16,10 +16,10 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Stardew Valley. At the start of your turn, ALL players gain 2 Block.</summary>
-public class CommunityCenter() : JoshuaCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+/// <summary>Retired 2026-10-26 (Joshua isn't a support anymore); kept so saved runs that have it still load. Was: Stardew Valley. At the start of your turn, ALL players gain 2 Block.</summary>
+public class CommunityCenter() : JoshuaCard(2, CardType.Power, CardRarity.Basic, TargetType.Self)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<CommunityCenterPower>(3)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<CommunityCenterPower>(2)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {

@@ -16,7 +16,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Basic, co-op support. Share: a player gains 7 Block. Replaced Hum a Tune once Well-Worn Guitar started giving Verses each turn.</summary>
+/// <summary>Retired from the starting deck 2026-10-26 (Serenade replaced it); kept so saved runs that have it still load. Share: a player gains 7 Block. Replaced Hum a Tune once Well-Worn Guitar started giving Verses each turn.</summary>
 public class LendAnEar() : JoshuaCard(1, CardType.Skill, CardRarity.Basic, TargetType.AnyPlayer)
 {
     public override bool GainsBlock => true;

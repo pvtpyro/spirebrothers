@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Rocket League (quick chat). Share: a player gains 8 Block.</summary>
-public class WhatASave() : JoshuaCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyPlayer)
+/// <summary>Retired 2026-10-26 (Joshua doesn't play Rocket League); kept so saved runs that have it still load. Was: Rocket League (quick chat). Share: a player gains 8 Block.</summary>
+public class WhatASave() : JoshuaCard(1, CardType.Skill, CardRarity.Basic, TargetType.AnyPlayer)
 {
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Share];

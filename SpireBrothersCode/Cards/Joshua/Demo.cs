@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Rocket League (demolition). Deal 14 damage. Apply 2 Vulnerable.</summary>
-public class Demo() : JoshuaCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+/// <summary>Retired 2026-10-26 (Joshua doesn't play Rocket League); kept so saved runs that have it still load. Was: Rocket League (demolition). Deal 14 damage. Apply 2 Vulnerable.</summary>
+public class Demo() : JoshuaCard(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(14, ValueProp.Move), new PowerVar<VulnerablePower>(2)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<VulnerablePower>()];

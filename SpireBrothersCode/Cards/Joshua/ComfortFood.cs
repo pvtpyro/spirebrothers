@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>PlateUp!. Share: a player heals 3 and gains 5 Block. Exhaust.</summary>
-public class ComfortFood() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
+/// <summary>Retired 2026-10-26 (Joshua isn't a support anymore); kept so saved runs that have it still load. Was: PlateUp!. Share: a player heals 3 and gains 5 Block. Exhaust.</summary>
+public class ComfortFood() : JoshuaCard(1, CardType.Skill, CardRarity.Basic, TargetType.AnyPlayer)
 {
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Share, CardKeyword.Exhaust];

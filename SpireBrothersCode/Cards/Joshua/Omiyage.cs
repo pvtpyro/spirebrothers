@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Japanese gift-giving. Share: a player gains 6 Block and heals 2.</summary>
-public class Omiyage() : JoshuaCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyPlayer)
+/// <summary>Retired 2026-10-26 (Joshua isn't a support anymore); kept so saved runs that have it still load. Was: Japanese gift-giving. Share: a player gains 6 Block and heals 2.</summary>
+public class Omiyage() : JoshuaCard(1, CardType.Skill, CardRarity.Basic, TargetType.AnyPlayer)
 {
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Share];

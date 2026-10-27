@@ -17,11 +17,11 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Tim;
 
-/// <summary>Family / co-op. ALL players gain 2 Block per Kid.</summary>
+/// <summary>Family / co-op. ALL players gain 1 Block per Kid.</summary>
 public class FamilyGameNight() : TimCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Kids];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("BlockPerKid", 2)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("BlockPerKid", 1)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {

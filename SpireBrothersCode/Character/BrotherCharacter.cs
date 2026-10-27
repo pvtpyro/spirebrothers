@@ -36,7 +36,7 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
     {
         try
         {
-            if (LoadFrames(out var first) is { } frames) return AnimatedBody(frames, first!);
+            if (LoadFrames(out var first) is { } frames) return NarrowBounds(AnimatedBody(frames, first!));
         }
         catch (Exception e)
         {
@@ -64,6 +64,23 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
     private NCreatureVisuals AnimatedBody(SpriteFrames frames, Texture2D first) => PixelBody.AnimatedBody(frames, first, BodyHeight);
 
     private void ScaleToHeight(NCreatureVisuals visuals, float height) => PixelBody.ScaleToHeight(visuals, height, BodyHeight);
+
+    /// <summary>How much of the frame's width counts as his body. The figure fills well under the whole frame.</summary>
+    protected virtual float BoundsWidth => 0.6f;
+
+    // The game spaces players by their Bounds width, and with 4 players the back row sits further left. The full
+    // 64-wide frame scaled up is 320 units, much wider than a vanilla character, which pushed the 4th player off
+    // the left edge of the screen. Narrowing Bounds (kept centred) also trims the hitbox and health bar to the figure.
+    private NCreatureVisuals NarrowBounds(NCreatureVisuals visuals)
+    {
+        var bounds = visuals.GetNodeOrNull<Control>("%Bounds")
+                     ?? visuals.GetChildren().OfType<Control>().FirstOrDefault(c => c.Name.ToString() == "Bounds");
+        if (bounds == null) return visuals;
+        float cut = bounds.Size.X * (1 - BoundsWidth);
+        bounds.Position += new Vector2(cut / 2, 0);
+        bounds.Size -= new Vector2(cut, 0);
+        return visuals;
+    }
 
     /// <summary>
     /// A looping animation of this brother, feet at the origin, <paramref name="height"/> units tall, for screens

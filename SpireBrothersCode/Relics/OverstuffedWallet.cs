@@ -10,12 +10,12 @@ namespace SpireBrothers.SpireBrothersCode.Relics;
 
 /// <summary>
 /// David's upgraded starter (from Touch of Orobas, replacing Old Wallet): at the start of each combat, ALL players gain 1 Block per
-/// 15 Gold (max 20).
+/// 25 Gold (max 12).
 /// </summary>
 public class OverstuffedWallet : DavidRelic
 {
-    public const int GoldPerBlock = 15;
-    public const int MaxBlock = 20;
+    public const int GoldPerBlock = 25;
+    public const int MaxBlock = 12;
     public override RelicRarity Rarity => RelicRarity.Starter;
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<FamilyBondsPower>()];
 

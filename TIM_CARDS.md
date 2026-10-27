@@ -60,7 +60,7 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeba
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
 | 21 | 👶 Bedtime Story | 1 Skill | Gain 1 Kid. Draw 1 card. | Family |
-| 22 | 👶 Family Game Night | 1 Skill | ALL players gain 2 Block per Kid. | Family / co-op |
+| 22 | 👶 Family Game Night | 1 Skill | ALL players gain 1 Block per Kid. | Family / co-op |
 | 23 | 👶 Honey-Do List | 1 Skill | Your Kids act right now (deal their end-of-turn damage). | Married life |
 | 24 | 👶 Minivan Ram | 2 Attack | Deal 10 damage, +2 per Kid. | Family |
 | 25 | 👶 Big Family | 1 Power | At the end of your turn, also gain 1 Block per Kid. | Family |
@@ -114,7 +114,7 @@ Legend: 👶 Kids, 📜 Script, 🏰 Age, 🗡️ Monkey Island (Insult / Comeba
 |---|---|---|---|---|
 | 57 | 👶 **The Whole Crew** | 2 Skill | Gain Kids until you have 8. Exhaust. | All eight of them |
 | 58 | 👶 Proud Dad | 2 Power | Your Kids deal 2 damage each instead of 1. | Family |
-| 59 | 👶 Family Reunion | 2 Skill | ALL players gain 3 Block per Kid. Exhaust. | Family / co-op |
+| 59 | 👶 Family Reunion | 2 Skill | ALL players gain 2 Block per Kid. Exhaust. | Family / co-op |
 | 60 | 👶 Lego Masterpiece | 2 Attack | Deal 4 damage per Kid to ALL enemies. Exhaust. | Legos (built with the kids) |
 | 61 | 📜 Automation Suite | 3 Power | The first card you play each turn has **Script.** | Lua add-ons |
 | 62 | 📜 while true do | 1 Skill | Gain 3 Block. Draw 1 card. Its **Script** repeats every turn for the rest of combat. Exhaust. | Lua (the infinite loop) |
@@ -140,7 +140,7 @@ Both brothers have an uncommon called **Wife Aggro**; same title, different card
 ## Co-op links with his brothers
 
 - **Dad Joke** applies Insulted, which Daniel's Comebacks cash in.
-- **Rocket League** is his #1 game and Joshua plays it too (Joshua has What a Save!, Kickoff, Demo).
+- **Rocket League** is his #1 game. (Joshua doesn't really play it; his Rocket League cards were retired 2026-10-26.)
   A future "Brothers in Arms" bonus could connect their RL cards.
 
 ## Build notes (for Claude)

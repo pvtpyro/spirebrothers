@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Terraria (the Nurse NPC). Share: a player heals 8. Exhaust.</summary>
-public class Nurse() : JoshuaCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
+/// <summary>Retired 2026-10-26 (Joshua isn't a support anymore); kept so saved runs that have it still load. Was: Terraria (the Nurse NPC). Share: a player heals 8. Exhaust.</summary>
+public class Nurse() : JoshuaCard(2, CardType.Skill, CardRarity.Basic, TargetType.AnyPlayer)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Share, CardKeyword.Exhaust];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(8)];

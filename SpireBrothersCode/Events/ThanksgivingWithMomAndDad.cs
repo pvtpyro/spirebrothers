@@ -14,7 +14,7 @@ public class ThanksgivingWithMomAndDad : BrotherEvent
     protected override IReadOnlyList<EventOption> GenerateInitialOptions() =>
     [
         Option(DadsDeepFriedTurkey),
-        Option(SecondsOnMomsPie),
+        ShowingCard<FoodComa>(Option(SecondsOnMomsPie)),
         Option(HelpMomWithTheDishes),
         Option(OutInDadsShop),
     ];
