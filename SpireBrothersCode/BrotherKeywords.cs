@@ -23,10 +23,11 @@ public static class BrotherKeywords
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Rant;
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Delegate;
 
-    // Joshua. Song shows at the top of the card; Chorus and Check are written into the card text by hand.
+    // Joshua. Song shows at the top of the card; Chorus, Check, and Roll (D&D dice) are written into the card text by hand.
     [CustomEnum, KeywordProperties(AutoKeywordPosition.Before)] public static CardKeyword Song;
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Chorus;
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Check;
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Roll;
 
     // Tim. Script shows at the end of the card (so Xref / Snap to Grid can add it); Kids and Age are written by hand.
     [CustomEnum, KeywordProperties(AutoKeywordPosition.After)] public static CardKeyword Script;

@@ -28,6 +28,8 @@
   "SPIREBROTHERS-CHORUS.description": "Spends ALL your [gold]Verses[/gold] for an effect that grows with each one spent. [gold]Held[/gold] Verses (kept from last turn) count double.",
   "SPIREBROTHERS-CHECK.title": "Check",
   "SPIREBROTHERS-CHECK.description": "Find a random item for a random player: [gold]Filler[/gold] (6 [gold]Block[/gold]), [gold]Useful[/gold] (draw 1 next turn), [gold]Progression[/gold] (1 energy next turn), or a [gold]Trap[/gold] (an enemy gets 1 [gold]Weak[/gold] and 1 [gold]Vulnerable[/gold]).",
+  "SPIREBROTHERS-ROLL.title": "Roll",
+  "SPIREBROTHERS-ROLL.description": "Roll a d20. On a 1 ([gold]Fumble[/gold]) the effect is halved; on a 20 ([gold]Natural 20[/gold]) it's doubled.",
 
   "SPIREBROTHERS-SCRIPT.title": "Script",
   "SPIREBROTHERS-SCRIPT.description": "At the start of your next turn, this card's effect happens again for free. Write it once, let it run.",

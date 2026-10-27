@@ -68,18 +68,18 @@ public abstract class JoshuaCard(int cost, CardType type, CardRarity rarity, Tar
     private int? _spentVerses;
 
     /// <summary>Spend all Verses for this Chorus. Returns how many it counts.</summary>
-    protected async Task<int> Chorus(PlayerChoiceContext ctx) => await Verses.SpendForChorus(ctx, this);
+    protected async Task<int> Chorus(PlayerChoiceContext ctx, bool keepVerses = false) => await Verses.SpendForChorus(ctx, this, keepVerses);
 
     /// <summary>CalculatedDamage multiplier for Chorus attacks: Verses spent, or what it would spend if played now.</summary>
     protected static decimal ChorusVerses(CardModel card, Creature? _) =>
         card is JoshuaCard { _spentVerses: int spent } ? spent : Verses.ForChorus(card.Owner);
 
     /// <summary>A Chorus attack: spend Verses, then attack with CalculatedDamage scaled by them. Returns the Verses counted.</summary>
-    protected async Task<int> ChorusAttack(PlayerChoiceContext ctx, CardPlay play, string vfx)
+    protected async Task<int> ChorusAttack(PlayerChoiceContext ctx, CardPlay play, string vfx, bool keepVerses = false)
     {
         try
         {
-            int verses = await Chorus(ctx);
+            int verses = await Chorus(ctx, keepVerses);
             _spentVerses = verses;
             await CommonActions.CardAttack(this, play, vfx: vfx).Execute(ctx);
             return verses;
@@ -109,6 +109,29 @@ public abstract class JoshuaCard(int cost, CardType type, CardRarity rarity, Tar
         finally
         {
             _spentVerses = null;
+        }
+    }
+
+    // While a Roll attack resolves, its damage is scaled by the roll (half on a 1, double on a 20).
+    private decimal? _rollMultiplier;
+
+    /// <summary>CalculatedDamage multiplier for Roll attacks: 1 in previews, the roll's multiplier while it resolves.</summary>
+    protected static decimal RollMultiplier(CardModel card, Creature? _) =>
+        card is JoshuaCard { _rollMultiplier: decimal m } ? m : 1m;
+
+    /// <summary>A Roll attack: roll the d20, then attack with CalculatedDamage scaled by it. Returns the roll.</summary>
+    protected async Task<int> RollAttack(PlayerChoiceContext ctx, CardPlay play, string vfx)
+    {
+        try
+        {
+            int roll = await Dice.Roll(ctx, Owner);
+            _rollMultiplier = Dice.Multiplier(roll);
+            await CommonActions.CardAttack(this, play, vfx: vfx).Execute(ctx);
+            return roll;
+        }
+        finally
+        {
+            _rollMultiplier = null;
         }
     }
 

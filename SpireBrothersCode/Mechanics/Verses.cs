@@ -93,8 +93,9 @@ public static class Verses
     /// <summary>
     /// Call at the start of a Chorus card's OnPlay. Returns the Verses it counts, then spends them
     /// (Encore saves half, Bridge saves all) and runs the owner's Chorus listeners.
+    /// keepVerses (Ballad of the Wind Fish) spends none and leaves Encore and Bridge unused.
     /// </summary>
-    public static async Task<int> SpendForChorus(PlayerChoiceContext ctx, CardModel card)
+    public static async Task<int> SpendForChorus(PlayerChoiceContext ctx, CardModel card, bool keepVerses = false)
     {
         var owner = card.Owner;
         if (owner?.Creature == null) return 0;
@@ -103,8 +104,12 @@ public static class Verses
         Sounds.Play(Sounds.JoshuaChorus);
 
         // Encore first (it comes back every turn, and spends half, rounded down), then Bridge (one use each, spends none).
-        int spend = Count(owner);
-        if (owner.Creature.GetPower<EncorePower>()?.TryUse() ?? false)
+        int spend = keepVerses ? 0 : Count(owner);
+        if (spend == 0)
+        {
+            // Nothing to spend: keep Encore and Bridge for a Chorus that needs them.
+        }
+        else if (owner.Creature.GetPower<EncorePower>()?.TryUse() ?? false)
         {
             spend /= 2;
         }

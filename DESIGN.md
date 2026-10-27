@@ -81,7 +81,8 @@ Piano, guitar, vocals: a ballad guy, not a shredder. Lived in Japan for a while;
 - Starter relic Well-Worn Guitar: gain 1 Verse at the start of each turn (Signature Guitar: 2). Starter Basic card Serenade (Song attack, applies Heartstrings).
 - **Check** (Archipelago, which he loves): find random items and send them to random players. Traps go to enemies.
 - **Healing**: only 5 cards now (Konbini Run, Onsen, Pastor, Coming Home, Thousand Cranes). No Share cards.
-- Games: PlateUp!, Terraria, Stardew Valley, Archipelago. Not Rocket League (that's Tim's).
+- **Roll** (D&D, his favorite along with board games): d20 cards; 1 halves the effect, 20 doubles it. Advantage, Lucky, Dungeon Master, Lucky d20 relic.
+- Games, in his own words: Slay the Spire, old-school 2D Zelda, D&D, board games (none named). Also PlateUp!, Terraria, Stardew Valley, Archipelago. Not Rocket League (that's Tim's).
 - Tribute cards: **Pastor** (all players heal and gain Block, Exhaust) and **Coming Home**.
 - Full card plan: JOSHUA_CARDS.md.
 

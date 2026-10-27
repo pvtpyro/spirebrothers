@@ -56,7 +56,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   `MainFile.ShareMonkeyIslandItems()` via vanilla `ModHelper.AddModelToPool`. Add each new brother there.
 - Joshua: `Character/Joshua.cs` + `JoshuaPools.cs` (Regent visuals), `Cards/JoshuaCard.cs` (Verse-threshold glow, `Chorus()`,
   `ChorusAttack()` + `ChorusVerses` multiplier so damage uses the Verses just spent, `AllPlayers`, `ShareTarget()`),
-  `Cards/Joshua/` (109 files: 5 in the starting deck / Basic, 24 retired (Basic rarity, kept for saved runs), 77 reward cards, 3 Duo), `Mechanics/Verses.cs` (count, gain, `SpendForChorus` with
+  `Cards/Joshua/` (5 starting-deck Basics, 24 retired (Basic rarity, kept for saved runs), 83 reward cards, 3 Duo, 1 token), `Mechanics/Verses.cs` (count, gain, `SpendForChorus` with
   Encore/Bridge/Choir, `IChorusListener`, `AddRandomSongs`), `Orbs/VerseOrb.cs` (each Verse is an orb above him like the Defect's, max 10; labels hidden by a Harmony patch; Chorus removes them quietly, no evoke), `Mechanics/JoshuaTracker.cs` (Song cards add Verses after
   play), `Mechanics/Archipelago.cs` (Check: rolls an item on the run RNG, thought bubble over the receiver; lines are
   `SPIREBROTHERS-ARCHIPELAGO.*` in powers.json). Starter relic `Relics/WellWornGuitar.cs`.
@@ -274,3 +274,7 @@ Card art for everything (all cards, relics, and powers use placeholders).
   set to `CardRarity.Basic` (the game never offers Basic cards in rewards, shops, transforms, or combat generation) so saved
   runs still load; any new random-card picker of ours must filter to Common/Uncommon/Rare (`Verses.AddRandomSongs` does).
   Full list in JOSHUA_CARDS.md. Untested in game.
+- **Joshua D&D/Zelda pass** (his own favorites: Slay the Spire, 2D Zelda, D&D, board games): **Roll** keyword (`Mechanics/Dice.cs`,
+  d20 on `Rng.CombatTargets`, speech bubble with the result; 1 = half, 20 = double via `JoshuaCard.RollAttack`/`RollMultiplier`),
+  `AdvantagePower` / `LuckyPower` / `DungeonMasterPower`, relic `LuckyD20`. Zelda cards incl. the `MasterSword` token and Ballad of
+  the Wind Fish (`Chorus(ctx, keepVerses: true)`). Joshua's reward pool is now 83 (23 / 40 / 20). Untested in game.

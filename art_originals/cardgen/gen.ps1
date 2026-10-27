@@ -247,7 +247,7 @@ $relicGlyphs = @{ and_you_know_what = '💬'; trusty_multimeter = '📟'; rubber
   well_technically = '☝'; overstuffed_wallet = '💰'; signature_guitar = '🎸'; fifteen_passenger_van = '🚌'
   blown_cartridge = '🎮'; party_headset = '🎧'; shared_steam_library = '📚'; brothers_in_arms = '🤝'
   pocket_knife = '🔪'; graphing_calculator = '🧮'; savings_account = '🏦'; soapbox = '📢'; payday_mask = '🎭'
-  lucky_pick = '🍀'; omamori = '🧧'; capo = '🎼'; spoiler_log = '📜'; gold_record = '💿'
+  lucky_pick = '🍀'; lucky_d20 = '🎲'; omamori = '🧧'; capo = '🎼'; spoiler_log = '📜'; gold_record = '💿'
   loose_lego_brick = '🧱'; juice_boxes = '🧃'; garrisoned_relic = '⛪'; full_boost = '🚀'; startup_script = '💾'
   patch_panel = '🔌'; super_destroyer = '🛸'; dads_tackle_box = '🎣' }
 $relicColors = @{ grapefruit = '#ff8a5c'; well_worn_guitar = '#d9a25b'; old_wallet = '#9b6a3c'; family_minivan = '#6fa8dc'; stone_monkey_head = '#9aa3a8'
@@ -255,7 +255,7 @@ $relicColors = @{ grapefruit = '#ff8a5c'; well_worn_guitar = '#d9a25b'; old_wall
   well_technically = '#ffd966'; overstuffed_wallet = '#6aa84f'; signature_guitar = '#b36bff'; fifteen_passenger_van = '#4a86c8'
   blown_cartridge = '#9fa8b3'; party_headset = '#76a5af'; shared_steam_library = '#5b7fa6'; brothers_in_arms = '#e6b450'
   pocket_knife = '#cc4125'; graphing_calculator = '#7f8c8d'; savings_account = '#6aa84f'; soapbox = '#b4a7d6'; payday_mask = '#eeeeee'
-  lucky_pick = '#93c47d'; omamori = '#e06666'; capo = '#d9a25b'; spoiler_log = '#c9b38a'; gold_record = '#f1c232'
+  lucky_pick = '#93c47d'; lucky_d20 = '#8e7cc3'; omamori = '#e06666'; capo = '#d9a25b'; spoiler_log = '#c9b38a'; gold_record = '#f1c232'
   loose_lego_brick = '#e74c3c'; juice_boxes = '#f6b26b'; garrisoned_relic = '#d4af37'; full_boost = '#ff9900'; startup_script = '#6d9eeb'
   patch_panel = '#4a86c8'; super_destroyer = '#a4b0be'; dads_tackle_box = '#3d85c6' }
 # Solid silhouette of a line-art glyph: everything not reachable from the border.
