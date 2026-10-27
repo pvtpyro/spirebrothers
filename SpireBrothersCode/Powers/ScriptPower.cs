@@ -38,21 +38,26 @@ public class ScriptPower : BrothersPower
         var cards = _queued.ToList();
         _queued.Clear();
         await PowerCmd.Remove(this);
+        // Repeat Last Command: each queued card runs Amount extra times.
+        int runs = 1 + Owner.GetPowerAmount<RepeatLastCommandPower>();
         foreach (var card in cards)
         {
-            if (!Owner.IsAlive || CombatState == null || !CombatState.HittableEnemies.Any()) return;
-            try
+            for (int run = 0; run < runs; run++)
             {
-                var dupe = card.CreateDupe();
-                Replays.AddOrUpdate(dupe, true);
-                await CardCmd.AutoPlay(choiceContext, dupe, null);
+                if (!Owner.IsAlive || CombatState == null || !CombatState.HittableEnemies.Any()) return;
+                try
+                {
+                    var dupe = card.CreateDupe();
+                    Replays.AddOrUpdate(dupe, true);
+                    await CardCmd.AutoPlay(choiceContext, dupe, null);
+                }
+                catch (Exception e)
+                {
+                    MainFile.Logger.Error($"Script re-run failed for {card.GetType().Name}: {e}");
+                    break;
+                }
+                await AfterScriptRan(choiceContext, player);
             }
-            catch (Exception e)
-            {
-                MainFile.Logger.Error($"Script re-run failed for {card.GetType().Name}: {e}");
-                continue;
-            }
-            await AfterScriptRan(choiceContext, player);
         }
     }
 

@@ -180,6 +180,15 @@ public static class Backgrounds
         Belt(c, 202, 0); Belt(c, 226, 5);
         // blocky ground
         for (int x = 0; x < c.W; x += 12) { Block(c, x, 246, 12, C("6b4a2b"), C("4f9a52")); Block(c, x, 258, 12, C("5a3d24")); }
+        // a stack of books by his feet (he reads everywhere he goes), one lying open on top
+        (int x, int w, string col)[] books = [(266, 30, "2c4a8a"), (269, 25, "8a2a2a"), (264, 28, "2e6a3a"), (268, 24, "c89a30")];
+        for (int i = 0; i < books.Length; i++)
+        {
+            var (bx, bw, bc) = books[i]; int by = 239 - i * 7;
+            c.Draw(q => S.Box(q, bx, by, bx + bw, by + 6), C(bc), hi: C(bc).Light);
+            for (int x = bx + 2; x < bx + bw - 1; x++) c.Set(x, by + 3, C("efe6cc"));   // page edges
+        }
+        c.Draw(q => S.Poly(q, new V(266, 210), new V(280, 206), new V(294, 210), new V(294, 213), new V(280, 210), new V(266, 213)), C("efe6cc"), hi: C("ffffff"));
     }
 
     static void Gear(Canvas c, V at, float r, Col col)
@@ -300,13 +309,50 @@ public static class Backgrounds
             int y = 203 + row * 6;
             c.Set(x, y, C("6ad050")); c.Set(x + 1, y - 1, C("6ad050")); c.Set(x - 1, y - 1, C("4aa040")); c.Set(x, y - 2, C("8ae070"));
         }
-        // a giant ball flying across the sky
-        for (int i = 0; i < 46; i++) { c.Set(380 + i, 52 + i / 3, C("ffffff").Lerp(C("f6b08a"), i / 46f)); c.Set(380 + i, 58 + i / 3, C("ffffff").Lerp(C("f6b08a"), i / 46f)); }
-        Ball(c, new V(368, 52), 16, C("e8e8ee"), C("3a3a48"));
+        // a sword resting in a stone on the hill (old-school adventure games)
+        c.Draw(q => S.Poly(q, new V(160, 194), new V(163, 184), new V(181, 184), new V(184, 194)), C("8a8296"), hi: C("b0a8bc"));
+        c.Draw(q => S.Poly(q, new V(169.5f, 185), new V(169.5f, 160), new V(172, 156), new V(174.5f, 160), new V(174.5f, 185)), C("d8e0ec"), hi: C("ffffff"));
+        c.Draw(q => S.Box(q, 164, 156, 180, 159), C("4a5ac8"));
+        c.Draw(q => S.Box(q, 170.5f, 147, 173.5f, 156), C("3a2a5a"));
+        c.Draw(q => S.Circle(q, new V(172, 146), 2), C("f0c040"));
+        // a d20 tumbling across the sky (D&D), with a sparkly trail
+        for (int i = 0; i < 46; i++) { c.Set(384 + i, 50 + i / 3, C("ffffff").Lerp(C("f6b08a"), i / 46f)); if (i % 4 == 0) c.Set(386 + i, 58 + i / 3, C("ffd860")); }
+        D20(c, new V(368, 52), 16);
         // floating notes
         Note(c, new V(214, 70), C("ffd860"));
         Note(c, new V(236, 50), C("ffffff"));
         Note(c, new V(256, 78), C("ffd860"));
+    }
+
+    /// <summary>A d20 seen face-on: a hexagon outline with the front triangle face lit, showing a 20.</summary>
+    static void D20(Canvas c, V at, float r)
+    {
+        var hex = new V[6];
+        for (int i = 0; i < 6; i++) hex[i] = at + V.Dir(-90 + i * 60) * r;
+        var tri = new[] { at + new V(0, -r * 0.62f), at + new V(r * 0.6f, r * 0.42f), at + new V(-r * 0.6f, r * 0.42f) };
+        c.Draw(q => S.Poly(q, hex), C("b8304a"), hi: C("e05a70"));
+        c.Flat(q => S.Poly(q, tri), C("e05a70"));
+        // edges from the front face out to the rim
+        var edge = C("6a1a2a");
+        foreach (var (a, b) in new[] { (tri[0], tri[1]), (tri[1], tri[2]), (tri[2], tri[0]), (tri[0], hex[0]), (tri[0], hex[1]), (tri[0], hex[5]),
+                     (tri[1], hex[1]), (tri[1], hex[2]), (tri[1], hex[3]), (tri[2], hex[3]), (tri[2], hex[4]), (tri[2], hex[5]) })
+            for (int s = 0; s <= 24; s++) c.Plot(a + (b - a) * (s / 24f), edge);
+        // "20" in a 3 x 5 pixel font
+        string[] two = ["###", "..#", "###", "#..", "###"], zero = ["###", "#.#", "#.#", "#.#", "###"];
+        int x0 = (int)at.X - 3, y0 = (int)at.Y - 1;
+        for (int y = 0; y < 5; y++) for (int x = 0; x < 3; x++)
+        {
+            if (two[y][x] == '#') c.Set(x0 + x, y0 + y, C("ffffff"));
+            if (zero[y][x] == '#') c.Set(x0 + 4 + x, y0 + y, C("ffffff"));
+        }
+        Sparkle(c, at + new V(r + 3, -r + 2));
+        Sparkle(c, at + new V(-r - 2, r - 4));
+    }
+
+    static void Sparkle(Canvas c, V at)
+    {
+        for (int k = -2; k <= 2; k++) { c.Plot(at + new V(k, 0), C("fff4c0")); c.Plot(at + new V(0, k), C("fff4c0")); }
+        c.Plot(at, C("ffffff"));
     }
 
     // ---------------------------------------------------------------- Tim: castle at dusk, blueprints, bricks

@@ -166,3 +166,22 @@ Goal: no brother or card underpowered (strong cards are fine).
 - **Lego Masterpiece:** costs 2 (was 3).
 - **Imperial Age:** costs 1 (was 2; 0 upgraded).
 - **Not Mad, Just Disappointed:** costs 0 (was 1; Joshua's Common You Call That Singing? did the same for 0).
+
+## Expansion (2026-10-27): 12 more, mostly Powers and Attacks
+
+He had only 11 Powers in the reward pool; now 17, and 27 Attacks (88 cards total: 25 Common / 43 Uncommon / 20 Rare). Untested in game.
+
+| Rarity | Name | Cost / Type | Effect | Theme |
+|---|---|---|---|---|
+| Common | Demolition | 1 Attack | Deal 8 damage. If this kills the enemy, gain 1 energy. | Rocket League |
+| Common | 📜 Array | 1 Attack | Deal 2 damage 3 times. **Script.** (class `ArrayCommand`) | AutoCAD (the ARRAY command) |
+| Common | 🏰 Archer Line | 1 Attack | Deal 4 damage to ALL enemies. **Feudal Age or later:** deal it again. | Age of Empires |
+| Common | 👶 Pillow Fight | 1 Attack | Deal 3 damage to ALL enemies, +1 per Kid. | Eight kids, one living room |
+| Uncommon | Sticky Cam | 1 Power | At the start of your turn, apply 1 Vulnerable to a random enemy. (Upgrade: costs 0.) | Splinter Cell |
+| Uncommon | Overnight Shipping | 1 Power | At the start of your turn, if you have 10 Gold, spend it: gain 1 energy and draw 1 card. (Upgrade: costs 0.) | He loves to spend money |
+| Uncommon | 🏰 University | 1 Power | At the start of your turn, Upgrade 2 random cards in your draw pile for the rest of combat. (Upgrade: costs 0.) | Age of Empires; he can't Smith |
+| Uncommon | Speed Flip | 1 Attack | Innate. Deal 5 damage twice. Draw 1 card. | Rocket League (the fastest kickoff) |
+| Uncommon | 👶 Dogpile | 1 Attack | Deal 2 damage, plus once more per Kid. | Family |
+| Rare | 🏰 Blast Furnace | 2 Power | Your cards deal +1 damage and +1 Block, plus 1 more per Age after Dark (on top of the normal Age bonus). | Age of Empires (last blacksmith tech) |
+| Rare | Third Echelon | 2 Power | At the start of your turn, apply 1 Weak to ALL enemies. | Splinter Cell |
+| Rare | 📜 Repeat Last Command | 2 Power | Your Script effects happen 1 more time. | AutoCAD (Enter repeats the last command) |

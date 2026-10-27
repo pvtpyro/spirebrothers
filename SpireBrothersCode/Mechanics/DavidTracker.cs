@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using SpireBrothers.SpireBrothersCode.Powers;
 using SpireBrothers.SpireBrothersCode.Relics;
 
 namespace SpireBrothers.SpireBrothersCode.Mechanics;
@@ -39,11 +40,15 @@ public class DavidTracker() : CustomSingletonModel(HookType.Combat)
         return Task.CompletedTask;
     }
 
-    /// <summary>Rants already played this turn. Read inside OnPlay, it doesn't count the card being played.</summary>
+    /// <summary>
+    /// Rants already played this turn. Read inside OnPlay, it doesn't count the card being played.
+    /// Overthinking adds its Amount on top, so every Rant card acts as if more Rants came before it.
+    /// </summary>
     public static int RantsThisTurn(Player? player)
     {
         var state = player?.PlayerCombatState;
-        return state == null ? 0 : RantsThisTurnField.Get(state);
+        if (state == null) return 0;
+        return RantsThisTurnField.Get(state) + (player!.Creature?.GetPowerAmount<OverthinkingPower>() ?? 0);
     }
 
     public static int RantsThisCombat(Player? player)

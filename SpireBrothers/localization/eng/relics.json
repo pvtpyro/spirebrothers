@@ -1,6 +1,6 @@
 {
   "SPIREBROTHERS-AND_YOU_KNOW_WHAT.title": "And You Know What?",
-  "SPIREBROTHERS-AND_YOU_KNOW_WHAT.description": "At the start of your turn, if you played both a [gold]Logic[/gold] and a [gold]Hands[/gold] card last turn, draw 1 card.",
+  "SPIREBROTHERS-AND_YOU_KNOW_WHAT.description": "At the start of your turn, if you played both a [gold]Logic[/gold] and a [gold]Handy[/gold] card last turn, draw 1 card.",
   "SPIREBROTHERS-AND_YOU_KNOW_WHAT.flavor": "He always has one more thing to tell you.",
   "SPIREBROTHERS-TRUSTY_MULTIMETER.title": "Trusty Multimeter",
   "SPIREBROTHERS-TRUSTY_MULTIMETER.description": "The first time each turn a [gold]Wired[/gold] effect triggers, gain [blue]3[/blue] [gold]Block[/gold].",
@@ -39,7 +39,7 @@
   "SPIREBROTHERS-FAMILY_MINIVAN.description": "Start each combat with [blue]2[/blue] [gold]Kids[/gold].\nAfter each combat you win, gain [blue]10[/blue] [gold]Gold[/gold].",
   "SPIREBROTHERS-FAMILY_MINIVAN.flavor": "Seats eight. Plus Dad. Mostly.",
   "SPIREBROTHERS-WELL_TECHNICALLY.title": "Well, Technically...",
-  "SPIREBROTHERS-WELL_TECHNICALLY.description": "At the start of your turn, if you played both a [gold]Logic[/gold] and a [gold]Hands[/gold] card last turn, draw [blue]2[/blue] cards.",
+  "SPIREBROTHERS-WELL_TECHNICALLY.description": "At the start of your turn, if you played both a [gold]Logic[/gold] and a [gold]Handy[/gold] card last turn, draw [blue]2[/blue] cards.",
   "SPIREBROTHERS-WELL_TECHNICALLY.flavor": "He was right. He'd like you to know he was right.",
   "SPIREBROTHERS-OVERSTUFFED_WALLET.title": "Overstuffed Wallet",
   "SPIREBROTHERS-OVERSTUFFED_WALLET.description": "At the start of each combat, ALL players gain [blue]1[/blue] [gold]Block[/gold] per [blue]25[/blue] [gold]Gold[/gold] you have (max [blue]12[/blue]).",
@@ -119,7 +119,7 @@
   "SPIREBROTHERS-STARTUP_SCRIPT.flavor": "Runs on launch. He wrote it once and never thought about it again.",
 
   "SPIREBROTHERS-PATCH_PANEL.title": "Patch Panel",
-  "SPIREBROTHERS-PATCH_PANEL.description": "The first [gold]Logic[/gold] or [gold]Hands[/gold] card you play each turn also counts as the other.",
+  "SPIREBROTHERS-PATCH_PANEL.description": "The first [gold]Logic[/gold] or [gold]Handy[/gold] card you play each turn also counts as the other.",
   "SPIREBROTHERS-PATCH_PANEL.flavor": "Every room has ethernet. Every port is labeled.",
   "SPIREBROTHERS-SUPER_DESTROYER.title": "Super Destroyer",
   "SPIREBROTHERS-SUPER_DESTROYER.description": "At the start of each combat, add a random [gold]Stratagem[/gold] to your [gold]Hand[/gold].",

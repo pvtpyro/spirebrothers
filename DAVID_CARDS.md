@@ -154,3 +154,24 @@ Goal: no brother or card underpowered; only effects that scale without limit wer
 - **Cactus Needles:** the upgrade costs 0 instead of losing Exhaust (repeat doubling with Deep Cuts had no ceiling).
 - **Ranted At** (Here We Go Again, Deep Sigh, Unprompted Monologue): now also makes the enemy deal 25% less damage this turn, like Weak, on top of 1 less per stack (12 damage with 1 stack: 11 -> 8). Cards now say "Apply X Ranted At". **Changed 2026-10-26:** the 25% cut was removed (with Weak on top, enemies did almost nothing in 4-player); Ranted At is just X less per hit. **Changed 2026-10-27:** now 15% less damage per stack (max 40%, so Weak on top still leaves enemies at ~45%) for that turn, since flat -X was too weak.
 - **Black Friday:** reworked into a doorbuster deal: lose 40 Gold, gain 3 Strength (4 upgraded), Exhaust. It used to cost ALL your gold (1 Strength per 50), which was only worth it on a final boss.
+
+## Expansion (2026-10-27): 14 more, mostly Attacks
+
+He had only 15 Attacks in the reward pool; now 25 (88 cards total: 25 Common / 43 Uncommon / 20 Rare). Untested in game.
+
+| Rarity | Name | Cost / Type | Effect | Theme |
+|---|---|---|---|---|
+| Common | 🎯 Sweeping Edge | 1 Attack | Deal 5 damage to ALL enemies. **Exact:** deal it again. | Minecraft (sword enchantment) |
+| Common | 😩 Let Me Finish | 1 Attack | Deal 3 damage twice. **Rant:** +2 per hit for each Rant played earlier this turn. | Existential crisis |
+| Common | 🎯 Loose Change | 0 Attack | Deal 3 damage. **Exact:** deal it again. *(a 0-cost card played at 0 energy is always Exact)* | Couch coins he never spends |
+| Common | 🩸 Raptor Pack | 1 Attack | Deal 3 damage twice. Apply 2 Bleed. | ARK |
+| Common | 🤝 Cover Fire | 1 Attack | Deal 7 damage. ALL players gain 3 Block. | Payday 2 |
+| Uncommon | Creeper | 2 Attack | Retain. Deal 16 damage to ALL enemies. Exhaust. | Minecraft |
+| Uncommon | 💰 Going Loud | 1 Attack | Deal 3 damage 3 times. **Hoard:** +1 per hit per 50 Gold. | Payday 2 |
+| Uncommon | 😩 Call Mom | 1 Skill | Draw 2 cards. **Rant:** gain 3 Block for each Rant played earlier this turn. | He calls Mom to chat or vent |
+| Uncommon | 🎯 Divide and Conquer | 2 Attack | Deal 9 damage to ALL enemies. **Exact:** apply 1 Vulnerable to ALL enemies. | Numbers |
+| Uncommon | 💰 Mattress Money | 1 Power | Your Attacks deal 1 extra damage per 100 Gold you have. (Upgrade: costs 0.) | Cash he never spends |
+| Rare | Solve for X | X Attack | Deal 4 damage X² times (3 energy: 9 hits). | Puzzles |
+| Rare | 😩 Forty-Two | 2 Attack | Only playable after 2+ Rants this turn. Deal 42 damage. Exhaust. (Upgrade: costs 1.) | The answer to life, the universe, and everything |
+| Rare | 🤝 Totem of Undying | 2 Skill | Share: the next time a player would die this combat, they heal 40% of their Max HP instead. Exhaust. | Minecraft |
+| Rare | 😩 Overthinking | 2 Power | Your Rant bonuses count 1 more Rant than you've played this turn (upgrade: 2). | The crisis never really ends |

@@ -8,11 +8,12 @@ from simple shapes on a shared skeleton (`Rig.cs`), and each animation is a list
 - `Brothers.cs`: each brother's clothes, props, and animation poses (David's sunglasses are in `DavidArt.DrawHeadExtras`).
 - `Canvas.cs`: the drawing and PNG code.
 - `Backgrounds.cs`: the character select backgrounds (480 x 270, one scene per brother inspired by his favorite
-  games, with him standing on the right). Saved as `out/<name>/select_bg.png`, previews in `out/select_bg_<name>_preview.png`.
+  games, with him standing on the right; Daniel has a stack of books by his feet, Joshua a d20 and a sword in a stone,
+  since Rocket League is Tim's game, not his). Saved as `out/<name>/select_bg.png`, previews in `out/select_bg_<name>_preview.png`.
 - `Program.cs`: renders every frame into `out/<name>/frames/`, plus preview sheets (`out/preview_<name>.png`,
   `out/lineup.png`, `out/heads.png`, and `out/campfire.png` / `out/campfire_frames.png` for the rest-site loop).
 - Animations: `idle`, `attack`, `cast`, `hit`, `dead` (combat) and `rest` (sitting on a log at rest sites: Daniel
-  tinkers with his multimeter, David flips a coin, Joshua strums, Tim toasts a marshmallow until it catches fire).
+  reads a book and turns a page (he reads everywhere he goes), David flips a coin, Joshua strums, Tim toasts a marshmallow until it catches fire).
 - `SelectButtons.cs.txt`: renders the character select buttons from the first idle frame. To use it, rename
   `Program.cs` out of the way and rename this file to `Program.cs`. It reads the original buttons in
   `art_originals/select_icons_old/` to keep the name text and writes to `out/select/`; copy `select.png` and

@@ -167,20 +167,37 @@ public class DanielArt : AnimatedBrother
         if (p.Fx == 1) Swoosh(c, r.SF, 18, -70, 20, Col.Hex("dff6ff"));
     }
 
-    // the multimeter he fiddles with at the campfire: screen flickers, now and then a spark
-    private static void Tinker(Canvas c, Rig r, Pose p)
+    // the book he reads at the campfire (he reads everywhere he goes): held open in both hands, a page turns at Fx 4-5
+    static readonly Col BookCover = Col.Hex("2c4a8a");
+    static readonly Col PageC = Col.Hex("efe6cc");
+
+    private void Book(Canvas c, Rig r, Pose p)
     {
-        var at = r.HandF + new V(-1, -3);
-        c.Draw(q => S.Box(q, at.X - 2, at.Y - 3, at.X + 3, at.Y + 3), Col.Hex("e0b020"));
-        c.Flat(q => S.Box(q, at.X - 1, at.Y - 2, at.X + 2, at.Y), p.Fx % 3 == 0 ? Cyan : Col.Hex("70e070"));
-        c.Plot(at + new V(0, 1.5f), Col.Hex("203020"));
-        if (p.Fx is 2 or 6) Sparkle(c, at + new V(5, -5), 1, Cyan);
-        if (p.Fx == 3) Sparkle(c, at + new V(6, -7), 2, Cyan);
+        // his hands hold the bottom corners; the spine runs up the middle
+        var sp = (r.HandF + r.HandB) * 0.5f + new V(0, -4.5f);
+        c.Draw(q => S.Box(q, sp.X - 8.5f, sp.Y - 4.5f, sp.X + 8.5f, sp.Y + 4.5f), BookCover);
+        c.Draw(q => S.Box(q, sp.X - 7.5f, sp.Y - 4.5f, sp.X - 0.5f, sp.Y + 3.5f), PageC, outline: false);
+        c.Draw(q => S.Box(q, sp.X + 0.5f, sp.Y - 4.5f, sp.X + 7.5f, sp.Y + 3.5f), PageC, outline: false);
+        for (float y = sp.Y - 4; y < sp.Y + 4; y++) c.Plot(sp.X, y, PageC.Shade);
+        // lines of text (the right page empties while he turns it)
+        var ink = Col.Hex("8a8070");
+        for (int row = 0; row < 4; row++)
+        {
+            float y = sp.Y - 3 + row * 2;
+            for (float x = sp.X - 6.5f; x < sp.X - 1; x += 1) if ((int)(x + row * 2) % 4 != 0) c.Plot(x, y, ink);
+            if (p.Fx is not (4 or 5))
+                for (float x = sp.X + 1.5f; x < sp.X + 7; x += 1) if ((int)(x + row * 3) % 4 != 0) c.Plot(x, y, ink);
+        }
+        // the turning page: standing up off the spine, then falling over to the left
+        if (p.Fx == 4) c.Draw(q => S.Box(q, sp.X - 0.5f, sp.Y - 11.5f, sp.X + 1.5f, sp.Y - 3), PageC);
+        if (p.Fx == 5) c.Draw(q => S.Poly(q, sp + new V(0, -3), sp + new V(-6, -8.5f), sp + new V(-8, -6.5f), sp + new V(-1, -2)), PageC);
+        DrawHand(c, r.HandB, false);
+        DrawHand(c, r.HandF, false);
     }
 
     protected override void DrawFront(Canvas c, Rig r, Pose p)
     {
-        if (p.Prop == "tinker") { Tinker(c, r, p); DrawHand(c, r.HandF, false); return; }
+        if (p.Prop == "book") { Book(c, r, p); return; }
         if (p.Prop != "spark") return;
         var at = r.HandF + new V(3, -3);
         float rad = p.Fx switch { 1 => 1.5f, 2 => 2.5f, 3 => 3.5f, 4 => 2f, _ => 0 };
@@ -203,8 +220,15 @@ public class DanielArt : AnimatedBrother
 
     protected override List<Pose> Rest()
     {
+        // reading, head down; the page turns at frames 4-5, then a smile at a good part
         var list = base.Rest();
-        foreach (var p in list) { p.Prop = "tinker"; p.FrontHand = new V(10, 7); p.BackHand = new V(5, 8); }
+        foreach (var p in list)
+        {
+            p.Prop = "book"; p.FrontHand = new V(15, 9); p.BackHand = new V(1, 9);
+            p.FrontElbowPref = new V(0, 1); p.BackElbowPref = new V(0, 1);
+            p.HeadTilt = 1; p.HeadDrop = 1;
+            p.Face = p.Fx switch { 6 => Face.Blink, 7 => Face.Happy, _ => Face.Normal };
+        }
         return list;
     }
 

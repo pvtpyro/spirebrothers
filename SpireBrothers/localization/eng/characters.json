@@ -1,7 +1,7 @@
 {
   "SPIREBROTHERS-DANIEL.title": "Daniel",
   "SPIREBROTHERS-DANIEL.titleObject": "Daniel",
-  "SPIREBROTHERS-DANIEL.description": "A software engineer who can also fix your car and wire your house.\nHe nerds wrong, and it works.",
+  "SPIREBROTHERS-DANIEL.description": "A software engineer who can also fix your car and wire your house.\nNever without a book. He nerds wrong, and it works.",
   "SPIREBROTHERS-DANIEL.aromaPrinciple": "[sine][color=4fb3d9]And you know what? I can fix that.[/color][/sine]",
   "SPIREBROTHERS-DANIEL.banter.alive.endTurnPing": "And you know what? I'm ready.",
   "SPIREBROTHERS-DANIEL.banter.dead.endTurnPing": "...",
@@ -16,7 +16,7 @@
 
   "SPIREBROTHERS-DAVID.title": "David",
   "SPIREBROTHERS-DAVID.titleObject": "David",
-  "SPIREBROTHERS-DAVID.description": "Great with numbers, loves a good puzzle, and always mid existential crisis.\nHis gold just piles up. Nothing's worth buying.",
+  "SPIREBROTHERS-DAVID.description": "Great with numbers, loves a good puzzle, and always mid existential crisis.\nHe keeps the whole team going, and his gold just piles up.",
   "SPIREBROTHERS-DAVID.aromaPrinciple": "[sine][color=6abf69]Does any of this even matter? Let me run the numbers.[/color][/sine]",
   "SPIREBROTHERS-DAVID.banter.alive.endTurnPing": "Hang on, let me do the math.",
   "SPIREBROTHERS-DAVID.banter.dead.endTurnPing": "...",
@@ -31,7 +31,7 @@
 
   "SPIREBROTHERS-JOSHUA.title": "Joshua",
   "SPIREBROTHERS-JOSHUA.titleObject": "Joshua",
-  "SPIREBROTHERS-JOSHUA.description": "Piano, guitar, and vocals. Gamer and Japan lover.\nHe keeps the whole team going.",
+  "SPIREBROTHERS-JOSHUA.description": "Piano, guitar, and a voice made for ballads. Rolls a d20 whenever he can.\nThe frontman: every song builds to one big finish.",
   "SPIREBROTHERS-JOSHUA.aromaPrinciple": "[sine][color=e0a84f]Everybody sing along![/color][/sine]",
   "SPIREBROTHERS-JOSHUA.banter.alive.endTurnPing": "Take it from the top!",
   "SPIREBROTHERS-JOSHUA.banter.dead.endTurnPing": "...",
