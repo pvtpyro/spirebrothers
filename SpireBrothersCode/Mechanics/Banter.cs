@@ -27,7 +27,7 @@ namespace SpireBrothers.SpireBrothersCode.Mechanics;
 /// </summary>
 public class Banter() : CustomSingletonModel(HookType.Combat)
 {
-    private const string Prefix = "SPIREBROTHERS-BANTER.";
+    internal const string Prefix = "SPIREBROTHERS-BANTER.";
 
     // Chance per combat that someone talks at the start: 1 in 3 with brothers, 1 in 4 alone. Elites: 1 in 2.
     private const int PartyStartChance = 3, SoloStartChance = 4, EliteChance = 2;
@@ -55,9 +55,9 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
     }
 
     /// <summary>Upper-case name used in loc keys: DANIEL, DAVID, JOSHUA, TIM.</summary>
-    private static string Name(Player p) => p.Character.GetType().Name.ToUpperInvariant();
+    internal static string Name(Player p) => p.Character.GetType().Name.ToUpperInvariant();
 
-    private static int PoolSize(string key)
+    internal static int PoolSize(string key)
     {
         if (PoolSizes.TryGetValue(key, out int n)) return n;
         n = 0;

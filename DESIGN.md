@@ -73,7 +73,7 @@ Great with numbers, loves puzzles, loves hiking and camping. Goes on a short wal
 - Full card plan (draft): DAVID_CARDS.md.
 
 ## Joshua, The Musician (next)
-Piano, guitar, vocals. Living in Japan, moving back to the US soon.
+Piano, guitar, vocals. Lived in Japan for a while; now back home in the US.
 - **Verse / Chorus**: Song cards build Verses; Chorus cards spend them for effects on ALL players.
 - Starter relic Well-Worn Guitar: gain 1 Verse at the start of each turn (Signature Guitar: 2). Starter Basic card Lend an Ear (Share Block).
 - **Check** (Archipelago, which he loves): find random items and send them to random players. Traps go to enemies.

@@ -31,7 +31,7 @@ One brother says something to another. Lines are grouped by **speaker → listen
 **Daniel → Joshua**
 - "Josh, can you hear me? I wired this place myself."
 - "Play something heroic. I'm going in."
-- "Is it morning or night in Japan right now?"
+- "Good to have you in the same time zone, Josh."
 
 **Daniel → Tim**
 - "Tim, I have a script for that. Mine's better."
@@ -169,6 +169,48 @@ A random brother:
 
 One line, about half the time:
 - "Easy." / "Too easy." / "Let's never do that again."
+
+---
+
+## 7. Co-op Ping button (built 2026-10-26)
+
+After you end your turn, the game shows a Ping button to nudge whoever's still playing. A brother's ping picks a line
+by **who pinged** and **who's still taking their turn**. Keys: `SPIREBROTHERS-BANTER.PING.*`.
+
+- One brother left: `PING.<PINGER>_<WAITEE>` (e.g. `PING.TIM_DAVID`), mixed with the pinger's general lines.
+- Two or more left: `PING.<PINGER>.GROUP`, mixed with the general lines.
+- General lines, `PING.<PINGER>`: also used when the one left isn't a brother (a friend on a vanilla character).
+- Pinger is dead: `PING.DEAD.<PINGER>`.
+
+Lines go through a shuffled order, so one doesn't repeat until the rest of its group has been said. Everyone in the
+lobby sees the same line.
+
+**General:** Daniel: "And you know what? I'm ready." / "Ready. Just saying." · David: "Hang on, let me do the math." /
+"No rush. Time is meaningless anyway." · Joshua: "Take it from the top!" / "No pressure! Okay, a little pressure." ·
+Tim: "Everybody buckled in?" / "Ready when you are."
+
+| Pinger → still playing | Lines |
+|---|---|
+| Daniel → David | "David, it's not a math test. Pick a card." / "Are you calculating, or having a crisis?" / "Still min-maxing? It's a Strike, David." |
+| Daniel → Joshua | "Josh, are you still on Japan time?" / "Josh, you're on Wi-Fi, aren't you. Plug in." / "Josh, you can finish the song after." |
+| Daniel → Tim | "Tim, did your script crash?" / "Let me guess. One of the kids needs something." / "I could automate your turn for you." |
+| David → Daniel | "Daniel, don't explain it. Just play it." / "Are you rewiring something right now?" / "Take your time. I'll stare into the void." |
+| David → Joshua | "Josh, are you asleep? Blink twice." / "Do you need a minute? Like, emotionally?" / "I did the math, Josh. You're taking forever." |
+| David → Tim | "Tim, stop shopping. It's combat." / "You can't buy your way out of this turn." / "I'd pay you to end your turn. I won't, but I'd think about it." |
+| Joshua → Daniel | "Daniel, End Turn isn't a Stratagem." / "Is the cat on your keyboard again?" / "Daniel, the button's on the right." |
+| Joshua → David | "David? You're doing the math again, aren't you." / "It's okay, David. There's no wrong answer." / "Take a breath. Then end your turn." |
+| Joshua → Tim | "Tim, are the kids playing your turn?" / "Tim, kickoff was five minutes ago." / "Kids, go tell your dad it's his turn." |
+| Tim → Daniel | "Daniel, it doesn't have to be optimized." / "Stop reading the patch notes." / "I drafted you a faster turn. To scale." |
+| Tim → David | "David, the gold isn't going anywhere. Neither are you." / "End your turn and I'll buy dinner. With your money." / "Come on, David. Spend something. Anything." |
+| Tim → Joshua | "Josh, the kids want to know if you're done." / "Josh, are you tuning again?" / "Josh! The kids are getting restless." |
+
+**Waiting on 2+:** Daniel: "Anyone? Anyone at all?" / "I've had time to rewire the whole room." · David: "I've done the
+math. You're all slow." / "I've had three existential crises waiting for you." · Joshua: "Everybody, on three!
+...Anybody?" / "I'll play some elevator music while we wait." · Tim: "Dinner's getting cold, boys." / "I've had time to
+advance an Age." / "That's it, I'm counting to three."
+
+**Dead:** Daniel: "I'm dead, and I'm still waiting on you." · David: "You're slower than me, and I'm dead." ·
+Joshua: "Can ghosts sing? Asking for me." · Tim: "Still dead. Still waiting."
 
 ---
 

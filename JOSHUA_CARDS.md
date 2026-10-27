@@ -1,6 +1,6 @@
 # Joshua, The Musician: card plan (draft for review)
 
-Piano, guitar, vocals. Living in Japan, moving back to the US soon. The team's support.
+Piano, guitar, vocals. Lived in Japan for a while; now back home in the US. The team's support.
 Games: PlateUp!, Terraria, Rocket League, Stardew Valley, and especially Archipelago (the multiworld randomizer, archipelago.gg).
 
 **Built 2026-10-04, untested in game.** Numbers below match the code. Cut, rename, or rewrite anything, especially to add inside jokes.
