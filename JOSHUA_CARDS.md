@@ -194,3 +194,34 @@ Josh named his favorites: Slay the Spire, old-school 2D Zelda, D&D, and board ga
   A Chorus that spends 0 no longer uses up Encore or Bridge.
 - Deleted (never released, so no saved run has them): Deep Breath, High Note, Humming, Opening Number, Showstopper,
   Sheet Music, Nocturne, Final Note.
+
+## Board games (built 2026-10-27, untested in game)
+
+Brandi named two of his board games: **Catan** and **Space Base** (Daniel loves Space Base too; his Space Base card is in
+DANIEL_CARDS.md, "Reader's Shelf"). Josh loves Space Base, so he gets four of his own. All are self-only, since Josh
+doesn't like playing support. Reward pool: 83 -> 90 (Common 25, Uncommon 43, Rare 22).
+
+| Name | Rarity, Cost / Type | Effect | Upgrade | Theme |
+|---|---|---|---|---|
+| Wood for Sheep? | Common, 0 Skill | Discard a card. Draw 2 cards. | Draw 3 | Catan trading: give up what you don't need |
+| Move the Robber | Uncommon, 1 Attack | **Roll.** Deal 8 damage. Apply 2 Insulted. *(an insult card)* | 11 damage | Rolled a seven; everyone hates the robber |
+| Longest Road | Rare, 1 Power | At the start of your turn, gain 1 Verse for every 2 cards you played last turn. | Costs 0 | Catan: keep building and it pays off |
+| Income Ship | Common, 1 Skill | Gain 6 Block. Gain 1 Verse now and 1 more next turn. | 9 Block | Space Base: ships that pay out every round |
+| Charge Cube | Uncommon, 1 Attack | Retain. Deal 5 damage, +5 for each turn this was Retained (up to 3). | 7, +6 each | Space Base: tactical ships charge up, then fire |
+| Deployed Fleet | Uncommon, 1 Power | At the start of your turn, **Roll**. Gain Block and deal damage to a random enemy, each equal to half the roll. | Costs 0 | Space Base: your ships pay out on every roll |
+| Race to 40 | Rare, 1 Power | Each card you play scores 2 points. At 40 points, deal 40 damage to ALL enemies and start over. | Costs 0 | Space Base: first to 40 wins |
+
+Changed while building:
+- **Income Ship** was "7 Block, 1 Verse next turn", which is exactly Rest Note. Now 6 Block + 1 Verse now + 1 next turn
+  (the next-turn Verse reuses `VerseNextTurnPower`, so its icon says "Rest Note").
+- **Deployed Fleet** was "whenever you Roll", but he only has 5 Roll cards, so it rolls on its own every turn instead
+  (works with Advantage, Lucky, Dungeon Master, and the Lucky d20 relic).
+- **Longest Road**: every 3 cards became every 2 (1 Verse per 3 cards was too weak for a Rare).
+
+Build notes:
+- Move the Robber: `RollAttack` + `IInsultCard`, like Shatter and Bless Your Heart.
+- Longest Road: `LongestRoadPower` counts his cards played and pays out at his next turn start.
+- Charge Cube: `BeforeSideTurnEnd` while in hand adds a charge (cards in hand get turn hooks, like vanilla Regret);
+  damage is a CalculatedDamage, so the grown number shows dimmed-then-green.
+- Deployed Fleet: `DeployedFleetPower` calls `Dice.Roll` (speech bubble every turn), target from `Rng.CombatTargets`.
+- Race to 40: `RaceToFortyPower` Amount is the damage (stacks); the icon number is the points (`DisplayAmount`).

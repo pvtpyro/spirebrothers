@@ -120,3 +120,28 @@ Goal: no brother or card underpowered (strong cards are fine).
 - **Prawn Suit:** 5 -> 7 Block per turn (it was weaker than other brothers' Uncommon Block powers).
 - **Stack Overflow:** +4 -> +6 per Logic card (it was nearly the same as the Uncommon Ohm's Law).
 - **Insult Swordfighting:** also applies 1 Weak (it was Spaghetti Code with 1 less damage).
+
+## Reader's Shelf (built 2026-10-27, untested in game)
+
+Daniel's books and Space Base (dossier in DESIGN.md). 9 cards: 3 Common, 4 Uncommon, 2 Rare. His reward pool is
+now 87 (25 / 43 / 19, not counting Duo cards; vanilla is 75 to 84).
+
+| Name | Rarity, Cost / Type | Tag | Effect | Upgrade | Theme |
+|---|---|---|---|---|---|
+| One More Chapter | Common, 1 Skill | L, Wired | Draw 2 cards. **Wired:** draw 1 more. | Costs 0 | Up way past bedtime reading |
+| CIA Analyst | Common, 1 Skill | L | Scry 3. Draw 1 card. Gain 4 Block. | Scry 5, 6 Block | Jack Ryan reads the intel first |
+| Brisingr! | Common, 1 Attack | L, Wired | Deal 8 damage. **Wired:** deal 5 damage to ALL enemies. | 11 and 7 | Inheritance: say the sword's name and it bursts into flame |
+| Book 1 of 14 | Uncommon, 1 Attack | L, Diligent | Deal 6 damage. **Diligent:** +3 damage each time it's played this combat. | 9, +4 | The Wheel of Time is long. He read all of it. |
+| Channel the One Power | Uncommon, 0 Skill | L | Gain 2 Energy. Lose 3 HP. Exhaust. | Lose 1 HP | Wheel of Time: power with a cost (the taint on *saidin*) |
+| The Hunt for Red October | Uncommon, 3 Attack | L | Retain. Deal 22 damage. Costs 1 less for each turn it's Retained. | 28 damage | Clancy: the silent submarine stalks, then strikes |
+| Space Base | Uncommon, 1 Power | H | Whenever ANY player plays an Attack, gain 2 Block. | 3 Block | Every ship pays out on everyone's roll |
+| The Wheel Weaves | Rare, 1 Power | L | Whenever you shuffle your draw pile, gain 1 Energy and draw 2 cards. | Costs 0 | "The Wheel weaves as the Wheel wills." Every turn of the wheel comes back around. |
+| Dragon Rider | Rare, 2 Power | H | At the end of your turn, deal 8 damage to a random enemy. | 11 damage | Inheritance: Eragon and Saphira |
+
+Build notes:
+- **The Wheel Weaves**: `TheWheelWeavesPower.AfterShuffle` (vanilla hook; vanilla `StratagemPower` uses it too). It draws during the shuffle, so watch for odd draw behavior in playtests.
+- **Dragon Rider**: `DragonRiderPower`, target from `Rng.CombatTargets` (co-op sync).
+- **Space Base** counts teammates' Attacks too, so it's a co-op card that still works solo (your own Attacks).
+  Co-op turns happen at the same time in StS2, so "on other players' turns" doesn't apply; "any player's Attack" is the closest fit.
+- **The Hunt for Red October**: `BeforeSideTurnEnd` while in hand calls `EnergyCost.AddUntilPlayed(-1)` (cards in hand get turn hooks, like vanilla Regret).
+- Placeholder art drawn (glyphs.txt, power_glyphs.txt).

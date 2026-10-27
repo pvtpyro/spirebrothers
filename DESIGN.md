@@ -60,6 +60,15 @@ Software engineer who can fix cars, hard-wired his whole house for internet (eve
 - **Stratagems** (Helldivers 2): play Logic/Hands in a set order to unlock.
 - **Diligent**: grows every time it's played this combat.
 - Games: Subnautica, Helldivers 2, Factorio, Darktide, Minecraft.
+- **A huge reader** (added 2026-10-27; cards built: DANIEL_CARDS.md, "Reader's Shelf"):
+  - *The Wheel of Time* (Robert Jordan): 14 books plus a prequel (*New Spring*), about 4.4 million words. Jordan died in
+    2007; Brandon Sanderson finished the last three from his notes (ending with *A Memory of Light*, 2013). Rand al'Thor,
+    the Dragon Reborn; channeling the One Power (men's half tainted, women's the Aes Sedai); "The Wheel weaves as the Wheel wills."
+  - Tom Clancy: Jack Ryan novels (*The Hunt for Red October*, *Patriot Games*, *Clear and Present Danger*), *Rainbow Six*.
+    Techno-thriller: submarines, CIA analysts, military hardware in loving detail.
+  - *The Inheritance Cycle* (Christopher Paolini): *Eragon*, *Eldest*, *Brisingr*, *Inheritance*, plus *Murtagh* (2023).
+    Dragon riders, Saphira, the ancient language ("brisingr" = fire).
+- Board games: **Space Base** (AEG dice game, 2018: roll two dice, every player's ships pay out on everyone's roll). Joshua loves it too.
 - Full card list (72 in the reward pool) is in DANIEL_CARDS.md.
 
 ## David, The Min-Maxer (built 2026-10-04)
@@ -82,7 +91,7 @@ Piano, guitar, vocals: a ballad guy, not a shredder. Lived in Japan for a while;
 - **Check** (Archipelago, which he loves): find random items and send them to random players. Traps go to enemies.
 - **Healing**: only 5 cards now (Konbini Run, Onsen, Pastor, Coming Home, Thousand Cranes). No Share cards.
 - **Roll** (D&D, his favorite along with board games): d20 cards; 1 halves the effect, 20 doubles it. Advantage, Lucky, Dungeon Master, Lucky d20 relic.
-- Games, in his own words: Slay the Spire, old-school 2D Zelda, D&D, board games (none named). Also PlateUp!, Terraria, Stardew Valley, Archipelago. Not Rocket League (that's Tim's).
+- Games, in his own words: Slay the Spire, old-school 2D Zelda, D&D, board games (**Catan** and **Space Base**; Space Base is a Daniel favorite too). Also PlateUp!, Terraria, Stardew Valley, Archipelago. Not Rocket League (that's Tim's).
 - Tribute cards: **Pastor** (all players heal and gain Block, Exhaust) and **Coming Home**.
 - Full card plan: JOSHUA_CARDS.md.
 

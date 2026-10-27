@@ -11,6 +11,9 @@ so the characters should feel personal, warm, and fun. Co-op support matters a l
 - **Joshua, The Musician**: built (2026-10-04), untested in game. Uses the Regent's visuals.
 - **Tim (Timothy), The Draftsman**: the oldest brother. Built (2026-10-04), untested in game. Uses the Ironclad's visuals. Old nickname "Tidbit": he doesn't like it, so use it only once (it's one card).
 
+Two friends they always play with, **John** and **Huffman** (a friend named Joshua; always "Huffman" in the mod), are
+planned as characters five and six: dossier and concept pitches in `FRIENDS.md`, nothing built yet.
+
 Full designs are in `DESIGN.md`, with full card plans in `DANIEL_CARDS.md`, `DAVID_CARDS.md`, `JOSHUA_CARDS.md`, and `TIM_CARDS.md`. Build Daniel fully working before starting the others.
 
 ## The user
@@ -39,7 +42,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   visuals) and `DanielPools.cs` (card/relic/potion pools)
 - `SpireBrothersCode/Cards/DanielCard.cs`: base card class with art paths plus helpers for
   Wired glow, Stratagem playability, and `ShareTarget()`
-- `SpireBrothersCode/Cards/Daniel/`: one file per card (78 card files: 4 Basic, 1 Gear token, 73 reward-pool cards incl. Wife Aggro; see DANIEL_CARDS.md)
+- `SpireBrothersCode/Cards/Daniel/`: one file per card (reward pool 87 as of 2026-10-27, plus Basics, the Gear token, and Duo cards; see DANIEL_CARDS.md)
 - `SpireBrothersCode/Mechanics/TurnTracker.cs`: a `CustomSingletonModel` that records the ordered
   Logic/Hands keywords played each turn (per `PlayerCombatState` via `SpireField`), whether last turn
   mixed both, whether Wired fired this turn, and the Gear count
@@ -56,7 +59,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   `MainFile.ShareMonkeyIslandItems()` via vanilla `ModHelper.AddModelToPool`. Add each new brother there.
 - Joshua: `Character/Joshua.cs` + `JoshuaPools.cs` (Regent visuals), `Cards/JoshuaCard.cs` (Verse-threshold glow, `Chorus()`,
   `ChorusAttack()` + `ChorusVerses` multiplier so damage uses the Verses just spent, `AllPlayers`, `ShareTarget()`),
-  `Cards/Joshua/` (5 starting-deck Basics, 24 retired (Basic rarity, kept for saved runs), 83 reward cards, 3 Duo, 1 token), `Mechanics/Verses.cs` (count, gain, `SpendForChorus` with
+  `Cards/Joshua/` (5 starting-deck Basics, 24 retired (Basic rarity, kept for saved runs), 90 reward cards, 3 Duo, 1 token), `Mechanics/Verses.cs` (count, gain, `SpendForChorus` with
   Encore/Bridge/Choir, `IChorusListener`, `AddRandomSongs`), `Orbs/VerseOrb.cs` (each Verse is an orb above him like the Defect's, max 10; labels hidden by a Harmony patch; Chorus removes them quietly, no evoke), `Mechanics/JoshuaTracker.cs` (Song cards add Verses after
   play), `Mechanics/Archipelago.cs` (Check: rolls an item on the run RNG, thought bubble over the receiver; lines are
   `SPIREBROTHERS-ARCHIPELAGO.*` in powers.json). Starter relic `Relics/WellWornGuitar.cs`.
@@ -295,3 +298,11 @@ Card art for everything (all cards, relics, and powers use placeholders).
   last bubble has been up 3.5 s (`Banter.TakeClosingWait`). Jericho uses `GetCameraScaling() => 0.85f` (three bodies were off-screen).
 - pixelgen: `Program.cs` renders every foe through `IFrameArt` (Rig ones wrapped in `RigFrames`); `Giants.cs`, `Foes.cs`, `Beasts.cs`.
   The Desktop copy of pixelgen doesn't have these.
+
+## Added 2026-10-27 (later)
+
+- **Reader's Shelf** (Daniel, 9 cards: Wheel of Time, Tom Clancy, Inheritance Cycle, Space Base) and **Board games** (Joshua, 7: Catan
+  and Space Base), lists in DANIEL_CARDS.md / JOSHUA_CARDS.md. Untested in game. New powers: SpaceBase, TheWheelWeaves (vanilla
+  `AfterShuffle` hook), DragonRider, LongestRoad, DeployedFleet (rolls the d20 every turn), RaceToForty (`DisplayAmount` = points).
+  The Hunt for Red October and Charge Cube react while held via `BeforeSideTurnEnd` + `Pile.Type == PileType.Hand` (like vanilla Regret).
+- `gen.ps1` must run under PowerShell 7 (`pwsh`); Windows PowerShell 5 misreads its emoji and fails to parse.
