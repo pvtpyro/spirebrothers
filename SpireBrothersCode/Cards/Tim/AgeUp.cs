@@ -61,9 +61,19 @@ public class AgeUp() : TimCard(3, CardType.Skill, CardRarity.Basic, TargetType.S
     }
 
     // Once per act: after he Ages Up, the card sits out every combat until the next act starts.
+    // The hook also reaches the copy in his deck, which isn't in a combat pile; removing that one throws and stopped
+    // the whole combat start (no opening draw). Only the combat copy steps out, and an error can never block combat.
     public override async Task BeforeCombatStart()
     {
-        if (Owner != null && Ages.AgedUpThisAct(Owner)) await CardPileCmd.RemoveFromCombat(this, skipVisuals: true);
+        try
+        {
+            if (Owner == null || !Ages.AgedUpThisAct(Owner) || Pile is not { IsCombatPile: true }) return;
+            await CardPileCmd.RemoveFromCombat(this, skipVisuals: true);
+        }
+        catch (Exception e)
+        {
+            MainFile.Logger.Error($"Age Up couldn't sit out this combat: {e}");
+        }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
