@@ -106,9 +106,12 @@ public class DanielArt : AnimatedBrother
 
     public DanielArt()
     {
-        HairC = Col.Hex("4a2e1c"); BeardC = Col.Hex("4a2e1c"); Hair = HairStyle.Short;
+        HairC = Col.Hex("4a2e1c"); BeardC = Col.Hex("4a2e1c"); Hair = HairStyle.Messy; Stubble = true; StubbleFull = true; StubbleAmt = 0.5f;
         Sleeve = Coat; Glove = Col.Hex("262a33"); Pants = Col.Hex("2a2e38"); Shoes = Col.Hex("22252c");
     }
+
+    // thin wire-rim glasses
+    protected override void DrawHeadExtras(Canvas c, Rig r, Pose p) => DrawGlasses(c, r.Head, Col.Hex("5a5866"));
 
     protected override void DrawBehind(Canvas c, Rig r, Pose p)
     {
@@ -231,7 +234,7 @@ public class DavidArt : AnimatedBrother
 
     public DavidArt()
     {
-        HairC = Col.Hex("5e3d24"); BeardC = Col.Hex("5e3d24"); Hair = HairStyle.Shaggy;
+        HairC = Col.Hex("3a281c"); BeardC = Col.Hex("3a281c"); Hair = HairStyle.Fringe; Stubble = true;
         Sleeve = Hoodie; Pants = Col.Hex("3b5577"); Shoes = Col.Hex("e4e4e8");
     }
 
@@ -252,17 +255,15 @@ public class DavidArt : AnimatedBrother
 
     protected override void DrawHeadExtras(Canvas c, Rig r, Pose p)
     {
-        // sunglasses; when he's down they slide down his nose
+        // rectangular sunglasses (like his real ones); when he's down they slide down his nose
         var h = r.Head + new V(0, p.Face == Face.Dead ? 2 : 0);
-        // big round lenses, outlined so they stand out against the hair and beard
-        c.Draw(q => S.Capsule(q, h + new V(-4.5f, -0.2f), h + new V(0.5f, 0.2f), 0.7f), Frame);         // arm back to the ear
-        c.Draw(q => S.U(S.Ellipse(q, h + new V(2.4f, 1.2f), 3.4f, 3.1f), S.Ellipse(q, h + new V(9f, 1.2f), 3.4f, 3.1f)), Shades);
-        c.Flat(q => S.Capsule(q, h + new V(5.4f, 0f), h + new V(6.2f, 0f), 0.6f), Frame);              // bridge
-        foreach (var lens in new[] { h + new V(2.4f, 1.2f), h + new V(9f, 1.2f) })                      // glints
+        c.Draw(q => S.Capsule(q, h + new V(-6.5f, -0.2f), h + new V(0.5f, -0.6f), 0.7f), Frame);         // arm back to the ear
+        c.Draw(q => S.U(S.Box(q, h.X - 0.2f, h.Y - 1.4f, h.X + 4.6f, h.Y + 2.4f), S.Box(q, h.X + 5.8f, h.Y - 1.4f, h.X + 10.4f, h.Y + 2.4f)), Shades, line: Frame);
+        c.Flat(q => S.Capsule(q, h + new V(4.6f, -0.6f), h + new V(5.8f, -0.6f), 0.6f), Frame);        // bridge
+        foreach (var lens in new[] { h + new V(2.2f, 0.5f), h + new V(8.1f, 0.5f) })                    // glints
         {
             c.Plot(lens + new V(-1.6f, -1.2f), Col.Hex("ffffff"));
-            c.Plot(lens + new V(-0.6f, -2f), Col.Hex("cfe6ff"));
-            c.Plot(lens + new V(-1.8f, -0.2f), Col.Hex("cfe6ff"));
+            c.Plot(lens + new V(-0.6f, -1.2f), Col.Hex("cfe6ff"));
         }
     }
 
@@ -357,9 +358,12 @@ public class JoshuaArt : AnimatedBrother
 
     public JoshuaArt()
     {
-        HairC = Col.Hex("70482a"); BeardC = Col.Hex("70482a"); Hair = HairStyle.Shaggy; BeardLen = 3.5f;
+        HairC = Col.Hex("70482a"); BeardC = Col.Hex("70482a"); Hair = HairStyle.Crew; Stubble = true;
         Sleeve = Flannel; Pants = Col.Hex("2e3448"); Shoes = Col.Hex("6b4a2b");
     }
+
+    // dark rectangular glasses
+    protected override void DrawHeadExtras(Canvas c, Rig r, Pose p) => DrawGlasses(c, r.Head, Col.Hex("26222c"));
 
     protected override Pose Base()
     {
@@ -514,7 +518,7 @@ public class TimArt : AnimatedBrother
 
     public TimArt()
     {
-        BeardC = Col.Hex("5c3b24"); Hair = HairStyle.Bald;
+        BeardC = Col.Hex("45301f"); Hair = HairStyle.Buzzed; BeardLen = 3.5f;
         Sleeve = Shirt; Forearm = Skin; Pants = Col.Hex("b39b6b"); Shoes = Col.Hex("5a3d28");
     }
 
@@ -536,11 +540,14 @@ public class TimArt : AnimatedBrother
 
     protected override void DrawHeadExtras(Canvas c, Rig r, Pose p)
     {
-        // pencil tucked behind his ear
         var h = r.Head;
-        c.Draw(q => S.Capsule(q, h + new V(-7.5f, 0.5f), h + new V(-2.5f, -1.5f), 0.7f), Col.Hex("f0c030"));
-        c.Plot(h + new V(-8.5f, 1), Col.Hex("e88a9a"));
-        c.Plot(h + new V(-1.5f, -2), Col.Hex("3a3030"));
+        DrawGlasses(c, h, Col.Hex("3a3440"));
+        // over-ear headphones: the band over his crown (dipping out of sight on the far side), the cup on his ear
+        var phones = Col.Hex("2c2c34"); var pad = Col.Hex("484852");
+        c.Draw(q => S.I(S.I(MathF.Abs(S.Ellipse(q, h + new V(-0.5f, -0.5f), 6.5f, 9.4f)) - 0.7f, S.Circle(q, h, Rig.HeadR + 0.2f)),
+            S.I(q.Y - (h.Y - 0.5f), q.X > h.X + 3 ? q.Y - (h.Y - 7) : -1)), phones, hi: pad, outline: false);
+        c.Draw(q => S.RBox(q, h + new V(-6.8f, 2.5f), 2.6f, 3.8f, -8), phones, hi: pad);
+        c.Flat(q => S.Ellipse(q, h + new V(-6.8f, 2.5f), 1.1f, 2f), Col.Hex("c8643c"));   // shirt-orange badge
     }
 
     private static void Marshmallow(Canvas c, Rig r, Pose p)

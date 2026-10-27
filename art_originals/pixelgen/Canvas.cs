@@ -117,6 +117,13 @@ public class Canvas
     /// <summary>Fill without outline or shading (details, glows).</summary>
     public void Flat(Sdf s, Col c) => Draw(s, c, outline: false, noShade: true);
 
+    /// <summary>Change the pixels already inside a shape (lens tints).</summary>
+    public void Recolor(Sdf s, Func<Col, Col> f)
+    {
+        for (int y = 0; y < H; y++)
+            for (int x = 0; x < W; x++)
+                if (Px[y * W + x] is { } px && s(ToModel(new V(x + 0.5f, y + 0.5f))) <= 0) Px[y * W + x] = f(px);
+    }
     public void Overlay(Canvas o)
     {
         for (int i = 0; i < Px.Length; i++) if (o.Px[i].HasValue) Px[i] = o.Px[i];

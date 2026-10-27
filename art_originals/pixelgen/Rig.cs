@@ -62,7 +62,8 @@ public class Rig
     }
 }
 
-public enum HairStyle { Short, Shaggy, Bald }
+// Messy / Fringe / Crew / Buzzed were drawn from photos of the brothers (Daniel / David / Joshua / Tim).
+public enum HairStyle { Short, Shaggy, Bald, Messy, Fringe, Crew, Buzzed }
 
 public abstract class Brother
 {
@@ -74,6 +75,9 @@ public abstract class Brother
     public Col BeardC = Col.Hex("5a3a22");
     public HairStyle Hair = HairStyle.Shaggy;
     public float BeardLen = 4.5f;
+    public bool Stubble;        // a shadow of stubble instead of a beard
+    public float StubbleAmt = 0.13f;   // how dark the stubble is (0 = skin, 1 = beard color)
+    public bool StubbleFull;    // stubble along the whole jaw back to the ear, not just the chin
     public Col Pants = Col.Hex("3b5577");
     public Col Shoes = Col.Hex("3a2a20");
     public Col Sleeve = Col.Hex("888888");
@@ -171,10 +175,18 @@ public abstract class Brother
         // nose: one dark pixel between and just below the eyes, with a soft shadow above it (smaller than an eye)
         c.Plot(h.X + 5.6f, h.Y + 2.6f, Skin.Shade); c.Plot(h.X + 5.6f, h.Y + 3.6f, Canvas.Outline);
         // beard: lower face plus chin, sideburn up to the ear
-        c.Draw(q => S.I(S.U(S.Circle(q, h, Rig.HeadR + 0.6f), S.Ellipse(q, h + new V(4.5f, 7.5f), 6.5f, BeardLen)) + Wobble(q, h, 0.6f),
-            S.U(-(q.Y - (h.Y + 5f)) + MathF.Max(0, q.X - (h.X + 2)) * 0.15f, S.I(-(q.Y - (h.Y + 0.5f)), q.X - (h.X - 0.5f)))), BeardC, hi: BeardC.Light, line: BeardC.Mul(0.6f));
-        // ear (shaggy hair covers it)
-        if (Hair != HairStyle.Shaggy) c.Draw(q => S.Ellipse(q, h + new V(-3, 2.5f), 2f, 2.8f), Skin);
+        if (Stubble)
+        {
+            // inside the face, no outline: the jaw and chin, or the whole beard area
+            Sdf face = q => S.U(S.Circle(q, h, Rig.HeadR - 0.4f), S.Ellipse(q, h + new V(4, 5), 6f, 4f));
+            Sdf jaw = StubbleFull
+                ? q => S.I(face(q), -(q.Y - (h.Y + 4.5f - MathF.Max(0, h.X - q.X) * 0.25f)))   // a jawline rising gently toward the ear
+                : q => S.I(S.I(face(q), -(q.Y - (h.Y + 4.5f))), -(q.X - (h.X - 0.5f)));
+            c.Flat(jaw, Skin.Lerp(BeardC, StubbleAmt));
+        }
+        else
+            c.Draw(q => S.I(S.U(S.Circle(q, h, Rig.HeadR + 0.6f), S.Ellipse(q, h + new V(4.5f, 7.5f), 6.5f, BeardLen)) + Wobble(q, h, 0.6f),
+                S.U(-(q.Y - (h.Y + 5f)) + MathF.Max(0, q.X - (h.X + 2)) * 0.15f, S.I(-(q.Y - (h.Y + 0.5f)), q.X - (h.X - 0.5f)))), BeardC, hi: BeardC.Light, line: BeardC.Mul(0.6f));
         // mouth
         var mouth = p.Face == Face.Hurt || p.Face == Face.Dead ? Eye : BeardC.Shade.Mul(0.75f);
         c.Plot(h.X + 5, h.Y + 6, mouth); c.Plot(h.X + 6, h.Y + 6, mouth); c.Plot(h.X + 7, h.Y + 6, mouth);
@@ -182,6 +194,13 @@ public abstract class Brother
         if (p.Face == Face.Hurt) { c.Plot(h.X + 6, h.Y + 7, mouth); }
         // top hair
         DrawHair(c, r, p);
+        // ear, in front of short hair (shaggy hair covers it): it sits inside the head, so it gets a soft skin-tone line instead of the black outline
+        if (Hair != HairStyle.Shaggy)
+        {
+            var ear = h + new V(-7f, 2.6f);
+            c.Draw(q => S.Ellipse(q, ear, 1.9f, 2.7f), Skin, line: Skin.Shade.Mul(0.7f), noShade: true);
+            c.Plot(ear.X - 0.2f, ear.Y - 0.6f, Skin.Shade); c.Plot(ear.X - 0.2f, ear.Y + 0.4f, Skin.Shade);   // the hollow of the ear
+        }
         // eyes
         DrawEyes(c, h, p.Face);
         DrawHeadExtras(c, r, p);
@@ -212,7 +231,37 @@ public abstract class Brother
                     return S.I(S.Circle(q, h + new V(-1, -1.5f), 12f) + Wobble(q, h, 1.3f), q.Y - (h.Y - 4.2f + jag + MathF.Max(0, -(q.X - (h.X + 1))) * 0.9f));
                 }, HairC, hi: HairC.Light, line: HairC.Mul(0.55f));
                 break;
+            case HairStyle.Messy:
+                // tousled top, choppy bangs falling onto the forehead, a couple of tufts sticking up
+                c.Draw(q =>
+                {
+                    float jag = MathF.Abs(((q.X - h.X) * 0.7f % 2f + 2f) % 2f - 1f) * 2.4f;
+                    var top = S.I(S.Circle(q, h + new V(-0.4f, -1.6f), 10.7f) + Wobble(q, h, 1.2f),
+                        S.U(q.Y - (h.Y - 4.5f + jag * MathF.Max(0, MathF.Min(1, (q.X - h.X) / 3f))) - MathF.Max(0, -(q.X - h.X)) * 0.6f,
+                            S.I(q.X - (h.X - 5f), q.Y - (h.Y + 0.5f))));
+                    return S.U(top, S.U(S.Taper(q, h + new V(-1, -10), h + new V(-3.5f, -13.5f), 1.8f, 0.4f),
+                        S.Taper(q, h + new V(3, -10.5f), h + new V(5, -13f), 1.5f, 0.4f)));
+                }, HairC, hi: HairC.Light, line: HairC.Mul(0.55f));
+                break;
+            case HairStyle.Fringe:
+                // short and neat, with a straight fringe cut across the forehead
+                c.Draw(q => S.I(S.Circle(q, h + new V(-0.6f, -1.2f), 10.9f) + Wobble(q, h, 0.5f),
+                    S.U(q.Y - (h.Y - 3.6f) - MathF.Max(0, -(q.X - (h.X + 1))) * 0.7f, S.I(q.X - (h.X - 4f), q.Y - (h.Y + 1.5f)))),
+                    HairC, hi: HairC.Light, line: HairC.Mul(0.55f));
+                for (float x = h.X + 1; x < h.X + 8; x += 2) c.Plot(x, h.Y - 4.5f, HairC.Shade);   // strands in the fringe
+                break;
+            case HairStyle.Crew:
+                // a close crew cut hugging the skull, hairline set back from the brow
+                c.Draw(q => S.I(S.I(S.Circle(q, h + new V(-0.3f, -0.6f), 10.7f),
+                    S.U(q.Y - (h.Y - 5.5f) - MathF.Max(0, -(q.X - (h.X + 2))) * 0.8f, S.I(q.X - (h.X - 4f), q.Y - (h.Y + 1)))), q.X - (h.X + 8.5f)),
+                    HairC, hi: HairC.Light, line: HairC.Mul(0.55f));
+
+                break;
             case HairStyle.Bald:
+            case HairStyle.Buzzed:
+                if (Hair == HairStyle.Buzzed)   // a shaved shadow on the sides and back
+                    c.Flat(q => S.I(S.I(S.Circle(q, h, Rig.HeadR - 0.5f), S.I(q.X - (h.X + 0.5f), -(q.Y - (h.Y - 6f)))),
+                        S.I(q.Y - (h.Y + 1.5f), -S.Ellipse(q, h + new V(-7f, 2.6f), 2.8f, 3.6f))), Skin.Lerp(BeardC, 0.1f));
                 c.Plot(h.X - 3, h.Y - 7, Skin.Light.Light); c.Plot(h.X - 2, h.Y - 7, Skin.Light.Light); c.Plot(h.X - 4, h.Y - 6, Skin.Light.Light);
                 c.Plot(h.X - 4, h.Y - 5, Skin.Light);
                 break;
@@ -249,6 +298,21 @@ public abstract class Brother
         }
     }
 
+    /// <summary>Rectangular glasses over the eyes, with an arm back to the ear: a solid brow bar on top, the rest of the
+    /// rim softer so the face shows through, and a faint glassy tint over the skin inside each lens.</summary>
+    protected void DrawGlasses(Canvas c, V h, Col frame)
+    {
+        var rim = frame.Lerp(Skin, 0.4f);
+        c.Draw(q => S.Capsule(q, h + new V(-6.2f, 0.6f), h + new V(0.5f, -0.6f), 0.5f), frame, outline: false, noShade: true);
+        // the far lens is a little narrower, turned away
+        foreach (var (x0, x1) in new[] { (1.2f, 4f), (5.2f, 7.9f) })
+        {
+            Sdf inner = q => S.Box(q, h.X + x0, h.Y - 0.2f, h.X + x1, h.Y + 2.4f);
+            c.Recolor(inner, px => px == Eye || px == Col.Hex("ffffff") ? px : px.Lerp(Col.Hex("dff0ff"), 0.3f));
+            c.Flat(q => S.I(S.Box(q, h.X + x0 - 1, h.Y - 1.2f, h.X + x1 + 1, h.Y + 3.4f), -inner(q)), rim);
+            c.Flat(q => S.Box(q, h.X + x0 - 1, h.Y - 1.2f, h.X + x1 + 1, h.Y - 0.2f), frame);
+        }
+    }
     private static void TintAll(Canvas c, Col tint, float t)
     {
         for (int i = 0; i < c.Px.Length; i++)

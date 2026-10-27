@@ -76,6 +76,9 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   pixel art at 64x80, nearest filter) on an `AnimatedSprite2D`, which BaseLib drives from the game's animation cues;
   falls back to `body.png`, then the vanilla placeholder. The frames come from `art_originals/pixelgen/` (see its README;
   bodies are three-quarters turned right, David wears sunglasses; a `rest` loop for rest sites, played by `StandIns`).
+  Faces and hair follow the reference photos in `photos/` (2026-10-27): Daniel messy hair + wire glasses + stubble, David
+  fringe + rectangular sunglasses + stubble, Joshua crew cut + dark glasses + stubble, Tim buzzed + glasses + full beard +
+  over-ear headphones. `photos/` has a `.gdignore` so the family photos never get packed into the Workshop .pck; keep it.
   Re-run it to change the art, then copy the frames in. A copy is on her Desktop (`pixelgen`).
   The `dead_N.png` frames are registered as the animation "die" (BaseLib's death cue only tries "Dead"/"Die"/"die", case-sensitive). The sprite's pivot is moved to the feet and it tweens to -90° on `die` (back up on `revive`), because the dead frames only slump.
   Co-op treasure room hands: `hands/point.png`, `rock`, `paper`, `scissors` (422 x 1200, from pixelgen `Hands.cs`); without them the game shows the borrowed vanilla arms.
