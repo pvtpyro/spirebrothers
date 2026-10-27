@@ -21,14 +21,21 @@ public static class StandIns
     /// <summary>Height in the shop. Combat bodies are 400; tweak if he looks too big or small next to the merchant.</summary>
     private const float ShopHeight = 400f;
 
-    /// <summary>Rest-site height when the scene has no usable hitbox to measure.</summary>
-    private const float RestSiteHeight = 300f;
+    /// <summary>
+    /// Rest-site height, the same for all four. (It used to come from the borrowed vanilla character's hitbox, which
+    /// made them slightly different sizes.)
+    /// </summary>
+    private const float RestSiteHeight = 620f;
 
     /// <summary>
-    /// Where he sits at the campfire, as a fraction of his height from the vanilla character's spot: forward onto the
-    /// scene's log and a little lower. Tweak these if he floats or sinks.
+    /// Where his feet go at the campfire, as a fraction of his height from his seat. The scene has two arched logs, and
+    /// each player's spot (Character_1..4: front-left, front-right, back-left, back-right) is the point on a log where
+    /// vanilla characters sit. In the rest frames the bottom of his seat is about 6px behind and 10px above the frame's
+    /// bottom-center (of 80), so the feet go that far forward and down. Tweak these if they float or sink.
+    /// The old version offset from the borrowed vanilla body and pushed him toward the fire, which put the back-row
+    /// seats in 4-player co-op out on bare ground.
     /// </summary>
-    private static readonly Vector2 RestSeat = new(0.3f, 0.06f);
+    private static readonly Vector2 RestSeat = new(0.075f, 0.125f);
 
     private static readonly AccessTools.FieldRef<NMerchantRoom, List<Player>> Players =
         AccessTools.FieldRefAccess<NMerchantRoom, List<Player>>("_players");
@@ -46,7 +53,7 @@ public static class StandIns
             var players = Players(__instance);
             var visuals = PlayerVisuals(__instance);
             for (int i = 0; i < Math.Min(players.Count, visuals.Count); i++)
-                if (players[i].Character is BrotherCharacter brother) StandIn(visuals[i], brother, ShopHeight, "idle", Vector2.Zero);
+                if (players[i].Character is BrotherCharacter brother) StandIn(visuals[i], brother, ShopHeight, "idle", null);
         }
         catch (Exception e)
         {
@@ -61,9 +68,8 @@ public static class StandIns
         try
         {
             if (__instance.Player?.Character is not BrotherCharacter brother) return;
-            float hitbox = __instance.Hitbox?.Size.Y ?? 0;
-            float height = hitbox > 100 ? hitbox * 0.9f : RestSiteHeight;
-            StandIn(__instance, brother, height, "rest", RestSeat * height);
+            // The node itself sits on the player's spot (the room puts it at its container's origin).
+            StandIn(__instance, brother, RestSiteHeight, "rest", RestSeat * RestSiteHeight);
         }
         catch (Exception e)
         {
@@ -81,7 +87,8 @@ public static class StandIns
         sprite.Position = new Vector2(-sprite.Position.X, sprite.Position.Y);
     }
 
-    private static void StandIn(Node host, BrotherCharacter brother, float height, string anim, Vector2 offset)
+    /// <param name="feet">Where his feet go, relative to the host node (unmirrored); null puts them where the vanilla body stood.</param>
+    private static void StandIn(Node host, BrotherCharacter brother, float height, string anim, Vector2? feet)
     {
         var spines = host.GetChildren().OfType<Node2D>().Where(n => n.GetClass() == "SpineSprite").ToList();
         if (spines.Count == 0 || host.GetNodeOrNull(NodeName) != null) return;
@@ -89,7 +96,7 @@ public static class StandIns
 
         sprite.Name = NodeName;
         bool mirrored = spines[0].Scale.X < 0;
-        sprite.Position = spines[0].Position + new Vector2(mirrored ? -offset.X : offset.X, offset.Y);
+        sprite.Position = feet is { } f ? new Vector2(mirrored ? -f.X : f.X, f.Y) : spines[0].Position;
         if (mirrored) sprite.Scale = new Vector2(-sprite.Scale.X, sprite.Scale.Y);
         foreach (var spine in spines) spine.Visible = false;
         host.AddChild(sprite);
