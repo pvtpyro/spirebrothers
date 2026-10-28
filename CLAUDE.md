@@ -27,6 +27,7 @@ Both are built (2026-10-27), untested in game.
   "Jetpack Boost", and "Blue Screen of Death" are named that way because Daniel and David already have the shorter ones.
 - `gen.ps1 -CardsOnly -Character John` draws only one character's cards (a full run would redraw every brother's, and any
   hand-drawn art with it). Relics/powers one at a time with `-Section relics|powers -Only <name>`.
+- Workshop image: `art_originals/modimage/` (`dotnet run -c Release`, 600x600, all six in a 3x2 grid, friends on charcoal with steel frames); copy `out/mod_image.png` to `D:/projects/csharp/Spire-ModUploader/SpireBrothers/image.png`.
 - Friends' campfire loops (2026-10-27): John raids on a laptop on his lap, screen glow on his face, fist pump at the loot (`JohnArt.DrawFront`; anything held by his mouth reads as food), Huffman pets the Mastiff lying at his knee (`HuffmanArt.LyingDog`). Chest hands: John's fingerless glove + stimm injector, Huffman's Arbites gauntlet (`Hands.DrawHand` glove overload). Map colors: John amber, Huffman steel.
 - Leave John's grandma out of the mod. John and Huffman are uncle and nephew but the same age: write them as peers.
 - John: `Character/John.cs` + `JohnPools.cs` (Ironclad scenes), `Cards/JohnCard.cs`, `Cards/John/` (5 Basic, 70 reward, Stimm
@@ -383,3 +384,17 @@ Card art for everything (all cards, relics, and powers use placeholders).
   World Tour, All Hands on Deck. Archaic Tooth cards too: each starter (Percussive Maintenance, Here We Go Again, Sing Along,
   Dad Joke) implements BaseLib's `ITranscendenceCard`. Details in ANCIENT_CARDS.md.
 - `gen.ps1` draws any card with `CardRarity.Ancient` as tall full-card art (598x842, big 1196x1684).
+
+## Added 2026-10-28 (regular fights)
+
+- Nine normal (non-elite) fights, list and status in TODO.md #13, tested in game 2026-10-28. Each is one file in `Monsters/` (the
+  `CustomEncounterModel(RoomType.Monster)` plus its monsters; `IsWeak => true` for the easy early-Act-1 pool). Monsters extend
+  `Monsters/PixelMonster.cs` (body from `images/monsters/<ArtFolder>/frames/`). Text: monsters.json (`.name`, `.moves.<ID>.title`)
+  and encounters.json (`.title`, `.loss`).
+- Art: `art_originals/pixelgen/Mobs.cs` (`Px` helpers for blocky pixel art; `IFrameArt` classes, or `FoeArt` rigs for people),
+  rendered by `art_originals/mobgen` (`dotnet run -c Release [name ...]`, previews in `out/preview_<name>.png`).
+  Gotcha: a `record struct`'s `new()` zeroes every field and ignores parameter defaults, so "none" values must be 0.
+- Per-monster setup the encounter sets after `ToMutable()` (Philistine scouts' `StartStep`, jackals'/poxwalkers' `LungesFirst`).
+  Moves switched mid-turn with `SetMoveImmediate(state, forceTransition: true)` (Enderman's rage, Windows Update's restart).
+  `Alexander.Summon(..., minion: false)` adds a non-minion mid-fight (the poxwalker horde).
+- New status cards in `Cards/Shared/` (`StatusCardPool`): Dust Bunny (Roomba), Close Ad (Windows Update).

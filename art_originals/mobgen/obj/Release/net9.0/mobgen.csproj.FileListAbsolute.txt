@@ -1,0 +1,15 @@
+D:\projects\csharp\SpireBrothers\art_originals\mobgen\bin\Release\net9.0\mobgen.exe
+D:\projects\csharp\SpireBrothers\art_originals\mobgen\bin\Release\net9.0\mobgen.deps.json
+D:\projects\csharp\SpireBrothers\art_originals\mobgen\bin\Release\net9.0\mobgen.runtimeconfig.json
+D:\projects\csharp\SpireBrothers\art_originals\mobgen\bin\Release\net9.0\mobgen.dll
+D:\projects\csharp\SpireBrothers\art_originals\mobgen\bin\Release\net9.0\mobgen.pdb
+D:\projects\csharp\SpireBrothers\art_originals\mobgen\obj\Release\net9.0\mobgen.GeneratedMSBuildEditorConfig.editorconfig
+D:\projects\csharp\SpireBrothers\art_originals\mobgen\obj\Release\net9.0\mobgen.AssemblyInfoInputs.cache
+D:\projects\csharp\SpireBrothers\art_originals\mobgen\obj\Release\net9.0\mobgen.AssemblyInfo.cs
+D:\projects\csharp\SpireBrothers\art_originals\mobgen\obj\Release\net9.0\mobgen.csproj.CoreCompileInputs.cache
+D:\projects\csharp\SpireBrothers\art_originals\mobgen\obj\Release\net9.0\mobgen.sourcelink.json
+D:\projects\csharp\SpireBrothers\art_originals\mobgen\obj\Release\net9.0\mobgen.dll
+D:\projects\csharp\SpireBrothers\art_originals\mobgen\obj\Release\net9.0\refint\mobgen.dll
+D:\projects\csharp\SpireBrothers\art_originals\mobgen\obj\Release\net9.0\mobgen.pdb
+D:\projects\csharp\SpireBrothers\art_originals\mobgen\obj\Release\net9.0\mobgen.genruntimeconfig.cache
+D:\projects\csharp\SpireBrothers\art_originals\mobgen\obj\Release\net9.0\ref\mobgen.dll

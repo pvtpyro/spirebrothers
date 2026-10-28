@@ -179,3 +179,20 @@ Built 2026-10-27 (cards, potions, relics, banter). Plans in JOHN_CARDS.md / HUFF
 - [ ] More banter: big-moment lines (like the brothers' RANTS / KIDS) for a big Grind or the dog's Bite getting high
 - [x] Sounds (2026-10-27): john_stimm, john_shroud, huffman_bark, huffman_law (list in SpireBrothers/audio/README.md)
   - [ ] Record or find real clips (a bark from his real dog would be perfect)
+
+### 13. Regular fights (approved 2026-10-28)
+Normal (non-elite) fights. Code: `Monsters/PixelMonster.cs` base + one file per fight (encounter + its monsters), text in
+monsters.json / encounters.json. Art: `art_originals/pixelgen/Mobs.cs`, rendered by `art_originals/mobgen` (`dotnet run -c Release [name]`),
+then copy `out/<name>/frames` to `SpireBrothers/images/monsters/<name>/frames`. Built one at a time, start to finish.
+- [x] 1. Night Falls (Minecraft, Act 1): Creeper (Fuse 3, explodes 16 and dies), Skeleton (3x2, 3x2, Take Aim +2 Str), Spider (bite 6 + Weak, climb 8 Block). `Monsters/NightFalls.cs`, `FusePower`.
+- [x] 2. The Enderman (Minecraft, Act 2, `Monsters/TheEnderman.cs`, `ProvokedPower`): ~110 HP, light hits; hit 3+ times in one turn and it gets angry (next attack hits hard); sometimes teleports (immune to damage for a turn).
+- [x] 3. Blockbeard's Deckhands (Monkey Island, Act 1 weak, `Monsters/Deckhands.cs`; Lookout insults are monsters.json `LOOKOUT.insults.N`): Lookout (12 HP, insults = Weak) + Powder Monkey (10 HP, lights a keg that blows next turn unless he dies). Both start Insulted.
+- [x] 4. Philistine Scouts (Bible, Act 1, `Monsters/PhilistineScouts.cs`; crested helmets, since feathered crowns read as war bonnets): 3 scouts ~15 HP; each turn one Guards (Block to the others) while two attack.
+- [x] 5. The Jackals (Bible, Act 1 weak, `Monsters/TheJackals.cs`): 2 jackals ~11 HP, bite 3x2; when one dies the other howls (+Strength).
+- [x] 6. Runaway Roomba (Act 1 weak, `Monsters/RunawayRoomba.cs`, status card `Cards/Shared/DustBunny.cs`): ~30 HP; bumps 5, backs off (Block); vacuums a card from your discard and spits back a Dust Bunny junk card.
+- [x] 7. Windows Update (Act 2, `Monsters/WindowsUpdate.cs`, `UpdatingPower`, status card `CloseAd`): laptop ~90 HP, "Updating x%" climbs each turn; at 100% it restarts (full heal + hits everyone); pop-ups add junk cards.
+- [x] 8. Chores (Act 2, `Monsters/Chores.cs`, `PilingUpPower`): Laundry Pile, Dirty Dishes, Overgrown Lawn (~35 HP each); each grows stronger every turn it isn't attacked; the icon drops to 0 once it has been hit this turn (pets count). Laundry is in a basket with a sock hanging out.
+- [x] 9. Poxwalker Horde (Darktide, Act 2, `Monsters/PoxwalkerHorde.cs`; summons via `Alexander.Summon(..., minion: false)`): 4 poxwalkers ~12 HP, 1 more shuffles in each round (max 6).
+- [x] Playtest all nine (tested 2026-10-28, all work). Riskiest were: the Creeper's explode-then-die, the Enderman switching to Ender Rage
+  mid-turn, Windows Update's Restart (full heal), Philistine Scouts taking turns guarding, and the horde lining up 6 bodies.
+- [ ] Tune numbers after playing; Act 2 fights may need more HP/damage. The art is first-draft pixel art (mobgen previews).

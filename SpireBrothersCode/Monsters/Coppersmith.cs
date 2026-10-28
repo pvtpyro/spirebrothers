@@ -129,12 +129,12 @@ public class Alexander : CopperMonster
     /// doesn't place newcomers; this lines every living enemy back up with the game's own layout (PositionEnemies),
     /// helpers in front, and slides the old ones over.
     /// </summary>
-    public static async Task Summon(Creature summoner, MonsterModel monster)
+    public static async Task Summon(Creature summoner, MonsterModel monster, bool minion = true)
     {
         var combat = summoner.CombatState;
         if (combat == null || !combat.IsLiveCombat()) return;
         var added = await CreatureCmd.Add(monster.ToMutable(), combat, CombatSide.Enemy, null);
-        if (added.GetPower<MinionPower>() == null)
+        if (minion && added.GetPower<MinionPower>() == null)
             await PowerCmd.Apply<MinionPower>(new ThrowingPlayerChoiceContext(), added, 1, summoner, null);
         try
         {

@@ -1204,5 +1204,9 @@
   "SPIREBROTHERS-HOME_SWEET_HOME.title": "Home Sweet Home",
   "SPIREBROTHERS-HOME_SWEET_HOME.description": "At the start of your turn, the [gold]Mastiff[/gold] bites.\nWhenever the [gold]Mastiff[/gold] bites, gain [blue]1[/blue] [gold]Metal[/gold].",
   "SPIREBROTHERS-RELEASE_THE_HOUND.title": "Release the Hound",
-  "SPIREBROTHERS-RELEASE_THE_HOUND.description": "[gold]Mark[/gold] an enemy.\nThe [gold]Mastiff[/gold] gains {Bite:diff()} [gold]Bite[/gold], then bites it."
+  "SPIREBROTHERS-RELEASE_THE_HOUND.description": "[gold]Mark[/gold] an enemy.\nThe [gold]Mastiff[/gold] gains {Bite:diff()} [gold]Bite[/gold], then bites it.",
+  "SPIREBROTHERS-DUST_BUNNY.title": "Dust Bunny",
+  "SPIREBROTHERS-DUST_BUNNY.description": "Nothing happens. You just cleaned up.",
+  "SPIREBROTHERS-CLOSE_AD.title": "Close Ad",
+  "SPIREBROTHERS-CLOSE_AD.description": "Nothing happens. Where is the X?"
 }

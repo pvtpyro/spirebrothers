@@ -1,0 +1,15 @@
+D:\projects\csharp\SpireBrothers\art_originals\modimage\bin\Release\net9.0\modimage.exe
+D:\projects\csharp\SpireBrothers\art_originals\modimage\bin\Release\net9.0\modimage.deps.json
+D:\projects\csharp\SpireBrothers\art_originals\modimage\bin\Release\net9.0\modimage.runtimeconfig.json
+D:\projects\csharp\SpireBrothers\art_originals\modimage\bin\Release\net9.0\modimage.dll
+D:\projects\csharp\SpireBrothers\art_originals\modimage\bin\Release\net9.0\modimage.pdb
+D:\projects\csharp\SpireBrothers\art_originals\modimage\obj\Release\net9.0\modimage.GeneratedMSBuildEditorConfig.editorconfig
+D:\projects\csharp\SpireBrothers\art_originals\modimage\obj\Release\net9.0\modimage.AssemblyInfoInputs.cache
+D:\projects\csharp\SpireBrothers\art_originals\modimage\obj\Release\net9.0\modimage.AssemblyInfo.cs
+D:\projects\csharp\SpireBrothers\art_originals\modimage\obj\Release\net9.0\modimage.csproj.CoreCompileInputs.cache
+D:\projects\csharp\SpireBrothers\art_originals\modimage\obj\Release\net9.0\modimage.sourcelink.json
+D:\projects\csharp\SpireBrothers\art_originals\modimage\obj\Release\net9.0\modimage.dll
+D:\projects\csharp\SpireBrothers\art_originals\modimage\obj\Release\net9.0\refint\modimage.dll
+D:\projects\csharp\SpireBrothers\art_originals\modimage\obj\Release\net9.0\modimage.pdb
+D:\projects\csharp\SpireBrothers\art_originals\modimage\obj\Release\net9.0\modimage.genruntimeconfig.cache
+D:\projects\csharp\SpireBrothers\art_originals\modimage\obj\Release\net9.0\ref\modimage.dll

@@ -783,5 +783,17 @@
   "SPIREBROTHERS-TALENTS_POWER.title": "Talents",
   "SPIREBROTHERS-TALENTS_POWER.description": "The talents John has learned at the Stimm Lab. Hover in combat to see them.",
   "SPIREBROTHERS-TALENTS_POWER.smartDescription": "Talents learned at the Stimm Lab: [blue]{Amount}[/blue] {Amount:plural:rank|ranks} in all. They last the whole run.",
-  "SPIREBROTHERS-TALENTS_POWER.learned": "Learned Talents"
+  "SPIREBROTHERS-TALENTS_POWER.learned": "Learned Talents",
+  "SPIREBROTHERS-FUSE_POWER.title": "Fuse",
+  "SPIREBROTHERS-FUSE_POWER.description": "Explodes when the fuse runs out. Kill it first!",
+  "SPIREBROTHERS-FUSE_POWER.smartDescription": "Explodes in [blue]{Amount}[/blue] {Amount:plural:turn|turns}, dying in the blast. Kill it first!",
+  "SPIREBROTHERS-PROVOKED_POWER.title": "Short Temper",
+  "SPIREBROTHERS-PROVOKED_POWER.description": "Hit it 3 times in one turn and it flies into a rage: its next move becomes a big attack.",
+  "SPIREBROTHERS-PROVOKED_POWER.smartDescription": "Hit it [blue]3[/blue] times in one turn and it flies into a rage: its next move becomes a big attack. The number is how many times it has been hit this turn.",
+  "SPIREBROTHERS-UPDATING_POWER.title": "Updating",
+  "SPIREBROTHERS-UPDATING_POWER.description": "Each of its turns adds 25%. At 100% it restarts: heals to full and hits hard.",
+  "SPIREBROTHERS-UPDATING_POWER.smartDescription": "Working on updates. Each of its turns adds [blue]25%[/blue]. At [blue]100%[/blue] it restarts: heals to full and hits hard. Do not turn off your PC.",
+  "SPIREBROTHERS-PILING_UP_POWER.title": "Piling Up",
+  "SPIREBROTHERS-PILING_UP_POWER.description": "If nobody hits it during your turn, it gains Strength. The number drops to 0 once it has been hit this turn (pets count).",
+  "SPIREBROTHERS-PILING_UP_POWER.smartDescription": "If nobody hits it during your turn, it gains [blue]{Amount}[/blue] [gold]Strength[/gold]. The number drops to 0 once it has been hit this turn (pets count). Chores don't do themselves."
 }
