@@ -9,11 +9,13 @@ public class DayAtTheLake : BrotherEvent
     public const int PotionOdds = 40, GoldOdds = 30, RelicOdds = 20, FishingGold = 60;
     public const int WakeboardHp = 8, WakeboardMaxHp = 5, DockHealPercent = 25;
 
+    protected override bool HasFriendText => true;
+
     protected override IReadOnlyList<EventOption> GenerateInitialOptions() =>
     [
-        Option(GoFishingWithDad),
-        Option(Wakeboarding).ThatDoesDamage(WakeboardHp),
-        Option(LoungeOnTheDock),
+        Option(GoFishingWithDad, Page("INITIAL")),
+        Option(Wakeboarding, Page("INITIAL")).ThatDoesDamage(WakeboardHp),
+        Option(LoungeOnTheDock, Page("INITIAL")),
     ];
 
     private async Task GoFishingWithDad()

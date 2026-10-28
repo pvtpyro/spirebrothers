@@ -10,11 +10,13 @@ public class CallingMom : BrotherEvent
 {
     public const int ChatHealPercent = 20, VentRemovals = 2;
 
+    protected override bool HasFriendText => true;
+
     protected override IReadOnlyList<EventOption> GenerateInitialOptions() =>
     [
-        Option(JustChat),
-        Option(AskForAdvice),
-        Owner?.Character is Character.Daniel ? LockedOption("VENT_FOR_AN_HOUR_LOCKED") : Option(VentForAnHour),
+        Option(JustChat, Page("INITIAL")),
+        Option(AskForAdvice, Page("INITIAL")),
+        Owner?.Character is Character.Daniel ? LockedOption("VENT_FOR_AN_HOUR_LOCKED") : Option(VentForAnHour, Page("INITIAL")),
     ];
 
     private async Task JustChat()

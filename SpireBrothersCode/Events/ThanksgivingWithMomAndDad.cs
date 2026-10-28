@@ -11,12 +11,14 @@ public class ThanksgivingWithMomAndDad : BrotherEvent
 {
     public const int TurkeyMaxHp = 7, PieHealPercent = 30;
 
+    protected override bool HasFriendText => true;
+
     protected override IReadOnlyList<EventOption> GenerateInitialOptions() =>
     [
-        Option(DadsDeepFriedTurkey),
-        ShowingCard<FoodComa>(Option(SecondsOnMomsPie)),
-        Option(HelpMomWithTheDishes),
-        Option(OutInDadsShop),
+        Option(DadsDeepFriedTurkey, Page("INITIAL")),
+        ShowingCard<FoodComa>(Option(SecondsOnMomsPie, Page("INITIAL"))),
+        Option(HelpMomWithTheDishes, Page("INITIAL")),
+        Option(OutInDadsShop, Page("INITIAL")),
     ];
 
     private async Task DadsDeepFriedTurkey()

@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Rewards;
@@ -30,8 +31,21 @@ public abstract class BrotherEvent : CustomEventModel
 
     public override bool IsAllowed(IRunState runState) => runState.Players.Any(BrothersInArms.IsBrother);
 
-    /// <summary>Ends the event, showing the text of page <paramref name="pageKey"/>.</summary>
-    protected void Finish(string pageKey) => SetEventFinished(PageDescription(pageKey));
+    /// <summary>
+    /// Events about the brothers' parents set this. John and Huffman then read FRIEND_&lt;PAGE&gt; pages instead (same
+    /// options, same effects): it's not their Mom and Dad, so they're the guest who's been coming over for years.
+    /// </summary>
+    protected virtual bool HasFriendText => false;
+
+    private bool ForFriend => HasFriendText && Owner?.Character is Character.John or Character.Huffman;
+
+    /// <summary>A page key, swapped for its FRIEND_ copy when one of the friends is playing.</summary>
+    protected string Page(string pageKey) => ForFriend ? "FRIEND_" + pageKey : pageKey;
+
+    public override LocString InitialDescription => ForFriend ? PageDescription(Page("INITIAL")) : base.InitialDescription;
+
+    /// <summary>Ends the event, showing the text of page <paramref name="pageKey"/> (or its FRIEND_ copy).</summary>
+    protected void Finish(string pageKey) => SetEventFinished(PageDescription(Page(pageKey)));
 
     protected async Task HealPercent(int percent)
     {

@@ -61,6 +61,8 @@ Both are built (2026-10-27), untested in game.
   get `FamilyBondsPower` via `Banter.Talks`. Ancient: Realm First!, Home Sweet Home, Cartel Masterwork, Release the Hound (ANCIENT_CARDS.md).
   Stats: `RunStats` ToxinApplied (`Toxin.Apply`), ShroudTurns (`ShroudPower`), Bites, MetalSpent (`Metal.Spend`), LawsEnforced
   (`LawPower.Enforce()`, which every Law calls instead of `Flash()`). Events: `WeekendInTown`, Road Trip's `TurnAroundAndGoHome`.
+  Per-player family events (Calling Mom, Thanksgiving, Day at the Lake) set `BrotherEvent.HasFriendText`: John/Huffman read
+  `FRIEND_<PAGE>` pages ("the boys' mom"); options must pass `Page("INITIAL")`, and `Finish` swaps automatically.
 - Banter: `Banter.Talks(player)` (brothers + friends) gates banter and Pings; shared pools keep Mom/Dad lines in `<POOL>.FAMILY` (BOSS, FALL), added only for brothers by `Banter.WithFamily`; `BrothersInArms.IsBrother` stays brothers-only
   for relics, Family Bonds, and events. Friends' lines are in powers.json like the brothers'. What's left for them: TODO.md #12.
 

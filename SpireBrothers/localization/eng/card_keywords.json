@@ -38,7 +38,7 @@
   "SPIREBROTHERS-AGE.title": "Age",
   "SPIREBROTHERS-AGE.description": "Tim's Age lasts the whole run. Each Age gives all his cards +1 damage and +1 [gold]Block[/gold]. [gold]Age Up[/gold] advances it: Dark, Feudal, Castle, then Imperial.",
   "SPIREBROTHERS-DUO.title": "Duo",
-  "SPIREBROTHERS-DUO.description": "Made for teaming up with the brother it names. Only shows up in card rewards and shops when that brother is in your party.",
+  "SPIREBROTHERS-DUO.description": "Made for teaming up with the teammate it names. Only shows up in card rewards and shops when they are in your party.",
 "SPIREBROTHERS-CHEM.title": "Chem",
   "SPIREBROTHERS-CHEM.description": "John's Hive Scum chems. Chem cards react with [gold]Toxin[/gold].",
   "SPIREBROTHERS-GRIND.title": "Grind",

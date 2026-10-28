@@ -176,8 +176,9 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
         if (reactor != null) Say(reactor.Creature, run, "FALL." + name);
         else
         {
+            // "I'm telling Mom" is for a brother who fell, not one of the friends.
             var reactorPlayer = others[Roll(run, others.Count)];
-            Say(reactorPlayer.Creature, run, WithFamily(reactorPlayer, "FALL"));
+            Say(reactorPlayer.Creature, run, BrothersInArms.IsBrother(fallen) ? WithFamily(reactorPlayer, "FALL") : ["FALL"]);
         }
         return Task.CompletedTask;
     }
