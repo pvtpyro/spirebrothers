@@ -196,3 +196,7 @@ then copy `out/<name>/frames` to `SpireBrothers/images/monsters/<name>/frames`. 
 - [x] Playtest all nine (tested 2026-10-28, all work). Riskiest were: the Creeper's explode-then-die, the Enderman switching to Ender Rage
   mid-turn, Windows Update's Restart (full heal), Philistine Scouts taking turns guarding, and the horde lining up 6 bodies.
 - [ ] Tune numbers after playing; Act 2 fights may need more HP/damage. The art is first-draft pixel art (mobgen previews).
+
+
+### 14. See if it's possible to select wardrobes or shirt colors when selecting character. then maybe changing the appearance for getting certain items.
+

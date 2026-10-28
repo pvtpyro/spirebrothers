@@ -37,7 +37,7 @@ public class CartelSpecial() : JohnCard(0, CardType.Skill, CardRarity.Basic, Tar
     protected override void AddExtraArgsToDescription(MegaCrit.Sts2.Core.Localization.LocString description)
     {
         base.AddExtraArgsToDescription(description);
-        description.Add("FastActing", Owner != null && FastActing);
+        description.Add("FastActing", IsMutable && Owner != null && FastActing);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

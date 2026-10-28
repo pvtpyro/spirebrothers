@@ -24,7 +24,7 @@ public class LevelCap() : JohnCard(2, CardType.Power, CardRarity.Rare, TargetTyp
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Per", 10)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<StrengthPower>()];
 
-    private int Strength => Owner == null ? 0 : Grind.TimesThisRun(Owner) / Math.Max(1, DynamicVars["Per"].IntValue);
+    private int Strength => !IsMutable || Owner == null ? 0 : Grind.TimesThisRun(Owner) / Math.Max(1, DynamicVars["Per"].IntValue);
 
     protected override void AddExtraArgsToDescription(MegaCrit.Sts2.Core.Localization.LocString description)
     {

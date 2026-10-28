@@ -30,7 +30,7 @@ public abstract class TalentCard() : JohnCard(0, CardType.Power, CardRarity.Toke
     protected override void AddExtraArgsToDescription(MegaCrit.Sts2.Core.Localization.LocString description)
     {
         base.AddExtraArgsToDescription(description);
-        description.Add("Rank", StimmLab.Rank(Owner, Talent));
+        description.Add("Rank", IsMutable && Owner != null ? StimmLab.Rank(Owner, Talent) : 0);
         description.Add("MaxRank", StimmLab.MaxRank(Talent));
     }
 
