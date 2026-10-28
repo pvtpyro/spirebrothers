@@ -148,7 +148,7 @@
   "SPIREBROTHERS-LOOT_CHEST.description": "Whenever one of your cards [gold]Grinds[/gold], gain [blue]2[/blue] [gold]Gold[/gold].",
   "SPIREBROTHERS-LOOT_CHEST.flavor": "Every grind pays out eventually.",
   "SPIREBROTHERS-SURVIVORS_LANTERN.title": "Survivor's Lantern",
-  "SPIREBROTHERS-SURVIVORS_LANTERN.description": "The [gold]Shroud[/gold] no longer costs you HP.",
+  "SPIREBROTHERS-SURVIVORS_LANTERN.description": "Whenever you enter the [gold]Shroud[/gold], gain [blue]5[/blue] [gold]Block[/gold].",
   "SPIREBROTHERS-SURVIVORS_LANTERN.flavor": "A little light goes a long way in the fog.",
   "SPIREBROTHERS-CHEW_TOY.title": "Chew Toy",
   "SPIREBROTHERS-CHEW_TOY.description": "The [gold]Mastiff[/gold] starts each combat with [blue]2[/blue] more [gold]Bite[/gold].",

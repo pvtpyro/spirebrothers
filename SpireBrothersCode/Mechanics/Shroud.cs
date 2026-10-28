@@ -24,8 +24,11 @@ public static class Shroud
         if (turns <= 0) return;
         // Flame Altar Upgrade: every trip in lasts longer.
         turns += player.Creature.GetPowerAmount<FlameAltarUpgradePower>();
-        if (!In(player)) Sounds.Play(Sounds.JohnShroud);
+        bool entering = !In(player);
+        if (entering) Sounds.Play(Sounds.JohnShroud);
         await PowerCmd.Apply<ShroudPower>(ctx, player.Creature, turns, player.Creature, card);
+        // Survivor's Lantern: a little cover on the way in.
+        if (entering && player.GetRelic<Relics.SurvivorsLantern>() is { } lantern) await lantern.OnEnterShroud();
     }
 
     /// <summary>Adds turns only if he's already in the Shroud (Flame Shard).</summary>
@@ -49,7 +52,7 @@ public static class Shroud
     /// <summary>HP he loses at the end of each turn in the Shroud: less with Shroud Lungs, none with the Altar Upgrade.</summary>
     public static int HpLoss(Player player)
     {
-        if (player.Creature.GetPower<FlameAltarUpgradePower>() != null || player.GetRelic<Relics.SurvivorsLantern>() != null) return 0;
+        if (player.Creature.GetPower<FlameAltarUpgradePower>() != null) return 0;
         return Math.Max(0, HpLossPerTurn - StimmLab.Rank(player, StimmLab.Talent.ShroudLungs));
     }
 }

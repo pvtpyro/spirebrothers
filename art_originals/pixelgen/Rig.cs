@@ -1,4 +1,4 @@
-public enum Face { Normal, Blink, Hurt, Dead, Fierce, Happy }
+public enum Face { Normal, Blink, Hurt, Dead, Fierce, Happy, Down }
 
 public class Pose
 {
@@ -287,6 +287,11 @@ public abstract class Brother
                     break;
                 case Face.Happy:
                     c.Plot(x - 0.5f, y + 1, Eye); c.Plot(x + 0.5f, y, Eye); c.Plot(x + 1.5f, y + 1, Eye);
+                    break;
+                case Face.Down:
+                    // looking down: the eyes sit low under a heavy lid line
+                    c.Plot(x - 0.5f, y, Skin.Shade); c.Plot(x + 0.5f, y, Skin.Shade);
+                    c.Plot(x - 0.5f, y + 1, Eye); c.Plot(x + 0.5f, y + 1, Eye);
                     break;
                 default:
                     // 2 x 3 eyes with a little white glint on the side he's facing

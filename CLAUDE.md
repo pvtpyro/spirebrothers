@@ -27,7 +27,7 @@ Both are built (2026-10-27), untested in game.
   "Jetpack Boost", and "Blue Screen of Death" are named that way because Daniel and David already have the shorter ones.
 - `gen.ps1 -CardsOnly -Character John` draws only one character's cards (a full run would redraw every brother's, and any
   hand-drawn art with it). Relics/powers one at a time with `-Section relics|powers -Only <name>`.
-- Friends' campfire loops (2026-10-27): John mixes a stimm, held out past his beard with a steel cap (a brown cork by his mouth read as a chocolate bar) (`JohnArt.Vial`), Huffman pets the Mastiff lying at his knee (`HuffmanArt.LyingDog`). Chest hands: John's fingerless glove + stimm injector, Huffman's Arbites gauntlet (`Hands.DrawHand` glove overload). Map colors: John amber, Huffman steel.
+- Friends' campfire loops (2026-10-27): John raids on a laptop on his lap, screen glow on his face, fist pump at the loot (`JohnArt.DrawFront`; anything held by his mouth reads as food), Huffman pets the Mastiff lying at his knee (`HuffmanArt.LyingDog`). Chest hands: John's fingerless glove + stimm injector, Huffman's Arbites gauntlet (`Hands.DrawHand` glove overload). Map colors: John amber, Huffman steel.
 - Leave John's grandma out of the mod. John and Huffman are uncle and nephew but the same age: write them as peers.
 - John: `Character/John.cs` + `JohnPools.cs` (Ironclad scenes), `Cards/JohnCard.cs`, `Cards/John/` (5 Basic, 70 reward, Stimm
   token, 8 talent cards + `TalentCard`, Duo Discord Call with David). Mechanics:
@@ -53,7 +53,7 @@ Both are built (2026-10-27), untested in game.
   - **Metal / Build** (`Mechanics/Metal.cs`, `MetalPower`): `Metal.Build` spends the cost if he has it (Build Queue makes one free).
   - I'll Wait Till I Get Home grows in `HuffmanTracker.AfterFlush` when Retained.
 - Friends' extras: 3 potions each (`JohnPotion` / `HuffmanPotion` in `Potions/BrotherPotion.cs`), 3 relics each (Loot Chest is
-  paid in `JohnCard.GrindTimes`, Survivor's Lantern read in `Shroud.HpLoss`, Chew Toy in `Mastiff.Spawn`), plus Blown Cartridge
+  paid in `JohnCard.GrindTimes`, Survivor's Lantern (5 Block on entering the Shroud; was a duplicate of Shroud Lungs) in `Shroud.Enter`, Chew Toy in `Mastiff.Spawn`), plus Blown Cartridge
   added to their pools in `MainFile` (not Monkey Island, the family relics, or Party Headset: removed 2026-10-27, too few Share cards).
 - Friends' bonds, Ancient cards, stats, events, sounds (2026-10-27, untested): bonds Uncle and Nephew / Best Friends / Coworkers /
   Strike Team are in `FamilyBonds` (hooks: `FamilyBonds.AfterExact` from `Exact.Check`, `AfterBite` from `Mastiff.Attack`); friends

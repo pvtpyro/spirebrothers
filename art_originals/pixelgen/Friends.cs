@@ -70,47 +70,55 @@ public class JohnArt : AnimatedBrother
 
     protected override void DrawWeapon(Canvas c, Rig r, Pose p)
     {
-        if (p.Prop == "vial") { Vial(c, r, p); return; }
         if (p.Prop != "pistols") return;
         Pistol(c, r.HandF, p.PropAngle, p.Fx is 1 or 3);
         DrawHand(c, r.HandF, false);
     }
 
-    // Campfire: a glass vial of homebrew chem, held out in front of him (well away from his beard). It starts murky
-    // purple, turns toxic green as he shakes it, he holds it up to the firelight (frame 4), it fizzes over and he leans
-    // back from the fumes (frame 5), then he grins at it while it bubbles.
-    private void Vial(Canvas c, Rig r, Pose p)
+    // Campfire: raiding on a laptop on his lap. The screen faces him, so we see the back of the lid and its blue light on
+    // his face and beard. He types and watches the screen the whole loop; it flashes purple when the epic loot drops
+    // (frames 4-5) and he smiles.
+    static readonly Col ScreenBlue = Col.Hex("8ec8ff");
+    static readonly Col EpicPurple = Col.Hex("c070ff");
+
+    protected override void DrawFront(Canvas c, Rig r, Pose p)
     {
-        var h = r.HandF; var tilt = V.Dir(p.PropAngle - 90);
-        var bottom = h + tilt * -2f; var top = h + tilt * 8f;
-        bool green = p.Fx >= 2;
-        var liquid = green ? (p.Fx % 2 == 0 ? Col.Hex("70ff80") : Col.Hex("48d860")) : Col.Hex("7a4aa0");
-        c.Draw(q => S.Capsule(q, bottom, top, 2.3f), Col.Hex("c8e0e8"), hi: Col.Hex("f0fbff"));      // glass
-        c.Flat(q => S.Capsule(q, bottom, h + tilt * 4, 1.3f), liquid);                                // the chem
-        c.Draw(q => S.Capsule(q, top, top + tilt * 1.2f, 1.5f), Col.Hex("8a929c"), hi: Col.Hex("d8dee8"));   // steel cap
-        if (green && p.Fx is 2 or 3) Sparkle(c, top + new V(4, -2), 2, Col.Hex("70ff80"));
-        // fumes
-        if (p.Fx is 4 or 5 or 6 or 7)
-            for (int i = 0; i < 3; i++)
-                c.Plot(top + new V((i + p.Fx) % 2 == 0 ? 1 : -1, -2.5f - i * 1.8f), i == 0 ? Col.Hex("a0ffb0") : Col.Hex("70d880"));
-        if (p.Fx == 5) { Sparkle(c, top + new V(-1, -4), 2, Col.Hex("a0ffb0")); Sparkle(c, top + new V(3, -7), 1, Col.Hex("70d880")); }   // fizzes over
-        if (p.Fx is 6 or 7) c.Plot(h + tilt * (p.Fx == 6 ? 1.5f : 2.5f), Col.Hex("d8ffe0"));         // a bubble
-        DrawHand(c, h, false);
+        if (p.Prop != "laptop") return;
+        bool loot = p.Fx is 4 or 5;
+        var light = loot ? EpicPurple : ScreenBlue;
+        var shell = Col.Hex("3a3e48");
+        // base across his thighs, hinge at the knee end, lid tipped up toward him
+        var back = r.H + new V(2, -2.5f); var hinge = r.KneeF + new V(2, -3f);
+        c.Draw(q => S.Capsule(q, back, hinge, 1.5f), shell, hi: Col.Hex("6a707c"));
+        var lidTop = hinge + V.Dir(-100) * 14;
+        c.Draw(q => S.Capsule(q, hinge, lidTop, 1.5f), shell, hi: Col.Hex("6a707c"));
+        var n = (lidTop - hinge).Norm.Perp * -1f;                                         // the screen side, toward him
+        c.Flat(q => S.Capsule(q, hinge + n * 1.6f + (lidTop - hinge) * 0.1f, lidTop + n * 1.6f - (lidTop - hinge) * 0.06f, 0.6f), light);
+        c.Plot(hinge + (lidTop - hinge) * 0.55f - n * 0.6f, Col.Hex("9aa2ae"));          // a little logo on the back
+        // hands on the keys (the back hand is under the lid)
+        DrawHand(c, r.HandF, false);
+        // the screen's light on his face, beard, and chest (brighter on the beat it flickers)
+        float k = loot ? 0.26f : (p.Fx % 2 == 0 ? 0.2f : 0.16f);
+        c.Recolor(q => S.U(S.Circle(q, r.Head + new V(8, 3), 5.5f), S.Circle(q, r.S + new V(8, 4), 4f)),
+            px => px == Canvas.Outline ? px : px.Lerp(light, k));
+        if (p.Fx == 5) Sparkle(c, lidTop + new V(-6, -3), 1, EpicPurple);
+        if (p.Fx == 4) Sparkle(c, lidTop + new V(-3, -2), 2, EpicPurple);
     }
 
     protected override List<Pose> Rest()
     {
         var list = base.Rest();
-        // vial position (relative to his shoulder, out at arm's length) and tilt: shake, shake, glow, glow, hold up to the light, fizz, admire, admire
-        V[] hand = [new(15, 6), new(16, 5), new(15, 6), new(15, 6), new(17, -1), new(16, 5), new(15, 6), new(15, 6)];
-        float[] tilt = [-15, 15, -5, 5, 0, 10, 0, 0];
         for (int i = 0; i < list.Count; i++)
         {
             var p = list[i];
-            p.Prop = "vial"; p.FrontHand = hand[i]; p.PropAngle = tilt[i]; p.FrontElbowPref = new V(0, 1);
-            p.Face = i switch { 4 => Face.Fierce, 5 => Face.Hurt, 2 or 3 or 6 or 7 => Face.Happy, _ => Face.Normal };
-            if (i == 4) { p.HeadTilt = -1; }
-            if (i == 5) { p.Lean = -1; p.HeadTilt = -2; }
+            p.Prop = "laptop";
+            // typing: both hands stay on the keyboard and take turns tapping; he looks down at the screen the whole time,
+            // and smiles when the loot drops
+            p.FrontHand = new V(9 + (i % 2) * 0.8f, 14 - (i % 2) * 0.6f);
+            p.BackHand = new V(5.5f + ((i + 1) % 2) * 0.8f, 13 - ((i + 1) % 2) * 0.6f);
+            p.FrontElbowPref = new V(0, 1); p.BackElbowPref = new V(0, 1);
+            p.Face = i switch { 4 or 5 => Face.Happy, 6 => Face.Blink, _ => Face.Down };
+            p.Lean = 2; p.HeadTilt = 1; p.HeadDrop = 1;
         }
         return list;
     }
