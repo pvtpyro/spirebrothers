@@ -16,10 +16,13 @@ public class BleedPower : BrothersPower
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    // Like Poison: at the start of the creature's turn, so it can die before it acts.
-    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    // Like Poison: at the start of the creature's turn, so it can die before it acts. Must be AfterSideTurnStart, not
+    // BeforeSideTurnStart: the game clears Block on every creature in between, and an enemy killed before that has
+    // already been removed from combat (CombatState null), which threw and froze the turn when other enemies were left.
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (!participants.Contains(Owner) || Amount <= 0) return;
+        if (!participants.Contains(Owner) || !Owner.IsAlive || Amount <= 0) return;
+        var choiceContext = new ThrowingPlayerChoiceContext();
         Flash();
         await CreatureCmd.Damage(choiceContext, Owner, Amount, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
         if (!Owner.IsAlive) return;
