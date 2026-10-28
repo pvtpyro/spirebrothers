@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
 using SpireBrothers.SpireBrothersCode.Character;
 using SpireBrothers.SpireBrothersCode.Extensions;
 using SpireBrothers.SpireBrothersCode.Mechanics;
@@ -83,6 +84,24 @@ public abstract class JoshuaCard(int cost, CardType type, CardRarity rarity, Tar
             _spentVerses = verses;
             await CommonActions.CardAttack(this, play, vfx: vfx).Execute(ctx);
             return verses;
+        }
+        finally
+        {
+            _spentVerses = null;
+        }
+    }
+
+    /// <summary>
+    /// Gain CalculatedBlock (CalculationBase 0, CalculationExtra = Block per Verse, multiplier ChorusVerses) for the Verses
+    /// a Chorus counted. Using a CalculatedBlock lets the card preview the real total with Dexterity / Frail applied.
+    /// </summary>
+    protected async Task ChorusBlock(CardPlay play, int verses)
+    {
+        if (verses <= 0) return;
+        try
+        {
+            _spentVerses = verses;
+            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.CalculatedBlock.Calculate(null), ValueProp.Move, play);
         }
         finally
         {

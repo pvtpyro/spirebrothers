@@ -26,14 +26,17 @@ public class SingAlong() : JoshuaCard(1, CardType.Skill, CardRarity.Basic, Targe
 
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Chorus];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("BlockPerVerse", 2)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new CalculationBaseVar(0),
+        new CalculationExtraVar(2),
+        new CalculatedBlockVar(ValueProp.Move).WithMultiplier(ChorusVerses)
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         int verses = await Chorus(ctx);
-        var block = DynamicVars["BlockPerVerse"].BaseValue * verses;
-        if (block > 0) await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, play);
+        await ChorusBlock(play, verses);
     }
 
-    protected override void OnUpgrade() => DynamicVars["BlockPerVerse"].UpgradeValueBy(1);
+    protected override void OnUpgrade() => DynamicVars.CalculationExtra.UpgradeValueBy(1);
 }

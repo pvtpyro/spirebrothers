@@ -21,11 +21,20 @@ public class UntouchedSavings() : DavidCard(1, CardType.Skill, CardRarity.Uncomm
 {
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Hoard, BrotherKeywords.Share];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("MaxBlock", 25)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new DynamicVar("MaxBlock", 25),
+        new CalculationBaseVar(0),
+        new CalculationExtraVar(1),
+        new CalculatedBlockVar(ValueProp.Move).WithMultiplier(CappedTens)
+    ];
+
+    // 1 per 10 Gold, capped at MaxBlock. A CalculatedBlock so the card can preview the total with Dexterity / Frail.
+    private static decimal CappedTens(CardModel card, Creature? _) =>
+        Math.Min(card.DynamicVars["MaxBlock"].BaseValue, (card.Owner?.Gold ?? 0) / 10);
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        decimal block = Math.Min(DynamicVars["MaxBlock"].BaseValue, Hoard(10));
+        decimal block = DynamicVars.CalculatedBlock.Calculate(null);
         if (block > 0) await CreatureCmd.GainBlock(ShareTarget(play), block, ValueProp.Move, play);
     }
 

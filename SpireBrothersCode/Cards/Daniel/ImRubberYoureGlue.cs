@@ -22,20 +22,30 @@ public class ImRubberYoureGlue() : DanielCard(1, CardType.Skill, CardRarity.Unco
 {
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Logic, BrotherKeywords.Comeback];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(4, ValueProp.Move), new DynamicVar("PerInsult", 3)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new CalculationBaseVar(4),
+        new CalculationExtraVar(3),
+        new CalculatedBlockVar(ValueProp.Move).WithMultiplier(InsultStacks)
+    ];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<InsultedPower>()];
+
+    // Block is base + CalculationExtra * this. Scaling the stack count folds Monkey Wrench's per-stack bonus in (like Snappy Comeback).
+    private static decimal InsultStacks(CardModel card, Creature? target)
+    {
+        var stacks = Comeback.Stacks(target);
+        var extra = card.DynamicVars.CalculationExtra.BaseValue;
+        return extra <= 0 ? stacks : stacks * (extra + Comeback.PerInsultBonus(card.Owner)) / extra;
+    }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        decimal perInsult = DynamicVars["PerInsult"].BaseValue + Comeback.PerInsultBonus(Owner);
-        decimal block = DynamicVars.Block.BaseValue + perInsult * Comeback.Stacks(play.Target);
-        await CreatureCmd.GainBlock(Owner.Creature, block, DynamicVars.Block.Props, play);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.CalculatedBlock.Calculate(play.Target), ValueProp.Move, play);
         await Comeback.ClearInsulted(Owner, play.Target);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(2);
-        DynamicVars["PerInsult"].UpgradeValueBy(1);
+        DynamicVars.CalculationBase.UpgradeValueBy(2);
+        DynamicVars.CalculationExtra.UpgradeValueBy(1);
     }
 }

@@ -22,7 +22,7 @@ public class StratagemEagle500kgBomb() : DanielCard(0, CardType.Attack, CardRari
 {
     protected override IReadOnlyList<CardKeyword> StratagemCombo => [BrotherKeywords.Logic, BrotherKeywords.Logic, BrotherKeywords.Hands];
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Stratagem];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(20, ValueProp.Move), new DynamicVar("Splash", 6)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(20, ValueProp.Move), new DamageVar("Splash", 6, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {

@@ -22,7 +22,7 @@ public class Brisingr() : DanielCard(1, CardType.Attack, CardRarity.Common, Targ
 {
     protected override bool HasWiredBonus => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Logic, BrotherKeywords.Wired];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8, ValueProp.Move), new DynamicVar("Flame", 5)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8, ValueProp.Move), new DamageVar("Flame", 5, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {

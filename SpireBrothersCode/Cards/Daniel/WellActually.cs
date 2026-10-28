@@ -21,16 +21,27 @@ namespace SpireBrothers.SpireBrothersCode.Cards.Daniel;
 public class WellActually() : DanielCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Logic, BrotherKeywords.Comeback];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5, ValueProp.Move), new DynamicVar("PerInsult", 3)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new CalculationBaseVar(5),
+        new ExtraDamageVar(3),
+        new CalculatedDamageVar(ValueProp.Move).WithMultiplier(InsultStacks)
+    ];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<InsultedPower>()];
+
+    // Damage is base + ExtraDamage * this, per enemy. Scaling the stack count folds Monkey Wrench's per-stack bonus in (like Snappy Comeback).
+    private static decimal InsultStacks(CardModel card, Creature? target)
+    {
+        var stacks = Comeback.Stacks(target);
+        var extra = card.DynamicVars.ExtraDamage.BaseValue;
+        return extra <= 0 ? stacks : stacks * (extra + Comeback.PerInsultBonus(card.Owner)) / extra;
+    }
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         if (CombatState == null) return;
-        decimal perInsult = DynamicVars["PerInsult"].BaseValue + Comeback.PerInsultBonus(Owner);
         foreach (var enemy in CombatState.HittableEnemies.ToList())
         {
-            decimal damage = DynamicVars.Damage.BaseValue + perInsult * Comeback.Stacks(enemy);
+            decimal damage = DynamicVars.CalculatedDamage.Calculate(enemy);
             await DamageCmd.Attack(damage).FromCard(this).Targeting(enemy).WithHitFx("vfx/vfx_attack_slash").Execute(ctx);
             await Comeback.ClearInsulted(Owner, enemy);
         }
@@ -38,7 +49,7 @@ public class WellActually() : DanielCard(1, CardType.Attack, CardRarity.Uncommon
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2);
-        DynamicVars["PerInsult"].UpgradeValueBy(1);
+        DynamicVars.CalculationBase.UpgradeValueBy(2);
+        DynamicVars.ExtraDamage.UpgradeValueBy(1);
     }
 }

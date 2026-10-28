@@ -18,7 +18,8 @@ public class EverybodySing() : JoshuaCard(1, CardType.Attack, CardRarity.Ancient
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Chorus];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DynamicVar("BlockPerVerse", 3),
+        new CalculationExtraVar(3),
+        new CalculatedBlockVar(ValueProp.Move).WithMultiplier(ChorusVerses),
         new CalculationBaseVar(0),
         new ExtraDamageVar(3),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(ChorusVerses)
@@ -27,13 +28,12 @@ public class EverybodySing() : JoshuaCard(1, CardType.Attack, CardRarity.Ancient
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         int verses = await ChorusAttack(ctx, play, "vfx/vfx_heavy_blunt");
-        var block = DynamicVars["BlockPerVerse"].BaseValue * verses;
-        if (block > 0) await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, play);
+        await ChorusBlock(play, verses);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["BlockPerVerse"].UpgradeValueBy(1);
+        DynamicVars.CalculationExtra.UpgradeValueBy(1);
         DynamicVars.ExtraDamage.UpgradeValueBy(1);
     }
 }

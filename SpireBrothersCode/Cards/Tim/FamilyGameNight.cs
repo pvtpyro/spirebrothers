@@ -21,14 +21,18 @@ namespace SpireBrothers.SpireBrothersCode.Cards.Tim;
 public class FamilyGameNight() : TimCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Kids];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("BlockPerKid", 1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new CalculationBaseVar(0),
+        new CalculationExtraVar(1),
+        new CalculatedBlockVar(ValueProp.Move).WithMultiplier(KidCount)
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        var block = DynamicVars["BlockPerKid"].BaseValue * Kids.Count(Owner);
+        var block = DynamicVars.CalculatedBlock.Calculate(null);
         if (block <= 0) return;
         foreach (var player in AllPlayers) await CreatureCmd.GainBlock(player, block, ValueProp.Move, play);
     }
 
-    protected override void OnUpgrade() => DynamicVars["BlockPerKid"].UpgradeValueBy(1);
+    protected override void OnUpgrade() => DynamicVars.CalculationExtra.UpgradeValueBy(1);
 }

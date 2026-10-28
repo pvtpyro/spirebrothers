@@ -22,7 +22,7 @@ public class DGun() : HuffmanCard(2, CardType.Attack, CardRarity.Uncommon, Targe
 {
     protected override int BuildCost => 5;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Build];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12, ValueProp.Move), new DynamicVar("BuildDamage", 30)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12, ValueProp.Move), new DamageVar("BuildDamage", 30, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {

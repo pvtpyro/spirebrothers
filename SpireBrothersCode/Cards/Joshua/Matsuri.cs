@@ -26,19 +26,19 @@ public class Matsuri() : JoshuaCard(2, CardType.Attack, CardRarity.Uncommon, Tar
         new CalculationBaseVar(0),
         new ExtraDamageVar(2),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(ChorusVerses),
-        new DynamicVar("BlockPerVerse", 2)
+        new CalculationExtraVar(2),
+        new CalculatedBlockVar(ValueProp.Move).WithMultiplier(ChorusVerses),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         int verses = await ChorusAttack(ctx, play, "vfx/vfx_attack_blunt");
-        var block = DynamicVars["BlockPerVerse"].BaseValue * verses;
-        if (block > 0) await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, play);
+        await ChorusBlock(play, verses);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars.ExtraDamage.UpgradeValueBy(1);
-        DynamicVars["BlockPerVerse"].UpgradeValueBy(1);
+        DynamicVars.CalculationExtra.UpgradeValueBy(1);
     }
 }
