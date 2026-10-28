@@ -70,8 +70,86 @@ foreach (var f in friends)
     }
     sheet.SavePng(Path.Combine(outDir, $"preview_{f.Name}.png"), 3);
 }
+// John's Stimm Lab rest site button (vanilla's option icons are 256 x 169): a glowing Hive Scum stimm, drawn at half size
+{
+    var icon = new Canvas(128, 85) { Origin = new V(0, 0) };
+    var steel = Col.Hex("b8c0cc"); var dark = Col.Hex("4a4e58"); var chem = Col.Hex("70ff80");
+    V a = new(26, 64), b = new(94, 22);                       // plunger end to needle base, tilted up to the right
+    var d = (b - a).Norm; var n = d.Perp;
+    // soft green glow behind it
+    for (int y = 0; y < 85; y++) for (int x = 0; x < 128; x++)
+    {
+        float dist = S.Capsule(new V(x, y), a, b, 14);
+        if (dist < 12) icon.Set(x, y, new Col(112, 255, 128, (byte)(70 * (1 - dist / 12))));
+    }
+    icon.Draw(q => S.Capsule(q, b, b + d * 22, 1.2f), steel, hi: Col.Hex("ffffff"));                       // needle
+    icon.Draw(q => S.Capsule(q, a + d * 8, b, 9), steel, hi: Col.Hex("e8eef5"));                            // barrel
+    icon.Flat(q => S.Capsule(q, a + d * 13 + n * 1.5f, b - d * 6 + n * 1.5f, 5), chem);                     // the chem inside
+    icon.Flat(q => S.Capsule(q, a + d * 15 + n * 3.5f, b - d * 12 + n * 3.5f, 1.2f), Col.Hex("d8ffe0"));   // glint
+    for (int k = 0; k < 4; k++) { var m = a + d * (20 + k * 11); icon.Draw(q => S.Capsule(q, m - n * 9, m - n * 5, 0.8f), dark, outline: false, noShade: true); }
+    icon.Draw(q => S.Capsule(q, a + d * 6 + n * 13, a + d * 6 - n * 13, 2.6f), dark, hi: steel);            // finger grip
+    icon.Draw(q => S.Capsule(q, a - d * 8, a + d * 6, 2.4f), dark, hi: steel);                               // plunger rod
+    icon.Draw(q => S.Capsule(q, a - d * 9 + n * 8, a - d * 9 - n * 8, 2.6f), dark, hi: steel);              // thumb rest
+    icon.SavePng(Path.Combine(outDir, "john", "stimm_lab.png"), 2);
+}
+// Huffman's cyber-mastiff (40 x 28, facing right, shown 3.2x in combat): a big grey dog with metal plates and a red eye
+{
+    var dog = new Canvas(40, 28) { Origin = new V(0, 0) };
+    var fur = Col.Hex("5a5650"); var plate = Col.Hex("8a929c"); var dark = Col.Hex("2e2c2a");
+    foreach (var (hip, foot) in new[] { (new V(9, 18), new V(8, 27)), (new V(13, 18), new V(14, 27)), (new V(24, 18), new V(23, 27)), (new V(28, 18), new V(29, 27)) })
+        dog.Draw(q => S.Capsule(q, hip, foot, 1.7f), hip.X is 13 or 28 ? fur : fur.Mul(0.8f));
+    dog.Draw(q => S.Taper(q, new V(7, 13), new V(1, 7), 1.6f, 0.8f), fur);                                     // tail, up
+    dog.Draw(q => S.Ellipse(q, new V(18, 15), 12, 6), fur, hi: fur.Light);                                     // body
+    dog.Draw(q => S.Box(q, 13, 9.5f, 24, 13), plate, hi: Col.Hex("c8d0da"));                                  // armour plate on the back
+    dog.Plot(15, 11, dark); dog.Plot(19, 11, dark); dog.Plot(23, 11, dark);                                    // rivets
+    dog.Draw(q => S.Capsule(q, new V(27, 12), new V(31, 8), 3.6f), fur);                                       // neck
+    dog.Draw(q => S.U(S.Ellipse(q, new V(32, 7), 4.5f, 3.8f), S.Box(q, 33, 6, 39, 10.5f)), fur, hi: fur.Light); // head and snout
+    dog.Draw(q => S.Poly(q, new V(29, 4), new V(30, 0), new V(32, 3.5f)), fur.Mul(0.8f));                      // ear
+    dog.Draw(q => S.Box(q, 31, 4.5f, 36, 6.5f), plate);                                                        // cyber visor
+    dog.Plot(35, 5, Col.Hex("ff3a2a")); dog.Plot(34, 5, Col.Hex("ff8a7a"));                                    // red eye
+    dog.Plot(39, 7, dark);                                                                                    // nose
+    dog.Draw(q => S.Box(q, 26, 10, 31, 11.5f), Col.Hex("8a2a24"), outline: false);                             // collar
+    dog.Plot(28, 12, Col.Hex("d4af37"));                                                                      // tag
+    dog.SavePng(Path.Combine(outDir, "huffman", "mastiff.png"));
+    dog.SavePng(Path.Combine(outDir, "mastiff_preview.png"), 8);
+}
 // their character select backgrounds (pixelgen's Backgrounds.cs): out/<name>/select_bg.png
 Backgrounds.RenderAll(friends, outDir);
+// combat frames (out/<name>/frames/<anim>_<n>.png) and co-op treasure room hands, like pixelgen does for the brothers
+foreach (var f in friends)
+{
+    f.Portrait = false;
+    foreach (var (name, (poses, _, _)) in f.Anims())
+        for (int i = 0; i < poses.Count; i++) f.Render(poses[i]).SavePng(Path.Combine(outDir, f.Name, "frames", $"{name}_{i}.png"));
+}
+Hands.RenderAll(friends, outDir);
+// map marker (128 x 128): his pixel face on a charcoal disc with a steel rim, where the brothers have an emoji on their color;
+// and icon_outline.png, the flat white disc the game shows behind it on co-op map votes
+foreach (var f in friends)
+{
+    f.Portrait = true;
+    var frame = f.Render(f.Anims()["idle"].poses[0]);
+    var marker = new Canvas(128, 128);
+    var outline = new Canvas(128, 128);
+    for (int y = 0; y < 128; y++) for (int x = 0; x < 128; x++)
+    {
+        float d = MathF.Sqrt((x - 63.5f) * (x - 63.5f) + (y - 63.5f) * (y - 63.5f));
+        if (d <= 63.5f) outline.Set(x, y, Col.Hex("ffffff"));
+        if (d <= 60) marker.Set(x, y, Col.Hex("1b1b1b"));
+        if (d <= 55) marker.Set(x, y, Col.Hex("6a707c"));
+        if (d <= 52) marker.Set(x, y, Col.Hex("3a3d44").Lerp(Col.Hex("16171b"), y / 128f));
+    }
+    // his head and shoulders, 3x, centered in the disc
+    const int HX = 12, HY = 2, HW = 38, HH = 34, K = 3;
+    for (int y = 0; y < HH * K; y++) for (int x = 0; x < HW * K; x++)
+    {
+        int mx = 64 - HW * K / 2 + x, my = 64 - HH * K / 2 + y + 6;
+        float d = MathF.Sqrt((mx - 63.5f) * (mx - 63.5f) + (my - 63.5f) * (my - 63.5f));
+        if (d <= 52 && frame.Get(HX + x / K, HY + y / K) is { } px) marker.Set(mx, my, px);
+    }
+    marker.SavePng(Path.Combine(outDir, f.Name, "map_marker.png"));
+    outline.SavePng(Path.Combine(outDir, f.Name, "icon_outline.png"));
+}
 Console.WriteLine("done");
 
 // ---------------------------------------------------------------- helpers

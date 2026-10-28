@@ -65,6 +65,9 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
     /// <summary>Upper-case name used in loc keys: DANIEL, DAVID, JOSHUA, TIM.</summary>
     internal static string Name(Player p) => p.Character.GetType().Name.ToUpperInvariant();
 
+    /// <summary>Who gets banter lines: the brothers, and the two friends they always play with.</summary>
+    public static bool Talks(Player p) => BrothersInArms.IsBrother(p) || p.Character is Character.John or Character.Huffman;
+
     internal static int PoolSize(string key)
     {
         if (PoolSizes.TryGetValue(key, out int n)) return n;
@@ -104,7 +107,7 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
     }
 
     private static List<Player> LivingBrothers(ICombatState combat) =>
-        combat.Players.Where(p => BrothersInArms.IsBrother(p) && p.Creature.IsAlive).ToList();
+        combat.Players.Where(p => Banter.Talks(p) && p.Creature.IsAlive).ToList();
 
     // Combat start: one brother talks to another, or a lone brother talks to himself.
     public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
@@ -138,6 +141,8 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
     private static readonly Dictionary<string, string> FallReactor = new()
     {
         ["DAVID"] = "TIM", ["TIM"] = "JOSHUA", ["JOSHUA"] = "DAVID", ["DANIEL"] = "DANIEL",
+        // The friends: uncle and nephew look out for each other.
+        ["JOHN"] = "HUFFMAN", ["HUFFMAN"] = "JOHN",
     };
 
     public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
@@ -149,7 +154,7 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
         }
         var fallen = creature.Player;
         var combat = creature.CombatState;
-        if (fallen == null || combat == null || !BrothersInArms.IsBrother(fallen)) return Task.CompletedTask;
+        if (fallen == null || combat == null || !Banter.Talks(fallen)) return Task.CompletedTask;
         var run = fallen.RunState;
         string name = Name(fallen);
 
@@ -228,7 +233,7 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
     public static void Saved(Creature creature)
     {
         var player = creature.Player;
-        if (player == null || !BrothersInArms.IsBrother(player)) return;
+        if (player == null || !Banter.Talks(player)) return;
         Say(creature, player.RunState, "SAVED", "SAVED." + Name(player));
     }
 }

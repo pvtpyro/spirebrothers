@@ -22,7 +22,7 @@ public class MoveTheRobber() : JoshuaCard(1, CardType.Attack, CardRarity.Uncommo
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Roll];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new CalculationBaseVar(0),
+        new CalculationBaseVar(8),
         new ExtraDamageVar(8),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(RollMultiplier),
         new PowerVar<InsultedPower>(2)
@@ -35,5 +35,9 @@ public class MoveTheRobber() : JoshuaCard(1, CardType.Attack, CardRarity.Uncommo
         if (play.Target is { IsAlive: true }) await CommonActions.Apply<InsultedPower>(ctx, play.Target, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.ExtraDamage.UpgradeValueBy(3);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.CalculationBase.UpgradeValueBy(3);
+        DynamicVars.ExtraDamage.UpgradeValueBy(3);
+    }
 }

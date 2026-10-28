@@ -38,5 +38,17 @@
   "SPIREBROTHERS-SUGAR_RUSH.title": "Sugar Rush",
   "SPIREBROTHERS-SUGAR_RUSH.description": "Gain {Kids:diff()} [gold]Kid[/gold].\nEvery [gold]Kid[/gold] hits a random enemy {Times:diff()} times.",
   "SPIREBROTHERS-HOTFIX.title": "Hotfix",
-  "SPIREBROTHERS-HOTFIX.description": "Your next {Cards:diff()} cards this turn have [gold]Script[/gold]."
+  "SPIREBROTHERS-HOTFIX.description": "Your next {Cards:diff()} cards this turn have [gold]Script[/gold].",
+"SPIREBROTHERS-CARTEL_BREW.title": "Cartel Brew",
+  "SPIREBROTHERS-CARTEL_BREW.description": "Apply {Toxin:diff()} [gold]Toxin[/gold] to ALL enemies.",
+  "SPIREBROTHERS-SHROUD_ELIXIR.title": "Shroud Elixir",
+  "SPIREBROTHERS-SHROUD_ELIXIR.description": "Enter the [gold]Shroud[/gold] for {Turns:diff()} turns.",
+  "SPIREBROTHERS-RAID_FLASK.title": "Raid Flask",
+  "SPIREBROTHERS-RAID_FLASK.description": "Every [gold]Grind[/gold] card in your [gold]Hand[/gold] [gold]Grinds[/gold] once, even if it already did this combat.",
+  "SPIREBROTHERS-FRIED_CHICKEN.title": "Basket of Fried Chicken",
+  "SPIREBROTHERS-FRIED_CHICKEN.description": "Heal {Heal:diff()} HP.\nGain {Strength:diff()} [gold]Strength[/gold].",
+  "SPIREBROTHERS-BAG_OF_KIBBLE.title": "Bag of Kibble",
+  "SPIREBROTHERS-BAG_OF_KIBBLE.description": "The [gold]Mastiff[/gold] gains {Bite:diff()} [gold]Bite[/gold] and bites right now.",
+  "SPIREBROTHERS-LIQUID_NITROGEN.title": "Liquid Nitrogen",
+  "SPIREBROTHERS-LIQUID_NITROGEN.description": "Gain {Energy:energyIcons()} and {Metal:diff()} [gold]Metal[/gold]."
 }

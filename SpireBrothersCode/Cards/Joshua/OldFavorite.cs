@@ -17,22 +17,20 @@ using SpireBrothers.SpireBrothersCode.Orbs;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Music (the song everyone asks for). Deal 5 damage, +3 for each Held Verse (doesn't spend them).</summary>
+/// <summary>
+/// Music (the song everyone asks for). Deal 8 damage. Your Verses become Held.
+/// Was "5 damage, +3 per Held Verse" until 2026-10-27; Joshua said it was Crescendo again, so now it sets up Held Notes mid-turn.
+/// </summary>
 public class OldFavorite() : JoshuaCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new CalculationBaseVar(5),
-        new ExtraDamageVar(3),
-        new CalculatedDamageVar(ValueProp.Move).WithMultiplier(Held)
-    ];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8, ValueProp.Move)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromOrb<VerseOrb>()];
-
-    private static decimal Held(CardModel card, Creature? _) => Verses.HeldCount(card.Owner);
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CommonActions.CardAttack(this, play, vfx: "vfx/vfx_attack_blunt").Execute(ctx);
+        Verses.HoldAll(Owner);
     }
 
-    protected override void OnUpgrade() => DynamicVars.ExtraDamage.UpgradeValueBy(1);
+    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(3);
 }

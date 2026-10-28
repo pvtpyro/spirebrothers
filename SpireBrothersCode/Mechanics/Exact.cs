@@ -50,6 +50,7 @@ public static class Exact
         for (int i = 0; i < times; i++)
             foreach (var listener in listeners)
                 await listener.OnExact(choiceContext, owner);
+        await FamilyBonds.AfterExact(choiceContext, owner);
         return times;
     }
 }

@@ -22,7 +22,7 @@ public class Thunderwave() : JoshuaCard(1, CardType.Attack, CardRarity.Uncommon,
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Roll];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new CalculationBaseVar(0),
+        new CalculationBaseVar(7),
         new ExtraDamageVar(7),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(RollMultiplier)
     ];
@@ -32,5 +32,9 @@ public class Thunderwave() : JoshuaCard(1, CardType.Attack, CardRarity.Uncommon,
         await RollAttack(ctx, play, "vfx/vfx_attack_blunt");
     }
 
-    protected override void OnUpgrade() => DynamicVars.ExtraDamage.UpgradeValueBy(3);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.CalculationBase.UpgradeValueBy(3);
+        DynamicVars.ExtraDamage.UpgradeValueBy(3);
+    }
 }

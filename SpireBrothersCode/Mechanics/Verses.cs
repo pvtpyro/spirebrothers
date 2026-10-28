@@ -21,7 +21,7 @@ public interface IChorusListener
 
 /// <summary>
 /// Joshua's Verse / Chorus rules. Song cards add Verses (JoshuaTracker), Chorus cards spend them all.
-/// Held Note: Verses kept from last turn count double (triple with Magnum Opus). Choir adds to what a Chorus counts,
+/// Held Note: Verses kept from last turn count double (triple with Magnum Opus), up to 10 per Chorus. Choir adds to what a Chorus counts,
 /// Encore lets a Chorus keep half its Verses, and Bridge keeps them all.
 /// </summary>
 public static class Verses
@@ -40,11 +40,15 @@ public static class Verses
     /// <summary>How many extra times each Held Verse counts: 1, or 2 with Magnum Opus.</summary>
     public static int HeldBonus(Player? player) => player?.Creature?.HasPower<MagnumOpusPower>() == true ? 2 : 1;
 
-    /// <summary>How many Verses a Chorus would count if played now (Held Verses count extra; Choir and Capo add to it).</summary>
-    public static int ForChorus(Player? player) =>
+    /// <summary>
+    /// How many Verses a Chorus would count if played now (Held Verses count extra; Choir and Capo add to it), at most
+    /// <see cref="Max"/>. The cap went in 2026-10-27 (Joshua's feedback): with 10 Held Verses every Chorus counted 20
+    /// (Power Ballad hit for 220). Held Notes, Choir and Capo now get you to a full Chorus sooner instead.
+    /// </summary>
+    public static int ForChorus(Player? player) => Math.Min(Max,
         Count(player) + HeldCount(player) * HeldBonus(player)
         + (player?.Creature?.GetPowerAmount<ChoirPower>() ?? 0)
-        + (player?.GetRelic<Capo>() != null ? Capo.ExtraVerses : 0);
+        + (player?.GetRelic<Capo>() != null ? Capo.ExtraVerses : 0));
 
     /// <summary>Makes every Verse the player has Held (start of their turn, Fermata, Rehearsal).</summary>
     public static void HoldAll(Player? player)

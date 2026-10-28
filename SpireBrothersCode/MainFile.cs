@@ -31,6 +31,12 @@ public partial class MainFile : Node
         // Saved fields register with BaseLib when created, which has to happen before the game finishes loading mods.
         System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(Mechanics.Ages).TypeHandle);
         System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(Mechanics.RunStats).TypeHandle);
+        System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(Mechanics.Grind).TypeHandle);
+        System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(Mechanics.StimmLab).TypeHandle);
+
+        // Character select order: the four brothers in the order they've always had, then the friends after them.
+        if (!BaseLib.Utils.CustomCharacterUtils.TryOrderCustomCharacters([typeof(Daniel), typeof(David), typeof(Joshua), typeof(Tim), typeof(John), typeof(Huffman)]))
+            Logger.Error("Couldn't set the character select order.");
 
         ShareMonkeyIslandItems();
 
@@ -73,6 +79,11 @@ public partial class MainFile : Node
         ModHelper.AddModelToPool<TimRelicPool, BlownCartridge>();
         ModHelper.AddModelToPool<TimRelicPool, SharedSteamLibrary>();
         ModHelper.AddModelToPool<TimRelicPool, BrothersInArms>();
+        // The friends get the generic co-op ones (not Monkey Island or the family relics).
+        ModHelper.AddModelToPool<JohnRelicPool, BlownCartridge>();
+        ModHelper.AddModelToPool<JohnRelicPool, PartyHeadset>();
+        ModHelper.AddModelToPool<HuffmanRelicPool, BlownCartridge>();
+        ModHelper.AddModelToPool<HuffmanRelicPool, PartyHeadset>();
         ModHelper.AddModelToPool<DavidRelicPool, DadsTackleBox>();
         ModHelper.AddModelToPool<JoshuaRelicPool, DadsTackleBox>();
         ModHelper.AddModelToPool<TimRelicPool, DadsTackleBox>();

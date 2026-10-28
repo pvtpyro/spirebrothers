@@ -14,7 +14,7 @@ Numbers below match the code. Cut, rename, or rewrite anything, especially to ad
 |---|---|
 | **Song** | Playing this card gives you **1 Verse**, shown as a note orb floating above Joshua (max 10). |
 | **Chorus** | **Spends all your Verses** for an effect scaled by Verses spent. Choruses now help **Joshua himself** (or hit enemies), not ALL players. |
-| **Held Note** | Verses still there at the **start of your turn** become **Held** (they glow) and **count double** for a Chorus. Build quietly, then one big finish. |
+| **Held Note** | Verses still there at the **start of your turn** become **Held** (they glow) and **count double** for a Chorus (a Chorus counts at most 10). Build quietly, then one big finish. |
 | **Heartstrings** | Enemy debuff: **whenever a Song is played, it loses HP** equal to its Heartstrings (ignores Block). Goes down by 1 at the end of its turn. |
 | **Roll** | D&D: roll a d20 (run RNG, shown over his head). **1 = Fumble** (half effect), **20 = Natural 20** (double). **Advantage** rolls twice and keeps the higher. Lucky rerolls the first 1 each turn; Dungeon Master adds +4; the **Lucky d20** relic (Common) makes the first Roll each combat a 20. |
 | **Check** | Archipelago: find a random **item** and send it to a **random player** (yourself in solo). See the item table below. |
@@ -51,7 +51,7 @@ Legend: 🎵 Song, 🎤 Chorus, 💘 Heartstrings, ⏸ Held Note, 🎲 Roll (D&D
 | 7 | 🎵 Order Up! | 1 Skill | Gain 4 Block. Draw 1 card. | PlateUp! |
 | 8 | 🎤 Big Finish | 1 Attack | **Chorus:** deal 3 damage to ALL enemies per Verse. | Music |
 | 9 | 💚 Konbini Run | 0 Skill | Heal 2. Draw 1 card. Exhaust. | Japan |
-| 10 | 💚 Onsen | 1 Skill | Heal 5. Exhaust. | Japan |
+| 10 | 💚 Onsen | 1 Skill | Heal 5. Exhaust. **Now Uncommon** (2026-10-27). | Japan |
 | 11 | 📦 Location Check | 1 Skill | Gain 4 Block. **Check.** | Archipelago |
 | 12 | Shinkansen | 2 Attack | Deal 18 damage. | Japan (bullet train) |
 | 13 | Copper Shortsword | 0 Attack | Deal 3 damage. Draw 1 card. | Terraria |
@@ -75,8 +75,8 @@ Legend: 🎵 Song, 🎤 Chorus, 💘 Heartstrings, ⏸ Held Note, 🎲 Roll (D&D
 | 25 | 🎤 Sing Your Heart Out | 2 Attack | **Chorus:** deal 8 damage per Verse. | Vocals |
 | 26 | 🎤 Karaoke Night | 1 Skill | **Chorus:** draw 1 card per 2 Verses. *(was ALL players, next turn)* | Karaoke |
 | 27 | 🎤 Matsuri | 2 Attack | **Chorus:** deal 2 damage to ALL enemies and gain 2 Block per Verse. *(was ALL players' Block)* | Festival fireworks |
-| 28 | Bridge | 1 Skill | Gain 2 Verses. Your next Chorus doesn't spend Verses. | Songwriting |
-| 29 | Key Change | 1 Skill | Double your Verses. Exhaust. | Songwriting |
+| 28 | Bridge | 1 Skill | Gain 2 Verses. Your next Chorus doesn't spend Verses. Exhaust. | Songwriting |
+| 29 | Key Change | 1 Skill | Double your Verses. Exhaust. Upgrade: costs 0 (keeps Exhaust). | Songwriting |
 | 30 | Crescendo | 1 Attack | Deal 4 damage, +3 per Verse you have (doesn't spend them). | Music |
 | 31 | 🎵 Metronome | 1 Attack | Deal 3 damage 2 times. Hits 1 more time each time you play it this combat. | Piano |
 | 32 | Backup Vocals | 1 Power | Whenever you play a Song card, gain 2 Block. | Vocals |
@@ -88,13 +88,13 @@ Legend: 🎵 Song, 🎤 Chorus, 💘 Heartstrings, ⏸ Held Note, 🎲 Roll (D&D
 | 38 | Rest Note | 1 Skill | Gain 7 Block. Next turn, gain 1 Verse. | Music |
 | 39 | Improvise | 0 Skill | Add a random Song card to your hand. It costs 0 this turn. | Music |
 | 40 | Guitar Feedback | 1 Attack | Deal 7 damage to ALL enemies. If you have 5+ Verses, apply 1 Weak to ALL enemies. | Guitar |
-| 41 | 🗡️🎵 Bless Your Heart (**new**) | 1 Attack | Deal 6 damage. Apply 2 Insulted. *(said the sweet-but-not-really way)* | Insult (was Nice Shot!) |
+| 41 | 🗡️🎵 Bless Your Heart (**new**) | 1 Attack | Deal 6 (9) damage. Apply 2 Insulted. **Now Common** (2026-10-27). *(said the sweet-but-not-really way)* | Insult (was Nice Shot!) |
 | 42 | 💘🎤 Lighters Up (**new**) | 1 Skill | **Chorus:** apply 1 Heartstrings to ALL enemies per Verse. Upgrade: costs 0. | Ballads |
 | 43 | 💘 Heartbreak (**new**) | 1 Skill | Double an enemy's Heartstrings. Exhaust. Upgrade: costs 0. | Ballads |
 | 44 | ⏸ Fermata (**new**) | 1 Skill | Gain 7 Block. Your Verses become Held. | Music |
 | 45 | Sustain Pedal (**new**) | 1 Power | At the end of your turn, gain 1 Block for each Verse you have. Upgrade: costs 0. | Piano |
 | 46 | 💘🎵 Tearjerker (**new**) | 2 Attack | Deal 8 damage to ALL enemies. Apply 2 Heartstrings to ALL enemies. | Ballads |
-| 47 | ⏸ Old Favorite (**new**) | 1 Attack | Deal 5 damage, +3 for each Held Verse (doesn't spend them). | Music |
+| 47 | ⏸ Old Favorite (**new**) | 1 Attack | Deal 8 (11) damage. Your Verses become Held. | Music |
 | 48 | 🎲 Thunderwave (**new**) | 1 Attack | **Roll.** Deal 7 damage to ALL enemies. | D&D |
 | 49 | 🎲 Shatter (**new**) | 2 Attack | **Roll.** Deal 14 damage to ALL enemies. | D&D |
 | 50 | 🎲 Roll for Initiative (**new**) | 1 Skill | Innate. Draw 2 cards. Gain 1 Advantage. | D&D |
@@ -225,3 +225,13 @@ Build notes:
   damage is a CalculatedDamage, so the grown number shows dimmed-then-green.
 - Deployed Fleet: `DeployedFleetPower` calls `Dice.Roll` (speech bubble every turn), target from `Rng.CombatTargets`.
 - Race to 40: `RaceToFortyPower` Amount is the damage (stacks); the icon number is the points (`DisplayAmount`).
+
+## Joshua's feedback pass (2026-10-27)
+
+From Joshua himself after playing the 10-27 morning build. Untested in game.
+- **Chorus cap:** `Verses.ForChorus` counts at most 10 (Held doubling, Magnum Opus, Choir, Capo all still help reach it).
+  With 10 Held Verses every Chorus counted 20 (Power Ballad 220, Sing Your Heart Out and Zenith 160, Rock Opera 160 to ALL).
+- Bridge gained Exhaust. Key Change upgrade now costs 0 and keeps Exhaust (it used to lose Exhaust).
+- Old Favorite reworked: Deal 8 (11), your Verses become Held. It was a second Crescendo.
+- Rarity swap (counts unchanged): Bless Your Heart Uncommon -> Common (upgrade 6 -> 9 like Strike); Onsen Common -> Uncommon.
+- Harvest Festival: already retired on 10-26, so nothing changed.

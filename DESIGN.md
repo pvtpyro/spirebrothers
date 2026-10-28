@@ -43,6 +43,10 @@
   | Joshua + Tim | Kids' Choir | Joshua's Chorus: all of Tim's Kids hit a random enemy |
   | Any 3 | Group Chat | Turn 1: ALL players gain 1 Energy |
   | All 4 | Nobody Gets Left Behind | Once per combat, the first brother who would die heals 10 instead (whole team, changed 2026-10-26) |
+  | John + Huffman | Uncle and Nephew | The Mastiff's bites also apply 2 Toxin (friends, 2026-10-27) |
+  | John + David | Best Friends | David's first Exact each turn: a random Grind card in John's hand Grinds |
+  | Huffman + Daniel | Coworkers | Daniel's first Wired each turn: Huffman gains 2 Metal |
+  | Daniel + John + Huffman | Strike Team | While all three are alive, each gains 3 Block at the start of their turn (Darktide coherency) |
 - **Relics added 2026-10-25** (untested in game). Shared ones are `[Pool]`ed to Daniel and added to the others in `MainFile.ShareMonkeyIslandItems()`.
   - Shared: Blown Cartridge (C, draw 2 on turn 2), Party Headset (C, first Share each turn: you + target gain 3 Block; not in Tim's pool, he has no Share cards),
     Shared Steam Library (U, random card from another brother's pool, free this turn), Brothers in Arms (R, ALL players +1 Str/Dex per Spire Brother in the party).

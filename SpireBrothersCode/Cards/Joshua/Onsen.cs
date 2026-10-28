@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Japan (hot spring). Heal 5. Exhaust.</summary>
-public class Onsen() : JoshuaCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+/// <summary>Japan (hot spring). Heal 5. Exhaust. Uncommon since 2026-10-27 (was Common; a big heal for a Common).</summary>
+public class Onsen() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(5)];

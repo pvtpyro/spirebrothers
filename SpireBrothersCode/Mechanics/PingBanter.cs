@@ -36,7 +36,7 @@ public static class PingBanter
     {
         try
         {
-            if (NRun.Instance == null || !BrothersInArms.IsBrother(player)) return true;
+            if (NRun.Instance == null || !Banter.Talks(player)) return true;
             string? text = PickLine(player);
             if (text == null) return true;
 
@@ -71,7 +71,7 @@ public static class PingBanter
             var waiting = combat.Players
                 .Where(p => p != pinger && !CombatManager.Instance.IsPlayerReadyToEndTurn(p)).ToList();
             if (waiting.Count >= 2) pools = [$"PING.{name}.GROUP", "PING." + name];
-            else if (waiting.Count == 1 && BrothersInArms.IsBrother(waiting[0]))
+            else if (waiting.Count == 1 && Banter.Talks(waiting[0]))
                 pools = [$"PING.{name}_{Banter.Name(waiting[0])}", "PING." + name];
             else pools = ["PING." + name];
         }

@@ -8,7 +8,7 @@ purchase orders. John is his nephew, but they're the same age and grew up togeth
 
 He's a homebody who hates to travel, will never use a public bathroom (he always waits until he gets home), and loves fried food.
 
-**Not built yet.** First set: 5 Basics, 70 reward cards (20 / 34 / 16), and 2 Duo cards. Grows later.
+**Built 2026-10-27, untested in game.** Changes while building: the starter **Turn It Off and On Again** is **Have You Tried Rebooting?** (Daniel already has that card), **Jetpack** is **Jetpack Boost** (David has a Jetpack), **Blue Screen** is **Blue Screen of Death**, **Build Queue** makes your next Build need no Metal (instead of costing 0), **Tear Through** and **Lockdown** Mark their own target, and **Judge, Jury, and Executioner** deals 24, doubled on a Marked enemy. First set: 5 Basics, 70 reward cards (20 / 34 / 16), and 2 Duo cards. Grows later.
 Numbers are first-pass balance based on vanilla (Strike 6, Defend 5). Visuals: his pixel body, borrowing the
 Necrobinder's vanilla scenes (the one vanilla character no brother uses yet, and the one with a pet, Osty).
 Dredd flavor uses original lines only.

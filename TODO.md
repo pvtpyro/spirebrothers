@@ -152,3 +152,30 @@ A surprise extra character as part of the gift.
 ### 10. Anchient Card Options
 
 ### 11. Status, Curse and Quest cards maybe?
+
+### 12. The friends: John and Huffman
+Built 2026-10-27 (cards, potions, relics, banter). Plans in JOHN_CARDS.md / HUFFMAN_CARDS.md, dossier in FRIENDS.md.
+- [ ] Playtest both, solo and co-op. Riskiest first:
+  - [ ] John's Stimm Lab rest site button (icon, the pick-1-of-3 screen, co-op sees the right choice)
+  - [ ] Huffman's Mastiff: stands in front of him at a good size, bites the Marked enemy at his turn end
+  - [ ] Grind growth survives save and quit, and shows dimmed-then-green
+  - [ ] Laws trigger (especially No Loitering and No Armor Permitted)
+  - [ ] Their banter and Ping lines show up
+- [ ] Ask Daniel: John's favorite WoW classes, the Mastiff's name, their Darktide character names, catchphrases,
+  how they play, anything they'd hate to see (full list at the bottom of FRIENDS.md)
+- [ ] WoW class cards for John once we know his classes
+- [ ] Rename the Mastiff to his real dog's name (monsters.json `SPIREBROTHERS-MASTIFF_DOG.name`, card text says "Mastiff")
+- [ ] Grow both decks from 70 toward the brothers' ~88 reward cards
+- [x] Bonds (2026-10-27): Uncle and Nephew (John + Huffman), Best Friends (John + David), Coworkers (Huffman + Daniel),
+  Strike Team (Daniel + John + Huffman). Effects in DESIGN.md. Friends get the Family Bonds icon too.
+  - [ ] Test in co-op: each one fires, and the icon lists them
+- [ ] Duo cards the other way: David's card with John, Daniel's card with Huffman
+- [x] Ancient cards (2026-10-27): Realm First! and Cartel Masterwork (John), Home Sweet Home and Release the Hound
+  (Huffman). Details in ANCIENT_CARDS.md.
+- [x] End-of-run stats (2026-10-27): John (times Ground, Toxin spread, turns in the Shroud), Huffman (Mastiff bites, Laws
+  enforced, Metal spent)
+- [x] Events (2026-10-27): Weekend in Town (David visits; shows up with David, John, or Huffman in the party), and
+  "Let Huffman Pick the Route" in the Road Trip (only with Huffman along; the van goes back to his house)
+- [ ] More banter: big-moment lines (like the brothers' RANTS / KIDS) for a big Grind or the dog's Bite getting high
+- [x] Sounds (2026-10-27): john_stimm, john_shroud, huffman_bark, huffman_law (list in SpireBrothers/audio/README.md)
+  - [ ] Record or find real clips (a bark from his real dog would be perfect)

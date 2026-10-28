@@ -57,3 +57,15 @@ With these in the pools, vanilla Dusty Tome picks them on its own and `DustyTome
   the Ancient card); BaseLib patches it into vanilla's starter -> ascended map. Orobas only offers the Tooth if the starter
   is still in the deck. Dusty Tome excludes the ascended cards, so the two relics never hand out the same card.
 - Each card needs a `glyphs.txt` line for the placeholder art, and its loc keys.
+
+## Built: the friends' Ancient cards (2026-10-27, untested in game)
+
+| Friend | Relic | Card | Cost / Type | Text | Code |
+|---|---|---|---|---|---|
+| John | Dusty Tome | **Realm First!** | 3 (2) Power | Your Grind cards Grind every time you play them, not just once per combat. | `RealmFirstPower`, read in `JohnCard.GrindAfterPlay` |
+| Huffman | Dusty Tome | **Home Sweet Home** | 2 (1) Power | At the start of your turn, the Mastiff bites. Whenever it bites, gain 1 Metal. | `HomeSweetHomePower`; the Metal is given in `Mastiff.Attack`, so every bite counts |
+| John | Archaic Tooth | **Cartel Masterwork** (replaces Cartel Special) | 0 Skill, Exhaust | Gain 2 Energy. Gain 6 Block. Grind 2. | +3 Block. Potency and Fast Acting talents work on it too |
+| Huffman | Archaic Tooth | **Release the Hound** (replaces Sic 'Em) | 1 Skill | Mark an enemy. The Mastiff gains 3 Bite, then bites it. | Costs 0 |
+
+- Cartel Masterwork starts its Grind from 0: the growth Cartel Special had built up stays with the old card. Its higher
+  numbers (6 Block, Grind 2) make up for it.

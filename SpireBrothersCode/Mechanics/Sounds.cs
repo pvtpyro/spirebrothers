@@ -24,6 +24,8 @@ public class Sounds() : CustomSingletonModel(HookType.Run)
     public const string DavidGold = "david_gold", DavidRant = "david_rant";
     public const string JoshuaChorus = "joshua_chorus", JoshuaHeal = "joshua_heal";
     public const string TimKids = "tim_kids", TimAgeUp = "tim_age_up";
+    public const string JohnStimm = "john_stimm", JohnShroud = "john_shroud";
+    public const string HuffmanBark = "huffman_bark", HuffmanLaw = "huffman_law";
 
     // Built-in game sounds used until a recording exists. Cues missing here stay silent.
     private static readonly Dictionary<string, string> Fallbacks = new()
@@ -31,6 +33,8 @@ public class Sounds() : CustomSingletonModel(HookType.Run)
         [DanielWired] = "event:/sfx/characters/defect/defect_lightning_channel",
         [DavidGold] = "event:/sfx/ui/gold/gold_2",
         [JoshuaHeal] = FmodSfx.heal,
+        [JohnStimm] = "event:/sfx/buff",
+        [HuffmanBark] = "event:/sfx/enemy/enemy_attacks/test_subject/test_subject_bite",
     };
 
     /// <summary>The same cue won't replay within this many seconds (Kids, back-to-back Choruses, several Davids).</summary>
@@ -67,6 +71,7 @@ public class Sounds() : CustomSingletonModel(HookType.Run)
     {
         if (cardPlay.Card is StratagemOrbitalBarrage) Play(DanielBarrage);
         if (cardPlay.Card is IGroupHealCard) Play(JoshuaHeal);
+        if (cardPlay.Card is Cards.John.CartelSpecial or Cards.John.CartelMasterwork) Play(JohnStimm);
         return Task.CompletedTask;
     }
 

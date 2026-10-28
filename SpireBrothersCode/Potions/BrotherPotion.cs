@@ -32,3 +32,21 @@ public abstract class TimPotion : CustomPotionModel
     public override string CustomPackedImagePath => ImageName.PotionImagePath();
     public override string CustomPackedOutlinePath => $"outline/{ImageName}".PotionOutlineImagePath();
 }
+
+/// <summary>Base for John's potions (a friend). Same image layout as Daniel's.</summary>
+[Pool(typeof(JohnPotionPool))]
+public abstract class JohnPotion : CustomPotionModel
+{
+    private string ImageName => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+    public override string CustomPackedImagePath => ImageName.PotionImagePath();
+    public override string CustomPackedOutlinePath => $"outline/{ImageName}".PotionOutlineImagePath();
+}
+
+/// <summary>Base for Huffman's potions (a friend). Same image layout as Daniel's.</summary>
+[Pool(typeof(HuffmanPotionPool))]
+public abstract class HuffmanPotion : CustomPotionModel
+{
+    private string ImageName => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+    public override string CustomPackedImagePath => ImageName.PotionImagePath();
+    public override string CustomPackedOutlinePath => $"outline/{ImageName}".PotionOutlineImagePath();
+}

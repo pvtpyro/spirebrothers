@@ -111,5 +111,19 @@
   "SPIREBROTHERS-INSULT_DUEL.pairs.6.insult": "My parrot is smarter than the lot of you!",
   "SPIREBROTHERS-INSULT_DUEL.pairs.6.comeback": "Is that why it does all the talking?",
   "SPIREBROTHERS-INSULT_DUEL.pairs.7.insult": "This beard is square for a reason!",
-  "SPIREBROTHERS-INSULT_DUEL.pairs.7.comeback": "Yes, somebody tried to build a house in it."
+  "SPIREBROTHERS-INSULT_DUEL.pairs.7.comeback": "Yes, somebody tried to build a house in it.",
+  "SPIREBROTHERS-ROAD_TRIP_TO_GRANDMAS.pages.INITIAL.options.TURN_AROUND_AND_GO_HOME.title": "Let Huffman Pick the Route",
+  "SPIREBROTHERS-ROAD_TRIP_TO_GRANDMAS.pages.INITIAL.options.TURN_AROUND_AND_GO_HOME.description": "His route is the driveway. Heal [blue]30%[/blue] of your Max HP. Gain [blue]3[/blue] Max HP.",
+  "SPIREBROTHERS-ROAD_TRIP_TO_GRANDMAS.pages.TURN_AROUND_AND_GO_HOME.description": "Huffman makes it to the end of the block before he starts listing everything that could go wrong on a twelve-hour drive. Gas station bathrooms come up. Several times.\n\nBy the second stoplight, the van is pointed back at his house. [gold]\"I'll make chicken. Everybody likes chicken.\"[/gold]\n\nEverybody does like chicken. Grandma gets a long phone call instead, and nobody has to sit on the cooler.",
+  "SPIREBROTHERS-WEEKEND_IN_TOWN.title": "Weekend in Town",
+  "SPIREBROTHERS-WEEKEND_IN_TOWN.pages.INITIAL.description": "David is in town for the weekend, staying with John and Huffman.\n\nJohn picked him up at the airport. Huffman said he'd [gold]\"see him at the house,\"[/gold] and he meant it.\n\n[blue]How should the weekend go?[/blue]",
+  "SPIREBROTHERS-WEEKEND_IN_TOWN.pages.INITIAL.options.RAID_NIGHT.title": "Raid Night at John's",
+  "SPIREBROTHERS-WEEKEND_IN_TOWN.pages.INITIAL.options.RAID_NIGHT.description": "Lose [red]6[/red] HP. [gold]Upgrade[/gold] [blue]2[/blue] cards.",
+  "SPIREBROTHERS-WEEKEND_IN_TOWN.pages.INITIAL.options.DINNER_AT_HUFFMANS.title": "Dinner at Huffman's",
+  "SPIREBROTHERS-WEEKEND_IN_TOWN.pages.INITIAL.options.DINNER_AT_HUFFMANS.description": "He's not going out. He's frying. Gain [blue]7[/blue] Max HP.",
+  "SPIREBROTHERS-WEEKEND_IN_TOWN.pages.INITIAL.options.LET_DAVID_PLAN_IT.title": "Let David Plan It",
+  "SPIREBROTHERS-WEEKEND_IN_TOWN.pages.INITIAL.options.LET_DAVID_PLAN_IT.description": "He has a spreadsheet and coupons. Gain [blue]60[/blue] [gold]Gold[/gold].",
+  "SPIREBROTHERS-WEEKEND_IN_TOWN.pages.RAID_NIGHT.description": "\"One more pull\" turns into eleven more pulls. John has a spreadsheet of cooldowns open on his second monitor, and David keeps suggesting a better one.\n\nThe sun is coming up when the boss finally drops. Everyone is exhausted. Everyone got better at this.",
+  "SPIREBROTHERS-WEEKEND_IN_TOWN.pages.DINNER_AT_HUFFMANS.description": "Huffman has a deep fryer and no fear. Chicken. Fries. Pickles. Something that might have been a vegetable once.\n\nThe Mastiff gets a plate too. Nobody leaves the couch for the rest of the night, and Huffman considers it the best weekend he's had all year.",
+  "SPIREBROTHERS-WEEKEND_IN_TOWN.pages.LET_DAVID_PLAN_IT.description": "David has the whole weekend mapped out: free museum day, a two-for-one lunch, and a gas station with the cheapest fuel in the county.\n\nJohn and Huffman complain the entire time. At the end, David reads out how much everyone saved, and they have to admit it's a lot."
 }

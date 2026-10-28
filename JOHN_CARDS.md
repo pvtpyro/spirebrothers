@@ -6,7 +6,7 @@ fog you can only stay in for a while; the Flame Altar pushes it back). WoW Forev
 favorite classes. He and David are best friends; Huffman is his uncle, but they're the same age and grew up together.
 Leave his grandma out of the mod.
 
-**Not built yet.** First set: 5 Basics, 70 reward cards (20 / 34 / 16), and 2 Duo cards. Grows later. The WoW cards
+**Built 2026-10-27, untested in game.** Changes while building: Catalyst is **Accelerant** (Catalyst is a vanilla card name), the Stimm Lab card is **Chem Lab** (so it isn't confused with the talents), **Shroud Lungs** has 1 rank (the Shroud only costs 1 HP a turn), **Rested XP** upgrades to Grind 3 times, and **Grew Up Together** (Duo with Huffman) gives Strength this turn. First set: 5 Basics, 70 reward cards (20 / 34 / 16), and 2 Duo cards. Grows later. The WoW cards
 reference the game in general, not any one class; class cards wait until we know his favorites.
 Numbers are first-pass balance based on vanilla (Strike 6, Defend 5). Visuals: his pixel body, borrowing the
 Ironclad's vanilla scenes where the game needs a Spine one (shop, rest site), like the brothers do.
@@ -62,7 +62,7 @@ Legend: ⚙️ Grind, 🧪 Toxin / Chem, 🌫️ Shroud, 🤝 co-op.
 ### Chems
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
-| 16 | 🧪 Catalyst | 1 Skill | Chem. Double the Toxin on an enemy. | Hive Scum |
+| 16 | 🧪 Accelerant | 1 Skill | Chem. Double the Toxin on an enemy. | Hive Scum |
 | 17 | 🧪 Chain Reaction | 2 Attack | Chem. Deal 8 damage to ALL enemies, +2 per Toxin on each. Remove their Toxin. | Hive Scum |
 | 18 | 🧪 Volatile Mix | 1 Skill | Chem. Every enemy's Toxin rises to match the enemy with the most. | Hive Scum |
 | 19 | 🧪 Chem Haze | 1 Skill | Chem. Remove an enemy's Toxin. Gain 2 Block per Toxin removed. | Hive Scum |
@@ -73,7 +73,7 @@ Legend: ⚙️ Grind, 🧪 Toxin / Chem, 🌫️ Shroud, 🤝 co-op.
 ### Grind
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
-| 23 | ⚙️ Stimm Lab | 1 Power | Whenever one of your cards Grinds, gain 3 Block. | Hive Scum's Stimm Lab |
+| 23 | ⚙️ Chem Lab | 1 Power | Whenever one of your cards Grinds, gain 3 Block. | Hive Scum's Stimm Lab |
 | 24 | ⚙️ Grindstone | 1 Skill | Choose a Grind card in your hand. It Grinds now (even if it already did this combat). Exhaust. | Grind |
 | 25 | ⚙️ Endgame Gear | 2 Skill | Gain 14 Block. **Grind 2.** | Grind |
 | 26 | Crafting Bench | 1 Skill | Upgrade a card in your hand for the rest of combat. Draw 1 card. | Enshrouded |

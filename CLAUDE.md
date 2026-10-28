@@ -12,7 +12,55 @@ so the characters should feel personal, warm, and fun. Co-op support matters a l
 - **Tim (Timothy), The Draftsman**: the oldest brother. Built (2026-10-04), untested in game. Uses the Ironclad's visuals. Old nickname "Tidbit": he doesn't like it, so use it only once (it's one card).
 
 Two friends they always play with, **John** and **Huffman** (a friend named Joshua; always "Huffman" in the mod), are
-planned as characters five and six: dossier and concept pitches in `FRIENDS.md`, nothing built yet.
+characters five and six ("Honorary Brothers"): dossier in `FRIENDS.md`, card plans in `JOHN_CARDS.md` / `HUFFMAN_CARDS.md`.
+Both are built (2026-10-27), untested in game.
+
+## The friends (built like the brothers, but kept visibly apart)
+
+- They extend `BrotherCharacter` like the brothers. Friends look: charcoal select buttons with steel rings and silver
+  names, darker select scenes, silver-grey card art (`gen.ps1` color), "Honorary Brother" in their select description.
+  Their buttons, frames, hands, map marker (pixel face on a charcoal disc), icon outline, and select background come from
+  `art_originals/friendbuttons/` (borrows pixelgen's code; their bodies are `pixelgen/Friends.cs`, scenes in
+  `pixelgen/Backgrounds.cs`). Copy `out/<name>/...` and `out/plain/<name>/select*.png` into `images/characters/<name>/`.
+- Character order: `MainFile` calls BaseLib `CustomCharacterUtils.TryOrderCustomCharacters` (brothers, then friends).
+- Card class names must be unique across the whole mod (the ID is the class name). Huffman's "Have You Tried Rebooting?",
+  "Jetpack Boost", and "Blue Screen of Death" are named that way because Daniel and David already have the shorter ones.
+- `gen.ps1 -CardsOnly -Character John` draws only one character's cards (a full run would redraw every brother's, and any
+  hand-drawn art with it). Relics/powers one at a time with `-Section relics|powers -Only <name>`.
+- Leave John's grandma out of the mod. John and Huffman are uncle and nephew but the same age: write them as peers.
+- John: `Character/John.cs` + `JohnPools.cs` (Ironclad scenes), `Cards/JohnCard.cs`, `Cards/John/` (5 Basic, 70 reward, Stimm
+  token, 8 talent cards + `TalentCard`, Duo Discord Call with David). Mechanics:
+  - **Grind** (`Mechanics/Grind.cs`): BaseLib `SavedSpireField<CardModel,int>` on the deck copy; `JohnCard.GrindTarget` names
+    the var, `SyncGrind()` adds the run's growth onto it (tracked by `_grindApplied`, which clones copy along with the number),
+    `GrindAfterPlay(ctx)` grinds once per combat, `GrindTimes(ctx, n)` forces it. Text uses `{GrindGrown}`/`{GrindStart}`.
+  - **Toxin** (`Mechanics/Toxin.cs`, `ToxinPower`): inert debuff; Chem cards cash it in. All Toxin goes through `Toxin.Apply` (Cartel Kingpin).
+  - **Shroud** (`Mechanics/Shroud.cs`, `ShroudPower`): turns left as the amount, x1.5 Attack damage, 1 HP lost at his turn end.
+  - **Stimm Lab talents** (`Mechanics/StimmLab.cs`): `JohnRunTracker.TryModifyRestSiteOptions` adds `StimmLabRestSiteOption`
+    (loc in the new `rest_site_ui.json`; icon `images/ui/stimm_lab.png`, swapped in by `StimmLabIconPatch` since the game's
+    icon path is private). Pick 1 of 3 talent cards (`FromChooseACardScreen`), seeded from the run + floor, saved per player.
+    `JohnTracker` (combat) applies Pack Mule / Toxic Payload / Potency. Riskiest to test: the rest site button in co-op.
+- Huffman: `Character/Huffman.cs` + `HuffmanPools.cs` (Necrobinder scenes), `Cards/HuffmanCard.cs` (`BuildCost` / `LawBonus` /
+  `ExtraGlow` glow, `Build(ctx)`, `Laws` count), `Cards/Huffman/` (5 Basic, 70 reward, Duo Water Cooler Talk with Daniel and
+  Same Age, Technically with John; John's Grew Up Together pairs with him). Starter relic `Relics/ArbitesBadge.cs` (first Power each combat costs 0, like vanilla Brilliant Scarf; Touch of Orobas: Judge's Badge). Mechanics:
+  - **Mastiff** (`Mechanics/Mastiff.cs`, `Monsters/MastiffDog.cs`): one pet dog like Tim's Kids (9999 HP, no bar, reuses `KidMotion`
+    bounce/hop; `MastiffLayout` puts it in front of him). Art `images/monsters/mastiff/mastiff.png` (friendbuttons draws it).
+    Bite is `BitePower` on Huffman (type None); `MarkedPower` picks the target (one at a time); `HuffmanTracker` spawns it on
+    turn 1 and bites at his turn end. Lone Wolf / Best in Show / Loyal Companion are read in `Mastiff.Attack`.
+  - **Laws**: Powers extending `Powers/LawPower.cs` (Martial Law doubles via `Times`). Most react in vanilla `AfterAttack`
+    (`AttackCommand.Attacker` / `Results`); No Armor Permitted uses `AfterBlockGained` with `new ThrowingPlayerChoiceContext()`
+    like vanilla Juggernaut; No Loitering snapshots non-attacking intents at the enemy turn start.
+  - **Metal / Build** (`Mechanics/Metal.cs`, `MetalPower`): `Metal.Build` spends the cost if he has it (Build Queue makes one free).
+  - I'll Wait Till I Get Home grows in `HuffmanTracker.AfterFlush` when Retained.
+- Friends' extras: 3 potions each (`JohnPotion` / `HuffmanPotion` in `Potions/BrotherPotion.cs`), 3 relics each (Loot Chest is
+  paid in `JohnCard.GrindTimes`, Survivor's Lantern read in `Shroud.HpLoss`, Chew Toy in `Mastiff.Spawn`), plus Blown Cartridge
+  and Party Headset added to their pools in `MainFile` (not Monkey Island or the family relics).
+- Friends' bonds, Ancient cards, stats, events, sounds (2026-10-27, untested): bonds Uncle and Nephew / Best Friends / Coworkers /
+  Strike Team are in `FamilyBonds` (hooks: `FamilyBonds.AfterExact` from `Exact.Check`, `AfterBite` from `Mastiff.Attack`); friends
+  get `FamilyBondsPower` via `Banter.Talks`. Ancient: Realm First!, Home Sweet Home, Cartel Masterwork, Release the Hound (ANCIENT_CARDS.md).
+  Stats: `RunStats` ToxinApplied (`Toxin.Apply`), ShroudTurns (`ShroudPower`), Bites, MetalSpent (`Metal.Spend`), LawsEnforced
+  (`LawPower.Enforce()`, which every Law calls instead of `Flash()`). Events: `WeekendInTown`, Road Trip's `TurnAroundAndGoHome`.
+- Banter: `Banter.Talks(player)` (brothers + friends) gates banter and Pings; `BrothersInArms.IsBrother` stays brothers-only
+  for relics, Family Bonds, and events. Friends' lines are in powers.json like the brothers'. What's left for them: TODO.md #12.
 
 Full designs are in `DESIGN.md`, with full card plans in `DANIEL_CARDS.md`, `DAVID_CARDS.md`, `JOSHUA_CARDS.md`, and `TIM_CARDS.md`. Build Daniel fully working before starting the others.
 
@@ -209,7 +257,8 @@ Card art for everything (all cards, relics, and powers use placeholders).
 - Each brother sets `MapDrawingColor` and `RemoteTargetingLineColor/Outline` (BaseLib leaves them black).
 - `Character/LobbyRowFix.cs`: re-sorts the co-op lobby player list after the game's character-change shake (rows overlapped on the host).
 - `Mechanics/HitchLogger.cs`: logs `[Hitch] N ms` to godot.log on frames over 150 ms, for tracking lag spikes. Remove before release if unwanted.
-- `cardgen/gen.ps1 -Section relics|powers -Only <name>` redraws one relic or power.
+- `cardgen/gen.ps1 -Section relics|powers -Only <name>` redraws one relic or power. A relic glyph can be `@Name` to reuse a card icon from
+  `$CustomIcons` (scaled to fit by `RelicParts`; Lucky d20 uses `@D20`, the same drawing as Natural Twenty).
 
 ## Added 2026-10-25
 
@@ -282,7 +331,9 @@ Card art for everything (all cards, relics, and powers use placeholders).
   runs still load; any new random-card picker of ours must filter to Common/Uncommon/Rare (`Verses.AddRandomSongs` does).
   Full list in JOSHUA_CARDS.md. Untested in game.
 - **Joshua D&D/Zelda pass** (his own favorites: Slay the Spire, 2D Zelda, D&D, board games): **Roll** keyword (`Mechanics/Dice.cs`,
-  d20 on `Rng.CombatTargets`, speech bubble with the result; 1 = half, 20 = double via `JoshuaCard.RollAttack`/`RollMultiplier`),
+  d20 on `Rng.CombatTargets`, speech bubble with the result; 1 = half, 20 = double via `JoshuaCard.RollAttack`/`RollMultiplier`;
+  Roll attacks set CalculationBase AND ExtraDamage to the printed damage (upgrade both), since the game's CalculatedVar uses a
+  multiplier of 0 outside combat and a base of 0 showed "0 damage" in the deck view),
   `AdvantagePower` / `LuckyPower` / `DungeonMasterPower`, relic `LuckyD20`. Zelda cards incl. the `MasterSword` token and Ballad of
   the Wind Fish (`Chorus(ctx, keepVerses: true)`). Joshua's reward pool is now 83 (23 / 40 / 20). Untested in game.
 

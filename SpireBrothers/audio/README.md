@@ -14,6 +14,10 @@ Each one plays automatically once it's here. Until then, the game uses a built-i
 | `joshua_heal` | Joshua's heal-everyone cards and Honey Lemon Tea | game's heal sound |
 | `tim_kids` | Tim's Kids attack | silent |
 | `tim_age_up` | Tim Ages Up | silent |
+| `john_stimm` | John plays Cartel Special (or Cartel Masterwork) | game's buff sound |
+| `john_shroud` | John enters the Shroud | silent |
+| `huffman_bark` | The Mastiff bites | game's bite sound |
+| `huffman_law` | One of Huffman's Laws punishes an enemy | silent |
 
 Tips for recording:
 - Keep each clip short: under 2 seconds, ideally under 1. Trim the silence at the start so it feels instant.

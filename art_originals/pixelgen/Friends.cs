@@ -38,8 +38,8 @@ public class JohnArt : AnimatedBrother
     protected override void DrawHeadExtras(Canvas c, Rig r, Pose p)
     {
         var h = r.Head;
-        // thick eyebrows
-        if (p.Face is Face.Dead) return;
+        // thick eyebrows (only over open eyes: on the happy and hurt faces they read as an "x")
+        if (p.Face is not (Face.Normal or Face.Fierce)) return;
         foreach (var x in new[] { h.X + 2.5f, h.X + 6.5f }) { c.Plot(x - 0.5f, h.Y - 1.5f, BeardC); c.Plot(x + 0.5f, h.Y - 1.5f, BeardC); }
     }
 

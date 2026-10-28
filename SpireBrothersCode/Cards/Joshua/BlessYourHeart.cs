@@ -17,8 +17,8 @@ using SpireBrothers.SpireBrothersCode.Orbs;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Monkey Island insult, said the sweet-but-not-really way (replaced Nice Shot!). Song. Deal 6 damage. Apply 2 Insulted.</summary>
-public class BlessYourHeart() : JoshuaCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy), IInsultCard
+/// <summary>Monkey Island insult, said the sweet-but-not-really way (replaced Nice Shot!). Song. Deal 6 (9) damage. Apply 2 Insulted. Common since 2026-10-27 (was Uncommon, 6 / 8).</summary>
+public class BlessYourHeart() : JoshuaCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy), IInsultCard
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Song];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move), new PowerVar<InsultedPower>(2)];
@@ -32,7 +32,7 @@ public class BlessYourHeart() : JoshuaCard(1, CardType.Attack, CardRarity.Uncomm
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars.Damage.UpgradeValueBy(3);
         DynamicVars["InsultedPower"].UpgradeValueBy(1);
     }
 }

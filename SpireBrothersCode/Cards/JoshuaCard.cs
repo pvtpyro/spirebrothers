@@ -115,9 +115,13 @@ public abstract class JoshuaCard(int cost, CardType type, CardRarity rarity, Tar
     // While a Roll attack resolves, its damage is scaled by the roll (half on a 1, double on a 20).
     private decimal? _rollMultiplier;
 
-    /// <summary>CalculatedDamage multiplier for Roll attacks: 1 in previews, the roll's multiplier while it resolves.</summary>
+    /// <summary>
+    /// CalculatedDamage multiplier for Roll attacks. Their CalculationBase and ExtraDamage are both the printed damage, and
+    /// this adds (roll multiplier - 1) of it: 0 in previews, -0.5 on a 1, +1 on a 20. The game uses 0 outside combat, so
+    /// the deck view shows the printed number (a base of 0 showed "0 damage" there).
+    /// </summary>
     protected static decimal RollMultiplier(CardModel card, Creature? _) =>
-        card is JoshuaCard { _rollMultiplier: decimal m } ? m : 1m;
+        card is JoshuaCard { _rollMultiplier: decimal m } ? m - 1m : 0m;
 
     /// <summary>A Roll attack: roll the d20, then attack with CalculatedDamage scaled by it. Returns the roll.</summary>
     protected async Task<int> RollAttack(PlayerChoiceContext ctx, CardPlay play, string vfx)

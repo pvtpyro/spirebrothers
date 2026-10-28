@@ -32,6 +32,11 @@ public static class RunStats
     public static readonly SavedSpireField<Player, int> BiggestChorus = new(() => 0, "SpireBrothersStatChorus");
     public static readonly SavedSpireField<Player, int> KidDamage = new(() => 0, "SpireBrothersStatKidDamage");
     public static readonly SavedSpireField<Player, int> Scripts = new(() => 0, "SpireBrothersStatScripts");
+    public static readonly SavedSpireField<Player, int> ToxinApplied = new(() => 0, "SpireBrothersStatToxin");
+    public static readonly SavedSpireField<Player, int> ShroudTurns = new(() => 0, "SpireBrothersStatShroud");
+    public static readonly SavedSpireField<Player, int> Bites = new(() => 0, "SpireBrothersStatBites");
+    public static readonly SavedSpireField<Player, int> LawsEnforced = new(() => 0, "SpireBrothersStatLaws");
+    public static readonly SavedSpireField<Player, int> MetalSpent = new(() => 0, "SpireBrothersStatMetal");
 
     public static void Add(SavedSpireField<Player, int> stat, Player? player, int amount = 1)
     {
@@ -79,6 +84,16 @@ public static class RunStats
                 lines.Add(("KIDS", KidDamage.Get(player)));
                 lines.Add(($"AGE{Ages.Get(player)}", Ages.Get(player)));
                 lines.Add(("SCRIPTS", Scripts.Get(player)));
+                break;
+            case Character.John:
+                lines.Add(("GRINDS", Grind.Times.Get(player)));
+                lines.Add(("TOXIN", ToxinApplied.Get(player)));
+                lines.Add(("SHROUD", ShroudTurns.Get(player)));
+                break;
+            case Character.Huffman:
+                lines.Add(("BITES", Bites.Get(player)));
+                lines.Add(("LAWS", LawsEnforced.Get(player)));
+                lines.Add(("METAL", MetalSpent.Get(player)));
                 break;
         }
         return lines.Where(l => l.Amount > 0).Select(l =>

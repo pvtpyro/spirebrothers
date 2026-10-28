@@ -196,3 +196,24 @@ $CustomIcons['TrumpetBlast'] = {
   }
   $parts
 }
+
+# ---- D&D
+
+# A d20 seen face-on: a hexagon rim, the lit front face showing a 20, and the facets around it shaded top to bottom.
+function D20($cx, $cy, $r) {
+  $h = foreach ($i in 0..5) { $a = (-90 + $i * 60) * [math]::PI / 180; , @(($cx + [math]::Cos($a) * $r), ($cy + [math]::Sin($a) * $r)) }
+  $t = @(@($cx, ($cy - $r * 0.62)), @(($cx + $r * 0.6), ($cy + $r * 0.42)), @(($cx - $r * 0.6), ($cy + $r * 0.42)))
+  $tri = { param($a, $b, $c) PPoly @($a[0], $a[1], $b[0], $b[1], $c[0], $c[1]) }
+  $hi = C '#e8566a'; $mid = C '#c43a52'; $lo = C '#962a40'
+  @(
+    (Part (& $tri $t[0] $h[0] $h[1]) $hi), (Part (& $tri $t[0] $h[5] $h[0]) $hi),
+    (Part (& $tri $t[0] $h[1] $t[1]) $mid), (Part (& $tri $t[2] $h[5] $t[0]) $mid),
+    (Part (& $tri $t[1] $h[1] $h[2]) $mid), (Part (& $tri $t[2] $h[4] $h[5]) $mid),
+    (Part (& $tri $t[1] $h[2] $h[3]) $lo), (Part (& $tri $t[2] $h[3] $h[4]) $lo), (Part (& $tri $t[1] $h[3] $t[2]) $lo),
+    (Part (& $tri $t[0] $t[1] $t[2]) (C '#ff9aa6')),
+    (Plain (GlyphPath '20' $cx ($cy + $r * 0.12) ($r * 0.62) ($r * 0.42) $bold) (C '#4a0f1c'))
+  )
+}
+
+# Natural Twenty: the d20 landing on a 20.
+$CustomIcons['D20'] = { D20 500 395 300 }

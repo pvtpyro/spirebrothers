@@ -4,8 +4,11 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.ValueProps;
+using SpireBrothers.SpireBrothersCode.Cards;
 using SpireBrothers.SpireBrothersCode.Cards.Daniel;
 using SpireBrothers.SpireBrothersCode.Character;
 using SpireBrothers.SpireBrothersCode.Powers;
@@ -24,6 +27,11 @@ public enum Bond
     KidsChoir,         // Joshua + Tim
     GroupChat,         // any 3 brothers
     NobodyLeftBehind,  // all 4
+    // The friends (Honorary Brothers).
+    UncleAndNephew,    // John + Huffman
+    BestFriends,       // John + David
+    Coworkers,         // Huffman + Daniel
+    StrikeTeam,        // Daniel + John + Huffman (Darktide)
 }
 
 /// <summary>
@@ -41,11 +49,16 @@ public class FamilyBonds() : CustomSingletonModel(HookType.Combat)
     public const int FamilyLoanGold = 10;
     public const int GroupChatEnergy = 1;
     public const int NobodyLeftBehindHeal = 10;
+    public const int UncleAndNephewToxin = 2;
+    public const int CoworkersMetal = 2;
+    public const int StrikeTeamBlock = 3;
 
     // The round each once-per-turn bond last fired, per player. Rounds instead of a reset flag, so it doesn't matter
     // whether Script replays run before or after the turn-start reset.
     private static readonly SpireField<PlayerCombatState, int> WiredForSoundRound = new(() => -1);
     private static readonly SpireField<PlayerCombatState, int> CodeReviewRound = new(() => -1);
+    private static readonly SpireField<PlayerCombatState, int> CoworkersRound = new(() => -1);
+    private static readonly SpireField<PlayerCombatState, int> BestFriendsRound = new(() => -1);
 
     private static readonly (Bond Bond, Func<Player, bool> A, Func<Player, bool> B)[] Pairs =
     [
@@ -55,6 +68,9 @@ public class FamilyBonds() : CustomSingletonModel(HookType.Combat)
         (Bond.Royalties, p => p.Character is David, p => p.Character is Joshua),
         (Bond.FamilyLoan, p => p.Character is David, p => p.Character is Tim),
         (Bond.KidsChoir, p => p.Character is Joshua, p => p.Character is Tim),
+        (Bond.UncleAndNephew, p => p.Character is John, p => p.Character is Huffman),
+        (Bond.BestFriends, p => p.Character is John, p => p.Character is David),
+        (Bond.Coworkers, p => p.Character is Huffman, p => p.Character is Daniel),
     ];
 
     /// <summary>Different brothers in the party (two Daniels count once, and only form a bond with someone else).</summary>
@@ -68,6 +84,8 @@ public class FamilyBonds() : CustomSingletonModel(HookType.Combat)
         int brothers = DistinctBrothers(list);
         if (brothers >= 3) bonds.Add(Bond.GroupChat);
         if (brothers >= 4) bonds.Add(Bond.NobodyLeftBehind);
+        if (list.Any(p => p.Character is Daniel) && list.Any(p => p.Character is John) && list.Any(p => p.Character is Huffman))
+            bonds.Add(Bond.StrikeTeam);
         return bonds;
     }
 
@@ -85,12 +103,14 @@ public class FamilyBonds() : CustomSingletonModel(HookType.Combat)
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
+        await StrikeTeam(player);
         var combat = player.Creature.CombatState;
         if (combat == null || combat.RoundNumber != 1) return;
         var bonds = Active(combat.Players);
         if (bonds.Count == 0) return;
 
-        if (BrothersInArms.IsBrother(player) && player.Creature.GetPower<FamilyBondsPower>() == null)
+        // The friends get the icon too (Honorary Brothers).
+        if (Banter.Talks(player) && player.Creature.GetPower<FamilyBondsPower>() == null)
             await PowerCmd.Apply<FamilyBondsPower>(choiceContext, player.Creature, 1, player.Creature, null, silent: true);
 
         // Group Chat: everyone gets the energy, including a vanilla fourth player.
@@ -99,6 +119,18 @@ public class FamilyBonds() : CustomSingletonModel(HookType.Combat)
             FlashIcon(player);
             await PlayerCmd.GainEnergy(GroupChatEnergy, player);
         }
+    }
+
+    // Strike Team: Darktide coherency. Daniel, John, and Huffman each gain Block every turn while all three are standing.
+    private static async Task StrikeTeam(Player player)
+    {
+        if (player.Character is not (Daniel or John or Huffman)) return;
+        var combat = player.Creature.CombatState;
+        if (combat == null || !IsActive(combat, Bond.StrikeTeam)) return;
+        if (Living(combat, p => p.Character is Daniel).Count == 0 || Living(combat, p => p.Character is John).Count == 0
+            || Living(combat, p => p.Character is Huffman).Count == 0) return;
+        FlashIcon(player);
+        await CreatureCmd.GainBlock(player.Creature, StrikeTeamBlock, ValueProp.Unpowered, null);
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -134,6 +166,44 @@ public class FamilyBonds() : CustomSingletonModel(HookType.Combat)
             foreach (var joshua in Living(combat, p => p.Character is Joshua))
                 await Verses.Gain(choiceContext, joshua, WiredForSoundVerses, null);
         }
+
+        // Coworkers: Daniel's first Wired each turn sends Huffman some Metal. IT always has spare parts.
+        if (owner.Character is Daniel && state != null && TurnTracker.WiredFiredThisTurn.Get(state)
+            && CoworkersRound.Get(state) != combat.RoundNumber && IsActive(combat, Bond.Coworkers))
+        {
+            CoworkersRound.Set(state, combat.RoundNumber);
+            FlashIcon(owner);
+            foreach (var huffman in Living(combat, p => p.Character is Huffman))
+                await Metal.Gain(choiceContext, huffman, CoworkersMetal, null);
+        }
+    }
+
+    /// <summary>Called from Exact.Check. Best Friends: David's first Exact each turn makes one of John's Grind cards in hand Grind.</summary>
+    public static async Task AfterExact(PlayerChoiceContext ctx, Player david)
+    {
+        var combat = david.Creature.CombatState;
+        var state = david.PlayerCombatState;
+        if (combat == null || state == null || david.Character is not David) return;
+        if (BestFriendsRound.Get(state) == combat.RoundNumber || !IsActive(combat, Bond.BestFriends)) return;
+        BestFriendsRound.Set(state, combat.RoundNumber);
+        FlashIcon(david);
+        foreach (var john in Living(combat, p => p.Character is John))
+        {
+            var grinders = PileType.Hand.GetPile(john).Cards.OfType<JohnCard>().Where(c => c.HasGrind).ToList();
+            if (grinders.Count == 0) continue;
+            var card = david.RunState.Rng.CombatTargets.NextItem(grinders)!;
+            await card.GrindTimes(ctx, 1);
+            TimCard.RefreshHand(john);
+        }
+    }
+
+    /// <summary>Called from Mastiff.Attack. Uncle and Nephew: the dog's bites leave some of John's Toxin behind.</summary>
+    public static async Task AfterBite(PlayerChoiceContext ctx, Player huffman, Creature target)
+    {
+        var combat = huffman.Creature.CombatState;
+        if (combat == null || !target.IsAlive || !IsActive(combat, Bond.UncleAndNephew)) return;
+        FlashIcon(huffman);
+        await Toxin.Apply(ctx, target, UncleAndNephewToxin, huffman, null);
     }
 
     /// <summary>Called from Verses.SpendForChorus whenever anyone plays a Chorus.</summary>

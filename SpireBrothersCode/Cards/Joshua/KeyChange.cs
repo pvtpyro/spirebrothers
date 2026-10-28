@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Orbs;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Songwriting. Double your Verses. Exhaust. Upgrade: no longer Exhausts.</summary>
+/// <summary>Songwriting. Double your Verses. Exhaust. Upgrade: costs 0 (until 2026-10-27 it lost Exhaust instead).</summary>
 public class KeyChange() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
@@ -28,5 +28,5 @@ public class KeyChange() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, Ta
         await Verses.Gain(ctx, Owner, Verses.Count(Owner), this);
     }
 
-    protected override void OnUpgrade() => RemoveKeyword(CardKeyword.Exhaust);
+    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
 }

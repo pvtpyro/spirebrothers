@@ -17,9 +17,10 @@ using SpireBrothers.SpireBrothersCode.Orbs;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Songwriting. Gain 2 Verses. Your next Chorus doesn't spend Verses.</summary>
+/// <summary>Songwriting. Gain 2 Verses. Your next Chorus doesn't spend Verses. Exhaust (added 2026-10-27, Joshua's feedback).</summary>
 public class Bridge() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("VerseGain", 2)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromOrb<VerseOrb>()];
 

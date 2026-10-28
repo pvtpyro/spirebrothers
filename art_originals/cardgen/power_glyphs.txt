@@ -104,3 +104,47 @@ RubberDuckMode 🦆
 SpreadsheetOfDestiny 🔮
 WorldTour 🌍
 AllHandsOnDeck ⚓
+Toxin ☣ debuff
+Shroud 🌫
+ChemLab 🔬
+FlameAltarUpgrade 🕯
+JustOneMoreRun 🎮
+CartelKingpin 👑
+ElixirWell ⛲
+RestedXp 💤
+ShroudWalker 🚶
+BaseBuilder 🏰
+MountUp 🐎
+RaidLeader 📣
+HivePlague 🦠
+PatchNotes 📝
+Bite 🐕
+Marked 🎯 debuff
+Metal 🔩
+MartialLaw 🪖
+AssaultingAnOfficer 👮
+NoLoitering 🚷
+NoArmorPermitted 🚫
+Contraband 📦
+ProtectAndServe 🦅
+NoiseComplaint 🔊
+ResistingArrest ⛓
+CyberUpgrades 🤖
+BestInShow 🏅
+LoneWolf 🐺
+LoyalCompanion 💙
+MetalExtractor ⛏
+SolarCollector ☀
+NanolatheTurret 🏰
+DysonSphere 🌞
+MeNetwork 🕸
+Autocrafting ⚙
+BuildQueue 📋
+ServerRoom 🖥
+RootAccess 🔓
+NuncioAquila 🦅
+Homebody 🏠
+DeepFryer 🍤
+CouchPotato 🛋 debuff
+RealmFirst 🏆
+HomeSweetHome 🏡

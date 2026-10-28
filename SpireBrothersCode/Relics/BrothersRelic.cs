@@ -41,3 +41,21 @@ public abstract class TimRelic : CustomRelicModel
     protected override string PackedIconOutlinePath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}_outline.png".RelicImagePath();
     protected override string BigIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigRelicImagePath();
 }
+
+/// <summary>Base for John's relics (a friend). Same icon layout as Daniel's.</summary>
+[Pool(typeof(JohnRelicPool))]
+public abstract class JohnRelic : CustomRelicModel
+{
+    public override string PackedIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".RelicImagePath();
+    protected override string PackedIconOutlinePath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}_outline.png".RelicImagePath();
+    protected override string BigIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigRelicImagePath();
+}
+
+/// <summary>Base for Huffman's relics (a friend). Same icon layout as Daniel's.</summary>
+[Pool(typeof(HuffmanRelicPool))]
+public abstract class HuffmanRelic : CustomRelicModel
+{
+    public override string PackedIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".RelicImagePath();
+    protected override string PackedIconOutlinePath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}_outline.png".RelicImagePath();
+    protected override string BigIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigRelicImagePath();
+}

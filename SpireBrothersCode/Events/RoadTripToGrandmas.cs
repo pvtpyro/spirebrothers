@@ -17,6 +17,7 @@ public class RoadTripToGrandmas : BrotherEvent
 {
     public const int RestAreaHealPercent = 20, StraightThroughHp = 5, StraightThroughGold = 50, TuneUpCards = 2;
     public const int CookingMaxHp = 6, GrandmaGold = 75, StoryChoices = 3;
+    public const int HomeHealPercent = 30, HomeMaxHp = 3;
     private const string Grandmas = "GRANDMAS";
 
     public override bool IsShared => true;
@@ -26,7 +27,20 @@ public class RoadTripToGrandmas : BrotherEvent
         Option(StopAtEveryRestArea),
         Option(DriveStraightThrough).ThatDoesDamage(StraightThroughHp),
         Option(SwingByDaniels),
+        .. HuffmanOption(),
     ];
+
+    // Huffman hates to travel. With him along, the party can vote to just not go. No card choices here, since the
+    // winning option runs for everyone at once.
+    private IEnumerable<EventOption> HuffmanOption() =>
+        Owner?.RunState.Players.Any(p => p.Character is Character.Huffman) == true ? [Option(TurnAroundAndGoHome)] : [];
+
+    private async Task TurnAroundAndGoHome()
+    {
+        await HealPercent(HomeHealPercent);
+        await GainMaxHp(HomeMaxHp);
+        Finish("TURN_AROUND_AND_GO_HOME");
+    }
 
     private async Task StopAtEveryRestArea()
     {

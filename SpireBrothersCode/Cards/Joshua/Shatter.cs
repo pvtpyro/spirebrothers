@@ -22,7 +22,7 @@ public class Shatter() : JoshuaCard(2, CardType.Attack, CardRarity.Uncommon, Tar
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Roll];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new CalculationBaseVar(0),
+        new CalculationBaseVar(14),
         new ExtraDamageVar(14),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(RollMultiplier)
     ];
@@ -32,5 +32,9 @@ public class Shatter() : JoshuaCard(2, CardType.Attack, CardRarity.Uncommon, Tar
         await RollAttack(ctx, play, "vfx/vfx_heavy_blunt");
     }
 
-    protected override void OnUpgrade() => DynamicVars.ExtraDamage.UpgradeValueBy(4);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.CalculationBase.UpgradeValueBy(4);
+        DynamicVars.ExtraDamage.UpgradeValueBy(4);
+    }
 }
