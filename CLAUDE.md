@@ -293,7 +293,7 @@ Card art for everything (all cards, relics, and powers use placeholders).
   (`Partner` = the other brother's character type) and carry the `Duo` keyword, written by hand as "[gold]Duo: David.[/gold]".
   `DuoCards` (run singleton) filters them out of card rewards (`ModifyCardRewardCreationOptions`) and shops
   (`ModifyMerchantCardPool`) unless the partner is in the party; Shared Steam Library and `Verses.AddRandomSongs` call
-  `DuoCards.Allowed` too. Any new random-card generator should as well. Effects reach the partner via `DuoCards.Partners(combat, Partner)`.
+  `DuoCards.Allowed` too. Any new random-card generator should as well. In combat, `DuoCardsCombatPatch` also filters vanilla `CardFactory.GetDistinctForCombat`/`GetForCombat` (Choices Paradox, Discovery, ...). Effects reach the partner via `DuoCards.Partners(combat, Partner)`.
   Card counts above don't include them (+3 per brother).
 - **Events** (`SpireBrothersCode/Events/`, BaseLib `CustomEventModel`, no Acts = any act): `BrotherEvent` base (portrait
   `images/events/<event_id>.png`, wide 3440x1613 like vanilla; `IsAllowed` needs a brother in the party; helpers for heal %,

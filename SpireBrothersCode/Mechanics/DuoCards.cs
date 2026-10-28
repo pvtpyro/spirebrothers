@@ -1,4 +1,6 @@
 using BaseLib.Abstracts;
+using HarmonyLib;
+using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
@@ -66,4 +68,27 @@ public class DuoCards() : CustomSingletonModel(HookType.Run)
 
     public override IEnumerable<CardModel> ModifyMerchantCardPool(Player player, IEnumerable<CardModel> options) =>
         options.Where(c => Allowed(c, player));
+}
+
+/// <summary>
+/// Keeps Duo cards out of in-combat card generation (Choices Paradox, Discovery, Attack Potion, ...) unless the partner is
+/// in the party. Every vanilla generator goes through one of these two, and they know the player, so this covers them all.
+/// Choices Paradox offered Feed Your Amp without Joshua in the run (2026-10-28).
+/// </summary>
+[HarmonyPatch(typeof(CardFactory))]
+public static class DuoCardsCombatPatch
+{
+    [HarmonyPrefix]
+    [HarmonyPatch(nameof(CardFactory.GetDistinctForCombat))]
+    private static void Distinct(Player player, ref IEnumerable<CardModel> cards) => Filter(player, ref cards);
+
+    [HarmonyPrefix]
+    [HarmonyPatch(nameof(CardFactory.GetForCombat))]
+    private static void Any(Player player, ref IEnumerable<CardModel> cards) => Filter(player, ref cards);
+
+    private static void Filter(Player player, ref IEnumerable<CardModel> cards)
+    {
+        var all = cards;
+        cards = all.Where(c => DuoCards.Allowed(c, player)).ToList();
+    }
 }
