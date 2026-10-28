@@ -23,7 +23,16 @@ public class ScriptPower : BrothersPower
     public override PowerType Type => PowerType.None;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    private readonly List<CardModel> _queued = new();
+    // Each Script power gets its own queue. The game makes powers by copying a template field by field, so without
+    // DeepCloneFields every copy shared one list: cards left queued when a fight ended (the Kids landing the last hit
+    // at turn end) replayed in the next fight, and two Tims in co-op shared a queue.
+    private List<CardModel> _queued = new();
+
+    protected override void DeepCloneFields()
+    {
+        base.DeepCloneFields();
+        _queued = new List<CardModel>();
+    }
 
     // Duplicates made by Script replays, so Ringing Ears can ignore them (see RingingScriptFix).
     private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<CardModel, object> Replays = new();

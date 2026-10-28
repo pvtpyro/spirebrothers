@@ -79,11 +79,9 @@ public partial class MainFile : Node
         ModHelper.AddModelToPool<TimRelicPool, BlownCartridge>();
         ModHelper.AddModelToPool<TimRelicPool, SharedSteamLibrary>();
         ModHelper.AddModelToPool<TimRelicPool, BrothersInArms>();
-        // The friends get the generic co-op ones (not Monkey Island or the family relics).
+        // The friends get Blown Cartridge (not Monkey Island, the family relics, or Party Headset: they have almost no Share cards).
         ModHelper.AddModelToPool<JohnRelicPool, BlownCartridge>();
-        ModHelper.AddModelToPool<JohnRelicPool, PartyHeadset>();
         ModHelper.AddModelToPool<HuffmanRelicPool, BlownCartridge>();
-        ModHelper.AddModelToPool<HuffmanRelicPool, PartyHeadset>();
         ModHelper.AddModelToPool<DavidRelicPool, DadsTackleBox>();
         ModHelper.AddModelToPool<JoshuaRelicPool, DadsTackleBox>();
         ModHelper.AddModelToPool<TimRelicPool, DadsTackleBox>();

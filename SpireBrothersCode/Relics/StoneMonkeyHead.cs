@@ -17,8 +17,15 @@ public class StoneMonkeyHead : DanielRelic
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [MonkeySpeak.Translation("relics", Id.Entry), HoverTipFactory.FromPower<InsultedPower>()];
 
-    // Enemies already hit this combat. Combat-only, so it isn't saved.
-    private readonly HashSet<Creature> _alreadyInsulted = [];
+    // Enemies already hit this combat. Combat-only, so it isn't saved. Its own set per copy (DeepCloneFields), or two
+    // players with this relic in co-op would share one and only the first would weaken each enemy.
+    private HashSet<Creature> _alreadyInsulted = [];
+
+    protected override void DeepCloneFields()
+    {
+        base.DeepCloneFields();
+        _alreadyInsulted = [];
+    }
 
     public override Task BeforeCombatStart()
     {

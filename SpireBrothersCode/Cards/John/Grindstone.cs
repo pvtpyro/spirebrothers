@@ -22,6 +22,8 @@ public class Grindstone() : JohnCard(1, CardType.Skill, CardRarity.Uncommon, Tar
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, BrotherKeywords.Grind];
 
+    protected override bool NeedsGrindCardInHand => true;
+
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         var picked = await CardSelectCmd.FromHand(ctx, Owner, new CardSelectorPrefs(SelectionScreenPrompt, 1), c => c is JohnCard { HasGrind: true }, this);

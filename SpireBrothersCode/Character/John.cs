@@ -20,9 +20,9 @@ public class John : BrotherCharacter
     protected override string ArtFolder => "john";
     public override string PlaceholderID => "ironclad";
     public override Color NameColor => Color;
-    public override Color MapDrawingColor => new("6E8A3A");
-    public override Color RemoteTargetingLineColor => new("9CD86AFF");
-    public override Color RemoteTargetingLineOutline => new("2E4A14FF");
+    public override Color MapDrawingColor => new("C98A0B");
+    public override Color RemoteTargetingLineColor => new("F5C24AFF");
+    public override Color RemoteTargetingLineOutline => new("5C3D00FF");
     public override CharacterGender Gender => CharacterGender.Masculine;
     public override int StartingHp => 78;
 

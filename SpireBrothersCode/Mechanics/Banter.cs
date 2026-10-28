@@ -106,6 +106,13 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
         Say(player.Creature, player.RunState, key);
     }
 
+    /// <summary>
+    /// A shared pool, plus its FAMILY lines (Mom, Dad) when the speaker is one of the brothers. The friends talk too,
+    /// but those aren't their parents.
+    /// </summary>
+    private static string[] WithFamily(Player speaker, string pool) =>
+        BrothersInArms.IsBrother(speaker) ? [pool, pool + ".FAMILY"] : [pool];
+
     private static List<Player> LivingBrothers(ICombatState combat) =>
         combat.Players.Where(p => Banter.Talks(p) && p.Creature.IsAlive).ToList();
 
@@ -167,7 +174,11 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
         if (others.Count == 0) return Task.CompletedTask;
         var reactor = others.FirstOrDefault(p => Name(p) == FallReactor[name]);
         if (reactor != null) Say(reactor.Creature, run, "FALL." + name);
-        else Say(others[Roll(run, others.Count)].Creature, run, "FALL");
+        else
+        {
+            var reactorPlayer = others[Roll(run, others.Count)];
+            Say(reactorPlayer.Creature, run, WithFamily(reactorPlayer, "FALL"));
+        }
         return Task.CompletedTask;
     }
 
@@ -226,7 +237,7 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
         if (room.RoomType == RoomType.Elite && Roll(run, EliteChance) != 0) return;
         var speaker = brothers[Roll(run, brothers.Count)];
         string pool = room.RoomType == RoomType.Boss ? "BOSS" : "ELITE";
-        Say(speaker.Creature, run, pool, $"{pool}.{Name(speaker)}");
+        Say(speaker.Creature, run, [.. WithFamily(speaker, pool), $"{pool}.{Name(speaker)}"]);
     }
 
     /// <summary>Called by BanterSavedPatch when something stops a brother from dying.</summary>

@@ -27,6 +27,7 @@ Both are built (2026-10-27), untested in game.
   "Jetpack Boost", and "Blue Screen of Death" are named that way because Daniel and David already have the shorter ones.
 - `gen.ps1 -CardsOnly -Character John` draws only one character's cards (a full run would redraw every brother's, and any
   hand-drawn art with it). Relics/powers one at a time with `-Section relics|powers -Only <name>`.
+- Friends' campfire loops (2026-10-27): John mixes a stimm, held out past his beard with a steel cap (a brown cork by his mouth read as a chocolate bar) (`JohnArt.Vial`), Huffman pets the Mastiff lying at his knee (`HuffmanArt.LyingDog`). Chest hands: John's fingerless glove + stimm injector, Huffman's Arbites gauntlet (`Hands.DrawHand` glove overload). Map colors: John amber, Huffman steel.
 - Leave John's grandma out of the mod. John and Huffman are uncle and nephew but the same age: write them as peers.
 - John: `Character/John.cs` + `JohnPools.cs` (Ironclad scenes), `Cards/JohnCard.cs`, `Cards/John/` (5 Basic, 70 reward, Stimm
   token, 8 talent cards + `TalentCard`, Duo Discord Call with David). Mechanics:
@@ -36,9 +37,9 @@ Both are built (2026-10-27), untested in game.
   - **Toxin** (`Mechanics/Toxin.cs`, `ToxinPower`): inert debuff; Chem cards cash it in. All Toxin goes through `Toxin.Apply` (Cartel Kingpin).
   - **Shroud** (`Mechanics/Shroud.cs`, `ShroudPower`): turns left as the amount, x1.5 Attack damage, 1 HP lost at his turn end.
   - **Stimm Lab talents** (`Mechanics/StimmLab.cs`): `JohnRunTracker.TryModifyRestSiteOptions` adds `StimmLabRestSiteOption`
-    (loc in the new `rest_site_ui.json`; icon `images/ui/stimm_lab.png`, swapped in by `StimmLabIconPatch` since the game's
+    (loc in the new `rest_site_ui.json`, whose hover lists learned talents via `StimmLab.LearnedLines`; icon `images/ui/stimm_lab.png`, swapped in by `StimmLabIconPatch` since the game's
     icon path is private). Pick 1 of 3 talent cards (`FromChooseACardScreen`), seeded from the run + floor, saved per player.
-    `JohnTracker` (combat) applies Pack Mule / Toxic Payload / Potency. Riskiest to test: the rest site button in co-op.
+    `JohnTracker` (combat) applies Pack Mule / Toxic Payload / Potency, and gives `TalentsPower` (icon listing talents + ranks) on turn 1. Riskiest to test: the rest site button in co-op.
 - Huffman: `Character/Huffman.cs` + `HuffmanPools.cs` (Necrobinder scenes), `Cards/HuffmanCard.cs` (`BuildCost` / `LawBonus` /
   `ExtraGlow` glow, `Build(ctx)`, `Laws` count), `Cards/Huffman/` (5 Basic, 70 reward, Duo Water Cooler Talk with Daniel and
   Same Age, Technically with John; John's Grew Up Together pairs with him). Starter relic `Relics/ArbitesBadge.cs` (first Power each combat costs 0, like vanilla Brilliant Scarf; Touch of Orobas: Judge's Badge). Mechanics:
@@ -53,13 +54,13 @@ Both are built (2026-10-27), untested in game.
   - I'll Wait Till I Get Home grows in `HuffmanTracker.AfterFlush` when Retained.
 - Friends' extras: 3 potions each (`JohnPotion` / `HuffmanPotion` in `Potions/BrotherPotion.cs`), 3 relics each (Loot Chest is
   paid in `JohnCard.GrindTimes`, Survivor's Lantern read in `Shroud.HpLoss`, Chew Toy in `Mastiff.Spawn`), plus Blown Cartridge
-  and Party Headset added to their pools in `MainFile` (not Monkey Island or the family relics).
+  added to their pools in `MainFile` (not Monkey Island, the family relics, or Party Headset: removed 2026-10-27, too few Share cards).
 - Friends' bonds, Ancient cards, stats, events, sounds (2026-10-27, untested): bonds Uncle and Nephew / Best Friends / Coworkers /
   Strike Team are in `FamilyBonds` (hooks: `FamilyBonds.AfterExact` from `Exact.Check`, `AfterBite` from `Mastiff.Attack`); friends
   get `FamilyBondsPower` via `Banter.Talks`. Ancient: Realm First!, Home Sweet Home, Cartel Masterwork, Release the Hound (ANCIENT_CARDS.md).
   Stats: `RunStats` ToxinApplied (`Toxin.Apply`), ShroudTurns (`ShroudPower`), Bites, MetalSpent (`Metal.Spend`), LawsEnforced
   (`LawPower.Enforce()`, which every Law calls instead of `Flash()`). Events: `WeekendInTown`, Road Trip's `TurnAroundAndGoHome`.
-- Banter: `Banter.Talks(player)` (brothers + friends) gates banter and Pings; `BrothersInArms.IsBrother` stays brothers-only
+- Banter: `Banter.Talks(player)` (brothers + friends) gates banter and Pings; shared pools keep Mom/Dad lines in `<POOL>.FAMILY` (BOSS, FALL), added only for brothers by `Banter.WithFamily`; `BrothersInArms.IsBrother` stays brothers-only
   for relics, Family Bonds, and events. Friends' lines are in powers.json like the brothers'. What's left for them: TODO.md #12.
 
 Full designs are in `DESIGN.md`, with full card plans in `DANIEL_CARDS.md`, `DAVID_CARDS.md`, `JOSHUA_CARDS.md`, and `TIM_CARDS.md`. Build Daniel fully working before starting the others.
@@ -157,6 +158,9 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   the target is null, so `ShareTarget()` falls back to the owner. Draw and energy given to
   teammates go through vanilla `DrawCardsNextTurnPower` / `EnergyNextTurnPower` to stay
   multiplayer-safe.
+- **Collection fields on powers/relics/cards need `DeepCloneFields`.** The game makes each live model by `MemberwiseClone` of a
+  template, so a `List`/`HashSet` field initialized inline is shared by every copy (ScriptPower's queue leaked into the next
+  combat and between co-op Tims, fixed 2026-10-27). Override `DeepCloneFields()`, call base, and assign a new collection.
 - Random choices must use the run's RNG (`Owner.RunState.Rng.CombatTargets`) or co-op will desync.
 - **Exact cards never draw this turn when Exact triggers** (user feedback): Exact means 0 energy left, so drawn
   cards are useless. Any draw on an Exact card, base draw included, moves to next turn via `DrawNextTurn` when

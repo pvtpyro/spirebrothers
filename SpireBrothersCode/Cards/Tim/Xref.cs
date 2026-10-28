@@ -22,7 +22,7 @@ public class Xref() : TimCard(1, CardType.Skill, CardRarity.Uncommon, TargetType
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(BrotherKeywords.Script)];
 
-    private static bool CanScript(CardModel c) => c.Type != CardType.Power && !c.Keywords.Contains(BrotherKeywords.Script);
+    private static bool CanScript(CardModel c) => c.Type is CardType.Attack or CardType.Skill && !c.Keywords.Contains(BrotherKeywords.Script);
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {

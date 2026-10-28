@@ -38,7 +38,7 @@
   "SPIREBROTHERS-SUGAR_RUSH.title": "Sugar Rush",
   "SPIREBROTHERS-SUGAR_RUSH.description": "Gain {Kids:diff()} [gold]Kid[/gold].\nEvery [gold]Kid[/gold] hits a random enemy {Times:diff()} times.",
   "SPIREBROTHERS-HOTFIX.title": "Hotfix",
-  "SPIREBROTHERS-HOTFIX.description": "Your next {Cards:diff()} cards this turn have [gold]Script[/gold].",
+  "SPIREBROTHERS-HOTFIX.description": "Your next {Cards:diff()} non-Power cards this turn have [gold]Script[/gold].",
 "SPIREBROTHERS-CARTEL_BREW.title": "Cartel Brew",
   "SPIREBROTHERS-CARTEL_BREW.description": "Apply {Toxin:diff()} [gold]Toxin[/gold] to ALL enemies.",
   "SPIREBROTHERS-SHROUD_ELIXIR.title": "Shroud Elixir",

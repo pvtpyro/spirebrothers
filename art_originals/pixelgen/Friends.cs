@@ -70,9 +70,49 @@ public class JohnArt : AnimatedBrother
 
     protected override void DrawWeapon(Canvas c, Rig r, Pose p)
     {
+        if (p.Prop == "vial") { Vial(c, r, p); return; }
         if (p.Prop != "pistols") return;
         Pistol(c, r.HandF, p.PropAngle, p.Fx is 1 or 3);
         DrawHand(c, r.HandF, false);
+    }
+
+    // Campfire: a glass vial of homebrew chem, held out in front of him (well away from his beard). It starts murky
+    // purple, turns toxic green as he shakes it, he holds it up to the firelight (frame 4), it fizzes over and he leans
+    // back from the fumes (frame 5), then he grins at it while it bubbles.
+    private void Vial(Canvas c, Rig r, Pose p)
+    {
+        var h = r.HandF; var tilt = V.Dir(p.PropAngle - 90);
+        var bottom = h + tilt * -2f; var top = h + tilt * 8f;
+        bool green = p.Fx >= 2;
+        var liquid = green ? (p.Fx % 2 == 0 ? Col.Hex("70ff80") : Col.Hex("48d860")) : Col.Hex("7a4aa0");
+        c.Draw(q => S.Capsule(q, bottom, top, 2.3f), Col.Hex("c8e0e8"), hi: Col.Hex("f0fbff"));      // glass
+        c.Flat(q => S.Capsule(q, bottom, h + tilt * 4, 1.3f), liquid);                                // the chem
+        c.Draw(q => S.Capsule(q, top, top + tilt * 1.2f, 1.5f), Col.Hex("8a929c"), hi: Col.Hex("d8dee8"));   // steel cap
+        if (green && p.Fx is 2 or 3) Sparkle(c, top + new V(4, -2), 2, Col.Hex("70ff80"));
+        // fumes
+        if (p.Fx is 4 or 5 or 6 or 7)
+            for (int i = 0; i < 3; i++)
+                c.Plot(top + new V((i + p.Fx) % 2 == 0 ? 1 : -1, -2.5f - i * 1.8f), i == 0 ? Col.Hex("a0ffb0") : Col.Hex("70d880"));
+        if (p.Fx == 5) { Sparkle(c, top + new V(-1, -4), 2, Col.Hex("a0ffb0")); Sparkle(c, top + new V(3, -7), 1, Col.Hex("70d880")); }   // fizzes over
+        if (p.Fx is 6 or 7) c.Plot(h + tilt * (p.Fx == 6 ? 1.5f : 2.5f), Col.Hex("d8ffe0"));         // a bubble
+        DrawHand(c, h, false);
+    }
+
+    protected override List<Pose> Rest()
+    {
+        var list = base.Rest();
+        // vial position (relative to his shoulder, out at arm's length) and tilt: shake, shake, glow, glow, hold up to the light, fizz, admire, admire
+        V[] hand = [new(15, 6), new(16, 5), new(15, 6), new(15, 6), new(17, -1), new(16, 5), new(15, 6), new(15, 6)];
+        float[] tilt = [-15, 15, -5, 5, 0, 10, 0, 0];
+        for (int i = 0; i < list.Count; i++)
+        {
+            var p = list[i];
+            p.Prop = "vial"; p.FrontHand = hand[i]; p.PropAngle = tilt[i]; p.FrontElbowPref = new V(0, 1);
+            p.Face = i switch { 4 => Face.Fierce, 5 => Face.Hurt, 2 or 3 or 6 or 7 => Face.Happy, _ => Face.Normal };
+            if (i == 4) { p.HeadTilt = -1; }
+            if (i == 5) { p.Lean = -1; p.HeadTilt = -2; }
+        }
+        return list;
     }
 
     protected override void DrawHeld(Canvas c, Rig r, Pose p)
@@ -201,8 +241,47 @@ public class HuffmanArt : AnimatedBrother
         DrawHand(c, h, false);
     }
 
+    // Campfire: his cyber-mastiff lies beside him with its chin on his knee (same colors as the combat dog in friendbuttons).
+    // He scratches behind its ears; the tail thumps, and it shuts its eye happily at the good spot (frames 4-5).
+    private void LyingDog(Canvas c, Rig r, Pose p)
+    {
+        var fur = Col.Hex("5a5650"); var plate = Col.Hex("8a929c"); var dark = Col.Hex("2e2c2a");
+        bool content = p.Fx is 4 or 5;
+        float wag = p.Fx % 2 == 0 ? -4 : 2;
+        var chin = r.KneeF + new V(2, -1);
+        var head = chin + new V(3, -3);
+        c.Draw(q => S.Taper(q, new V(56, 72), new V(59, 66.5f + wag), 1.4f, 0.7f), fur);                     // tail
+        c.Draw(q => S.Ellipse(q, new V(50.5f, 73), 7f, 4.5f), fur, hi: fur.Light);                          // body
+        c.Draw(q => S.Box(q, 47, 68.5f, 54, 71), plate, hi: Col.Hex("c8d0da"));                         // armour plate
+        c.Plot(49, 69.5f, dark); c.Plot(52, 69.5f, dark);
+        c.Draw(q => S.Capsule(q, new V(45, 76.5f), new V(40, 77), 1.4f), fur);                              // front paws
+        c.Draw(q => S.Capsule(q, new V(46, 71), head + new V(1, 1), 3.2f), fur);                            // neck
+        c.Draw(q => S.U(S.Ellipse(q, head, 4.2f, 3.6f), S.Box(q, chin.X - 3, head.Y, head.X, chin.Y + 1)), fur, hi: fur.Light); // head, snout to the left
+        c.Draw(q => S.Poly(q, head + new V(1, -2.5f), head + new V(3.5f, -6), head + new V(3.5f, -1.5f)), fur.Mul(0.8f));  // ear
+        c.Draw(q => S.Box(q, head.X - 3.5f, head.Y - 2, head.X + 0.5f, head.Y - 0.5f), plate);              // visor
+        c.Plot(head.X - 2.5f, head.Y - 1.3f, content ? Col.Hex("8a2a24") : Col.Hex("ff3a2a"));             // red eye, dimmed when content
+        c.Plot(chin.X - 3, chin.Y, dark);                                                                   // nose
+        c.Draw(q => S.Box(q, head.X + 2, head.Y + 1, head.X + 4, head.Y + 4), Col.Hex("8a2a24"), outline: false); // collar
+        DrawHand(c, r.HandF, false);
+        if (content) Sparkle(c, head + new V(-2, -8), 1, Col.Hex("ff9ab0"));
+    }
+
+    protected override List<Pose> Rest()
+    {
+        var list = base.Rest();
+        foreach (var p in list)
+        {
+            p.Prop = "dog"; p.Lean = 3;
+            // hand on the dog's head, scratching back and forth
+            p.FrontHand = new V(13.5f + (p.Fx % 2 == 0 ? 0 : 1.2f), 9.5f); p.FrontElbowPref = new V(0, 1);
+            p.Face = p.Fx is 4 or 5 ? Face.Happy : (p.Fx == 6 ? Face.Blink : Face.Normal);
+        }
+        return list;
+    }
+
     protected override void DrawFront(Canvas c, Rig r, Pose p)
     {
+        if (p.Prop == "dog") { LyingDog(c, r, p); return; }
         if (p.Prop != "law") return;
         // holds up a hand: "stop, that's against the law", with a little badge glint
         if (p.Fx is 2 or 3) { Sparkle(c, r.HandF + new V(4, -4), 2, Col.Hex("ffe070")); Sparkle(c, r.HandF + new V(-3, -7), 1, Col.Hex("ffffff")); }

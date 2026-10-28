@@ -38,9 +38,13 @@ public static class Hands
         bool ring = b.Name is "daniel" or "tim";  // the married brothers
         var skin = b.Skin;
 
+        // the friends: John's fingerless Hive Scum glove, Huffman's armored Arbites gauntlet
+        Col? glove = b switch { JohnArt => Col.Hex("2a2a2e"), HuffmanArt => Col.Hex("33363e"), _ => null };
+        bool gauntlet = b is HuffmanArt;
+
         // forearm (bare for Tim; under the sleeve for everyone else, so only the wrist shows)
         c.Draw(q => S.Taper(q, new V(21, 104), new V(21, 40), 7.5f, 4.6f), skin, hi: skin.Light);
-        DrawHand(c, move, skin, ring);
+        DrawHand(c, move, skin, ring, glove, gauntlet);
 
         if (rolled)
         {
@@ -59,6 +63,8 @@ public static class Hands
             c.Draw(q => S.Box(q, 15, 44, 27, 52) - 0.6f, b.Sleeve.Shade, shade: b.Sleeve.Shade.Shade);
             if (b is DavidArt) for (float y = 45.5f; y < 51; y += 1.5f) c.Flat(q => S.Box(q, 15.8f, y, 26.2f, y + 0.4f), b.Sleeve.Shade.Shade);
         }
+        if (b is JohnArt) StimmInjector(c);
+        if (gauntlet) GauntletCuff(c, glove!.Value);
         FadeBottom(c);
         return c;
     }
@@ -66,6 +72,87 @@ public static class Hands
     // Finger roots along the knuckles (index nearest the thumb, on the left) and how long each finger is when straight.
     static readonly V[] Root = [new(16.6f, 28), new(20.2f, 27), new(23.6f, 27.5f), new(26.8f, 29)];
     static readonly float[] Len = [15f, 14.2f, 13.8f, 10.5f];  // middle kept short enough to fit under the top edge
+
+    static readonly Col Steel = Col.Hex("9aa2ae");
+
+    /// <summary>
+    /// A glove over the hand: <paramref name="gauntlet"/> covers the whole hand (armor plates, no nails); otherwise it's
+    /// fingerless, so the fingertips show. Drawn over the bare hand so the skin underneath shapes the fingertips.
+    /// </summary>
+    static void DrawHand(Canvas c, string move, Col skin, bool ring, Col? glove, bool gauntlet)
+    {
+        DrawHand(c, move, skin, ring && glove == null);
+        if (glove is not { } g) return;
+        (bool up, float lean)[] f = Fingers(move);
+        bool open = move == "paper";
+
+        // thumb: the whole thing in a gauntlet, just the base in a fingerless glove
+        float thumbLen = gauntlet ? 1f : 0.55f;
+        if (open) c.Draw(q => S.Taper(q, new V(15, 38), new V(15, 38) + (new V(8.5f, 27.5f) - new V(15, 38)) * thumbLen, 2.7f, 2.0f), g, hi: g.Light);
+        else c.Draw(q => S.Taper(q, new V(15.5f, 39), new V(15.5f, 39) + (new V(13, 29.5f) - new V(15.5f, 39)) * thumbLen, 2.7f, 2.2f), g, hi: g.Light);
+
+        // back of the hand, with a steel plate on the gauntlet and a bare knuckle strip for the Hive Scum glove
+        c.Draw(q => S.RBox(q, new V(21.5f, 34.5f), 6.8f, 7.6f, 0) - 1.2f, g, hi: g.Light);
+        if (gauntlet)
+        {
+            c.Draw(q => S.RBox(q, new V(21.5f, 35.5f), 4.6f, 4.4f, 0) - 0.8f, Steel, hi: Steel.Light);
+            c.Plot(18.5f, 33, g.Shade); c.Plot(24.5f, 33, g.Shade); c.Plot(18.5f, 38, g.Shade); c.Plot(24.5f, 38, g.Shade);   // rivets
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            var root = Root[i];
+            if (f[i].up)
+            {
+                var tip = root + new V(0, -Len[i]).Rot(f[i].lean);
+                var d = (tip - root).Norm;
+                float r = i == 3 ? 1.55f : 1.8f;
+                var end = gauntlet ? tip : root + d * (Len[i] * 0.45f);
+                c.Draw(q => S.Capsule(q, root, end, r), g, hi: g.Light);
+                if (gauntlet)
+                {
+                    // segmented plates on each finger
+                    for (float t = 0.33f; t < 0.95f; t += 0.33f) c.Flat(q => S.Capsule(q, root + d * (Len[i] * t) - d.Perp * 1.2f, root + d * (Len[i] * t) + d.Perp * 1.2f, 0.3f), Steel);
+                }
+            }
+            else
+            {
+                c.Draw(q => S.Circle(q, new V(root.X, 26.2f + (i == 3 ? 1 : 0)), 2.05f), g, hi: g.Light);
+                if (gauntlet) c.Plot(root.X, 25.5f + (i == 3 ? 1 : 0), Steel);
+            }
+        }
+        // knuckle line
+        c.Flat(q => S.Box(q, 16, 30.5f, 27.5f, 31), g.Shade);
+    }
+
+    static (bool up, float lean)[] Fingers(string move) => move switch
+    {
+        "point" => [(true, -2), (false, 0), (false, 0), (false, 0)],
+        "scissors" => [(true, -11), (true, 9), (false, 0), (false, 0)],
+        "paper" => [(true, -10), (true, -1), (true, 8), (true, 18)],
+        _ => [(false, 0), (false, 0), (false, 0), (false, 0)],
+    };
+
+    /// <summary>John: a Hive Scum stimm injector strapped to his bare forearm, with a glowing green chem window.</summary>
+    static void StimmInjector(Canvas c)
+    {
+        var strap = Col.Hex("3a2a20");
+        c.Draw(q => S.Box(q, 13.5f, 54, 28.5f, 56.5f), strap, hi: strap.Light);
+        c.Draw(q => S.Box(q, 14, 66, 28, 68.5f), strap, hi: strap.Light);
+        c.Draw(q => S.Capsule(q, new V(24, 51), new V(24, 71), 2.6f), Steel, hi: Steel.Light);           // the injector
+        c.Flat(q => S.Capsule(q, new V(24, 57.5f), new V(24, 64.5f), 1.2f), Col.Hex("70ff80"));            // the chem
+        c.Plot(23.5f, 59, Col.Hex("d8ffe0"));
+        c.Draw(q => S.Box(q, 22.5f, 48.5f, 25.5f, 51), Col.Hex("5a5e68"));                                // plunger cap
+    }
+
+    /// <summary>Huffman: the gauntlet's flared armored cuff, worn over his shirt sleeve.</summary>
+    static void GauntletCuff(Canvas c, Col g)
+    {
+        c.Draw(q => S.Poly(q, new V(14.5f, 41), new V(27.5f, 41), new V(30, 56), new V(12, 56)), g, hi: g.Light);
+        c.Draw(q => S.Box(q, 13, 47, 29, 50), Steel, hi: Steel.Light);
+        c.Plot(15, 48.5f, g.Shade); c.Plot(21, 48.5f, g.Shade); c.Plot(27, 48.5f, g.Shade);
+        c.Plot(21, 44, Col.Hex("d4af37")); c.Plot(20, 44, Col.Hex("d4af37")); c.Plot(22, 44, Col.Hex("d4af37"));   // Arbites eagle, a gold glint
+    }
 
     static void DrawHand(Canvas c, string move, Col skin, bool ring)
     {

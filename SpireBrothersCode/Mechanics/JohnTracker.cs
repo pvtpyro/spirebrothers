@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using SpireBrothers.SpireBrothersCode.Cards.John;
+using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Mechanics;
 
@@ -30,6 +31,8 @@ public class JohnTracker() : CustomSingletonModel(HookType.Combat)
         if (player.Character is not Character.John) return;
         var combat = player.Creature.CombatState;
         if (combat == null || combat.RoundNumber != 1) return;
+        if (StimmLab.TotalRanks(player) > 0 && player.Creature.GetPower<TalentsPower>() == null)
+            await PowerCmd.Apply<TalentsPower>(choiceContext, player.Creature, 1, player.Creature, null, silent: true);
         // Pack Mule: start each combat with some Block.
         int mule = StimmLab.Rank(player, StimmLab.Talent.PackMule);
         if (mule > 0) await CreatureCmd.GainBlock(player.Creature, StimmLab.PackMuleBlock * mule, ValueProp.Unpowered, null);

@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.RestSite;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using SpireBrothers.SpireBrothersCode.Cards.John;
 
@@ -54,6 +55,16 @@ public static class StimmLab
         if (t == Talent.ThickSkin) await CreatureCmd.GainMaxHp(player.Creature, ThickSkinMaxHp);
     }
 
+    /// <summary>His learned talents, one line each with the rank ("Potency 2/3"), for the Talents icon and the Stimm Lab button.</summary>
+    public static List<string> LearnedLines(Player? player) =>
+        Enum.GetValues<Talent>().Where(t => Rank(player, t) > 0).Select(t =>
+        {
+            var title = new LocString("cards", CardFor(t).Id.Entry + ".title").GetFormattedText();
+            return $"[gold]{title}[/gold] {Rank(player, t)}/{MaxRank(t)}";
+        }).ToList();
+
+    public static int TotalRanks(Player? player) => Enum.GetValues<Talent>().Sum(t => Rank(player, t));
+
     public static CardModel CardFor(Talent t) => t switch
     {
         Talent.Potency => ModelDb.Card<TalentPotency>(),
@@ -80,8 +91,18 @@ public class StimmLabRestSiteOption(Player owner) : RestSiteOption(owner)
 
     public override bool IsEnabled => StimmLab.Available(Owner).Count > 0;
 
-    public override MegaCrit.Sts2.Core.Localization.LocString Description =>
-        new("rest_site_ui", $"OPTION_{OptionId}.{(IsEnabled ? "description" : "descriptionDisabled")}");
+    // Lists what he already knows, so he can plan his next pick.
+    public override LocString Description
+    {
+        get
+        {
+            var text = new LocString("rest_site_ui", $"OPTION_{OptionId}.{(IsEnabled ? "description" : "descriptionDisabled")}");
+            var learned = StimmLab.LearnedLines(Owner);
+            var heading = new LocString("rest_site_ui", $"OPTION_{OptionId}.learned").GetFormattedText();
+            text.Add("Learned", learned.Count == 0 ? "" : $"\n\n{heading}\n{string.Join("\n", learned)}");
+            return text;
+        }
+    }
 
     public override IEnumerable<string> AssetPaths => [StimmLab.ActiveIconPath];
 

@@ -2,13 +2,17 @@ using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 using SpireBrothers.SpireBrothersCode.Character;
 using SpireBrothers.SpireBrothersCode.Extensions;
 using SpireBrothers.SpireBrothersCode.Mechanics;
@@ -81,6 +85,39 @@ public abstract class JohnCard(int cost, CardType type, CardRarity rarity, Targe
         Grind.Times.Set(Owner, Grind.Times.Get(Owner) + times);
         if (Owner.Creature.GetPower<ChemLabPower>() is { } lab) await lab.OnGrind(times);
         if (Owner.GetRelic<Relics.LootChest>() is { } chest) await chest.OnGrind(times);
+        ShowGrind();
+    }
+
+    /// <summary>
+    /// A card that Grinds while it isn't being played (Grindstone, Best in Slot, Raid Flask, Best Friends) pops up with the
+    /// upgrade sparkle, like vanilla Armaments, so the new number is easy to see. Changing the number alone doesn't redraw
+    /// the card in hand, so the hand is refreshed too. Display only, on the owner's screen.
+    /// </summary>
+    private void ShowGrind()
+    {
+        try
+        {
+            if (Pile == null || Pile.Type == PileType.Play || !LocalContext.IsMine(this)) return;
+            TimCard.RefreshHand(Owner);
+            NRun.Instance?.GlobalUi.CardPreviewContainer.AddChildSafely(NCardUpgradeVfx.Create(this));
+        }
+        catch (Exception e)
+        {
+            MainFile.Logger.Error($"Grind display failed on {GetType().Name}: {e}");
+        }
+    }
+
+    /// <summary>Cards that pick a Grind card in hand (Grindstone, Best in Slot) can't be played without one, so they never fizzle.</summary>
+    protected virtual bool NeedsGrindCardInHand => false;
+
+    protected override bool IsPlayable
+    {
+        get
+        {
+            if (!base.IsPlayable) return false;
+            if (!NeedsGrindCardInHand || !IsInCombat || Owner?.PlayerCombatState == null) return true;
+            return PileType.Hand.GetPile(Owner).Cards.Any(c => c != this && c is JohnCard { HasGrind: true });
+        }
     }
 
     // ---- glow and text

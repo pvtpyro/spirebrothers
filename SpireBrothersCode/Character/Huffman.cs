@@ -20,9 +20,9 @@ public class Huffman : BrotherCharacter
     protected override string ArtFolder => "huffman";
     public override string PlaceholderID => "necrobinder";
     public override Color NameColor => Color;
-    public override Color MapDrawingColor => new("2F63C4");
-    public override Color RemoteTargetingLineColor => new("6FA0F0FF");
-    public override Color RemoteTargetingLineOutline => new("14306AFF");
+    public override Color MapDrawingColor => new("4A5568");
+    public override Color RemoteTargetingLineColor => new("B4BFCCFF");
+    public override Color RemoteTargetingLineOutline => new("222831FF");
     public override CharacterGender Gender => CharacterGender.Masculine;
     public override int StartingHp => 80;
 

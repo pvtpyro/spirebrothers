@@ -23,6 +23,8 @@ namespace SpireBrothers.SpireBrothersCode.Mechanics;
 public class TimTracker() : CustomSingletonModel(HookType.Combat)
 {
     public static readonly SpireField<PlayerCombatState, int> CardsThisTurnField = new(() => 0);
+    // Non-Power cards played this turn: Automation Suite scripts the first of these.
+    private static readonly SpireField<PlayerCombatState, int> NonPowersThisTurn = new(() => 0);
 
     public static int CardsThisTurn(Player? player)
     {
@@ -41,6 +43,11 @@ public class TimTracker() : CustomSingletonModel(HookType.Combat)
         int played = CardsThisTurnField.Get(state) + 1;
         CardsThisTurnField.Set(state, played);
 
+        // Powers would re-apply themselves, so they never get Script, and they don't use up Snap to Grid or Automation Suite.
+        if (card.Type == CardType.Power) return;
+        int nonPowers = NonPowersThisTurn.Get(state) + 1;
+        NonPowersThisTurn.Set(state, nonPowers);
+
         bool script = card.Keywords.Contains(BrotherKeywords.Script);
         if (!script && card is not SnapToGrid)
         {
@@ -51,16 +58,15 @@ public class TimTracker() : CustomSingletonModel(HookType.Combat)
                 await PowerCmd.Decrement(snap);
             }
         }
-        if (!script && played == 1 && owner.Creature.GetPower<AutomationSuitePower>() is { } suite)
+        if (!script && nonPowers == 1 && owner.Creature.GetPower<AutomationSuitePower>() is { } suite)
         {
             script = true;
             suite.Trigger();
         }
         // Startup Script: the first 2 non-Power cards each combat.
-        if (!script && card.Type != CardType.Power && owner.GetRelic<StartupScript>()?.TryUse() == true) script = true;
+        if (!script && owner.GetRelic<StartupScript>()?.TryUse() == true) script = true;
 
-        // Powers would re-apply themselves, so they never get Script.
-        if (!script || card.Type == CardType.Power) return;
+        if (!script) return;
         await PowerCmd.Apply<ScriptPower>(choiceContext, owner.Creature, 1, owner.Creature, null, silent: true);
         owner.Creature.GetPower<ScriptPower>()?.Queue(card);
     }
@@ -97,6 +103,7 @@ public class TimTracker() : CustomSingletonModel(HookType.Combat)
         var state = player.PlayerCombatState;
         if (state == null) return Task.CompletedTask;
         CardsThisTurnField.Set(state, 0);
+        NonPowersThisTurn.Set(state, 0);
 
         // Tim's Age shows above his head (redrawn each turn in case the creature node was rebuilt).
         if (player.Character is SpireBrothers.SpireBrothersCode.Character.Tim) AgeDisplay.Update(player);
