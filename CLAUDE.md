@@ -130,6 +130,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   over-ear headphones. `photos/` has a `.gdignore` so the family photos never get packed into the Workshop .pck; keep it.
   Re-run it to change the art, then copy the frames in. A copy is on her Desktop (`pixelgen`).
   The `dead_N.png` frames are registered as the animation "die" (BaseLib's death cue only tries "Dead"/"Die"/"die", case-sensitive). The sprite's pivot is moved to the feet and it tweens to -90° on `die` (back up on `revive`), because the dead frames only slump.
+  Defeat screen outside combat (giving up, or dying on the map/rest site/shop): vanilla plays "die" through Spine, so `Character/GameOverDeathFix.cs` plays our "die" frames and tips the body over.
   Co-op treasure room hands: `hands/point.png`, `rock`, `paper`, `scissors` (422 x 1200, from pixelgen `Hands.cs`); without them the game shows the borrowed vanilla arms.
   It also sets the character icon (`icon.png`, falling back to `map_marker.png`, plus `icon_outline.png`): co-op map votes and the
   player list use it, and the top-left icon reuses the placeholder's icon scene with our textures swapped in.
