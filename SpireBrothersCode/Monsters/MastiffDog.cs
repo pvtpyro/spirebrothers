@@ -14,9 +14,13 @@ namespace SpireBrothers.SpireBrothersCode.Monsters;
 /// Kids: huge HP, no health bar, no moves of its own. Its bites live in Mechanics/Mastiff.cs. Bounces while idle and
 /// hops forward when it bites (reusing the Kids' motion). Art: images/monsters/mastiff/mastiff.png (pixelgen).
 /// </summary>
-public class MastiffDog : CustomMonsterModel
+public class MastiffDog : CustomMonsterModel, Mechanics.IPhotoArt
 {
     public static readonly string ArtPath = $"{MainFile.ResPath}/images/monsters/mastiff/mastiff.png";
+
+    // Family Album photos (IPhotoArt): about as tall as he stands in combat.
+    string Mechanics.IPhotoArt.PhotoArt => ArtPath;
+    float Mechanics.IPhotoArt.PhotoHeight => 28 * Scale;
 
     public override int MinInitialHp => 9999;
     public override int MaxInitialHp => 9999;

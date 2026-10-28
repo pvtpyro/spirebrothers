@@ -10,7 +10,7 @@ namespace SpireBrothers.SpireBrothersCode.Character;
 /// exists, and falls back to the borrowed vanilla character (PlaceholderID) when it doesn't, so art can be
 /// dropped in one piece at a time. File names are listed in assets.md.
 /// </summary>
-public abstract class BrotherCharacter : PlaceholderCharacterModel
+public abstract class BrotherCharacter : PlaceholderCharacterModel, Mechanics.IPhotoArt
 {
     /// <summary>Folder name under images/characters/, e.g. "tim".</summary>
     protected abstract string ArtFolder { get; }
@@ -19,6 +19,10 @@ public abstract class BrotherCharacter : PlaceholderCharacterModel
     protected virtual float RestFps => 5;
 
     private string ArtPath(string file) => $"{MainFile.ResPath}/images/characters/{ArtFolder}/{file}";
+
+    // Family Album photos (IPhotoArt).
+    string Mechanics.IPhotoArt.PhotoArt => ArtPath("frames/idle_0.png");
+    float Mechanics.IPhotoArt.PhotoHeight => BodyHeight;
 
     private string? ArtIfPresent(string file)
     {

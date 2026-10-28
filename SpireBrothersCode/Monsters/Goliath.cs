@@ -21,7 +21,7 @@ namespace SpireBrothers.SpireBrothersCode.Monsters;
 /// Moves: Choose Your Champion (once), then Weaver's Beam, Bronze Charge, Forty Days, and around again.
 /// Body: images/monsters/goliath/frames/ (pixelgen's GoliathArt), mirrored to face the party.
 /// </summary>
-public class Goliath : CustomMonsterModel
+public class Goliath : CustomMonsterModel, Mechanics.IPhotoArt
 {
     public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 128, 120);
     public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 132, 124);
@@ -40,6 +40,10 @@ public class Goliath : CustomMonsterModel
     private const float BodyHeight = 540f, IntentHeight = 500f;
 
     private static string ArtPath(string file) => $"{MainFile.ResPath}/images/monsters/goliath/{file}";
+
+    // Family Album photos (IPhotoArt).
+    string Mechanics.IPhotoArt.PhotoArt => ArtPath("frames/idle_0.png");
+    float Mechanics.IPhotoArt.PhotoHeight => BodyHeight;
 
     // Borrowed from the vanilla knights and the Ceremonial Beast (big, heavy, armored). Without these his hits are silent.
     private const string RamSfx = "event:/sfx/enemy/enemy_attacks/flail_knight/flail_knight_ram";

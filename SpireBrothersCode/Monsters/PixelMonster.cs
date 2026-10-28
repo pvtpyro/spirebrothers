@@ -8,7 +8,7 @@ namespace SpireBrothers.SpireBrothersCode.Monsters;
 /// Base for the regular-fight foes: a pixel-art body from images/monsters/&lt;ArtFolder&gt;/frames/ (drawn by
 /// art_originals/mobgen, pixelgen's Mobs.cs), mirrored to face the party. Each subclass sets its art, size, and moves.
 /// </summary>
-public abstract class PixelMonster : CustomMonsterModel
+public abstract class PixelMonster : CustomMonsterModel, Mechanics.IPhotoArt
 {
     protected abstract string ArtFolder { get; }
     /// <summary>On-screen height in game units (a brother is about 300).</summary>
@@ -17,6 +17,11 @@ public abstract class PixelMonster : CustomMonsterModel
     protected virtual bool TipOver => false;
 
     private string ArtPath(string file) => $"{MainFile.ResPath}/images/monsters/{ArtFolder}/{file}";
+
+    // Family Album photos (IPhotoArt).
+    string Mechanics.IPhotoArt.PhotoArt => ArtPath("frames/idle_0.png");
+    float Mechanics.IPhotoArt.PhotoHeight => BodyHeight;
+    bool Mechanics.IPhotoArt.PhotoTipOver => TipOver;
 
     // The first path is the placeholder Spine scene, which these bodies don't use.
     public override IEnumerable<string> AssetPaths => base.AssetPaths.Skip(1);

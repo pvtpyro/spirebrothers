@@ -19,12 +19,16 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Monsters;
 
 /// <summary>Shared body and sound code for the coppersmith's shop (pixelgen's art, mirrored to face the party).</summary>
-public abstract class CopperMonster : CustomMonsterModel
+public abstract class CopperMonster : CustomMonsterModel, Mechanics.IPhotoArt
 {
     protected abstract string ArtFolder { get; }
     protected abstract float BodyHeight { get; }
 
     private string ArtPath(string file) => $"{MainFile.ResPath}/images/monsters/{ArtFolder}/{file}";
+
+    // Family Album photos (IPhotoArt).
+    string Mechanics.IPhotoArt.PhotoArt => ArtPath("frames/idle_0.png");
+    float Mechanics.IPhotoArt.PhotoHeight => BodyHeight;
 
     public override IEnumerable<string> AssetPaths => base.AssetPaths.Skip(1);
 

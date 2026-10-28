@@ -200,3 +200,60 @@ then copy `out/<name>/frames` to `SpireBrothers/images/monsters/<name>/frames`. 
 
 ### 14. See if it's possible to select wardrobes or shirt colors when selecting character. then maybe changing the appearance for getting certain items.
 
+
+## More ideas (2026-10-28)
+
+### 15. Birthdays and holidays
+Check the system date. On a brother's (or friend's) real birthday: party hat on his combat frames, a birthday banter line,
+maybe a small gift relic at run start. Holiday weeks (Christmas, Thanksgiving) swap in themed banter.
+- [ ] Brandi: collect everyone's birthdays (all four brothers, John, Huffman)
+- [ ] Build it once the dates are in
+
+### 16. MVP shout-out after each fight
+A bubble at the end of co-op fights, reusing the RunStats counters.
+- [ ] Brandi: decide how it should work. Problem: a support player would never win on damage. Ideas: rotate award
+      categories (Most Damage, Most Block Given, Most Healing, Most Rants), give one award per player so everyone gets
+      something, or make the awards joke titles instead of rankings
+
+### 17. Family photo album
+Save a snapshot after elite wins, boss wins, run victories, and defeats: the party, the floor, a caption built from the
+fight's stats ("Goliath, down in 3 turns!"). Mockup (Brandi loved it): https://claude.ai/artifact/TihCPJBTNTpu8WsFgLschk
+- Where it shows: a "Family Album" button on the main menu (leather scrapbook, taped polaroids, filters All / Victories /
+  Elites / Defeats), a "Snapshot saved!" note after the moment, maybe a last page on the game over screen. Each player's
+  machine keeps its own album (a profile file, not the run save).
+- Both kinds of photo (decided 2026-10-28):
+  - **Drawn pixel scene** when we have art for everyone in it: our characters, our monsters (elites, regular fights), the
+    Mastiff and Kids. Foes mirrored to face left; beaten foes and fallen brothers tipped over.
+  - **Real screenshot** (capture the game viewport at the moment of victory/defeat) for everything else: vanilla bosses and
+    monsters, or a vanilla character in the co-op party.
+  - If the moment can't be captured (a defeat on the map or at a rest site), draw just the party.
+  - (Built: a defeat outside combat is a screenshot of wherever it happened; the VICTORY photo is the party alone.)
+- [x] Build (2026-10-28): `Mechanics/Album.cs`, `AlbumTracker.cs`, `AlbumScreen.cs`
+- [ ] Test: the main menu button (under Compendium), the album screen and its filters/pages, an elite win (drawn), a
+      vanilla elite or boss (screenshot), a defeat in and out of combat, the "Saved" note, co-op (each player saves their own)
+- [ ] Maybe: Tim's Kids in the photos (their art is drawn in code, so they're left out for now)
+
+### 18. A custom boss
+No custom boss yet (only elites and normal fights). Family-themed Act boss ideas: "Moving Day" (a mountain of boxes that
+summons furniture), "Family Game Night Gone Wrong" (a giant board game that changes the rules every turn).
+- [ ] Pick the boss and act
+- [ ] Build (reuse the Bible elites' / regular fights' machinery)
+
+### 19. Mom as an Ancient
+An act-start Ancient (like Neow) offering family-flavored blessings: "Pack a lunch" (heal), "Take your brother with you"
+(a Duo card), "Call me when you get there" (a relic). Uses the "the boys' mom" framing from the events.
+- [ ] Check that BaseLib supports custom Ancients
+- [ ] Design the blessings, build
+
+### 20. Co-op rest site option: "Game Night"
+Only with 2+ brothers/friends at the same campfire; everyone who picks it gets a shared bonus instead of resting alone.
+Reuses the Stimm Lab rest site button plumbing.
+- [ ] Design the bonus, build, test in co-op
+
+### 21. Unlocks between runs
+Meta-progression, e.g. winning with Tim unlocks a choice of second starter relic, or #14's wardrobe colors are earned.
+- [ ] Decide what unlocks and how it's saved (a profile file, not the run save)
+
+### 22. Custom run modifier: "Sibling Rivalry"
+Brothers compete for a damage leaderboard; whoever is last at the end of each act gets a curse. Optional chaos for game night.
+- [ ] Check how StS2 custom modifiers work with BaseLib, then design

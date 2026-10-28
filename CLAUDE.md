@@ -400,3 +400,16 @@ Card art for everything (all cards, relics, and powers use placeholders).
   Moves switched mid-turn with `SetMoveImmediate(state, forceTransition: true)` (Enderman's rage, Windows Update's restart).
   `Alexander.Summon(..., minion: false)` adds a non-minion mid-fight (the poxwalker horde).
 - New status cards in `Cards/Shared/` (`StatusCardPool`): Dust Bunny (Roomba), Close Ad (Windows Update).
+
+## Added 2026-10-28 (Family Album)
+
+- TODO.md #17. A "Family Album" button under Compendium on the main menu (`AlbumMenuButton` duplicates the Compendium
+  button without its signals) opens `Mechanics/AlbumScreen.cs`: plain Godot controls on a 1920x1080 stage over the menu,
+  polaroids 3 per page, newest first. Mockup: https://claude.ai/artifact/TihCPJBTNTpu8WsFgLschk
+- `Mechanics/AlbumTracker.cs` takes snapshots on elite/boss wins, the final boss (VICTORY, party only), and defeats
+  (`AlbumDefeat`, called from `GameOverWaitPatch`, which holds the game over screen 1.5 s in combat so the photo shows the party fallen; skips abandons and won runs). Only runs with a `BrotherCharacter`.
+  A photo is drawn when every body implements `IPhotoArt` (BrotherCharacter, our monster bases, Goliath, Blockbeard,
+  Shield Bearer, the Mastiff), else it's a screenshot. **Any new monster needs `IPhotoArt`** or its fights become screenshots.
+- `Mechanics/Album.cs` saves to `user://SpireBrothers/album/` (`album.json` + `shots/*.jpg`), per computer, not in the run save.
+- Captions: `SPIREBROTHERS-ALBUM.*` in powers.json (`<KIND>.<SITUATION>` falls back to `<SITUATION>`). Caption font
+  `SpireBrothers/fonts/Caveat.ttf` (OFL; its license is packed via `include_filter` in export_presets.cfg).

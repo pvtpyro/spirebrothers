@@ -19,7 +19,7 @@ namespace SpireBrothers.SpireBrothersCode.Monsters;
 /// don't roar on the same turn. The Lion carries DenOfLionsPower (the talking, Daniel's Shut Their Mouths).
 /// Body: images/monsters/lion/frames/ (pixelgen's Beasts.cs), mirrored to face the party.
 /// </summary>
-public class Lion : CustomMonsterModel
+public class Lion : CustomMonsterModel, Mechanics.IPhotoArt
 {
     public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 58, 54);
     public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 60, 56);
@@ -36,6 +36,11 @@ public class Lion : CustomMonsterModel
     protected virtual bool Talks => true;
 
     private string ArtPath(string file) => $"{MainFile.ResPath}/images/monsters/{ArtFolder}/{file}";
+
+    // Family Album photos (IPhotoArt).
+    string Mechanics.IPhotoArt.PhotoArt => ArtPath("frames/idle_0.png");
+    float Mechanics.IPhotoArt.PhotoHeight => BodyHeight;
+    bool Mechanics.IPhotoArt.PhotoTipOver => false;
 
     // Borrowed from the vanilla Byrdonis (a big Act 1 beast). Without these the hits are silent.
     private const string BeastSfx = "event:/sfx/enemy/enemy_attacks/byrdonis/byrdonis";

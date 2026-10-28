@@ -25,7 +25,7 @@ namespace SpireBrothers.SpireBrothersCode.Monsters;
 /// Cutting Remark, Swig of Grog, Swashbuckle.
 /// Body: images/monsters/blockbeard/frames/ (pixelgen's PirateArt), mirrored to face the party.
 /// </summary>
-public class Blockbeard : CustomMonsterModel
+public class Blockbeard : CustomMonsterModel, Mechanics.IPhotoArt
 {
     public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 255, 240);
     public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 265, 250);
@@ -41,6 +41,10 @@ public class Blockbeard : CustomMonsterModel
     private const float BodyHeight = 460f;
 
     private static string ArtPath(string file) => $"{MainFile.ResPath}/images/monsters/blockbeard/{file}";
+
+    // Family Album photos (IPhotoArt).
+    string Mechanics.IPhotoArt.PhotoArt => ArtPath("frames/idle_0.png");
+    float Mechanics.IPhotoArt.PhotoHeight => BodyHeight;
 
     // Sounds borrowed from the vanilla Ruby Raiders (fellow pirates). Without these the game looks for
     // ".../spirebrothers-blockbeard/..._attack", which doesn't exist, and his hits are silent.

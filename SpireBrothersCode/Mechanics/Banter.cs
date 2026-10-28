@@ -263,7 +263,8 @@ public static class BanterSavedPatch
 
 /// <summary>
 /// The game over screen opens in the same step as the last brother's death (or giving up), right over his fall line.
-/// If a bubble just went up, open it a moment later instead (Banter.TakeClosingWait).
+/// If a bubble just went up, open it a moment later instead (Banter.TakeClosingWait). It also waits for a defeat in
+/// combat to finish falling over, and takes the Family Album's defeat photo just before it opens (AlbumDefeat).
 /// </summary>
 [HarmonyPatch(typeof(NRun), nameof(NRun.ShowGameOverScreen))]
 public static class GameOverWaitPatch
@@ -274,10 +275,15 @@ public static class GameOverWaitPatch
     private static bool Prefix(NRun __instance, SerializableRun serializableRun)
     {
         if (_delayed) return true;
-        float wait = Banter.TakeClosingWait();
-        if (wait <= 0 || Godot.Engine.GetMainLoop() is not Godot.SceneTree tree) return true;
+        float wait = Math.Max(Banter.TakeClosingWait(), AlbumDefeat.Wait(__instance));
+        if (wait <= 0 || Godot.Engine.GetMainLoop() is not Godot.SceneTree tree)
+        {
+            AlbumDefeat.Take(__instance);
+            return true;
+        }
         tree.CreateTimer(wait).Timeout += () =>
         {
+            AlbumDefeat.Take(__instance);
             _delayed = true;
             try { __instance.ShowGameOverScreen(serializableRun); }
             finally { _delayed = false; }

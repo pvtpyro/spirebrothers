@@ -20,7 +20,7 @@ namespace SpireBrothers.SpireBrothersCode.Monsters;
 /// the fight even if he's still standing (vanilla MinionPower).
 /// Body: images/monsters/shield_bearer/frames/ (pixelgen's ShieldBearerArt), mirrored to face the party.
 /// </summary>
-public class ShieldBearer : CustomMonsterModel
+public class ShieldBearer : CustomMonsterModel, Mechanics.IPhotoArt
 {
     public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 30, 26);
     public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 32, 28);
@@ -31,6 +31,10 @@ public class ShieldBearer : CustomMonsterModel
     private const float BodyHeight = 380f;
 
     private static string ArtPath(string file) => $"{MainFile.ResPath}/images/monsters/shield_bearer/{file}";
+
+    // Family Album photos (IPhotoArt).
+    string Mechanics.IPhotoArt.PhotoArt => ArtPath("frames/idle_0.png");
+    float Mechanics.IPhotoArt.PhotoHeight => BodyHeight;
 
     private const string RaiderSfx = "event:/sfx/enemy/enemy_attacks/axe_ruby_raider/axe_ruby_raider";
     public override string? CustomAttackSfx => RaiderSfx + "_attack";

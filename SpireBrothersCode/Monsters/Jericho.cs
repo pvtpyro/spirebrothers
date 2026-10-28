@@ -16,13 +16,18 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Monsters;
 
 /// <summary>Shared body and sound code for the Jericho defenders (pixelgen's art, mirrored to face the party).</summary>
-public abstract class JerichoMonster : CustomMonsterModel
+public abstract class JerichoMonster : CustomMonsterModel, Mechanics.IPhotoArt
 {
     protected abstract string ArtFolder { get; }
     protected abstract float BodyHeight { get; }
     protected virtual bool TipOver => true;
 
     private string ArtPath(string file) => $"{MainFile.ResPath}/images/monsters/{ArtFolder}/{file}";
+
+    // Family Album photos (IPhotoArt).
+    string Mechanics.IPhotoArt.PhotoArt => ArtPath("frames/idle_0.png");
+    float Mechanics.IPhotoArt.PhotoHeight => BodyHeight;
+    bool Mechanics.IPhotoArt.PhotoTipOver => TipOver;
 
     private const string RaiderSfx = "event:/sfx/enemy/enemy_attacks/axe_ruby_raider/axe_ruby_raider";
     public override string? CustomAttackSfx => RaiderSfx + "_attack";
