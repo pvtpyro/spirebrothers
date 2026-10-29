@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("modimage")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+680514bd9b4dbce72e576273f4f8e8094299f145")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+85db6e39434b71485d413852407c5c1f914ad8b5")]
 [assembly: System.Reflection.AssemblyProductAttribute("modimage")]
 [assembly: System.Reflection.AssemblyTitleAttribute("modimage")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

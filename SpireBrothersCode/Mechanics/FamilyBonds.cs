@@ -32,6 +32,9 @@ public enum Bond
     BestFriends,       // John + David
     Coworkers,         // Huffman + Daniel
     StrikeTeam,        // Daniel + John + Huffman (Darktide)
+    // Brandi (Daniel's wife).
+    HusbandAndWife,    // Brandi + Daniel
+    InLaws,            // Brandi + any of David, Joshua, Tim
 }
 
 /// <summary>
@@ -52,6 +55,8 @@ public class FamilyBonds() : CustomSingletonModel(HookType.Combat)
     public const int UncleAndNephewToxin = 2;
     public const int CoworkersMetal = 2;
     public const int StrikeTeamBlock = 3;
+    public const int HusbandAndWifeStatic = 2;
+    public const int InLawsAim = 2;
 
     // The round each once-per-turn bond last fired, per player. Rounds instead of a reset flag, so it doesn't matter
     // whether Script replays run before or after the turn-start reset.
@@ -59,6 +64,7 @@ public class FamilyBonds() : CustomSingletonModel(HookType.Combat)
     private static readonly SpireField<PlayerCombatState, int> CodeReviewRound = new(() => -1);
     private static readonly SpireField<PlayerCombatState, int> CoworkersRound = new(() => -1);
     private static readonly SpireField<PlayerCombatState, int> BestFriendsRound = new(() => -1);
+    private static readonly SpireField<PlayerCombatState, int> HusbandAndWifeRound = new(() => -1);
 
     private static readonly (Bond Bond, Func<Player, bool> A, Func<Player, bool> B)[] Pairs =
     [
@@ -71,7 +77,11 @@ public class FamilyBonds() : CustomSingletonModel(HookType.Combat)
         (Bond.UncleAndNephew, p => p.Character is John, p => p.Character is Huffman),
         (Bond.BestFriends, p => p.Character is John, p => p.Character is David),
         (Bond.Coworkers, p => p.Character is Huffman, p => p.Character is Daniel),
+        (Bond.HusbandAndWife, p => p.Character is Brandi, p => p.Character is Daniel),
+        (Bond.InLaws, p => p.Character is Brandi, IsInLaw),
     ];
+
+    private static bool IsInLaw(Player p) => p.Character is David or Joshua or Tim;
 
     /// <summary>Different brothers in the party (two Daniels count once, and only form a bond with someone else).</summary>
     public static int DistinctBrothers(IEnumerable<Player> players) =>
@@ -112,6 +122,14 @@ public class FamilyBonds() : CustomSingletonModel(HookType.Combat)
         // The friends get the icon too (Honorary Brothers).
         if (Banter.Talks(player) && player.Creature.GetPower<FamilyBondsPower>() == null)
             await PowerCmd.Apply<FamilyBondsPower>(choiceContext, player.Creature, 1, player.Creature, null, silent: true);
+
+        // In-Laws: Brandi has to keep up with her brothers-in-law. Aim for each one here.
+        if (player.Character is Brandi && bonds.Contains(Bond.InLaws))
+        {
+            int inLaws = combat.Players.Where(IsInLaw).Select(p => p.Character.GetType()).Distinct().Count();
+            FlashIcon(player);
+            await Aim.Gain(choiceContext, player, InLawsAim * inLaws, null);
+        }
 
         // Group Chat: everyone gets the energy, including a vanilla fourth player.
         if (bonds.Contains(Bond.GroupChat))
@@ -176,6 +194,19 @@ public class FamilyBonds() : CustomSingletonModel(HookType.Combat)
             foreach (var huffman in Living(combat, p => p.Character is Huffman))
                 await Metal.Gain(choiceContext, huffman, CoworkersMetal, null);
         }
+    }
+
+    /// <summary>Called from Wired.Check. Husband and Wife: Daniel's first Wired each turn gives Brandi Static. It's always her fault.</summary>
+    public static async Task AfterWired(PlayerChoiceContext ctx, Player daniel)
+    {
+        var combat = daniel.Creature.CombatState;
+        var state = daniel.PlayerCombatState;
+        if (combat == null || state == null || daniel.Character is not Daniel) return;
+        if (HusbandAndWifeRound.Get(state) == combat.RoundNumber || !IsActive(combat, Bond.HusbandAndWife)) return;
+        HusbandAndWifeRound.Set(state, combat.RoundNumber);
+        FlashIcon(daniel);
+        foreach (var brandi in Living(combat, p => p.Character is Brandi))
+            await StaticPower.Gain(ctx, brandi, HusbandAndWifeStatic, null);
     }
 
     /// <summary>Called from Exact.Check. Best Friends: David's first Exact each turn makes one of John's Grind cards in hand Grind.</summary>

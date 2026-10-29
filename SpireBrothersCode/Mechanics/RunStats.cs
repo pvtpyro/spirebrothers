@@ -37,6 +37,10 @@ public static class RunStats
     public static readonly SavedSpireField<Player, int> Bites = new(() => 0, "SpireBrothersStatBites");
     public static readonly SavedSpireField<Player, int> LawsEnforced = new(() => 0, "SpireBrothersStatLaws");
     public static readonly SavedSpireField<Player, int> MetalSpent = new(() => 0, "SpireBrothersStatMetal");
+    public static readonly SavedSpireField<Player, int> EmberApplied = new(() => 0, "SpireBrothersStatEmber");
+    public static readonly SavedSpireField<Player, int> Shots = new(() => 0, "SpireBrothersStatShots");
+    public static readonly SavedSpireField<Player, int> Spits = new(() => 0, "SpireBrothersStatSpits");
+    public static readonly SavedSpireField<Player, int> Zapped = new(() => 0, "SpireBrothersStatZapped");
 
     public static void Add(SavedSpireField<Player, int> stat, Player? player, int amount = 1)
     {
@@ -94,6 +98,12 @@ public static class RunStats
                 lines.Add(("BITES", Bites.Get(player)));
                 lines.Add(("LAWS", LawsEnforced.Get(player)));
                 lines.Add(("METAL", MetalSpent.Get(player)));
+                break;
+            case Character.Brandi:
+                lines.Add(("EMBER", EmberApplied.Get(player)));
+                lines.Add(("SHOTS", Shots.Get(player)));
+                lines.Add(("SPITS", Spits.Get(player)));
+                lines.Add(("ZAPPED", Zapped.Get(player)));
                 break;
         }
         return lines.Where(l => l.Amount > 0).Select(l =>

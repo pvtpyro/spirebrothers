@@ -16,7 +16,7 @@ characters five and six ("Honorary Brothers"): dossier in `FRIENDS.md`, card pla
 Both are built (2026-10-27), untested in game.
 
 **Brandi, Private Pyro** (the user herself, Daniel's wife) is character seven: family, "Sister-in-Law". Built 2026-10-28,
-untested in game. Plan and bio in `BRANDI_CARDS.md`. She never talks (no banter; faces are planned).
+untested in game. Plan and bio in `BRANDI_CARDS.md`. She never talks: her banter and pings are smiley faces.
 
 ## Brandi (Daniel's wife)
 
@@ -43,6 +43,8 @@ untested in game. Plan and bio in `BRANDI_CARDS.md`. She never talks (no banter;
   Pugsley's Collar and Sandi's Sunbeam (her and her late husband's pets) are in her pool and added to Daniel's in `MainFile`.
 - Art: `art_originals/friendbuttons` draws her button (crimson, gold name), frames, hands, map marker, and select background
   (`Backgrounds.Brandi`, Camp Victory at night); her body is `pixelgen/Brandi.cs`. Card art: `gen.ps1 -CardsOnly -Character Brandi`.
+- Banter: `Banter.Talks` includes her, and `Banter.ForSpeaker` swaps any pool she'd speak from for `FACES.<situation>`
+  (smiley `[img]` lines; faces in `images/faces/`, drawn by friendbuttons). Bonds: Husband and Wife, In-Laws (`FamilyBonds`).
 
 ## The friends (built like the brothers, but kept visibly apart)
 
@@ -56,7 +58,7 @@ untested in game. Plan and bio in `BRANDI_CARDS.md`. She never talks (no banter;
   "Jetpack Boost", and "Blue Screen of Death" are named that way because Daniel and David already have the shorter ones.
 - `gen.ps1 -CardsOnly -Character John` draws only one character's cards (a full run would redraw every brother's, and any
   hand-drawn art with it). Relics/powers one at a time with `-Section relics|powers -Only <name>`.
-- Workshop image: `art_originals/modimage/` (`dotnet run -c Release`, 600x600, all six in a 3x2 grid, friends on charcoal with steel frames); copy `out/mod_image.png` to `D:/projects/csharp/Spire-ModUploader/SpireBrothers/image.png`.
+- Workshop image: `art_originals/modimage/` (`dotnet run -c Release`, 600x600, all seven: the brothers on top, Brandi and the friends below, friends on charcoal with steel frames); copy `out/mod_image.png` to `D:/projects/csharp/Spire-ModUploader/SpireBrothers/image.png`.
 - Friends' campfire loops (2026-10-27): John raids on a laptop on his lap, screen glow on his face, fist pump at the loot (`JohnArt.DrawFront`; anything held by his mouth reads as food), Huffman pets the Mastiff lying at his knee (`HuffmanArt.LyingDog`). Chest hands: John's fingerless glove + stimm injector, Huffman's Arbites gauntlet (`Hands.DrawHand` glove overload). Map colors: John amber, Huffman steel.
 - Leave John's grandma out of the mod. John and Huffman are uncle and nephew but the same age: write them as peers.
 - John: `Character/John.cs` + `JohnPools.cs` (Ironclad scenes), `Cards/JohnCard.cs`, `Cards/John/` (5 Basic, 70 reward, Stimm

@@ -187,6 +187,18 @@ foreach (var f in friends)
     }
     marker.SavePng(Path.Combine(outDir, "brandi", "map_marker.png"));
     outline.SavePng(Path.Combine(outDir, "brandi", "icon_outline.png"));
+
+    // Her speech bubbles: she never says a word, so each bubble is a little yellow smiley making a face (like the ones she
+    // collects). 32 x 32, saved at 2x. The banter lines put them in bubbles with [img] (powers.json, BANTER.FACES.*).
+    var faceSheet = new Canvas(9 * 34, 32);
+    int fi = 0;
+    foreach (var face in new[] { "stare", "eyeroll", "smirk", "smile", "glare", "raised_brow", "heart_eyes", "sad", "x_eyes" })
+    {
+        var fc = Smiley(face);
+        fc.SavePng(Path.Combine(outDir, "brandi", "faces", $"{face}.png"), 2);
+        Paste(faceSheet, fc, fi++ * 34, 0);
+    }
+    faceSheet.SavePng(Path.Combine(outDir, "faces_preview.png"), 4);
 }
 Console.WriteLine("done");
 
@@ -229,6 +241,67 @@ static Canvas FriendBackground(bool darktide)
     foreach (var (x, y) in new[] { (2, 2), (W - 3, 2), (2, H - 3), (W - 3, H - 3), (2, H / 2), (W - 3, H / 2) })
     {
         c.Set(x, y, Col.Hex("a8aeba")); c.Set(x + 1, y, metal); c.Set(x, y + 1, metal); c.Set(x + 1, y + 1, dark);
+    }
+    return c;
+}
+
+// One of Brandi's smiley faces, 32 x 32: a yellow disc with a dark outline, a little shine, and the expression.
+static Canvas Smiley(string face)
+{
+    var c = new Canvas(32, 32);
+    Col ink = Col.Hex("3a2410"), yellow = Col.Hex("ffd23a"), shade = Col.Hex("e8a820"), shine = Col.Hex("fff4b0");
+    for (int y = 0; y < 32; y++) for (int x = 0; x < 32; x++)
+    {
+        float d = MathF.Sqrt((x - 15.5f) * (x - 15.5f) + (y - 15.5f) * (y - 15.5f));
+        if (d <= 15.5f) c.Set(x, y, ink);
+        if (d <= 14f) c.Set(x, y, (x - 15.5f) + (y - 15.5f) > 12 ? shade : yellow);
+    }
+    foreach (var (x, y) in new[] { (8, 6), (9, 5), (10, 5), (7, 7) }) c.Set(x, y, shine);
+    void Px(params (int X, int Y)[] pts) { foreach (var (x, y) in pts) c.Set(x, y, ink); }
+    void Box(int x, int y, int w, int h, Col col) { for (int j = 0; j < h; j++) for (int i = 0; i < w; i++) c.Set(x + i, y + j, col); }
+    void Eyes() { Box(10, 10, 3, 5, ink); Box(19, 10, 3, 5, ink); }
+    void Mouth(int y, int x0, int x1) { for (int x = x0; x <= x1; x++) c.Set(x, y, ink); }
+    switch (face)
+    {
+        case "stare":          // flat, unimpressed: dot eyes and a straight line
+            Box(10, 12, 3, 3, ink); Box(19, 12, 3, 3, ink); Mouth(21, 11, 20);
+            break;
+        case "eyeroll":        // pupils up in the corners, a flat little mouth
+            Box(9, 10, 5, 5, Col.Hex("ffffff")); Box(18, 10, 5, 5, Col.Hex("ffffff"));
+            Px((9, 10), (13, 10), (9, 14), (13, 14), (18, 10), (22, 10), (18, 14), (22, 14));
+            Box(11, 10, 2, 2, ink); Box(20, 10, 2, 2, ink); Mouth(22, 12, 19);
+            break;
+        case "smirk":          // half-lidded eyes and one corner up
+            Box(10, 12, 3, 2, ink); Box(19, 12, 3, 2, ink); Mouth(21, 11, 18); Px((19, 20), (20, 19), (21, 19));
+            break;
+        case "smile":          // the classic: tall eyes and a wide grin
+            Eyes(); Px((8, 18), (9, 19), (10, 20), (11, 21), (12, 21), (13, 22), (14, 22), (15, 22), (16, 22), (17, 22), (18, 22), (19, 21), (20, 21), (21, 20), (22, 19), (23, 18));
+            break;
+        case "glare":          // angled brows pressing down
+            Px((8, 9), (9, 10), (10, 10), (11, 11), (12, 11), (23, 9), (22, 10), (21, 10), (20, 11), (19, 11));
+            Box(10, 13, 3, 3, ink); Box(19, 13, 3, 3, ink); Mouth(22, 12, 19);
+            break;
+        case "raised_brow":    // one brow way up: "really?"
+            Px((8, 9), (9, 9), (10, 9), (11, 9), (12, 9), (18, 6), (19, 6), (20, 6), (21, 7), (22, 7));
+            Box(10, 12, 3, 3, ink); Box(19, 10, 3, 5, ink); Mouth(21, 12, 19);
+            break;
+        case "heart_eyes":     // something caught fire, and it's pretty
+            foreach (var hx in new[] { 8, 18 })
+            {
+                var red = Col.Hex("e8303a");
+                Box(hx, 10, 2, 2, red); Box(hx + 3, 10, 2, 2, red); Box(hx, 11, 5, 2, red); Box(hx + 1, 13, 3, 1, red); c.Set(hx + 2, 14, red);
+            }
+            Px((9, 19), (10, 20), (11, 21), (12, 21), (13, 22), (14, 22), (15, 22), (16, 22), (17, 22), (18, 22), (19, 21), (20, 21), (21, 20), (22, 19));
+            break;
+        case "sad":            // eyes down, a frown, and a tear
+            Box(10, 12, 3, 4, ink); Box(19, 12, 3, 4, ink);
+            Px((10, 23), (11, 22), (12, 21), (13, 21), (14, 21), (15, 21), (16, 21), (17, 21), (18, 21), (19, 21), (20, 22), (21, 23));
+            Box(20, 16, 2, 3, Col.Hex("5ab0f0"));
+            break;
+        case "x_eyes":         // down for the count
+            foreach (var ex in new[] { 9, 18 }) Px((ex, 10), (ex + 4, 10), (ex + 1, 11), (ex + 3, 11), (ex + 2, 12), (ex + 1, 13), (ex + 3, 13), (ex, 14), (ex + 4, 14));
+            Mouth(21, 12, 19);
+            break;
     }
     return c;
 }

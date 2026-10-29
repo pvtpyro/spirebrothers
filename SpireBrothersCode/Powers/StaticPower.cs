@@ -67,6 +67,7 @@ public class StaticPower : BrothersPower
         {
             VfxCmd.PlayOnCreature(target, "vfx/vfx_attack_lightning");
             await CreatureCmd.Damage(choiceContext, target, zap, ValueProp.Unpowered, Owner);
+            RunStats.Add(RunStats.Zapped, Owner.Player, zap);
         }
         if (zap >= Amount) await PowerCmd.Remove(this);
         else await PowerCmd.ModifyAmount(choiceContext, this, -zap, null, null);

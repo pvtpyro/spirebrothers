@@ -39,6 +39,8 @@ public static class Wired
                 multimeter.Flash();
                 await CreatureCmd.GainBlock(card.Owner.Creature, TrustyMultimeter.BlockAmount, ValueProp.Unpowered, null);
             }
+            // Husband and Wife: Brandi gets a little Static out of it.
+            await FamilyBonds.AfterWired(new MegaCrit.Sts2.Core.GameActions.Multiplayer.ThrowingPlayerChoiceContext(), card.Owner);
         }
         return true;
     }

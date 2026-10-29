@@ -49,6 +49,7 @@ public static class Alpacas
                     KidMotion.Hop(al);
                     VfxCmd.PlayOnCreature(target, "vfx/vfx_attack_blunt");
                     await CreatureCmd.Damage(ctx, target, Spit(player), ValueProp.Unpowered, player.Creature);
+                    RunStats.Add(RunStats.Spits, player);
                 }
             }
             if (Pacino(player) is { } pacino)

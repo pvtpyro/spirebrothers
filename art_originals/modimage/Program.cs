@@ -1,10 +1,11 @@
-// The Steam Workshop image (600 x 600): all six characters in a 3 x 2 grid, no names. Brothers on the top row and the
-// first tile of the bottom row; the two friends (Honorary Brothers) after them, on their charcoal select-button colors
+// The Steam Workshop image (600 x 600): all seven characters, no names. The four brothers on the top row; Brandi (Daniel's
+// wife) and the two friends (Honorary Brothers) on the bottom row, the friends on their charcoal select-button colors
 // with steel rings. Each tile's colors are sampled from the character's select button in SpireBrothers/images/characters.
 // Run: dotnet run -c Release, then copy out/mod_image.png to the Workshop uploader's image.png.
 var Chars = "D:/projects/csharp/SpireBrothers/SpireBrothers/images/characters/";
-AnimatedBrother[] people = [new DanielArt(), new DavidArt(), new JoshuaArt(), new TimArt(), new JohnArt(), new HuffmanArt()];
-const int Size = 600, Cols = 3, TileW = 200, TileH = 300, Gap = 4;
+AnimatedBrother[] people = [new DanielArt(), new DavidArt(), new JoshuaArt(), new TimArt(), new BrandiArt(), new JohnArt(), new HuffmanArt()];
+const int Size = 600, TileH = 300, Gap = 4;
+int[] rowCols = [4, 3];
 var img = new Canvas(Size, Size);
 for (int y = 0; y < Size; y++) for (int x = 0; x < Size; x++) img.Set(x, y, Col.Hex("16141c"));
 
@@ -21,7 +22,7 @@ for (int i = 0; i < people.Length; i++)
     var ringCol = friend ? Col.Hex("bec4ce") : new Col(255, 255, 255);
     float ringAmt = friend ? 0.16f : 0.12f;
 
-    int col = i % Cols, row = i / Cols;
+    int row = i < rowCols[0] ? 0 : 1, col = row == 0 ? i : i - rowCols[0], Cols = rowCols[row], TileW = Size / Cols;
     int ox = col * TileW, oy = row * TileH;
     int x0 = ox + (col == 0 ? 0 : Gap / 2), x1 = ox + TileW - (col == Cols - 1 ? 0 : Gap / 2);
     int y0 = oy + (row == 0 ? 0 : Gap / 2), y1 = oy + TileH - (row == 0 ? Gap / 2 : 0);

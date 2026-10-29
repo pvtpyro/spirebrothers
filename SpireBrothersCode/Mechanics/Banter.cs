@@ -55,7 +55,8 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
     /// </summary>
     public static void Bubble(Creature speaker, string text)
     {
-        double seconds = Math.Max(SecondsMin, text.Length * SecondsPerChar);
+        // A face (Brandi) is read at a glance; the [img] tag's length says nothing about that.
+        double seconds = text.StartsWith("[img") ? SecondsMin : Math.Max(SecondsMin, text.Length * SecondsPerChar);
         var bubble = NSpeechBubbleVfx.Create(text, speaker, seconds, VfxColor.White);
         if (bubble == null) return;
         speaker.GetVfxContainer()?.AddChildSafely(bubble);
@@ -65,8 +66,37 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
     /// <summary>Upper-case name used in loc keys: DANIEL, DAVID, JOSHUA, TIM.</summary>
     internal static string Name(Player p) => p.Character.GetType().Name.ToUpperInvariant();
 
-    /// <summary>Who gets banter lines: the brothers, and the two friends they always play with.</summary>
-    public static bool Talks(Player p) => BrothersInArms.IsBrother(p) || p.Character is Character.John or Character.Huffman;
+    /// <summary>Who gets banter lines: the brothers, Brandi (in faces), and the two friends they always play with.</summary>
+    public static bool Talks(Player p) =>
+        BrothersInArms.IsBrother(p) || p.Character is Character.John or Character.Huffman or Character.Brandi;
+
+    /// <summary>
+    /// Brandi never says a word: whatever pool she'd speak from, she makes a face from FACES.&lt;situation&gt; instead
+    /// (START.BRANDI_TIM becomes FACES.START, FALL.DAVID becomes FACES.FALL). Each line there is a smiley picture
+    /// (images/faces/, drawn by friendbuttons) in an [img] tag.
+    /// </summary>
+    private static string[] ForSpeaker(Creature speaker, string[] pools) =>
+        speaker.Player?.Character is Character.Brandi ? ["FACES." + pools[0].Split('.')[0]] : pools;
+
+    /// <summary>A brother spoke to Brandi: a moment later she answers with a face.</summary>
+    private static void FaceReply(Player brandi, IRunState run)
+    {
+        try
+        {
+            if (Godot.Engine.GetMainLoop() is not Godot.SceneTree tree) return;
+            var creature = brandi.Creature;
+            tree.CreateTimer(ReplyDelay).Timeout += () =>
+            {
+                if (creature.IsAlive && creature.CombatState != null) Say(creature, run, "FACES.REPLY");
+            };
+        }
+        catch (Exception e)
+        {
+            MainFile.Logger.Error($"Brandi's face reply failed: {e}");
+        }
+    }
+
+    private const double ReplyDelay = 1.8;
 
     internal static int PoolSize(string key)
     {
@@ -88,6 +118,7 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
     {
         try
         {
+            pools = ForSpeaker(speaker, pools);
             var lines = pools.SelectMany(k => Enumerable.Range(0, PoolSize(k)).Select(i => $"{Prefix}{k}.{i}")).ToList();
             if (lines.Count == 0) return;
             Bubble(speaker, new LocString("powers", lines[Roll(run, lines.Count)]).GetFormattedText());
@@ -140,7 +171,9 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
         if (Roll(run, PartyStartChance) != 0) return Task.CompletedTask;
         var speaker = brothers[Roll(run, brothers.Count)];
         var listeners = names.Where(n => n != Name(speaker)).ToList();
-        Say(speaker.Creature, run, $"START.{Name(speaker)}_{listeners[Roll(run, listeners.Count)]}");
+        string listener = listeners[Roll(run, listeners.Count)];
+        Say(speaker.Creature, run, $"START.{Name(speaker)}_{listener}");
+        if (listener == "BRANDI" && brothers.FirstOrDefault(p => Name(p) == listener) is { } brandi) FaceReply(brandi, run);
         return Task.CompletedTask;
     }
 
@@ -150,6 +183,8 @@ public class Banter() : CustomSingletonModel(HookType.Combat)
         ["DAVID"] = "TIM", ["TIM"] = "JOSHUA", ["JOSHUA"] = "DAVID", ["DANIEL"] = "DANIEL",
         // The friends: uncle and nephew look out for each other.
         ["JOHN"] = "HUFFMAN", ["HUFFMAN"] = "JOHN",
+        // Daniel looks out for his wife.
+        ["BRANDI"] = "DANIEL",
     };
 
     public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)

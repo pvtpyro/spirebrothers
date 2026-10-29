@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <!-- The Steam Workshop image (all six characters). Borrows pixelgen's drawing code (everything but its Program.cs). -->
+  <!-- The Steam Workshop image (all seven characters). Borrows pixelgen's drawing code (everything but its Program.cs). -->
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>

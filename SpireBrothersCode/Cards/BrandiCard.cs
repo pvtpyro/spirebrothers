@@ -49,6 +49,7 @@ public abstract class BrandiCard(int cost, CardType type, CardRarity rarity, Tar
     protected async Task<int> Shoot(PlayerChoiceContext ctx, CardPlay play, string vfx = "vfx/vfx_dramatic_stab", bool keepHalf = false)
     {
         await CommonActions.CardAttack(this, play, vfx: vfx).Execute(ctx);
+        RunStats.Add(RunStats.Shots, Owner);
         return await Aim.Spend(ctx, Owner, keepHalf);
     }
 

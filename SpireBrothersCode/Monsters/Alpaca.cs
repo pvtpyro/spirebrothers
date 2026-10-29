@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 namespace SpireBrothers.SpireBrothersCode.Monsters;
 
 /// <summary>
-/// Al and Pacino, Brandi's alpaca hunter pets from WoW, standing in front of her (pets, untargetable like Tim's Kids:
+/// Al and Pacino, Brandi's alpaca hunter pets from WoW, Pacino in front of her (like the Necrobinder's Osty) and Al behind (pets, untargetable like Tim's Kids:
 /// huge HP, no health bar, no moves of their own). What they do lives in Mechanics/Alpacas.cs. They bounce while idle and
 /// hop when they act (the Kids' motion). Art: images/monsters/alpaca/&lt;al|pacino&gt;.png if present, else drawn here.
 /// </summary>
@@ -48,13 +48,15 @@ public abstract class Alpaca : CustomMonsterModel, Mechanics.IPhotoArt
         {
             sprite.TextureFilter = CanvasItem.TextureFilterEnum.Nearest;
             sprite.Scale = Vector2.One * Scale;
+            // Stand on the spot instead of being centred on it, so their hooves line up with her boots.
+            sprite.Offset = new Vector2(0, -texture.GetSize().Y / 2);
             sprite.TreeEntered += () => KidMotion.Bounce(sprite, BounceNumber);
         }
         return visuals;
     }
 
-    /// <summary>The art is 32 x 40; this makes them about chest-high next to her.</summary>
-    private const float Scale = 3.4f;
+    /// <summary>The art is 32 x 40; this makes their heads about level with her shoulders.</summary>
+    private const float Scale = 6.2f;
 }
 
 /// <summary>Al: a cream alpaca. He spits.</summary>
@@ -151,18 +153,25 @@ public static class AlpacaArt
     }
 }
 
-/// <summary>The game spreads pets across their owner's body width; this stands Pacino just in front of Brandi and Al beside him.</summary>
+/// <summary>
+/// The game spreads pets across their owner's body width; this stands Pacino (the guard) in front of Brandi, drawn over
+/// her like the Necrobinder's Osty, and Al (the spitter) behind her, drawn under her. Both stand a little higher than her
+/// feet so her health bar underneath stays clear.
+/// </summary>
 [HarmonyPatch]
 public static class AlpacaLayout
 {
-    private const float PacinoForward = 95f, AlForward = 175f, Down = 10f;
+    private const float AlBack = 105f, PacinoForward = 115f, AlUp = 34f, PacinoUp = 22f;
 
     [HarmonyPatch(typeof(NCombatRoom), nameof(NCombatRoom.AddCreature))]
     [HarmonyPostfix]
     private static void AfterAddCreature(NCombatRoom __instance, Creature creature)
     {
         if (creature.Monster is not Alpaca || creature.PetOwner == null) return;
-        Place(__instance.GetCreatureNode(creature.PetOwner.Creature), __instance.GetCreatureNode(creature));
+        // The game re-spreads every pet when one is added, so place both alpacas again, not just the new one.
+        var owner = __instance.GetCreatureNode(creature.PetOwner.Creature);
+        foreach (var alpaca in __instance.CreatureNodes.Where(n => n.Entity.Monster is Alpaca && n.Entity.PetOwner == creature.PetOwner).ToList())
+            Place(owner, alpaca);
     }
 
     [HarmonyPatch(typeof(NCombatRoom), nameof(NCombatRoom.PositionPlayersAndPets))]
@@ -178,8 +187,13 @@ public static class AlpacaLayout
         try
         {
             if (owner == null || alpaca == null) return;
-            float forward = alpaca.Entity.Monster is AlpacaAl ? AlForward : PacinoForward;
-            alpaca.Position = new Vector2(owner.Position.X + forward, owner.Position.Y + Down);
+            bool al = alpaca.Entity.Monster is AlpacaAl;
+            alpaca.Position = new Vector2(owner.Position.X + (al ? -AlBack : PacinoForward), owner.Position.Y - (al ? AlUp : PacinoUp));
+            // Draw order: Al, then her, then Pacino on top (later children draw on top).
+            if (alpaca.GetParent() is not { } parent || owner.GetParent() != parent) return;
+            int at = owner.GetIndex();
+            if (al) parent.MoveChild(alpaca, alpaca.GetIndex() < at ? at - 1 : at);
+            else parent.MoveChild(alpaca, alpaca.GetIndex() > at ? at + 1 : at);
         }
         catch (Exception e)
         {

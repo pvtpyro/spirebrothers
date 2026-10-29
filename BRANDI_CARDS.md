@@ -269,12 +269,20 @@ Potions (3): **MRE** (heal 10, gain 5 Block), **Red Bull at 0300** (gain 2 Energ
 ## Built so far (and what's still to do)
 
 - Borrows the Silent's vanilla scenes (shared with David) for the shop and rest site.
-- The smiley face bubbles aren't built: she has no banter yet (`Banter.Talks` leaves her out), and her pings show "...".
 - Al and Pacino are drawn at runtime (`Monsters/Alpaca.cs`, `AlpacaArt`); drop `images/monsters/alpaca/al.png` and
   `pacino.png` in to replace them.
 - The blue spark when Static discharges uses vanilla's lightning hit effect.
-- No end-of-run stats for her yet (`RunStats.Lines` has no Brandi case).
 
-## Later
-- Family Bonds with Daniel (husband and wife) and the brothers (in-laws).
-- Banter: her face bubbles in reply to everyone's lines.
+## Faces, bonds, and stats (built 2026-10-28, untested in game)
+
+- **Faces:** 9 pixel smileys in `images/faces/` (stare, eyeroll, smirk, smile, glare, raised_brow, heart_eyes, sad,
+  x_eyes), drawn by friendbuttons. Whenever she'd speak, `Banter` uses `BANTER.FACES.<situation>` instead (START, SOLO,
+  REPLY, FALL, SAVED, BOSS, ELITE, FIRE), each line an `[img]` tag. When a brother's combat-start line is aimed at her,
+  she answers with a REPLY face 1.8 s later. Heart eyes once per combat when the total Ember on the enemies reaches 15.
+  Her pings are faces too (`PING.BRANDI`, `PING.DEAD.BRANDI`). Everyone has lines to her (`START.<X>_BRANDI`,
+  `PING.<X>_BRANDI`), and Daniel reacts when she falls (`FALL.BRANDI`).
+- **Family Bonds:** Husband and Wife (Daniel + Brandi): Daniel's first Wired each turn gives her 2 Static
+  (`FamilyBonds.AfterWired` from `Wired.Check`). In-Laws (Brandi + David, Joshua, or Tim): 2 Aim per brother-in-law at
+  the start of each combat.
+- **Run stats:** Ember set, Shots taken, Al's spits, Static damage.
+- The Workshop image has all seven (4 brothers on top; Brandi, John, Huffman below).

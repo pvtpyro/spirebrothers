@@ -20,6 +20,9 @@ public static class Ember
     /// <summary>Ember stops growing on its own here. Cards can still push it higher.</summary>
     public const int GrowthCap = 10;
 
+    /// <summary>Total Ember on the enemies that gets heart eyes out of her.</summary>
+    public const int FireMoment = 15;
+
     public static int On(Creature? creature) => creature?.GetPowerAmount<EmberPower>() ?? 0;
 
     /// <summary>Total Ember on every living enemy.</summary>
@@ -33,6 +36,9 @@ public static class Ember
         amount += by.Creature.GetPowerAmount<PrivatePyroPower>();
         if (by.GetRelic<EngravedZippo>() is { } zippo) amount = zippo.Boost(amount, by);
         await PowerCmd.Apply<EmberPower>(ctx, alive, amount, by.Creature, card);
+        RunStats.Add(RunStats.EmberApplied, by, amount * alive.Count);
+        // Something big caught fire: heart eyes (once per combat).
+        if (Total(by.Creature.CombatState) >= FireMoment) Banter.Moment(by, "FIRE");
     }
 
     public static Task Apply(PlayerChoiceContext ctx, Creature target, int amount, Player by, CardModel? card) =>
