@@ -281,7 +281,7 @@ public class DavidArt : AnimatedBrother
     protected override void DrawHeadExtras(Canvas c, Rig r, Pose p)
     {
         // rectangular sunglasses (like his real ones); when he's down they slide down his nose
-        var h = r.Head + new V(0, p.Face == Face.Dead ? 2 : 0);
+        var h = r.Head + new V(-FaceShift, p.Face == Face.Dead ? 2 : 0);   // (follows the eyes when facing the player)
         c.Draw(q => S.Capsule(q, h + new V(-6.5f, -0.2f), h + new V(0.5f, -0.6f), 0.7f), Frame);         // arm back to the ear
         c.Draw(q => S.U(S.Box(q, h.X - 0.2f, h.Y - 1.4f, h.X + 4.6f, h.Y + 2.4f), S.Box(q, h.X + 5.8f, h.Y - 1.4f, h.X + 10.4f, h.Y + 2.4f)), Shades, line: Frame);
         c.Flat(q => S.Capsule(q, h + new V(4.6f, -0.6f), h + new V(5.8f, -0.6f), 0.6f), Frame);        // bridge
@@ -298,11 +298,14 @@ public class DavidArt : AnimatedBrother
         c.Draw(q => S.Poly(q, body) - 1, Hoodie, hi: Hoodie.Light);
         // waistband
         c.Draw(q => S.I(S.Poly(q, body) - 1, -(q.Y - (r.H.Y - 0.5f))), Hoodie.Shade, outline: false, noShade: true);
-        // front pocket
-        c.Draw(q => S.Poly(q, r.H + new V(-3, -9), r.H + new V(7, -9), r.H + new V(8, -2), r.H + new V(-4, -2)), Hoodie, shade: Hoodie.Shade, outline: false);
-        c.Draw(q => S.I(MathF.Abs(S.Poly(q, r.H + new V(-3, -9), r.H + new V(7, -9), r.H + new V(8, -2), r.H + new V(-4, -2))) - 0.5f, -(q.Y - (r.H.Y - 9.5f))), Hoodie.Shade, outline: false, noShade: true);
-        // drawstrings
-        for (int i = 0; i < 6; i++) { c.Plot(r.S.X + 3, r.S.Y + i, Col.Hex("f2f2f2")); c.Plot(r.S.X + 6, r.S.Y + i - (i == 5 ? 1 : 0), Col.Hex("f2f2f2")); }
+        // front pocket and drawstrings, centered on his chest (facing the player the middle of the chest is further left)
+        float dx = Frontal ? -2 : 0;
+        V[] pocket = [r.H + new V(-3 + dx, -9), r.H + new V(7 + dx, -9), r.H + new V(8 + dx, -2), r.H + new V(-4 + dx, -2)];
+        c.Draw(q => S.Poly(q, pocket), Hoodie, shade: Hoodie.Shade, outline: false);
+        c.Draw(q => S.I(MathF.Abs(S.Poly(q, pocket)) - 0.5f, -(q.Y - (r.H.Y - 9.5f))), Hoodie.Shade, outline: false, noShade: true);
+        // drawstrings, one each side of his neck
+        float s0 = Frontal ? 0 : 3, s1 = Frontal ? 3 : 6;
+        for (int i = 0; i < 6; i++) { c.Plot(r.S.X + s0, r.S.Y + i, Col.Hex("f2f2f2")); c.Plot(r.S.X + s1, r.S.Y + i - (i == 5 ? 1 : 0), Col.Hex("f2f2f2")); }
         // gold chain (he counts his Gold)
         for (int i = -4; i <= 7; i++) c.Plot(r.S.X + i, r.S.Y + 1.5f + MathF.Abs(i - 1.5f) * 0.35f, i % 2 == 0 ? Gold : Gold.Shade);
     }
@@ -547,6 +550,8 @@ public class TimArt : AnimatedBrother
         Sleeve = Shirt; Forearm = Skin; Pants = Col.Hex("b39b6b"); Shoes = Col.Hex("5a3d28");
     }
 
+    protected override float RoundHead => 1;
+
     protected override void DrawTorso(Canvas c, Rig r, Pose p)
     {
         var body = TorsoPoly(r, r.H.Y + 2, 0.5f);
@@ -569,10 +574,13 @@ public class TimArt : AnimatedBrother
         DrawGlasses(c, h, Col.Hex("3a3440"));
         // over-ear headphones: the band rises from the cup and rides just above his crown (dipping behind his head on the far side)
         var phones = Col.Hex("2c2c34"); var pad = Col.Hex("484852");
-        c.Draw(q => S.I(MathF.Abs(S.Ellipse(q, h + new V(-0.3f, -0.8f), 6.9f, 10.5f)) - 0.45f,
-            S.I(q.Y - (h.Y - 0.5f), q.X > h.X + 1 ? -S.Circle(q, h, Rig.HeadR + 0.5f) : -1)), phones, hi: pad);
-        c.Draw(q => S.RBox(q, h + new V(-6.8f, 2.5f), 2.6f, 3.8f, -8), phones, hi: pad);
-        c.Flat(q => S.Ellipse(q, h + new V(-6.8f, 2.5f), 1.1f, 2f), Col.Hex("c8643c"));   // shirt-orange badge
+        // (facing the player the band is lower, just over his rounder head)
+        float bandH = Frontal ? 8.2f : 10.5f;
+        c.Draw(q => S.I(MathF.Abs(S.Ellipse(q, h + new V(-0.3f, -0.8f), 6.9f, bandH)) - 0.45f,
+            S.I(q.Y - (h.Y - 0.5f), q.X > h.X + 1 ? -(Frontal ? S.Ellipse(q, h + new V(0, 1.3f), 9.8f, 8.9f) : S.Circle(q, h, Rig.HeadR + 0.5f)) : -1)), phones, hi: pad);   // (the far side goes behind his head)
+        var cup = h + new V(-6.8f + FaceShift * 0.2f, 2.5f);   // over the ear
+        c.Draw(q => S.RBox(q, cup, 2.9f, 3.9f, -8), phones, hi: pad);
+        c.Flat(q => S.Ellipse(q, cup, 1.1f, 2f), Col.Hex("c8643c"));   // shirt-orange badge
     }
 
     private static void Marshmallow(Canvas c, Rig r, Pose p)

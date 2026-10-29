@@ -127,7 +127,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
 - Combat bodies: `Character/BrotherCharacter.cs` plays `images/characters/<name>/frames/<anim>_<n>.png` (idle/attack/cast/hit/dead,
   pixel art at 64x80, nearest filter) on an `AnimatedSprite2D`, which BaseLib drives from the game's animation cues;
   falls back to `body.png`, then the vanilla placeholder. The frames come from `art_originals/pixelgen/` (see its README;
-  bodies are three-quarters turned right, David wears sunglasses; a `rest` loop for rest sites, played by `StandIns`).
+  bodies face the player with the head turned right, like vanilla (`Brother.Frontal`, default true since 2026-10-28: smaller skull, hair drawn scaled by `HairScale`, pixel-exact `DrawFrontGlasses`, far arm hanging beside the body; the Rig-drawn foes like Goliath would also change if re-rendered, their frames in the mod are still side-on), David wears sunglasses; a `rest` loop for rest sites, played by `StandIns`).
   Faces and hair follow the reference photos in `photos/` (2026-10-27): Daniel messy hair + wire glasses + stubble, David
   fringe + rectangular sunglasses + stubble, Joshua crew cut + dark glasses + stubble, Tim buzzed + glasses + full beard +
   over-ear headphones. `photos/` has a `.gdignore` so the family photos never get packed into the Workshop .pck; keep it.

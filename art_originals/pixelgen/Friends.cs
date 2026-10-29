@@ -32,12 +32,12 @@ public class JohnArt : AnimatedBrother
     private static float Wobble(V q, V center, float amp)
     {
         var a = MathF.Atan2(q.Y - center.Y, q.X - center.X);
-        return -MathF.Abs(MathF.Sin(a * 6f)) * amp;
+        var s = MathF.Sin(a * 6f); return -s * s * amp;   // squared, not abs: smooth dips with no sharp point between them (one sat on top of every head)
     }
 
     protected override void DrawHeadExtras(Canvas c, Rig r, Pose p)
     {
-        var h = r.Head;
+        var h = r.Head + new V(-FaceShift, 0);   // follows the eyes
         // thick eyebrows (only over open eyes: on the happy and hurt faces they read as an "x")
         if (p.Face is not (Face.Normal or Face.Fierce)) return;
         foreach (var x in new[] { h.X + 2.5f, h.X + 6.5f }) { c.Plot(x - 0.5f, h.Y - 1.5f, BeardC); c.Plot(x + 0.5f, h.Y - 1.5f, BeardC); }
@@ -195,7 +195,7 @@ public class HuffmanArt : AnimatedBrother
 
     protected override void DrawHeadExtras(Canvas c, Rig r, Pose p)
     {
-        var h = r.Head;
+        var h = r.Head + new V(-FaceShift, 0);   // follows the mouth
         // mustache over the mouth, goatee on the chin, joined at the corners of the mouth
         var b = BeardC; var bl = BeardC.Light;
         for (float x = h.X + 4; x <= h.X + 8; x++) c.Plot(x, h.Y + 5, x == h.X + 6 ? bl : b);
@@ -220,7 +220,8 @@ public class HuffmanArt : AnimatedBrother
         c.Draw(q => S.Box(q, r.H.X - 8.5f, r.H.Y - 1.5f, r.H.X + 9.5f, r.H.Y + 1), Col.Hex("2a2018"), outline: false);
         c.Plot(r.H.X + 5, r.H.Y - 0.5f, Col.Hex("c0c4cc"));
         // IT badge on a lanyard
-        for (int i = 0; i < 7; i++) c.Plot(r.S.X - 2 + i * 0.6f, r.S.Y + i, Col.Hex("202020"));
+        // (two strings in a V, one from each side of his neck down to the badge)
+        for (int i = 0; i < 7; i++) { c.Plot(r.S.X - 2 + i * 0.6f, r.S.Y + i, Col.Hex("202020")); c.Plot(r.S.X + 5.5f - i * 0.25f, r.S.Y + i, Col.Hex("202020")); }
         c.Draw(q => S.Box(q, r.S.X + 1, r.S.Y + 7, r.S.X + 4.5f, r.S.Y + 11.5f), Col.Hex("f2f2f2"), noShade: true);
         c.Plot(r.S.X + 2, r.S.Y + 9, Col.Hex("3070d0")); c.Plot(r.S.X + 3, r.S.Y + 9, Col.Hex("3070d0"));
     }

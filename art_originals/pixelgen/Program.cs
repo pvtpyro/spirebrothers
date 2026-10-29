@@ -1,4 +1,5 @@
 var outDir = args.Length > 0 ? args[0] : "out";
+if (args.Contains("brandi")) { BrandiArt.Preview(outDir); return; }
 AnimatedBrother[] brothers = [new DanielArt(), new DavidArt(), new JoshuaArt(), new TimArt()];
 var bg = Col.Hex("5a5f6a");
 foreach (var b in brothers)

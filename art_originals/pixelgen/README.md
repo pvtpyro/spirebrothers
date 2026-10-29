@@ -4,7 +4,7 @@ A small C# program that draws every combat animation frame (64 x 80) for all fou
 from simple shapes on a shared skeleton (`Rig.cs`), and each animation is a list of poses (`Brothers.cs`).
 
 - `Rig.cs`: the skeleton and shared body parts (head, beard, hair, arms, legs, torso outline). The bodies are drawn
-  three-quarters turned to the right, like the vanilla characters.
+  facing the player with the head turned to the right, like the vanilla characters (`Brother.Frontal`; false gives the old side-on body). `dotnet run -c Release -- out brandi` renders Brandi (Brandi.cs, a character idea, not in the mod) plus `lineup_brandi.png`, `closeup_all.png`, and `tops_all.png` previews of all seven.
 - `Brothers.cs`: each brother's clothes, props, and animation poses (David's sunglasses are in `DavidArt.DrawHeadExtras`).
 - `Canvas.cs`: the drawing and PNG code.
 - `Backgrounds.cs`: the character select backgrounds (480 x 270, one scene per brother inspired by his favorite
