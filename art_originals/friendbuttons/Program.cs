@@ -150,6 +150,44 @@ foreach (var f in friends)
     marker.SavePng(Path.Combine(outDir, f.Name, "map_marker.png"));
     outline.SavePng(Path.Combine(outDir, f.Name, "icon_outline.png"));
 }
+// ---- Brandi (Daniel's wife: family, not a friend). Her own look: a crimson button with red rings and a warm gold name,
+// a red map marker, and the same frames / hands / select background as everyone else. Written to out/brandi/.
+{
+    var brandi = new BrandiArt();
+    foreach (var locked in new[] { false, true })
+    {
+        var card = BrandiBackground();
+        Portrait(card, brandi, locked);
+        BlockFont.Name(card, "BRANDI", locked, "ffe9a8", "d89a3a");
+        card.SavePng(Path.Combine(outDir, "brandi", locked ? "select_locked.png" : "select.png"));
+    }
+    Backgrounds.RenderAll([brandi], outDir);
+    brandi.Portrait = false;
+    foreach (var (name, (poses, _, _)) in brandi.Anims())
+        for (int i = 0; i < poses.Count; i++) brandi.Render(poses[i]).SavePng(Path.Combine(outDir, "brandi", "frames", $"{name}_{i}.png"));
+    Hands.RenderAll([brandi], outDir);
+    brandi.Portrait = true;
+    var frame = brandi.Render(brandi.Anims()["idle"].poses[0]);
+    var marker = new Canvas(128, 128);
+    var outline = new Canvas(128, 128);
+    for (int y = 0; y < 128; y++) for (int x = 0; x < 128; x++)
+    {
+        float d = MathF.Sqrt((x - 63.5f) * (x - 63.5f) + (y - 63.5f) * (y - 63.5f));
+        if (d <= 63.5f) outline.Set(x, y, Col.Hex("ffffff"));
+        if (d <= 60) marker.Set(x, y, Col.Hex("1b0a0c"));
+        if (d <= 55) marker.Set(x, y, Col.Hex("c84a50"));
+        if (d <= 52) marker.Set(x, y, Col.Hex("a3262b").Lerp(Col.Hex("3a0c0e"), y / 128f));
+    }
+    const int HX = 12, HY = 2, HW = 38, HH = 34, K = 3;
+    for (int y = 0; y < HH * K; y++) for (int x = 0; x < HW * K; x++)
+    {
+        int mx = 64 - HW * K / 2 + x, my = 64 - HH * K / 2 + y + 6;
+        float d = MathF.Sqrt((mx - 63.5f) * (mx - 63.5f) + (my - 63.5f) * (my - 63.5f));
+        if (d <= 52 && frame.Get(HX + x / K, HY + y / K) is { } px) marker.Set(mx, my, px);
+    }
+    marker.SavePng(Path.Combine(outDir, "brandi", "map_marker.png"));
+    outline.SavePng(Path.Combine(outDir, "brandi", "icon_outline.png"));
+}
 Console.WriteLine("done");
 
 // ---------------------------------------------------------------- helpers
@@ -195,6 +233,19 @@ static Canvas FriendBackground(bool darktide)
     return c;
 }
 
+// Brandi's button: a crimson gradient with red rings (the brothers' buttons have the same rings in their own colors).
+static Canvas BrandiBackground()
+{
+    var top = Col.Hex("8a1e26"); var low = Col.Hex("2a070a"); var ring = Col.Hex("c8444c");
+    var c = new Canvas(W, H);
+    for (int y = 0; y < H; y++) for (int x = 0; x < W; x++)
+    {
+        var g = top.Lerp(low, Math.Min(1f, y / 150f));
+        c.Set(x, y, g.Lerp(ring, RingCover(x, y) * 0.5f));
+    }
+    return c;
+}
+
 // The pixel portrait from the first idle frame, 3x, with a soft drop shadow (same crop as pixelgen's SelectButtons).
 static void Portrait(Canvas card, AnimatedBrother b, bool locked)
 {
@@ -226,6 +277,10 @@ static class BlockFont
 {
     public static readonly Dictionary<char, string[]> Font = new()
     {
+        ['B'] = ["####.", "#...#", "#...#", "####.", "#...#", "#...#", "####."],
+        ['D'] = ["####.", "#...#", "#...#", "#...#", "#...#", "#...#", "####."],
+        ['I'] = ["#####", "..#..", "..#..", "..#..", "..#..", "..#..", "#####"],
+        ['R'] = ["####.", "#...#", "#...#", "####.", "#.#..", "#..#.", "#...#"],
         ['A'] = [".###.", "#...#", "#...#", "#####", "#...#", "#...#", "#...#"],
         ['F'] = ["#####", "#....", "#....", "####.", "#....", "#....", "#...."],
         ['H'] = ["#...#", "#...#", "#...#", "#####", "#...#", "#...#", "#...#"],
@@ -237,7 +292,7 @@ static class BlockFont
     };
     public const int W = 132, H = 195, Cx = 66;
 
-    public static void Name(Canvas card, string text, bool locked)
+    public static void Name(Canvas card, string text, bool locked, string top = "eef1f6", string bottom = "9ba3b0")
     {
         // short names get big letters and long ones smaller, like the brothers' (DAVID and TIM are bigger than DANIEL and JOSHUA)
         bool big = text.Length <= 5;
@@ -272,7 +327,7 @@ static class BlockFont
             {
                 // silver, bright at the top and cooler toward the bottom, with a light first row
                 float t = (y - TextTop) / (float)(textH - 1);
-                var c = y == TextTop ? Col.Hex("ffffff") : Col.Hex("eef1f6").Lerp(Col.Hex("9ba3b0"), t);
+                var c = y == TextTop ? Col.Hex("ffffff") : Col.Hex(top).Lerp(Col.Hex(bottom), t);
                 card.Set(x, y, locked ? Dim(c) : c);
                 continue;
             }

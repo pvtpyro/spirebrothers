@@ -1,4 +1,4 @@
-# Brandi, Private Pyro: card plan (full set, ready to build, 2026-10-28)
+# Brandi, Private Pyro: card plan (built 2026-10-28, untested in game)
 
 Brandi is Daniel's wife, so she joins as **family: the Sister-in-Law** (select description "Sister-in-Law"), with her
 own look apart from the brothers and the friends: red select button and frames, red map marker, red card art.
@@ -21,7 +21,7 @@ wanted to be a sniper. Web developer since 1993. Loves all animals:
 metal and reggae. Collects little yellow smiley faces. Favorite color red. Has traveled all over the world. Plays WoW
 since launch, every class, most often **Feral Druid, Discipline Priest, and Hunter**.
 
-**Not built yet.** The full set: 5 Basics, **88 reward cards (25 Common / 43 Uncommon / 20 Rare)** to match the
+**Built 2026-10-28, untested in game.** The full set: 5 Basics, **88 reward cards (25 Common / 43 Uncommon / 20 Rare)** to match the
 brothers, 7 Duo cards (one with everyone, two with Daniel), 2 Ancient cards, and 1 token. Every card lists its upgrade.
 Numbers are first-pass balance based on vanilla (Strike 6, Defend 5); per the balance rule, weak cards get buffed and
 only runaway scaling gets capped. Every class name below was checked against every card in the mod.
@@ -98,7 +98,7 @@ Legend: 🔥 Ember, 🎯 Aim / Shot, 📡 Intel, ⚡ Static, 👀 Look, 🦙 Al 
 ### Fire
 | # | Name | Cost / Type | Effect | Upgrade | Theme |
 |---|---|---|---|---|---|
-| 26 | 🔥 It's Pretty | 1 Skill | Gain Block equal to the total Ember on ALL enemies (at least 5). | At least 8, +3 | Why she loves fire |
+| 26 | 🔥 It's Pretty | 1 Skill | Gain Block equal to the total Ember on ALL enemies (at least 5). | At least 9 | Why she loves fire |
 | 27 | 🔥 Fire Watch | 1 Skill | Gain 8 Block. At the start of your next turn, apply 3 Ember to a random enemy. | 11 Block, 4 Ember | Army duty |
 | 28 | 🔥 Flashover | 1 Attack | Deal damage equal to an enemy's Ember, twice. | Costs 0 | Fire |
 | 29 | 🔥📡 Smoke Signal | 1 Skill | Apply 3 Ember and 2 Intel. A teammate draws 1 card next turn (you, in solo). | 4 Ember, 3 Intel | Fire + Signal |
@@ -163,7 +163,7 @@ Legend: 🔥 Ember, 🎯 Aim / Shot, 📡 Intel, ⚡ Static, 👀 Look, 🦙 Al 
 |---|---|---|---|---|---|
 | 61 | `<blink>` | 0 Attack | Retain. Deal 9 damage. Only playable on odd turns. | 13 damage | The old blink tag |
 | 62 | Hit Counter | 1 Attack | Deal 6 damage. Every time you play it, its damage goes up by 3 this combat. | 8, +4 | The page counter |
-| 63 | Under Construction | 1 Power | At the end of your turn, Retain 1 card. | Costs 0 | The little GIF |
+| 63 | Under Construction | 1 Power | At the end of your turn, your most expensive card is Retained (picked for you: vanilla's pick-a-card Well-Laid Plans is solo only). | Costs 0 | The little GIF |
 | 64 | Dial-Up | 1 Skill | Gain 2 Energy next turn. | Also draw 1 card next turn | Web dev |
 | 65 | 🤝 Web Ring | 1 Skill | ALL players draw 1 card. Gain 4 Block. | 7 Block | Web dev |
 
@@ -266,10 +266,14 @@ Potions (3): **MRE** (heal 10, gain 5 Block), **Red Bull at 0300** (gain 2 Energ
 - Al and Pacino: two pixel alpacas in front of her (like `MastiffLayout`), reusing `KidMotion`'s idle bounce and hop.
   Al leans forward and spits; Pacino steps in front of her when he guards.
 
-## Questions for Brandi
+## Built so far (and what's still to do)
 
-- Borrowed vanilla visuals: all five vanilla characters are already used. The Silent (shared with David) fits a
-  sniper best.
+- Borrows the Silent's vanilla scenes (shared with David) for the shop and rest site.
+- The smiley face bubbles aren't built: she has no banter yet (`Banter.Talks` leaves her out), and her pings show "...".
+- Al and Pacino are drawn at runtime (`Monsters/Alpaca.cs`, `AlpacaArt`); drop `images/monsters/alpaca/al.png` and
+  `pacino.png` in to replace them.
+- The blue spark when Static discharges uses vanilla's lightning hit effect.
+- No end-of-run stats for her yet (`RunStats.Lines` has no Brandi case).
 
 ## Later
 - Family Bonds with Daniel (husband and wife) and the brothers (in-laws).

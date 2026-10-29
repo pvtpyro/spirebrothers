@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("friendbuttons")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e6e4f99d5ed3c6ac69add9addd044308b1eb14c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f234c0cc0651483698c58f77c87332bcaecc2a8")]
 [assembly: System.Reflection.AssemblyProductAttribute("friendbuttons")]
 [assembly: System.Reflection.AssemblyTitleAttribute("friendbuttons")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

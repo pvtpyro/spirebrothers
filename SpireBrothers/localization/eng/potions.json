@@ -50,5 +50,11 @@
   "SPIREBROTHERS-BAG_OF_KIBBLE.title": "Bag of Kibble",
   "SPIREBROTHERS-BAG_OF_KIBBLE.description": "The [gold]Mastiff[/gold] gains {Bite:diff()} [gold]Bite[/gold] and bites right now.",
   "SPIREBROTHERS-LIQUID_NITROGEN.title": "Liquid Nitrogen",
-  "SPIREBROTHERS-LIQUID_NITROGEN.description": "Gain {Energy:energyIcons()} and {Metal:diff()} [gold]Metal[/gold]."
+  "SPIREBROTHERS-LIQUID_NITROGEN.description": "Gain {Energy:energyIcons()} and {Metal:diff()} [gold]Metal[/gold].",
+  "SPIREBROTHERS-MRE.title": "MRE",
+  "SPIREBROTHERS-MRE.description": "Heal {Heal:diff()} HP.\nGain {Block:diff()} [gold]Block[/gold].",
+  "SPIREBROTHERS-RED_BULL_AT0300.title": "Red Bull at 0300",
+  "SPIREBROTHERS-RED_BULL_AT0300.description": "Gain {Energy:energyIcons()}.",
+  "SPIREBROTHERS-JERRY_CAN.title": "Jerry Can",
+  "SPIREBROTHERS-JERRY_CAN.description": "Apply {Ember:diff()} [gold]Ember[/gold] to ALL enemies."
 }

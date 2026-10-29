@@ -68,8 +68,8 @@ function DrawIcon($g, $path, $fill, $stroke, $strokeW, $shadow = 0) {
 . (Join-Path $here 'icons.ps1')
 
 # Shared: cards in Cards\Shared (curses and other cards that belong to no brother).
-$brotherColor = @{ Daniel = C '#1f9fb4'; David = C '#3e9a4c'; Joshua = C '#7d4fc9'; Tim = C '#c8552f'; John = C '#6f7884'; Huffman = C '#5f6f8c'; Shared = C '#6b6b6b' }
-$brotherGlyph = @{ Daniel = '🤓'; David = '💰'; Joshua = '🎸'; Tim = '📐'; John = '🧔'; Huffman = '🐕'; Shared = '❔' }
+$brotherColor = @{ Daniel = C '#1f9fb4'; David = C '#3e9a4c'; Joshua = C '#7d4fc9'; Tim = C '#c8552f'; John = C '#6f7884'; Huffman = C '#5f6f8c'; Brandi = C '#c8343a'; Shared = C '#6b6b6b' }
+$brotherGlyph = @{ Daniel = '🤓'; David = '💰'; Joshua = '🎸'; Tim = '📐'; John = '🧔'; Huffman = '🐕'; Brandi = '🔥'; Shared = '❔' }
 
 function IdMap($file) {
   $map = @{}
@@ -163,7 +163,7 @@ function CardArt($brother, $type, $glyph, $name, $badge = '', [switch]$Tall) {
 
 $cardIds = IdMap 'cards.json'; $cardGlyphs = Glyphs 'glyphs.txt'
 $cardCount = 0
-foreach ($brother in $(if ($Section) { @() } elseif ($Character) { @($Character) } else { 'Daniel', 'David', 'Joshua', 'Tim', 'John', 'Huffman', 'Shared' })) {
+foreach ($brother in $(if ($Section) { @() } elseif ($Character) { @($Character) } else { 'Daniel', 'David', 'Joshua', 'Tim', 'Brandi', 'John', 'Huffman', 'Shared' })) {
   foreach ($f in Get-ChildItem (Join-Path $proj "SpireBrothersCode\Cards\$brother") -Filter *.cs) {
     $cls = $f.BaseName
     if ($Preview -and $cardCount -ge 12) { break }
@@ -222,7 +222,8 @@ $potions = @{ grog = @('#7ddc3a', '☠'); ook_ook_eek = @('#ffd43b', '🍌'); mo
   juice_box = @('#ff9f43', '🧃'); sugar_rush = @('#ff6fb5', '🍬'); hotfix = @('#6d9eeb', '🩹')
   grapefruit_juice = @('#ff7f6e', '🍊'); spare_battery = @('#f1c232', '🔋'); stim = @('#e06666', '💉')
   cartel_brew = @('#70ff80', '☣'); shroud_elixir = @('#8a5ac8', '🌫'); raid_flask = @('#f1c232', '⚙')
-  fried_chicken = @('#d9a25b', '🍗'); bag_of_kibble = @('#9b6a3c', '🦴'); liquid_nitrogen = @('#9fe8ff', '❄') }
+  fried_chicken = @('#d9a25b', '🍗'); bag_of_kibble = @('#9b6a3c', '🦴'); liquid_nitrogen = @('#9fe8ff', '❄')
+  mre = @('#8a7a4a', '🥫'); red_bull_at0300 = @('#3d6ec8', '⚡'); jerry_can = @('#5a6a3a', '⛽') }
 function DrawPotions {
   $pc = 0
   foreach ($k in $potions.Keys) {
@@ -260,7 +261,9 @@ $relicGlyphs = @{ and_you_know_what = '💬'; trusty_multimeter = '📟'; rubber
   loose_lego_brick = '🧱'; juice_boxes = '🧃'; garrisoned_relic = '⛪'; full_boost = '🚀'; startup_script = '💾'
   patch_panel = '🔌'; super_destroyer = '🛸'; dads_tackle_box = '🎣'
   flame_altar = '🔥'; kindled_flame_altar = '🔥'; arbites_badge = '🦅'; judges_badge = '⚖'
-  gang_colors = '🎽'; loot_chest = '💰'; survivors_lantern = '🏮'; chew_toy = '🦴'; storage_drive = '💾'; commander_unit = '🤖' }
+  gang_colors = '🎽'; loot_chest = '💰'; survivors_lantern = '🏮'; chew_toy = '🦴'; storage_drive = '💾'; commander_unit = '🤖'
+  engraved_zippo = '🔥'; eternal_flame = '🔥'; dog_tags = '🏷'; smiley_shelf = '😊'; camp_victory = '⛺'; passport = '🛂'
+  pugsleys_collar = '🐶'; sandis_sunbeam = '🐱' }
 $relicColors = @{ grapefruit = '#ff8a5c'; well_worn_guitar = '#d9a25b'; old_wallet = '#9b6a3c'; family_minivan = '#6fa8dc'; stone_monkey_head = '#9aa3a8'
   rubber_chicken_with_a_pulley = '#ffe066'; monkey_phrasebook = '#e06666'; trusty_multimeter = '#f6b26b'; monkey_wrench = '#c0c7cc'; never_paid_a_mechanic = '#e06666'; and_you_know_what = '#8ecae6'
   well_technically = '#ffd966'; overstuffed_wallet = '#6aa84f'; signature_guitar = '#b36bff'; fifteen_passenger_van = '#4a86c8'
@@ -270,7 +273,9 @@ $relicColors = @{ grapefruit = '#ff8a5c'; well_worn_guitar = '#d9a25b'; old_wall
   loose_lego_brick = '#e74c3c'; juice_boxes = '#f6b26b'; garrisoned_relic = '#d4af37'; full_boost = '#ff9900'; startup_script = '#6d9eeb'
   patch_panel = '#4a86c8'; super_destroyer = '#a4b0be'; dads_tackle_box = '#3d85c6'
   flame_altar = '#ff9a40'; kindled_flame_altar = '#ffd060'; arbites_badge = '#d4af37'; judges_badge = '#c0c8d4'
-  gang_colors = '#c83a3a'; loot_chest = '#c8a040'; survivors_lantern = '#ff9a40'; chew_toy = '#d8c8a0'; storage_drive = '#7f8c8d'; commander_unit = '#6d9eeb' }
+  gang_colors = '#c83a3a'; loot_chest = '#c8a040'; survivors_lantern = '#ff9a40'; chew_toy = '#d8c8a0'; storage_drive = '#7f8c8d'; commander_unit = '#6d9eeb'
+  engraved_zippo = '#c0c7cc'; eternal_flame = '#ff9a40'; dog_tags = '#b8c0cc'; smiley_shelf = '#f8d030'; camp_victory = '#c9a46a'; passport = '#3d5a9e'
+  pugsleys_collar = '#d8343a'; sandis_sunbeam = '#ffd060' }
 # Solid silhouette of a line-art glyph: everything not reachable from the border.
 function Silhouette($path, $size, $strokeW, $color) {
   $c = Canvas $size $size

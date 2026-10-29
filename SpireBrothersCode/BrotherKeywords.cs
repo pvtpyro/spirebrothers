@@ -46,6 +46,12 @@ public static class BrotherKeywords
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Build;
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Metal;
 
+    // Brandi (Daniel's wife). Shot and Look show at the top of the card; Ember, Aim, Intel, Static, and the alpacas are
+    // written by hand (the first four are powers, so their hover tips come from the power).
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.Before)] public static CardKeyword Shot;
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.Before)] public static CardKeyword Look;
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Alpacas;
+
     // Duo cards (Mechanics/DuoCards): only appear when the brother they help is in the party. Written by hand
     // ("Duo: David.") so the card names its partner.
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Duo;

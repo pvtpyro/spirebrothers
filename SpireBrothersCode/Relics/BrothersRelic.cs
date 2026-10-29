@@ -59,3 +59,12 @@ public abstract class HuffmanRelic : CustomRelicModel
     protected override string PackedIconOutlinePath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}_outline.png".RelicImagePath();
     protected override string BigIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigRelicImagePath();
 }
+
+/// <summary>Base for Brandi's relics (Daniel's wife). Same icon layout as Daniel's.</summary>
+[Pool(typeof(BrandiRelicPool))]
+public abstract class BrandiRelic : CustomRelicModel
+{
+    public override string PackedIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".RelicImagePath();
+    protected override string PackedIconOutlinePath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}_outline.png".RelicImagePath();
+    protected override string BigIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigRelicImagePath();
+}

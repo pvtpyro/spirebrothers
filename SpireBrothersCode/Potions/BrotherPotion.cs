@@ -50,3 +50,12 @@ public abstract class HuffmanPotion : CustomPotionModel
     public override string CustomPackedImagePath => ImageName.PotionImagePath();
     public override string CustomPackedOutlinePath => $"outline/{ImageName}".PotionOutlineImagePath();
 }
+
+/// <summary>Base for Brandi's potions (Daniel's wife). Same image layout as Daniel's.</summary>
+[Pool(typeof(BrandiPotionPool))]
+public abstract class BrandiPotion : CustomPotionModel
+{
+    private string ImageName => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+    public override string CustomPackedImagePath => ImageName.PotionImagePath();
+    public override string CustomPackedOutlinePath => $"outline/{ImageName}".PotionOutlineImagePath();
+}

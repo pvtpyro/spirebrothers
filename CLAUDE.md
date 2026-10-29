@@ -15,6 +15,35 @@ Two friends they always play with, **John** and **Huffman** (a friend named Josh
 characters five and six ("Honorary Brothers"): dossier in `FRIENDS.md`, card plans in `JOHN_CARDS.md` / `HUFFMAN_CARDS.md`.
 Both are built (2026-10-27), untested in game.
 
+**Brandi, Private Pyro** (the user herself, Daniel's wife) is character seven: family, "Sister-in-Law". Built 2026-10-28,
+untested in game. Plan and bio in `BRANDI_CARDS.md`. She never talks (no banter; faces are planned).
+
+## Brandi (Daniel's wife)
+
+- `Character/Brandi.cs` + `BrandiPools.cs` (Silent scenes, red), `Cards/BrandiCard.cs`, `Cards/Brandi/` (5 Basic, 88 reward,
+  Claw token + the two Dual Spec choice tokens, 7 Duos (one with everyone, two with Daniel), Ancient One Shot, One Kill and
+  Firestorm (Spark's Archaic Tooth card)). Starts with two relics: Engraved Zippo (Touch of Orobas: Eternal Flame) and
+  Dog Tags (stamped 33, in memory of her late husband; never upgraded or offered).
+- **Ember** (`Mechanics/Ember.cs`, `EmberPower`): burns at the owner's turn start, then grows by 1 up to `Ember.GrowthCap`
+  (10); on a player it fades by 1. All her Ember goes through `Ember.Apply` (Zippo, Private Pyro). `BrandiTracker` moves a
+  dying enemy's Ember to another enemy (`BeforeDeath` notes it with the combat state, since the dead one leaves combat).
+- **Aim / Shot** (`Mechanics/Aim.cs`, `AimPower`): Shot cards set `IsShot`, use `ShotVars(damage, perAim)` (a CalculatedDamage
+  with the Aim multiplier) and `Shoot(...)`, which spends the Aim after the hit. One Shot, One Kill keeps it and limits Shots to
+  one a turn (`BrandiCard.IsPlayable`).
+- **Intel** (`Mechanics/Intel.cs`, `IntelPower`): +damage from any player's attacks until the end of the round. Comms Up hooks
+  `Intel.Apply`. `PlayedThisTurn` (same file) counts cards from the game's combat history like vanilla Finisher.
+- **Static** (`StaticPower`): discharges after an Attack or Share card, but only the Static she had before that card
+  (snapshot in `BeforeCardPlayed`), so Static Shock keeps its new Static and Arc Flash (spends it) leaves none.
+- **Al and Pacino** (`Mechanics/Alpacas.cs`, `Monsters/Alpaca.cs`): two pets spawned on turn 1 by `BrandiTracker`, act at her
+  turn end (Al spits 4 on a random enemy, Pacino gives her 3 Block; Feed Pet adds via `FedPetPower`). Art is drawn at runtime
+  (`AlpacaArt`) unless `images/monsters/alpaca/al.png` / `pacino.png` exist. `AlpacaLayout` stands them in front of her.
+- **Look** cards read `Monster.IntendsToAttack` (like vanilla Go for the Eyes). Nobody Tells Me No gets cheaper through
+  `ICostReducer`, priced in `BrandiTracker.TryModifyEnergyCostInCombat`; Wall of Death copies vanilla Stomp.
+- Smiley Shelf and Passport keep their counts in `Mechanics/BrandiSaves.cs` (SavedSpireFields, touched in `MainFile`).
+  Pugsley's Collar and Sandi's Sunbeam (her and her late husband's pets) are in her pool and added to Daniel's in `MainFile`.
+- Art: `art_originals/friendbuttons` draws her button (crimson, gold name), frames, hands, map marker, and select background
+  (`Backgrounds.Brandi`, Camp Victory at night); her body is `pixelgen/Brandi.cs`. Card art: `gen.ps1 -CardsOnly -Character Brandi`.
+
 ## The friends (built like the brothers, but kept visibly apart)
 
 - They extend `BrotherCharacter` like the brothers. Friends look: charcoal select buttons with steel rings and silver

@@ -153,3 +153,27 @@ Fuse 🧨 debuff
 Provoked 😠
 Updating 🔄
 PilingUp 🧺
+Ember 🔥 debuff
+Aim 🎯
+Intel 📡 debuff
+Static ⚡
+FedPet 🥕
+HideSite 🌿
+CommsUp 📞
+AntennaFarm 📡
+CatForm 🐈
+CatFormPlus 🐈
+Atonement ✝
+UnderConstruction 🚧
+PrivatePyro 🔥
+Bonfire 🔥
+Sparky ⚡
+StaticField 🌩
+EmbraceTheSuck 😤
+Since1993 💾
+OneShotOneKill 🎯
+FireWatch 🚒
+Prowl 🐾
+LookingForGroup 🛡
+PainSuppression 🛡
+DualSpec ☯

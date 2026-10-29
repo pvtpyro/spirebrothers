@@ -19,6 +19,7 @@ public static class Backgrounds
                 case "tim": Tim(c); break;
                 case "john": John(c); break;
                 case "huffman": Huffman(c); break;
+                case "brandi": Brandi(c); break;
             }
             StandBrother(c, b, 345, 246);
             Vignette(c);
@@ -513,6 +514,67 @@ public static class Backgrounds
     }
 
     // ---------------------------------------------------------------- Huffman: an underground server room, storage drives, a jetpack
+
+    // ---------------------------------------------------------------- Brandi: Camp Victory, Baghdad, at night
+    static void Brandi(Canvas c)
+    {
+        Sky(c, 186, C("070a1e"), C("141838"), C("2e2448"), C("5a3048"));
+        Stars(c, 33, 90, 120, C("d8dcff"));
+        // a thin crescent moon
+        c.Flat(q => S.I(S.Circle(q, new V(392, 38), 13), -S.Circle(q, new V(398, 34), 12)), C("f4ecc8"));
+        // the palace on its lake: a long low block with domes, windows lit
+        var stone = C("2a2238"); var lit = C("ffcc70");
+        c.Flat(q => S.Box(q, 214, 150, 330, 178), stone);
+        c.Flat(q => S.Box(q, 248, 136, 296, 150), stone);
+        c.Flat(q => S.Circle(q, new V(272, 136), 14), stone);
+        c.Flat(q => S.Circle(q, new V(228, 150), 7), stone);
+        c.Flat(q => S.Circle(q, new V(316, 150), 7), stone);
+        c.Flat(q => S.Box(q, 271, 112, 273, 124), stone);
+        for (int x = 220; x < 326; x += 8) for (int y = 156; y < 174; y += 7) if ((x * 7 + y) % 3 != 0) { c.Set(x, y, lit); c.Set(x + 1, y, lit); c.Set(x, y + 1, lit.Mul(0.8f)); }
+        // the lake, with the palace lights wobbling in it
+        for (int y = 178; y < 192; y++) for (int x = 0; x < c.W; x++)
+        {
+            c.Set(x, y, C("10142c").Lerp(C("1c2040"), (y - 178) / 14f));
+            int mx = x + (int)(2 * MathF.Sin(y * 1.7f));
+            if (mx > 220 && mx < 326 && mx % 8 < 2 && (y % 3 != 0)) Blend(c, x, y, lit, 0.35f * (192 - y) / 14f);
+        }
+        // palm silhouettes along the shore
+        foreach (var (px, h) in new[] { (150, 54), (176, 42), (352, 50), (446, 58) })
+        {
+            var trunk = C("0c0a16");
+            c.Flat(q => S.Taper(q, new V(px, 186), new V(px + 6, 186 - h), 2.6f, 1.4f), trunk);
+            var top = new V(px + 6, 186 - h);
+            foreach (var a in new[] { -160f, -125f, -90f, -55f, -20f, 15f, 160f + 30 })
+                c.Flat(q => S.Taper(q, top, top + V.Dir(a) * 18 + new V(0, 6), 2.2f, 0.4f), trunk);
+        }
+        // the camp ground: packed sand
+        for (int y = 192; y < c.H; y++) for (int x = 0; x < c.W; x++)
+            c.Set(x, y, ((x * 13 + y * 7) % 11 == 0 ? C("3a2e2a") : C("2c2422")).Lerp(C("1a1416"), (y - 192) / 78f));
+        // T-walls (the tall concrete barriers), one with a smiley sticker
+        foreach (var tx in new[] { 6, 40, 74, 108 })
+        {
+            c.Draw(q => S.Box(q, tx, 150, tx + 30, 206), C("6a6458"), hi: C("8a8474"));
+            c.Flat(q => S.Box(q, tx - 4, 200, tx + 34, 206), C("5a5448"));
+        }
+        var yellow = C("f8d030"); var face = new V(54, 170);
+        c.Draw(q => S.Circle(q, face, 6), yellow, hi: C("fff090"));
+        c.Plot(52, 168, C("2a1e10")); c.Plot(56, 168, C("2a1e10"));
+        foreach (var (sx, sy) in new[] { (51, 172), (52, 173), (53, 173), (54, 173), (55, 173), (56, 173), (57, 172) }) c.Plot(sx, sy, C("2a1e10"));
+        // a burn barrel by her, the fire she can't stop watching
+        var barrel = new V(420, 214);
+        c.Draw(q => S.Box(q, barrel.X - 11, barrel.Y - 22, barrel.X + 11, barrel.Y), C("4a3a30"), hi: C("6a5444"));
+        for (int i = 0; i < 2; i++) c.Flat(q => S.Box(q, barrel.X - 11, barrel.Y - 17 + i * 9, barrel.X + 11, barrel.Y - 16 + i * 9), C("2a201a"));
+        c.Flat(q => S.Taper(q, barrel + new V(0, -22), barrel + new V(-1, -48), 9, 1), C("ff6a1a"));
+        c.Flat(q => S.Taper(q, barrel + new V(-5, -22), barrel + new V(-8, -38), 4, 0.5f), C("ff8a2a"));
+        c.Flat(q => S.Taper(q, barrel + new V(0, -22), barrel + new V(1, -38), 5, 0.6f), C("ffd050"));
+        for (int y = 140; y < c.H; y++) for (int x = 330; x < c.W; x++)
+        {
+            float d = MathF.Sqrt((x - barrel.X) * (x - barrel.X) + (y - (barrel.Y - 30)) * (y - (barrel.Y - 30)) * 1.6f);
+            if (d < 90) Blend(c, x, y, C("ff7a30"), (1 - d / 90) * 0.16f);
+        }
+        var sparks = new Random(9);
+        for (int i = 0; i < 14; i++) c.Set((int)barrel.X + sparks.Next(-12, 13), (int)barrel.Y - 50 - sparks.Next(40), sparks.Next(2) == 0 ? C("ffd050") : C("ff8a2a"));
+    }
 
     static void Huffman(Canvas c)
     {

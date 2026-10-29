@@ -54,5 +54,11 @@
   "SPIREBROTHERS-BUILD.title": "Build",
   "SPIREBROTHERS-BUILD.description": "Build X: if you have X [gold]Metal[/gold], spend it for the bonus. Without it, the card still works.",
   "SPIREBROTHERS-METAL.title": "Metal",
-  "SPIREBROTHERS-METAL.description": "Huffman's Metal builds up during combat. [gold]Build[/gold] cards spend it."
+  "SPIREBROTHERS-METAL.description": "Huffman's Metal builds up during combat. [gold]Build[/gold] cards spend it.",
+  "SPIREBROTHERS-SHOT.title": "Shot",
+  "SPIREBROTHERS-SHOT.description": "Deals bonus damage for each [gold]Aim[/gold] you have, then spends all your [gold]Aim[/gold].",
+  "SPIREBROTHERS-LOOK.title": "Look",
+  "SPIREBROTHERS-LOOK.description": "Her face does the talking. Does one thing if the enemy intends to attack, and another if it doesn't.",
+  "SPIREBROTHERS-ALPACAS.title": "Al and Pacino",
+  "SPIREBROTHERS-ALPACAS.description": "Brandi's two alpacas. At the end of her turn, Al spits on a random enemy for [blue]4[/blue] damage and Pacino guards her for [blue]3[/blue] [gold]Block[/gold]. When they act, both do it once more."
 }

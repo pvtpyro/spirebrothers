@@ -201,5 +201,7 @@
   "SPIREBROTHERS-OVERGROWN_LAWN.moves.CREEP_IN.title": "Creep In",
   "SPIREBROTHERS-POXWALKER.name": "Poxwalker",
   "SPIREBROTHERS-POXWALKER.moves.CLAW.title": "Claw",
-  "SPIREBROTHERS-POXWALKER.moves.LUNGE.title": "Shambling Lunge"
+  "SPIREBROTHERS-POXWALKER.moves.LUNGE.title": "Shambling Lunge",
+  "SPIREBROTHERS-ALPACA_AL.name": "Al",
+  "SPIREBROTHERS-ALPACA_PACINO.name": "Pacino"
 }

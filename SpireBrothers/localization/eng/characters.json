@@ -85,5 +85,19 @@
   "SPIREBROTHERS-HUFFMAN.possessiveAdjective": "his",
   "SPIREBROTHERS-HUFFMAN.pronounObject": "him",
   "SPIREBROTHERS-HUFFMAN.pronounPossessive": "his",
-  "SPIREBROTHERS-HUFFMAN.pronounSubject": "he"
+  "SPIREBROTHERS-HUFFMAN.pronounSubject": "he",
+  "SPIREBROTHERS-BRANDI.title": "Brandi",
+  "SPIREBROTHERS-BRANDI.titleObject": "Brandi",
+  "SPIREBROTHERS-BRANDI.description": "[color=e8a0a3]Sister-in-Law.[/color]\nPrivate Pyro. Army vet, sniper at heart, and Sparky to her friends.\nShe never says a word. Her face says it for her.",
+  "SPIREBROTHERS-BRANDI.aromaPrinciple": "[sine][color=d8343a]It's pretty.[/color][/sine]",
+  "SPIREBROTHERS-BRANDI.banter.alive.endTurnPing": "...",
+  "SPIREBROTHERS-BRANDI.banter.dead.endTurnPing": "...",
+  "SPIREBROTHERS-BRANDI.cardsModifierTitle": "Brandi Cards",
+  "SPIREBROTHERS-BRANDI.cardsModifierDescription": "Brandi cards will now appear in rewards and shops.",
+  "SPIREBROTHERS-BRANDI.eventDeathPrevention": "...",
+  "SPIREBROTHERS-BRANDI.goldMonologue": "[sine]:)[/sine]",
+  "SPIREBROTHERS-BRANDI.possessiveAdjective": "her",
+  "SPIREBROTHERS-BRANDI.pronounObject": "her",
+  "SPIREBROTHERS-BRANDI.pronounPossessive": "hers",
+  "SPIREBROTHERS-BRANDI.pronounSubject": "she"
 }

@@ -24,5 +24,9 @@
 "THE_ARCHITECT.talk.SPIREBROTHERS-HUFFMAN.0-0r.char": "Who set up the network in this place? And is there anywhere to sit down?",
   "THE_ARCHITECT.talk.SPIREBROTHERS-HUFFMAN.0-0r.next": "Continue",
   "THE_ARCHITECT.talk.SPIREBROTHERS-HUFFMAN.0-1r.ancient": "You came a long way for someone who would rather be at home. The Spire respects a reluctant traveler.",
-  "THE_ARCHITECT.talk.SPIREBROTHERS-HUFFMAN.0-attack": "Both"
+  "THE_ARCHITECT.talk.SPIREBROTHERS-HUFFMAN.0-attack": "Both",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-BRANDI.0-0r.char": "...",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-BRANDI.0-0r.next": "Continue",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-BRANDI.0-1r.ancient": "Not one word? No matter. Your face has already said plenty, and the fire you carry says the rest.",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-BRANDI.0-attack": "Both"
 }
