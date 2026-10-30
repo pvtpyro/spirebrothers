@@ -3,7 +3,7 @@
   "name": "Spire Brothers",
   "author": "pvtpyro",
   "description": "Play as four brothers, two of their friends, and Brandi, the author. Seven characters based on real people, each with their own cards and mechanics, built to work together in co-op.",
-  "version": "v0.24.0",
+  "version": "v0.25.0",
   "min_game_version": "0.107.0",
   "has_pck": true,
   "has_dll": true,
