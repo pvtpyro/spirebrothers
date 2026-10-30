@@ -44,6 +44,7 @@ Uncommon cards that only show up in rewards and shops when a specific brother is
 | Tim | LAN Party | Daniel | 1 Skill, Script | ALL gain 3 Block and draw 1 next turn |
 | Tim | Gift Card | David | 0 Skill, Exhaust | Lose 20 Gold; David gains 40 |
 | Tim | Centering Pass | Joshua | 1 Attack, Script | 8 damage; Joshua gains 2 Verses |
+| Daniel | SG-1 Marathon | David | 1 Skill, Logic (0 upgraded) | Draw 2. David draws 2 extra next turn (added 2026-10-29, Stargate) |
 
 - [x] Brainstorm
 - [x] Filter rewards, shops, Shared Steam Library, and random Songs by party makeup

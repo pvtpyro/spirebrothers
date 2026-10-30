@@ -235,3 +235,13 @@ From Joshua himself after playing the 10-27 morning build. Untested in game.
 - Old Favorite reworked: Deal 8 (11), your Verses become Held. It was a second Crescendo.
 - Rarity swap (counts unchanged): Bless Your Heart Uncommon -> Common (upgrade 6 -> 9 like Strike); Onsen Common -> Uncommon.
 - Harvest Festival: already retired on 10-26, so nothing changed.
+
+## Space Brothers (2026-10-29, untested in game)
+
+Josh loves the anime Space Brothers (two brothers who promised as kids to go to space together; set in Japan). Two plain
+Uncommon Songs were swapped out, so the pool stays at 90. Acoustic Set and Taiko Drums are **retired** (Basic rarity).
+
+| Replaces | Name | Cost / Type | Effect | Upgrade | Theme |
+|---|---|---|---|---|---|
+| Acoustic Set | 🎵 Apo | 1 Skill | Gain 8 Block. If you have any Held Verses, gain 1 Verse. (Glows when you do.) | 11 Block | Hibito's pug, always waiting at home |
+| Taiko Drums | 🎵 Liftoff | 2 Attack | Deal 12 damage to ALL enemies. Your Verses become Held. | 16 damage | The rocket launch they dreamed of |

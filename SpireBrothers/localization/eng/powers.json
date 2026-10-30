@@ -951,5 +951,17 @@
   "SPIREBROTHERS-RUN_STATS.EMBER": "Brandi set {Amount} Ember",
   "SPIREBROTHERS-RUN_STATS.SHOTS": "Brandi took {Amount} {Amount:plural:Shot|Shots}",
   "SPIREBROTHERS-RUN_STATS.SPITS": "Al spat {Amount} {Amount:plural:time|times}",
-  "SPIREBROTHERS-RUN_STATS.ZAPPED": "Brandi zapped enemies for {Amount}"
+  "SPIREBROTHERS-RUN_STATS.ZAPPED": "Brandi zapped enemies for {Amount}",
+  "SPIREBROTHERS-CHEVRON_SEVEN_LOCKED_POWER.title": "Chevron Seven, Locked!",
+  "SPIREBROTHERS-CHEVRON_SEVEN_LOCKED_POWER.description": "Each Logic or Handy card you play locks a chevron. When 7 are locked, the gate opens and deals damage to ALL enemies.",
+  "SPIREBROTHERS-CHEVRON_SEVEN_LOCKED_POWER.smartDescription": "Each [gold]Logic[/gold] or [gold]Handy[/gold] card you play locks a chevron (the number shown). When 7 are locked, the gate opens: deal [blue]{Amount}[/blue] damage to ALL enemies, then start over.",
+  "SPIREBROTHERS-ZPM_POWER.title": "ZPM",
+  "SPIREBROTHERS-ZPM_POWER.description": "At the start of your turn, gain 2 energy. Runs down after a few turns.",
+  "SPIREBROTHERS-ZPM_POWER.smartDescription": "At the start of your turn, gain [blue]2[/blue] energy. [blue]{Amount}[/blue] {Amount:plural:turn|turns} of charge left.",
+  "SPIREBROTHERS-IRIS_POWER.title": "Iris Closed",
+  "SPIREBROTHERS-IRIS_POWER.description": "Until your next turn, whenever you're attacked, apply Bleed to the attacker.",
+  "SPIREBROTHERS-IRIS_POWER.smartDescription": "Until your next turn, whenever you're attacked, apply [blue]{Amount}[/blue] [gold]Bleed[/gold] to the attacker.",
+  "SPIREBROTHERS-NAQUADAH_GENERATOR_POWER.title": "Naquadah Generator",
+  "SPIREBROTHERS-NAQUADAH_GENERATOR_POWER.description": "At the start of your turn, gain energy.",
+  "SPIREBROTHERS-NAQUADAH_GENERATOR_POWER.smartDescription": "At the start of your turn, gain [blue]{Amount}[/blue] energy."
 }

@@ -16,8 +16,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Guitar. Song. Gain 9 Block.</summary>
-public class AcousticSet() : JoshuaCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+/// <summary>Retired 2026-10-29 (replaced by Apo, Space Brothers); kept so saved runs that have it still load. Was: Guitar. Song. Gain 9 Block.</summary>
+public class AcousticSet() : JoshuaCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Song];

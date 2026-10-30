@@ -133,7 +133,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   visuals) and `DanielPools.cs` (card/relic/potion pools)
 - `SpireBrothersCode/Cards/DanielCard.cs`: base card class with art paths plus helpers for
   Wired glow, Stratagem playability, and `ShareTarget()`
-- `SpireBrothersCode/Cards/Daniel/`: one file per card (reward pool 87 as of 2026-10-27, plus Basics, the Gear token, and Duo cards; see DANIEL_CARDS.md)
+- `SpireBrothersCode/Cards/Daniel/`: one file per card (reward pool 91 as of 2026-10-29, plus Basics, the Gear token, and Duo cards; see DANIEL_CARDS.md)
 - `SpireBrothersCode/Mechanics/TurnTracker.cs`: a `CustomSingletonModel` that records the ordered
   Logic/Hands keywords played each turn (per `PlayerCombatState` via `SpireField`), whether last turn
   mixed both, whether Wired fired this turn, and the Gear count
@@ -141,7 +141,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   Trusty Multimeter relic)
 - David: `Character/David.cs` + `DavidPools.cs` (Silent visuals), `Cards/DavidCard.cs` (glow for Exact/Rant,
   `Hoard()`, `Rants`, `RantAt()`, `LoseGold()`, `ShareTarget()`), `Cards/David/` (99 files: 5 Basic,
-  3 tokens, 3 Duo, 88 reward cards), `Mechanics/DavidTracker.cs` (Rant counts per turn/combat; `RantsThisTurn` adds `OverthinkingPower`),
+  3 tokens, 4 Duo, 92 reward cards as of 2026-10-29), `Mechanics/DavidTracker.cs` (Rant counts per turn/combat; `RantsThisTurn` adds `OverthinkingPower`),
   `Mechanics/Exact.cs` (`Check()` returns 0/1/2 triggers, Min-Max doubles, runs `IExactListener` powers),
   `Powers/BleedPower.cs` (start of owner's turn like Poison, then halves; Deep Cuts makes it -1), `Powers/RantedAtPower.cs`
   (15% less damage per stack, max 40%, until the end of the enemy's turn; a damage modifier so Artifact can't backfire. Was flat X less per hit until 2026-10-27). Starter relic
@@ -452,3 +452,11 @@ Card art for everything (all cards, relics, and powers use placeholders).
 - `Mechanics/Album.cs` saves to `user://SpireBrothers/album/` (`album.json` + `shots/*.jpg`), per computer, not in the run save.
 - Captions: `SPIREBROTHERS-ALBUM.*` in powers.json (`<KIND>.<SITUATION>` falls back to `<SITUATION>`). Caption font
   `SpireBrothers/fonts/Caveat.ttf` (OFL; its license is packed via `include_filter` in export_presets.cfg).
+
+## Added 2026-10-29 (Stargate and Space Brothers)
+
+- Stargate SG-1 / Atlantis cards for Daniel (Puddle Jumper, Zat'nik'tel, Chevron Seven Locked!, ZPM; reward pool 91) and David
+  (Close the Iris!, "Indeed.", Ronon's Blaster, Naquadah Generator; reward pool 92), plus Daniel's Duo with David, SG-1 Marathon
+  (class `StargateMarathon`). Joshua's Space Brothers cards Apo and Liftoff replace Acoustic Set and Taiko Drums (retired, Basic).
+  Lists in DANIEL_CARDS.md / DAVID_CARDS.md / JOSHUA_CARDS.md. Untested in game.
+- Brandi's reward pool is 89, not 88 (Peppi is a normal Uncommon in it).

@@ -13,8 +13,8 @@ using SpireBrothers.SpireBrothersCode.Orbs;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Japan. Song. Deal 12 damage to ALL enemies.</summary>
-public class TaikoDrums() : JoshuaCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
+/// <summary>Retired 2026-10-29 (replaced by Liftoff, Space Brothers); kept so saved runs that have it still load. Was: Japan. Song. Deal 12 damage to ALL enemies.</summary>
+public class TaikoDrums() : JoshuaCard(2, CardType.Attack, CardRarity.Basic, TargetType.AllEnemies)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Song];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12, ValueProp.Move)];

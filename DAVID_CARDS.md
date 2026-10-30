@@ -175,3 +175,17 @@ He had only 15 Attacks in the reward pool; now 25 (88 cards total: 25 Common / 4
 | Rare | 😩 Forty-Two | 2 Attack | Only playable after 2+ Rants this turn. Deal 42 damage. Exhaust. (Upgrade: costs 1.) | The answer to life, the universe, and everything |
 | Rare | 🤝 Totem of Undying | 2 Skill | Share: the next time a player would die this combat, they heal 40% of their Max HP instead. Exhaust. | Minecraft |
 | Rare | 😩 Overthinking | 2 Power | Your Rant bonuses count 1 more Rant than you've played this turn (upgrade: 2). | The crisis never really ends |
+
+## Stargate (built 2026-10-29, untested in game)
+
+He and Daniel both love Stargate SG-1 and Atlantis. Reward pool 88 -> 92 (27 / 44 / 21).
+
+| Rarity | Name | Cost / Type | Effect | Theme |
+|---|---|---|---|---|
+| Common | 🩸🤝 Close the Iris! | 1 Skill | Share: a player gains 7 Block (10). Until their next turn, anything that attacks them gets 2 Bleed (3). | SG-1 (things that hit the iris go splat) |
+| Common | 😩 "Indeed." | 0 Skill | Apply 1 Ranted At (2). Draw 1 card. **Rant:** +1 per Rant played earlier this turn. | Teal'c's whole speech in one word: David's shortest rant ever |
+| Uncommon | 🎯🩸 Ronon's Blaster | 1 Attack | Deal 5 damage twice (7). **Exact:** apply 4 Bleed. | Atlantis |
+| Rare | 🤝 Naquadah Generator | 3 Power | Share: a player gains 1 Energy at the start of each of their turns. Upgrade: costs 2. | SG-1 |
+
+Build notes: `IrisPower` is an empty subclass of `ReturnPolicyPower` (its own name on the teammate), and
+`NaquadahGeneratorPower` of Daniel's `IonBatteryPower`. Daniel's Duo SG-1 Marathon draws David 2 cards next turn.

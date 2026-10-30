@@ -145,3 +145,19 @@ Build notes:
   Co-op turns happen at the same time in StS2, so "on other players' turns" doesn't apply; "any player's Attack" is the closest fit.
 - **The Hunt for Red October**: `BeforeSideTurnEnd` while in hand calls `EnergyCost.AddUntilPlayed(-1)` (cards in hand get turn hooks, like vanilla Regret).
 - Placeholder art drawn (glyphs.txt, power_glyphs.txt).
+
+## Stargate (built 2026-10-29, untested in game)
+
+Daniel and David both love Stargate SG-1 and Stargate Atlantis (and Daniel shares a name with SG-1's Daniel Jackson).
+Reward pool 87 -> 91 (27 / 44 / 20), plus a new Duo with David.
+
+| Name | Rarity, Cost / Type | Tag | Effect | Upgrade | Theme |
+|---|---|---|---|---|---|
+| Puddle Jumper | Common, 1 Skill | H, Wired | Gain 7 Block. **Wired:** gain 1 Energy next turn. | 10 Block | Atlantis gateship |
+| Zat'nik'tel | Common, 1 Attack | H, Diligent | Deal 5 damage. Apply 1 Weak. **Diligent:** +4 damage this combat. | 7, +5 | SG-1 ("one shot stuns, two shots kill") |
+| Chevron Seven, Locked! | Uncommon, 1 Power | L | Each Logic or Handy card you play locks a chevron. At 7, deal 20 damage to ALL enemies and start over. | 26 damage | SG-1 dialing the gate |
+| ZPM | Rare, 2 Power | — | At the start of your next 3 turns, gain 2 Energy. | 4 turns | Atlantis Zero Point Module (it runs down) |
+| SG-1 Marathon (Duo: David) | Uncommon, 1 Skill | L | Draw 2 cards. David draws 2 extra cards next turn. | Costs 0 | Watching it together |
+
+- ZPM was planned as "Wired is always active", but Nerds Wrong already does exactly that.
+- Chevron Seven, Locked!: `ChevronSevenLockedPower` (Amount = damage, the icon shows chevrons locked, like Race to 40).
