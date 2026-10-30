@@ -126,7 +126,7 @@ Coppersmith (Tim). Any party can meet them; if the namesake is there he starts w
 - [x] Closing lines: the rewards screen waits until the last line has been up 3.5 s (`Banter.MarkClosingLine`).
 - [x] Pixel art: `Giants.cs` (Goliath, Shield Bearer), `Foes.cs` (Jericho Guard/Archer, Alexander, Automaton), `Beasts.cs`
       (Lion, Lioness, Wall; drawn without the Rig, 72x48 for lions). Goliath is drawn 540 tall, intent capped at 500.
-- [ ] Test: placement (helpers in front), bubble timing, the rewards-screen hold, tokens in co-op, minions ending the fight,
+- [x] Test: placement (helpers in front), bubble timing, the rewards-screen hold, tokens in co-op, minions ending the fight,
       Automatons sliding in when forged (no encounter scene, so `Alexander.Summon` re-runs the game's layout), the Wall
       falling, lion sizes, sounds (all borrowed from vanilla)
 - [ ] Brandi: reword any lines (monsters.json `SPIREBROTHERS-<GOLIATH|LIONS_DEN|JERICHO|ALEXANDER>.intro/heroIntro/heroReply/taunts/heroWin.N`)
@@ -141,7 +141,7 @@ Text: powers.json `SPIREBROTHERS-RUN_STATS.*`.
   - Joshua: HP healed by his cards and potions (only real healing, no overheal; "healed the team" in co-op), biggest Chorus, Verses sung
   - Tim: damage his Kids dealt, Age reached, Script effects
 - [x] Track them over the run (saved with the run, counted the same way on every client)
-- [ ] Test: lines show and slide in after vanilla's, numbers look right, solo and co-op, a save/reload mid-run keeps them
+- [x] Test: lines show and slide in after vanilla's, numbers look right, solo and co-op, a save/reload mid-run keeps them
 - [ ] Brandi: reword any line (powers.json), or pick different stats
 
 ### 9. A fifth character: Brandi
@@ -230,7 +230,7 @@ fight's stats ("Goliath, down in 3 turns!"). Mockup (Brandi loved it): https://c
   - If the moment can't be captured (a defeat on the map or at a rest site), draw just the party.
   - (Built: a defeat outside combat is a screenshot of wherever it happened; the VICTORY photo is the party alone.)
 - [x] Build (2026-10-28): `Mechanics/Album.cs`, `AlbumTracker.cs`, `AlbumScreen.cs`
-- [ ] Test: the main menu button (under Compendium), the album screen and its filters/pages, an elite win (drawn), a
+- [x] Test: the main menu button (under Compendium), the album screen and its filters/pages, an elite win (drawn), a
       vanilla elite or boss (screenshot), a defeat in and out of combat, the "Saved" note, co-op (each player saves their own)
 - [ ] Maybe: Tim's Kids in the photos (their art is drawn in code, so they're left out for now)
 
