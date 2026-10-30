@@ -1,17 +1,18 @@
-// The Steam Workshop image (600 x 600): all seven characters, no names. The four brothers on the top row; Brandi (Daniel's
-// wife) and the two friends (Honorary Brothers) on the bottom row, the friends on their charcoal select-button colors
-// with steel rings. Each tile's colors are sampled from the character's select button in SpireBrothers/images/characters.
+// The Steam Workshop image (600 x 600), no names: six equal bust tiles, 3 across and 2 rows. The four brothers first
+// (Daniel, David, Joshua on top; Tim bottom left), then the two friends (Honorary Brothers) on their charcoal
+// select-button colors with steel rings. Brandi is left out on purpose (2026-10-29, her call), though she's still in the
+// mod. Each tile's colors are sampled from the character's select button in SpireBrothers/images/characters.
 // Run: dotnet run -c Release, then copy out/mod_image.png to the Workshop uploader's image.png.
 var Chars = "D:/projects/csharp/SpireBrothers/SpireBrothers/images/characters/";
-AnimatedBrother[] people = [new DanielArt(), new DavidArt(), new JoshuaArt(), new TimArt(), new BrandiArt(), new JohnArt(), new HuffmanArt()];
-const int Size = 600, TileH = 300, Gap = 4;
-int[] rowCols = [4, 3];
+const int Size = 600, Gap = 4, BustScale = 6;
+AnimatedBrother[] people = [new DanielArt(), new DavidArt(), new JoshuaArt(), new TimArt(), new JohnArt(), new HuffmanArt()];
+// Each tile: who, where (x, y, w, h on the 600 x 600 image), and the portrait's pixel scale.
+var tiles = people.Select((b, i) => (who: b, x: i % 3 * 200, y: i / 3 * 300, w: 200, h: 300, scale: BustScale)).ToArray();
 var img = new Canvas(Size, Size);
 for (int y = 0; y < Size; y++) for (int x = 0; x < Size; x++) img.Set(x, y, Col.Hex("16141c"));
 
-for (int i = 0; i < people.Length; i++)
+foreach (var (b, ox, oy, TileW, TileH, S) in tiles)
 {
-    var b = people[i];
     bool friend = b is JohnArt or HuffmanArt;
     b.Portrait = true;
     var frame = b.Render(b.Anims()["idle"].poses[0]);
@@ -22,10 +23,9 @@ for (int i = 0; i < people.Length; i++)
     var ringCol = friend ? Col.Hex("bec4ce") : new Col(255, 255, 255);
     float ringAmt = friend ? 0.16f : 0.12f;
 
-    int row = i < rowCols[0] ? 0 : 1, col = row == 0 ? i : i - rowCols[0], Cols = rowCols[row], TileW = Size / Cols;
-    int ox = col * TileW, oy = row * TileH;
-    int x0 = ox + (col == 0 ? 0 : Gap / 2), x1 = ox + TileW - (col == Cols - 1 ? 0 : Gap / 2);
-    int y0 = oy + (row == 0 ? 0 : Gap / 2), y1 = oy + TileH - (row == 0 ? Gap / 2 : 0);
+    // half a gap on every side that touches another tile
+    int x0 = ox + (ox == 0 ? 0 : Gap / 2), x1 = ox + TileW - (ox + TileW == Size ? 0 : Gap / 2);
+    int y0 = oy + (oy == 0 ? 0 : Gap / 2), y1 = oy + TileH - (oy + TileH == Size ? 0 : Gap / 2);
     float cx = ox + TileW / 2f, cy = oy + TileH * 0.38f;
 
     // gradient plus soft rings around the face, like the select buttons
@@ -42,9 +42,10 @@ for (int i = 0; i < people.Length; i++)
         for (int y = y0; y < y1; y++) for (int x = x0; x < x1; x++)
             if (x - x0 < 2 || x1 - 1 - x < 2 || y - y0 < 2 || y1 - 1 - y < 2) img.Set(x, y, Col.Hex("8a909c"));
 
-    // portrait: head down to the waist (frame x 8..51, y 2..71) at 4x, centered, with a drop shadow, cut off at the tile bottom
-    const int S = 4, X0 = 8, Y0 = 2, CW = 44, CH = 70;
-    int px = (int)(cx - CW * S / 2f), py = y1 - CH * S + 6;
+    // portrait: head down to the waist (frame x 8..51, y 2..71) at the tile's scale, centered, with a drop shadow, standing
+    // on the tile bottom; in a short tile the head stays near the top and the body is cut off instead
+    const int X0 = 8, Y0 = 2, CW = 44, CH = 70;
+    int px = (int)(cx - CW * S / 2f), py = Math.Max(y1 - CH * S + 6, y0 + 4 * S);
     Col? Port(int x, int y) => frame.Get(X0 + x / S, Y0 + y / S);
     for (int pass = 0; pass < 2; pass++)
         for (int y = 0; y < CH * S; y++) for (int x = 0; x < CW * S; x++)
