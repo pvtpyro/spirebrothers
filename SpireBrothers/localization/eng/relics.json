@@ -166,7 +166,7 @@
   "SPIREBROTHERS-ETERNAL_FLAME.description": "The first time you apply [gold]Ember[/gold] each turn, apply [blue]2[/blue] more.",
   "SPIREBROTHERS-ETERNAL_FLAME.flavor": "It's pretty. It always was.",
   "SPIREBROTHERS-DOG_TAGS.title": "Dog Tags",
-  "SPIREBROTHERS-DOG_TAGS.description": "Once per combat, when your HP drops below [blue]33%[/blue], gain [blue]33[/blue] [gold]Block[/gold].",
+  "SPIREBROTHERS-DOG_TAGS.description": "Once per combat, when your HP drops below [blue]33%[/blue], gain [blue]33[/blue] [gold]Block[/gold] (at the start of your next turn if it happens on the enemies' turn).",
   "SPIREBROTHERS-DOG_TAGS.flavor": "Stamped 33. She carries them everywhere.",
   "SPIREBROTHERS-SMILEY_SHELF.title": "Smiley Shelf",
   "SPIREBROTHERS-SMILEY_SHELF.description": "Whenever you enter a treasure or [gold]?[/gold] room, add a smiley. At the start of each combat, gain [blue]1[/blue] [gold]Block[/gold] per smiley.",

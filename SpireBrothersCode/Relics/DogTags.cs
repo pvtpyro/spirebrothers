@@ -1,7 +1,9 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -9,7 +11,7 @@ namespace SpireBrothers.SpireBrothersCode.Relics;
 
 /// <summary>
 /// In memory of Brandi's late husband: his dog tags, stamped 33. She always starts with them, next to the Zippo. Once
-/// per combat, when her HP drops below 33%, she gains 33 Block. Never offered anywhere else, and never upgraded.
+/// per combat, when her HP drops below 33%, she gains 33 Block (next turn, if it happens on the enemies' turn). Never offered anywhere else, and never upgraded.
 /// </summary>
 public class DogTags : BrandiRelic
 {
@@ -26,7 +28,11 @@ public class DogTags : BrandiRelic
         if (creature.CombatState == null || creature.CurrentHp * 100 >= creature.MaxHp * Number) return;
         _used = true;
         Flash();
-        await CreatureCmd.GainBlock(creature, Number, ValueProp.Unpowered, null);
+        // Hit on the enemies' turn: Block now would be cleared before she could use it, so it comes at her next turn.
+        if (creature.CombatState.CurrentSide != creature.Side)
+            await PowerCmd.Apply<BlockNextTurnPower>(new ThrowingPlayerChoiceContext(), creature, Number, creature, null);
+        else
+            await CreatureCmd.GainBlock(creature, Number, ValueProp.Unpowered, null);
     }
 
     public override Task AfterCombatEnd(CombatRoom room)
