@@ -273,5 +273,59 @@
   "SPIREBROTHERS-JAFFA.moves.KREE.title": "Kree!",
 
   "SPIREBROTHERS-SARCOPHAGUS.name": "Sarcophagus",
-  "SPIREBROTHERS-SARCOPHAGUS.moves.RESTORE.title": "Restore"
+  "SPIREBROTHERS-SARCOPHAGUS.moves.RESTORE.title": "Restore",
+
+  "SPIREBROTHERS-BAAL.name": "Ba'al",
+  "SPIREBROTHERS-BAAL.moves.ZAT_BLAST.title": "Zat Blast",
+  "SPIREBROTHERS-BAAL.moves.HOSTILE_TAKEOVER.title": "Hostile Takeover",
+  "SPIREBROTHERS-BAAL.moves.SMIRK.title": "Smirk",
+
+  "SPIREBROTHERS-BAAL.intro.0": "Oh good, visitors. Which one of me would you like to speak to?",
+  "SPIREBROTHERS-BAAL.intro.1": "Don't bother guessing. We're all very handsome.",
+  "SPIREBROTHERS-BAAL.intro.2": "Welcome to Ba'al Industries. Please leave your Gold at the door.",
+
+  "SPIREBROTHERS-BAAL.heroIntro.0": "Okay. One of these is real. I've done the math.",
+  "SPIREBROTHERS-BAAL.heroIntro.1": "Three Ba'als. Same stats. Love it.",
+  "SPIREBROTHERS-BAAL.heroIntro.2": "Nobody touches my Gold.",
+  "SPIREBROTHERS-BAAL.heroIntro.3": "Not this guy again.",
+
+  "SPIREBROTHERS-BAAL.heroReply.0": "Not this guy again.",
+  "SPIREBROTHERS-BAAL.heroReply.1": "Ah. The one who counts everything.",
+  "SPIREBROTHERS-BAAL.heroReply.2": "I see you've brought a calculator. Adorable.",
+  "SPIREBROTHERS-BAAL.heroReply.3": "Your Gold is already on our balance sheet.",
+
+  "SPIREBROTHERS-BAAL.sideReply.0": "He's always the one in the middle. Probably.",
+  "SPIREBROTHERS-BAAL.sideReply.1": "Hit them all. Sort it out later.",
+  "SPIREBROTHERS-BAAL.sideReply.2": "I love this episode.",
+  "SPIREBROTHERS-BAAL.sideReply.3": "How many of him ARE there?",
+
+  "SPIREBROTHERS-BAAL.taunts.0": "Kneel. Or don't. I'm flexible.",
+  "SPIREBROTHERS-BAAL.taunts.1": "I'm getting bored. All of me.",
+  "SPIREBROTHERS-BAAL.taunts.2": "Do you have any idea how many of me there are?",
+  "SPIREBROTHERS-BAAL.taunts.3": "Was that supposed to hurt? Asking for a friend. Me.",
+  "SPIREBROTHERS-BAAL.taunts.4": "I'd say 'I'll be back,' but I never really left.",
+
+  "SPIREBROTHERS-BAAL.takeover.0": "Consider this a hostile takeover.",
+  "SPIREBROTHERS-BAAL.takeover.1": "Ba'al Industries thanks you for your investment.",
+  "SPIREBROTHERS-BAAL.takeover.2": "A small processing fee.",
+  "SPIREBROTHERS-BAAL.takeover.3": "Your Gold. My Gold. Same thing, really.",
+
+  "SPIREBROTHERS-BAAL.notMe.0": "Not me! Keep looking.",
+  "SPIREBROTHERS-BAAL.notMe.1": "Just a clone. Obviously.",
+  "SPIREBROTHERS-BAAL.notMe.2": "Wrong Ba'al. Try again.",
+  "SPIREBROTHERS-BAAL.notMe.3": "I'm hurt. Also not him.",
+
+  "SPIREBROTHERS-BAAL.found.0": "Fine. It's me. Happy?",
+  "SPIREBROTHERS-BAAL.found.1": "You found me. Now I'm annoyed.",
+  "SPIREBROTHERS-BAAL.found.2": "That was the expensive suit!",
+
+  "SPIREBROTHERS-BAAL.arrive.0": "Did I miss anything?",
+  "SPIREBROTHERS-BAAL.arrive.1": "Sorry I'm late. I was busy being me.",
+  "SPIREBROTHERS-BAAL.arrive.2": "Another one? Don't mind if I do.",
+  "SPIREBROTHERS-BAAL.arrive.3": "I'm the real one. Trust me.",
+
+  "SPIREBROTHERS-BAAL.heroWin.0": "Audit complete.",
+  "SPIREBROTHERS-BAAL.heroWin.1": "And I'll be taking my Gold back, thanks.",
+  "SPIREBROTHERS-BAAL.heroWin.2": "Same stats. Different outcome.",
+  "SPIREBROTHERS-BAAL.heroWin.3": "Nobody touches my Gold."
 }

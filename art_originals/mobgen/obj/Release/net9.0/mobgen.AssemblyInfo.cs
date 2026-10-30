@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("mobgen")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc2bfdb539083c0c10a99b2d1fa1fdea8f8eeb0d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+04f2c48905d556822ffae4dd82567681551e7b9b")]
 [assembly: System.Reflection.AssemblyProductAttribute("mobgen")]
 [assembly: System.Reflection.AssemblyTitleAttribute("mobgen")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

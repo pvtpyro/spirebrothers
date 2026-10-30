@@ -237,7 +237,7 @@ fight's stats ("Goliath, down in 3 turns!"). Mockup (Brandi loved it): https://c
 ### 18. A custom boss
 No custom boss yet (only elites and normal fights). Family-themed Act boss ideas: "Moving Day" (a mountain of boxes that
 summons furniture), "Family Game Night Gone Wrong" (a giant board game that changes the rules every turn).
-Going with Stargate SG-1 bosses, one at a time: **Apophis** (Act 2, built), then Ba'al and his clones, Anubis, the
+Going with Stargate SG-1 bosses, one at a time: **Apophis** (Act 2, built), **Ba'al** (Act 1, built), then Anubis, the
 Replicators (all four were liked; act still to pick for each).
 - [x] Pick the boss and act: Apophis, Act 2
 - [x] Build Apophis (2026-10-29, tested in game the same day): `Monsters/Apophis.cs` (ApophisBoss + Apophis), `Jaffa.cs`, `Sarcophagus.cs`;
@@ -252,7 +252,16 @@ Replicators (all four were liked; act still to pick for each).
 - [ ] Check the four bodies fit on the brothers' screens in co-op
 - [x] Balance (2026-10-29, first fight): Jaffa, Kree! no longer gives Apophis 15 Block, and the Jaffa's Kree! is 6 Block (was 10).
       A Stun (Shol'va) puts the two Jaffa in step, and both Kree!s plus his own came to 35 Block in one turn.
-- [ ] Ba'al (clones), Anubis, Replicators
+- [x] Build Ba'al (2026-10-29, tested in game the same day), the silly Act 1 boss: `Monsters/Baal.cs` (BaalBoss + Baal). Three identical
+      Ba'als (70 HP each), one real (the encounter's Rng). `WhichOneIsRealPower` (same on all of them) makes the clones secondary
+      enemies (the real one falling ends the fight and the game kills the rest), reveals a Ba'al at half HP (`JustAClonePower`,
+      or `RealBaalPower` + 3 Strength), sends a fresh clone in when one falls (3 in reserve, counted on the real one), and is the
+      FoePower (David starts with Due Diligence: 7 to ALL). Moves cycle Zat Blast 8, Hostile Takeover (5 + steals 10 Gold
+      from each player; that Ba'al gives it back when he falls), Smirk (6 Block, 1 Weak to all). David opens, Daniel replies.
+- [x] Test Ba'al (done 2026-10-29, all working): `fight SPIREBROTHERS-BAAL_BOSS`. Checked: nothing gives away the real one (hover, health bar, intents),
+      the half-HP reveals, clone replacement (placement, the "arrive" line), the clones vanishing when the real one falls,
+      stolen Gold coming back, Due Diligence, only one quip per round
+- [ ] Anubis, Replicators
 
 ### 19. Mom as an Ancient
 An act-start Ancient (like Neow) offering family-flavored blessings: "Pack a lunch" (heal), "Take your brother with you"

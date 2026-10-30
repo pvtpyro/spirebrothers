@@ -1,6 +1,6 @@
-// The Apophis boss (Stargate SG-1, Act 2): Apophis, his serpent guard Jaffa, and the Sarcophagus. Drawn facing right
-// like the rest; the game mirrors them to face the party. Rendered by art_originals/mobgen (apophis jaffa sarcophagus),
-// which also writes Apophis's map icon (images/map/apophis_boss_icon.png + _outline.png) from his idle frame.
+// The Stargate SG-1 bosses: Apophis (Act 2) with his Jaffa and the Sarcophagus, and Ba'al and his clones (Act 1). Drawn facing right
+// like the rest; the game mirrors them to face the party. Rendered by art_originals/mobgen (apophis jaffa sarcophagus baal),
+// which also writes each boss's map icon (images/map/<name>_boss_icon.png + _outline.png) from his idle frame (BossIcon).
 
 // ---------------------------------------------------------------- Apophis
 // A Goa'uld System Lord: dark skin, shaved head under a gold circlet with a cobra on the brow, a long black robe with a
@@ -103,36 +103,6 @@ public class ApophisArt : FoeArt
             list.Add(p);
         }
         return list;
-    }
-
-    /// <summary>
-    /// The boss icon on the map: his idle frame, 3x, in greys (the map tints it with the act's colors, like vanilla's
-    /// placeholder boss icons), and a 4-pixel ring around it for the outline image. Both 256 x 256.
-    /// </summary>
-    public static (Canvas icon, Canvas outline) MapIcon(Canvas idle)
-    {
-        const int Size = 256, K = 3, Ring = 4;
-        int ox = (Size - idle.W * K) / 2, oy = (Size - idle.H * K) / 2;
-        var icon = new Canvas(Size, Size);
-        for (int y = 0; y < idle.H; y++)
-            for (int x = 0; x < idle.W; x++)
-                if (idle.Get(x, y) is { } px)
-                {
-                    byte g = (byte)(90 + (px.R * 0.3f + px.G * 0.59f + px.B * 0.11f) * 165 / 255);
-                    for (int dy = 0; dy < K; dy++) for (int dx = 0; dx < K; dx++) icon.Set(ox + x * K + dx, oy + y * K + dy, new Col(g, g, g));
-                }
-        var outline = new Canvas(Size, Size);
-        for (int y = 0; y < Size; y++)
-            for (int x = 0; x < Size; x++)
-            {
-                if (icon.Get(x, y) != null) continue;
-                bool near = false;
-                for (int dy = -Ring; dy <= Ring && !near; dy++)
-                    for (int dx = -Ring; dx <= Ring && !near; dx++)
-                        near = dx * dx + dy * dy <= Ring * Ring && icon.Get(x + dx, y + dy) != null;
-                if (near) outline.Set(x, y, new Col(255, 255, 255));
-            }
-        return (icon, outline);
     }
 }
 
@@ -284,5 +254,111 @@ public class SarcophagusArt : IFrameArt
         if (p.Broken == 2) Px.Tint(c, Col.Hex("3a3040"), 0.35f);
         Px.Tint(c, Col.Hex("ff4040"), p.Red);
         return c;
+    }
+}
+
+// ---------------------------------------------------------------- Ba'al (the Act 1 boss)
+// Ba'al and every one of his clones (all the same frames: nothing tells them apart). Short dark hair, a goatee, a long
+// charcoal coat with a silver V on the chest and a high collar, and a zat gun. Attack: aims and fires a blue arc. Cast
+// (Smirk): straightens his collar, very pleased with himself.
+public class BaalArt : FoeArt
+{
+    public override string Name => "baal";
+    static readonly Col Coat = Col.Hex("2c2c36"), Trim = Col.Hex("b8c0cc"), Zat = Col.Hex("3e3e4a"), Arc = Col.Hex("7ad8ff"), White = Col.Hex("e8f8ff");
+
+    public BaalArt()
+    {
+        Skin = Col.Hex("e8bc98");
+        HairC = Col.Hex("1a1414"); BeardC = Col.Hex("1a1414"); Hair = HairStyle.Short; Stubble = true; StubbleAmt = 0.75f;
+        Sleeve = Coat; Pants = Coat.Mul(0.8f); Shoes = Col.Hex("141418");
+    }
+
+    protected override Pose Base() => new() { Prop = "zat", PropAngle = -60, FrontHand = new V(6, 12), BackHand = new V(-3, 14) };
+
+    protected override void DrawTorso(Canvas c, Rig r, Pose p)
+    {
+        // a coat to the knees, a silver V across the chest, and a high silver collar
+        var body = TorsoPoly(r, MathF.Min(r.H.Y + 14, 74), 3);
+        c.Draw(q => S.Poly(q, body) - 1, Coat, hi: Coat.Light);
+        Px.Line(c, r.S + new V(-3.5f, 1.5f), r.S + new V(1.5f, 9), Trim);
+        Px.Line(c, r.S + new V(6.5f, 1.5f), r.S + new V(1.5f, 9), Trim);
+        c.Draw(q => S.Box(q, r.S.X - 3, r.S.Y - 3, r.S.X + 6, r.S.Y + 0.5f), Coat.Light, hi: Trim);
+    }
+
+    protected override void DrawWeapon(Canvas c, Rig r, Pose p)
+    {
+        if (p.Prop is not ("zat" or "fire")) return;
+        // the zat'nik'tel: a dark, curved grip that rears up like a snake's head
+        var h = r.HandF; var d = V.Dir(p.PropAngle);
+        c.Draw(q => S.Capsule(q, h, h + d * 5, 1.2f), Zat, hi: Zat.Light);
+        var muzzle = h + d * 6;
+        c.Draw(q => S.Circle(q, muzzle, 1.4f), Zat, hi: Zat.Light);
+        if (p.Prop != "fire") return;   // (not Fx alone: the idle loop counts Fx too)
+        // a blue zigzag arc out to the edge
+        var at = muzzle + d * 2;
+        for (int i = 0; at.X < 64 && i < 40; i++)
+        {
+            var next = at + d * 3 + d.Perp * (i % 2 == 0 ? 2 : -2);
+            Px.Line(c, at, next, i < 2 ? White : Arc);
+            at = next;
+        }
+    }
+
+    protected override List<Pose> Attack()
+    {
+        var list = Strike([
+            (new(8, 9), -20, 0, 0), (new(12, 4), 0, 1, 0), (new(14, 3), 0, 2, 1),
+            (new(14, 3), 0, 2, 1), (new(10, 8), -30, 1, 0), (new(6, 12), -60, 0, 0)]);
+        foreach (var p in list) p.Prop = p.Fx == 1 ? "fire" : "zat";
+        return list;
+    }
+
+    // Smirk: straightens his collar.
+    protected override List<Pose> Cast()
+    {
+        V[] back = [new(-3, 14), new(1, 4), new(3, -1), new(3, -1), new(3, -1), new(1, 6), new(-3, 14)];
+        var list = new List<Pose>();
+        for (int i = 0; i < back.Length; i++)
+        {
+            var p = Base(); p.BackHand = back[i]; p.BackElbowPref = new V(0, 1); p.HeadTilt = i is >= 2 and <= 4 ? 1 : 0;
+            p.Face = i is >= 2 and <= 4 ? Face.Happy : Face.Normal;
+            list.Add(p);
+        }
+        return list;
+    }
+}
+
+// ---------------------------------------------------------------- Boss map icons
+public static class BossIcon
+{
+    /// <summary>
+    /// A boss icon for the map from an idle frame, 3x, in full color, and a 4-pixel white ring around it for the outline
+    /// image. Both 256 x 256. The map tints placeholder icons with the act's dark ink color, which turned a dark-clothed
+    /// boss (Ba'al) into a black blob, so the mod shows its own icons untinted (BossMapIconPatch); the ring still takes
+    /// the map's background color, as a halo.
+    /// </summary>
+    public static (Canvas icon, Canvas outline) MapIcon(Canvas idle)
+    {
+        const int Size = 256, K = 3, Ring = 4;
+        int ox = (Size - idle.W * K) / 2, oy = (Size - idle.H * K) / 2;
+        var icon = new Canvas(Size, Size);
+        for (int y = 0; y < idle.H; y++)
+            for (int x = 0; x < idle.W; x++)
+                if (idle.Get(x, y) is { } px)
+                {
+                    for (int dy = 0; dy < K; dy++) for (int dx = 0; dx < K; dx++) icon.Set(ox + x * K + dx, oy + y * K + dy, px);
+                }
+        var outline = new Canvas(Size, Size);
+        for (int y = 0; y < Size; y++)
+            for (int x = 0; x < Size; x++)
+            {
+                if (icon.Get(x, y) != null) continue;
+                bool near = false;
+                for (int dy = -Ring; dy <= Ring && !near; dy++)
+                    for (int dx = -Ring; dx <= Ring && !near; dx++)
+                        near = dx * dx + dy * dy <= Ring * Ring && icon.Get(x + dx, y + dy) != null;
+                if (near) outline.Set(x, y, new Col(255, 255, 255));
+            }
+        return (icon, outline);
     }
 }

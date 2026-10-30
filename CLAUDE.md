@@ -473,3 +473,13 @@ Card art for everything (all cards, relics, and powers use placeholders).
   icon is `BossNodePath` + `.png` / `_outline.png` with `BossNodeSpineResource => null`, like vanilla's placeholder bosses: a grey
   image the map tints. Apophis's icon comes from mobgen (`out/apophis/map/`). Console `fight <ENCOUNTER_ID>` jumps to any encounter.
 - Art: `art_originals/pixelgen/Stargate.cs` (ApophisArt, JaffaArt, SarcophagusArt), rendered by mobgen (`dotnet run -c Release apophis jaffa sarcophagus`).
+
+## Added 2026-10-29 (Ba'al, the second boss)
+
+- **Ba'al and his clones** (Stargate SG-1), the silly Act 1 boss, tested in game 2026-10-29. TODO.md #18. `Monsters/Baal.cs` (`BaalBoss`, `Baal`),
+  `Powers/WhichOneIsRealPower.cs` (a FoePower run by the first Ba'al only; `OwnerIsSecondaryEnemy` for clones, like vanilla MinionPower;
+  kept after death like AdaptablePower so its `AfterDeath` runs), `JustAClonePower`, `RealBaalPower`, David's token `Cards/David/DueDiligence.cs`.
+  Nothing may give away the real one: all Ba'als share art, HP, power, and talk (`BaalBoss.Quip`: one line per round, from any of them).
+- `BossIcon.MapIcon` (pixelgen Stargate.cs) makes any boss's map icon; mobgen writes it for the names listed in its Program.cs.
+- Our bosses' map icons are full color: `Monsters/BossMapIconPatch.cs` undoes the map's ink tint on `NBossMapPoint` for any
+  `BibleElite` boss (Ba'al went solid black under it). The `_outline.png` ring still takes the map background color.

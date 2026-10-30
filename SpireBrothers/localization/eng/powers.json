@@ -975,5 +975,14 @@
   "SPIREBROTHERS-KARA_KESH_POWER.smartDescription": "Charging the hand device. Deal [blue]{Amount}[/blue] more damage to him before his turn to knock him out of the [gold]Ribbon Device[/gold].",
   "SPIREBROTHERS-SARCOPHAGUS_POWER.title": "Sarcophagus",
   "SPIREBROTHERS-SARCOPHAGUS_POWER.description": "While the Sarcophagus stands, falling only sends him into it, and he rises again on his next turn, stronger. Break it first and he stays down.",
-  "SPIREBROTHERS-SARCOPHAGUS_POWER.smartDescription": "While the [gold]Sarcophagus[/gold] stands, falling only sends him into it, and he rises again on his next turn, stronger. Break it first and he stays down."
+  "SPIREBROTHERS-SARCOPHAGUS_POWER.smartDescription": "While the [gold]Sarcophagus[/gold] stands, falling only sends him into it, and he rises again on his next turn, stronger. Break it first and he stays down.",
+  "SPIREBROTHERS-WHICH_ONE_IS_REAL_POWER.title": "Which One Is Real?",
+  "SPIREBROTHERS-WHICH_ONE_IS_REAL_POWER.description": "Only one Ba'al is real; beat him and the clones give up. At half HP, a Ba'al gives himself away. A fallen clone is replaced by a fresh one, and gives back the Gold he stole. If David is here, he starts with Due Diligence.",
+  "SPIREBROTHERS-WHICH_ONE_IS_REAL_POWER.smartDescription": "Only one [gold]Ba'al[/gold] is real; beat him and the clones give up.\nAt half HP, a [gold]Ba'al[/gold] gives himself away.\nA fallen clone is replaced by a fresh one, and gives back the Gold he stole.\nIf [gold]David[/gold] is here, he starts with [gold]Due Diligence[/gold].",
+  "SPIREBROTHERS-JUST_A_CLONE_POWER.title": "Just a Clone",
+  "SPIREBROTHERS-JUST_A_CLONE_POWER.description": "Not the real Ba'al. Keep looking.",
+  "SPIREBROTHERS-JUST_A_CLONE_POWER.smartDescription": "Not the real [gold]Ba'al[/gold]. Keep looking.",
+  "SPIREBROTHERS-REAL_BAAL_POWER.title": "The Real Ba'al",
+  "SPIREBROTHERS-REAL_BAAL_POWER.description": "Found him. Beat this one and the fight is over.",
+  "SPIREBROTHERS-REAL_BAAL_POWER.smartDescription": "Found him. Beat this one and the fight is over."
 }

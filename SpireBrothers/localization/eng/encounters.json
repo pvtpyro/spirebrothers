@@ -28,5 +28,7 @@
   "SPIREBROTHERS-POXWALKER_HORDE_NORMAL.title": "Poxwalker Horde",
   "SPIREBROTHERS-POXWALKER_HORDE_NORMAL.loss": "{character} lost coherency and was swarmed by the [gold]{encounter}[/gold].",
   "SPIREBROTHERS-APOPHIS_BOSS.title": "Apophis",
-  "SPIREBROTHERS-APOPHIS_BOSS.loss": "{character} knelt before [gold]{encounter}[/gold]."
+  "SPIREBROTHERS-APOPHIS_BOSS.loss": "{character} knelt before [gold]{encounter}[/gold].",
+  "SPIREBROTHERS-BAAL_BOSS.title": "Ba'al",
+  "SPIREBROTHERS-BAAL_BOSS.loss": "{character} picked the wrong [gold]{encounter}[/gold]. Several times."
 }
