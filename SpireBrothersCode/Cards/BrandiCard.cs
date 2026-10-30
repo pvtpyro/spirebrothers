@@ -48,6 +48,7 @@ public abstract class BrandiCard(int cost, CardType type, CardRarity rarity, Tar
     /// <summary>Fires the Shot at the card's target(s), then spends her Aim. Returns the Aim spent.</summary>
     protected async Task<int> Shoot(PlayerChoiceContext ctx, CardPlay play, string vfx = "vfx/vfx_dramatic_stab", bool keepHalf = false)
     {
+        Sounds.Play(Sounds.BrandiShot);
         await CommonActions.CardAttack(this, play, vfx: vfx).Execute(ctx);
         RunStats.Add(RunStats.Shots, Owner);
         return await Aim.Spend(ctx, Owner, keepHalf);

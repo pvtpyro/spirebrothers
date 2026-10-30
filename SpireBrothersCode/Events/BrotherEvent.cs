@@ -21,7 +21,7 @@ using SpireBrothers.SpireBrothersCode.Relics;
 namespace SpireBrothers.SpireBrothersCode.Events;
 
 /// <summary>
-/// Base for the family events (? rooms). They only show up when at least one Spire Brother is in the party.
+/// Base for the family events (? rooms). They only show up when at least one Spire Brother (or Brandi) is in the party.
 /// Picture: images/events/&lt;event_id&gt;.png, wide like vanilla's (3440x1613; the placeholders are half that).
 /// Text: events.json, "&lt;ID&gt;.pages.&lt;PAGE&gt;.description" and "&lt;ID&gt;.pages.&lt;PAGE&gt;.options.&lt;METHOD_NAME&gt;.title/description".
 /// </summary>
@@ -29,15 +29,16 @@ public abstract class BrotherEvent : CustomEventModel
 {
     public override string? CustomInitialPortraitPath => $"events/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".ImagePath();
 
-    public override bool IsAllowed(IRunState runState) => runState.Players.Any(BrothersInArms.IsBrother);
+    public override bool IsAllowed(IRunState runState) =>
+        runState.Players.Any(p => BrothersInArms.IsBrother(p) || p.Character is Character.Brandi);
 
     /// <summary>
-    /// Events about the brothers' parents set this. John and Huffman then read FRIEND_&lt;PAGE&gt; pages instead (same
-    /// options, same effects): it's not their Mom and Dad, so they're the guest who's been coming over for years.
+    /// Events about the brothers' parents set this. John, Huffman, and Brandi then read FRIEND_&lt;PAGE&gt; pages instead
+    /// (same options, same effects): it's not their Mom and Dad, so they're the guest who's been coming over for years.
     /// </summary>
     protected virtual bool HasFriendText => false;
 
-    private bool ForFriend => HasFriendText && Owner?.Character is Character.John or Character.Huffman;
+    private bool ForFriend => HasFriendText && Owner?.Character is Character.John or Character.Huffman or Character.Brandi;
 
     /// <summary>A page key, swapped for its FRIEND_ copy when one of the friends is playing.</summary>
     protected string Page(string pageKey) => ForFriend ? "FRIEND_" + pageKey : pageKey;

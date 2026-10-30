@@ -1,4 +1,4 @@
-# Brother sound effects
+# Brother (and Brandi) sound effects
 
 Drop sound files in this folder with these exact names, then rebuild (`dotnet publish -c Release`).
 Each one plays automatically once it's here. Until then, the game uses a built-in sound or stays silent.
@@ -18,6 +18,10 @@ Each one plays automatically once it's here. Until then, the game uses a built-i
 | `john_shroud` | John enters the Shroud | silent |
 | `huffman_bark` | The Mastiff bites | game's bite sound |
 | `huffman_law` | One of Huffman's Laws punishes an enemy | silent |
+| `brandi_shot` | Brandi fires a Shot attack | game's crossbow reload clack (the game has no gunshot) |
+| `brandi_zap` | Brandi's Static discharges | game's lightning zap |
+| `brandi_ember` | Brandi applies Ember | game's fire whoosh |
+| `brandi_spit` | Al spits | game's goop spit |
 
 Tips for recording:
 - Keep each clip short: under 2 seconds, ideally under 1. Trim the silence at the start so it feels instant.

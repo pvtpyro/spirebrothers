@@ -45,15 +45,23 @@ untested in game. Plan and bio in `BRANDI_CARDS.md`. She never talks: her banter
   (`Backgrounds.Brandi`, Camp Victory at night); her body is `pixelgen/Brandi.cs`. Card art: `gen.ps1 -CardsOnly -Character Brandi`.
 - Banter: `Banter.Talks` includes her, and `Banter.ForSpeaker` swaps any pool she'd speak from for `FACES.<situation>`
   (smiley `[img]` lines; faces in `images/faces/`, drawn by friendbuttons). Bonds: Husband and Wife, In-Laws (`FamilyBonds`).
+- **Events** (2026-10-29): every mod event can show up when she's in the party (`BrotherEvent.IsAllowed`; Weekend in
+  Town too). In the parents' events she reads the friends' FRIEND_ pages ("the boys' mom"). Her own event: **A Day at
+  Home** (`Events/DayAtHome.cs`): Peppi (add the Peppi card), Felicity (+5 Max HP), Lily Bean (upgrade 2 random cards),
+  Yertle (lose 8 HP, random relic).
+- **Campfire:** cleans her rifle with a rag across her lap, sights down it, sets it back (`BrandiArt.Rest`).
+- **Sounds:** `brandi_shot` / `brandi_zap` / `brandi_ember` / `brandi_spit` (`Sounds`; game stand-ins until recorded).
+- **Shared relics:** Shared Steam Library (which can also hand out her cards) and Party Headset, added in `MainFile`.
+- **Duos with her in the brothers' pools:** Daniel's Sound Card, David's Tactical Spreadsheet, Joshua's Metal Ballad.
 
 ## The friends (built like the brothers, but kept visibly apart)
 
 - They extend `BrotherCharacter` like the brothers. Friends look: charcoal select buttons with steel rings and silver
   names, darker select scenes, silver-grey card art (`gen.ps1` color), "Honorary Brother" in their select description.
-  Their buttons, frames, hands, map marker (pixel face on a charcoal disc), icon outline, and select background come from
+  Their buttons, frames, hands, map marker (pixel face on a charcoal disc; since 2026-10-29 the brothers and Brandi have face markers on their own colors too, all drawn by friendbuttons), icon outline, and select background come from
   `art_originals/friendbuttons/` (borrows pixelgen's code; their bodies are `pixelgen/Friends.cs`, scenes in
   `pixelgen/Backgrounds.cs`). Copy `out/<name>/...` and `out/plain/<name>/select*.png` into `images/characters/<name>/`.
-- Character order: `MainFile` calls BaseLib `CustomCharacterUtils.TryOrderCustomCharacters` (brothers, then friends).
+- Character order: `MainFile` calls BaseLib `CustomCharacterUtils.TryOrderCustomCharacters` (brothers, then Huffman, John, and Brandi last).
 - Card class names must be unique across the whole mod (the ID is the class name). Huffman's "Have You Tried Rebooting?",
   "Jetpack Boost", and "Blue Screen of Death" are named that way because Daniel and David already have the shorter ones.
 - `gen.ps1 -CardsOnly -Character John` draws only one character's cards (a full run would redraw every brother's, and any
@@ -152,7 +160,7 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
   (Well, Technically / Overstuffed Wallet / Signature Guitar / Fifteen-Passenger Van, all Starter rarity in the brother's pool).
 - Insult cards implement `Mechanics.IInsultCard`; `Mechanics/InsultBanter.cs` plays the Merchant's laugh and shows a speech bubble (4s+) from
   `SPIREBROTHERS-INSULT_LINES.0..39` (powers.json; bump `InsultBanter.Count` when adding lines), shuffled per run.
-- `Powers/BleedHealthBar.cs` patches `NHealthBar.RefreshForeground` to draw Bleed's upcoming damage in crimson, like Poison.
+- `Powers/BleedHealthBar.cs` patches `NHealthBar.RefreshForeground` to draw upcoming Bleed (crimson) and Ember (orange) damage on the health bar, like Poison.
 - Card portraits are drawn by `art_originals/cardgen/gen.ps1 -CardsOnly` (or `-Only <Class>`) from `glyphs.txt` (ClassName Emoji,
   or `@Name` for a custom drawing in `icons_<brother>.ps1`; game-reference cards use custom drawings). New cards need a line there.
 - Combat bodies: `Character/BrotherCharacter.cs` plays `images/characters/<name>/frames/<anim>_<n>.png` (idle/attack/cast/hit/dead,

@@ -161,5 +161,19 @@
   "SPIREBROTHERS-WEEKEND_IN_TOWN.pages.INITIAL.options.LET_DAVID_PLAN_IT.description": "He has a spreadsheet and coupons. Gain [blue]60[/blue] [gold]Gold[/gold].",
   "SPIREBROTHERS-WEEKEND_IN_TOWN.pages.RAID_NIGHT.description": "\"One more pull\" turns into eleven more pulls. John has a spreadsheet of cooldowns open on his second monitor, and David keeps suggesting a better one.\n\nThe sun is coming up when the boss finally drops. Everyone is exhausted. Everyone got better at this.",
   "SPIREBROTHERS-WEEKEND_IN_TOWN.pages.DINNER_AT_HUFFMANS.description": "Huffman has a deep fryer and no fear. Chicken. Fries. Pickles. Something that might have been a vegetable once.\n\nThe Mastiff gets a plate too. Nobody leaves the couch for the rest of the night, and Huffman considers it the best weekend he's had all year.",
-  "SPIREBROTHERS-WEEKEND_IN_TOWN.pages.LET_DAVID_PLAN_IT.description": "David has the whole weekend mapped out: free museum day, a two-for-one lunch, and a gas station with the cheapest fuel in the county.\n\nJohn and Huffman complain the entire time. At the end, David reads out how much everyone saved, and they have to admit it's a lot."
+  "SPIREBROTHERS-WEEKEND_IN_TOWN.pages.LET_DAVID_PLAN_IT.description": "David has the whole weekend mapped out: free museum day, a two-for-one lunch, and a gas station with the cheapest fuel in the county.\n\nJohn and Huffman complain the entire time. At the end, David reads out how much everyone saved, and they have to admit it's a lot.",
+  "SPIREBROTHERS-DAY_AT_HOME.title": "A Day at Home",
+  "SPIREBROTHERS-DAY_AT_HOME.pages.INITIAL.description": "A quiet afternoon at Brandi's.\n\nThe bathroom door is shut, for the toilet paper's sake. There's gray fur on every cushion. Lily Bean is spinning in circles by the leash hook, and Yertle is watching from her tank. Judging.\n\n[blue]Who gets your afternoon?[/blue]",
+  "SPIREBROTHERS-DAY_AT_HOME.pages.INITIAL.options.PLAY_WITH_PEPPI.title": "Peppi",
+  "SPIREBROTHERS-DAY_AT_HOME.pages.INITIAL.options.PLAY_WITH_PEPPI.description": "Beep boop. Add [gold]Peppi[/gold] to your deck.",
+  "SPIREBROTHERS-DAY_AT_HOME.pages.INITIAL.options.BRUSH_FELICITY.title": "Felicity",
+  "SPIREBROTHERS-DAY_AT_HOME.pages.INITIAL.options.BRUSH_FELICITY.description": "Brush her. Gain [blue]5[/blue] Max HP.",
+  "SPIREBROTHERS-DAY_AT_HOME.pages.INITIAL.options.WALK_LILY_BEAN.title": "Lily Bean",
+  "SPIREBROTHERS-DAY_AT_HOME.pages.INITIAL.options.WALK_LILY_BEAN.description": "Walk her. [gold]Upgrade[/gold] [blue]2[/blue] random cards.",
+  "SPIREBROTHERS-DAY_AT_HOME.pages.INITIAL.options.FEED_YERTLE.title": "Yertle",
+  "SPIREBROTHERS-DAY_AT_HOME.pages.INITIAL.options.FEED_YERTLE.description": "Feed her. Lose [red]8[/red] HP. Obtain a random [gold]Relic[/gold].",
+  "SPIREBROTHERS-DAY_AT_HOME.pages.PLAY_WITH_PEPPI.description": "Peppi can't really meow. She looks right at you and goes [gold]\"beep boop.\"[/gold]\n\nSomeone left the bathroom door open a crack. By the time you find her, the toilet paper is confetti, and she looks extremely proud of herself.",
+  "SPIREBROTHERS-DAY_AT_HOME.pages.BRUSH_FELICITY.description": "Felicity purrs through the whole brushing. When you're done, there's a second, smaller gray cat's worth of fur on the floor.\n\nYou're covered in it. It's warm, at least.",
+  "SPIREBROTHERS-DAY_AT_HOME.pages.WALK_LILY_BEAN.description": "Lily Bean pulls her pink leash the whole way around the block, stops to sniff every single mailbox, and snorts at a leaf.\n\nYou come back tired and happy. So does she. She falls asleep on your foot.",
+  "SPIREBROTHERS-DAY_AT_HOME.pages.FEED_YERTLE.description": "Yertle is twenty-two years old. She had three brothers once. She ate them.\n\nShe takes the food. She also takes a chunk of your finger. While you're looking for a bandage, you notice something shiny at the bottom of her tank."
 }

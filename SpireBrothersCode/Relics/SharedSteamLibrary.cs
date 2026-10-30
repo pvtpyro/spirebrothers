@@ -11,7 +11,7 @@ using SpireBrothers.SpireBrothersCode.Mechanics;
 namespace SpireBrothers.SpireBrothersCode.Relics;
 
 /// <summary>
-/// Shared (all brothers). At the start of each combat, add a random card from another brother's pool to your hand.
+/// Shared (all brothers, and Brandi). At the start of each combat, add a random card from another brother's (or Brandi's) pool to your hand.
 /// It costs 0 this turn. Picked on the run RNG so co-op stays in sync.
 /// </summary>
 public class SharedSteamLibrary : DanielRelic
@@ -27,7 +27,7 @@ public class SharedSteamLibrary : DanielRelic
         CardPoolModel[] pools =
         [
             ModelDb.CardPool<DanielCardPool>(), ModelDb.CardPool<DavidCardPool>(),
-            ModelDb.CardPool<JoshuaCardPool>(), ModelDb.CardPool<TimCardPool>(),
+            ModelDb.CardPool<JoshuaCardPool>(), ModelDb.CardPool<TimCardPool>(), ModelDb.CardPool<BrandiCardPool>(),
         ];
         var cards = pools
             .Where(p => p != player.Character.CardPool)

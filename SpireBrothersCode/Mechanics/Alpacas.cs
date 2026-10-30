@@ -47,6 +47,7 @@ public static class Alpacas
                 {
                     var target = player.RunState.Rng.CombatTargets.NextItem(enemies)!;
                     KidMotion.Hop(al);
+                    Sounds.Play(Sounds.BrandiSpit);
                     VfxCmd.PlayOnCreature(target, "vfx/vfx_attack_blunt");
                     await CreatureCmd.Damage(ctx, target, Spit(player), ValueProp.Unpowered, player.Creature);
                     RunStats.Add(RunStats.Spits, player);

@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace SpireBrothers.SpireBrothersCode.Relics;
 
 /// <summary>
-/// Shared (Daniel, David, Joshua; Tim has no Share cards). The first Share card you play each turn: you and its
+/// Shared (Daniel, David, Joshua, Brandi; Tim has no Share cards). The first Share card you play each turn: you and its
 /// target gain 3 Block (just you, once, if you targeted yourself).
 /// </summary>
 public class PartyHeadset : DanielRelic

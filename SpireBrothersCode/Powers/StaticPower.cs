@@ -60,6 +60,7 @@ public class StaticPower : BrothersPower
         var enemies = combat.HittableEnemies.Where(e => e.IsAlive).ToList();
         if (enemies.Count == 0) return;
         Flash();
+        Sounds.Play(Sounds.BrandiZap);
         var targets = Owner.GetPower<StaticFieldPower>() != null || Owner.Player is not { } player
             ? enemies
             : [player.RunState.Rng.CombatTargets.NextItem(enemies)!];

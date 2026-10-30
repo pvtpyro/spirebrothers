@@ -35,6 +35,7 @@ public static class Ember
         if (alive.Count == 0 || amount <= 0) return;
         amount += by.Creature.GetPowerAmount<PrivatePyroPower>();
         if (by.GetRelic<EngravedZippo>() is { } zippo) amount = zippo.Boost(amount, by);
+        Sounds.Play(Sounds.BrandiEmber);
         await PowerCmd.Apply<EmberPower>(ctx, alive, amount, by.Creature, card);
         RunStats.Add(RunStats.EmberApplied, by, amount * alive.Count);
         // Something big caught fire: heart eyes (once per combat).

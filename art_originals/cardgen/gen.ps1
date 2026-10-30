@@ -188,7 +188,7 @@ if ($CardsOnly -or ($Only -and -not $Section)) { return }
 # overwrite real art by accident.
 $events = @{ road_trip_to_grandmas = @('🚐', '#e69138'); thanksgiving_with_mom_and_dad = @('🦃', '#b45f06')
   day_at_the_lake = @('🎣', '#3d85c6'); family_hike = @('🥾', '#6aa84f'); calling_mom = @('📞', '#c27ba0')
-  insult_duel = @('🦜', '#9e2b25'); weekend_in_town = @('🍗', '#6b7480') }
+  insult_duel = @('🦜', '#9e2b25'); weekend_in_town = @('🍗', '#6b7480'); day_at_home = @('🐾', '#d8343a') }
 if ($Section -eq 'events') {
   $ec = 0
   foreach ($k in $events.Keys) {
@@ -263,7 +263,7 @@ $relicGlyphs = @{ and_you_know_what = '💬'; trusty_multimeter = '📟'; rubber
   flame_altar = '🔥'; kindled_flame_altar = '🔥'; arbites_badge = '🦅'; judges_badge = '⚖'
   gang_colors = '🎽'; loot_chest = '💰'; survivors_lantern = '🏮'; chew_toy = '🦴'; storage_drive = '💾'; commander_unit = '🤖'
   engraved_zippo = '🔥'; eternal_flame = '🔥'; dog_tags = '🏷'; smiley_shelf = '😊'; camp_victory = '⛺'; passport = '🛂'
-  pugsleys_collar = '🐶'; sandis_sunbeam = '🐱' }
+  pugsleys_collar = '🐶'; sandis_sunbeam = '🐱'; mr_gordo = '🐷'; want_take_have = '🔪' }
 $relicColors = @{ grapefruit = '#ff8a5c'; well_worn_guitar = '#d9a25b'; old_wallet = '#9b6a3c'; family_minivan = '#6fa8dc'; stone_monkey_head = '#9aa3a8'
   rubber_chicken_with_a_pulley = '#ffe066'; monkey_phrasebook = '#e06666'; trusty_multimeter = '#f6b26b'; monkey_wrench = '#c0c7cc'; never_paid_a_mechanic = '#e06666'; and_you_know_what = '#8ecae6'
   well_technically = '#ffd966'; overstuffed_wallet = '#6aa84f'; signature_guitar = '#b36bff'; fifteen_passenger_van = '#4a86c8'
@@ -275,7 +275,7 @@ $relicColors = @{ grapefruit = '#ff8a5c'; well_worn_guitar = '#d9a25b'; old_wall
   flame_altar = '#ff9a40'; kindled_flame_altar = '#ffd060'; arbites_badge = '#d4af37'; judges_badge = '#c0c8d4'
   gang_colors = '#c83a3a'; loot_chest = '#c8a040'; survivors_lantern = '#ff9a40'; chew_toy = '#d8c8a0'; storage_drive = '#7f8c8d'; commander_unit = '#6d9eeb'
   engraved_zippo = '#c0c7cc'; eternal_flame = '#ff9a40'; dog_tags = '#b8c0cc'; smiley_shelf = '#f8d030'; camp_victory = '#c9a46a'; passport = '#3d5a9e'
-  pugsleys_collar = '#d8343a'; sandis_sunbeam = '#ffd060' }
+  pugsleys_collar = '#d8343a'; sandis_sunbeam = '#ffd060'; mr_gordo = '#f4a6c0'; want_take_have = '#8a2a34' }
 # Solid silhouette of a line-art glyph: everything not reachable from the border.
 function Silhouette($path, $size, $strokeW, $color) {
   $c = Canvas $size $size

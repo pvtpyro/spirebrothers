@@ -230,6 +230,17 @@ Legend: 🔥 Ember, 🎯 Aim / Shot, 📡 Intel, ⚡ Static, 👀 Look, 🦙 Al 
 `SideEye`, `CarryOn`, `ItsPretty`, `Sigint`, `PowerWordShield`, `MultiShot`, `DialUp`, `Since1993`, `OneShotOneKill`.
 Taken by other cards, so not used: Ghillie Suit, Jet Lag, Raid Night, Leeroy, Hearthstone, Cover Fire, Night Vision, Mount Up.
 
+## Buffy nods (added 2026-10-29; Buffy is her favorite show)
+
+Extras on top of the 88 (her pool is now 25 / 44 / 21 = 90). Five by Five (Common) was already a nod by accident: Faith's line.
+
+| Name | Rarity / Type | Effect | Upgrade |
+|---|---|---|---|
+| Mr. Pointy | Rare 1 Attack | Deal 8 damage. If the enemy is then below 20% HP and isn't a Boss, it's slain. Exhaust. | 12 damage |
+| Scooby Gang | Uncommon 1 Skill | ALL players gain 4 Block and draw 1 card next turn. | 6 Block |
+| Mr. Gordo | Uncommon relic | At the end of each combat, heal 3 HP. | |
+| Want, Take, Have | Rare relic | Your first Attack each combat deals double damage (Faith's motto). | |
+
 ## Relics (3, plus the starters)
 
 | Name | Rarity | Effect | Theme |
@@ -286,3 +297,11 @@ Potions (3): **MRE** (heal 10, gain 5 Block), **Red Bull at 0300** (gain 2 Energ
   the start of each combat.
 - **Run stats:** Ember set, Shots taken, Al's spits, Static damage.
 - The Workshop image has all seven (4 brothers on top; Brandi, John, Huffman below).
+- **Events** (2026-10-29): every mod event can show up when she's in the party (`BrotherEvent.IsAllowed`; Weekend in
+  Town too). In the parents' events she reads the friends' FRIEND_ pages ("the boys' mom"). Her own event: **A Day at
+  Home** (`Events/DayAtHome.cs`): Peppi (add the Peppi card), Felicity (+5 Max HP), Lily Bean (upgrade 2 random cards),
+  Yertle (lose 8 HP, random relic).
+- **Campfire:** cleans her rifle with a rag across her lap, sights down it, sets it back (`BrandiArt.Rest`).
+- **Sounds:** `brandi_shot` / `brandi_zap` / `brandi_ember` / `brandi_spit` (`Sounds`; game stand-ins until recorded).
+- **Shared relics:** Shared Steam Library (which can also hand out her cards) and Party Headset, added in `MainFile`.
+- **Duos with her in the brothers' pools:** Daniel's Sound Card, David's Tactical Spreadsheet, Joshua's Metal Ballad.

@@ -26,6 +26,7 @@ public class Sounds() : CustomSingletonModel(HookType.Run)
     public const string TimKids = "tim_kids", TimAgeUp = "tim_age_up";
     public const string JohnStimm = "john_stimm", JohnShroud = "john_shroud";
     public const string HuffmanBark = "huffman_bark", HuffmanLaw = "huffman_law";
+    public const string BrandiShot = "brandi_shot", BrandiZap = "brandi_zap", BrandiEmber = "brandi_ember", BrandiSpit = "brandi_spit";
 
     // Built-in game sounds used until a recording exists. Cues missing here stay silent.
     private static readonly Dictionary<string, string> Fallbacks = new()
@@ -35,6 +36,11 @@ public class Sounds() : CustomSingletonModel(HookType.Run)
         [JoshuaHeal] = FmodSfx.heal,
         [JohnStimm] = "event:/sfx/buff",
         [HuffmanBark] = "event:/sfx/enemy/enemy_attacks/test_subject/test_subject_bite",
+        // The game has no guns; the crossbow reload's clack is the closest thing to a bolt action.
+        [BrandiShot] = "event:/sfx/enemy/enemy_attacks/crossbow_ruby_raider/crossbow_ruby_raider_reload",
+        [BrandiZap] = "event:/sfx/characters/defect/defect_lightning_evoke",
+        [BrandiEmber] = FmodSfx.fire,
+        [BrandiSpit] = "event:/sfx/enemy/enemy_attacks/workbug_goop/workbug_goop_spit",
     };
 
     /// <summary>The same cue won't replay within this many seconds (Kids, back-to-back Choruses, several Davids).</summary>

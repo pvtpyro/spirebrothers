@@ -58,7 +58,7 @@
   "SPIREBROTHERS-PARTY_HEADSET.description": "The first [gold]Share[/gold] card you play each turn: you and its target gain [blue]3[/blue] [gold]Block[/gold].",
   "SPIREBROTHERS-PARTY_HEADSET.flavor": "\"Wait, are you muted? You're muted.\"",
   "SPIREBROTHERS-SHARED_STEAM_LIBRARY.title": "Shared Steam Library",
-  "SPIREBROTHERS-SHARED_STEAM_LIBRARY.description": "At the start of each combat, add a random card from another brother's pool to your [gold]Hand[/gold]. It costs [blue]0[/blue] this turn.",
+  "SPIREBROTHERS-SHARED_STEAM_LIBRARY.description": "At the start of each combat, add a random card from another family member's pool to your [gold]Hand[/gold]. It costs [blue]0[/blue] this turn.",
   "SPIREBROTHERS-SHARED_STEAM_LIBRARY.flavor": "Everybody owns everything. Nobody remembers who bought what.",
   "SPIREBROTHERS-BROTHERS_IN_ARMS.title": "Brothers in Arms",
   "SPIREBROTHERS-BROTHERS_IN_ARMS.description": "At the start of each combat, ALL players gain [blue]1[/blue] [gold]Strength[/gold] and [blue]1[/blue] [gold]Dexterity[/gold] for each Spire Brother in the party.",
@@ -182,5 +182,11 @@
   "SPIREBROTHERS-PUGSLEYS_COLLAR.flavor": "A red collar and a little bone tag. He always found a lap to nap in.",
   "SPIREBROTHERS-SANDIS_SUNBEAM.title": "Sandi's Sunbeam",
   "SPIREBROTHERS-SANDIS_SUNBEAM.description": "At the start of your 2nd turn each combat, gain {Energy:energyIcons()} and draw [blue]1[/blue] card.",
-  "SPIREBROTHERS-SANDIS_SUNBEAM.flavor": "Orange on one side, silver on the other. She always knew where the sun would be."
+  "SPIREBROTHERS-SANDIS_SUNBEAM.flavor": "Orange on one side, silver on the other. She always knew where the sun would be.",
+  "SPIREBROTHERS-MR_GORDO.title": "Mr. Gordo",
+  "SPIREBROTHERS-MR_GORDO.description": "At the end of each combat, heal {Heal:diff()} HP.",
+  "SPIREBROTHERS-MR_GORDO.flavor": "A stuffed pig. Every Slayer needs one.",
+  "SPIREBROTHERS-WANT_TAKE_HAVE.title": "Want, Take, Have",
+  "SPIREBROTHERS-WANT_TAKE_HAVE.description": "Your first Attack each combat deals double damage.",
+  "SPIREBROTHERS-WANT_TAKE_HAVE.flavor": "Five by five."
 }

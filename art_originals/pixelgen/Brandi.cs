@@ -1,5 +1,5 @@
 // Brandi, Private Pyro (BRANDI_CARDS.md): long wavy dark brown hair, red tee, green camo pants, black boots, and dog tags
-// stamped 33. Attack: a sniper rifle shot. Cast: flicks her Zippo. Campfire: happily staring into the fire.
+// stamped 33. Attack: a sniper rifle shot. Cast: flicks her Zippo. Campfire: cleaning her rifle across her lap, then sighting down it.
 // Not in Program.cs's main render list yet: `dotnet run -c Release -- out brandi` renders only her preview.
 
 public class BrandiArt : AnimatedBrother
@@ -139,15 +139,19 @@ public class BrandiArt : AnimatedBrother
 
     protected override void DrawWeapon(Canvas c, Rig r, Pose p)
     {
+        if (p.Prop == "clean")
+        {
+            // at the campfire: the rifle across her lap (raised to sight down it at the end of the loop); the rag in her
+            // front hand is drawn over the hand in DrawFront
+            var butt = r.HandB + new V(-5, 0.5f) + V.Dir(p.PropAngle) * -1;
+            DrawRifle(c, butt, p.PropAngle);
+            DrawHand(c, r.HandB, false);
+        }
         if (p.Prop == "rifle")
         {
             var d = V.Dir(p.PropAngle); var n = d.Perp;
             var butt = r.SF + new V(-2, -1) + d * -1;
-            // stock, body, long barrel, scope
-            c.Draw(q => S.U(S.U(S.RBox(q, butt + d * 4 + n * 0.8f, 4, 2, p.PropAngle), S.RBox(q, butt + d * 12, 5, 1.6f, p.PropAngle)),
-                S.Capsule(q, butt + d * 16, butt + d * 29, 0.7f)), Rifle, hi: Col.Hex("50545c"));
-            c.Draw(q => S.RBox(q, butt + d * 11 - n * 2.6f, 3.2f, 1f, p.PropAngle), Col.Hex("18191c"), hi: Col.Hex("40444c"));
-            c.Plot(butt + d * 14.5f - n * 2.6f, Col.Hex("8ec8ff"));   // scope glint
+            DrawRifle(c, butt, p.PropAngle);
             if (p.Fx == 1)
             {
                 var at = butt + d * 31.5f;
@@ -176,6 +180,52 @@ public class BrandiArt : AnimatedBrother
             }
             DrawHand(c, r.HandF, false);
         }
+    }
+
+    protected override void DrawFront(Canvas c, Rig r, Pose p)
+    {
+        if (p.Prop != "clean" || p.Fx >= 5) return;
+        // the cleaning rag, bunched in her hand and trailing off the back of it
+        var rag = Col.Hex("eae3cf");
+        var at = r.HandF + new V(1.2f, -1.6f);
+        c.Draw(q => S.U(S.Ellipse(q, at, 3.4f, 2.2f), S.Ellipse(q, at + new V(-3, 1.6f), 1.6f, 1.2f)), rag, hi: Col.Hex("ffffff"));
+        c.Plot(at + new V(-0.5f, 0.6f), rag.Shade); c.Plot(at + new V(1.5f, 0.4f), rag.Shade);
+    }
+
+    /// <summary>Her sniper rifle from the stock end: stock, body, long barrel, scope with a glint.</summary>
+    private static void DrawRifle(Canvas c, V butt, float angle)
+    {
+        var d = V.Dir(angle); var n = d.Perp;
+        c.Draw(q => S.U(S.U(S.RBox(q, butt + d * 4 + n * 0.8f, 4, 2, angle), S.RBox(q, butt + d * 12, 5, 1.6f, angle)),
+            S.Capsule(q, butt + d * 16, butt + d * 29, 0.7f)), Rifle, hi: Col.Hex("50545c"));
+        c.Draw(q => S.RBox(q, butt + d * 11 - n * 2.6f, 3.2f, 1f, angle), Col.Hex("18191c"), hi: Col.Hex("40444c"));
+        c.Plot(butt + d * 14.5f - n * 2.6f, Col.Hex("8ec8ff"));
+    }
+
+    protected override List<Pose> Rest()
+    {
+        // wipes the rifle down along its length (frames 0-4), lifts it to sight down the barrel (5-6), then sets it
+        // back on her lap with a little smile (7)
+        float[] wipeX = [9, 12, 15, 18, 13];
+        var list = base.Rest();
+        foreach (var p in list)
+        {
+            p.Prop = "clean"; p.BackHand = new V(2, 9);
+            p.FrontElbowPref = new V(0, 1); p.BackElbowPref = new V(0, 1);
+            p.Glow = false;
+            if (p.Fx < 5)
+            {
+                p.FrontHand = new V(wipeX[p.Fx], 8.5f); p.PropAngle = 0;
+                p.HeadTilt = 1; p.HeadDrop = 1; p.Face = Face.Normal;
+            }
+            else if (p.Fx < 7)
+            {
+                p.BackHand = new V(3, 5); p.FrontHand = new V(11, 2); p.PropAngle = -10;
+                p.HeadTilt = 1; p.HeadDrop = 0; p.Face = Face.Fierce;
+            }
+            else { p.FrontHand = new V(10, 9); p.PropAngle = 0; p.Face = Face.Happy; }
+        }
+        return list;
     }
 
     protected override List<Pose> Attack()

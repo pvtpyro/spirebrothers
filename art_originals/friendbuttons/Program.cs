@@ -123,7 +123,7 @@ foreach (var f in friends)
         for (int i = 0; i < poses.Count; i++) f.Render(poses[i]).SavePng(Path.Combine(outDir, f.Name, "frames", $"{name}_{i}.png"));
 }
 Hands.RenderAll(friends, outDir);
-// map marker (128 x 128): his pixel face on a charcoal disc with a steel rim, where the brothers have an emoji on their color;
+// map marker (128 x 128): his pixel face on a charcoal disc with a steel rim (the brothers have theirs on their own colors);
 // and icon_outline.png, the flat white disc the game shows behind it on co-op map votes
 foreach (var f in friends)
 {
@@ -200,7 +200,46 @@ foreach (var f in friends)
     }
     faceSheet.SavePng(Path.Combine(outDir, "faces_preview.png"), 4);
 }
+// ---- the brothers' map markers (2026-10-29): their pixel faces on discs in their own colors, like the friends' and
+// Brandi's, replacing the old emoji markers. Gradients were sampled from those emoji markers so the colors stay the same.
+foreach (var (b, top, low) in new (AnimatedBrother, string, string)[]
+{
+    (new DanielArt(), "5cb4c2", "19626e"), (new DavidArt(), "70ae7a", "2c5e34"),
+    (new JoshuaArt(), "9a7bcc", "4e347a"), (new TimArt(), "d4856a", "7d3720"),
+})
+{
+    var (marker, outline) = FaceMarker(b, Col.Hex(top), Col.Hex(low));
+    marker.SavePng(Path.Combine(outDir, b.Name, "map_marker.png"));
+    outline.SavePng(Path.Combine(outDir, b.Name, "icon_outline.png"));
+}
 Console.WriteLine("done");
+
+// A map marker (128 x 128): the character's pixel head and shoulders, 3x, on a disc with a dark edge, a lighter rim, and
+// a top-to-bottom gradient; plus icon_outline.png, the flat white disc the game shows behind it on co-op map votes.
+static (Canvas Marker, Canvas Outline) FaceMarker(AnimatedBrother b, Col top, Col low)
+{
+    b.Portrait = true;
+    var frame = b.Render(b.Anims()["idle"].poses[0]);
+    var marker = new Canvas(128, 128);
+    var outline = new Canvas(128, 128);
+    var rim = top.Lerp(Col.Hex("ffffff"), 0.25f);
+    for (int y = 0; y < 128; y++) for (int x = 0; x < 128; x++)
+    {
+        float d = MathF.Sqrt((x - 63.5f) * (x - 63.5f) + (y - 63.5f) * (y - 63.5f));
+        if (d <= 63.5f) outline.Set(x, y, Col.Hex("ffffff"));
+        if (d <= 60) marker.Set(x, y, Col.Hex("1b1b1b"));
+        if (d <= 55) marker.Set(x, y, rim);
+        if (d <= 52) marker.Set(x, y, top.Lerp(low, y / 128f));
+    }
+    const int HX = 12, HY = 2, HW = 38, HH = 34, K = 3;
+    for (int y = 0; y < HH * K; y++) for (int x = 0; x < HW * K; x++)
+    {
+        int mx = 64 - HW * K / 2 + x, my = 64 - HH * K / 2 + y + 6;
+        float d = MathF.Sqrt((mx - 63.5f) * (mx - 63.5f) + (my - 63.5f) * (my - 63.5f));
+        if (d <= 52 && frame.Get(HX + x / K, HY + y / K) is { } px) marker.Set(mx, my, px);
+    }
+    return (marker, outline);
+}
 
 // ---------------------------------------------------------------- helpers
 

@@ -35,8 +35,8 @@ public partial class MainFile : Node
         System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(Mechanics.StimmLab).TypeHandle);
         System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(Mechanics.BrandiSaves).TypeHandle);
 
-        // Character select order: the four brothers in the order they've always had, Brandi (family: Daniel's wife), then the friends.
-        if (!BaseLib.Utils.CustomCharacterUtils.TryOrderCustomCharacters([typeof(Daniel), typeof(David), typeof(Joshua), typeof(Tim), typeof(Brandi), typeof(John), typeof(Huffman)]))
+        // Character select order: the four brothers in the order they've always had, the friends, then Brandi last (her pick).
+        if (!BaseLib.Utils.CustomCharacterUtils.TryOrderCustomCharacters([typeof(Daniel), typeof(David), typeof(Joshua), typeof(Tim), typeof(Huffman), typeof(John), typeof(Brandi)]))
             Logger.Error("Couldn't set the character select order.");
 
         ShareMonkeyIslandItems();
@@ -86,9 +86,11 @@ public partial class MainFile : Node
         ModHelper.AddModelToPool<DavidRelicPool, DadsTackleBox>();
         ModHelper.AddModelToPool<JoshuaRelicPool, DadsTackleBox>();
         ModHelper.AddModelToPool<TimRelicPool, DadsTackleBox>();
-        // Brandi: Blown Cartridge like the friends. Her memorial relics for Pugsley and Sandi (pets she and her late
+        // Brandi: Blown Cartridge like the friends, plus two of the family relics (she has Share cards for the headset). Her memorial relics for Pugsley and Sandi (pets she and her late
         // husband had) are [Pool]ed to her and shared with Daniel.
         ModHelper.AddModelToPool<BrandiRelicPool, BlownCartridge>();
+        ModHelper.AddModelToPool<BrandiRelicPool, SharedSteamLibrary>();
+        ModHelper.AddModelToPool<BrandiRelicPool, PartyHeadset>();
         ModHelper.AddModelToPool<DanielRelicPool, PugsleysCollar>();
         ModHelper.AddModelToPool<DanielRelicPool, SandisSunbeam>();
     }
