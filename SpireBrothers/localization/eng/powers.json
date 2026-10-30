@@ -963,5 +963,17 @@
   "SPIREBROTHERS-IRIS_POWER.smartDescription": "Until your next turn, whenever you're attacked, apply [blue]{Amount}[/blue] [gold]Bleed[/gold] to the attacker.",
   "SPIREBROTHERS-NAQUADAH_GENERATOR_POWER.title": "Naquadah Generator",
   "SPIREBROTHERS-NAQUADAH_GENERATOR_POWER.description": "At the start of your turn, gain energy.",
-  "SPIREBROTHERS-NAQUADAH_GENERATOR_POWER.smartDescription": "At the start of your turn, gain [blue]{Amount}[/blue] energy."
+  "SPIREBROTHERS-NAQUADAH_GENERATOR_POWER.smartDescription": "At the start of your turn, gain [blue]{Amount}[/blue] energy.",
+  "SPIREBROTHERS-SYSTEM_LORD_POWER.title": "System Lord",
+  "SPIREBROTHERS-SYSTEM_LORD_POWER.description": "A Goa'uld who thinks he's a god. If Daniel is here, he starts with Shol'va.",
+  "SPIREBROTHERS-SYSTEM_LORD_POWER.smartDescription": "A Goa'uld who thinks he's a god. If [gold]Daniel[/gold] is here, he starts with [gold]Shol'va[/gold].",
+  "SPIREBROTHERS-PERSONAL_SHIELD_POWER.title": "Personal Shield",
+  "SPIREBROTHERS-PERSONAL_SHIELD_POWER.description": "No single hit deals more than this much damage to him.",
+  "SPIREBROTHERS-PERSONAL_SHIELD_POWER.smartDescription": "No single hit deals more than [blue]{Amount}[/blue] damage to him.",
+  "SPIREBROTHERS-KARA_KESH_POWER.title": "Kara Kesh",
+  "SPIREBROTHERS-KARA_KESH_POWER.description": "Charging the hand device. Deal this much damage to him before his turn to knock him out of the Ribbon Device.",
+  "SPIREBROTHERS-KARA_KESH_POWER.smartDescription": "Charging the hand device. Deal [blue]{Amount}[/blue] more damage to him before his turn to knock him out of the [gold]Ribbon Device[/gold].",
+  "SPIREBROTHERS-SARCOPHAGUS_POWER.title": "Sarcophagus",
+  "SPIREBROTHERS-SARCOPHAGUS_POWER.description": "While the Sarcophagus stands, falling only sends him into it, and he rises again on his next turn, stronger. Break it first and he stays down.",
+  "SPIREBROTHERS-SARCOPHAGUS_POWER.smartDescription": "While the [gold]Sarcophagus[/gold] stands, falling only sends him into it, and he rises again on his next turn, stronger. Break it first and he stays down."
 }

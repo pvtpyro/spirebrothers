@@ -460,3 +460,16 @@ Card art for everything (all cards, relics, and powers use placeholders).
   (class `StargateMarathon`). Joshua's Space Brothers cards Apo and Liftoff replace Acoustic Set and Taiko Drums (retired, Basic).
   Lists in DANIEL_CARDS.md / DAVID_CARDS.md / JOSHUA_CARDS.md. Untested in game.
 - Brandi's reward pool is 89, not 88 (Peppi is a normal Uncommon in it).
+
+## Added 2026-10-29 (Apophis, the first boss)
+
+- **Apophis** (Stargate SG-1), Act 2 boss, tested in game 2026-10-29. TODO.md #18 has the design and test list. `Monsters/Apophis.cs` holds
+  `ApophisBoss`, a `BibleElite` (its constructor now takes a `RoomType`; `IsSidekick` gives David `sideReply` lines; `Line(creature, pool)`
+  says mid-fight lines), and Apophis. `Jaffa.cs` and `Sarcophagus.cs` are minions. Powers: `PersonalShieldPower` (vanilla `ModifyDamageCap`,
+  like Intangible; skips damage dealt by a Jaffa), `KaraKeshPower`, `SarcophagusPower` (copies vanilla `AdaptablePower`, Test Subject's
+  revive: `ShouldStopCombatFromEnding` / `ShouldAllowHitting`; Apophis's `RISE` move is set with `SetMoveImmediate`), and `SystemLordPower`
+  (a FoePower; Daniel's token `Cards/Daniel/SholVa.cs`). `Alexander.Summon` takes an `order` for front-to-back placement.
+- Custom bosses: BaseLib adds any `CustomEncounterModel(RoomType.Boss)` to the act's boss list (the game rolls one at random). The map
+  icon is `BossNodePath` + `.png` / `_outline.png` with `BossNodeSpineResource => null`, like vanilla's placeholder bosses: a grey
+  image the map tints. Apophis's icon comes from mobgen (`out/apophis/map/`). Console `fight <ENCOUNTER_ID>` jumps to any encounter.
+- Art: `art_originals/pixelgen/Stargate.cs` (ApophisArt, JaffaArt, SarcophagusArt), rendered by mobgen (`dotnet run -c Release apophis jaffa sarcophagus`).

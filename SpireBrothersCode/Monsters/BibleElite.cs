@@ -15,10 +15,11 @@ namespace SpireBrothers.SpireBrothersCode.Monsters;
 /// Goliath (David), the Lions' Den (Daniel), the Walls of Jericho (Joshua), Alexander the Coppersmith (Timothy).
 /// The fight works for any party, but if the namesake is there he gets a starting card (<see cref="MakeToken"/>) and
 /// the opening and closing lines. FoePower (on <see cref="Speaker"/>) calls into this; Banter stays quiet in these fights.
-/// Lines are SPIREBROTHERS-&lt;LinesKey&gt;.* in monsters.json: intro (no hero), heroIntro, heroReply, taunts, heroWin.
-/// Any number of lines per pool works.
+/// Lines are SPIREBROTHERS-&lt;LinesKey&gt;.* in monsters.json: intro (no hero), heroIntro, heroReply, taunts, heroWin,
+/// and sideReply (the <see cref="IsSidekick"/> brother's answer to the opening). Any number of lines per pool works.
+/// Not only Bible stories: the Apophis boss (Daniel, with David as sidekick) uses it too, as a Boss room.
 /// </summary>
-public abstract class BibleElite() : CustomEncounterModel(RoomType.Elite)
+public abstract class BibleElite(RoomType roomType = RoomType.Elite) : CustomEncounterModel(roomType)
 {
     /// <summary>Seconds between the hero's line and the foe's answer, so the second bubble doesn't cover the first.</summary>
     private const double ReplyDelay = 2.2;
@@ -40,23 +41,36 @@ public abstract class BibleElite() : CustomEncounterModel(RoomType.Elite)
 
     public Player? Hero(ICombatState combat) => combat.Players.FirstOrDefault(p => IsHero(p) && p.Creature.IsAlive);
 
+    /// <summary>A second brother who chimes in after the opening (sideReply). None by default.</summary>
+    protected virtual bool IsSidekick(Player p) => false;
+
+    public Player? Sidekick(ICombatState combat) => combat.Players.FirstOrDefault(p => IsSidekick(p) && p.Creature.IsAlive);
+
     private bool _heroHadLastWord;
 
-    /// <summary>Turn 1: the hero speaks and the foe answers, or the foe opens alone.</summary>
+    /// <summary>Turn 1: the hero speaks and the foe answers, or the foe opens alone. Then the sidekick chimes in.</summary>
     public void Opening(ICombatState combat)
     {
         var speaker = Speaker(combat);
         var hero = Hero(combat);
+        double delay = ReplyDelay;
         if (hero == null)
         {
             if (speaker != null) Say(speaker, "intro", 1);
-            return;
         }
-        Say(hero.Creature, "heroIntro", 1);
-        if (speaker != null) After(ReplyDelay, () => { if (speaker.IsAlive) Say(speaker, "heroReply", 1); });
+        else
+        {
+            Say(hero.Creature, "heroIntro", 1);
+            if (speaker != null) After(ReplyDelay, () => { if (speaker.IsAlive) Say(speaker, "heroReply", 1); });
+            delay += ReplyDelay;
+        }
+        if (Sidekick(combat) is { } side) After(delay, () => { if (side.Creature.IsAlive) Say(side.Creature, "sideReply", 1); });
     }
 
     public void Taunt(Creature speaker) => Say(speaker, "taunts", speaker.CombatState?.RoundNumber ?? 0);
+
+    /// <summary>A line from any pool of this fight's (mid-fight moments), seeded from the round like the rest.</summary>
+    public void Line(Creature speaker, string pool) => Say(speaker, pool, speaker.CombatState?.RoundNumber ?? 0);
 
     /// <summary>The hero's last word, once per fight (Jericho says it when the walls fall, the others on the win).</summary>
     public void HeroWins(ICombatState combat)

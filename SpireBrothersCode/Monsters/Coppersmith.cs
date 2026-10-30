@@ -131,9 +131,9 @@ public class Alexander : CopperMonster
     /// <summary>
     /// Adds a minion mid-fight, like the vanilla Fabricator. Our encounters have no scene with named slots, so the game
     /// doesn't place newcomers; this lines every living enemy back up with the game's own layout (PositionEnemies),
-    /// helpers in front, and slides the old ones over.
+    /// helpers in front (or by <paramref name="order"/>, lowest first), and slides the old ones over.
     /// </summary>
-    public static async Task Summon(Creature summoner, MonsterModel monster, bool minion = true)
+    public static async Task Summon(Creature summoner, MonsterModel monster, bool minion = true, Func<Creature, int>? order = null)
     {
         var combat = summoner.CombatState;
         if (combat == null || !combat.IsLiveCombat()) return;
@@ -142,7 +142,7 @@ public class Alexander : CopperMonster
             await PowerCmd.Apply<MinionPower>(new ThrowingPlayerChoiceContext(), added, 1, summoner, null);
         try
         {
-            Relayout(combat, added);
+            Relayout(combat, added, order ?? (e => e.Monster is CopperAutomaton ? 0 : 1));
         }
         catch (Exception e)
         {
@@ -150,11 +150,11 @@ public class Alexander : CopperMonster
         }
     }
 
-    private static void Relayout(ICombatState combat, Creature added)
+    private static void Relayout(ICombatState combat, Creature added, Func<Creature, int> order)
     {
         if (NCombatRoom.Instance is not { } room) return;
         var nodes = combat.Enemies.Where(e => e.IsAlive)
-            .OrderBy(e => e.Monster is CopperAutomaton ? 0 : 1)
+            .OrderBy(order)
             .Select(room.GetCreatureNode).OfType<NCreature>().ToList();
         var before = nodes.ToDictionary(n => n, n => n.Position);
         AccessTools.Method(typeof(NCombatRoom), "PositionEnemies")

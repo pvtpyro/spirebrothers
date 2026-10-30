@@ -203,5 +203,75 @@
   "SPIREBROTHERS-POXWALKER.moves.CLAW.title": "Claw",
   "SPIREBROTHERS-POXWALKER.moves.LUNGE.title": "Shambling Lunge",
   "SPIREBROTHERS-ALPACA_AL.name": "Al",
-  "SPIREBROTHERS-ALPACA_PACINO.name": "Pacino"
+  "SPIREBROTHERS-ALPACA_PACINO.name": "Pacino",
+
+  "SPIREBROTHERS-APOPHIS.name": "Apophis",
+  "SPIREBROTHERS-APOPHIS.moves.KNEEL.title": "Kneel Before Your God!",
+  "SPIREBROTHERS-APOPHIS.moves.STAFF_BLAST.title": "Staff Blast",
+  "SPIREBROTHERS-APOPHIS.moves.RAISE_KARA_KESH.title": "Raise the Kara Kesh",
+  "SPIREBROTHERS-APOPHIS.moves.RIBBON_DEVICE.title": "Ribbon Device",
+  "SPIREBROTHERS-APOPHIS.moves.JAFFA_KREE.title": "Jaffa, Kree!",
+  "SPIREBROTHERS-APOPHIS.moves.I_AM_YOUR_GOD.title": "I Am Your God!",
+  "SPIREBROTHERS-APOPHIS.moves.HATAK_BOMBARDMENT.title": "Ha'tak Bombardment",
+  "SPIREBROTHERS-APOPHIS.moves.RISE.title": "Rise",
+
+  "SPIREBROTHERS-APOPHIS.intro.0": "You stand before Apophis. Kneel.",
+  "SPIREBROTHERS-APOPHIS.intro.1": "Your world will burn, Tau'ri.",
+  "SPIREBROTHERS-APOPHIS.intro.2": "My Jaffa will make an example of you.",
+
+  "SPIREBROTHERS-APOPHIS.heroIntro.0": "Okay, everyone stay calm. I speak Goa'uld. Mostly.",
+  "SPIREBROTHERS-APOPHIS.heroIntro.1": "Hi! Daniel. Daniel Jackson. Well... basically.",
+  "SPIREBROTHERS-APOPHIS.heroIntro.2": "Let me talk to him first. This always works.",
+  "SPIREBROTHERS-APOPHIS.heroIntro.3": "I've seen every episode. I know how this ends.",
+
+  "SPIREBROTHERS-APOPHIS.heroReply.0": "You dare speak to a god?",
+  "SPIREBROTHERS-APOPHIS.heroReply.1": "Silence, Tau'ri!",
+  "SPIREBROTHERS-APOPHIS.heroReply.2": "Your words mean nothing to me.",
+  "SPIREBROTHERS-APOPHIS.heroReply.3": "You will be the first to kneel.",
+
+  "SPIREBROTHERS-APOPHIS.sideReply.0": "Indeed.",
+  "SPIREBROTHERS-APOPHIS.sideReply.1": "Talking never works, Daniel.",
+  "SPIREBROTHERS-APOPHIS.sideReply.2": "Personal shield. Lots of little hits.",
+  "SPIREBROTHERS-APOPHIS.sideReply.3": "Break the sarcophagus. Trust me on this.",
+  "SPIREBROTHERS-APOPHIS.sideReply.4": "I've done the math. The box goes first.",
+
+  "SPIREBROTHERS-APOPHIS.taunts.0": "Jaffa, kree!",
+  "SPIREBROTHERS-APOPHIS.taunts.1": "Kneel, or be destroyed!",
+  "SPIREBROTHERS-APOPHIS.taunts.2": "I am your god!",
+  "SPIREBROTHERS-APOPHIS.taunts.3": "Your resistance is meaningless.",
+  "SPIREBROTHERS-APOPHIS.taunts.4": "On your knees!",
+
+  "SPIREBROTHERS-APOPHIS.kara.0": "Feel the power of a god.",
+  "SPIREBROTHERS-APOPHIS.kara.1": "This will hurt. A great deal.",
+  "SPIREBROTHERS-APOPHIS.kara.2": "Hold still.",
+
+  "SPIREBROTHERS-APOPHIS.interrupted.0": "Not today!",
+  "SPIREBROTHERS-APOPHIS.interrupted.1": "Hand device: denied.",
+  "SPIREBROTHERS-APOPHIS.interrupted.2": "Put that thing away!",
+  "SPIREBROTHERS-APOPHIS.interrupted.3": "That's what you get for monologuing.",
+
+  "SPIREBROTHERS-APOPHIS.carried.0": "This... is not... the end...",
+  "SPIREBROTHERS-APOPHIS.carried.1": "Jaffa! The sarcophagus!",
+  "SPIREBROTHERS-APOPHIS.carried.2": "I will return...",
+
+  "SPIREBROTHERS-APOPHIS.rise.0": "I am reborn!",
+  "SPIREBROTHERS-APOPHIS.rise.1": "Did you think a god could die?",
+  "SPIREBROTHERS-APOPHIS.rise.2": "The sarcophagus restores me. Again.",
+
+  "SPIREBROTHERS-APOPHIS.sarcBroken.0": "No more do-overs for you!",
+  "SPIREBROTHERS-APOPHIS.sarcBroken.1": "Box: broken. Snake: next.",
+  "SPIREBROTHERS-APOPHIS.sarcBroken.2": "That was your last nap.",
+  "SPIREBROTHERS-APOPHIS.sarcBroken.3": "Good. Now he stays down.",
+
+  "SPIREBROTHERS-APOPHIS.heroWin.0": "Told you. He loses every season.",
+  "SPIREBROTHERS-APOPHIS.heroWin.1": "Well. That was diplomatic.",
+  "SPIREBROTHERS-APOPHIS.heroWin.2": "Shol'va. Look it up.",
+  "SPIREBROTHERS-APOPHIS.heroWin.3": "Chevron seven, locked. Let's go home.",
+
+  "SPIREBROTHERS-JAFFA.name": "Jaffa",
+  "SPIREBROTHERS-JAFFA.moves.STAFF_WEAPON.title": "Staff Weapon",
+  "SPIREBROTHERS-JAFFA.moves.KREE.title": "Kree!",
+
+  "SPIREBROTHERS-SARCOPHAGUS.name": "Sarcophagus",
+  "SPIREBROTHERS-SARCOPHAGUS.moves.RESTORE.title": "Restore"
 }

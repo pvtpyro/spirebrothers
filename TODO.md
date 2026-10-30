@@ -237,8 +237,22 @@ fight's stats ("Goliath, down in 3 turns!"). Mockup (Brandi loved it): https://c
 ### 18. A custom boss
 No custom boss yet (only elites and normal fights). Family-themed Act boss ideas: "Moving Day" (a mountain of boxes that
 summons furniture), "Family Game Night Gone Wrong" (a giant board game that changes the rules every turn).
-- [ ] Pick the boss and act
-- [ ] Build (reuse the Bible elites' / regular fights' machinery)
+Going with Stargate SG-1 bosses, one at a time: **Apophis** (Act 2, built), then Ba'al and his clones, Anubis, the
+Replicators (all four were liked; act still to pick for each).
+- [x] Pick the boss and act: Apophis, Act 2
+- [x] Build Apophis (2026-10-29, tested in game the same day): `Monsters/Apophis.cs` (ApophisBoss + Apophis), `Jaffa.cs`, `Sarcophagus.cs`;
+      powers PersonalShield (each hit capped at 12), KaraKesh (land 30 damage before the Ribbon Device fires to stun him),
+      Sarcophagus (he rises at 180 HP once if it's still standing; break it first and he stays down), SystemLord (Daniel
+      starts with Shol'va: the front Jaffa hits Apophis past the shield and is Stunned). Daniel opens, David replies.
+- [x] Test Apophis (done 2026-10-29; the test switch forcing him as Act 2 boss is removed): console `fight SPIREBROTHERS-APOPHIS_BOSS` (it enters as a normal fight, so no boss rewards).
+      Check: the shield cap and its preview, Kara Kesh interrupt (stun, then Jaffa Kree!), the Sarcophagus rise (body
+      stands back up, HP bar, phase 2 moves), breaking the Sarcophagus while he lies in it ends the fight, Shol'va,
+      the lines, the map icon (size/tint unknown: 256x256 grey), and the camera fitting four bodies (0.8; fits on her screen,
+      though the game logs "displayed off-screen")
+- [ ] Check the four bodies fit on the brothers' screens in co-op
+- [x] Balance (2026-10-29, first fight): Jaffa, Kree! no longer gives Apophis 15 Block, and the Jaffa's Kree! is 6 Block (was 10).
+      A Stun (Shol'va) puts the two Jaffa in step, and both Kree!s plus his own came to 35 Block in one turn.
+- [ ] Ba'al (clones), Anubis, Replicators
 
 ### 19. Mom as an Ancient
 An act-start Ancient (like Neow) offering family-flavored blessings: "Pack a lunch" (heal), "Take your brother with you"

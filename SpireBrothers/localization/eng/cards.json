@@ -1451,5 +1451,7 @@
   "SPIREBROTHERS-APO.title": "Apo",
   "SPIREBROTHERS-APO.description": "Gain {Block:diff()} [gold]Block[/gold].\nIf you have any [gold]Held[/gold] Verses, gain {VerseGain:diff()} Verse.",
   "SPIREBROTHERS-LIFTOFF.title": "Liftoff",
-  "SPIREBROTHERS-LIFTOFF.description": "Deal {Damage:diff()} damage to ALL enemies.\nYour [gold]Verses[/gold] become [gold]Held[/gold]."
+  "SPIREBROTHERS-LIFTOFF.description": "Deal {Damage:diff()} damage to ALL enemies.\nYour [gold]Verses[/gold] become [gold]Held[/gold].",
+  "SPIREBROTHERS-SHOL_VA.title": "Shol'va",
+  "SPIREBROTHERS-SHOL_VA.description": "A [gold]Jaffa[/gold] turns on [gold]Apophis[/gold]: it deals {Damage:diff()} damage to him, ignoring his [gold]Personal Shield[/gold], and is [gold]Stunned[/gold]."
 }

@@ -26,5 +26,7 @@
   "SPIREBROTHERS-CHORES_NORMAL.title": "Chores",
   "SPIREBROTHERS-CHORES_NORMAL.loss": "{character} put off the [gold]{encounter}[/gold] one day too long.",
   "SPIREBROTHERS-POXWALKER_HORDE_NORMAL.title": "Poxwalker Horde",
-  "SPIREBROTHERS-POXWALKER_HORDE_NORMAL.loss": "{character} lost coherency and was swarmed by the [gold]{encounter}[/gold]."
+  "SPIREBROTHERS-POXWALKER_HORDE_NORMAL.loss": "{character} lost coherency and was swarmed by the [gold]{encounter}[/gold].",
+  "SPIREBROTHERS-APOPHIS_BOSS.title": "Apophis",
+  "SPIREBROTHERS-APOPHIS_BOSS.loss": "{character} knelt before [gold]{encounter}[/gold]."
 }
