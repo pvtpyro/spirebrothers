@@ -104,7 +104,7 @@ Married with 8 kids. Draftsman at a civil engineering firm; writes Lua add-ons f
 Loves, in order: Rocket League, Age of Empires, Splinter Cell, airsoft, Legos.
 Loves to spend money: he has to have the best of everything, and gold burns a hole in his pocket (the opposite of David, who never spends). Age Up costing gold fits him.
 Old nickname "Tidbit": he doesn't like it, so it appears on exactly one card.
-- **Kids** (max 8): each Kid deals 1 damage to a random enemy at the end of your turn.
+- **Kids** (max 8): each Kid deals 2 damage to a random enemy at the end of your turn.
 - **Script** (Lua automation): the card's effect happens again at the start of your next turn.
 - **Age** (Age of Empires): Dark → Feudal → Castle → Imperial; some cards get stronger at later Ages.
 - Starter relic Family Minivan: start each combat with 2 Kids. Dad Jokes apply Insulted for Daniel's Comebacks.

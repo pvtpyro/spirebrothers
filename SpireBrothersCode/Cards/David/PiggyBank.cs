@@ -18,7 +18,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
 /// <summary>Terraria. Gain 15 Gold. Exhaust.</summary>
-public class PiggyBank() : DavidCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public class PiggyBank() : DavidCard(0,CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     public override bool CanBeGeneratedInCombat => false;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Hoard, CardKeyword.Exhaust];

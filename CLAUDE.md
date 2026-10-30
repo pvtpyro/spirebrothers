@@ -25,7 +25,7 @@ untested in game. Plan and bio in `BRANDI_CARDS.md`. She never talks: her banter
   Firestorm (Spark's Archaic Tooth card)). Starts with two relics: Engraved Zippo (Touch of Orobas: Eternal Flame) and
   Dog Tags (stamped 33, in memory of her late husband; never upgraded or offered).
 - **Ember** (`Mechanics/Ember.cs`, `EmberPower`): burns at the owner's turn start, then grows by 1 up to `Ember.GrowthCap`
-  (10); on a player it fades by 1. All her Ember goes through `Ember.Apply` (Zippo, Private Pyro). `BrandiTracker` moves a
+  (5; was 10 until the 2026-10-29 balance pass); on a player it fades by 1. All her Ember goes through `Ember.Apply` (Zippo, Private Pyro). `BrandiTracker` moves a
   dying enemy's Ember to another enemy (`BeforeDeath` notes it with the combat state, since the dead one leaves combat).
 - **Aim / Shot** (`Mechanics/Aim.cs`, `AimPower`): Shot cards set `IsShot`, use `ShotVars(damage, perAim)` (a CalculatedDamage
   with the Aim multiplier) and `Shoot(...)`, which spends the Aim after the hit. One Shot, One Kill keeps it and limits Shots to

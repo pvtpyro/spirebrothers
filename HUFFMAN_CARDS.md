@@ -51,7 +51,7 @@ Legend: 🐕 Mastiff, ⚖️ Law, 🏭 Metal / Build, 💻 IT, 🤝 co-op.
 | 10 | 🏭 Reclaim | 1 Skill | Gain 3 Block. Gain 3 Metal. | Total Annihilation (reclaiming wreckage) |
 | 11 | 🏭 Nanolathe Wall | 1 Skill | Gain 7 Block. **Build 3:** gain 7 more. | Total Annihilation |
 | 12 | 🏭 Laser Tower | 1 Attack | Deal 7 damage. **Build 2:** deal it again. | Total Annihilation |
-| 13 | 🏭 Purchase Order | 1 Skill | Gain 4 Metal. Exhaust. | IT guy buying for the boss |
+| 13 | 🏭 Purchase Order | 0 Skill | Gain 4 Metal (6 upgraded). Exhaust. | IT guy buying for the boss |
 | 14 | 💻 Spam Filter | 1 Skill | Gain 6 Block. Gain 1 Artifact. | IT (email) |
 | 15 | 💻🤝 Help Desk Ticket | 1 Skill | **Share.** A player gains 7 Block. | IT support for the team |
 | 50 | 🐕 Sit. Stay. | 0 Skill | Gain 3 Block. The Mastiff gains 1 Bite. | His dog |

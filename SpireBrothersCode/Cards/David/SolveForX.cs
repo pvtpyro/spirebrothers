@@ -17,16 +17,19 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Puzzles. X cost. Deal 4 damage X² times (3 energy: 9 hits).</summary>
+/// <summary>Puzzles. X cost. Deal 4 damage X² times (3 energy: 9 hits), at most 16 times.</summary>
 public class SolveForX() : DavidCard(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
+    /// <summary>X² past 4 energy (25 hits at 5) ran away once teammates shared energy.</summary>
+    public const int MaxHits = 16;
+
     protected override bool HasEnergyCostX => true;
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(4, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(4, ValueProp.Move), new DynamicVar("Max", MaxHits)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         int x = ResolveEnergyXValue();
-        if (x > 0) await CommonActions.CardAttack(this, play, x * x, vfx: "vfx/vfx_attack_slash").Execute(ctx);
+        if (x > 0) await CommonActions.CardAttack(this, play, Math.Min(MaxHits, x * x), vfx: "vfx/vfx_attack_slash").Execute(ctx);
     }
 
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(1);

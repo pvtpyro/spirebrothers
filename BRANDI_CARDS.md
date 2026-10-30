@@ -30,7 +30,7 @@ only runaway scaling gets capped. Every class name below was checked against eve
 
 | Keyword | Rule |
 |---|---|
-| **Ember** | A debuff on an enemy. At the start of its turn it takes damage equal to its Ember, then its Ember **grows by 1** (Poison shrinks; fires spread). Growth stops at 10, but cards can still push it higher. When an enemy with Ember dies, its Ember jumps to another random enemy (run RNG). On a **player** (only Accidental Fire does this) it doesn't grow: it goes down by 1 each turn, like Poison. |
+| **Ember** | A debuff on an enemy. At the start of its turn it takes damage equal to its Ember, then its Ember **grows by 1** (Poison shrinks; fires spread). Growth stops at 5 (was 10 until the 2026-10-29 balance pass), but cards can still push it higher. When an enemy with Ember dies, its Ember jumps to another random enemy (run RNG). On a **player** (only Accidental Fire does this) it doesn't grow: it goes down by 1 each turn, like Poison. |
 | **Aim** | A buff on Brandi that never wears off on its own. **Shot** attacks deal bonus damage per Aim (+3 unless the card says otherwise), then remove all of it. Most Aim comes from quiet Skills: patience, then one big hit. |
 | **Intel** | MI work. A debuff on an enemy: Attacks from **any** player deal +Intel damage to it. Removed at the end of the round. Made for co-op. |
 | **Static** | Sparky. A buff on Brandi that stays until it's used. Whenever she **touches** something (plays an Attack or a Share card) it discharges: deal damage equal to her Static to a random enemy, then it's gone. Share cards are her tapping a teammate on the shoulder. Cards that **spend** Static (Arc Flash, Power Down) take it before it can discharge. |

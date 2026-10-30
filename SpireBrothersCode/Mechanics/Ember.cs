@@ -17,8 +17,9 @@ namespace SpireBrothers.SpireBrothersCode.Mechanics;
 /// </summary>
 public static class Ember
 {
-    /// <summary>Ember stops growing on its own here. Cards can still push it higher.</summary>
-    public const int GrowthCap = 10;
+    /// <summary>Ember stops growing on its own here. Cards can still push it higher. Was 10 until 2026-10-29 (balance
+    /// pass): it never fades on enemies, so long fights ran away.</summary>
+    public const int GrowthCap = 5;
 
     /// <summary>Total Ember on the enemies that gets heart eyes out of her.</summary>
     public const int FireMoment = 15;

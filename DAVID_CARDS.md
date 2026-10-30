@@ -40,7 +40,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 | 6 | 🗡️🎯 Statistically Insignificant | 1 Attack | Deal 6 damage. Apply 2 Insulted. **Exact:** apply 2 more. | Insult (numbers) |
 | 7 | 🎯 Tranq Dart | 1 Skill | Apply 2 Weak. **Exact:** also apply 1 Vulnerable. | ARK |
 | 8 | 💰 Direct Deposit | 1 Attack | Deal 8 damage. **Hoard:** +1 per 50 Gold. | Money just shows up |
-| 9 | 💰🤝 Interest Payment | 1 Skill | Share: a player gains 4 Block. **Hoard:** +1 Block per 50 Gold. | Numbers |
+| 9 | 💰🤝 Interest Payment | 1 Skill | Share: a player gains 6 Block. **Hoard:** +1 Block per 50 Gold. | Numbers |
 | 10 | 🩸 You Break It, You Buy It | 1 Attack | Deal 4 damage. Apply 4 Bleed. | Messing with David costs you |
 | 11 | 🩸 Thorns III | 1 Skill | Gain 5 Block. Apply 3 Bleed. | Minecraft (the armor enchantment) |
 | 12 | 😩 Why Are We Even Here? | 1 Attack | Deal 6 damage. **Rant:** +3 damage for each Rant played earlier this turn. | Existential crisis |
@@ -79,7 +79,7 @@ Legend: 🎯 Exact, 💰 Hoard, 🩸 Bleed, 😩 Rant, 🤝 Delegate/Share, 🗡
 ### Hoard and gold
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
-| 34 | 💰 Piggy Bank | 1 Skill | Gain 15 Gold. Exhaust. | Terraria |
+| 34 | 💰 Piggy Bank | 0 Skill | Gain 15 Gold. Exhaust. | Terraria |
 | 35 | 💰 Compound Interest | 2 Power | At the start of your turn, gain 1 Block per 20 Gold (max 10). | Numbers |
 | 36 | 💰🤝 Untouched Savings | 1 Skill | Share: a player gains 1 Block per 10 Gold you have (max 25). | Indifferent to money |
 | 37 | 💰 Money Bags | 2 Attack | Deal 12 damage. **Hoard:** +1 per 50 Gold. | Payday 2 |
@@ -171,7 +171,7 @@ He had only 15 Attacks in the reward pool; now 25 (88 cards total: 25 Common / 4
 | Uncommon | 😩 Call Mom | 1 Skill | Draw 2 cards. **Rant:** gain 3 Block for each Rant played earlier this turn. | He calls Mom to chat or vent |
 | Uncommon | 🎯 Divide and Conquer | 2 Attack | Deal 9 damage to ALL enemies. **Exact:** apply 1 Vulnerable to ALL enemies. | Numbers |
 | Uncommon | 💰 Mattress Money | 1 Power | Your Attacks deal 1 extra damage per 100 Gold you have. (Upgrade: costs 0.) | Cash he never spends |
-| Rare | Solve for X | X Attack | Deal 4 damage X² times (3 energy: 9 hits). | Puzzles |
+| Rare | Solve for X | X Attack | Deal 4 damage X² times, at most 16 (3 energy: 9 hits). | Puzzles |
 | Rare | 😩 Forty-Two | 2 Attack | Only playable after 2+ Rants this turn. Deal 42 damage. Exhaust. (Upgrade: costs 1.) | The answer to life, the universe, and everything |
 | Rare | 🤝 Totem of Undying | 2 Skill | Share: the next time a player would die this combat, they heal 40% of their Max HP instead. Exhaust. | Minecraft |
 | Rare | 😩 Overthinking | 2 Power | Your Rant bonuses count 1 more Rant than you've played this turn (upgrade: 2). | The crisis never really ends |

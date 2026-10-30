@@ -17,12 +17,12 @@ using SpireBrothers.SpireBrothersCode.Orbs;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Joshua;
 
-/// <summary>Ballads (a torch song is a sad love song). Deal 6 damage, +1 for each Heartstrings on the target.</summary>
+/// <summary>Ballads (a torch song is a sad love song). Deal 6 damage, +2 for each Heartstrings on the target.</summary>
 public class TorchSong() : JoshuaCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(6),
-        new ExtraDamageVar(1),
+        new ExtraDamageVar(2),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(Heartstrings)
     ];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<HeartstringsPower>()];

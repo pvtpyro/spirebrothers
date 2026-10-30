@@ -53,7 +53,7 @@ Legend: ⚙️ Grind, 🧪 Toxin / Chem, 🌫️ Shroud, 🤝 co-op.
 | 15 | 🌫️ Flame Shard | 0 Skill | If you're in the Shroud, it lasts 1 more turn. Draw 1 card. | Enshrouded |
 | 46 | ⚙️ Ding! | 1 Skill | Gain 3 Block. Draw 1 card. **Grind 1** (Block). | WoW (the level-up sound) |
 | 47 | Single Pull | 1 Attack | Deal 9 damage. If it's the only enemy, deal 4 more. | WoW (pull one mob at a time) |
-| 48 | 🧪 Herbalism | 1 Skill | Apply 3 Toxin. Heal 2 HP. | WoW gathering profession, herbs into chems |
+| 48 | 🧪 Herbalism | 1 Skill | Apply 3 Toxin. Heal 2 HP. Gain 5 Block. | WoW gathering profession, herbs into chems |
 | 49 | Autopistol Spray | 1 Attack | Deal 2 damage to ALL enemies 3 times. | Hive Scum |
 | 50 | Vendor Trash | 0 Skill | Exhaust a card in your hand. Gain 8 Gold. | WoW (selling grey items) |
 
@@ -122,7 +122,7 @@ Legend: ⚙️ Grind, 🧪 Toxin / Chem, 🌫️ Shroud, 🤝 co-op.
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
 | 36 | ⚙️ Just One More Run | 1 Power | Your cards Grind twice as much. | Grind |
-| 37 | ⚙️ Completionist | 1 Attack | Deal 1 damage for every time your cards have Ground this run. | Grind |
+| 37 | ⚙️ Completionist | 1 Attack | Deal 1 damage for every time your cards have Ground this run (up to +30). | Grind |
 | 38 | ⚙️ Base Builder | 1 Power | At the start of your turn, gain 2 Block. **Grind 1.** | Enshrouded base building |
 | 39 | 🧪 Toxic Overload | 2 Attack | Chem. Deal damage equal to 4 times an enemy's Toxin. Remove it. Exhaust. | Hive Scum |
 | 40 | 🧪 Cartel Kingpin | 2 Power | Whenever you apply Toxin, apply 1 more. | Hive Scum |
@@ -131,7 +131,7 @@ Legend: ⚙️ Grind, 🧪 Toxin / Chem, 🌫️ Shroud, 🤝 co-op.
 | 43 | Pocket Full of Stimms | 1 Skill | Add 3 **Stimms** to your hand (0-cost token: gain 4 Block, draw 1 card, Exhaust). Exhaust. | Hive Scum |
 | 44 | Legendary Drop | 0 Skill | Choose 1 of 3 random Rare cards from your pool and add it to your hand. It costs 0 this turn. Exhaust. | Loot |
 | 45 | Big Beard Energy | 2 Power | Gain 2 Strength and 2 Dexterity. | His beard |
-| 65 | ⚙️ Level Cap | 2 Power | Gain 1 Strength for every 10 times your cards have Ground this run. | WoW (hitting max level) |
+| 65 | ⚙️ Level Cap | 2 Power | Gain 1 Strength for every 10 times your cards have Ground this run (max 5; upgraded every 7, max 7). | WoW (hitting max level) |
 | 66 | ⚙️ Best in Slot | 1 Skill | Choose a Grind card in your hand. It Grinds 3 times. Exhaust. | WoW gear |
 | 67 | World First | 3 Attack | Deal 15 damage 3 times. | WoW raid races |
 | 68 | 🤝 Raid Leader | 2 Power | At the start of your turn, ALL players gain 1 Strength this turn. | WoW |

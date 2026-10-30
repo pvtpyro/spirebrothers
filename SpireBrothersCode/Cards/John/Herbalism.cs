@@ -17,17 +17,23 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.John;
 
-/// <summary>WoW gathering profession: herbs into chems. Apply 3 Toxin. Heal 2 HP.</summary>
+/// <summary>WoW gathering profession: herbs into chems. Apply 3 Toxin. Heal 2 HP. Gain 5 Block.</summary>
 public class Herbalism() : JohnCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Toxin", 3), new HealVar(2)];
+    public override bool GainsBlock => true;
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Toxin", 3), new HealVar(2), new BlockVar(5, ValueProp.Move)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<ToxinPower>()];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         if (play.Target is { IsAlive: true }) await Toxin.Apply(ctx, play.Target, DynamicVars["Toxin"].IntValue, Owner, this);
         await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
+        await CommonActions.CardBlock(this, play);
     }
 
-    protected override void OnUpgrade() => DynamicVars["Toxin"].UpgradeValueBy(2);
+    protected override void OnUpgrade()
+    {
+        DynamicVars["Toxin"].UpgradeValueBy(2);
+        DynamicVars.Block.UpgradeValueBy(3);
+    }
 }

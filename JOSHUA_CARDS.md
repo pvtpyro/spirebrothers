@@ -60,7 +60,7 @@ Legend: 🎵 Song, 🎤 Chorus, 💘 Heartstrings, ⏸ Held Note, 🎲 Roll (D&D
 | 16 | 🎵 Piano Intro (**new**) | 1 Skill | Innate. Gain 5 Block. Gain 1 extra Verse. | Piano |
 | 17 | Slow Dance (**new**) | 1 Skill | Retain. Gain 4 Block, +1 per Verse you have (doesn't spend them). | Ballads |
 | 18 | 💘🎵 Lullaby (**new**) | 1 Skill | Apply 1 Weak and 2 Heartstrings. | Ballads |
-| 19 | 💘 Torch Song (**new**) | 1 Attack | Deal 6 damage, +1 for each Heartstrings on the target (+2 upgraded). | Ballads (a sad love song) |
+| 19 | 💘 Torch Song (**new**) | 1 Attack | Deal 6 damage, +2 for each Heartstrings on the target (+3 upgraded). | Ballads (a sad love song) |
 | 20 | 🗡️🎵 Vicious Mockery (**new**) | 0 Attack | Deal 3 damage. Apply 1 Weak and 1 Insulted. | D&D (the bard's insult spell) |
 | 21 | 🎵 Bardic Inspiration (**new**) | 1 Skill | Gain 5 Block. Gain 1 Advantage. | D&D (kept for himself) |
 | 22 | Boomerang (**new**) | 0 Attack | Retain. Deal 4 damage. Apply 1 Weak. | Zelda |

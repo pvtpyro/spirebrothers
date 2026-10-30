@@ -16,13 +16,13 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.David;
 
-/// <summary>Share. A player gains 4 Block. Hoard: +1 Block per 50 Gold.</summary>
+/// <summary>Share. A player gains 6 Block. Hoard: +1 Block per 50 Gold.</summary>
 public class InterestPayment() : DavidCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyPlayer)
 {
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Hoard, BrotherKeywords.Share];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new CalculationBaseVar(4),
+        new CalculationBaseVar(6),
         new CalculationExtraVar(1),
         new CalculatedBlockVar(ValueProp.Move).WithMultiplier(GoldFifties)
     ];

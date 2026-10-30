@@ -17,8 +17,8 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Huffman;
 
-/// <summary>The IT guy buying for the boss. Gain 4 Metal. Exhaust. Upgrade: costs 0.</summary>
-public class PurchaseOrder() : HuffmanCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+/// <summary>The IT guy buying for the boss. Gain 4 Metal. Exhaust.</summary>
+public class PurchaseOrder() : HuffmanCard(0,CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, BrotherKeywords.Metal];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Metal", 4)];
@@ -28,5 +28,5 @@ public class PurchaseOrder() : HuffmanCard(1, CardType.Skill, CardRarity.Common,
         await Metal.Gain(ctx, Owner, DynamicVars["Metal"].IntValue, this);
     }
 
-    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
+    protected override void OnUpgrade() => DynamicVars["Metal"].UpgradeValueBy(2);
 }

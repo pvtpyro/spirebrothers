@@ -17,14 +17,16 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.John;
 
-/// <summary>WoW (hitting max level). Gain 1 Strength for every 10 times your cards have Ground this run. Upgrade: every 7.</summary>
+/// <summary>WoW (hitting max level). Gain 1 Strength for every 10 times your cards have Ground this run, up to 5.
+/// Upgrade: every 7, up to 7.</summary>
 public class LevelCap() : JohnCard(2, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Grind];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Per", 10)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Per", 10), new DynamicVar("Max", 5)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<StrengthPower>()];
 
-    private int Strength => !IsMutable || Owner == null ? 0 : Grind.TimesThisRun(Owner) / Math.Max(1, DynamicVars["Per"].IntValue);
+    private int Strength => !IsMutable || Owner == null ? 0 : Math.Min(DynamicVars["Max"].IntValue,
+        Grind.TimesThisRun(Owner) / Math.Max(1, DynamicVars["Per"].IntValue));
 
     protected override void AddExtraArgsToDescription(MegaCrit.Sts2.Core.Localization.LocString description)
     {
@@ -37,5 +39,9 @@ public class LevelCap() : JohnCard(2, CardType.Power, CardRarity.Rare, TargetTyp
         if (Strength > 0) await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, Strength, Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars["Per"].UpgradeValueBy(-3);
+    protected override void OnUpgrade()
+    {
+        DynamicVars["Per"].UpgradeValueBy(-3);
+        DynamicVars["Max"].UpgradeValueBy(2);
+    }
 }

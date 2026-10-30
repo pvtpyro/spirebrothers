@@ -15,7 +15,7 @@ Numbers are first-pass balance, based on vanilla (Strike 6, Defend 5, roughly 8 
 | 3 | 🛡 Seaglide | 1 Skill | H | Gain 5 Block. Draw 1 card. | Subnautica |
 | 4 | Hotfix | 0 Attack | L, Wired | Deal 4 damage. **Wired:** draw 1 card. | Software |
 | 5 | Jumper Cables | 1 Attack | H, Wired | Deal 7 damage. **Wired:** gain 1 Energy. | Cars |
-| 6 | Ctrl+Z | 1 Skill | L | Put a card from your discard pile into your hand. (Upgrade: costs 0.) | Undo! |
+| 6 | Ctrl+Z | 1 Skill | L | Gain 4 Block. Put a card from your discard pile into your hand. (Upgrade: 6 Block.) | Undo! |
 | 7 | Redstone Repeater | 1 Attack | L, Wired | Deal 5 damage. **Wired:** deal it again. | Minecraft |
 | 8 | Conveyor Belt | 1 Skill | H | Add a Gear to your hand. Draw 1 card. | Factorio |
 | 9 | Spaghetti Code | 1 Attack | L | Deal 6 damage. Apply 2 Insulted. *(an insult card)* | Monkey Island x code |

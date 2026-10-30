@@ -17,18 +17,21 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.Daniel;
 
-/// <summary>Put a card from your discard pile into your hand. Upgrade: costs 0.</summary>
+/// <summary>Gain 4 Block. Put a card from your discard pile into your hand.</summary>
 public class CtrlZ() : DanielCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
+    public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Logic];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(4, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
+        await CommonActions.CardBlock(this, play);
         var picked = await CardSelectCmd.FromCombatPile(context: ctx, pile: PileType.Discard.GetPile(Owner), player: Owner,
             prefs: new CardSelectorPrefs(SelectionScreenPrompt, 1));
         var card = picked.FirstOrDefault();
         if (card != null) await CardPileCmd.Add(card, PileType.Hand);
     }
 
-    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
+    protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(2);
 }

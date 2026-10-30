@@ -13,7 +13,7 @@ Numbers are first-pass balance based on vanilla (Strike 6, Defend 5).
 
 | Keyword | Rule |
 |---|---|
-| **Kids** | A counter on Tim, **max 8** (of course). At the end of your turn, **each Kid deals 1 damage to a random enemy.** Cards add Kids, and payoffs scale with how many you have. Shown on his tracker, like Daniel's Train of Thought. |
+| **Kids** | A counter on Tim, **max 8** (of course). At the end of your turn, **each Kid deals 2 damage to a random enemy.** Cards add Kids, and payoffs scale with how many you have. Shown on his tracker, like Daniel's Train of Thought. |
 | **Script** | Lua automation. **At the start of your next turn, this card's effect happens again** for free (it is not played again). Write it once, let it run. |
 | **Age** | Age of Empires. **Lasts the whole run**, starting in the **Dark Age**. His starting **Age Up** card advances it one step at a time: Feudal → Castle → Imperial, costing 3 energy plus **50 / 100 / 150 Gold**. Each Age gives **all his cards +1 damage per hit and +1 Block** (like AoE blacksmith upgrades; +3 at Imperial). In exchange he **can't Smith at rest sites**. Some cards get extra bonuses at later Ages. Hovering the number above his head explains it. |
 
