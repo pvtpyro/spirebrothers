@@ -327,5 +327,59 @@
   "SPIREBROTHERS-BAAL.heroWin.0": "Audit complete.",
   "SPIREBROTHERS-BAAL.heroWin.1": "And I'll be taking my Gold back, thanks.",
   "SPIREBROTHERS-BAAL.heroWin.2": "Same stats. Different outcome.",
-  "SPIREBROTHERS-BAAL.heroWin.3": "Nobody touches my Gold."
+  "SPIREBROTHERS-BAAL.heroWin.3": "Nobody touches my Gold.",
+
+  "SPIREBROTHERS-ANUBIS.name": "Anubis",
+  "SPIREBROTHERS-ANUBIS.moves.I_AM_ANUBIS.title": "I Am Anubis",
+  "SPIREBROTHERS-ANUBIS.moves.SHROUD_STRIKE.title": "Shroud Strike",
+  "SPIREBROTHERS-ANUBIS.moves.KULL_RISE.title": "Kull, Rise!",
+  "SPIREBROTHERS-ANUBIS.moves.DARK_SHROUD.title": "Dark Shroud",
+  "SPIREBROTHERS-ANUBIS.moves.TOUCH_OF_DEATH.title": "Touch of Death",
+  "SPIREBROTHERS-ANUBIS.moves.SUPERWEAPON.title": "Superweapon",
+
+  "SPIREBROTHERS-KULL_WARRIOR.name": "Kull Warrior",
+  "SPIREBROTHERS-KULL_WARRIOR.moves.WRIST_BLASTER.title": "Wrist Blaster",
+  "SPIREBROTHERS-KULL_WARRIOR.moves.MARCH.title": "March",
+
+  "SPIREBROTHERS-ANUBIS.intro.0": "I am Anubis. Your gods have abandoned you.",
+  "SPIREBROTHERS-ANUBIS.intro.1": "The Ascended cast me out. You will not be so lucky.",
+  "SPIREBROTHERS-ANUBIS.intro.2": "Kneel, and I may let you serve.",
+
+  "SPIREBROTHERS-ANUBIS.heroIntro.0": "Okay. Hood guy. No face. This is fine.",
+  "SPIREBROTHERS-ANUBIS.heroIntro.1": "Big bad of the middle seasons. Let's do this.",
+  "SPIREBROTHERS-ANUBIS.heroIntro.2": "I've got the anti-Kull thing. I think. Which end is the front?",
+  "SPIREBROTHERS-ANUBIS.heroIntro.3": "Hey, Anubis. Nice robe. Is anybody in there?",
+
+  "SPIREBROTHERS-ANUBIS.heroReply.0": "Your weapon is a toy.",
+  "SPIREBROTHERS-ANUBIS.heroReply.1": "I am beyond your understanding.",
+  "SPIREBROTHERS-ANUBIS.heroReply.2": "Even the Goa'uld fear me. What are you?",
+  "SPIREBROTHERS-ANUBIS.heroReply.3": "Look closer. You will not like what you find.",
+
+  "SPIREBROTHERS-ANUBIS.sideReply.0": "Kill the Kull first. He needs a body.",
+  "SPIREBROTHERS-ANUBIS.sideReply.1": "Hit the armor guys with the not-attacks.",
+  "SPIREBROTHERS-ANUBIS.sideReply.2": "Watch that countdown. That's the big one.",
+  "SPIREBROTHERS-ANUBIS.sideReply.3": "Half-ascended. So, half as scary?",
+
+  "SPIREBROTHERS-ANUBIS.taunts.0": "Kull, rise.",
+  "SPIREBROTHERS-ANUBIS.taunts.1": "I have been to the other side. You will not like it.",
+  "SPIREBROTHERS-ANUBIS.taunts.2": "Your resistance amuses me.",
+  "SPIREBROTHERS-ANUBIS.taunts.3": "There is no hiding from me.",
+  "SPIREBROTHERS-ANUBIS.taunts.4": "Every world will kneel.",
+
+  "SPIREBROTHERS-ANUBIS.possess.0": "Did you think a body could hold me?",
+  "SPIREBROTHERS-ANUBIS.possess.1": "This one will do.",
+  "SPIREBROTHERS-ANUBIS.possess.2": "I cannot die. I can only change.",
+
+  "SPIREBROTHERS-ANUBIS.superweapon.0": "Witness the power of the Ancients.",
+  "SPIREBROTHERS-ANUBIS.superweapon.1": "Fire.",
+  "SPIREBROTHERS-ANUBIS.superweapon.2": "Your planet will burn first.",
+
+  "SPIREBROTHERS-ANUBIS.noHosts.0": "That's the last Kull! Nowhere left to hide!",
+  "SPIREBROTHERS-ANUBIS.noHosts.1": "No more bodies. Now he's ours.",
+  "SPIREBROTHERS-ANUBIS.noHosts.2": "Armor's gone. Hood guy next.",
+
+  "SPIREBROTHERS-ANUBIS.heroWin.0": "Ascend THAT.",
+  "SPIREBROTHERS-ANUBIS.heroWin.1": "There was nobody in there after all.",
+  "SPIREBROTHERS-ANUBIS.heroWin.2": "Back to the higher plane with you.",
+  "SPIREBROTHERS-ANUBIS.heroWin.3": "Chevron seven, locked. We're going home."
 }

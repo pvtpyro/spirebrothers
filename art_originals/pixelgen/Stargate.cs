@@ -1,5 +1,5 @@
-// The Stargate SG-1 bosses: Apophis (Act 2) with his Jaffa and the Sarcophagus, and Ba'al and his clones (Act 1). Drawn facing right
-// like the rest; the game mirrors them to face the party. Rendered by art_originals/mobgen (apophis jaffa sarcophagus baal),
+// The Stargate SG-1 bosses: Apophis (Act 2) with his Jaffa and the Sarcophagus, and Ba'al and his clones (Act 1), and Anubis and his Kull Warriors (Act 3). Drawn facing right
+// like the rest; the game mirrors them to face the party. Rendered by art_originals/mobgen (apophis jaffa sarcophagus baal anubis kull_warrior),
 // which also writes each boss's map icon (images/map/<name>_boss_icon.png + _outline.png) from his idle frame (BossIcon).
 
 // ---------------------------------------------------------------- Apophis
@@ -322,6 +322,184 @@ public class BaalArt : FoeArt
         {
             var p = Base(); p.BackHand = back[i]; p.BackElbowPref = new V(0, 1); p.HeadTilt = i is >= 2 and <= 4 ? 1 : 0;
             p.Face = i is >= 2 and <= 4 ? Face.Happy : Face.Normal;
+            list.Add(p);
+        }
+        return list;
+    }
+}
+
+// ---------------------------------------------------------------- Anubis (the Act 3 boss)
+// Half-ascended: a tall black hooded robe with a silver hem and nothing solid under the hood, only a dark void with a
+// grey haze drifting across it and two dim pale eyes (bright when he uses his power). Black gloves. Attack: a palm
+// thrust with a puff of dark energy. Cast: the hand raised high, a violet orb crackling in it.
+public class AnubisArt : FoeArt
+{
+    public override string Name => "anubis";
+    static readonly Col Robe = Col.Hex("16141c"), Trim = Col.Hex("9aa0ac"), Void = Col.Hex("050308"), Haze = Col.Hex("3a3846");
+    static readonly Col EyeDim = Col.Hex("8890a0"), EyeLit = Col.Hex("d8ecff"), Dark = Col.Hex("7a4ac8"), Spark = Col.Hex("e0c8ff");
+
+    public AnubisArt()
+    {
+        Skin = Col.Hex("2a2830");
+        HairC = Robe; BeardC = Robe; Hair = HairStyle.Bald; BeardLen = 0;
+        Sleeve = Robe; Glove = Col.Hex("24222a"); Pants = Robe.Mul(0.85f); Shoes = Robe.Mul(0.7f);
+    }
+
+    protected override Pose Base() => new() { FrontHand = new V(5, 13), BackHand = new V(-3, 14) };
+
+    protected override void DrawTorso(Canvas c, Rig r, Pose p)
+    {
+        // a robe to the ankles, flaring out, with a silver hem and a silver edge down the front opening
+        var body = TorsoPoly(r, 76, 8);
+        c.Draw(q => S.Poly(q, body) - 1, Robe, hi: Robe.Light);
+        c.Flat(q => S.I(S.Poly(q, body) - 1, -(q.Y - 74.5f)), Trim);
+        Px.Line(c, r.S + new V(2, 3), new V(r.H.X + 3, 74), Trim.Mul(0.7f));
+    }
+
+    protected override void DrawHeadExtras(Canvas c, Rig r, Pose p)
+    {
+        var h = r.Head; float fs = FaceShift;
+        // the hood covers the whole head and neck, down onto the shoulders
+        c.Draw(q => S.U(S.Ellipse(q, h + new V(-0.5f, -0.5f), 11.5f, 12f), S.Capsule(q, h + new V(-1, 6), r.S + new V(1, 2), 7.5f)), Robe, hi: Robe.Light);
+        // the opening: a dark void with a haze that drifts from frame to frame
+        var face = h + new V(3.5f - fs, 2.5f);
+        c.Flat(q => S.Ellipse(q, face, 5.2f, 6.6f), Void);
+        for (int i = 0; i < 6; i++)
+        {
+            float a = i * 1.7f + p.Fx * 0.8f + p.Bob;
+            var at = face + new V(MathF.Sin(a) * 3f, MathF.Cos(a * 1.3f) * 4f);
+            c.Plot(at, Haze);
+        }
+        // the hood's rim over the top of the opening (along the bottom it read as a grin)
+        c.Flat(q => S.I(MathF.Abs(S.Ellipse(q, face, 5.6f, 7f)) - 0.5f, q.Y - (face.Y - 3)), Robe.Light);
+        // two dim eyes, lit when he calls on his power
+        var eye = p.Glow ? EyeLit : EyeDim;
+        if (p.Face != Face.Blink && p.Face != Face.Dead)
+        {
+            c.Plot(face.X - 1.5f, face.Y - 1, eye); c.Plot(face.X + 2f, face.Y - 1, eye);
+        }
+    }
+
+    protected override void DrawWeapon(Canvas c, Rig r, Pose p)
+    {
+        var hand = r.HandF;
+        if (p.Prop == "orb")
+        {
+            c.Draw(q => S.Circle(q, hand + new V(0.5f, -3.5f), p.Fx == 2 ? 3.4f : 2.6f), Dark, hi: Spark);
+            if (p.Fx >= 2) { Px.Line(c, hand + new V(-3, -7), hand + new V(-1, -5), Spark); Px.Line(c, hand + new V(4, -8), hand + new V(2, -5), Spark); }
+        }
+        if (p.Prop == "blast")
+        {
+            Px.Puff(c, hand + new V(4 + p.Fx * 2, 0), p.Fx == 1 ? 2.4f : 3.6f, Dark);
+            Px.Puff(c, hand + new V(4 + p.Fx * 2, 0), 1.2f, Spark);
+        }
+    }
+
+    // The idle glow only flickers: he isn't using his power.
+    protected override List<Pose> Idle()
+    {
+        var list = base.Idle();
+        foreach (var p in list) p.Glow = false;
+        return list;
+    }
+
+    protected override List<Pose> Attack()
+    {
+        var list = Strike([(new(3, 11), 0, -2, 0), (new(0, 8), 0, -3, 0), (new(14, 4), 0, 4, 1),
+            (new(14, 4), 0, 4, 2), (new(9, 9), 0, 2, 0), (new(5, 13), 0, 0, 0)]);
+        foreach (var p in list) { p.Prop = p.Fx > 0 ? "blast" : ""; p.Glow = p.Fx > 0; }
+        return list;
+    }
+
+    protected override List<Pose> Cast()
+    {
+        (V hand, int fx)[] frames = [(new(5, 8), 0), (new(10, -1), 1), (new(14, -6), 2), (new(14, -6), 3), (new(14, -6), 2), (new(6, 2), 0), (new(5, 13), 0)];
+        var list = new List<Pose>();
+        foreach (var (hand, fx) in frames)
+        {
+            var p = Base(); p.FrontHand = hand; p.FrontElbowPref = new V(0, 1); p.Fx = fx;
+            p.Prop = fx > 0 ? "orb" : ""; p.Glow = fx > 0;
+            list.Add(p);
+        }
+        return list;
+    }
+}
+
+// ---------------------------------------------------------------- Kull Warrior
+// Anubis's super-soldier: black armor plate head to toe (segmented chest, round shoulder plates), a smooth helmet with a
+// thin red visor slit and no face showing, and a blaster built into the front wrist. Attack: arm up, an orange bolt.
+// Cast (March): a heavy step forward, both fists clenched.
+public class KullArt : FoeArt
+{
+    public override string Name => "kull_warrior";
+    static readonly Col Plate = Col.Hex("22222a"), Edge = Col.Hex("4a4a58"), Visor = Col.Hex("c03028"), Bolt = Col.Hex("ffa040"), White = Col.Hex("fff0d0");
+
+    public KullArt()
+    {
+        Skin = Plate;
+        HairC = Plate; BeardC = Plate; Hair = HairStyle.Bald; BeardLen = 0;
+        Sleeve = Plate; Glove = Plate.Mul(1.2f); Pants = Plate.Mul(0.9f); Shoes = Plate.Mul(0.75f);
+    }
+
+    protected override Pose Base() => new() { FrontHand = new V(6, 12), BackHand = new V(-3, 14) };
+
+    protected override void DrawTorso(Canvas c, Rig r, Pose p)
+    {
+        // a broad armored chest in three bands, and a plated belt
+        var body = TorsoPoly(r, r.H.Y + 3, 2.5f);
+        c.Draw(q => S.Poly(q, body) - 1, Plate, hi: Edge);
+        for (int i = 1; i <= 3; i++)
+        {
+            float y = r.S.Y + 3 + i * 4.5f;
+            Px.Line(c, new V(r.S.X - 5, y), new V(r.S.X + 8, y), Plate.Mul(0.6f));
+        }
+        c.Draw(q => S.Box(q, r.H.X - 7, r.H.Y - 1, r.H.X + 8, r.H.Y + 2), Edge, outline: false);
+    }
+
+    protected override void DrawHeadExtras(Canvas c, Rig r, Pose p)
+    {
+        var h = r.Head; float fs = FaceShift;
+        // the helmet: a smooth dome down over the jaw, with a thin red visor slit
+        c.Draw(q => S.U(S.Ellipse(q, h + new V(0.5f, 0.5f), 10.5f, 11f), S.Ellipse(q, h + new V(3.5f - fs, 6), 6.5f, 4.5f)), Plate, hi: Edge);
+        var visor = h + new V(4f - fs, 1.5f);
+        Px.Line(c, visor + new V(-3.5f, 0), visor + new V(3.5f, 0), Visor);
+        // shoulder plates
+        c.Draw(q => S.Ellipse(q, r.SF + new V(0, 0.5f), 4.2f, 3f), Plate, hi: Edge);
+    }
+
+    protected override void DrawWeapon(Canvas c, Rig r, Pose p)
+    {
+        // the wrist blaster: a block on the forearm with a muzzle at the knuckles
+        var hand = r.HandF; var d = (hand - r.ElbowF).Norm;
+        c.Draw(q => S.Capsule(q, hand - d * 4, hand - d * 1, 1.8f), Edge, hi: Edge.Light);
+        if (p.Prop != "fire") return;   // (not Fx alone: the idle loop counts Fx too)
+        var at = hand + d * 3;
+        for (int i = 0; at.X < 64 && i < 30; i++)
+        {
+            var next = at + d * 2.5f;
+            Px.Line(c, at, next, i < 2 ? White : Bolt, i < 4 ? 2 : 1);
+            at = next;
+        }
+    }
+
+    protected override List<Pose> Attack()
+    {
+        var list = Strike([
+            (new(7, 10), 0, 0, 0), (new(11, 5), 0, 1, 0), (new(14, 3), 0, 2, 1),
+            (new(14, 3), 0, 2, 0), (new(10, 8), 0, 1, 0), (new(6, 12), 0, 0, 0)]);
+        foreach (var p in list) p.Prop = p.Fx == 1 ? "fire" : "";
+        return list;
+    }
+
+    // March: a heavy step forward.
+    protected override List<Pose> Cast()
+    {
+        float[] step = [0, 2, 4, 4, 2, 0];
+        var list = new List<Pose>();
+        foreach (var s in step)
+        {
+            var p = Base(); p.FootF = new V(s, 0); p.Lean = s * 0.5f; p.Crouch = s > 3 ? 1 : 0;
+            p.FrontHand = new V(6 + s * 0.5f, 11); p.BackHand = new V(-3, 13);
             list.Add(p);
         }
         return list;

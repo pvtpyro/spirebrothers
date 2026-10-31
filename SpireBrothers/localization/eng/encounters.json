@@ -30,5 +30,7 @@
   "SPIREBROTHERS-APOPHIS_BOSS.title": "Apophis",
   "SPIREBROTHERS-APOPHIS_BOSS.loss": "{character} knelt before [gold]{encounter}[/gold].",
   "SPIREBROTHERS-BAAL_BOSS.title": "Ba'al",
-  "SPIREBROTHERS-BAAL_BOSS.loss": "{character} picked the wrong [gold]{encounter}[/gold]. Several times."
+  "SPIREBROTHERS-BAAL_BOSS.loss": "{character} picked the wrong [gold]{encounter}[/gold]. Several times.",
+  "SPIREBROTHERS-ANUBIS_BOSS.title": "Anubis",
+  "SPIREBROTHERS-ANUBIS_BOSS.loss": "{character} looked under [gold]{encounter}[/gold]'s hood."
 }

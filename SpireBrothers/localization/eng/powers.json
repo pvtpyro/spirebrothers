@@ -984,5 +984,17 @@
   "SPIREBROTHERS-JUST_A_CLONE_POWER.smartDescription": "Not the real [gold]Ba'al[/gold]. Keep looking.",
   "SPIREBROTHERS-REAL_BAAL_POWER.title": "The Real Ba'al",
   "SPIREBROTHERS-REAL_BAAL_POWER.description": "Found him. Beat this one and the fight is over.",
-  "SPIREBROTHERS-REAL_BAAL_POWER.smartDescription": "Found him. Beat this one and the fight is over."
+  "SPIREBROTHERS-REAL_BAAL_POWER.smartDescription": "Found him. Beat this one and the fight is over.",
+  "SPIREBROTHERS-HALF_ASCENDED_POWER.title": "Half-Ascended",
+  "SPIREBROTHERS-HALF_ASCENDED_POWER.description": "If he falls while a Kull Warrior stands, he takes it over instead: it drops, and he gets back up with 100 HP, more Strength, and no debuffs. One player, picked at random, starts with the Anti-Kull Disruptor.",
+  "SPIREBROTHERS-HALF_ASCENDED_POWER.smartDescription": "If he falls while a [gold]Kull Warrior[/gold] stands, he takes it over instead: it drops, and he gets back up with 100 HP, more [gold]Strength[/gold], and no debuffs.\nOne player, picked at random, starts with the [gold]Anti-Kull Disruptor[/gold].",
+  "SPIREBROTHERS-KULL_ARMOR_POWER.title": "Kull Armor",
+  "SPIREBROTHERS-KULL_ARMOR_POWER.description": "Attacks deal half damage to it.",
+  "SPIREBROTHERS-KULL_ARMOR_POWER.smartDescription": "Attacks deal half damage to it.",
+  "SPIREBROTHERS-KULL_RESERVE_POWER.title": "Kull in Reserve",
+  "SPIREBROTHERS-KULL_RESERVE_POWER.description": "Kull Warriors he can still call in with Kull, Rise!. When they run out, he can't make more.",
+  "SPIREBROTHERS-KULL_RESERVE_POWER.smartDescription": "He can still call in [blue]{Amount}[/blue] more [gold]Kull Warriors[/gold] with [gold]Kull, Rise![/gold]. When they run out, he can't make more.",
+  "SPIREBROTHERS-SUPERWEAPON_POWER.title": "Superweapon",
+  "SPIREBROTHERS-SUPERWEAPON_POWER.description": "His mothership's superweapon fires in this many of his turns.",
+  "SPIREBROTHERS-SUPERWEAPON_POWER.smartDescription": "His mothership's superweapon fires in [blue]{Amount}[/blue] {Amount:plural:turn|turns}."
 }

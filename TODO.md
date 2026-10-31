@@ -261,7 +261,19 @@ Replicators (all four were liked; act still to pick for each).
 - [x] Test Ba'al (done 2026-10-29, all working): `fight SPIREBROTHERS-BAAL_BOSS`. Checked: nothing gives away the real one (hover, health bar, intents),
       the half-HP reveals, clone replacement (placement, the "arrive" line), the clones vanishing when the real one falls,
       stolen Gold coming back, Due Diligence, only one quip per round
-- [ ] Anubis, Replicators
+- [x] Build Anubis (2026-10-30, untested in game), the Act 3 boss: `Monsters/Anubis.cs` (AnubisBoss + Anubis), `KullWarrior.cs`. Anubis 250 HP
+      behind two Kull Warriors (46 HP, minions, `KullArmorPower`: Attacks deal half; they alternate Wrist Blaster 11 and March,
+      +2 Strength. March was 8 Block until it turned out the armor halves first, so it soaked 16). `HalfAscendedPower`: falling while a Kull stands, he
+      takes it over instead (vanilla `ShouldDieLate`, like Lizard Tail): the Kull drops, he gets up with 100 HP, +3 Strength, debuffs gone.
+      Moves: I Am Anubis (2 Frail), then Shroud Strike 20, Kull, Rise! (back up to 2 Kull + 12 Block, from a reserve of 2 for the whole
+      fight, `KullReservePower`; once spent, Dark Shroud: 15 Block + 1 Weak to all), Touch of Death 6x3, Superweapon 30,
+      looping from Shroud Strike; `SuperweaponPower` counts down to it. The hero is a random player (the encounter's Rng): starts with
+      the shared token `Cards/Shared/AntiKullDisruptor.cs` (strips Kull Armor from ALL, 6 to ALL); the next player answers.
+      Brandi makes faces instead of saying any BibleElite line (fixes her talking as Apophis's party voice too).
+- [ ] Test Anubis: `fight SPIREBROTHERS-ANUBIS_BOSS`. Check: possession (Kull drops, he stands back up, no hero win line, the "noHosts"
+      line when the last Kull goes), the countdown matching the Superweapon intent, the reserve (2 refills, then Dark Shroud), Kull Armor halving only Attacks, the token
+      for a random player (co-op: same player on every screen), Brandi's faces, the art (hood, cast orb), map icon, camera with three bodies
+- [ ] Replicators
 
 ### 19. Mom as an Ancient
 An act-start Ancient (like Neow) offering family-flavored blessings: "Pack a lunch" (heal), "Take your brother with you"

@@ -483,3 +483,13 @@ Card art for everything (all cards, relics, and powers use placeholders).
 - `BossIcon.MapIcon` (pixelgen Stargate.cs) makes any boss's map icon; mobgen writes it for the names listed in its Program.cs.
 - Our bosses' map icons are full color: `Monsters/BossMapIconPatch.cs` undoes the map's ink tint on `NBossMapPoint` for any
   `BibleElite` boss (Ba'al went solid black under it). The `_outline.png` ring still takes the map background color.
+
+## Added 2026-10-30 (Anubis, the third boss)
+
+- **Anubis** (Stargate SG-1), Act 3 boss, untested in game. TODO.md #18. `Monsters/Anubis.cs` (`AnubisBoss`, `Anubis`), `Monsters/KullWarrior.cs`,
+  powers `HalfAscendedPower` (the FoePower; possession via vanilla `ShouldDieLate` + `AfterPreventingDeath`, then `Anubis.Possess` heals
+  before killing the Kull, or the fight would end), `KullArmorPower`, `SuperweaponPower` (countdown only; `Anubis.CountDown` sets it per move), `KullReservePower` (2 Kull refills for the whole fight, then
+  Kull, Rise! becomes Dark Shroud via a `ConditionalBranchState`).
+- His hero is any player, picked at random in `GenerateMonsters` (encounter Rng; `Seat` = 0 hero, 1 answers). The token is shared:
+  `Cards/Shared/AntiKullDisruptor.cs` in vanilla `TokenCardPool`. `BibleElite.Say` turns any line Brandi would say into a FACES face.
+- Art: `AnubisArt` / `KullArt` in pixelgen Stargate.cs; `dotnet run -c Release anubis kull_warrior` in mobgen.

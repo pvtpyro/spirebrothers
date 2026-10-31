@@ -1455,5 +1455,7 @@
   "SPIREBROTHERS-SHOL_VA.title": "Shol'va",
   "SPIREBROTHERS-SHOL_VA.description": "A [gold]Jaffa[/gold] turns on [gold]Apophis[/gold]: it deals {Damage:diff()} damage to him, ignoring his [gold]Personal Shield[/gold], and is [gold]Stunned[/gold].",
   "SPIREBROTHERS-DUE_DILIGENCE.title": "Due Diligence",
-  "SPIREBROTHERS-DUE_DILIGENCE.description": "Deal {Damage:diff()} damage to ALL enemies."
+  "SPIREBROTHERS-DUE_DILIGENCE.description": "Deal {Damage:diff()} damage to ALL enemies.",
+  "SPIREBROTHERS-ANTI_KULL_DISRUPTOR.title": "Anti-Kull Disruptor",
+  "SPIREBROTHERS-ANTI_KULL_DISRUPTOR.description": "Remove [gold]Kull Armor[/gold] from ALL enemies.\nDeal {Damage:diff()} damage to ALL enemies."
 }

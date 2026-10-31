@@ -17,7 +17,8 @@ namespace SpireBrothers.SpireBrothersCode.Monsters;
 /// the opening and closing lines. FoePower (on <see cref="Speaker"/>) calls into this; Banter stays quiet in these fights.
 /// Lines are SPIREBROTHERS-&lt;LinesKey&gt;.* in monsters.json: intro (no hero), heroIntro, heroReply, taunts, heroWin,
 /// and sideReply (the <see cref="IsSidekick"/> brother's answer to the opening). Any number of lines per pool works.
-/// Not only Bible stories: the Apophis boss (Daniel, with David as sidekick) uses it too, as a Boss room.
+/// Not only Bible stories: the Stargate bosses use it too, as Boss rooms (Anubis picks his hero at random).
+/// Brandi never talks: any line she'd say becomes a face from Banter's FACES pools.
 /// </summary>
 public abstract class BibleElite(RoomType roomType = RoomType.Elite) : CustomEncounterModel(roomType)
 {
@@ -93,22 +94,32 @@ public abstract class BibleElite(RoomType roomType = RoomType.Elite) : CustomEnc
     public bool HeroHere(ICombatState combat) => Hero(combat) != null;
 
     // Display only, so the pick is seeded from the round (the same on every co-op client) and never touches the run RNG.
+    // Brandi never talks: whatever she'd say, she makes a face (Banter's FACES pools) instead.
     private void Say(Creature speaker, string pool, int seed)
     {
-        string prefix = $"SPIREBROTHERS-{LinesKey}.{pool}";
+        bool face = speaker.Player?.Character is Character.Brandi;
+        string table = face ? "powers" : "monsters";
+        string prefix = face ? $"{Banter.Prefix}FACES.{FacePool(pool)}" : $"SPIREBROTHERS-{LinesKey}.{pool}";
         try
         {
             int count = 0;
-            while (LocString.Exists("monsters", $"{prefix}.{count}")) count++;
+            while (LocString.Exists(table, $"{prefix}.{count}")) count++;
             if (count == 0) return;
             int pick = new System.Random(seed * 7919 + pool.Length * 31).Next(count);
-            Banter.Bubble(speaker, new LocString("monsters", $"{prefix}.{pick}").GetFormattedText());
+            Banter.Bubble(speaker, new LocString(table, $"{prefix}.{pick}").GetFormattedText());
         }
         catch (Exception e)
         {
             MainFile.Logger.Error($"{LinesKey} line failed ({pool}): {e}");
         }
     }
+
+    private string FacePool(string pool) => pool switch
+    {
+        "intro" or "heroIntro" => "START",
+        "heroWin" => roomType == RoomType.Boss ? "BOSS" : "ELITE",
+        _ => "REPLY",
+    };
 
     private static void After(double seconds, Action action)
     {
