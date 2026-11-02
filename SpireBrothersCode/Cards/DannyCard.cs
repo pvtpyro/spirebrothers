@@ -27,8 +27,8 @@ namespace SpireBrothers.SpireBrothersCode.Cards;
 /// Base class for Danny's cards. Every one has two sides: the Pilot side (normal) and the Titan side, used while his
 /// Titan stands (Mechanics/Titan). A card does OnPilot or OnTitan, can target differently on each side
 /// (<paramref name="titanTarget"/>), and takes its Titan name from the "titanTitle" loc key. Its description is one
-/// "{InTitan:cond:titan text|pilot text}"; the other side shows in a hover tip, so either can be read anywhere. Titan
-/// art (card_portraits/&lt;id&gt;_titan.png) is used when it exists.
+/// "{InTitan:cond:titan text|pilot text}"; the other side shows as a card preview beside it on hover (OtherSide), so
+/// either can be read anywhere.
 /// </summary>
 [Pool(typeof(DannyCardPool))]
 public abstract class DannyCard(int cost, CardType type, CardRarity rarity, TargetType target, TargetType? titanTarget = null) :
@@ -53,16 +53,12 @@ public abstract class DannyCard(int cost, CardType type, CardRarity rarity, Targ
         {
             try
             {
-                // The Compendium's Titan Side tickbox (TitanLibraryToggle): only cards with no owner, never a run's deck.
-                if (ShowTitanInLibrary && (!IsMutable || Owner == null)) return true;
+                if (_forcedSide is { } side) return side;
                 return IsMutable && IsInCombat && Titan.IsIn(Owner);
             }
             catch { return false; }
         }
     }
-
-    /// <summary>Set by the Compendium's Titan Side tickbox.</summary>
-    public static bool ShowTitanInLibrary;
 
     public override TargetType TargetType => InTitan ? _titanTarget : base.TargetType;
 
@@ -96,29 +92,23 @@ public abstract class DannyCard(int cost, CardType type, CardRarity rarity, Targ
     protected sealed override IEnumerable<IHoverTip> ExtraHoverTips =>
         new[] { OtherSide(), HoverTipFactory.FromKeyword(BrotherKeywords.Titan) }.OfType<IHoverTip>().Concat(MoreHoverTips);
 
-    // The side this card isn't showing, built from the same description with InTitan flipped.
+    // Set only on the preview copies OtherSide makes: locks the copy to one side, whoever (nobody) owns it.
+    private bool? _forcedSide;
+
+    // The side this card isn't showing, as a real card beside it (the game's card preview, like cards that make status
+    // cards): a fresh copy of the card locked to the other side. The copy shows no previews of its own.
     private IHoverTip? OtherSide()
     {
+        if (_forcedSide != null) return null;
         try
         {
-            bool titan = !InTitan;
-            var text = Description;
-            DynamicVars.AddTo(text);
-            AddExtraArgsToDescription(text);
-            text.Add("InTitan", titan);
-            text.Add(new IfUpgradedVar(IsUpgraded ? UpgradeDisplay.Upgraded : UpgradeDisplay.Normal));
-            text.Add("OnTable", false);
-            text.Add("InCombat", IsInCombat);
-            text.Add("IsTargeting", false);
-            text.Add("energyPrefix", EnergyIconHelper.GetPrefix(this));
-            var name = new LocString("cards", Id.Entry + (titan ? ".titanTitle" : ".title"));
-            var header = new LocString("card_keywords", titan ? "SPIREBROTHERS-TITAN.sideTitan" : "SPIREBROTHERS-TITAN.sidePilot");
-            header.Add("Name", name.Exists() ? name.GetFormattedText() : "");
-            return new HoverTip(header, text.GetFormattedText());
+            var copy = (DannyCard)CanonicalInstance.MutableClone();
+            copy._forcedSide = !InTitan;
+            return HoverTipFactory.FromCard(copy, IsUpgraded);
         }
         catch (Exception e)
         {
-            MainFile.Logger.Error($"Other-side tip failed on {GetType().Name}: {e}");
+            MainFile.Logger.Error($"Other-side preview failed on {GetType().Name}: {e}");
             return null;
         }
     }

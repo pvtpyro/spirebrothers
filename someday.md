@@ -2,7 +2,7 @@
 
 Idea (2026-10-29): pick a base character on the select screen, then pick a subclass (or outfit) from a popup.
 First trial: Brandi. Her class ideas are already in `future-notes.md` (priest bubble, druid HoTs, hunter pets, warlock pets).
-Nothing is built yet.
+Nothing is built yet. Update 2026-11-01: the first trial will be Danny's Titan chassis instead (`DANNY_CHASSIS.md`).
 
 ## The plan: every subclass is its own character
 

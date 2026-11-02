@@ -68,6 +68,5 @@
   "SPIREBROTHERS-REPAIR.title": "Repair",
   "SPIREBROTHERS-REPAIR.description": "Your Titan gets back that much HP (never above its max). Nothing happens if it isn't standing.",
   "SPIREBROTHERS-TITANMETER.title": "Titan Meter",
-  "SPIREBROTHERS-TITANMETER.description": "The bar at Danny's left. Damage he deals fills it. When it's full he gets [gold]Stand By for Titanfall[/gold] to call in his Titan, which takes the hits meant for him until it's destroyed.",
-  "SPIREBROTHERS-TITAN.libraryToggle": "Titan Side"
+  "SPIREBROTHERS-TITANMETER.description": "The bar at Danny's left. Damage he deals fills it. When it's full he gets [gold]Stand By for Titanfall[/gold] to call in his Titan, which takes the hits meant for him until it's destroyed."
 }

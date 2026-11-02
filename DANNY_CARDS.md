@@ -21,7 +21,8 @@ a pixel body, and his own select art. Until then he borrows the Defect's visuals
 - **Eject:** when the Titan is destroyed (or he plays Eject!), the cards flip back and the meter returns, empty.
   He can earn a second Titan in the same fight.
 - **Repair N:** the Titan gets back N HP (never above its max). Nothing happens if it isn't standing.
-- Reading the other side: hover any of his cards. The hover tip shows the side it isn't showing, in or out of combat.
+- Reading the other side: hover any of his cards and the other side shows beside it as a real card (the game's card
+  preview), in or out of combat.
 - One card picture for both sides for now.
 
 ## Starter
@@ -80,7 +81,7 @@ Potions: **Titan Battery** (20 meter, or Repair 20 in the Titan), **Smoke Canist
 - Enemy attacks hit the Titan, not Danny. Overkill spills onto him. Teammates' Block on him soaks it first.
 - His own Defend (if he had one left over) gives 0 Block in the Titan. A teammate's Share Block works.
 - Destroying the Titan (or Eject!) flips the hand back and brings the meter back at 0. Nuclear Ejection fires.
-- Hover tips: the other side reads right in the deck view, rewards, and in combat.
+- Hover: the other side shows as a card beside it in the deck view, rewards, and in combat.
 - Vortex Shield: the caught hit does no damage to the Titan, and the attacker takes it. A 6+ hit should still be caught
   even though the armor would not stop it.
 - Titan Armor: hits of 5 or less on the Titan show no damage; 6 goes through in full.

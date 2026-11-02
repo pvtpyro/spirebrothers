@@ -25,7 +25,7 @@ untested in game. Plan and bio in `BRANDI_CARDS.md`. She never talks: her banter
 - `Character/Danny.cs` + `DannyPools.cs`, `Cards/DannyCard.cs`, `Cards/Danny/`. Every card has two sides: `OnPilot` /
   `OnTitan`, an optional second `TargetType` (the getter flips, like vanilla Mad Science), a `titanTitle` loc key (the
   analyzer doesn't check it), and one description `{InTitan:cond:titan|pilot}`. `ExtraHoverTips` is sealed in the base (it
-  adds the other side's text and the Titan keyword); cards add tips through `MoreHoverTips`. Titan-side damage uses
+  adds a card preview of the other side, a `MutableClone` locked by `_forcedSide`, and the Titan keyword); cards add tips through `MoreHoverTips`. Titan-side damage uses
   `DamageVar("TitanDamage", ...)` and `Hit(ctx, play, "TitanDamage")`.
 - `Mechanics/Titan.cs`: meter (40, a SpireField on PlayerCombatState), hull (30 + `TitanKitPower`; `TitanArmorPower` on the Titan zeroes hits of 5 or less, vanilla `ModifyHpLostAfterOsty`), `Call` / `Eject` /
   `Repair`. `DannyTracker`: meter from `AfterDamageGiven`, damage redirect via vanilla `ModifyUnblockedDamageTarget` (how
@@ -33,8 +33,6 @@ untested in game. Plan and bio in `BRANDI_CARDS.md`. She never talks: her banter
   (`Monsters/DannyTitan.cs`, runtime pixel art `TitanArt`, drop-in tween). He climbs in: `TitanLayout` stands it on his
   spot and hides his body (`ShowPilot`). The pet's own bar never rendered in game, so `IsHealthBarVisible => false` and
   `TitanHullDisplay` draws a labelled bar under his bar and powers (`Below`; updated from `DannyTracker.AfterCurrentHpChanged`). Meter bar: `TitanMeterDisplay`.
-- Compendium: `Cards/TitanLibraryToggle.cs` copies the "Upgrades" tickbox as "Titan Side"; ticked, `DannyCard.ShowTitanInLibrary`
-  flips cards with no owner (never a run's deck). Unticks on every open.
 - Art: `gen.ps1 -CardsOnly -Character Danny` (one picture for both sides; a `_titan.png` lookup spammed the log, removed).
 
 ## Brandi (Daniel's wife)
