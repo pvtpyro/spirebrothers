@@ -192,3 +192,14 @@ KullArmor 🛡️
 Superweapon ☄️
 KullReserve 🪖
 RealBaal 👑
+Titan 🤖
+TitanKit 🧰
+TitanHunter 🏹
+NuclearEjection ☢
+FastRepair 🔧
+SatchelCharge 💣
+Warpfall 🌠
+UpgradeCore ⚡
+PhaseReflex 🌀
+TitanArmor 🛡
+VortexShield 🌀

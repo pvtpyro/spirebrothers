@@ -59,3 +59,12 @@ public abstract class BrandiPotion : CustomPotionModel
     public override string CustomPackedImagePath => ImageName.PotionImagePath();
     public override string CustomPackedOutlinePath => $"outline/{ImageName}".PotionOutlineImagePath();
 }
+
+/// <summary>Base for Danny's potions (Titanfall). Same image layout as Daniel's.</summary>
+[Pool(typeof(DannyPotionPool))]
+public abstract class DannyPotion : CustomPotionModel
+{
+    private string ImageName => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+    public override string CustomPackedImagePath => ImageName.PotionImagePath();
+    public override string CustomPackedOutlinePath => $"outline/{ImageName}".PotionOutlineImagePath();
+}

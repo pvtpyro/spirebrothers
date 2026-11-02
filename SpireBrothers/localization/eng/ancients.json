@@ -28,5 +28,9 @@
   "THE_ARCHITECT.talk.SPIREBROTHERS-BRANDI.0-0r.char": "...",
   "THE_ARCHITECT.talk.SPIREBROTHERS-BRANDI.0-0r.next": "Continue",
   "THE_ARCHITECT.talk.SPIREBROTHERS-BRANDI.0-1r.ancient": "Not one word? No matter. Your face has already said plenty, and the fire you carry says the rest.",
-  "THE_ARCHITECT.talk.SPIREBROTHERS-BRANDI.0-attack": "Both"
+  "THE_ARCHITECT.talk.SPIREBROTHERS-BRANDI.0-attack": "Both",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY.0-0r.char": "You built a machine bigger than me? Cute.",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY.0-0r.next": "Continue",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY.0-1r.ancient": "A pilot and a giant of steel. I built a whole Spire, little one. Let us see whose work stands taller.",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY.0-attack": "Both"
 }

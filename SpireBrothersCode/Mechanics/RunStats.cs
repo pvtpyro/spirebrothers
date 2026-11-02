@@ -41,6 +41,8 @@ public static class RunStats
     public static readonly SavedSpireField<Player, int> Shots = new(() => 0, "SpireBrothersStatShots");
     public static readonly SavedSpireField<Player, int> Spits = new(() => 0, "SpireBrothersStatSpits");
     public static readonly SavedSpireField<Player, int> Zapped = new(() => 0, "SpireBrothersStatZapped");
+    public static readonly SavedSpireField<Player, int> Titanfalls = new(() => 0, "SpireBrothersStatTitanfalls");
+    public static readonly SavedSpireField<Player, int> TitanDamage = new(() => 0, "SpireBrothersStatTitanDamage");
 
     public static void Add(SavedSpireField<Player, int> stat, Player? player, int amount = 1)
     {
@@ -104,6 +106,10 @@ public static class RunStats
                 lines.Add(("SHOTS", Shots.Get(player)));
                 lines.Add(("SPITS", Spits.Get(player)));
                 lines.Add(("ZAPPED", Zapped.Get(player)));
+                break;
+            case Character.Danny:
+                lines.Add(("TITANFALLS", Titanfalls.Get(player)));
+                lines.Add(("TITAN_DAMAGE", TitanDamage.Get(player)));
                 break;
         }
         return lines.Where(l => l.Amount > 0).Select(l =>

@@ -35,8 +35,8 @@ public partial class MainFile : Node
         System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(Mechanics.StimmLab).TypeHandle);
         System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(Mechanics.BrandiSaves).TypeHandle);
 
-        // Character select order: the four brothers in the order they've always had, the friends, then Brandi last (her pick).
-        if (!BaseLib.Utils.CustomCharacterUtils.TryOrderCustomCharacters([typeof(Daniel), typeof(David), typeof(Joshua), typeof(Tim), typeof(Huffman), typeof(John), typeof(Brandi)]))
+        // Character select order: the four brothers in the order they've always had, the friends, Danny (Daniel's Titanfall pilot, in playtesting), then Brandi last (her pick).
+        if (!BaseLib.Utils.CustomCharacterUtils.TryOrderCustomCharacters([typeof(Daniel), typeof(David), typeof(Joshua), typeof(Tim), typeof(Huffman), typeof(John), typeof(Danny), typeof(Brandi)]))
             Logger.Error("Couldn't set the character select order.");
 
         ShareMonkeyIslandItems();
@@ -93,5 +93,7 @@ public partial class MainFile : Node
         ModHelper.AddModelToPool<BrandiRelicPool, PartyHeadset>();
         ModHelper.AddModelToPool<DanielRelicPool, PugsleysCollar>();
         ModHelper.AddModelToPool<DanielRelicPool, SandisSunbeam>();
+        // Danny (Titanfall): Blown Cartridge like the friends.
+        ModHelper.AddModelToPool<DannyRelicPool, BlownCartridge>();
     }
 }

@@ -56,5 +56,9 @@
   "SPIREBROTHERS-RED_BULL_AT0300.title": "Red Bull at 0300",
   "SPIREBROTHERS-RED_BULL_AT0300.description": "Gain {Energy:energyIcons()}.",
   "SPIREBROTHERS-JERRY_CAN.title": "Jerry Can",
-  "SPIREBROTHERS-JERRY_CAN.description": "Apply {Ember:diff()} [gold]Ember[/gold] to ALL enemies."
+  "SPIREBROTHERS-JERRY_CAN.description": "Apply {Ember:diff()} [gold]Ember[/gold] to ALL enemies.",
+  "SPIREBROTHERS-TITAN_BATTERY.title": "Titan Battery",
+  "SPIREBROTHERS-TITAN_BATTERY.description": "Gain {Meter} [gold]Titan Meter[/gold]. If your Titan stands, [gold]Repair[/gold] {Meter} instead.",
+  "SPIREBROTHERS-SMOKE_CANISTER.title": "Smoke Canister",
+  "SPIREBROTHERS-SMOKE_CANISTER.description": "Apply {WeakPower:diff()} [gold]Weak[/gold] to ALL enemies."
 }

@@ -60,5 +60,14 @@
   "SPIREBROTHERS-LOOK.title": "Look",
   "SPIREBROTHERS-LOOK.description": "Her face does the talking. Does one thing if the enemy intends to attack, and another if it doesn't.",
   "SPIREBROTHERS-ALPACAS.title": "Al and Pacino",
-  "SPIREBROTHERS-ALPACAS.description": "Brandi's two alpacas. At the end of her turn, Al spits on a random enemy for [blue]4[/blue] damage and Pacino guards her for [blue]3[/blue] [gold]Block[/gold]. When they act, both do it once more."
+  "SPIREBROTHERS-ALPACAS.description": "Brandi's two alpacas. At the end of her turn, Al spits on a random enemy for [blue]4[/blue] damage and Pacino guards her for [blue]3[/blue] [gold]Block[/gold]. When they act, both do it once more.",
+  "SPIREBROTHERS-TITAN.title": "Titan",
+  "SPIREBROTHERS-TITAN.description": "Danny's cards have two sides. While his Titan stands, they use the Titan side. Hover a card to read its other side.",
+  "SPIREBROTHERS-TITAN.sideTitan": "Titan side: {Name}",
+  "SPIREBROTHERS-TITAN.sidePilot": "Pilot side: {Name}",
+  "SPIREBROTHERS-REPAIR.title": "Repair",
+  "SPIREBROTHERS-REPAIR.description": "Your Titan gets back that much HP (never above its max). Nothing happens if it isn't standing.",
+  "SPIREBROTHERS-TITANMETER.title": "Titan Meter",
+  "SPIREBROTHERS-TITANMETER.description": "The bar at Danny's left. Damage he deals fills it. When it's full he gets [gold]Stand By for Titanfall[/gold] to call in his Titan, which takes the hits meant for him until it's destroyed.",
+  "SPIREBROTHERS-TITAN.libraryToggle": "Titan Side"
 }

@@ -170,7 +170,8 @@ public class AlbumTracker() : CustomSingletonModel(HookType.Combat)
         bool drawable = true;
         foreach (var player in players)
         {
-            if (player.Character is not IPhotoArt art) { drawable = false; break; }
+            // A character still on borrowed vanilla visuals (Danny, for now) has no art to draw.
+            if (player.Character is not IPhotoArt art || !Godot.ResourceLoader.Exists(art.PhotoArt)) { drawable = false; break; }
             party.Add(Figure(art, player.Creature.IsDead));
             // Pets with art stand beside their owner (the Mastiff); ones without (Tim's Kids) are left out.
             foreach (var pet in combat.Allies.Where(a => a.IsPet && a.PetOwner == player && a.IsAlive))

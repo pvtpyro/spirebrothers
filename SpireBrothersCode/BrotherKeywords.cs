@@ -52,6 +52,11 @@ public static class BrotherKeywords
     [CustomEnum, KeywordProperties(AutoKeywordPosition.Before)] public static CardKeyword Look;
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Alpacas;
 
+    // Danny (Titanfall). Every card of his carries Titan for the hover tip; Repair and the Titan Meter are written by hand.
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Titan;
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Repair;
+    [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword TitanMeter;
+
     // Duo cards (Mechanics/DuoCards): only appear when the brother they help is in the party. Written by hand
     // ("Duo: David.") so the card names its partner.
     [CustomEnum, KeywordProperties(AutoKeywordPosition.None)] public static CardKeyword Duo;

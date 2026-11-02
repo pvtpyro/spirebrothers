@@ -18,6 +18,25 @@ Both are built (2026-10-27), untested in game.
 **Brandi, Private Pyro** (the user herself, Daniel's wife) is character seven: family, "Sister-in-Law". Built 2026-10-28,
 untested in game. Plan and bio in `BRANDI_CARDS.md`. She never talks: her banter and pings are smiley faces.
 
+## Danny, The Pilot (working name; Daniel's Titanfall idea)
+
+- Built 2026-11-01 as a playtest version, untested in game: 4 Basic, Stand By for Titanfall token, 27 reward cards
+  (`DANNY_CARDS.md`). Defect visuals (no frames/select art yet). Vortex Shield (`VortexShieldPower`) catches a hit by granting exactly that Block in `BeforeDamageReceived` and hitting back like vanilla Thorns. Select order: after John, before Brandi.
+- `Character/Danny.cs` + `DannyPools.cs`, `Cards/DannyCard.cs`, `Cards/Danny/`. Every card has two sides: `OnPilot` /
+  `OnTitan`, an optional second `TargetType` (the getter flips, like vanilla Mad Science), a `titanTitle` loc key (the
+  analyzer doesn't check it), and one description `{InTitan:cond:titan|pilot}`. `ExtraHoverTips` is sealed in the base (it
+  adds the other side's text and the Titan keyword); cards add tips through `MoreHoverTips`. Titan-side damage uses
+  `DamageVar("TitanDamage", ...)` and `Hit(ctx, play, "TitanDamage")`.
+- `Mechanics/Titan.cs`: meter (40, a SpireField on PlayerCombatState), hull (30 + `TitanKitPower`; `TitanArmorPower` on the Titan zeroes hits of 5 or less, vanilla `ModifyHpLostAfterOsty`), `Call` / `Eject` /
+  `Repair`. `DannyTracker`: meter from `AfterDamageGiven`, damage redirect via vanilla `ModifyUnblockedDamageTarget` (how
+  Osty takes hits), Block from his own cards x0 in the Titan, eject in `AfterDeath`. The Titan is a pet with real HP
+  (`Monsters/DannyTitan.cs`, runtime pixel art `TitanArt`, drop-in tween). He climbs in: `TitanLayout` stands it on his
+  spot and hides his body (`ShowPilot`). The pet's own bar never rendered in game, so `IsHealthBarVisible => false` and
+  `TitanHullDisplay` draws a labelled bar under his bar and powers (`Below`; updated from `DannyTracker.AfterCurrentHpChanged`). Meter bar: `TitanMeterDisplay`.
+- Compendium: `Cards/TitanLibraryToggle.cs` copies the "Upgrades" tickbox as "Titan Side"; ticked, `DannyCard.ShowTitanInLibrary`
+  flips cards with no owner (never a run's deck). Unticks on every open.
+- Art: `gen.ps1 -CardsOnly -Character Danny` (one picture for both sides; a `_titan.png` lookup spammed the log, removed).
+
 ## Brandi (Daniel's wife)
 
 - `Character/Brandi.cs` + `BrandiPools.cs` (Silent scenes, red), `Cards/BrandiCard.cs`, `Cards/Brandi/` (5 Basic, 88 reward,

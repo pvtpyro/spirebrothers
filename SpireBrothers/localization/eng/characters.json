@@ -99,5 +99,19 @@
   "SPIREBROTHERS-BRANDI.possessiveAdjective": "her",
   "SPIREBROTHERS-BRANDI.pronounObject": "her",
   "SPIREBROTHERS-BRANDI.pronounPossessive": "hers",
-  "SPIREBROTHERS-BRANDI.pronounSubject": "she"
+  "SPIREBROTHERS-BRANDI.pronounSubject": "she",
+  "SPIREBROTHERS-DANNY.title": "Danny",
+  "SPIREBROTHERS-DANNY.titleObject": "Danny",
+  "SPIREBROTHERS-DANNY.description": "[color=8fb4f0]The Pilot.[/color]\nDamage fills his Titan Meter. Fill it, and stand by for Titanfall.\nIn the Titan, every card flips to something bigger.",
+  "SPIREBROTHERS-DANNY.aromaPrinciple": "[sine][color=3d74d6]Trust me.[/color][/sine]",
+  "SPIREBROTHERS-DANNY.banter.alive.endTurnPing": "Standing by.",
+  "SPIREBROTHERS-DANNY.banter.dead.endTurnPing": "Pilot down...",
+  "SPIREBROTHERS-DANNY.cardsModifierTitle": "Danny Cards",
+  "SPIREBROTHERS-DANNY.cardsModifierDescription": "Danny cards will now appear in rewards and shops.",
+  "SPIREBROTHERS-DANNY.eventDeathPrevention": "Not like this.",
+  "SPIREBROTHERS-DANNY.goldMonologue": "That's a lot of batteries.",
+  "SPIREBROTHERS-DANNY.possessiveAdjective": "his",
+  "SPIREBROTHERS-DANNY.pronounObject": "him",
+  "SPIREBROTHERS-DANNY.pronounPossessive": "his",
+  "SPIREBROTHERS-DANNY.pronounSubject": "he"
 }

@@ -188,5 +188,11 @@
   "SPIREBROTHERS-MR_GORDO.flavor": "A stuffed pig. Every Slayer needs one.",
   "SPIREBROTHERS-WANT_TAKE_HAVE.title": "Want, Take, Have",
   "SPIREBROTHERS-WANT_TAKE_HAVE.description": "Your first Attack each combat deals double damage.",
-  "SPIREBROTHERS-WANT_TAKE_HAVE.flavor": "Five by five."
+  "SPIREBROTHERS-WANT_TAKE_HAVE.flavor": "Five by five.",
+  "SPIREBROTHERS-NEURAL_LINK.title": "Neural Link",
+  "SPIREBROTHERS-NEURAL_LINK.description": "The link between pilot and Titan. No effect yet.",
+  "SPIREBROTHERS-NEURAL_LINK.flavor": "Pilot to Titan. Link established.",
+  "SPIREBROTHERS-PROTOCOL_ONE.title": "Protocol 1",
+  "SPIREBROTHERS-PROTOCOL_ONE.description": "The link between pilot and Titan, fully synced. No effect yet.",
+  "SPIREBROTHERS-PROTOCOL_ONE.flavor": "Link to Pilot. It already knows what you're going to do."
 }
