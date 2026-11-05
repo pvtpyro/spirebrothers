@@ -8,20 +8,22 @@ namespace SpireBrothers.SpireBrothersCode.Mechanics;
 
 /// <summary>
 /// Enshrouded. John stays in the Shroud until a card takes him out (no countdown since 2026-11-05: Daniel wanted
-/// control over it). While he's in it his Attacks deal 50% more damage. The Shroud has a depth (ShroudPower's amount):
-/// at the end of each of his turns he loses that much HP, then it grows by 1, up to MaxDepth.
+/// control over it). While he's in it his Attacks deal 50% more damage and he loses 1 HP at the end of each of his turns.
+/// The Shroud has a depth (ShroudPower's amount) that grows by 1 each turn, up to MaxDepth; it costs nothing extra (a
+/// growing HP cost was tried on 2026-11-05 and was too punishing), it only powers the payoff cards (Burst Out, Back to the Altar).
 /// </summary>
 public static class Shroud
 {
     public const decimal DamageMultiplier = 1.5m;
     // Concentration Stimm (Stimm Lab talent, the old Extended Release): +10% per rank.
     public const decimal TalentBonusPerRank = 0.1m;
+    public const int HpLossPerTurn = 1;
     public const int StartDepth = 1;
     public const int MaxDepth = 5;
 
     public static bool In(Player? player) => player?.Creature?.GetPower<ShroudPower>() != null;
 
-    /// <summary>How deep he is: the HP he loses at the end of this turn. 0 when he's out.</summary>
+    /// <summary>How deep he is (1 to MaxDepth). 0 when he's out.</summary>
     public static int Depth(Player? player) => player?.Creature?.GetPowerAmount<ShroudPower>() ?? 0;
 
     public static decimal Multiplier(Player? player) =>
@@ -37,7 +39,7 @@ public static class Shroud
         if (player.GetRelic<Relics.SurvivorsLantern>() is { } lantern) await lantern.OnEnterShroud();
     }
 
-    /// <summary>Moves the depth up or down (Flame Shard), between 1 and MaxDepth. Only while he's in the Shroud.</summary>
+    /// <summary>Moves the depth up or down (Flame Shard raises it), between 1 and MaxDepth. Only while he's in the Shroud.</summary>
     public static async Task ChangeDepth(PlayerChoiceContext ctx, Player player, int by, CardModel? card)
     {
         var power = player.Creature.GetPower<ShroudPower>();

@@ -13,8 +13,8 @@ using SpireBrothers.SpireBrothersCode.Mechanics;
 namespace SpireBrothers.SpireBrothersCode.Powers;
 
 /// <summary>
-/// Enshrouded. John is in the Shroud at depth Amount: his Attacks deal 50% more damage. At the end of his turn he loses
-/// Amount HP, then the depth grows by 1 (up to Shroud.MaxDepth). He stays until a card takes him out (Mechanics/Shroud).
+/// Enshrouded. John is in the Shroud at depth Amount: his Attacks deal 50% more damage. At the end of his turn he loses 1
+/// HP, then the depth grows by 1 (up to Shroud.MaxDepth). He stays until a card takes him out (Mechanics/Shroud).
 /// </summary>
 public class ShroudPower : BrothersPower
 {
@@ -33,12 +33,12 @@ public class ShroudPower : BrothersPower
         RunStats.Add(RunStats.ShroudTurns, player);
         // Shroud Walker: the fog itself hurts his enemies.
         if (Owner.GetPower<ShroudWalkerPower>() is { } walker) await walker.Burn(choiceContext);
-        int loss = Amount;
+        int loss = Shroud.HpLossPerTurn;
         Flash();
         await CreatureCmd.Damage(choiceContext, Owner, loss, ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
         if (!Owner.IsAlive) return;
-        // Flame Altar Upgrade: what the fog takes comes back as cover.
-        if (Owner.GetPower<FlameAltarUpgradePower>() is { } altar) await altar.OnShroudHpLoss(loss);
+        // Flame Altar Upgrade: cover that grows the deeper he goes.
+        if (Owner.GetPower<FlameAltarUpgradePower>() is { } altar) await altar.OnShroudTurnEnd(Amount);
         if (Amount < Shroud.MaxDepth) await PowerCmd.ModifyAmount(choiceContext, this, 1, Owner, null);
     }
 }

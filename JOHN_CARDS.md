@@ -17,7 +17,7 @@ Ironclad's vanilla scenes where the game needs a Spine one (shop, rest site), li
 |---|---|
 | **Grind X** | The first time you play this card each combat, it **permanently** gains +X to its number, for the rest of the run (like vanilla Genetic Algorithm). The card shows the printed number dimmed and the ground-up one in green. Once per combat keeps it from running away. |
 | **Toxin** | Hive Scum's chems. A debuff on an enemy that **does nothing on its own** and never wears off. **Chem** cards react with it: most cash it in for an effect and remove it. (David's Bleed already ticks damage every turn, so Toxin waits to be set off.) |
-| **The Shroud** | Enshrouded. A toggle (since 2026-11-05; it was a turn countdown): **Enter the Shroud** and you stay until a card takes you out. While you're in it, **your Attacks deal 50% more damage**. It has a **depth** (starts at 1): at the end of your turn you **lose HP equal to the depth**, then it grows by 1 (max 5). Leaving cards pay out by depth. |
+| **The Shroud** | Enshrouded. A toggle (since 2026-11-05; it was a turn countdown): **Enter the Shroud** and you stay until a card takes you out. While you're in it, **your Attacks deal 50% more damage**. You **lose 1 HP at the end of each of your turns**. It has a **depth** (starts at 1, +1 each turn, max 5) that costs nothing; payoff cards scale with it. (A growing HP cost, depth HP per turn, was tried first on 2026-11-05: Daniel died halfway through Act 1, so it went.) |
 
 Shared mechanics he also uses: **Share** (co-op support) and **Duo**.
 
@@ -141,11 +141,11 @@ Legend: ⚙️ Grind, 🧪 Toxin / Chem, 🌫️ Shroud, 🤝 co-op.
 
 ## Shroud rework (2026-11-05, untested in game)
 
-Daniel likes losing HP to hit hard, but had no control over the Shroud. Now it's a toggle with a growing cost, plus HP-loss payoffs.
+Daniel likes losing HP to hit hard, but had no control over the Shroud. Now it's a toggle (still 1 HP a turn) with a depth that payoff cards read, plus HP-loss payoffs.
 
 Changed: Shroud Dive (enter, draw 2; upgrade costs 0), Fog Bank (enter), Deep Shroud (enter, 2 Energy, draw 2), Flame Shard
-(depth -2, draw 1), Back to the Altar (leave, heal 1 per depth, 2 upgraded), Flame Altar Upgrade (whenever the Shroud takes
-HP, gain 2 Block per HP; it used to make the Shroud free), Shroud Elixir (enter, gain 10 Block), the Flame Altar, Shroud Lungs,
+(depth +2, draw 1), Back to the Altar (leave, heal 1 per depth, 2 upgraded), Flame Altar Upgrade (at the end of your turn in
+the Shroud, gain 2 Block per depth; it used to make the Shroud free), Shroud Elixir (enter, gain 10 Block), the Flame Altar, Shroud Lungs,
 and Extended Release (now Concentration Stimm).
 
 New:
