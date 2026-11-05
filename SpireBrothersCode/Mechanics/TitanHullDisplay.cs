@@ -58,7 +58,7 @@ public static class TitanHullDisplay
     private static IHoverTip Tip(Player player)
     {
         var text = new LocString("powers", "SPIREBROTHERS-TITAN_HULL.tip");
-        text.Add("Armor", Titan.ArmorThreshold);
+        text.Add("Armor", Titan.ArmorThreshold(player));
         return new HoverTip(new LocString("powers", "SPIREBROTHERS-TITAN_HULL.name"), text.GetFormattedText());
     }
 

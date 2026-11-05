@@ -204,3 +204,7 @@ UpgradeCore ⚡
 PhaseReflex 🌀
 TitanArmor 🛡
 VortexShield 🌀
+TargetingLink 🎯
+Thrusters 💨
+Bulwark 🧱
+DamageCore 💥

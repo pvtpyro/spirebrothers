@@ -25,8 +25,8 @@ public class DannyTitan : CustomMonsterModel, Mechanics.IPhotoArt
     float Mechanics.IPhotoArt.PhotoHeight => TitanArt.H * Scale;
 
     // Set to the real hull by Titan.Call right after it's added.
-    public override int MinInitialHp => Mechanics.Titan.BaseHull;
-    public override int MaxInitialHp => Mechanics.Titan.BaseHull;
+    public override int MinInitialHp => Mechanics.TitanChassis.Atlas.Hull;
+    public override int MaxInitialHp => Mechanics.TitanChassis.Atlas.Hull;
 
     // The game's bar for it never showed up in testing; TitanHullDisplay draws one instead. This also lets the mouse
     // through it to Danny.
@@ -43,7 +43,7 @@ public class DannyTitan : CustomMonsterModel, Mechanics.IPhotoArt
 
     public override NCreatureVisuals CreateCustomVisuals()
     {
-        Texture2D texture = ResourceLoader.Exists(ArtPath) ? GD.Load<Texture2D>(ArtPath) : TitanArt.Draw();
+        Texture2D texture = ArtFor(Mechanics.ChassisKind.Atlas);
         var visuals = NodeFactory<NCreatureVisuals>.CreateFromResource(texture);
         // BaseLib lays the picture out 1 pixel = 1 unit with the feet at the origin; scale it like the pixel bodies.
         Character.PixelBody.ScaleToHeight(visuals, texture.GetSize().Y, TitanArt.H * Scale);
@@ -53,6 +53,29 @@ public class DannyTitan : CustomMonsterModel, Mechanics.IPhotoArt
             sprite.TreeEntered += () => DropIn(sprite);
         }
         return visuals;
+    }
+
+    /// <summary>
+    /// The chassis's picture: images/monsters/titan/titan.png (Atlas) or titan_stryder.png / titan_ogre.png if present,
+    /// else the drawn placeholder (TitanArt).
+    /// </summary>
+    public static Texture2D ArtFor(Mechanics.ChassisKind kind)
+    {
+        string path = kind == Mechanics.ChassisKind.Atlas ? ArtPath : $"{MainFile.ResPath}/images/monsters/titan/titan_{kind.ToString().ToLowerInvariant()}.png";
+        return ResourceLoader.Exists(path) ? GD.Load<Texture2D>(path) : TitanArt.Draw(kind);
+    }
+
+    /// <summary>
+    /// The visuals are built before the Titan knows whose it is, always as the Atlas; once it's placed (TitanLayout),
+    /// this swaps in the owner's chassis, keeping the same height on screen.
+    /// </summary>
+    public static void ShowChassis(NCreature node, Mechanics.ChassisKind kind)
+    {
+        if (kind == Mechanics.ChassisKind.Atlas || node.Visuals?.GetChildren().OfType<Sprite2D>().FirstOrDefault() is not { } sprite) return;
+        var texture = ArtFor(kind);
+        float oldHeight = sprite.Texture?.GetSize().Y ?? texture.GetSize().Y;
+        sprite.Texture = texture;
+        sprite.Scale *= oldHeight / texture.GetSize().Y;
     }
 
     /// <summary>The art is 46 x 60; this makes it a head taller than him.</summary>
@@ -78,15 +101,31 @@ public class DannyTitan : CustomMonsterModel, Mechanics.IPhotoArt
     }
 }
 
-/// <summary>Placeholder pixel Titan, drawn at load like the Kids: a Vanguard-style mech in steel and blue, facing right.</summary>
+/// <summary>
+/// Placeholder pixel Titans, drawn at load like the Kids, facing right, one per chassis (Mechanics/Chassis): the Atlas is a
+/// Vanguard-style mech in steel and blue, the Stryder a lean one on long legs, the Ogre a wide armored block.
+/// All three share the 46 x 60 canvas so they scale the same.
+/// </summary>
 public static class TitanArt
 {
     public const int W = 46, H = 60;
-    private static Texture2D? _cached;
+    private static readonly Dictionary<Mechanics.ChassisKind, Texture2D> Cached = new();
 
-    public static Texture2D Draw()
+    public static Texture2D Draw(Mechanics.ChassisKind kind = Mechanics.ChassisKind.Atlas)
     {
-        if (_cached != null) return _cached;
+        if (Cached.TryGetValue(kind, out var cached)) return cached;
+        var texture = ImageTexture.CreateFromImage(kind switch
+        {
+            Mechanics.ChassisKind.Stryder => Stryder(),
+            Mechanics.ChassisKind.Ogre => Ogre(),
+            _ => Atlas()
+        });
+        Cached[kind] = texture;
+        return texture;
+    }
+
+    private static Image Atlas()
+    {
         var img = Image.CreateEmpty(W, H, false, Image.Format.Rgba8);
         img.Fill(new Color(0, 0, 0, 0));
         var steel = new Color("8c96a3");
@@ -125,9 +164,90 @@ public static class TitanArt
         Rect(img, 43, 32, 3, 2, dark);                                       // barrel
         Rect(img, 35, 32, 3, 1, orange);
         Outline(img, dark);
+        return img;
+    }
 
-        _cached = ImageTexture.CreateFromImage(img);
-        return _cached;
+    // Lean and tall: thin limbs, a small cockpit high up, a long rifle.
+    private static Image Stryder()
+    {
+        var img = Image.CreateEmpty(W, H, false, Image.Format.Rgba8);
+        img.Fill(new Color(0, 0, 0, 0));
+        var steel = new Color("a3adb8");
+        var shade = new Color("6c7682");
+        var dark = new Color("2b3038");
+        var blue = new Color("3d74d6");
+        var glow = new Color("8fd0ff");
+        var yellow = new Color("e8c34a");
+
+        // far arm and leg
+        Rect(img, 8, 19, 4, 14, shade); Rect(img, 7, 32, 5, 3, dark);
+        Rect(img, 16, 34, 4, 22, shade); Rect(img, 14, 55, 8, 4, dark);
+        // near leg, long, with a backward knee
+        Rect(img, 25, 34, 5, 11, steel); Rect(img, 27, 44, 5, 12, steel);
+        Rect(img, 26, 44, 6, 2, shade); Rect(img, 25, 55, 10, 4, dark);
+        // hips
+        Rect(img, 14, 31, 18, 4, shade);
+        // a narrow torso, the cockpit up front
+        Rect(img, 12, 14, 19, 18, steel);
+        Rect(img, 12, 14, 19, 2, shade);
+        Rect(img, 23, 17, 8, 9, shade);
+        Rect(img, 25, 19, 6, 2, glow);
+        Rect(img, 13, 24, 9, 2, blue);
+        Rect(img, 13, 28, 9, 2, yellow);                                      // racing stripe
+        // a small head with a wide visor
+        Rect(img, 17, 8, 8, 6, steel); Rect(img, 20, 10, 5, 2, glow);
+        // thrusters on the back
+        Rect(img, 7, 15, 5, 10, dark); Rect(img, 7, 25, 5, 2, yellow);
+        // shoulders
+        Rect(img, 9, 13, 6, 5, shade);
+        Rect(img, 28, 13, 7, 5, steel); Rect(img, 28, 13, 7, 1, blue);
+        // near arm and a long rifle
+        Rect(img, 31, 18, 4, 11, steel);
+        Rect(img, 29, 28, 15, 3, dark);
+        Rect(img, 44, 29, 2, 1, dark);
+        Outline(img, dark);
+        return img;
+    }
+
+    // Wide and low: thick plated legs, a huge box of a body, big shoulder plates, a heavy cannon.
+    private static Image Ogre()
+    {
+        var img = Image.CreateEmpty(W, H, false, Image.Format.Rgba8);
+        img.Fill(new Color(0, 0, 0, 0));
+        var steel = new Color("727c88");
+        var shade = new Color("4c5460");
+        var dark = new Color("23272e");
+        var blue = new Color("3d74d6");
+        var glow = new Color("8fd0ff");
+        var red = new Color("c8463a");
+
+        // far arm and leg
+        Rect(img, 1, 24, 7, 14, shade); Rect(img, 0, 37, 9, 5, dark);
+        Rect(img, 9, 44, 10, 12, shade); Rect(img, 7, 55, 14, 4, dark);
+        // near leg, short and thick
+        Rect(img, 24, 44, 11, 12, steel); Rect(img, 22, 55, 16, 4, dark);
+        Rect(img, 24, 48, 11, 2, shade);
+        // hips
+        Rect(img, 7, 40, 30, 6, shade);
+        // a big armored box, the hatch set deep
+        Rect(img, 5, 17, 34, 25, steel);
+        Rect(img, 5, 17, 34, 3, shade);
+        Rect(img, 25, 21, 12, 13, shade);
+        Rect(img, 28, 25, 8, 2, glow);
+        Rect(img, 7, 30, 15, 3, blue);
+        Rect(img, 7, 35, 15, 2, red);                                         // hazard plate
+        Rect(img, 9, 35, 2, 2, dark); Rect(img, 14, 35, 2, 2, dark); Rect(img, 19, 35, 2, 2, dark);
+        // a low head, sunk between the shoulders
+        Rect(img, 17, 12, 11, 6, steel); Rect(img, 24, 14, 3, 2, glow);
+        // shoulder plates
+        Rect(img, 0, 15, 11, 10, shade); Rect(img, 0, 15, 11, 2, dark);
+        Rect(img, 31, 15, 14, 10, steel); Rect(img, 31, 15, 14, 3, blue);
+        // near arm and a heavy cannon
+        Rect(img, 35, 25, 8, 9, steel);
+        Rect(img, 31, 33, 15, 7, dark);
+        Rect(img, 35, 35, 4, 2, red);
+        Outline(img, dark);
+        return img;
     }
 
     private static void Rect(Image img, int x, int y, int w, int h, Color c)
@@ -165,7 +285,16 @@ public static class TitanLayout
     private static void AfterAddCreature(NCombatRoom __instance, Creature creature)
     {
         if (creature.Monster is not DannyTitan || creature.PetOwner == null) return;
-        Place(__instance.GetCreatureNode(creature.PetOwner.Creature), __instance.GetCreatureNode(creature));
+        var node = __instance.GetCreatureNode(creature);
+        try
+        {
+            if (node != null) DannyTitan.ShowChassis(node, Mechanics.TitanChassis.Of(creature.PetOwner).Kind);
+        }
+        catch (Exception e)
+        {
+            MainFile.Logger.Error($"Titan chassis art failed: {e}");
+        }
+        Place(__instance.GetCreatureNode(creature.PetOwner.Creature), node);
     }
 
     [HarmonyPatch(typeof(NCombatRoom), nameof(NCombatRoom.PositionPlayersAndPets))]

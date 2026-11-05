@@ -762,3 +762,6 @@ PhaseReflex ⚔
 LaserCore ☄
 Warpfall 🌠
 ProtocolThree 🤝
+DamageCore 💥
+DashCore 💨
+ShieldCore 🛡

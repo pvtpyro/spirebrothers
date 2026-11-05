@@ -21,7 +21,7 @@ public class PrepareForTitanfall() : DannyCard(1, CardType.Skill, CardRarity.Rar
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar("TitanDamage", 5, ValueProp.Move), new DynamicVar("TitanHits", 8)];
     protected override IEnumerable<IHoverTip> MoreHoverTips => [HoverTipFactory.FromKeyword(BrotherKeywords.TitanMeter)];
 
-    protected override Task OnPilot(PlayerChoiceContext ctx, CardPlay play) => GainMeter(Titan.MeterSize);
+    protected override Task OnPilot(PlayerChoiceContext ctx, CardPlay play) => GainMeter(Titan.MeterSize(Owner));
 
     protected override async Task OnTitan(PlayerChoiceContext ctx, CardPlay play) =>
         await Hit(ctx, play, "TitanDamage", DynamicVars["TitanHits"].IntValue, "vfx/vfx_fire_burst");

@@ -36,8 +36,8 @@ public static class TitanMeterDisplay
             if (Titan.IsIn(player) || !player.Creature.IsAlive) return;
 
             int meter = Titan.MeterOf(player);
-            bool ready = meter >= Titan.MeterSize;
-            var display = Build(meter, ready);
+            bool ready = meter >= Titan.MeterSize(player);
+            var display = Build(meter, Titan.MeterSize(player), ready);
             display.Name = NodeName;
             display.MouseFilter = Control.MouseFilterEnum.Stop;
             display.MouseEntered += () => NHoverTipSet.CreateAndShow(display, Tip(player));
@@ -58,12 +58,13 @@ public static class TitanMeterDisplay
     {
         var text = new LocString("powers", "SPIREBROTHERS-TITAN_METER.tip");
         text.Add("Amount", Titan.MeterOf(player));
-        text.Add("Size", Titan.MeterSize);
+        text.Add("Size", Titan.MeterSize(player));
         text.Add("Hull", Titan.MaxHull(player));
+        text.Add("Armor", Titan.ArmorThreshold(player));
         return new HoverTip(new LocString("powers", "SPIREBROTHERS-TITAN_METER.name"), text.GetFormattedText());
     }
 
-    private static Control Build(int meter, bool ready)
+    private static Control Build(int meter, int size, bool ready)
     {
         var root = new Control { Size = BarSize + new Vector2(0, 34) };
         var frame = new ColorRect { Color = Frame, Size = BarSize, MouseFilter = Control.MouseFilterEnum.Ignore };
@@ -73,7 +74,7 @@ public static class TitanMeterDisplay
             MouseFilter = Control.MouseFilterEnum.Ignore
         };
         float inner = BarSize.Y - Border * 2;
-        float filled = inner * Math.Clamp(meter / (float)Titan.MeterSize, 0, 1);
+        float filled = inner * Math.Clamp(meter / (float)size, 0, 1);
         var fill = new ColorRect
         {
             Color = ready ? Ready : Fill, Position = new Vector2(Border, Border + inner - filled),

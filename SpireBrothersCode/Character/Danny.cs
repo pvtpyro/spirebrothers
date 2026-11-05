@@ -3,6 +3,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Models;
 using SpireBrothers.SpireBrothersCode.Cards.Danny;
+using SpireBrothers.SpireBrothersCode.Mechanics;
 using SpireBrothers.SpireBrothersCode.Relics;
 
 namespace SpireBrothers.SpireBrothersCode.Character;
@@ -26,6 +27,9 @@ public class Danny : BrotherCharacter
     public override Color RemoteTargetingLineOutline => new("0E1E3AFF");
     public override CharacterGender Gender => CharacterGender.Masculine;
     public override int StartingHp => 70;
+
+    /// <summary>His Titan (Mechanics/Chassis). Danny himself is the Atlas; DannyStryder and DannyOgre pick the others.</summary>
+    public virtual TitanChassis Chassis => TitanChassis.Atlas;
 
     public override string CharacterTransitionSfx => "event:/sfx/ui/wipe_ironclad";
 

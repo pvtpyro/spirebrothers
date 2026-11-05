@@ -1,6 +1,6 @@
 # Danny: pick your Titan (Atlas, Stryder, Ogre)
 
-Plan, 2026-11-01. Nothing built yet. This is the first trial of the select-screen picker from `someday.md`, but
+Plan, 2026-11-01. **Built 2026-11-03, untested in game:** build steps 1, 2, 3, and 5 (the three chassis, passives, Cores, the picker, and the Titan art). Not built: the chassis cards and their filter (step 4). This is the first trial of the select-screen picker from `someday.md`, but
 the choice is a Titan chassis, not a subclass. Card plan for Danny himself: `DANNY_CARDS.md`.
 
 ## The idea
@@ -72,8 +72,9 @@ Cores. They can stay as generic weapons, or move into one chassis each if Daniel
 
 - Decompile the character select screen first (CLAUDE.md, tooling notes) to find where the buttons are built and the
   method that selects a character. That's the one unknown.
-- Hide the `DannyStryder` / `DannyOgre` buttons from the grid. Clicking Danny's button opens a small window with three
-  Titan cards (picture, name, the stats row, one line of flavor). Picking one calls the game's own select with that
+- Hide the `DannyStryder` / `DannyOgre` buttons from the grid. **As built:** not a popup window but a "Choose your Titan"
+  row of three buttons (Titan picture + name) at the bottom of the info panel while Danny is selected
+  (`Character/ChassisPicker.cs`). Each chassis's description in characters.json carries its stats. Picking one calls the game's own select with that
   character, so the portrait, description, co-op lobby sync, and Embark are all vanilla.
 - Keep the random character button from picking a hidden chassis directly (or allow it; decide when testing).
 - Click, not hover: works with a controller. Hover can show the three icons as a preview later.
@@ -111,3 +112,9 @@ Steps 1-2 are the quickest way to find out whether Daniel likes the idea before 
 - The Core shows up in hand on each Titanfall and works.
 - Chassis cards only appear for their own chassis (rewards, shop, Discovery-type effects).
 - A saved Danny run from before this change loads as Atlas.
+- Only Danny's button shows on the grid (no Stryder/Ogre buttons), and controller left/right skips the hidden ones.
+- Co-op: a teammate who picks the Stryder or Ogre lights up Danny's button on your screen. After Embark, the picker is locked.
+- The Titan that drops in looks like the chassis picked (lean Stryder, wide Ogre).
+- The passive shows as a power on Danny while the Titan stands and goes away on eject; Damage Core ends with the turn.
+- An unused Core stays in hand after ejecting (unplayable) and no second one is added on the next Titanfall.
+- Ogre: teammates hit by enemies take 1 less per hit while it stands (not Danny himself).

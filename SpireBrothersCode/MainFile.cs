@@ -35,8 +35,8 @@ public partial class MainFile : Node
         System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(Mechanics.StimmLab).TypeHandle);
         System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(Mechanics.BrandiSaves).TypeHandle);
 
-        // Character select order: the four brothers in the order they've always had, the friends, Danny (Daniel's Titanfall pilot, in playtesting), then Brandi last (her pick).
-        if (!BaseLib.Utils.CustomCharacterUtils.TryOrderCustomCharacters([typeof(Daniel), typeof(David), typeof(Joshua), typeof(Tim), typeof(Huffman), typeof(John), typeof(Danny), typeof(Brandi)]))
+        // Character select order: the four brothers in the order they've always had, the friends, Danny (Daniel's Titanfall pilot, in playtesting) and his two hidden chassis characters (ChassisPicker), then Brandi last (her pick).
+        if (!BaseLib.Utils.CustomCharacterUtils.TryOrderCustomCharacters([typeof(Daniel), typeof(David), typeof(Joshua), typeof(Tim), typeof(Huffman), typeof(John), typeof(Danny), typeof(DannyStryder), typeof(DannyOgre), typeof(Brandi)]))
             Logger.Error("Couldn't set the character select order.");
 
         ShareMonkeyIslandItems();

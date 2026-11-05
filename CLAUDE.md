@@ -34,6 +34,13 @@ untested in game. Plan and bio in `BRANDI_CARDS.md`. She never talks: her banter
   spot and hides his body (`ShowPilot`). The pet's own bar never rendered in game, so `IsHealthBarVisible => false` and
   `TitanHullDisplay` draws a labelled bar under his bar and powers (`Below`; updated from `DannyTracker.AfterCurrentHpChanged`). Meter bar: `TitanMeterDisplay`.
 - Art: `gen.ps1 -CardsOnly -Character Danny` (one picture for both sides; a `_titan.png` lookup spammed the log, removed).
+- **Titan chassis** (2026-11-03, untested in game; plan and status in `DANNY_CHASSIS.md`): Atlas / Stryder / Ogre. `Danny` is the Atlas;
+  `DannyStryder` / `DannyOgre` (`Character/DannyChassis.cs`) extend him, so every `is Danny` check still works. `Danny.Chassis` is a
+  `TitanChassis` (`Mechanics/Chassis.cs`: meter size, hull, armor; `Titan.MeterSize(player)` / `ArmorThreshold(player)` read it).
+  On Titanfall `TitanChassis.AfterTitanfall` gives the passive (`TargetingLinkPower` / `ThrustersPower` / `BulwarkPower`) and the Core
+  token (`DamageCore` / `DashCore` / `ShieldCore`, `ICoreCard`); `AfterEject` removes them. Titan art per chassis: `TitanArt.Draw(kind)`,
+  swapped in by `TitanLayout` (`titan_stryder.png` / `titan_ogre.png` override). Select screen: `Character/ChassisPicker.cs` hides the two
+  buttons and adds a picker row to the info panel that calls the game's own `NCharacterSelectScreen.SelectCharacter` with Danny's button.
 
 ## Brandi (Daniel's wife)
 

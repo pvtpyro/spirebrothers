@@ -17,19 +17,18 @@ namespace SpireBrothers.SpireBrothersCode.Mechanics;
 /// <summary>
 /// Danny's Titan (Titanfall). Damage he deals fills the Titan Meter (one per combat, starts empty). When it's full he
 /// gets a Stand By for Titanfall card; playing it drops his Titan in and he climbs in: a pet (Monsters/DannyTitan) with its own HP
-/// (30, and hits of 5 or less do nothing to it) that stands where he does, hides his body, and
+/// (30 on the Atlas, and small hits do nothing to it; Mechanics/Chassis) that stands where he does, hides his body, and
 /// takes the damage meant for him. While it stands, TitanPower is on him, the meter is hidden, his cards show their
 /// Titan side (DannyCard), and his own cards can't give him Block (teammates' still can). When the Titan is destroyed he
 /// ejects: the meter comes back, empty, and fills again. The hooks live in DannyTracker.
 /// </summary>
 public static class Titan
 {
+    // The meter size, the hull (before Titan Kit), and the Titan Armor come from his chassis (Mechanics/Chassis).
     /// <summary>Damage it takes to fill the meter.</summary>
-    public const int MeterSize = 40;
-    /// <summary>The Titan's HP when it drops, before Titan Kit.</summary>
-    public const int BaseHull = 30;
+    public static int MeterSize(Player? player) => TitanChassis.Of(player).MeterSize;
     /// <summary>Titan Armor: hits on the Titan of this much or less do nothing.</summary>
-    public const int ArmorThreshold = 5;
+    public static int ArmorThreshold(Player? player) => TitanChassis.Of(player).Armor;
 
     private static readonly SpireField<PlayerCombatState, int> Meter = new(() => 0);
 
@@ -43,9 +42,9 @@ public static class Titan
 
     public static int MeterOf(Player? player) => player?.PlayerCombatState is { } state ? Meter.Get(state) : 0;
 
-    public static bool IsReady(Player? player) => !IsIn(player) && MeterOf(player) >= MeterSize;
+    public static bool IsReady(Player? player) => !IsIn(player) && MeterOf(player) >= MeterSize(player);
 
-    public static int MaxHull(Player player) => BaseHull + player.Creature.GetPowerAmount<TitanKitPower>();
+    public static int MaxHull(Player player) => TitanChassis.Of(player).Hull + player.Creature.GetPowerAmount<TitanKitPower>();
 
     /// <summary>Fills the meter (Titan Hunter: 50% more per stack). Nothing while the Titan stands.</summary>
     public static async Task GainMeter(Player player, int amount)
@@ -54,10 +53,11 @@ public static class Titan
         int hunter = player.Creature.GetPowerAmount<TitanHunterPower>();
         if (hunter > 0) amount += amount * hunter / 100;
         int before = Meter.Get(state);
-        if (before >= MeterSize) return;
-        Meter.Set(state, Math.Min(MeterSize, before + amount));
+        int size = MeterSize(player);
+        if (before >= size) return;
+        Meter.Set(state, Math.Min(size, before + amount));
         TitanMeterDisplay.Update(player);
-        if (Meter.Get(state) >= MeterSize) await HandOverToken(player);
+        if (Meter.Get(state) >= size) await HandOverToken(player);
     }
 
     /// <summary>The meter is full: put Stand By for Titanfall in his hand, unless one is already there.</summary>
@@ -79,11 +79,12 @@ public static class Titan
         await CreatureCmd.SetMaxAndCurrentHp(titan, MaxHull(player));
         TitanLayout.ShowPilot(player.Creature, false);
         TitanHullDisplay.Update(player);
-        await PowerCmd.Apply<TitanArmorPower>(ctx, titan, ArmorThreshold, player.Creature, null);
+        await PowerCmd.Apply<TitanArmorPower>(ctx, titan, ArmorThreshold(player), player.Creature, null);
         await PowerCmd.Apply<TitanPower>(ctx, player.Creature, 1, player.Creature, null);
         RunStats.Add(RunStats.Titanfalls, player);
         TitanMeterDisplay.Update(player);
         DannyCard.FlipHand(player);
+        await TitanChassis.AfterTitanfall(ctx, player);
         if (player.Creature.GetPower<WarpfallPower>() is { } warpfall) await warpfall.AfterTitanfall(ctx);
     }
 
@@ -91,6 +92,7 @@ public static class Titan
     public static async Task AfterDestroyed(PlayerChoiceContext ctx, Player player)
     {
         if (player.Creature.GetPower<TitanPower>() is { } inside) await PowerCmd.Remove(inside);
+        await TitanChassis.AfterEject(player);
         Sounds.Play(Sounds.DannyEject);
         TitanLayout.ShowPilot(player.Creature, true);
         TitanHullDisplay.Update(player);

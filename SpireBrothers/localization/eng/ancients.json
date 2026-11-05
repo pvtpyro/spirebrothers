@@ -32,5 +32,13 @@
   "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY.0-0r.char": "You built a machine bigger than me? Cute.",
   "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY.0-0r.next": "Continue",
   "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY.0-1r.ancient": "A pilot and a giant of steel. I built a whole Spire, little one. Let us see whose work stands taller.",
-  "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY.0-attack": "Both"
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY.0-attack": "Both",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY_OGRE.0-0r.char": "You built a machine bigger than me? Cute.",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY_OGRE.0-0r.next": "Continue",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY_OGRE.0-1r.ancient": "A walking fortress. I have built walls, little one. Let us see whose holds.",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY_OGRE.0-attack": "Both",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY_STRYDER.0-0r.char": "You built a machine bigger than me? Cute.",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY_STRYDER.0-0r.next": "Continue",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY_STRYDER.0-1r.ancient": "Quick on your feet, little one, for a giant. But fast things break against old stone.",
+  "THE_ARCHITECT.talk.SPIREBROTHERS-DANNY_STRYDER.0-attack": "Both"
 }
