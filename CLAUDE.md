@@ -74,7 +74,7 @@ untested in game. Plan and bio in `BRANDI_CARDS.md`. She never talks: her banter
   - **Grind** (`Mechanics/Grind.cs`): BaseLib `SavedSpireField<CardModel,int>` on the deck copy; `JohnCard.GrindTarget` names
     the var, `SyncGrind()` adds the run's growth onto it (tracked by `_grindApplied`, which clones copy along with the number),
     `GrindAfterPlay(ctx)` grinds once per combat, `GrindTimes(ctx, n)` forces it. Text uses `{GrindGrown}`/`{GrindStart}`.
-  - **Toxin** (`Mechanics/Toxin.cs`, `ToxinPower`): inert debuff; Chem cards cash it in. All Toxin goes through `Toxin.Apply` (Cartel Kingpin).
+  - **Toxin** (`Mechanics/Toxin.cs`, `ToxinPower`): never wears off; any player's Attacks deal +1 per hit to it (since 2026-11-05, was inert); Chem cards cash it in. All Toxin goes through `Toxin.Apply` (Cartel Kingpin).
   - **Shroud** (`Mechanics/Shroud.cs`, `ShroudPower`): a toggle since 2026-11-05 (no countdown; `Enter` / `Leave` / `ChangeDepth`). The amount is the depth: x1.5 Attack damage, 1 HP lost at his turn end, then depth +1 (max 5); depth only powers payoff cards (a growing HP cost killed Daniel, removed the same day). Basic Into the Fog switches it. HP lost per combat: `JohnTracker.HpLostThisCombat` (Payback).
   - **Stimm Lab talents** (`Mechanics/StimmLab.cs`): `JohnRunTracker.TryModifyRestSiteOptions` adds `StimmLabRestSiteOption`
     (loc in the new `rest_site_ui.json`, whose hover lists learned talents via `StimmLab.LearnedLines`; icon `images/ui/stimm_lab.png`, swapped in by `StimmLabIconPatch` since the game's

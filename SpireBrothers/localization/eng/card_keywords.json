@@ -44,7 +44,7 @@
   "SPIREBROTHERS-GRIND.title": "Grind",
   "SPIREBROTHERS-GRIND.description": "The first time you play this card each combat, its number goes up for the rest of the run.",
   "SPIREBROTHERS-TOXIN.title": "Toxin",
-  "SPIREBROTHERS-TOXIN.description": "A debuff that does nothing on its own and never wears off. [gold]Chem[/gold] cards react with it.",
+  "SPIREBROTHERS-TOXIN.description": "A debuff that never wears off. Attacks deal 1 more damage per hit to an enemy with Toxin. [gold]Chem[/gold] cards react with it.",
   "SPIREBROTHERS-SHROUD.title": "Shroud",
   "SPIREBROTHERS-SHROUD.description": "Enshrouded's fog. While you're in it, your Attacks deal 50% more damage, but you lose 1 HP at the end of each of your turns. Its depth starts at 1 and grows by 1 each turn (up to 5); some cards pay out by depth. You stay in until a card takes you out.",
 "SPIREBROTHERS-LAW.title": "Law",

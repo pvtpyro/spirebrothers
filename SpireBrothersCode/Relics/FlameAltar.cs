@@ -8,10 +8,10 @@ using SpireBrothers.SpireBrothersCode.Mechanics;
 
 namespace SpireBrothers.SpireBrothersCode.Relics;
 
-/// <summary>John's starter (Enshrouded). Start each combat in the Shroud. After each combat you win, heal 4 HP.</summary>
+/// <summary>John's starter (Enshrouded). Start each combat in the Shroud. After each combat you win, heal 6 HP.</summary>
 public class FlameAltar : JohnRelic
 {
-    public virtual int Heal => 4;
+    public virtual int Heal => 6;
     public override RelicRarity Rarity => RelicRarity.Starter;
 
     // Touch of Orobas (the Ancient that upgrades starter relics) turns this into the Kindled Flame Altar.
@@ -34,9 +34,9 @@ public class FlameAltar : JohnRelic
     }
 }
 
-/// <summary>Touch of Orobas upgrade of the Flame Altar: heal 8.</summary>
+/// <summary>Touch of Orobas upgrade of the Flame Altar: heal 10.</summary>
 public class KindledFlameAltar : FlameAltar
 {
-    public override int Heal => 8;
+    public override int Heal => 10;
     public override RelicModel? GetUpgradeReplacement() => null;
 }

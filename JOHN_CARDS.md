@@ -16,7 +16,7 @@ Ironclad's vanilla scenes where the game needs a Spine one (shop, rest site), li
 | Keyword | Rule |
 |---|---|
 | **Grind X** | The first time you play this card each combat, it **permanently** gains +X to its number, for the rest of the run (like vanilla Genetic Algorithm). The card shows the printed number dimmed and the ground-up one in green. Once per combat keeps it from running away. |
-| **Toxin** | Hive Scum's chems. A debuff on an enemy that **does nothing on its own** and never wears off. **Chem** cards react with it: most cash it in for an effect and remove it. (David's Bleed already ticks damage every turn, so Toxin waits to be set off.) |
+| **Toxin** | Hive Scum's chems. A debuff on an enemy that never wears off. On its own, **Attacks deal 1 more damage per hit** to it (since 2026-11-05; it used to do nothing). **Chem** cards react with it: most cash it in for an effect and remove it. |
 | **The Shroud** | Enshrouded. A toggle (since 2026-11-05; it was a turn countdown): **Enter the Shroud** and you stay until a card takes you out. While you're in it, **your Attacks deal 50% more damage**. You **lose 1 HP at the end of each of your turns**. It has a **depth** (starts at 1, +1 each turn, max 5) that costs nothing; payoff cards scale with it. (A growing HP cost, depth HP per turn, was tried first on 2026-11-05: Daniel died halfway through Act 1, so it went.) |
 
 Shared mechanics he also uses: **Share** (co-op support) and **Duo**.
@@ -138,6 +138,18 @@ Legend: ⚙️ Grind, 🧪 Toxin / Chem, 🌫️ Shroud, 🤝 co-op.
 | 68 | 🤝 Raid Leader | 2 Power | At the start of your turn, ALL players gain 1 Strength this turn. | WoW |
 | 69 | 🧪 Hive Plague | 2 Power | At the start of your turn, apply 2 Toxin to ALL enemies. | Hive Scum |
 | 70 | 🌫️ Elixir Well | 1 Power | Whenever you leave the Shroud, gain 2 Energy and draw 2 cards. | Enshrouded |
+
+## Buff pass (2026-11-05, untested in game)
+
+Daniel: "John feels very weak" (died halfway through Act 1). His Toxin Commons were half-cards (Toxin did nothing until a
+Chem cashed it in, and Act 1 has only Cook Off), and his Block Commons were thin next to the Ironclad's.
+
+- Toxin: Attacks deal +1 damage per hit to an enemy with Toxin.
+- 80 HP (was 78). Flame Altar heals 6 (was 4); Kindled heals 10.
+- Chem Grenade 3 Toxin (was 2), Cook Off +3 per Toxin (was +2).
+- Scavenge 7 Block (was 5), Ding 5 Block (was 3), Toxic Cloud 3 Toxin + 6 Block (was 2 + 4), Toxin Rounds 8 damage (was 6),
+  Chem Dart 4 damage (was 3).
+- The Shroud: back to a flat 1 HP a turn (the growing cost from the rework went).
 
 ## Shroud rework (2026-11-05, untested in game)
 
