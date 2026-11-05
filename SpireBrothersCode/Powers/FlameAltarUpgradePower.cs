@@ -12,9 +12,19 @@ using SpireBrothers.SpireBrothersCode.Mechanics;
 
 namespace SpireBrothers.SpireBrothersCode.Powers;
 
-/// <summary>Enshrouded. Each time John enters the Shroud it lasts Amount more turns, and it no longer costs him HP.</summary>
+/// <summary>
+/// Enshrouded. Whenever the Shroud takes HP from John, he gains Amount Block per HP lost (done in ShroudPower).
+/// Until 2026-11-05 it made the Shroud last longer and cost no HP, which worked against his lose-HP-to-hit-hard style.
+/// </summary>
 public class FlameAltarUpgradePower : BrothersPower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
+
+    public async Task OnShroudHpLoss(int loss)
+    {
+        if (loss <= 0) return;
+        Flash();
+        await CreatureCmd.GainBlock(Owner, loss * Amount, ValueProp.Unpowered, null);
+    }
 }

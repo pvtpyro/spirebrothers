@@ -17,13 +17,13 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.John;
 
-/// <summary>Starter Chem. Deal 5 damage, +2 per Toxin on the enemy. Remove its Toxin.</summary>
+/// <summary>Starter Chem. Deal 5 damage, +3 per Toxin on the enemy. Remove its Toxin.</summary>
 public class CookOff() : JohnCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Chem];
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(5),
-        new ExtraDamageVar(2),
+        new ExtraDamageVar(3),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(ToxinOnTarget)
     ];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<ToxinPower>()];

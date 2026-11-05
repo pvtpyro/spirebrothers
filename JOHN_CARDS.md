@@ -17,18 +17,19 @@ Ironclad's vanilla scenes where the game needs a Spine one (shop, rest site), li
 |---|---|
 | **Grind X** | The first time you play this card each combat, it **permanently** gains +X to its number, for the rest of the run (like vanilla Genetic Algorithm). The card shows the printed number dimmed and the ground-up one in green. Once per combat keeps it from running away. |
 | **Toxin** | Hive Scum's chems. A debuff on an enemy that **does nothing on its own** and never wears off. **Chem** cards react with it: most cash it in for an effect and remove it. (David's Bleed already ticks damage every turn, so Toxin waits to be set off.) |
-| **The Shroud** | Enshrouded. **Enter the Shroud for N turns**, shown as a countdown on John. While you're in it, **your Attacks deal 50% more damage**, but **you lose 1 HP at the end of each of your turns**. When the countdown runs out, you leave. Entering again adds turns. |
+| **The Shroud** | Enshrouded. A toggle (since 2026-11-05; it was a turn countdown): **Enter the Shroud** and you stay until a card takes you out. While you're in it, **your Attacks deal 50% more damage**. It has a **depth** (starts at 1): at the end of your turn you **lose HP equal to the depth**, then it grows by 1 (max 5). Leaving cards pay out by depth. |
 
 Shared mechanics he also uses: **Share** (co-op support) and **Duo**.
 
 ## Starting deck (11 cards) and relic
 
-- 4 Strike, 4 Defend
+- 4 Strike, 3 Defend
+- **Into the Fog** (Basic Skill, 0): If you're in the Shroud, leave it and draw 1 card (2 upgraded). Otherwise, enter it. *(Replaced a Defend on 2026-11-05.)*
 - **Cartel Special** (Basic Skill, 0): Gain 1 Energy. Gain 3 Block. **Grind 1** (Block). Exhaust. *(His custom Hive Scum stimm, tuned up over the run.)*
-- **Chem Grenade** (Basic Attack, 1): Deal 4 damage to ALL enemies. Apply 2 Toxin to ALL enemies.
-- **Cook Off** (Basic Attack, 1, Chem): Deal 5 damage, +2 per Toxin on the enemy. Remove its Toxin.
-- **Starter relic: Flame Altar.** At the start of each combat, enter the Shroud for 2 turns. After each combat you win, heal 4 HP.
-  **Touch of Orobas upgrade: Kindled Flame Altar**: 3 turns, heal 6.
+- **Chem Grenade** (Basic Attack, 1): Deal 4 damage to ALL enemies. Apply 3 Toxin to ALL enemies (was 2 until 2026-11-05).
+- **Cook Off** (Basic Attack, 1, Chem): Deal 5 damage, +3 per Toxin on the enemy (was +2 until 2026-11-05). Remove its Toxin.
+- **Starter relic: Flame Altar.** At the start of each combat, enter the Shroud. After each combat you win, heal 4 HP.
+  **Touch of Orobas upgrade: Kindled Flame Altar**: heal 8.
 
 Legend: ⚙️ Grind, 🧪 Toxin / Chem, 🌫️ Shroud, 🤝 co-op.
 
@@ -73,7 +74,7 @@ Legend: ⚙️ Grind, 🧪 Toxin / Chem, 🌫️ Shroud, 🤝 co-op.
 ### Grind
 | # | Name | Cost / Type | Effect | Theme |
 |---|---|---|---|---|
-| 23 | ⚙️ Chem Lab | 1 Power | Whenever one of your cards Grinds, gain 3 Block. | Hive Scum's Stimm Lab |
+| 23 | ⚙️ Chem Lab | 1 Power | Whenever you play a Grind card, gain 3 Block (even after it has Ground this combat; extra Grinds give it again). Was "whenever a card Grinds" until 2026-11-05 (ran dry after one loop). | Hive Scum's Stimm Lab |
 | 24 | ⚙️ Grindstone | 1 Skill | Choose a Grind card in your hand. It Grinds now (even if it already did this combat). Exhaust. | Grind |
 | 25 | ⚙️ Endgame Gear | 2 Skill | Gain 14 Block. **Grind 2.** | Grind |
 | 26 | Crafting Bench | 1 Skill | Upgrade a card in your hand for the rest of combat. Draw 1 card. | Enshrouded |
@@ -129,7 +130,7 @@ Legend: ⚙️ Grind, 🧪 Toxin / Chem, 🌫️ Shroud, 🤝 co-op.
 | 41 | 🌫️ Deep Shroud | 1 Skill | Enter the Shroud for 4 turns. Gain 2 Energy. Exhaust. | Enshrouded |
 | 42 | 🌫️ Shroud Walker | 1 Power | While you're in the Shroud, deal 5 damage to ALL enemies at the end of your turn. | Enshrouded |
 | 43 | Pocket Full of Stimms | 1 Skill | Add 3 **Stimms** to your hand (0-cost token: gain 4 Block, draw 1 card, Exhaust). Exhaust. | Hive Scum |
-| 44 | Legendary Drop | 0 Skill | Choose 1 of 3 random Rare cards from your pool and add it to your hand. It costs 0 this turn. Exhaust. | Loot |
+| 44 | Legendary Drop | 0 Skill | Choose 1 of 3 random Rare cards from your pool and add it to your hand. It costs 0 this turn. Exhaust. Upgraded: the Rares are Upgraded (was Retain until 2026-11-05). | Loot |
 | 45 | Big Beard Energy | 2 Power | Gain 2 Strength and 2 Dexterity. | His beard |
 | 65 | ⚙️ Level Cap | 2 Power | Gain 1 Strength for every 10 times your cards have Ground this run (max 5; upgraded every 7, max 7). | WoW (hitting max level) |
 | 66 | ⚙️ Best in Slot | 1 Skill | Choose a Grind card in your hand. It Grinds 3 times. Exhaust. | WoW gear |
@@ -137,6 +138,26 @@ Legend: ⚙️ Grind, 🧪 Toxin / Chem, 🌫️ Shroud, 🤝 co-op.
 | 68 | 🤝 Raid Leader | 2 Power | At the start of your turn, ALL players gain 1 Strength this turn. | WoW |
 | 69 | 🧪 Hive Plague | 2 Power | At the start of your turn, apply 2 Toxin to ALL enemies. | Hive Scum |
 | 70 | 🌫️ Elixir Well | 1 Power | Whenever you leave the Shroud, gain 2 Energy and draw 2 cards. | Enshrouded |
+
+## Shroud rework (2026-11-05, untested in game)
+
+Daniel likes losing HP to hit hard, but had no control over the Shroud. Now it's a toggle with a growing cost, plus HP-loss payoffs.
+
+Changed: Shroud Dive (enter, draw 2; upgrade costs 0), Fog Bank (enter), Deep Shroud (enter, 2 Energy, draw 2), Flame Shard
+(depth -2, draw 1), Back to the Altar (leave, heal 1 per depth, 2 upgraded), Flame Altar Upgrade (whenever the Shroud takes
+HP, gain 2 Block per HP; it used to make the Shroud free), Shroud Elixir (enter, gain 10 Block), the Flame Altar, Shroud Lungs,
+and Extended Release (now Concentration Stimm).
+
+New:
+
+| Name | Rarity | Cost / Type | Effect | Theme |
+|---|---|---|---|---|
+| 🌫️ Into the Fog | Basic | 0 Skill | In the Shroud: leave it, draw 1 (2). Otherwise enter it. | Enshrouded |
+| Life Tap | Common | 0 Skill | Lose 3 HP. Gain 1 Energy. Draw 1 card (2). | WoW warlock |
+| Glass Cannon | Common | 1 Attack | Lose 2 HP. Deal 12 (16) damage. | Gaming |
+| Payback | Uncommon | 1 Attack | Deal 6 (9) damage, +1 per HP you've lost this combat (up to +20). | Hive Scum |
+| 🌫️ Burst Out | Uncommon | 1 Attack | Deal 5 (7) damage to ALL enemies, +3 (4) per Shroud depth. Leave the Shroud. | Enshrouded |
+| Adrenaline Junkie | Rare | 1 Power | Whenever you lose HP during your turn, gain 1 Strength. Upgrade: Innate. | Hive Scum |
 
 ## Talents: the Stimm Lab (run-long, picked at rest sites)
 
@@ -150,8 +171,8 @@ up over the run, like Hive Scum's.
 | Potency | Cartel Special gives 2 more Block. |
 | Fast Acting | Cartel Special also draws 1 card (rank 1 only). |
 | Toxic Payload | Start each combat by applying 2 Toxin to ALL enemies. |
-| Shroud Lungs | The Shroud's HP loss is 1 less per turn (at 0 it costs nothing). |
-| Extended Release | The Flame Altar's Shroud lasts 1 more turn. |
+| Shroud Lungs | Whenever you leave the Shroud, heal HP equal to its depth (1 rank). |
+| Concentration Stimm | Your Attacks deal 10% more damage in the Shroud (class/enum still `ExtendedRelease`, for saves). |
 | Thick Skin | Gain 4 Max HP. |
 | Efficient Grind | Your first Grind each combat Grinds twice. |
 | Pack Mule | Start each combat with 3 Block per rank. |

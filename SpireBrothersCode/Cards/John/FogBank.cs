@@ -17,17 +17,17 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.John;
 
-/// <summary>Enshrouded. Gain 6 Block. Enter the Shroud for 1 turn.</summary>
+/// <summary>Enshrouded. Gain 6 Block. Enter the Shroud.</summary>
 public class FogBank() : JohnCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Shroud];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(6, ValueProp.Move), new DynamicVar("Turns", 1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(6, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
         await CommonActions.CardBlock(this, play);
-        await Shroud.Enter(ctx, Owner, DynamicVars["Turns"].IntValue, this);
+        await Shroud.Enter(ctx, Owner, this);
     }
 
     protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(3);

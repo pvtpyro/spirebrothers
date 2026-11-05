@@ -12,7 +12,7 @@ using SpireBrothers.SpireBrothersCode.Mechanics;
 
 namespace SpireBrothers.SpireBrothersCode.Powers;
 
-/// <summary>Chem Lab (Hive Scum's Stimm Lab). Whenever one of John's cards Grinds, gain Amount Block.</summary>
+/// <summary>Chem Lab (Hive Scum's Stimm Lab). Whenever John plays a Grind card, gain Amount Block; extra Grinds (Grindstone, Rested XP) give it again.</summary>
 public class ChemLabPower : BrothersPower
 {
     public override PowerType Type => PowerType.Buff;
