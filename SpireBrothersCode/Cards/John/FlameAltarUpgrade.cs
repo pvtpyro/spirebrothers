@@ -17,11 +17,11 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.John;
 
-/// <summary>Enshrouded. Whenever you enter the Shroud, it lasts 1 more turn. The Shroud no longer costs you HP. Upgrade: costs 0.</summary>
+/// <summary>Enshrouded. Whenever the Shroud takes your HP, gain 2 Block per HP lost. Upgrade: costs 0.</summary>
 public class FlameAltarUpgrade() : JohnCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Shroud];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<FlameAltarUpgradePower>(1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<FlameAltarUpgradePower>(2)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {

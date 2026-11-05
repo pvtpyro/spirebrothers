@@ -429,6 +429,7 @@ DefendJohn 🛡
 CartelSpecial 💉
 ChemGrenade 💣
 CookOff 🔥
+IntoTheFog 🌁
 Stimm 💉
 TalentPotency 💪
 TalentFastActing ⚡
@@ -500,6 +501,11 @@ CartelKingpin 👑
 DeepShroud 🌑
 ShroudWalker 🚶
 PocketFullOfStimms 🧰
+LifeTap 🩸
+GlassCannon 💥
+Payback 👊
+BurstOut 🌪️
+AdrenalineJunkie 💢
 LegendaryDrop 🟧
 BigBeardEnergy 🧔
 LevelCap 📈

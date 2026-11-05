@@ -42,7 +42,7 @@
 "SPIREBROTHERS-CARTEL_BREW.title": "Cartel Brew",
   "SPIREBROTHERS-CARTEL_BREW.description": "Apply {Toxin:diff()} [gold]Toxin[/gold] to ALL enemies.",
   "SPIREBROTHERS-SHROUD_ELIXIR.title": "Shroud Elixir",
-  "SPIREBROTHERS-SHROUD_ELIXIR.description": "Enter the [gold]Shroud[/gold] for {Turns:diff()} turns.",
+  "SPIREBROTHERS-SHROUD_ELIXIR.description": "Enter the [gold]Shroud[/gold].\nGain {Block:diff()} [gold]Block[/gold].",
   "SPIREBROTHERS-RAID_FLASK.title": "Raid Flask",
   "SPIREBROTHERS-RAID_FLASK.description": "Every [gold]Grind[/gold] card in your [gold]Hand[/gold] [gold]Grinds[/gold] once, even if it already did this combat.",
   "SPIREBROTHERS-FRIED_CHICKEN.title": "Basket of Fried Chicken",

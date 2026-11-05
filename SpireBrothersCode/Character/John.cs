@@ -30,7 +30,8 @@ public class John : BrotherCharacter
 
     public override IEnumerable<CardModel> StartingDeck => [
         ModelDb.Card<StrikeJohn>(), ModelDb.Card<StrikeJohn>(), ModelDb.Card<StrikeJohn>(), ModelDb.Card<StrikeJohn>(),
-        ModelDb.Card<DefendJohn>(), ModelDb.Card<DefendJohn>(), ModelDb.Card<DefendJohn>(), ModelDb.Card<DefendJohn>(),
+        ModelDb.Card<DefendJohn>(), ModelDb.Card<DefendJohn>(), ModelDb.Card<DefendJohn>(),
+        ModelDb.Card<IntoTheFog>(),
         ModelDb.Card<CartelSpecial>(),
         ModelDb.Card<ChemGrenade>(),
         ModelDb.Card<CookOff>()

@@ -59,8 +59,14 @@ public abstract class JohnCard(int cost, CardType type, CardRarity rarity, Targe
     /// <summary>Call at the end of OnPlay: Grinds the first time the card is played this combat.</summary>
     protected async Task GrindAfterPlay(PlayerChoiceContext ctx)
     {
+        if (GrindTarget == null) return;
         // Realm First! lifts the once-per-combat rule.
-        if (GrindTarget == null || (_groundThisCombat && Owner?.Creature?.GetPower<RealmFirstPower>() == null)) return;
+        if (_groundThisCombat && Owner?.Creature?.GetPower<RealmFirstPower>() == null)
+        {
+            // Chem Lab pays out on every play of a Grind card, not only the one that Grinds.
+            if (Owner?.Creature?.GetPower<ChemLabPower>() is { } lab) await lab.OnGrind(1);
+            return;
+        }
         _groundThisCombat = true;
         await GrindTimes(ctx, 1);
     }

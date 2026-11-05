@@ -17,15 +17,15 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.John;
 
-/// <summary>Enshrouded. Enter the Shroud for 2 turns. Draw 1 card. Upgrade: costs 0.</summary>
+/// <summary>Enshrouded. Enter the Shroud. Draw 2 cards. Upgrade: costs 0.</summary>
 public class ShroudDive() : JohnCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Shroud];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Turns", 2), new CardsVar(1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(2)];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)
     {
-        await Shroud.Enter(ctx, Owner, DynamicVars["Turns"].IntValue, this);
+        await Shroud.Enter(ctx, Owner, this);
         await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, Owner);
     }
 

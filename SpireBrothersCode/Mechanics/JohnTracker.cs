@@ -1,6 +1,8 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,6 +18,18 @@ public class JohnTracker() : CustomSingletonModel(HookType.Combat)
 {
     // Whether John has Ground yet this combat (the Efficient Grind talent doubles the first one).
     private static readonly SpireField<PlayerCombatState, bool> GroundYet = new(() => false);
+    // HP John has lost this combat, from any source (Payback).
+    private static readonly SpireField<PlayerCombatState, int> HpLost = new(() => 0);
+
+    public static int HpLostThisCombat(Player? player) =>
+        player?.PlayerCombatState is { } state ? HpLost.Get(state) : 0;
+
+    public override Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
+    {
+        if (target.Player is { Character: Character.John, PlayerCombatState: { } state } && result.UnblockedDamage > 0)
+            HpLost.Set(state, HpLost.Get(state) + result.UnblockedDamage);
+        return Task.CompletedTask;
+    }
 
     /// <summary>True the first time it's asked each combat, false after.</summary>
     public static bool TakeFirstGrind(Player player)

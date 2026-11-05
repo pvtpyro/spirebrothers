@@ -13,8 +13,8 @@ using SpireBrothers.SpireBrothersCode.Mechanics;
 namespace SpireBrothers.SpireBrothersCode.Powers;
 
 /// <summary>
-/// Enshrouded. John is in the Shroud for Amount more turns (this one included): his Attacks deal 50% more damage, and
-/// he loses 1 HP at the end of each of his turns. Counts down at the end of his turn; at 0 he leaves.
+/// Enshrouded. John is in the Shroud at depth Amount: his Attacks deal 50% more damage. At the end of his turn he loses
+/// Amount HP, then the depth grows by 1 (up to Shroud.MaxDepth). He stays until a card takes him out (Mechanics/Shroud).
 /// </summary>
 public class ShroudPower : BrothersPower
 {
@@ -24,7 +24,7 @@ public class ShroudPower : BrothersPower
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
     {
         if (dealer != Owner || !props.IsPoweredAttack()) return 1m;
-        return Shroud.DamageMultiplier;
+        return Shroud.Multiplier(Owner.Player);
     }
 
     public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
@@ -33,13 +33,12 @@ public class ShroudPower : BrothersPower
         RunStats.Add(RunStats.ShroudTurns, player);
         // Shroud Walker: the fog itself hurts his enemies.
         if (Owner.GetPower<ShroudWalkerPower>() is { } walker) await walker.Burn(choiceContext);
-        int loss = Shroud.HpLoss(player);
-        if (loss > 0)
-        {
-            Flash();
-            await CreatureCmd.Damage(choiceContext, Owner, loss, ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
-        }
-        if (Amount <= 1) await Shroud.Leave(choiceContext, player);
-        else await PowerCmd.Decrement(this);
+        int loss = Amount;
+        Flash();
+        await CreatureCmd.Damage(choiceContext, Owner, loss, ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
+        if (!Owner.IsAlive) return;
+        // Flame Altar Upgrade: what the fog takes comes back as cover.
+        if (Owner.GetPower<FlameAltarUpgradePower>() is { } altar) await altar.OnShroudHpLoss(loss);
+        if (Amount < Shroud.MaxDepth) await PowerCmd.ModifyAmount(choiceContext, this, 1, Owner, null);
     }
 }

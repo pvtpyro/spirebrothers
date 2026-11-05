@@ -20,6 +20,8 @@ namespace SpireBrothers.SpireBrothersCode.Mechanics;
 /// </summary>
 public static class StimmLab
 {
+    // ExtendedRelease shows as "Concentration Stimm" (+10% Shroud damage per rank) since the 2026-11-05 Shroud rework;
+    // the enum names stay as they are because the saved ranks are keyed by them.
     public enum Talent { Potency, FastActing, ToxicPayload, ShroudLungs, ExtendedRelease, ThickSkin, EfficientGrind, PackMule }
 
     public const int PotencyBlock = 2;

@@ -8,10 +8,9 @@ using SpireBrothers.SpireBrothersCode.Mechanics;
 
 namespace SpireBrothers.SpireBrothersCode.Relics;
 
-/// <summary>John's starter (Enshrouded). Start each combat in the Shroud for 2 turns. After each combat you win, heal 4 HP.</summary>
+/// <summary>John's starter (Enshrouded). Start each combat in the Shroud. After each combat you win, heal 4 HP.</summary>
 public class FlameAltar : JohnRelic
 {
-    public virtual int ShroudTurns => 2;
     public virtual int Heal => 4;
     public override RelicRarity Rarity => RelicRarity.Starter;
 
@@ -24,9 +23,7 @@ public class FlameAltar : JohnRelic
         var combat = player.Creature.CombatState;
         if (combat == null || combat.RoundNumber != 1) return;
         Flash();
-        // Extended Release (Stimm Lab talent): the Altar's Shroud lasts longer.
-        int turns = ShroudTurns + StimmLab.Rank(player, StimmLab.Talent.ExtendedRelease);
-        await Shroud.Enter(choiceContext, player, turns, null);
+        await Shroud.Enter(choiceContext, player, null);
     }
 
     public override async Task AfterCombatVictory(CombatRoom room)
@@ -37,10 +34,9 @@ public class FlameAltar : JohnRelic
     }
 }
 
-/// <summary>Touch of Orobas upgrade of the Flame Altar: 3 turns in the Shroud, heal 6.</summary>
+/// <summary>Touch of Orobas upgrade of the Flame Altar: heal 8.</summary>
 public class KindledFlameAltar : FlameAltar
 {
-    public override int ShroudTurns => 3;
-    public override int Heal => 6;
+    public override int Heal => 8;
     public override RelicModel? GetUpgradeReplacement() => null;
 }

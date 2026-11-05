@@ -18,7 +18,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.John;
 
-/// <summary>Loot. Choose 1 of 3 random Rare cards from your pool and add it to your hand. It costs 0 this turn. Exhaust.</summary>
+/// <summary>Loot. Choose 1 of 3 random Rare cards from your pool and add it to your hand. It costs 0 this turn. Exhaust. Upgraded: the card is upgraded.</summary>
 public class LegendaryDrop() : JohnCard(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     public const int Choices = 3;
@@ -32,11 +32,14 @@ public class LegendaryDrop() : JohnCard(0, CardType.Skill, CardRarity.Rare, Targ
             .ToList();
         var offered = CardFactory.GetDistinctForCombat(Owner, rares, Choices, Owner.RunState.Rng.CombatCardGeneration).ToList();
         if (offered.Count == 0) return;
+        if (IsUpgraded)
+            foreach (var c in offered.Where(c => c.IsUpgradable)) CardCmd.Upgrade(c);
         var card = await CardSelectCmd.FromChooseACardScreen(ctx, offered, Owner);
         if (card == null) return;
         card.SetToFreeThisTurn();
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
     }
 
-    protected override void OnUpgrade() => AddKeyword(CardKeyword.Retain);
+    // Upgraded: the Rare comes upgraded too (was Retain, which did nothing for a free 0-cost card).
+    protected override void OnUpgrade() { }
 }

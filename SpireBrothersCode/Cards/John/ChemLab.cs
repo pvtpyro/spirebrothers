@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.John;
 
-/// <summary>Hive Scum's Stimm Lab. Whenever one of your cards Grinds, gain 3 Block.</summary>
+/// <summary>Hive Scum's Stimm Lab. Whenever you play a Grind card, gain 3 Block (even after it has Ground this combat).</summary>
 public class ChemLab() : JohnCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Grind];
