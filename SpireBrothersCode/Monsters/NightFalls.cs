@@ -132,13 +132,13 @@ public class Skeleton : PixelMonster
     }
 }
 
-/// <summary>Bites (with Weak), then climbs the wall (Block), and repeats.</summary>
+/// <summary>Bites (with Poison, the vanilla debuff), then climbs the wall (Block), and repeats.</summary>
 public class Spider : PixelMonster
 {
     public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 23, 21);
     public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 24, 22);
     private int BiteDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 7, 6);
-    private const int BiteWeak = 1;
+    private int BitePoison => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 4, 3);   // (was 1 Weak until 2026-11-10)
     private int ClimbBlock => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 10, 8);
 
     protected override string ArtFolder => "spider";
@@ -163,7 +163,7 @@ public class Spider : PixelMonster
             .WithAttackerFx(null, AttackSfx)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(null);
-        await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), targets, BiteWeak, Creature, null);
+        await PowerCmd.Apply<PoisonPower>(new ThrowingPlayerChoiceContext(), targets, BitePoison, Creature, null);
     }
 
     private async Task Climb(IReadOnlyList<Creature> targets)

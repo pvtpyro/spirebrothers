@@ -185,7 +185,7 @@ Built 2026-10-27 (cards, potions, relics, banter). Plans in JOHN_CARDS.md / HUFF
 Normal (non-elite) fights. Code: `Monsters/PixelMonster.cs` base + one file per fight (encounter + its monsters), text in
 monsters.json / encounters.json. Art: `art_originals/pixelgen/Mobs.cs`, rendered by `art_originals/mobgen` (`dotnet run -c Release [name]`),
 then copy `out/<name>/frames` to `SpireBrothers/images/monsters/<name>/frames`. Built one at a time, start to finish.
-- [x] 1. Night Falls (Minecraft, Act 1): Creeper (Fuse 3, explodes 16 and dies), Skeleton (3x2, 3x2, Take Aim +2 Str), Spider (bite 6 + Weak, climb 8 Block). `Monsters/NightFalls.cs`, `FusePower`.
+- [x] 1. Night Falls (Minecraft, Act 1): Creeper (Fuse 3, explodes 16 and dies), Skeleton (3x2, 3x2, Take Aim +2 Str), Spider (bite 6 + 3 Poison (was Weak until 2026-11-10), climb 8 Block). `Monsters/NightFalls.cs`, `FusePower`.
 - [x] 2. The Enderman (Minecraft, Act 2, `Monsters/TheEnderman.cs`, `ProvokedPower`): ~110 HP, light hits; hit 3+ times in one turn and it gets angry (next attack hits hard); sometimes teleports (immune to damage for a turn).
 - [x] 3. Blockbeard's Deckhands (Monkey Island, Act 1 weak, `Monsters/Deckhands.cs`; Lookout insults are monsters.json `LOOKOUT.insults.N`): Lookout (12 HP, insults = Weak) + Powder Monkey (10 HP, lights a keg that blows next turn unless he dies). Both start Insulted.
 - [x] 4. Philistine Scouts (Bible, Act 1, `Monsters/PhilistineScouts.cs`; crested helmets, since feathered crowns read as war bonnets): 3 scouts ~15 HP; each turn one Guards (Block to the others) while two attack.
