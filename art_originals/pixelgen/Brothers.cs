@@ -278,8 +278,12 @@ public class DavidArt : AnimatedBrother
     static readonly Col Shades = Col.Hex("16161e");
     static readonly Col Frame = Col.Hex("2a2a36");
 
+    // Off since 2026-11-10: David didn't seem to want them. Set to true to bring them back.
+    const bool WearsSunglasses = false;
+
     protected override void DrawHeadExtras(Canvas c, Rig r, Pose p)
     {
+        if (!WearsSunglasses) return;
         // rectangular sunglasses (like his real ones); when he's down they slide down his nose
         var h = r.Head + new V(-FaceShift, p.Face == Face.Dead ? 2 : 0);   // (follows the eyes when facing the player)
         c.Draw(q => S.Capsule(q, h + new V(-6.5f, -0.2f), h + new V(0.5f, -0.6f), 0.7f), Frame);         // arm back to the ear
