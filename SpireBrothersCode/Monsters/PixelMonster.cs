@@ -15,6 +15,8 @@ public abstract class PixelMonster : CustomMonsterModel, Mechanics.IPhotoArt
     protected abstract float BodyHeight { get; }
     /// <summary>False for foes whose death frames do the falling themselves (smoke puffs, bone piles, flipped bugs).</summary>
     protected virtual bool TipOver => false;
+    /// <summary>For very tall bodies: the intent sits no higher than this many units above the feet, so it stays on screen.</summary>
+    protected virtual float? IntentHeight => null;
 
     private string ArtPath(string file) => $"{MainFile.ResPath}/images/monsters/{ArtFolder}/{file}";
 
@@ -31,7 +33,7 @@ public abstract class PixelMonster : CustomMonsterModel, Mechanics.IPhotoArt
         try
         {
             if (PixelBody.LoadFrames(ArtPath, 5, out var first) is { } frames && first != null)
-                return PixelBody.AnimatedBody(frames, first, BodyHeight, faceLeft: true, tipOver: TipOver);
+                return PixelBody.AnimatedBody(frames, first, BodyHeight, faceLeft: true, maxIntentHeight: IntentHeight, tipOver: TipOver);
         }
         catch (Exception e)
         {

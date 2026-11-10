@@ -51,7 +51,8 @@ public class EnderDragonBoss() : BibleElite(RoomType.Boss)
         return list;
     }
 
-    public override float GetCameraScaling() => 0.8f;
+    // Pulled back a little for the big dragon (EnderDragon.BodyHeight 460, about 770 wide) and three pillars.
+    public override float GetCameraScaling() => 0.75f;
 
     private const string IconPath = $"{MainFile.ResPath}/images/map/ender_dragon_boss_icon";
     public override string BossNodePath => IconPath;
@@ -96,7 +97,10 @@ public class EnderDragon : PixelMonster
     private int PerchBreath => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 5, 4);
 
     protected override string ArtFolder => "ender_dragon";
-    protected override float BodyHeight => 300f;
+    // Big (was 300). Her head is about 4/5 of the way up the frame, so the intent sits just over it and below the top
+    // bar (like Goliath's 540 body with its intent capped at 500). The encounter's camera is pulled back to fit her.
+    protected override float BodyHeight => 460f;
+    protected override float? IntentHeight => 440f;
     protected override bool TipOver => false;   // her dead frames burst into light
 
     private const string RoarSfx = "event:/sfx/enemy/enemy_attacks/knowledge_demon/knowledge_demon_flame";

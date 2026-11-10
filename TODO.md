@@ -295,7 +295,8 @@ Going with Stargate SG-1 bosses, one at a time: **Apophis** (Act 2), **Ba'al** (
 - [ ] Test the Ender Dragon: `fight SPIREBROTHERS-ENDER_DRAGON_BOSS`. Check: the crystals' heal (and no heal at full HP), the 12
       blast when one breaks (and nothing odd when she dies and the crystals go with her), the caged crystal's Block, Circling/Perched
       swapping after Swoop and Breath (damage previews: half, then x1.5, Bed x3), Dragon's Breath ticking on players, the caged
-      crystal's art (it picks its folder from `Caged`), 4 bodies on screen (camera 0.8; she's wide), death rays, map icon
+      crystal's art (it picks its folder from `Caged`), 4 bodies on screen (made bigger 2026-11-10: `BodyHeight` 460, intent capped at 440 via
+      `PixelMonster.IntentHeight`, camera 0.75; about 1.4x her first size on screen), death rays, map icon
 
 ### 19. Mom as an Ancient
 An act-start Ancient (like Neow) offering family-flavored blessings: "Pack a lunch" (heal), "Take your brother with you"
