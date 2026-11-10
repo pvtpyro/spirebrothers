@@ -238,7 +238,7 @@ fight's stats ("Goliath, down in 3 turns!"). Mockup (Brandi loved it): https://c
 No custom boss yet (only elites and normal fights). Family-themed Act boss ideas: "Moving Day" (a mountain of boxes that
 summons furniture), "Family Game Night Gone Wrong" (a giant board game that changes the rules every turn).
 Going with Stargate SG-1 bosses, one at a time: **Apophis** (Act 2), **Ba'al** (Act 1), **Anubis** (Act 3), and the
-**Replicators** (Act 2, alongside Apophis). All four built.
+**Replicators** (Act 2, alongside Apophis). All four built. Then the **Ender Dragon** (Minecraft, Act 3, alongside Anubis).
 - [x] Pick the boss and act: Apophis, Act 2
 - [x] Build Apophis (2026-10-29, tested in game the same day): `Monsters/Apophis.cs` (ApophisBoss + Apophis), `Jaffa.cs`, `Sarcophagus.cs`;
       powers PersonalShield (each hit capped at 12), KaraKesh (land 30 damage before the Ribbon Device fires to stun him),
@@ -285,6 +285,17 @@ Going with Stargate SG-1 bosses, one at a time: **Apophis** (Act 2), **Ba'al** (
       never adapting, Chew eating Block (and the bug gaining it), Build summoning and lining up bugs (up to 5 bodies; camera 0.8),
       the blocks count going up when a bug dies, the dead frames crumbling (no tip-over), the map icon, Brandi's faces
 - [ ] Balance after playing: Adaptation may be harsh on Strike-heavy starter decks in solo
+- [x] Build the Ender Dragon (2026-11-10, untested in game), a second Act 3 boss (rolled with Anubis; they all play Minecraft):
+      `Monsters/EnderDragon.cs` (EnderDragonBoss, EnderDragon, EndCrystal). Dragon 300 HP behind 3 End Crystals (18 HP minions on
+      obsidian pillars; the middle one is caged: 12 Block, renewed each turn). Each crystal heals her 6 every turn; a crystal breaking
+      blasts her for 12 (`TheEndPower`, the FoePower). She starts `CirclingPower` (Attacks deal half); moves loop Fireball 18 (+2
+      `DragonsBreathPower` on everyone: lose HP at turn start, -1 each turn), Swoop 6x3 then lands (`PerchedPower`: Attacks deal 50%
+      more, a Bed triple; the party shouts a "perch" line), Breath (wing buffet 10, +4 Dragon's Breath on everyone, takes off).
+      Hero: a random player gets the shared token `Cards/Shared/Bed.cs` (1 cost, 10 damage, Retain, Exhaust; 30 on a Perched dragon).
+- [ ] Test the Ender Dragon: `fight SPIREBROTHERS-ENDER_DRAGON_BOSS`. Check: the crystals' heal (and no heal at full HP), the 12
+      blast when one breaks (and nothing odd when she dies and the crystals go with her), the caged crystal's Block, Circling/Perched
+      swapping after Swoop and Breath (damage previews: half, then x1.5, Bed x3), Dragon's Breath ticking on players, the caged
+      crystal's art (it picks its folder from `Caged`), 4 bodies on screen (camera 0.8; she's wide), death rays, map icon
 
 ### 19. Mom as an Ancient
 An act-start Ancient (like Neow) offering family-flavored blessings: "Pack a lunch" (heal), "Take your brother with you"

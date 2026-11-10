@@ -1471,5 +1471,7 @@
   "SPIREBROTHERS-ANTI_KULL_DISRUPTOR.title": "Anti-Kull Disruptor",
   "SPIREBROTHERS-ANTI_KULL_DISRUPTOR.description": "Remove [gold]Kull Armor[/gold] from ALL enemies.\nDeal {Damage:diff()} damage to ALL enemies.",
   "SPIREBROTHERS-ANTI_REPLICATOR_GUN.title": "Anti-Replicator Gun",
-  "SPIREBROTHERS-ANTI_REPLICATOR_GUN.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Replicators[/gold] can't adapt to it."
+  "SPIREBROTHERS-ANTI_REPLICATOR_GUN.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Replicators[/gold] can't adapt to it.",
+  "SPIREBROTHERS-BED.title": "Bed",
+  "SPIREBROTHERS-BED.description": "Deal {Damage:diff()} damage.\nTriple damage to a [gold]Perched[/gold] dragon."
 }

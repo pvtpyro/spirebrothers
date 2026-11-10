@@ -427,5 +427,46 @@
   "SPIREBROTHERS-REPLICATORS.heroWin.0": "Game over, bugs.",
   "SPIREBROTHERS-REPLICATORS.heroWin.1": "Somebody sweep these up.",
   "SPIREBROTHERS-REPLICATORS.heroWin.2": "Adapt to THAT.",
-  "SPIREBROTHERS-REPLICATORS.heroWin.3": "Just a pile of blocks now."
+  "SPIREBROTHERS-REPLICATORS.heroWin.3": "Just a pile of blocks now.",
+
+  "SPIREBROTHERS-ENDER_DRAGON.name": "Ender Dragon",
+  "SPIREBROTHERS-ENDER_DRAGON.moves.FIREBALL.title": "Fireball",
+  "SPIREBROTHERS-ENDER_DRAGON.moves.SWOOP.title": "Swoop",
+  "SPIREBROTHERS-ENDER_DRAGON.moves.BREATH.title": "Dragon's Breath",
+  "SPIREBROTHERS-END_CRYSTAL.name": "End Crystal",
+  "SPIREBROTHERS-END_CRYSTAL.moves.HEAL.title": "Healing Beam",
+
+  "SPIREBROTHERS-ENDER_DRAGON.intro.0": "*ROOOAAARRR*",
+  "SPIREBROTHERS-ENDER_DRAGON.intro.1": "*the dragon circles the pillars, screeching*",
+  "SPIREBROTHERS-ENDER_DRAGON.intro.2": "*purple eyes lock on from across the void*",
+
+  "SPIREBROTHERS-ENDER_DRAGON.heroIntro.0": "Okay. Crystals first. Everybody knows crystals first.",
+  "SPIREBROTHERS-ENDER_DRAGON.heroIntro.1": "I brought beds. Trust me.",
+  "SPIREBROTHERS-ENDER_DRAGON.heroIntro.2": "Nobody look the Endermen in the eye.",
+  "SPIREBROTHERS-ENDER_DRAGON.heroIntro.3": "How many hours did it take us to get here? Let's not die.",
+
+  "SPIREBROTHERS-ENDER_DRAGON.heroReply.0": "*ROAR*",
+  "SPIREBROTHERS-ENDER_DRAGON.heroReply.1": "*a beam of light from the crystals wraps around her*",
+  "SPIREBROTHERS-ENDER_DRAGON.heroReply.2": "*screech*",
+  "SPIREBROTHERS-ENDER_DRAGON.heroReply.3": "*she banks hard and dives*",
+
+  "SPIREBROTHERS-ENDER_DRAGON.sideReply.0": "Break the crystals. They're healing her.",
+  "SPIREBROTHERS-ENDER_DRAGON.sideReply.1": "Wait for her to land. Then go nuts.",
+  "SPIREBROTHERS-ENDER_DRAGON.sideReply.2": "Stay out of the purple stuff.",
+  "SPIREBROTHERS-ENDER_DRAGON.sideReply.3": "Somebody bring a water bucket? No? Okay.",
+
+  "SPIREBROTHERS-ENDER_DRAGON.taunts.0": "*ROAR*",
+  "SPIREBROTHERS-ENDER_DRAGON.taunts.1": "*screeeech*",
+  "SPIREBROTHERS-ENDER_DRAGON.taunts.2": "*wings beat overhead*",
+  "SPIREBROTHERS-ENDER_DRAGON.taunts.3": "*a purple glow builds in her jaws*",
+
+  "SPIREBROTHERS-ENDER_DRAGON.perch.0": "She's on the portal! Hit her NOW!",
+  "SPIREBROTHERS-ENDER_DRAGON.perch.1": "She landed! Beds! Beds!",
+  "SPIREBROTHERS-ENDER_DRAGON.perch.2": "Perched! Everything you've got!",
+  "SPIREBROTHERS-ENDER_DRAGON.perch.3": "She's down! Go go go!",
+
+  "SPIREBROTHERS-ENDER_DRAGON.heroWin.0": "The End. Roll credits.",
+  "SPIREBROTHERS-ENDER_DRAGON.heroWin.1": "Dibs on the egg.",
+  "SPIREBROTHERS-ENDER_DRAGON.heroWin.2": "Free the End!",
+  "SPIREBROTHERS-ENDER_DRAGON.heroWin.3": "That's a lot of XP."
 }

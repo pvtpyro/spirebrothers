@@ -505,3 +505,12 @@ Card art for everything (all cards, relics, and powers use placeholders).
 - Art: `art_originals/pixelgen/Replicators.cs` (`ReplicatorParts` block helpers incl. `Crumble` for the falling-apart dead frames,
   so `TipOver` is false); `dotnet run -c Release replicator_queen replicator_bug` in mobgen. The map icon file is renamed on copy
   to `images/map/replicators_boss_icon.png` (+ `_outline`).
+
+## Added 2026-11-10 (the Ender Dragon, a second Act 3 boss)
+
+- **The Ender Dragon** (Minecraft), untested in game. TODO.md #18. `Monsters/EnderDragon.cs` (`EnderDragonBoss`, `EnderDragon`,
+  `EndCrystal`; `Caged` set by the encounter also picks the art folder `end_crystal_caged`). Powers: `TheEndPower` (FoePower; a
+  breaking crystal blasts her in `AfterDeath`), `CirclingPower` / `PerchedPower` (swapped in `EnderDragon.Land` / `TakeOff`;
+  Perched triples the Bed), `DragonsBreathPower` (a poison-like debuff on players). Hero random like Anubis; token `Cards/Shared/Bed.cs`.
+- Art: `art_originals/pixelgen/EnderDragon.cs` (`Tri.Fill` triangle helper, `EnderDragonArt`, `EndCrystalArt(caged)`);
+  `dotnet run -c Release ender_dragon end_crystal end_crystal_caged` in mobgen.

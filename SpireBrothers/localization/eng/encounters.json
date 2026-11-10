@@ -34,5 +34,7 @@
   "SPIREBROTHERS-ANUBIS_BOSS.title": "Anubis",
   "SPIREBROTHERS-ANUBIS_BOSS.loss": "{character} looked under [gold]{encounter}[/gold]'s hood.",
   "SPIREBROTHERS-REPLICATOR_BOSS.title": "The Replicators",
-  "SPIREBROTHERS-REPLICATOR_BOSS.loss": "{character} was taken apart, block by block, by [gold]{encounter}[/gold]."
+  "SPIREBROTHERS-REPLICATOR_BOSS.loss": "{character} was taken apart, block by block, by [gold]{encounter}[/gold].",
+  "SPIREBROTHERS-ENDER_DRAGON_BOSS.title": "The Ender Dragon",
+  "SPIREBROTHERS-ENDER_DRAGON_BOSS.loss": "{character} fell off the edge of [gold]The End[/gold]. No respawn this time."
 }

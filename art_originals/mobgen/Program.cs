@@ -7,7 +7,8 @@ var all = new IFrameArt[] { new CreeperArt(), new SkeletonArt(), new SpiderArt()
     new LaundryArt(), new DishesArt(), new LawnArt(),
     new MobRig(new PoxwalkerArt()),
     new MobRig(new ApophisArt()), new MobRig(new JaffaArt()), new SarcophagusArt(), new MobRig(new BaalArt()),
-    new MobRig(new AnubisArt()), new MobRig(new KullArt()), new ReplicatorQueenArt(), new ReplicatorBugArt() };
+    new MobRig(new AnubisArt()), new MobRig(new KullArt()), new ReplicatorQueenArt(), new ReplicatorBugArt(),
+    new EnderDragonArt(), new EndCrystalArt(false), new EndCrystalArt(true) };
 var only = args.ToHashSet();
 var bg = Col.Hex("3a2e2a");
 foreach (var foe in all.Where(f => only.Count == 0 || only.Contains(f.Name)))
@@ -29,7 +30,7 @@ foreach (var foe in all.Where(f => only.Count == 0 || only.Contains(f.Name)))
     sheet.SavePng(Path.Combine("out", $"preview_{foe.Name}.png"), 4);
     Console.WriteLine($"{foe.Name}: " + string.Join(", ", anims.Select(a => $"{a.Key} x{a.Value.Count}")));
     // the bosses' map icons: copy out/<name>/map/* into SpireBrothers/images/map/
-    if (foe.Name is "apophis" or "baal" or "anubis" or "replicator_queen")
+    if (foe.Name is "apophis" or "baal" or "anubis" or "replicator_queen" or "ender_dragon")
     {
         var (icon, outline) = BossIcon.MapIcon(anims["idle"][0]);
         icon.SavePng(Path.Combine("out", foe.Name, "map", $"{foe.Name}_boss_icon.png"));

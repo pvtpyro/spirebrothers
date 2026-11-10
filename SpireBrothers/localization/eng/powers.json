@@ -1007,5 +1007,17 @@
   "SPIREBROTHERS-ADAPTATION_POWER.nothingYet": "Nothing yet.",
   "SPIREBROTHERS-REPLICATOR_SWARM_POWER.title": "Replicator Swarm",
   "SPIREBROTHERS-REPLICATOR_SWARM_POWER.description": "Loose blocks she can build into Replicators. Every Replicator that falls apart gives her one back. One player, picked at random, starts with the Anti-Replicator Gun.",
-  "SPIREBROTHERS-REPLICATOR_SWARM_POWER.smartDescription": "She has [blue]{Amount}[/blue] loose {Amount:plural:block|blocks} to build into [gold]Replicators[/gold]. Every [gold]Replicator[/gold] that falls apart gives her one back.\nOne player, picked at random, starts with the [gold]Anti-Replicator Gun[/gold]."
+  "SPIREBROTHERS-REPLICATOR_SWARM_POWER.smartDescription": "She has [blue]{Amount}[/blue] loose {Amount:plural:block|blocks} to build into [gold]Replicators[/gold]. Every [gold]Replicator[/gold] that falls apart gives her one back.\nOne player, picked at random, starts with the [gold]Anti-Replicator Gun[/gold].",
+  "SPIREBROTHERS-THE_END_POWER.title": "The End",
+  "SPIREBROTHERS-THE_END_POWER.description": "Her End Crystals heal her every turn. When a crystal breaks, it blasts her for 12 damage. One player, picked at random, starts with a Bed.",
+  "SPIREBROTHERS-THE_END_POWER.smartDescription": "Her [gold]End Crystals[/gold] heal her every turn. When a crystal breaks, it blasts her for 12 damage.\nOne player, picked at random, starts with a [gold]Bed[/gold].",
+  "SPIREBROTHERS-CIRCLING_POWER.title": "Circling",
+  "SPIREBROTHERS-CIRCLING_POWER.description": "She's in the air. Attacks deal half damage to her. After her Swoop, she lands.",
+  "SPIREBROTHERS-CIRCLING_POWER.smartDescription": "She's in the air. Attacks deal half damage to her.\nAfter her [gold]Swoop[/gold], she lands.",
+  "SPIREBROTHERS-PERCHED_POWER.title": "Perched",
+  "SPIREBROTHERS-PERCHED_POWER.description": "She's landed on the portal. Attacks deal 50% more damage to her, and a Bed deals triple. She takes off after her next move.",
+  "SPIREBROTHERS-PERCHED_POWER.smartDescription": "She's landed on the portal. Attacks deal 50% more damage to her, and a [gold]Bed[/gold] deals triple.\nShe takes off after her next move.",
+  "SPIREBROTHERS-DRAGONS_BREATH_POWER.title": "Dragon's Breath",
+  "SPIREBROTHERS-DRAGONS_BREATH_POWER.description": "At the start of your turn, lose HP equal to it, then it goes down by 1.",
+  "SPIREBROTHERS-DRAGONS_BREATH_POWER.smartDescription": "At the start of your turn, lose [blue]{Amount}[/blue] HP, then [gold]Dragon's Breath[/gold] goes down by 1."
 }
