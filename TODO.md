@@ -185,7 +185,7 @@ Built 2026-10-27 (cards, potions, relics, banter). Plans in JOHN_CARDS.md / HUFF
 Normal (non-elite) fights. Code: `Monsters/PixelMonster.cs` base + one file per fight (encounter + its monsters), text in
 monsters.json / encounters.json. Art: `art_originals/pixelgen/Mobs.cs`, rendered by `art_originals/mobgen` (`dotnet run -c Release [name]`),
 then copy `out/<name>/frames` to `SpireBrothers/images/monsters/<name>/frames`. Built one at a time, start to finish.
-- [x] 1. Night Falls (Minecraft, Act 1): Creeper (Fuse 3, explodes 16 and dies), Skeleton (3x2, 3x2, Take Aim +2 Str), Spider (bite 6 + Weak, climb 8 Block). `Monsters/NightFalls.cs`, `FusePower`.
+- [x] 1. Night Falls (Minecraft, Act 1): Creeper (Fuse 3, explodes 16 and dies), Skeleton (3x2, 3x2, Take Aim +2 Str), Spider (bite 6 + 3 Poison (was Weak until 2026-11-10), climb 8 Block). `Monsters/NightFalls.cs`, `FusePower`.
 - [x] 2. The Enderman (Minecraft, Act 2, `Monsters/TheEnderman.cs`, `ProvokedPower`): ~110 HP, light hits; hit 3+ times in one turn and it gets angry (next attack hits hard); sometimes teleports (immune to damage for a turn).
 - [x] 3. Blockbeard's Deckhands (Monkey Island, Act 1 weak, `Monsters/Deckhands.cs`; Lookout insults are monsters.json `LOOKOUT.insults.N`): Lookout (12 HP, insults = Weak) + Powder Monkey (10 HP, lights a keg that blows next turn unless he dies). Both start Insulted.
 - [x] 4. Philistine Scouts (Bible, Act 1, `Monsters/PhilistineScouts.cs`; crested helmets, since feathered crowns read as war bonnets): 3 scouts ~15 HP; each turn one Guards (Block to the others) while two attack.
@@ -237,8 +237,8 @@ fight's stats ("Goliath, down in 3 turns!"). Mockup (Brandi loved it): https://c
 ### 18. A custom boss
 No custom boss yet (only elites and normal fights). Family-themed Act boss ideas: "Moving Day" (a mountain of boxes that
 summons furniture), "Family Game Night Gone Wrong" (a giant board game that changes the rules every turn).
-Going with Stargate SG-1 bosses, one at a time: **Apophis** (Act 2, built), **Ba'al** (Act 1, built), then Anubis, the
-Replicators (all four were liked; act still to pick for each).
+Going with Stargate SG-1 bosses, one at a time: **Apophis** (Act 2), **Ba'al** (Act 1), **Anubis** (Act 3), and the
+**Replicators** (Act 2, alongside Apophis). All four built. Then the **Ender Dragon** (Minecraft, Act 3, alongside Anubis).
 - [x] Pick the boss and act: Apophis, Act 2
 - [x] Build Apophis (2026-10-29, tested in game the same day): `Monsters/Apophis.cs` (ApophisBoss + Apophis), `Jaffa.cs`, `Sarcophagus.cs`;
       powers PersonalShield (each hit capped at 12), KaraKesh (land 30 damage before the Ribbon Device fires to stun him),
@@ -270,10 +270,33 @@ Replicators (all four were liked; act still to pick for each).
       looping from Shroud Strike; `SuperweaponPower` counts down to it. The hero is a random player (the encounter's Rng): starts with
       the shared token `Cards/Shared/AntiKullDisruptor.cs` (strips Kull Armor from ALL, 6 to ALL); the next player answers.
       Brandi makes faces instead of saying any BibleElite line (fixes her talking as Apophis's party voice too).
-- [ ] Test Anubis: `fight SPIREBROTHERS-ANUBIS_BOSS`. Check: possession (Kull drops, he stands back up, no hero win line, the "noHosts"
-      line when the last Kull goes), the countdown matching the Superweapon intent, the reserve (2 refills, then Dark Shroud), Kull Armor halving only Attacks, the token
-      for a random player (co-op: same player on every screen), Brandi's faces, the art (hood, cast orb), map icon, camera with three bodies
-- [ ] Replicators
+- [x] Test Anubis (done 2026-11-10): `fight SPIREBROTHERS-ANUBIS_BOSS`.
+- [x] Build the Replicators (2026-11-10, untested in game), a second Act 2 boss (the game rolls it or Apophis): `Monsters/Replicators.cs`
+      (ReplicatorBoss, ReplicatorQueen, ReplicatorBug). Queen 190 HP behind 2 Replicator bugs (14-16 HP, minions; Bite 5, then Chew: eats
+      up to 5 Block off every player and keeps it as its own Block). `ReplicatorSwarmPower` (the FoePower) shows her loose blocks: 2 to
+      start, +1 for every bug that falls. Moves: Assimilate 15, Swarm (bugs +2 Strength, she hits 5x2), Build (up to 2 bugs from her
+      blocks, max 4 standing, +8 Block; with no blocks or a full swarm, Reinforce: 14 Block), looping. **They adapt** (`AdaptationPower`
+      on every Replicator; the memory is `ReplicatorBoss.AdaptedTo`): the card that last damaged a Replicator deals half damage to all of
+      them until a different card hits; it adapts after the card finishes, so AoE/multi-hit land whole the first time; upgraded copies
+      count as the same card; hover shows "Adapted To". Hero: a random player (like Anubis) gets `Cards/Shared/AntiReplicatorGun.cs`
+      (1 cost, 7 to ALL, Retain, never adapted to); the next player answers. The party says an "adapt" line the first time only.
+- [ ] Test the Replicators: `fight SPIREBROTHERS-REPLICATOR_BOSS`. Check: the halved damage preview on the adapted card (and on
+      Strike+ when Strike is adapted), the "Adapted To" hover updating, an AoE card hitting everything full the first time, the ARG
+      never adapting, Chew eating Block (and the bug gaining it), Build summoning and lining up bugs (up to 5 bodies; camera 0.8),
+      the blocks count going up when a bug dies, the dead frames crumbling (no tip-over), the map icon, Brandi's faces
+- [ ] Balance after playing: Adaptation may be harsh on Strike-heavy starter decks in solo
+- [x] Build the Ender Dragon (2026-11-10, untested in game), a second Act 3 boss (rolled with Anubis; they all play Minecraft):
+      `Monsters/EnderDragon.cs` (EnderDragonBoss, EnderDragon, EndCrystal). Dragon 300 HP behind 3 End Crystals (18 HP minions on
+      obsidian pillars; the middle one is caged: 12 Block, renewed each turn). Each crystal heals her 6 every turn; a crystal breaking
+      blasts her for 12 (`TheEndPower`, the FoePower). She starts `CirclingPower` (Attacks deal half); moves loop Fireball 18 (+2
+      `DragonsBreathPower` on everyone: lose HP at turn start, -1 each turn), Swoop 6x3 then lands (`PerchedPower`: Attacks deal 50%
+      more, a Bed triple; the party shouts a "perch" line), Breath (wing buffet 10, +4 Dragon's Breath on everyone, takes off).
+      Hero: a random player gets the shared token `Cards/Shared/Bed.cs` (1 cost, 10 damage, Retain, Exhaust; 30 on a Perched dragon).
+- [ ] Test the Ender Dragon: `fight SPIREBROTHERS-ENDER_DRAGON_BOSS`. Check: the crystals' heal (and no heal at full HP), the 12
+      blast when one breaks (and nothing odd when she dies and the crystals go with her), the caged crystal's Block, Circling/Perched
+      swapping after Swoop and Breath (damage previews: half, then x1.5, Bed x3), Dragon's Breath ticking on players, the caged
+      crystal's art (it picks its folder from `Caged`), 4 bodies on screen (made bigger 2026-11-10: `BodyHeight` 460, intent capped at 440 via
+      `PixelMonster.IntentHeight`, camera 0.75; about 1.4x her first size on screen), death rays, map icon
 
 ### 19. Mom as an Ancient
 An act-start Ancient (like Neow) offering family-flavored blessings: "Pack a lunch" (heal), "Take your brother with you"

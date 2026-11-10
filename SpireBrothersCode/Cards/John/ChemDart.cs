@@ -17,10 +17,10 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.John;
 
-/// <summary>Hive Scum. Deal 3 damage. Apply 2 Toxin.</summary>
+/// <summary>Hive Scum. Deal 4 damage. Apply 2 Toxin.</summary>
 public class ChemDart() : JohnCard(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(3, ValueProp.Move), new DynamicVar("Toxin", 2)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(4, ValueProp.Move), new DynamicVar("Toxin", 2)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<ToxinPower>()];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

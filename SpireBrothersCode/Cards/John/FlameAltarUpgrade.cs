@@ -17,7 +17,7 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.John;
 
-/// <summary>Enshrouded. Whenever the Shroud takes your HP, gain 2 Block per HP lost. Upgrade: costs 0.</summary>
+/// <summary>Enshrouded. At the end of your turn in the Shroud, gain 2 Block per depth. Upgrade: costs 0.</summary>
 public class FlameAltarUpgrade() : JohnCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Shroud];

@@ -24,7 +24,7 @@ public class John : BrotherCharacter
     public override Color RemoteTargetingLineColor => new("F5C24AFF");
     public override Color RemoteTargetingLineOutline => new("5C3D00FF");
     public override CharacterGender Gender => CharacterGender.Masculine;
-    public override int StartingHp => 78;
+    public override int StartingHp => 80;
 
     public override string CharacterTransitionSfx => "event:/sfx/ui/wipe_ironclad";
 

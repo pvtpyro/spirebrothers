@@ -17,10 +17,10 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.John;
 
-/// <summary>Hive Scum. Deal 6 damage. Apply 3 Toxin.</summary>
+/// <summary>Hive Scum. Deal 8 damage. Apply 3 Toxin.</summary>
 public class ToxinRounds() : JohnCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move), new DynamicVar("Toxin", 3)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8, ValueProp.Move), new DynamicVar("Toxin", 3)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<ToxinPower>()];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

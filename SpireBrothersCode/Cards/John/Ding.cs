@@ -17,12 +17,12 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.John;
 
-/// <summary>WoW (the level-up sound). Gain 3 Block. Draw 1 card. Grind 1 (Block).</summary>
+/// <summary>WoW (the level-up sound). Gain 5 Block. Draw 1 card. Grind 1 (Block).</summary>
 public class Ding() : JohnCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     public override bool GainsBlock => true;
     public override IEnumerable<CardKeyword> CanonicalKeywords => [BrotherKeywords.Grind];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(3, ValueProp.Move), new CardsVar(1), new DynamicVar("Grind", 1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(5, ValueProp.Move), new CardsVar(1), new DynamicVar("Grind", 1)];
     protected override DynamicVar GrindTarget => DynamicVars.Block;
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

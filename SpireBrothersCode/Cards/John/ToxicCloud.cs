@@ -17,11 +17,11 @@ using SpireBrothers.SpireBrothersCode.Powers;
 
 namespace SpireBrothers.SpireBrothersCode.Cards.John;
 
-/// <summary>Hive Scum. Apply 2 Toxin to ALL enemies. Gain 4 Block.</summary>
+/// <summary>Hive Scum. Apply 3 Toxin to ALL enemies. Gain 6 Block.</summary>
 public class ToxicCloud() : JohnCard(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
 {
     public override bool GainsBlock => true;
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Toxin", 2), new BlockVar(4, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Toxin", 3), new BlockVar(6, ValueProp.Move)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<ToxinPower>()];
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay play)

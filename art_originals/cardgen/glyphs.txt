@@ -765,3 +765,5 @@ ProtocolThree 🤝
 DamageCore 💥
 DashCore 💨
 ShieldCore 🛡
+AntiReplicatorGun 📡
+Bed 🛏️

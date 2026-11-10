@@ -12,9 +12,20 @@ using SpireBrothers.SpireBrothersCode.Mechanics;
 
 namespace SpireBrothers.SpireBrothersCode.Powers;
 
-/// <summary>John's Hive Scum chems. Does nothing on its own and never wears off; his Chem cards react with it.</summary>
+/// <summary>
+/// John's Hive Scum chems. Never wears off; his Chem cards react with it. On its own, any player's Attacks deal 1 more
+/// damage per hit to the enemy (added 2026-11-05: it used to do nothing, which left his Toxin Commons as half-cards in Act 1).
+/// </summary>
 public class ToxinPower : BrothersPower
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
+
+    public const int BonusPerHit = 1;
+
+    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
+    {
+        if (target != Owner || dealer is not { IsPlayer: true } || !props.IsPoweredAttack()) return 0m;
+        return BonusPerHit;
+    }
 }

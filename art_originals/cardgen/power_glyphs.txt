@@ -208,3 +208,9 @@ TargetingLink 🎯
 Thrusters 💨
 Bulwark 🧱
 DamageCore 💥
+Adaptation 🧬
+ReplicatorSwarm 🕷️
+TheEnd 🐉
+Circling 🪽
+Perched 🏛️
+DragonsBreath 💜

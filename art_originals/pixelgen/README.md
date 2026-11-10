@@ -5,7 +5,7 @@ from simple shapes on a shared skeleton (`Rig.cs`), and each animation is a list
 
 - `Rig.cs`: the skeleton and shared body parts (head, beard, hair, arms, legs, torso outline). The bodies are drawn
   facing the player with the head turned to the right, like the vanilla characters (`Brother.Frontal`; false gives the old side-on body). `dotnet run -c Release -- out brandi` renders Brandi (Brandi.cs, a character idea, not in the mod) plus `lineup_brandi.png`, `closeup_all.png`, and `tops_all.png` previews of all seven.
-- `Brothers.cs`: each brother's clothes, props, and animation poses (David's sunglasses are in `DavidArt.DrawHeadExtras`).
+- `Brothers.cs`: each brother's clothes, props, and animation poses (David's sunglasses are in `DavidArt.DrawHeadExtras`, switched off by `WearsSunglasses = false` since 2026-11-10).
 - `Canvas.cs`: the drawing and PNG code.
 - `Backgrounds.cs`: the character select backgrounds (480 x 270, one scene per brother inspired by his favorite
   games, with him standing on the right; Daniel has a stack of books by his feet, Joshua a d20 and a sword in a stone,

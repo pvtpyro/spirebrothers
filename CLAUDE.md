@@ -98,8 +98,8 @@ untested in game. Plan and bio in `BRANDI_CARDS.md`. She never talks: her banter
   - **Grind** (`Mechanics/Grind.cs`): BaseLib `SavedSpireField<CardModel,int>` on the deck copy; `JohnCard.GrindTarget` names
     the var, `SyncGrind()` adds the run's growth onto it (tracked by `_grindApplied`, which clones copy along with the number),
     `GrindAfterPlay(ctx)` grinds once per combat, `GrindTimes(ctx, n)` forces it. Text uses `{GrindGrown}`/`{GrindStart}`.
-  - **Toxin** (`Mechanics/Toxin.cs`, `ToxinPower`): inert debuff; Chem cards cash it in. All Toxin goes through `Toxin.Apply` (Cartel Kingpin).
-  - **Shroud** (`Mechanics/Shroud.cs`, `ShroudPower`): a toggle since 2026-11-05 (no countdown; `Enter` / `Leave` / `ChangeDepth`). The amount is the depth: x1.5 Attack damage, lose depth HP at his turn end, then depth +1 (max 5). Basic Into the Fog switches it. HP lost per combat: `JohnTracker.HpLostThisCombat` (Payback).
+  - **Toxin** (`Mechanics/Toxin.cs`, `ToxinPower`): never wears off; any player's Attacks deal +1 per hit to it (since 2026-11-05, was inert); Chem cards cash it in. All Toxin goes through `Toxin.Apply` (Cartel Kingpin).
+  - **Shroud** (`Mechanics/Shroud.cs`, `ShroudPower`): a toggle since 2026-11-05 (no countdown; `Enter` / `Leave` / `ChangeDepth`). The amount is the depth: x1.5 Attack damage, 1 HP lost at his turn end, then depth +1 (max 5); depth only powers payoff cards (a growing HP cost killed Daniel, removed the same day). Basic Into the Fog switches it. HP lost per combat: `JohnTracker.HpLostThisCombat` (Payback).
   - **Stimm Lab talents** (`Mechanics/StimmLab.cs`): `JohnRunTracker.TryModifyRestSiteOptions` adds `StimmLabRestSiteOption`
     (loc in the new `rest_site_ui.json`, whose hover lists learned talents via `StimmLab.LearnedLines`; icon `images/ui/stimm_lab.png`, swapped in by `StimmLabIconPatch` since the game's
     icon path is private). Pick 1 of 3 talent cards (`FromChooseACardScreen`), seeded from the run + floor, saved per player.
@@ -190,9 +190,9 @@ Its wiki is the best reference: https://github.com/Alchyr/ModTemplate-StS2/wiki
 - Combat bodies: `Character/BrotherCharacter.cs` plays `images/characters/<name>/frames/<anim>_<n>.png` (idle/attack/cast/hit/dead,
   pixel art at 64x80, nearest filter) on an `AnimatedSprite2D`, which BaseLib drives from the game's animation cues;
   falls back to `body.png`, then the vanilla placeholder. The frames come from `art_originals/pixelgen/` (see its README;
-  bodies face the player with the head turned right, like vanilla (`Brother.Frontal`, default true since 2026-10-28: smaller skull, hair drawn scaled by `HairScale`, pixel-exact `DrawFrontGlasses`, far arm hanging beside the body; the Rig-drawn foes like Goliath would also change if re-rendered, their frames in the mod are still side-on), David wears sunglasses; a `rest` loop for rest sites, played by `StandIns`).
+  bodies face the player with the head turned right, like vanilla (`Brother.Frontal`, default true since 2026-10-28: smaller skull, hair drawn scaled by `HairScale`, pixel-exact `DrawFrontGlasses`, far arm hanging beside the body; the Rig-drawn foes like Goliath would also change if re-rendered, their frames in the mod are still side-on), David's sunglasses are off since 2026-11-10 (`DavidArt.WearsSunglasses`); a `rest` loop for rest sites, played by `StandIns`).
   Faces and hair follow the reference photos in `photos/` (2026-10-27): Daniel messy hair + wire glasses + stubble, David
-  fringe + rectangular sunglasses + stubble, Joshua crew cut + dark glasses + stubble, Tim buzzed + glasses + full beard +
+  fringe + stubble (sunglasses switched off), Joshua crew cut + dark glasses + stubble, Tim buzzed + glasses + full beard +
   over-ear headphones. `photos/` has a `.gdignore` so the family photos never get packed into the Workshop .pck; keep it.
   Re-run it to change the art, then copy the frames in. A copy is on her Desktop (`pixelgen`).
   The `dead_N.png` frames are registered as the animation "die" (BaseLib's death cue only tries "Dead"/"Die"/"die", case-sensitive). The sprite's pivot is moved to the feet and it tweens to -90° on `die` (back up on `revive`), because the dead frames only slump.
@@ -517,3 +517,24 @@ Card art for everything (all cards, relics, and powers use placeholders).
 - His hero is any player, picked at random in `GenerateMonsters` (encounter Rng; `Seat` = 0 hero, 1 answers). The token is shared:
   `Cards/Shared/AntiKullDisruptor.cs` in vanilla `TokenCardPool`. `BibleElite.Say` turns any line Brandi would say into a FACES face.
 - Art: `AnubisArt` / `KullArt` in pixelgen Stargate.cs; `dotnet run -c Release anubis kull_warrior` in mobgen.
+- Tested in game 2026-11-10.
+
+## Added 2026-11-10 (the Replicators, a second Act 2 boss)
+
+- **The Replicators** (Stargate SG-1), untested in game. TODO.md #18. `Monsters/Replicators.cs` (`ReplicatorBoss`, `ReplicatorQueen`,
+  `ReplicatorBug`). The Queen builds bugs from loose blocks (`ReplicatorQueen.Blocks`, shown by `ReplicatorSwarmPower`, the FoePower;
+  a fallen bug adds one in its `AfterDeath`). `AdaptationPower` (on every Replicator) halves damage from the card the swarm last
+  adapted to; the memory lives on the encounter (`NoteHurtBy` in `AfterDamageReceived`, `Adapt` in `AfterCardPlayed`, matched by
+  card ID so upgrades count). Hero picked at random like Anubis; token `Cards/Shared/AntiReplicatorGun.cs` (never adapted to).
+- Art: `art_originals/pixelgen/Replicators.cs` (`ReplicatorParts` block helpers incl. `Crumble` for the falling-apart dead frames,
+  so `TipOver` is false); `dotnet run -c Release replicator_queen replicator_bug` in mobgen. The map icon file is renamed on copy
+  to `images/map/replicators_boss_icon.png` (+ `_outline`).
+
+## Added 2026-11-10 (the Ender Dragon, a second Act 3 boss)
+
+- **The Ender Dragon** (Minecraft), untested in game. TODO.md #18. `Monsters/EnderDragon.cs` (`EnderDragonBoss`, `EnderDragon`,
+  `EndCrystal`; `Caged` set by the encounter also picks the art folder `end_crystal_caged`). Powers: `TheEndPower` (FoePower; a
+  breaking crystal blasts her in `AfterDeath`), `CirclingPower` / `PerchedPower` (swapped in `EnderDragon.Land` / `TakeOff`;
+  Perched triples the Bed), `DragonsBreathPower` (a poison-like debuff on players). Hero random like Anubis; token `Cards/Shared/Bed.cs`.
+- Art: `art_originals/pixelgen/EnderDragon.cs` (`Tri.Fill` triangle helper, `EnderDragonArt`, `EndCrystalArt(caged)`);
+  `dotnet run -c Release ender_dragon end_crystal end_crystal_caged` in mobgen.

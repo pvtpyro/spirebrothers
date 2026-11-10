@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\projects\\csharp\\SpireBrothers\\art_originals\\friendbuttons\\friendbuttons.csproj": {}
+    "d:\\projects\\csharp\\SpireBrothers\\art_originals\\friendbuttons\\friendbuttons.csproj": {}
   },
   "projects": {
-    "D:\\projects\\csharp\\SpireBrothers\\art_originals\\friendbuttons\\friendbuttons.csproj": {
+    "d:\\projects\\csharp\\SpireBrothers\\art_originals\\friendbuttons\\friendbuttons.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\projects\\csharp\\SpireBrothers\\art_originals\\friendbuttons\\friendbuttons.csproj",
+        "projectUniqueName": "d:\\projects\\csharp\\SpireBrothers\\art_originals\\friendbuttons\\friendbuttons.csproj",
         "projectName": "friendbuttons",
-        "projectPath": "D:\\projects\\csharp\\SpireBrothers\\art_originals\\friendbuttons\\friendbuttons.csproj",
+        "projectPath": "d:\\projects\\csharp\\SpireBrothers\\art_originals\\friendbuttons\\friendbuttons.csproj",
         "packagesPath": "C:\\Users\\brand\\.nuget\\packages\\",
-        "outputPath": "D:\\projects\\csharp\\SpireBrothers\\art_originals\\friendbuttons\\obj\\",
+        "outputPath": "d:\\projects\\csharp\\SpireBrothers\\art_originals\\friendbuttons\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\brand\\AppData\\Roaming\\NuGet\\NuGet.Config"

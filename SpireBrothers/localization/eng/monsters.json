@@ -382,5 +382,92 @@
   "SPIREBROTHERS-ANUBIS.heroWin.1": "There was nobody in there after all.",
   "SPIREBROTHERS-ANUBIS.heroWin.2": "Back to the higher plane with you.",
   "SPIREBROTHERS-ANUBIS.heroWin.3": "Chevron seven, locked. We're going home.",
-  "SPIREBROTHERS-DANNY_TITAN.name": "Titan"
+  "SPIREBROTHERS-DANNY_TITAN.name": "Titan",
+
+  "SPIREBROTHERS-REPLICATOR_QUEEN.name": "Replicator Queen",
+  "SPIREBROTHERS-REPLICATOR_QUEEN.moves.BUILD.title": "Build",
+  "SPIREBROTHERS-REPLICATOR_QUEEN.moves.REINFORCE.title": "Reinforce",
+  "SPIREBROTHERS-REPLICATOR_QUEEN.moves.ASSIMILATE.title": "Assimilate",
+  "SPIREBROTHERS-REPLICATOR_QUEEN.moves.SWARM.title": "Swarm",
+  "SPIREBROTHERS-REPLICATOR_BUG.name": "Replicator",
+  "SPIREBROTHERS-REPLICATOR_BUG.moves.BITE.title": "Bite",
+  "SPIREBROTHERS-REPLICATOR_BUG.moves.CHEW.title": "Chew",
+
+  "SPIREBROTHERS-REPLICATORS.intro.0": "*click-click-click-click*",
+  "SPIREBROTHERS-REPLICATORS.intro.1": "*skitter skitter skitter*",
+  "SPIREBROTHERS-REPLICATORS.intro.2": "*a thousand tiny blocks, all clicking at once*",
+
+  "SPIREBROTHERS-REPLICATORS.heroIntro.0": "Bugs. Why is it always bugs?",
+  "SPIREBROTHERS-REPLICATORS.heroIntro.1": "I've got the ARG. Point it at the clicky things, right?",
+  "SPIREBROTHERS-REPLICATORS.heroIntro.2": "They're made of LEGO. Evil LEGO.",
+  "SPIREBROTHERS-REPLICATORS.heroIntro.3": "Okay, nobody step on one. Wait. Everybody step on one.",
+
+  "SPIREBROTHERS-REPLICATORS.heroReply.0": "*click-click*",
+  "SPIREBROTHERS-REPLICATORS.heroReply.1": "*the whole swarm turns to look*",
+  "SPIREBROTHERS-REPLICATORS.heroReply.2": "*skitter*",
+  "SPIREBROTHERS-REPLICATORS.heroReply.3": "*clack clack clack*",
+
+  "SPIREBROTHERS-REPLICATORS.sideReply.0": "Mix it up. They learn.",
+  "SPIREBROTHERS-REPLICATORS.sideReply.1": "Don't hit them with the same thing twice.",
+  "SPIREBROTHERS-REPLICATORS.sideReply.2": "The big one's making more. Go for the big one.",
+  "SPIREBROTHERS-REPLICATORS.sideReply.3": "Do NOT let them eat the ship.",
+
+  "SPIREBROTHERS-REPLICATORS.taunts.0": "*click-click-click*",
+  "SPIREBROTHERS-REPLICATORS.taunts.1": "*the swarm shifts and clatters*",
+  "SPIREBROTHERS-REPLICATORS.taunts.2": "*skitter skitter*",
+  "SPIREBROTHERS-REPLICATORS.taunts.3": "*clack*",
+
+  "SPIREBROTHERS-REPLICATORS.build.0": "*blocks snap together*",
+  "SPIREBROTHERS-REPLICATORS.build.1": "*click... click... CLICK*",
+  "SPIREBROTHERS-REPLICATORS.build.2": "*the pile of blocks starts to crawl*",
+
+  "SPIREBROTHERS-REPLICATORS.adapt.0": "They adapted! Switch it up!",
+  "SPIREBROTHERS-REPLICATORS.adapt.1": "That stopped working. They learn fast.",
+  "SPIREBROTHERS-REPLICATORS.adapt.2": "Same trick twice won't work. Try something else!",
+
+  "SPIREBROTHERS-REPLICATORS.heroWin.0": "Game over, bugs.",
+  "SPIREBROTHERS-REPLICATORS.heroWin.1": "Somebody sweep these up.",
+  "SPIREBROTHERS-REPLICATORS.heroWin.2": "Adapt to THAT.",
+  "SPIREBROTHERS-REPLICATORS.heroWin.3": "Just a pile of blocks now.",
+
+  "SPIREBROTHERS-ENDER_DRAGON.name": "Ender Dragon",
+  "SPIREBROTHERS-ENDER_DRAGON.moves.FIREBALL.title": "Fireball",
+  "SPIREBROTHERS-ENDER_DRAGON.moves.SWOOP.title": "Swoop",
+  "SPIREBROTHERS-ENDER_DRAGON.moves.BREATH.title": "Dragon's Breath",
+  "SPIREBROTHERS-END_CRYSTAL.name": "End Crystal",
+  "SPIREBROTHERS-END_CRYSTAL.moves.HEAL.title": "Healing Beam",
+
+  "SPIREBROTHERS-ENDER_DRAGON.intro.0": "*ROOOAAARRR*",
+  "SPIREBROTHERS-ENDER_DRAGON.intro.1": "*the dragon circles the pillars, screeching*",
+  "SPIREBROTHERS-ENDER_DRAGON.intro.2": "*purple eyes lock on from across the void*",
+
+  "SPIREBROTHERS-ENDER_DRAGON.heroIntro.0": "Okay. Crystals first. Everybody knows crystals first.",
+  "SPIREBROTHERS-ENDER_DRAGON.heroIntro.1": "I brought beds. Trust me.",
+  "SPIREBROTHERS-ENDER_DRAGON.heroIntro.2": "Nobody look the Endermen in the eye.",
+  "SPIREBROTHERS-ENDER_DRAGON.heroIntro.3": "How many hours did it take us to get here? Let's not die.",
+
+  "SPIREBROTHERS-ENDER_DRAGON.heroReply.0": "*ROAR*",
+  "SPIREBROTHERS-ENDER_DRAGON.heroReply.1": "*a beam of light from the crystals wraps around her*",
+  "SPIREBROTHERS-ENDER_DRAGON.heroReply.2": "*screech*",
+  "SPIREBROTHERS-ENDER_DRAGON.heroReply.3": "*she banks hard and dives*",
+
+  "SPIREBROTHERS-ENDER_DRAGON.sideReply.0": "Break the crystals. They're healing her.",
+  "SPIREBROTHERS-ENDER_DRAGON.sideReply.1": "Wait for her to land. Then go nuts.",
+  "SPIREBROTHERS-ENDER_DRAGON.sideReply.2": "Stay out of the purple stuff.",
+  "SPIREBROTHERS-ENDER_DRAGON.sideReply.3": "Somebody bring a water bucket? No? Okay.",
+
+  "SPIREBROTHERS-ENDER_DRAGON.taunts.0": "*ROAR*",
+  "SPIREBROTHERS-ENDER_DRAGON.taunts.1": "*screeeech*",
+  "SPIREBROTHERS-ENDER_DRAGON.taunts.2": "*wings beat overhead*",
+  "SPIREBROTHERS-ENDER_DRAGON.taunts.3": "*a purple glow builds in her jaws*",
+
+  "SPIREBROTHERS-ENDER_DRAGON.perch.0": "She's on the portal! Hit her NOW!",
+  "SPIREBROTHERS-ENDER_DRAGON.perch.1": "She landed! Beds! Beds!",
+  "SPIREBROTHERS-ENDER_DRAGON.perch.2": "Perched! Everything you've got!",
+  "SPIREBROTHERS-ENDER_DRAGON.perch.3": "She's down! Go go go!",
+
+  "SPIREBROTHERS-ENDER_DRAGON.heroWin.0": "The End. Roll credits.",
+  "SPIREBROTHERS-ENDER_DRAGON.heroWin.1": "Dibs on the egg.",
+  "SPIREBROTHERS-ENDER_DRAGON.heroWin.2": "Free the End!",
+  "SPIREBROTHERS-ENDER_DRAGON.heroWin.3": "That's a lot of XP."
 }

@@ -936,7 +936,7 @@
   "SPIREBROTHERS-SHROUD_DIVE.title": "Shroud Dive",
   "SPIREBROTHERS-SHROUD_DIVE.description": "Enter the [gold]Shroud[/gold].\nDraw {Cards:diff()} cards.",
   "SPIREBROTHERS-FLAME_SHARD.title": "Flame Shard",
-  "SPIREBROTHERS-FLAME_SHARD.description": "If you're in the [gold]Shroud[/gold], its depth drops by {Depth:diff()}.\nDraw {Cards:diff()} {Cards:plural:card|cards}.",
+  "SPIREBROTHERS-FLAME_SHARD.description": "If you're in the [gold]Shroud[/gold], its depth rises by {Depth:diff()}.\nDraw {Cards:diff()} {Cards:plural:card|cards}.",
   "SPIREBROTHERS-DING.title": "Ding!",
   "SPIREBROTHERS-DING.description": "Gain {GrindGrown:cond:[color=#ffffff8c]{GrindStart}[/color] [green]{Block:diff()}[/green]|{Block:diff()}} [gold]Block[/gold].\nDraw {Cards:diff()} card.\n[gold]Grind[/gold] {Grind:diff()}.",
   "SPIREBROTHERS-SINGLE_PULL.title": "Single Pull",
@@ -975,7 +975,7 @@
   "SPIREBROTHERS-SHROUD_SPORES.title": "Shroud Spores",
   "SPIREBROTHERS-SHROUD_SPORES.description": "Apply {Toxin:diff()} [gold]Toxin[/gold] to ALL enemies.\nIn the [gold]Shroud[/gold]: {ShroudToxin:diff()} instead.",
   "SPIREBROTHERS-FLAME_ALTAR_UPGRADE.title": "Flame Altar Upgrade",
-  "SPIREBROTHERS-FLAME_ALTAR_UPGRADE.description": "Whenever the [gold]Shroud[/gold] takes your HP, gain {FlameAltarUpgradePower:diff()} [gold]Block[/gold] per HP lost.",
+  "SPIREBROTHERS-FLAME_ALTAR_UPGRADE.description": "At the end of your turn in the [gold]Shroud[/gold], gain {FlameAltarUpgradePower:diff()} [gold]Block[/gold] per depth.",
   "SPIREBROTHERS-BACK_TO_THE_ALTAR.title": "Back to the Altar",
   "SPIREBROTHERS-BACK_TO_THE_ALTAR.description": "Gain {Block:diff()} [gold]Block[/gold].\nLeave the [gold]Shroud[/gold] and heal {HealPerDepth:diff()} HP per depth it was at.",
   "SPIREBROTHERS-GUNSLINGER.title": "Gunslinger",
@@ -1571,5 +1571,9 @@
   "SPIREBROTHERS-DASH_CORE.title": "Dash Core",
   "SPIREBROTHERS-DASH_CORE.description": "{InTitan:cond:Gain {Energy:energyIcons()}. Draw {Cards:diff()} cards.|Only in your Titan: gain {Energy:energyIcons()} and draw {Cards:diff()} cards.}",
   "SPIREBROTHERS-SHIELD_CORE.title": "Shield Core",
-  "SPIREBROTHERS-SHIELD_CORE.description": "{InTitan:cond:Gain {Shield:diff()} [gold]Block[/gold], even in the Titan.|Only in your Titan: gain {Shield:diff()} [gold]Block[/gold].}"
+  "SPIREBROTHERS-SHIELD_CORE.description": "{InTitan:cond:Gain {Shield:diff()} [gold]Block[/gold], even in the Titan.|Only in your Titan: gain {Shield:diff()} [gold]Block[/gold].}",
+  "SPIREBROTHERS-ANTI_REPLICATOR_GUN.title": "Anti-Replicator Gun",
+  "SPIREBROTHERS-ANTI_REPLICATOR_GUN.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Replicators[/gold] can't adapt to it.",
+  "SPIREBROTHERS-BED.title": "Bed",
+  "SPIREBROTHERS-BED.description": "Deal {Damage:diff()} damage.\nTriple damage to a [gold]Perched[/gold] dragon."
 }
