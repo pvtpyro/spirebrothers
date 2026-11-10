@@ -999,5 +999,13 @@
   "SPIREBROTHERS-KULL_RESERVE_POWER.smartDescription": "He can still call in [blue]{Amount}[/blue] more [gold]Kull Warriors[/gold] with [gold]Kull, Rise![/gold]. When they run out, he can't make more.",
   "SPIREBROTHERS-SUPERWEAPON_POWER.title": "Superweapon",
   "SPIREBROTHERS-SUPERWEAPON_POWER.description": "His mothership's superweapon fires in this many of his turns.",
-  "SPIREBROTHERS-SUPERWEAPON_POWER.smartDescription": "His mothership's superweapon fires in [blue]{Amount}[/blue] {Amount:plural:turn|turns}."
+  "SPIREBROTHERS-SUPERWEAPON_POWER.smartDescription": "His mothership's superweapon fires in [blue]{Amount}[/blue] {Amount:plural:turn|turns}.",
+  "SPIREBROTHERS-ADAPTATION_POWER.title": "Adaptation",
+  "SPIREBROTHERS-ADAPTATION_POWER.description": "The card that last damaged a Replicator deals half damage to every Replicator, until a different card hits them. They can't adapt to the Anti-Replicator Gun.",
+  "SPIREBROTHERS-ADAPTATION_POWER.smartDescription": "The card that last damaged a [gold]Replicator[/gold] deals half damage to every [gold]Replicator[/gold], until a different card hits them.\nThey can't adapt to the [gold]Anti-Replicator Gun[/gold].",
+  "SPIREBROTHERS-ADAPTATION_POWER.adaptedTo": "Adapted To",
+  "SPIREBROTHERS-ADAPTATION_POWER.nothingYet": "Nothing yet.",
+  "SPIREBROTHERS-REPLICATOR_SWARM_POWER.title": "Replicator Swarm",
+  "SPIREBROTHERS-REPLICATOR_SWARM_POWER.description": "Loose blocks she can build into Replicators. Every Replicator that falls apart gives her one back. One player, picked at random, starts with the Anti-Replicator Gun.",
+  "SPIREBROTHERS-REPLICATOR_SWARM_POWER.smartDescription": "She has [blue]{Amount}[/blue] loose {Amount:plural:block|blocks} to build into [gold]Replicators[/gold]. Every [gold]Replicator[/gold] that falls apart gives her one back.\nOne player, picked at random, starts with the [gold]Anti-Replicator Gun[/gold]."
 }

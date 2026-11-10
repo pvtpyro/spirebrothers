@@ -381,5 +381,51 @@
   "SPIREBROTHERS-ANUBIS.heroWin.0": "Ascend THAT.",
   "SPIREBROTHERS-ANUBIS.heroWin.1": "There was nobody in there after all.",
   "SPIREBROTHERS-ANUBIS.heroWin.2": "Back to the higher plane with you.",
-  "SPIREBROTHERS-ANUBIS.heroWin.3": "Chevron seven, locked. We're going home."
+  "SPIREBROTHERS-ANUBIS.heroWin.3": "Chevron seven, locked. We're going home.",
+
+  "SPIREBROTHERS-REPLICATOR_QUEEN.name": "Replicator Queen",
+  "SPIREBROTHERS-REPLICATOR_QUEEN.moves.BUILD.title": "Build",
+  "SPIREBROTHERS-REPLICATOR_QUEEN.moves.REINFORCE.title": "Reinforce",
+  "SPIREBROTHERS-REPLICATOR_QUEEN.moves.ASSIMILATE.title": "Assimilate",
+  "SPIREBROTHERS-REPLICATOR_QUEEN.moves.SWARM.title": "Swarm",
+  "SPIREBROTHERS-REPLICATOR_BUG.name": "Replicator",
+  "SPIREBROTHERS-REPLICATOR_BUG.moves.BITE.title": "Bite",
+  "SPIREBROTHERS-REPLICATOR_BUG.moves.CHEW.title": "Chew",
+
+  "SPIREBROTHERS-REPLICATORS.intro.0": "*click-click-click-click*",
+  "SPIREBROTHERS-REPLICATORS.intro.1": "*skitter skitter skitter*",
+  "SPIREBROTHERS-REPLICATORS.intro.2": "*a thousand tiny blocks, all clicking at once*",
+
+  "SPIREBROTHERS-REPLICATORS.heroIntro.0": "Bugs. Why is it always bugs?",
+  "SPIREBROTHERS-REPLICATORS.heroIntro.1": "I've got the ARG. Point it at the clicky things, right?",
+  "SPIREBROTHERS-REPLICATORS.heroIntro.2": "They're made of LEGO. Evil LEGO.",
+  "SPIREBROTHERS-REPLICATORS.heroIntro.3": "Okay, nobody step on one. Wait. Everybody step on one.",
+
+  "SPIREBROTHERS-REPLICATORS.heroReply.0": "*click-click*",
+  "SPIREBROTHERS-REPLICATORS.heroReply.1": "*the whole swarm turns to look*",
+  "SPIREBROTHERS-REPLICATORS.heroReply.2": "*skitter*",
+  "SPIREBROTHERS-REPLICATORS.heroReply.3": "*clack clack clack*",
+
+  "SPIREBROTHERS-REPLICATORS.sideReply.0": "Mix it up. They learn.",
+  "SPIREBROTHERS-REPLICATORS.sideReply.1": "Don't hit them with the same thing twice.",
+  "SPIREBROTHERS-REPLICATORS.sideReply.2": "The big one's making more. Go for the big one.",
+  "SPIREBROTHERS-REPLICATORS.sideReply.3": "Do NOT let them eat the ship.",
+
+  "SPIREBROTHERS-REPLICATORS.taunts.0": "*click-click-click*",
+  "SPIREBROTHERS-REPLICATORS.taunts.1": "*the swarm shifts and clatters*",
+  "SPIREBROTHERS-REPLICATORS.taunts.2": "*skitter skitter*",
+  "SPIREBROTHERS-REPLICATORS.taunts.3": "*clack*",
+
+  "SPIREBROTHERS-REPLICATORS.build.0": "*blocks snap together*",
+  "SPIREBROTHERS-REPLICATORS.build.1": "*click... click... CLICK*",
+  "SPIREBROTHERS-REPLICATORS.build.2": "*the pile of blocks starts to crawl*",
+
+  "SPIREBROTHERS-REPLICATORS.adapt.0": "They adapted! Switch it up!",
+  "SPIREBROTHERS-REPLICATORS.adapt.1": "That stopped working. They learn fast.",
+  "SPIREBROTHERS-REPLICATORS.adapt.2": "Same trick twice won't work. Try something else!",
+
+  "SPIREBROTHERS-REPLICATORS.heroWin.0": "Game over, bugs.",
+  "SPIREBROTHERS-REPLICATORS.heroWin.1": "Somebody sweep these up.",
+  "SPIREBROTHERS-REPLICATORS.heroWin.2": "Adapt to THAT.",
+  "SPIREBROTHERS-REPLICATORS.heroWin.3": "Just a pile of blocks now."
 }

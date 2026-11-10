@@ -193,3 +193,5 @@ KullArmor 🛡️
 Superweapon ☄️
 KullReserve 🪖
 RealBaal 👑
+Adaptation 🧬
+ReplicatorSwarm 🕷️

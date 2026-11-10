@@ -493,3 +493,15 @@ Card art for everything (all cards, relics, and powers use placeholders).
 - His hero is any player, picked at random in `GenerateMonsters` (encounter Rng; `Seat` = 0 hero, 1 answers). The token is shared:
   `Cards/Shared/AntiKullDisruptor.cs` in vanilla `TokenCardPool`. `BibleElite.Say` turns any line Brandi would say into a FACES face.
 - Art: `AnubisArt` / `KullArt` in pixelgen Stargate.cs; `dotnet run -c Release anubis kull_warrior` in mobgen.
+- Tested in game 2026-11-10.
+
+## Added 2026-11-10 (the Replicators, a second Act 2 boss)
+
+- **The Replicators** (Stargate SG-1), untested in game. TODO.md #18. `Monsters/Replicators.cs` (`ReplicatorBoss`, `ReplicatorQueen`,
+  `ReplicatorBug`). The Queen builds bugs from loose blocks (`ReplicatorQueen.Blocks`, shown by `ReplicatorSwarmPower`, the FoePower;
+  a fallen bug adds one in its `AfterDeath`). `AdaptationPower` (on every Replicator) halves damage from the card the swarm last
+  adapted to; the memory lives on the encounter (`NoteHurtBy` in `AfterDamageReceived`, `Adapt` in `AfterCardPlayed`, matched by
+  card ID so upgrades count). Hero picked at random like Anubis; token `Cards/Shared/AntiReplicatorGun.cs` (never adapted to).
+- Art: `art_originals/pixelgen/Replicators.cs` (`ReplicatorParts` block helpers incl. `Crumble` for the falling-apart dead frames,
+  so `TipOver` is false); `dotnet run -c Release replicator_queen replicator_bug` in mobgen. The map icon file is renamed on copy
+  to `images/map/replicators_boss_icon.png` (+ `_outline`).
